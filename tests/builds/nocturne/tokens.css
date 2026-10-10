@@ -1,0 +1,158 @@
+/* Studio Grade tokens: Nocturne copy.
+   Based on studio-grade/assets/tokens.css, overridden with the Nocturne Design Spine.
+   Local fixes vs the shipped asset:
+   - --font-text / --font-serif no longer default to Inter / Newsreader (set deliberately below).
+   - ink-3 raised from 42% to 60% so small text passes AA on every ground.
+   - accent is NOT used by default on .eyebrow, ::selection or --focus (each set deliberately).
+   - [hidden]{display:none!important} added. */
+
+:root{
+  /* ---------- Colour logic: black ground, bone ink, one hue per stage, bone = action ---------- */
+  --black:      #0D0C0B;              /* tinted near-black ground (warm) */
+  --bone:       #EFEAE0;              /* ink on black + the action colour (buttons, ticket field) */
+  --hal:        #FF4B1F;              /* HAL: vermilion */
+  --hal-ink:    #1C0700;
+  --silo:       #D4F531;              /* SILO: chartreuse */
+  --silo-ink:   #1A2000;
+  --dok:        #2E3CF5;              /* DOK: ultramarine (fields) */
+  --dok-ink:    #EEF0FF;
+  --dok-hi:     #8C97FF;              /* DOK as text on black (AA): same hue, lifted */
+
+  --paper:      var(--black);
+  --paper-2:    #171614;
+  --surface:    #1D1B19;
+  --ink-rgb:    239 234 224;          /* bone */
+  --ink:        rgb(var(--ink-rgb));
+  --ink-2:      rgb(var(--ink-rgb) / .68);
+  --ink-3:      rgb(var(--ink-rgb) / .6);   /* AA-safe tertiary (was .42) */
+  --hairline:   rgb(var(--ink-rgb) / .14);
+  --hairline-2: rgb(var(--ink-rgb) / .24);
+  --rule:       2px;                  /* poster rules are 2px, not hairlines */
+  --accent:     var(--bone);          /* the action colour */
+  --accent-ink: var(--black);
+  --focus:      var(--bone);
+
+  /* ---------- Type families (2) ---------- */
+  --font-display: "Big Shoulders Display", "Archivo", Impact, sans-serif;
+  --font-text:    "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-serif:   var(--font-text);   /* no serif voice on this site */
+  --font-mono:    var(--font-text);   /* no mono layer: labels are condensed Archivo caps */
+
+  /* ---------- Type scale (fluid; 390px → 1440px) ---------- */
+  --poster:   clamp(6.25rem, 1.2rem + 20.5vw, 20rem);    /* 99 → 314px: NOCTURNE, HAL, SILO, DOK */
+  --h2:       clamp(3.5rem, 1rem + 9.5vw, 9.5rem);       /* 53 → 152px */
+  --t1:       clamp(2.75rem, .6rem + 8.6vw, 8.5rem);     /* headliners 44 → 133px */
+  --t2:       clamp(2rem, .9rem + 4.2vw, 4.75rem);       /* 31 → 75px */
+  --t3:       clamp(1.5rem, 1rem + 2vw, 2.75rem);        /* 24 → 44px */
+  --h3:       clamp(1.75rem, 1rem + 2.4vw, 3.25rem);     /* 25 → 52px */
+  --claim:    clamp(2.25rem, 1rem + 3.6vw, 4.5rem);      /* 36 → 68px */
+  --lead:     clamp(1.125rem, 1rem + .5vw, 1.375rem);
+  --body:     1.0625rem;     /* 17px */
+  --ui:       .9375rem;      /* 15px */
+  --small:    .875rem;       /* 14px */
+  --label:    .75rem;        /* 12px uppercase */
+
+  --display-wt: 800;  --display-lh: .84;  --display-ls: -0.01em;   /* condensed gothic: near 0 */
+  --label-ls:   .1em;
+
+  /* ---------- Space ---------- */
+  --s-1: .25rem;  --s-2: .5rem;  --s-3: .75rem;  --s-4: 1rem;  --s-5: 1.5rem;  --s-6: 2rem;
+  --s-7: clamp(3rem, 2.4rem + 2.4vw, 4rem);
+  --s-8: clamp(4rem, 3rem + 4vw, 6rem);
+  --s-9: clamp(5rem, 3.5rem + 5.33vw, 9rem);
+  --s-10: clamp(7rem, 4.5rem + 8vw, 13rem);
+
+  /* ---------- Layout ---------- */
+  --container: 1360px;
+  --margin: clamp(1.25rem, .6rem + 2.6vw, 2.5rem);   /* 20 → 40px: poster type runs close to the edge */
+  --cols: 12;
+  --gap: clamp(1rem, .7rem + 1vw, 1.5rem);
+  --nav-h: 64px;
+
+  /* ---------- Shape: square camp, everywhere ---------- */
+  --r-btn: 0px;  --r-card: 0px;  --r-media: 0px;
+  --btn-h: 56px;  --btn-h-sm: 44px;
+
+  /* ---------- Motion: one house ease ---------- */
+  --ease:        cubic-bezier(.16, 1, .3, 1);
+  --ease-inout:  cubic-bezier(.76, 0, .24, 1);
+  --ease-ui:     cubic-bezier(.4, 0, .2, 1);
+  --t-fast: 150ms;  --t-ui: 240ms;  --t-reveal: 800ms;  --t-scene: 1400ms;
+  --stagger: 70ms;
+}
+
+/* ---------- Grounds. Derived tokens are re-declared per scope (they resolve where declared). ---------- */
+.g-black{--paper:var(--black);--ink-rgb:239 234 224;--ink:rgb(var(--ink-rgb));--ink-2:rgb(var(--ink-rgb) / .68);--ink-3:rgb(var(--ink-rgb) / .6);
+  --hairline:rgb(var(--ink-rgb) / .14);--hairline-2:rgb(var(--ink-rgb) / .24);--focus:var(--bone);color:var(--ink);background-color:var(--paper);color-scheme:dark}
+.g-bone{--paper:var(--bone);--ink-rgb:20 18 15;--ink:rgb(var(--ink-rgb));--ink-2:rgb(var(--ink-rgb) / .72);--ink-3:rgb(var(--ink-rgb) / .66);
+  --hairline:rgb(var(--ink-rgb) / .14);--hairline-2:rgb(var(--ink-rgb) / .3);--focus:var(--black);color:var(--ink);background-color:var(--paper);color-scheme:light}
+.g-hal{--paper:var(--hal);--ink-rgb:28 7 0;--ink:rgb(var(--ink-rgb));--ink-2:rgb(var(--ink-rgb) / .84);--ink-3:rgb(var(--ink-rgb) / .84);
+  --hairline:rgb(var(--ink-rgb) / .2);--hairline-2:rgb(var(--ink-rgb) / .4);--focus:var(--hal-ink);color:var(--ink);background-color:var(--paper)}
+.g-silo{--paper:var(--silo);--ink-rgb:26 32 0;--ink:rgb(var(--ink-rgb));--ink-2:rgb(var(--ink-rgb) / .74);--ink-3:rgb(var(--ink-rgb) / .74);
+  --hairline:rgb(var(--ink-rgb) / .2);--hairline-2:rgb(var(--ink-rgb) / .4);--focus:var(--silo-ink);color:var(--ink);background-color:var(--paper)}
+.g-dok{--paper:var(--dok);--ink-rgb:238 240 255;--ink:rgb(var(--ink-rgb));--ink-2:rgb(var(--ink-rgb) / .88);--ink-3:rgb(var(--ink-rgb) / .88);
+  --hairline:rgb(var(--ink-rgb) / .24);--hairline-2:rgb(var(--ink-rgb) / .45);--focus:var(--dok-ink);color:var(--ink);background-color:var(--paper)}
+
+/* ---------- Base ---------- */
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;color-scheme:dark;background:var(--black)}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 var(--body)/1.55 var(--font-text);font-stretch:100%;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+img,video,svg,canvas{display:block;max-width:100%}
+h1,h2,h3,h4,p,figure,blockquote,dl,dd,ol,ul{margin:0}
+ol,ul{padding:0;list-style:none}
+h1,h2,h3{text-wrap:balance}
+p,li,figcaption{text-wrap:pretty}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.18em}
+button,input,select,textarea{font:inherit;color:inherit}
+::selection{background:var(--hal);color:var(--hal-ink)}    /* deliberate: the selection is a HAL highlight */
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px}
+
+/* ---------- Text-style bundles ---------- */
+.t-poster {font:var(--display-wt) var(--poster)/var(--display-lh) var(--font-display);letter-spacing:var(--display-ls);text-transform:uppercase;font-feature-settings:"case"}
+.t-h2     {font:var(--display-wt) var(--h2)/.86 var(--font-display);letter-spacing:var(--display-ls);text-transform:uppercase}
+.t-h3     {font:800 var(--h3)/.92 var(--font-display);letter-spacing:0;text-transform:uppercase}
+.t-claim  {font:800 var(--claim)/.92 var(--font-display);letter-spacing:-.005em;text-transform:uppercase}
+.t-lead   {font:400 var(--lead)/1.42 var(--font-text);letter-spacing:-.005em}
+.t-body   {font:400 var(--body)/1.55 var(--font-text)}
+.t-small  {font:400 var(--small)/1.45 var(--font-text)}
+.t-label  {font:600 var(--label)/1.25 var(--font-text);font-stretch:82%;letter-spacing:var(--label-ls);text-transform:uppercase;font-feature-settings:"case"}
+.t-num    {font-variant-numeric:tabular-nums lining-nums}
+.dim      {color:var(--ink-2)}
+
+/* ---------- Layout ---------- */
+.container{width:min(100% - 2 * var(--margin), var(--container));margin-inline:auto}
+.grid     {display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));column-gap:var(--gap)}
+
+/* ---------- Buttons (square camp; optical bottom padding) ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.6em;min-height:var(--btn-h);padding:1px 26px 0;border-radius:var(--r-btn);
+  font:700 var(--ui)/1 var(--font-text);font-stretch:88%;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:0;
+  transition:background-color var(--t-fast) var(--ease-ui),color var(--t-fast) var(--ease-ui),box-shadow var(--t-fast) var(--ease-ui)}
+.btn--solid{background:var(--ink);color:var(--paper)}
+.btn--solid:hover{background:rgb(var(--ink-rgb) / .86)}
+.btn--ghost{background:transparent;box-shadow:inset 0 0 0 2px var(--ink);color:var(--ink)}
+.btn--ghost:hover{background:var(--ink);color:var(--paper)}
+.btn .arr{transition:transform var(--t-ui) var(--ease)}
+.btn:hover .arr{transform:translateX(4px)}
+
+/* ---------- Eyebrow (deliberate: no accent dot; the stage square does that job) ---------- */
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--ink-2)}
+
+/* ---------- Reveal (pairs with motion.js) ---------- */
+[data-reveal]{opacity:0;transform:translateY(14px);
+  transition:opacity var(--t-reveal) var(--ease),transform var(--t-reveal) var(--ease);
+  transition-delay:calc(var(--i, 0) * var(--stagger))}
+[data-reveal].is-in{opacity:1;transform:none}
+.no-js [data-reveal]{opacity:1;transform:none}
+
+/* ---------- Utilities ---------- */
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:var(--margin);top:-100px;z-index:999}
+.skip:focus{top:12px}
+
+/* ---------- Reduced motion (non-negotiable) ---------- */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0ms!important;scroll-behavior:auto!important}
+  [data-reveal]{opacity:1;transform:none}
+}

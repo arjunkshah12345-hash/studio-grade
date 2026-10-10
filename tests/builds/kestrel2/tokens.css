@@ -1,0 +1,214 @@
+/* Studio Grade tokens: starter system.
+   Every value here is a measured norm from studio-built sites (see references/).
+   The colours and families below are PLACEHOLDERS, not a style. Keeping the warm off-white
+   paper + mono labels is the "default look" (references/range.md §3) and the audit flags it.
+   Override the :root block with your Design Spine. Use only tokens in components
+   (exceptions: values inside product-UI replicas and generated SVG). */
+
+:root{
+  /* KESTREL K-1 · Loud colour-block system. Three grounds, one meaning each:
+     ORANGE = what K-1 does · BLACK = the problem / downtime · WHITE = the report.
+     Every band re-declares --paper / --ink-rgb / tiers in styles.css ([data-band]). */
+  --orange:     #FF5B14;              /* hi-vis safety orange: K-1 */
+  --orange-ink-rgb: 34 11 0;          /* #220B00, dark tint of the same hue: 6.3:1 on orange */
+  --black:      #131211;              /* downtime */
+  --black-ink-rgb: 244 243 240;       /* #F4F3F0 on black */
+  --white:      #FFFFFF;              /* the report (cool pure white, NOT warm paper) */
+  --white-ink-rgb: 21 20 19;          /* #151413 */
+
+  --paper:      var(--white);
+  --paper-2:    #EDEDEB;
+  --surface:    #FFFFFF;
+  --ink-rgb:    var(--white-ink-rgb);
+  --ink:        rgb(var(--ink-rgb));
+  --ink-2:      rgb(var(--ink-rgb) / .74);   /* secondary + two-tone tail */
+  --ink-3:      rgb(var(--ink-rgb) / .66);   /* captions: lowest small-text tier that passes AA on all three grounds */
+  --ink-4:      rgb(var(--ink-rgb) / .28);   /* DECORATION ONLY (unscanned bars, tracks). Never text. */
+  --hairline:   rgb(var(--ink-rgb) / .12);
+  --hairline-2: rgb(var(--ink-rgb) / .2);
+  --accent:     var(--orange);        /* jobs: (1) the K-1 meaning (fields, K-1 bars), (2) the primary CTA */
+  --accent-ink: rgb(var(--orange-ink-rgb));
+  --focus:      currentColor;         /* set per band in styles.css: dark ink on orange/white, light ink on black */
+
+  /* ---------- Type families (2) ---------- */
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;     /* heavy grotesk, wdth axis */
+  --font-text:    "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-serif:   "Fraunces", Georgia, serif;     /* ONE accent word per band, italic 800, same size as the line */
+  --font-mono:    var(--font-text);   /* no mono in this system: labels are Archivo sentence case */
+
+  /* ---------- Type scale (fluid; 390px → 1440px) ---------- */
+  --clock:    min(34.5vw, 58svh, 34rem);                    /* hero countdown: ~135 → 504px, height-capped */
+  --mega:     clamp(5.5rem, 1rem + 15.5vw, 15.5rem);       /* data numerals: 88 → 239px */
+  --word:     clamp(3.6rem, 0.5rem + 11.4vw, 11rem);       /* finale ask */
+  --display:  clamp(2.6rem, 1rem + 5.3vw, 6.25rem);        /* h1: 42 → 92px */
+  --h2:       clamp(2.35rem, 1rem + 4.2vw, 5.25rem);       /* 37 → 77px */
+  --h3:       clamp(1.5rem, 1.1rem + 1.2vw, 2.25rem);
+  --lead:     clamp(1.1875rem, 1.02rem + .55vw, 1.5rem);
+  --body:     1.0625rem;
+  --ui:       1rem;
+  --small:    .9375rem;
+  --label:    .9375rem;
+
+  --display-wt: 900;  --display-lh: .9;   --display-ls: -0.045em;
+  --word-wt:    900;  --word-lh:    .84;  --word-ls:    -0.055em;
+  --h2-wt:      900;  --h2-lh:      .94;  --h2-ls:      -0.04em;
+  --h3-wt:      800;  --h3-lh:      1.02; --h3-ls:      -0.02em;
+  --label-ls:   0em;
+  --wdth-display: 88;      /* Archivo width axis: tightened heavy grotesk */
+
+  /* ---------- Space ---------- */
+  --s-1: .25rem;  --s-2: .5rem;  --s-3: .75rem;  --s-4: 1rem;  --s-5: 1.5rem;  --s-6: 2rem;
+  --s-7: clamp(3rem, 2.4rem + 2.4vw, 4rem);
+  --s-8: clamp(4rem, 3rem + 4vw, 6rem);
+  --s-9: clamp(5rem, 3.5rem + 5.33vw, 9rem);
+  --s-10: clamp(7rem, 5rem + 8vw, 14rem);
+
+  /* ---------- Layout: edge-hugging camp ---------- */
+  --container: 1344px;
+  --margin: clamp(1.25rem, .6rem + 2.6vw, 3rem);    /* 20 → 48px */
+  --cols: 12;
+  --gap: clamp(1rem, .7rem + 1vw, 1.5rem);
+  --nav-h: 72px;
+
+  /* ---------- Shape: square camp ---------- */
+  --r-btn: 0px;  --r-card: 0px;  --r-media: 0px;
+  --btn-h: 56px;  --btn-h-sm: 44px;
+  --bar: clamp(14px, .6rem + .8vw, 24px);   /* the motif: one thick bar */
+
+  --ring: 0 0 0 1px var(--hairline);
+  --float: none;
+
+  /* ---------- Motion: instrumental ---------- */
+  --ease:        cubic-bezier(.16, 1, .3, 1);
+  --ease-inout:  cubic-bezier(.76, 0, .24, 1);
+  --ease-ui:     cubic-bezier(.4, 0, .2, 1);
+  --ease-pop:    cubic-bezier(.34, 1.56, .64, 1);
+  --t-fast: 150ms;  --t-ui: 240ms;  --t-reveal: 700ms;  --t-scene: 1200ms;
+  --spring-ui:    linear(0, .22 4%, .62 10%, .9 17%, 1.04 24%, 1.07 30%, 1.04 40%, 1 52%, .99 66%, 1);
+  --spring-pop:   linear(0, .3 5%, .85 12%, 1.12 20%, 1.16 25%, 1.05 36%, .97 48%, 1.01 62%, 1);
+  --spring-heavy: linear(0, .12 6%, .42 16%, .72 28%, .9 42%, .97 58%, 1);
+  --stagger: 70ms;
+}
+
+/* Dark scheme. Apply data-theme="dark" on <html> or on any section.
+   IMPORTANT: custom properties that reference other custom properties resolve where
+   they are DECLARED. So every derived token (--ink, --ink-2, --hairline…) must be
+   re-declared here, and the scope must reset color + background, or a dark section
+   inherits dark text. Do the same for any light section inside a dark page. */
+[data-theme="dark"]{
+  --paper: #08090A; --paper-2: #0F1011; --surface: #141516;
+  --ink-rgb: 247 248 248;
+  --ink:   rgb(var(--ink-rgb));
+  --ink-2: rgb(var(--ink-rgb) / .7); --ink-3: rgb(var(--ink-rgb) / .54); --ink-4: rgb(var(--ink-rgb) / .38);
+  --hairline: rgb(var(--ink-rgb) / .08); --hairline-2: rgb(var(--ink-rgb) / .14);
+  --ring: 0 0 0 1px var(--hairline);
+  --float: 0 0 0 1px rgb(0 0 0 / .2), inset 0 0 0 .5px rgb(255 255 255 / .08), 0 2px 32px rgb(0 0 0 / .25);
+  color-scheme: dark;
+  color: var(--ink);
+  background-color: var(--paper);
+}
+[data-theme="light"]{
+  --paper: #F7F6F3; --paper-2: #EFEDE8; --surface: #FFFFFF;
+  --ink-rgb: 23 23 21;
+  --ink:   rgb(var(--ink-rgb));
+  --ink-2: rgb(var(--ink-rgb) / .74); --ink-3: rgb(var(--ink-rgb) / .62); --ink-4: rgb(var(--ink-rgb) / .4);
+  --hairline: rgb(var(--ink-rgb) / .1); --hairline-2: rgb(var(--ink-rgb) / .16);
+  --ring: 0 0 0 1px var(--hairline);
+  color-scheme: light;
+  color: var(--ink);
+  background-color: var(--paper);
+}
+
+/* ---------- Base ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;color-scheme:light}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 var(--body)/1.55 var(--font-text);
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
+[data-theme="dark"] body,body[data-theme="dark"]{letter-spacing:.01em}  /* crisper on dark (Raycast) */
+img,video,svg,canvas{display:block;max-width:100%}
+img,video{height:auto}
+h1,h2,h3,h4,p,figure,blockquote{margin:0}
+h1,h2,h3{text-wrap:balance}
+p,li,figcaption{text-wrap:pretty}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.18em}
+button,input,select,textarea{font:inherit;color:inherit}
+::selection{background:var(--ink);color:var(--paper)}   /* inverted band ink, never the accent */
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:0}
+
+/* ---------- Text-style bundles (use only these) ---------- */
+.t-word   {font:var(--word-wt) var(--word)/var(--word-lh) var(--font-display);letter-spacing:var(--word-ls)}
+.t-display{font:var(--display-wt) var(--display)/var(--display-lh) var(--font-display);letter-spacing:var(--display-ls)}
+.t-h2     {font:var(--h2-wt) var(--h2)/var(--h2-lh) var(--font-display);letter-spacing:var(--h2-ls)}
+.t-h3     {font:var(--h3-wt) var(--h3)/var(--h3-lh) var(--font-display);letter-spacing:var(--h3-ls)}
+.t-lead   {font:400 var(--lead)/1.42 var(--font-serif);letter-spacing:-.008em}
+.t-body   {font:400 var(--body)/1.55 var(--font-text)}
+.t-ui     {font:450 var(--ui)/1.4 var(--font-text);letter-spacing:-.006em}
+.t-small  {font:400 var(--small)/1.45 var(--font-text)}
+.t-label  {font:500 var(--label)/1.2 var(--font-mono);letter-spacing:var(--label-ls);text-transform:uppercase;font-feature-settings:"case"}
+.t-label--plain{font:500 var(--small)/1.3 var(--font-text);letter-spacing:-.003em;text-transform:none}   /* sentence-case label for directions that don't use mono caps */
+.t-num    {font-variant-numeric:tabular-nums lining-nums}
+.dim      {color:var(--ink-2)}
+.dimmer   {color:var(--ink-3)}
+.faint    {color:var(--ink-4)}   /* decoration / large text only */
+.serif-i  {font-family:var(--font-serif);font-style:italic;font-weight:400;letter-spacing:-.01em}
+
+/* ---------- Layout ---------- */
+.container{width:min(100% - 2 * var(--margin), var(--container));margin-inline:auto}
+.bleed    {width:100%}
+.grid     {display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));column-gap:var(--gap)}
+.section  {padding-block:var(--s-9)}
+.rule     {border:0;border-top:1px solid var(--hairline);margin:0}
+.cells    {display:grid;gap:1px;background:var(--hairline);border:1px solid var(--hairline)}
+.cells>*  {background:var(--paper)}
+.rails    {border-inline:1px solid var(--hairline)}
+
+/* ---------- Buttons (one camp; optical bottom padding) ---------- */
+.btn{display:inline-flex;align-items:center;gap:.5em;height:var(--btn-h);padding:1px 20px 0;border-radius:var(--r-btn);
+  font:500 var(--ui)/1 var(--font-text);letter-spacing:-.005em;text-decoration:none;cursor:pointer;border:0;
+  transition:background-color var(--t-fast) var(--ease-ui),color var(--t-fast) var(--ease-ui),box-shadow var(--t-fast) var(--ease-ui)}
+.btn--primary{background:var(--ink);color:var(--paper)}
+.btn--primary:hover{background:rgb(var(--ink-rgb) / .86)}
+.btn--ghost{background:transparent;box-shadow:inset 0 0 0 1px var(--hairline-2);color:var(--ink)}
+.btn--ghost:hover{box-shadow:inset 0 0 0 1px var(--ink-3)}
+.btn--accent{background:var(--accent);color:var(--accent-ink)}
+.btn--sm{height:var(--btn-h-sm);padding-inline:14px;font-size:var(--small)}
+.btn .arr{transition:transform var(--t-ui) var(--ease)}
+.btn:hover .arr{transform:translateX(3px)}
+.link{color:var(--ink);text-decoration:underline;text-decoration-color:var(--hairline-2)}
+.link:hover{text-decoration-color:currentColor}
+
+/* ---------- Eyebrow ---------- */
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--ink-2)}
+.eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--eyebrow-dot, currentColor)}  /* set --eyebrow-dot: var(--accent) only if that is one of the accent's jobs */
+
+/* ---------- Product window (the only real shadow) ---------- */
+.window{background:var(--surface);border-radius:12px;box-shadow:var(--ring),var(--float);overflow:hidden}
+.fade-b{-webkit-mask-image:linear-gradient(to bottom,#000 62%,transparent);mask-image:linear-gradient(to bottom,#000 62%,transparent)}
+
+/* ---------- Art-directed placeholder ---------- */
+.ph{background:var(--paper-2) repeating-linear-gradient(45deg,transparent 0 9px,var(--hairline) 9px 10px);
+  display:grid;align-items:end;padding:16px;color:var(--ink-3);border-radius:var(--r-media)}
+
+/* ---------- Reveal (pairs with motion.js) ----------
+   Hidden state applies only when <html> has class "js" (add it with an inline <script> in <head>).
+   No JS, a failed module load, or file:// → content simply shows. */
+.js [data-reveal]{opacity:0;filter:blur(8px);transform:translateY(10px);
+  transition:opacity var(--t-reveal) var(--ease),filter var(--t-reveal) var(--ease),transform var(--t-reveal) var(--ease);
+  transition-delay:calc(var(--i, 0) * var(--stagger))}
+.js [data-reveal].is-in{opacity:1;filter:blur(0);transform:none}
+
+/* ---------- Utilities ---------- */
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.skip{position:absolute;left:var(--margin);top:-100px;z-index:999}
+.skip:focus{top:12px}
+
+/* Dev grid overlay: add class "show-grid" to <html> while building */
+.show-grid body::before{content:"";position:fixed;inset:0 max(var(--margin), (100% - var(--container)) / 2);z-index:9999;pointer-events:none;
+  background:repeating-linear-gradient(to right,rgb(127 255 255 / .18) 0 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols)),transparent 0 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols) + var(--gap)))}
+
+/* ---------- Reduced motion (non-negotiable) ---------- */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0ms!important;scroll-behavior:auto!important}
+  .js [data-reveal]{opacity:1;filter:none;transform:none}
+}

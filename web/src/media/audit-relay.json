@@ -1,0 +1,115 @@
+{
+ "url": "http://127.0.0.1:62160/index.html",
+ "outDir": "/tmp/cs-aud-relay",
+ "ms": 67919,
+ "counts": {
+  "PASS": 9,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Inter×117",
+   "JetBrains Mono×54"
+  ],
+  "display": [
+   "67px/1/-0.028em w510 \"Merge with a second read.\"",
+   "64px/1/-0.04em w400 \"$0\"",
+   "64px/1/-0.04em w400 \"$24\""
+  ],
+  "bodySize": "16",
+  "weights": [
+   "400×107",
+   "500×33",
+   "510×21",
+   "450×10"
+  ],
+  "upperShare": 0.15,
+  "paper": "rgb(10,11,12)",
+  "accents": [
+   "rgb(242,169,59) bg a.btn"
+  ],
+  "buttons": [
+   "pill 34px \"Skip to content\"",
+   "pill 34px \"Install\"",
+   "pill 44px \"Install on GitHub\n→\"",
+   "pill 44px \"See a sample review\"",
+   "pill 44px \"Install free\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)"
+  ],
+  "nav": {
+   "h": 60,
+   "links": 8
+  },
+  "pageVh": 10.3
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "2 families: Inter, JetBrains Mono"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 67px · lh 1 · -0.028em · weight 510 · Inter)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (3/6 traits: monoUpperLabels, hairlineBands, tinyAccent)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "One accent hue (30° (w5) e.g. rgb(242,169,59) bg a.btn)"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 153 checked text elements meet AA. Text over imagery was skipped; check it by eye."
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: pill"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "2 hero CTA(s)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.16,1,0.3,1)×60"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 0.2% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 10.3 viewports (direction 1 norm 8–11)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/cs-aud-relay/desktop-hero.png",
+  "/tmp/cs-aud-relay/slice-01.jpg … (one per viewport)",
+  "/tmp/cs-aud-relay/desktop-full.jpg",
+  "/tmp/cs-aud-relay/mobile-hero.png",
+  "/tmp/cs-aud-relay/mobile-full.jpg",
+  "/tmp/cs-aud-relay/reduced-motion-hero.png"
+ ]
+}

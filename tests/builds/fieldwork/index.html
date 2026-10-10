@@ -1,0 +1,531 @@
+<!doctype html>
+<!--
+DESIGN SPINE: Fieldwork
+DIRECTION   : 4 Editorial Motion. Municipal clients and landscape architects come to see how the work thinks, and the work (water moving through ground) is best shown moving.
+REGISTER    : Confident. The bold device is the cut-paper model table at full scale: every project is a paper model that floods, drains, peels or gets planted as you scroll. Everything else stays disciplined.
+AXES        : ground mid-tone (chipboard #A08A6D, the board models are built on) · type genre wide/extended grotesk (Archivo at 125% width) · image medium collage / cut paper · composition editorial asymmetric with pinned project slides · motion feel cinematic scrub (Lenis + sticky stages)
+DEFAULT?    : 0/6 matched (mid-tone ground, no mono labels, no hairline bands, no line drawing, accent is a full colour logic, display 500 wide). DIFFERENT FROM DEFAULT BY: ground, type genre, image medium, composition, motion
+MOTIF       : the waterline, a hand-cut blue paper edge. (1) hero: the river cutting across the model; (2) Maashaven: the tide climbing and leaving the terraces; (3) Spangen: the square filling to 1,700 m³ and draining; (4) right-edge gauge: page progress as a water level; (5) finale: the water rises over the whole page and carries the contact ask and footer.
+TYPE        : display Archivo 500 @ 125% width · text Archivo 400 @ 100% · second voice Source Serif 4 italic (kickers, captions, model notes). 2 families, no mono.
+SCALE       : hero 106px/.9/-0.04em · project title 76px/.92/-0.035em · h2 54px/1/-0.03em · body 17px/1.55 · small 14px
+PALETTE     : ground #A08A6D chipboard · ink #17120C · ink-2 rgb(ink/.86) · paper slips #EDE3CC · colour logic = a plan legend: water #1F4B63 (also the one UI accent: primary CTA, focus, gauge, finale field), planting #4C5A2A / #8E9C62, hard ground #B4532E, asphalt #46423C
+GRID        : 12 cols / 24px gap · full-bleed, side margin 48px · section rhythm 144px
+HERO        : asymmetric collage hero: intro + CTAs top-left, a cut-paper site model bleeding off the right, a 2-line wide headline trespassing across its bottom edge
+IMAGERY     : collage / cut paper (SVG pieces with hand-cut edges and contact shadows, plus a page-wide paper grain)
+CONVERSION  : "Discuss a commission" → nav (persistent), hero primary, finale primary. Recruiting: "Send your portfolio" in Careers + footer.
+MOTION      : house ease cubic-bezier(.19,1,.22,1) · UI 240ms · reveal 850ms · primitive blur-in for section heads, scrub for models, pieces settle onto the table on load
+SIGNATURES  : headline trespassing into the image (Studio D) · pinned scrubbed model sequences (Apple / Radian) · wordmark collapses to a monogram (Studio D)
+VOICE       : "Ground that holds the rain." · "Each one is built to flood well." · "Send us your site."
+-->
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fieldwork: landscape architecture, Rotterdam</title>
+<meta name="description" content="Fieldwork is a 22-person landscape architecture studio in Rotterdam designing parks, waterfronts, schoolyards and streets that hold rainwater.">
+<meta name="theme-color" content="#A08A6D">
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..600&family=Source+Serif+4:ital,opsz,wght@1,8..60,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--primary btn--sm" href="#main">Skip to content</a>
+
+<!-- shared paper filters -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="cut" x="-15%" y="-15%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="1.2" stdDeviation=".5" flood-color="#17120C" flood-opacity=".38"/>
+      <feDropShadow dx="0" dy="7" stdDeviation="6" flood-color="#17120C" flood-opacity=".16"/>
+    </filter>
+    <filter id="cut-lo" x="-15%" y="-15%" width="130%" height="140%">
+      <feDropShadow dx="0" dy=".8" stdDeviation=".4" flood-color="#17120C" flood-opacity=".32"/>
+    </filter>
+    <g id="yard">
+      <rect x="0" y="0" width="100" height="100" fill="#8E9C62"/>
+      <path d="M0 64 C22 58 40 72 62 66 S90 56 100 60 L100 100 L0 100Z" fill="#4C5A2A"/>
+      <circle cx="28" cy="30" r="17" fill="#4C5A2A" filter="url(#cut-lo)"/>
+      <circle cx="70" cy="38" r="12" fill="#3B4720" filter="url(#cut-lo)"/>
+      <rect x="54" y="72" width="30" height="16" fill="#B4532E" transform="rotate(-6 69 80)" filter="url(#cut-lo)"/>
+    </g>
+  </defs>
+</svg>
+
+<header class="hdr" id="top">
+  <a class="wordmark" href="#top" aria-label="Fieldwork, back to top"><span class="wm-f">F</span><span class="wm-rest">ieldwork</span></a>
+  <div class="gauge" aria-hidden="true"><span class="gauge-fill"></span></div>
+  <nav class="nav" aria-label="Primary">
+    <ul class="nav-list">
+      <li><a href="#work" data-letter-roll>Work</a></li>
+      <li><a href="#practice" data-letter-roll>Practice</a></li>
+      <li><a href="#studio" data-letter-roll>Studio</a></li>
+      <li><a href="#careers" data-letter-roll>Careers</a></li>
+    </ul>
+    <a class="btn btn--accent btn--sm nav-cta" href="#contact">Discuss a commission</a>
+    <button class="menu-btn btn btn--sm" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  </nav>
+  <div class="menu" id="menu" hidden>
+    <a href="#work">Work</a><a href="#practice">Practice</a><a href="#studio">Studio</a><a href="#careers">Careers</a><a href="#contact">Contact</a>
+  </div>
+</header>
+
+
+<main id="main">
+
+<!-- ============================== HERO ============================== -->
+<section class="hero" aria-labelledby="h1">
+  <div class="hero-intro">
+    <p class="hero-sub t-lead-x">Fieldwork is a landscape architecture studio in Rotterdam. We design parks, waterfronts, schoolyards and streets that store rainwater and get used every day.</p>
+    <div class="hero-ctas">
+      <a class="btn btn--accent" href="#contact">Discuss a commission <span class="arr" aria-hidden="true">→</span></a>
+      <a class="btn btn--ghost" href="#work">See the work</a>
+    </div>
+  </div>
+
+  <figure class="hero-model" role="img" aria-label="A cut-paper site model on chipboard: a blue river crossing a cream sheet, stepped green terraces, a terracotta water square, tree canopies and fanned planting swatches.">
+    <svg viewBox="0 0 900 800" preserveAspectRatio="xMidYMid meet">
+      <g class="pc" style="--d:0" data-depth=".02"><polygon points="72,92 842,58 868,724 98,750" fill="#EDE3CC" filter="url(#cut)"/></g>
+      <g class="pc" style="--d:1" data-depth=".05">
+        <polygon points="96,330 612,302 614,326 98,356" fill="#D8C6A2" filter="url(#cut-lo)"/>
+        <rect x="150" y="318" width="16" height="16" fill="#4C5A2A" transform="rotate(-3 158 326)"/>
+        <rect x="240" y="313" width="16" height="16" fill="#4C5A2A" transform="rotate(-3 248 321)"/>
+        <rect x="330" y="308" width="16" height="16" fill="#4C5A2A" transform="rotate(-3 338 316)"/>
+        <rect x="420" y="303" width="16" height="16" fill="#4C5A2A" transform="rotate(-3 428 311)"/>
+        <rect x="510" y="298" width="16" height="16" fill="#4C5A2A" transform="rotate(-3 518 306)"/>
+      </g>
+      <g class="pc" style="--d:2" data-depth=".07">
+        <polygon points="150,418 520,394 540,520 160,548" fill="#4C5A2A" filter="url(#cut)"/>
+        <polygon points="168,468 556,440 570,542 176,570" fill="#8E9C62" filter="url(#cut)"/>
+        <polygon points="186,520 590,488 598,562 190,592" fill="#C2B47A" filter="url(#cut)"/>
+      </g>
+      <g class="pc" style="--d:3" data-depth=".1">
+        <path d="M120,602 C290,560 420,642 560,592 C682,550 790,520 940,542 L940,712 C770,700 640,738 520,752 C380,766 250,736 120,712 Z" fill="#1F4B63" filter="url(#cut)"/>
+        <path d="M128,598 C292,556 420,634 560,584 C682,540 792,512 940,532 L940,552 C792,532 684,566 560,606 C420,654 296,576 132,616 Z" fill="#4F86A2"/>
+      </g>
+      <g class="pc" style="--d:4" data-depth=".12"><g transform="rotate(5 700 225)">
+        <rect x="600" y="150" width="200" height="150" fill="#B4532E" filter="url(#cut)"/>
+        <rect x="630" y="178" width="140" height="94" fill="#8F3F22"/>
+        <rect x="698" y="178" width="4" height="94" fill="#EDE3CC"/>
+        <circle cx="700" cy="225" r="15" fill="#EDE3CC"/><circle cx="700" cy="225" r="11" fill="#8F3F22"/>
+      </g></g>
+      <g class="pc" style="--d:5" data-depth=".15">
+        <circle cx="200" cy="182" r="36" fill="#4C5A2A" filter="url(#cut)"/>
+        <circle cx="256" cy="236" r="26" fill="#8E9C62" filter="url(#cut)"/>
+        <circle cx="306" cy="170" r="22" fill="#3B4720" filter="url(#cut)"/>
+        <circle cx="420" cy="226" r="42" fill="#8E9C62" filter="url(#cut)"/>
+        <circle cx="486" cy="168" r="20" fill="#4C5A2A" filter="url(#cut)"/>
+        <circle cx="742" cy="402" r="30" fill="#4C5A2A" filter="url(#cut)"/>
+        <circle cx="794" cy="446" r="20" fill="#8E9C62" filter="url(#cut)"/>
+      </g>
+      <g class="pc" style="--d:6" data-depth=".18"><g transform="rotate(-7 360 420)">
+        <use href="#yard" transform="translate(300 380) scale(.42)"/>
+        <use href="#yard" transform="translate(346 380) scale(.42)"/>
+        <use href="#yard" transform="translate(300 426) scale(.42)"/>
+        <rect x="346" y="426" width="42" height="42" fill="#46423C" filter="url(#cut-lo)"/>
+      </g></g>
+      <g class="pc" style="--d:7" data-depth=".22">
+        <rect x="440" y="20" width="120" height="74" fill="#C2B47A" transform="rotate(-16 500 57)" filter="url(#cut)"/>
+        <rect x="456" y="30" width="120" height="74" fill="#8E9C62" transform="rotate(-6 516 67)" filter="url(#cut)"/>
+        <rect x="474" y="42" width="120" height="74" fill="#4C5A2A" transform="rotate(5 534 79)" filter="url(#cut)"/>
+        <rect x="40" y="70" width="80" height="26" fill="#E9DB9F" opacity=".78" transform="rotate(-38 80 83)"/>
+        <rect x="806" y="690" width="80" height="26" fill="#E9DB9F" opacity=".78" transform="rotate(-36 846 703)"/>
+      </g>
+      <g class="pc" style="--d:8" data-depth=".26"><g transform="rotate(3 640 360)">
+        <rect x="574" y="336" width="160" height="46" fill="#F6EFDD" filter="url(#cut)"/>
+        <text x="590" y="365" class="svg-note">model 1:500</text>
+      </g></g>
+    </svg>
+  </figure>
+
+  <h1 class="hero-h1" id="h1"><span>Ground that</span> <span>holds the rain.</span></h1>
+</section>
+
+<!-- ============================== STATEMENT ============================== -->
+<section class="statement" aria-label="Why we work this way">
+  <p class="statement-text" data-scroll-fill>Rotterdam lies below the sea, and the rain keeps getting heavier. So we treat every square as a reservoir, every schoolyard as a sponge and every quay as a place the tide is allowed to visit.</p>
+</section>
+
+<!-- ============================== WORK ============================== -->
+<section class="work" id="work" aria-labelledby="work-h">
+  <div class="work-head">
+    <h2 class="t-h2x" id="work-h" data-reveal>Four projects. <span class="dim">Each one is built to flood well.</span></h2>
+  </div>
+
+  <!-- 01 Maashaven -->
+  <article class="seq seq--a" data-seq="tide" aria-labelledby="p1">
+    <div class="stage">
+      <div class="slide-text">
+        <p class="kicker"><span class="num">01</span> a park the river comes into twice a day</p>
+        <h3 class="slide-title" id="p1">Maashaven Tidal Park</h3>
+        <dl class="facts">
+          <div><dt>Area</dt><dd><b>3.2 ha</b> of tidal terraces</dd></div>
+          <div><dt>Year</dt><dd><b>2024</b></dd></div>
+        </dl>
+        <p class="slide-copy">An old harbour basin given back to the tide. The terraces step down to the river, so the waterline moves through the park instead of stopping at a quay wall.</p>
+        <p class="state" aria-live="off"><span data-state>Low water: the lower terraces are a beach.</span></p>
+      </div>
+      <figure class="slide-model" role="img" aria-label="Cut-paper section through Maashaven Tidal Park: green terraces step down to the river, and a blue paper tide rises over the lower terraces and falls back.">
+        <svg viewBox="0 0 800 560" preserveAspectRatio="xMidYMid meet">
+          <polygon points="18,40 790,20 800,548 30,556" fill="#EDE3CC" filter="url(#cut)"/>
+          <g class="tide-sky">
+            <circle cx="132" cy="150" r="34" fill="#4C5A2A" filter="url(#cut)"/>
+            <circle cx="184" cy="176" r="24" fill="#8E9C62" filter="url(#cut)"/>
+            <circle cx="86" cy="186" r="22" fill="#3B4720" filter="url(#cut)"/>
+            <rect x="128" y="176" width="8" height="40" fill="#46423C"/>
+          </g>
+          <polygon points="40,212 300,206 302,520 40,522" fill="#4C5A2A" filter="url(#cut)"/>
+          <polygon points="270,262 420,258 424,520 272,522" fill="#8E9C62" filter="url(#cut)"/>
+          <polygon points="392,312 530,308 534,520 394,522" fill="#C2B47A" filter="url(#cut)"/>
+          <polygon points="504,362 650,358 652,520 506,522" fill="#D8C6A2" filter="url(#cut)"/>
+          <polygon points="624,410 790,406 790,520 626,522" fill="#CDB98F" filter="url(#cut)"/>
+          <g fill="#4C5A2A">
+            <rect x="420" y="282" width="6" height="30" transform="rotate(-4 423 297)"/><rect x="438" y="278" width="6" height="34" transform="rotate(3 441 295)"/>
+            <rect x="456" y="286" width="6" height="26" transform="rotate(-2 459 299)"/><rect x="474" y="280" width="6" height="32" transform="rotate(5 477 296)"/>
+            <rect x="540" y="334" width="6" height="28" transform="rotate(-5 543 348)"/><rect x="558" y="330" width="6" height="32" transform="rotate(2 561 346)"/>
+          </g>
+          <defs><clipPath id="tide-card"><polygon points="18,40 790,20 800,520 24,520"/></clipPath></defs>
+          <g clip-path="url(#tide-card)"><g class="tide-water" data-el="water">
+            <path d="M250,0 C330,-14 400,14 480,0 C560,-14 640,12 720,-2 C760,-8 790,-4 820,0 L820,300 L250,300 Z" fill="#1F4B63" filter="url(#cut)"/>
+            <path d="M250,0 C330,-14 400,14 480,0 C560,-14 640,12 720,-2 C760,-8 790,-4 820,0 L820,12 C790,8 760,4 720,10 C640,24 560,-2 480,12 C400,26 330,-2 250,12 Z" fill="#4F86A2"/>
+          </g></g>
+        </svg>
+      </figure>
+    </div>
+  </article>
+
+  <!-- 02 Spangen -->
+  <article class="seq seq--b" data-seq="square" aria-labelledby="p2">
+    <div class="stage">
+      <figure class="slide-model" role="img" aria-label="Cut-paper section through Spangen Water Square: a sunken basketball court fills with blue paper water during a storm, holds 1,700 cubic metres, then drains back into a court.">
+        <svg viewBox="0 0 800 560" preserveAspectRatio="xMidYMid meet">
+          <defs><clipPath id="basin"><polygon points="70,190 730,190 730,252 680,252 680,312 630,312 630,372 580,372 580,430 220,430 220,372 170,372 170,312 120,312 120,252 70,252"/></clipPath></defs>
+          <polygon points="14,30 786,16 796,546 22,554" fill="#EDE3CC" filter="url(#cut)"/>
+          <g data-el="rain" fill="#1F4B63">
+            <rect x="140" y="40" width="5" height="22" transform="rotate(14 142 51)"/><rect x="220" y="70" width="5" height="22" transform="rotate(14 222 81)"/>
+            <rect x="300" y="30" width="5" height="22" transform="rotate(14 302 41)"/><rect x="380" y="64" width="5" height="22" transform="rotate(14 382 75)"/>
+            <rect x="460" y="36" width="5" height="22" transform="rotate(14 462 47)"/><rect x="540" y="74" width="5" height="22" transform="rotate(14 542 85)"/>
+            <rect x="620" y="44" width="5" height="22" transform="rotate(14 622 55)"/><rect x="180" y="110" width="5" height="22" transform="rotate(14 182 121)"/>
+            <rect x="340" y="120" width="5" height="22" transform="rotate(14 342 131)"/><rect x="500" y="112" width="5" height="22" transform="rotate(14 502 123)"/>
+            <rect x="660" y="118" width="5" height="22" transform="rotate(14 662 129)"/><rect x="260" y="140" width="5" height="22" transform="rotate(14 262 151)"/>
+          </g>
+          <polygon points="22,190 70,190 70,252 120,252 120,312 170,312 170,372 220,372 220,430 580,430 580,372 630,372 630,312 680,312 680,252 730,252 730,190 790,190 790,520 22,520" fill="#B9A27E" filter="url(#cut)"/>
+          <polygon points="70,248 124,248 124,256 70,256" fill="#D8C6A2"/><polygon points="120,308 174,308 174,316 120,316" fill="#D8C6A2"/>
+          <polygon points="170,368 224,368 224,376 170,376" fill="#D8C6A2"/><polygon points="676,248 730,248 730,256 676,256" fill="#D8C6A2"/>
+          <polygon points="626,308 680,308 680,316 626,316" fill="#D8C6A2"/><polygon points="576,368 630,368 630,376 576,376" fill="#D8C6A2"/>
+          <rect x="220" y="420" width="360" height="14" fill="#B4532E" filter="url(#cut-lo)"/>
+          <g data-el="court">
+            <rect x="238" y="330" width="7" height="92" fill="#17120C"/><rect x="238" y="330" width="34" height="22" fill="#EDE3CC" filter="url(#cut-lo)"/>
+            <rect x="555" y="330" width="7" height="92" fill="#17120C"/><rect x="528" y="330" width="34" height="22" fill="#EDE3CC" filter="url(#cut-lo)"/>
+          </g>
+          <circle data-el="ball" cx="400" cy="402" r="16" fill="#B4532E" filter="url(#cut)"/>
+          <g clip-path="url(#basin)"><g data-el="water">
+            <rect x="60" y="0" width="680" height="260" fill="#1F4B63"/>
+            <path d="M60,0 C160,-8 240,8 340,0 C440,-8 540,8 640,0 C700,-4 720,-2 740,0 L740,10 C700,8 660,12 640,10 C540,18 440,2 340,10 C240,18 160,2 60,10 Z" fill="#4F86A2"/>
+          </g></g>
+          <g filter="url(#cut-lo)"><rect x="22" y="118" width="44" height="64" fill="#B4532E"/><polygon points="22,118 44,96 66,118" fill="#8F3F22"/>
+          <rect x="744" y="108" width="42" height="74" fill="#B4532E"/><polygon points="744,108 765,86 786,108" fill="#8F3F22"/>
+          <circle cx="96" cy="160" r="20" fill="#4C5A2A"/><circle cx="708" cy="164" r="17" fill="#8E9C62"/></g>
+          <rect x="22" y="182" width="48" height="12" fill="#46423C"/><rect x="730" y="182" width="60" height="12" fill="#46423C"/>
+        </svg>
+      </figure>
+      <div class="slide-text">
+        <p class="kicker"><span class="num">02</span> a basketball court that is also a reservoir</p>
+        <h3 class="slide-title" id="p2">Spangen Water Square</h3>
+        <dl class="facts">
+          <div><dt>Stores</dt><dd><b class="t-num" data-vol>0</b> <b>m³</b> of stormwater</dd></div>
+          <div><dt>Year</dt><dd><b>2022</b></dd></div>
+        </dl>
+        <p class="slide-copy">A sunken square in Spangen. In a cloudburst it fills and holds 1,700 m³ of rainwater so the streets around it stay dry. The rest of the year it is a basketball court.</p>
+        <p class="state"><span data-state>Dry: the court is in play.</span></p>
+      </div>
+    </div>
+  </article>
+
+  <!-- 03 Schoolyards -->
+  <article class="seq seq--a" data-seq="yards" aria-labelledby="p3">
+    <div class="stage">
+      <div class="slide-text">
+        <p class="kicker"><span class="num">03</span> asphalt out, gardens in</p>
+        <h3 class="slide-title" id="p3">Fourteen schoolyards</h3>
+        <dl class="facts">
+          <div><dt>Greened</dt><dd><b class="t-num" data-yards>0</b> of <b>14</b> schoolyards</dd></div>
+          <div><dt>Years</dt><dd><b>2019–2025</b></dd></div>
+        </dl>
+        <p class="slide-copy">For the city we took the asphalt out of fourteen schoolyards and put back soil, planting and room to play. Rain now soaks in where it lands.</p>
+      </div>
+      <figure class="slide-model yards" role="img" aria-label="Fourteen cut-paper schoolyard tiles. Grey asphalt paper peels away from each one in turn to reveal green planting underneath.">
+        <div class="yard-grid">
+          <!-- 14 tiles, generated below to keep markup short -->
+        </div>
+      </figure>
+    </div>
+  </article>
+
+  <!-- 04 Afsluitdijk -->
+  <article class="seq seq--b seq--dike" data-seq="dike" aria-labelledby="p4">
+    <div class="stage">
+      <div class="slide-text">
+        <p class="kicker"><span class="num">04</span> salt on one side, fresh on the other</p>
+        <h3 class="slide-title" id="p4">Afsluitdijk planting strategy</h3>
+        <dl class="facts">
+          <div><dt>Status</dt><dd><b>In progress</b></dd></div>
+        </dl>
+        <p class="slide-copy">A planting strategy for the dike between the Wadden Sea and the IJsselmeer: what can take the salt wind on one side and the fresh water on the other.</p>
+      </div>
+      <figure class="slide-model dike" role="img" aria-label="A long cut-paper strip of the Afsluitdijk between a grey-blue Wadden Sea and a blue IJsselmeer. Green planting swatches are laid along it as it slides past; the far end is still bare, marked in progress.">
+        <svg viewBox="0 0 1800 520" preserveAspectRatio="xMinYMid slice" data-el="pan">
+          <rect x="0" y="0" width="1800" height="250" fill="#5E7A82"/>
+          <path d="M0,250 L1800,232 L1800,520 L0,520 Z" fill="#1F4B63"/>
+          <text x="40" y="70" class="svg-note svg-note--light">Wadden Sea, salt</text>
+          <text x="40" y="490" class="svg-note svg-note--light">IJsselmeer, fresh</text>
+          <polygon points="0,200 1800,184 1800,300 0,310" fill="#EDE3CC" filter="url(#cut)"/>
+          <polygon points="0,236 1800,222 1800,240 0,254" fill="#46423C"/>
+          <g data-el="swatches"></g>
+          <g transform="rotate(-3 1590 170)">
+            <rect x="1500" y="140" width="190" height="56" fill="#F6EFDD" filter="url(#cut)"/>
+            <text x="1518" y="176" class="svg-note">still to plant</text>
+          </g>
+        </svg>
+      </figure>
+    </div>
+  </article>
+</section>
+
+<!-- ============================== PRACTICE ============================== -->
+<section class="practice" id="practice" aria-labelledby="practice-h">
+  <div class="practice-head">
+    <p class="kicker">what we design</p>
+    <h2 class="t-h2x" id="practice-h" data-reveal>Places that work wet and dry.</h2>
+  </div>
+  <ol class="types">
+    <li class="type">
+      <span class="type-n">01</span><h3 class="type-t">Parks</h3><p class="type-d">Places the city can flood into and still use the next morning.</p>
+      <svg class="type-art" viewBox="0 0 120 90" aria-hidden="true"><rect x="6" y="10" width="108" height="72" fill="#EDE3CC" filter="url(#cut-lo)" transform="rotate(-4 60 46)"/><circle cx="40" cy="42" r="18" fill="#4C5A2A" filter="url(#cut-lo)"/><circle cx="72" cy="52" r="14" fill="#8E9C62" filter="url(#cut-lo)"/><path d="M8 70 C40 62 70 78 112 66 L112 82 L8 82Z" fill="#1F4B63"/></svg>
+    </li>
+    <li class="type">
+      <span class="type-n">02</span><h3 class="type-t">Waterfronts</h3><p class="type-d">Edges where the tide is part of the design, not a problem behind a wall.</p>
+      <svg class="type-art" viewBox="0 0 120 90" aria-hidden="true"><rect x="6" y="10" width="108" height="72" fill="#EDE3CC" filter="url(#cut-lo)" transform="rotate(3 60 46)"/><rect x="10" y="26" width="40" height="52" fill="#4C5A2A"/><rect x="44" y="40" width="30" height="38" fill="#8E9C62"/><rect x="70" y="54" width="40" height="24" fill="#C2B47A"/><path d="M50 58 C70 52 90 62 112 56 L112 80 L50 80Z" fill="#1F4B63"/></svg>
+    </li>
+    <li class="type">
+      <span class="type-n">03</span><h3 class="type-t">Schoolyards</h3><p class="type-d">Asphalt swapped for soil, shade and somewhere to climb.</p>
+      <svg class="type-art" viewBox="0 0 120 90" aria-hidden="true"><g transform="rotate(-5 60 45)"><use href="#yard" transform="translate(14 14) scale(.44)"/><use href="#yard" transform="translate(60 14) scale(.44)"/><rect x="14" y="60" width="44" height="22" fill="#46423C"/><use href="#yard" transform="translate(60 60) scale(.44 .22)"/></g></svg>
+    </li>
+    <li class="type">
+      <span class="type-n">04</span><h3 class="type-t">Climate streets</h3><p class="type-d">Streets that keep rainwater where it falls, in planted verges and open gutters.</p>
+      <svg class="type-art" viewBox="0 0 120 90" aria-hidden="true"><rect x="6" y="10" width="108" height="72" fill="#EDE3CC" filter="url(#cut-lo)" transform="rotate(-2 60 46)"/><rect x="10" y="36" width="100" height="22" fill="#46423C"/><rect x="10" y="26" width="100" height="10" fill="#8E9C62"/><rect x="10" y="58" width="100" height="8" fill="#1F4B63"/><circle cx="30" cy="26" r="9" fill="#4C5A2A"/><circle cx="62" cy="26" r="9" fill="#4C5A2A"/><circle cx="94" cy="26" r="9" fill="#4C5A2A"/></svg>
+    </li>
+  </ol>
+</section>
+
+<!-- ============================== CLIENTS ============================== -->
+<section class="clients" aria-labelledby="clients-h">
+  <h2 class="t-h2x clients-h" id="clients-h" data-reveal>Who we design for.</h2>
+  <div class="slip slip--l" data-reveal>
+    <h3 class="slip-t">Municipalities</h3>
+    <p>Water squares, schoolyard programmes and climate-adaptive streets. We design from the catchment down to the kerb, and we draw the planting as carefully as the drainage.</p>
+  </div>
+  <div class="slip slip--r" data-reveal>
+    <h3 class="slip-t">Developers</h3>
+    <p>Landscape that does the water work on site: storage, infiltration and planting that makes a scheme better to live next to, in a downpour and on a dry afternoon.</p>
+  </div>
+</section>
+
+<!-- ============================== STUDIO ============================== -->
+<section class="studio" id="studio" aria-labelledby="studio-h">
+  <div class="studio-l">
+    <p class="kicker">the studio</p>
+    <h2 class="t-h2x" id="studio-h" data-reveal>Twenty-two people, one model table.</h2>
+    <figure class="offcuts" role="img" aria-label="Offcuts of cream, green, terracotta and blue paper left on the model table.">
+      <svg viewBox="0 0 560 300">
+        <polygon points="20,60 250,40 262,230 30,250" fill="#EDE3CC" filter="url(#cut)"/>
+        <polygon points="200,120 330,96 352,190 214,214" fill="#4C5A2A" filter="url(#cut)"/>
+        <path d="M300,200 C350,170 420,226 520,190 L530,250 C430,276 360,236 306,262 Z" fill="#1F4B63" filter="url(#cut)"/>
+        <polygon points="380,40 470,58 452,130 368,112" fill="#B4532E" filter="url(#cut)"/>
+        <circle cx="120" cy="150" r="46" fill="#8E9C62" filter="url(#cut)"/>
+        <polygon points="440,150 540,140 536,170 446,178" fill="#C2B47A" filter="url(#cut)"/>
+        <circle cx="78" cy="226" r="14" fill="#3B4720" filter="url(#cut)"/>
+        <rect x="150" y="30" width="78" height="24" fill="#E9DB9F" opacity=".78" transform="rotate(-8 189 42)"/>
+      </svg>
+    </figure>
+  </div>
+  <div class="studio-r">
+    <p class="studio-lead">Fieldwork was founded by Mirte Bakker and Joost van Laar. We are a studio of 22 in Rotterdam, and we still work most things out by cutting, layering and moving pieces of a model around a table.</p>
+    <ul class="founders">
+      <li><span class="founder">Mirte Bakker</span><span class="role">Founder</span></li>
+      <li><span class="founder">Joost van Laar</span><span class="role">Founder</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================== CAREERS ============================== -->
+<section class="careers" id="careers" aria-labelledby="careers-h">
+  <div class="careers-card">
+    <p class="kicker">careers</p>
+    <h2 class="t-h2x" id="careers-h" data-reveal>We’re hiring landscape architects.</h2>
+    <p>If you want your drawings to get wet, send us your portfolio and a few lines about a place you would change.</p>
+    <a class="btn btn--primary" href="mailto:jobs@fieldwork.example">Send your portfolio <span class="arr" aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<!-- ============================== FINALE: the flood ============================== -->
+<section class="flood" id="contact" aria-labelledby="contact-h" data-flood>
+  <div class="flood-wave" aria-hidden="true"><svg viewBox="0 0 1440 40" preserveAspectRatio="none"><path d="M0,40 L0,22 C120,6 240,30 360,18 C480,6 600,28 720,16 C840,4 960,30 1080,18 C1200,6 1320,26 1440,14 L1440,40 Z" fill="#1F4B63"/><path d="M0,26 C120,10 240,34 360,22 C480,10 600,32 720,20 C840,8 960,34 1080,22 C1200,10 1320,30 1440,18 L1440,26 C1320,38 1200,18 1080,30 C960,42 840,16 720,28 C600,40 480,18 360,30 C240,42 120,18 0,34 Z" fill="#4F86A2"/></svg></div>
+  <div class="flood-body">
+    <div class="finale">
+      <h2 class="finale-h" id="contact-h">Send us your site.</h2>
+      <div class="finale-r">
+        <p>A square that floods, a schoolyard, a stretch of waterfront. Tell us where it is and what the water does there.</p>
+        <a class="btn btn--cream" href="mailto:studio@fieldwork.example">Discuss a commission <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="f-col f-brand"><p class="f-wm">Fieldwork</p><p>Landscape architecture<br>Rotterdam</p></div>
+      <div class="f-col"><h3 class="f-h">Work</h3><ul><li><a href="#work">Maashaven Tidal Park</a></li><li><a href="#work">Spangen Water Square</a></li><li><a href="#work">Fourteen schoolyards</a></li><li><a href="#work">Afsluitdijk</a></li></ul></div>
+      <div class="f-col"><h3 class="f-h">Studio</h3><ul><li><a href="#practice">Practice</a></li><li><a href="#studio">People</a></li><li><a href="#careers">Careers</a></li></ul></div>
+      <div class="f-col"><h3 class="f-h">Contact</h3><ul><li><a href="mailto:studio@fieldwork.example">studio@fieldwork.example</a></li><li><a href="mailto:jobs@fieldwork.example">jobs@fieldwork.example</a></li></ul></div>
+      <div class="f-col"><h3 class="f-h">In Rotterdam</h3><p class="f-clock">It is <span class="t-num" data-clock="Europe/Amsterdam">--:--</span> at the studio.</p></div>
+      <p class="f-legal">© 2026 Fieldwork. Every image on this site is cut paper.</p>
+    </footer>
+  </div>
+</section>
+
+</main>
+
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js" defer></script>
+<script type="module">
+import { autoInit, reduced } from './motion.js';
+
+/* ---- build the 14 schoolyard tiles and the dike swatches (keeps the markup short) ---- */
+const grid = document.querySelector('.yard-grid');
+const rot = [-3, 2, -1, 4, -4, 1, 3, -2, 2, -3, 1, -1, 4, -2];
+grid.innerHTML = rot.map((r, i) => `<div class="tile" style="--r:${r}deg"><svg viewBox="0 0 100 100" aria-hidden="true"><use href="#yard" transform="${i % 2 ? 'translate(100 0) scale(-1 1)' : ''}"/></svg><span class="asphalt"></span></div>`).join('');
+const tiles = [...grid.children];
+
+const sw = document.querySelector('[data-el="swatches"]');
+const greens = ['#4C5A2A', '#8E9C62', '#C2B47A', '#3B4720'];
+let swHTML = '';
+for (let i = 0; i < 22; i++) {
+  const x = 30 + i * 64, y = 196 + (i % 3) * 22 - i * .2, g = greens[i % 4];
+  swHTML += i % 3 === 1
+    ? `<circle class="sw" data-x="${x}" cx="${x + 20}" cy="${y + 26}" r="${16 + (i % 4) * 3}" fill="${g}" filter="url(#cut-lo)"/>`
+    : `<rect class="sw" data-x="${x}" x="${x}" y="${y}" width="${40 + (i % 2) * 14}" height="${30 + (i % 3) * 6}" fill="${g}" transform="rotate(${(i % 5) - 2} ${x + 20} ${y + 16})" filter="url(#cut-lo)"/>`;
+}
+sw.innerHTML = swHTML;
+const swatches = [...sw.children];
+
+autoInit();
+
+/* ---- helpers ---- */
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+const seg = (p, a, b) => clamp((p - a) / (b - a));
+const ease = (t) => 1 - Math.pow(1 - t, 3);
+const fmt = (n) => Math.round(n).toLocaleString('en-GB');
+
+/* ---- per-sequence scrub handlers (p: 0 → 1 through the pinned stage) ---- */
+const H = {
+  tide(p, s) {
+    const tide = .5 - .5 * Math.cos(p * Math.PI * 2);            // low → high → low
+    s.$water ??= s.querySelector('[data-el="water"]');
+    s.$state ??= s.querySelector('[data-state]');
+    s.$water.setAttribute('transform', `translate(0 ${470 - tide * 150})`);
+    const t = tide > .62 ? 'High water: the river takes the lower terraces.' : tide > .3 ? (p < .5 ? 'Rising: the reeds go under first.' : 'Falling: the terraces come back.') : 'Low water: the lower terraces are a beach.';
+    if (s.$state.textContent !== t) s.$state.textContent = t;
+  },
+  square(p, s) {
+    s.$w ??= s.querySelector('[data-el="water"]'); s.$rain ??= s.querySelector('[data-el="rain"]');
+    s.$ball ??= s.querySelector('[data-el="ball"]'); s.$vol ??= s.querySelector('[data-vol]'); s.$state ??= s.querySelector('[data-state]');
+    const fill = ease(seg(p, .14, .5)) * (1 - ease(seg(p, .68, .88)));
+    s.$w.setAttribute('transform', `translate(0 ${432 - fill * 242})`);
+    const rain = seg(p, .06, .5) > 0 && p < .55;
+    s.$rain.style.opacity = rain ? 1 : 0;
+    s.$rain.setAttribute('transform', `translate(${(p * 900) % 40 - 20} ${(p * 2400) % 60})`);
+    const play = seg(p, .88, 1);
+    s.$ball.setAttribute('transform', `translate(${play * 60} ${-Math.abs(Math.sin(play * Math.PI * 3)) * 70})`);
+    s.$vol.textContent = fmt(fill * 1700);
+    const t = p < .1 ? 'Dry: the court is in play.' : p < .5 ? 'Cloudburst: the square starts to fill.' : p < .68 ? 'Full: 1,700 m³ held off the streets.' : p < .88 ? 'Draining, slowly, once the storm has passed.' : 'Dry again: back to basketball.';
+    if (s.$state.textContent !== t) s.$state.textContent = t;
+  },
+  yards(p, s) {
+    s.$n ??= s.querySelector('[data-yards]');
+    const n = Math.round(clamp((p - .08) / .8) * 14);
+    tiles.forEach((t, i) => t.classList.toggle('is-green', i < n));
+    s.$n.textContent = n;
+  },
+  dike(p, s) {
+    s.$pan ??= s.querySelector('[data-el="pan"]');
+    const fig = s.$pan.parentElement; const over = Math.max(0, s.$pan.getBoundingClientRect().width - fig.clientWidth);
+    s.$pan.style.transform = `translateX(${-p * over}px)`;
+    const reach = 120 + p * 1360;                                  // planting reaches this far along the dike
+    swatches.forEach((el) => el.classList.toggle('is-laid', +el.dataset.x < Math.min(reach, 1420)));
+  },
+};
+
+const seqs = [...document.querySelectorAll('[data-seq]')];
+const heroPcs = [...document.querySelectorAll('.hero .pc')];
+const hdr = document.querySelector('.hdr');
+const gauge = document.querySelector('.gauge-fill');
+const flood = document.querySelector('[data-flood]');
+const floodBody = flood.querySelector('.flood-body');
+const floodWave = flood.querySelector('.flood-wave');
+
+if (reduced) {
+  document.documentElement.classList.add('is-static');
+  const still = { tide: .5, square: .55, yards: 1, dike: .7 };
+  seqs.forEach((s) => H[s.dataset.seq](still[s.dataset.seq], s));
+} else {
+  // the dike strip needs a measurable width: size the svg wider than its frame
+  document.documentElement.classList.add('is-scrub');
+}
+
+let lenis = null;
+const startLenis = () => {
+  if (reduced || !window.Lenis || lenis) return;
+  lenis = window.lenis = new window.Lenis({ lerp: .1, wheelMultiplier: 1 });
+  document.querySelectorAll('a[href^="#"]').forEach((a) => a.addEventListener('click', (e) => {
+    const id = a.getAttribute('href'); if (id.length < 2) return;
+    const t = document.querySelector(id); if (!t) return; e.preventDefault(); lenis.scrollTo(t, { offset: 0 });
+  }));
+};
+window.addEventListener('load', startLenis);
+
+let last = -1;
+const frame = (time) => {
+  if (lenis) lenis.raf(time);
+  const y = scrollY, vh = innerHeight;
+  if (y !== last) {
+    last = y;
+    hdr.classList.toggle('is-scrolled', y > 80);
+    gauge.style.transform = `scaleX(${clamp(y / (document.documentElement.scrollHeight - vh))})`;
+    if (!reduced) {
+      if (y < vh * 1.2) heroPcs.forEach((g) => g.setAttribute('transform', `translate(0 ${(-y * +g.dataset.depth).toFixed(1)})`));
+      for (const s of seqs) {
+        const r = s.getBoundingClientRect();
+        if (r.bottom < -vh * .5 || r.top > vh * 1.5) continue;
+        H[s.dataset.seq](clamp(-r.top / (r.height - vh)), s);
+      }
+      const fr = flood.getBoundingClientRect();
+      const fp = ease(clamp((vh - fr.top) / (vh * .75)));
+      const cut = (1 - fp) * Math.min(fr.height, vh);
+      floodBody.style.clipPath = `inset(${cut}px 0 0 0)`;
+      floodWave.style.transform = `translateY(${cut}px)`;
+      hdr.classList.toggle('on-water', fr.top < 60);
+    }
+  }
+  requestAnimationFrame(frame);
+};
+requestAnimationFrame(frame);
+addEventListener('resize', () => { last = -1; });
+
+/* ---- mobile menu ---- */
+const mb = document.querySelector('.menu-btn'), menu = document.getElementById('menu');
+mb.addEventListener('click', () => { const open = menu.hidden; menu.hidden = !open; mb.setAttribute('aria-expanded', String(open)); mb.textContent = open ? 'Close' : 'Menu'; });
+menu.addEventListener('click', (e) => { if (e.target.closest('a')) { menu.hidden = true; mb.setAttribute('aria-expanded', 'false'); mb.textContent = 'Menu'; } });
+
+/* ---- pieces settle onto the table ---- */
+requestAnimationFrame(() => document.querySelector('.hero').classList.add('is-set'));
+</script>
+</body>
+</html>

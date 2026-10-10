@@ -1,0 +1,118 @@
+{
+ "url": "http://127.0.0.1:62568/index.html",
+ "outDir": "/tmp/cs-aud-halden2",
+ "ms": 33889,
+ "counts": {
+  "PASS": 9,
+  "INFO": 3
+ },
+ "profile": {
+  "families": [
+   "Albert Sans×81",
+   "Cormorant Garamond×13"
+  ],
+  "display": [
+   "318px/0.8/-0.055em w200 \"Halden\"",
+   "52px/1/-0.03em w200 \"Fjord rooms\"",
+   "52px/1/-0.03em w200 \"Corner rooms\""
+  ],
+  "bodySize": "14",
+  "weights": [
+   "400×64",
+   "200×17",
+   "500×13"
+  ],
+  "upperShare": 0,
+  "paper": "rgb(10,16,31)",
+  "accents": [
+   "rgb(240,168,104) bg a.skip"
+  ],
+  "buttons": [
+   "square 48px \"Skip to content\"",
+   "square 40px \"Book a stay\"",
+   "square 48px \"Book a stay\"",
+   "square 48px \"See the rooms\"",
+   "square 48px \"Book a stay\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.34,1.56,.64,1)"
+  ],
+  "nav": {
+   "h": 72,
+   "links": 6
+  },
+  "pageVh": 13.7
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "2 families: Albert Sans, Cormorant Garamond"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 318px · lh 0.8 · -0.055em · weight 200 · Albert Sans)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (2/6 traits: tinyAccent, lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "One accent hue (30° (w5) e.g. rgb(240,168,104) bg a.skip)"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 94 checked text elements meet AA. Text over imagery was skipped; check it by eye."
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: square"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "2 hero CTA(s)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.16,1,0.3,1)×63, cubic-bezier(0.76,0,0.24,1)×29"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 0.1% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 13.7 viewports (direction 6 norm 12–27)"
+  },
+  {
+   "level": "INFO",
+   "rule": "motion.smoothScroll",
+   "msg": "Smooth scroll (Lenis) detected. Appropriate only for editorial, place, deep-tech, and immersive directions."
+  }
+ ],
+ "screenshots": [
+  "/tmp/cs-aud-halden2/desktop-hero.png",
+  "/tmp/cs-aud-halden2/slice-01.jpg … (one per viewport)",
+  "/tmp/cs-aud-halden2/desktop-full.jpg",
+  "/tmp/cs-aud-halden2/mobile-hero.png",
+  "/tmp/cs-aud-halden2/mobile-full.jpg",
+  "/tmp/cs-aud-halden2/reduced-motion-hero.png"
+ ]
+}

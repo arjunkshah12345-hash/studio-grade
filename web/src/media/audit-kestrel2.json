@@ -1,0 +1,124 @@
+{
+ "url": "http://127.0.0.1:62854/index.html",
+ "outDir": "/tmp/cs-aud-kestrel2",
+ "ms": 44963,
+ "counts": {
+  "WARN": 1,
+  "PASS": 8,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Archivo×104",
+   "Fraunces×6"
+  ],
+  "display": [
+   "172px/0.84/-0.055em w900 \"Book a field demo.\"",
+   "172px/0.84/-0.035em w800 \"demo.\"",
+   "92px/0.9/-0.045em w900 \"One blade. Eleven minutes.\""
+  ],
+  "bodySize": "24",
+  "weights": [
+   "500×31",
+   "800×25",
+   "600×21",
+   "900×21",
+   "700×12"
+  ],
+  "upperShare": 0,
+  "paper": "rgb(19,18,17)",
+  "accents": [
+   "rgb(255,91,20) text \"Skip to content\""
+  ],
+  "buttons": [
+   "square 44px \"Skip to content\"",
+   "square 44px \"Book a field demo\"",
+   "square 56px \"Book a field demo\n→\"",
+   "square 44px \"Fast-forward ×20\"",
+   "square 64px \"Book a field demo\n→\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)"
+  ],
+  "nav": {
+   "h": 72,
+   "links": 5
+  },
+  "pageVh": 8.8
+ },
+ "findings": [
+  {
+   "level": "WARN",
+   "rule": "type.display.weight",
+   "msg": "Bold (≥700) display on 17 element(s). Top tier uses 300–510; bold needs a brand reason.",
+   "examples": [
+    "92px w900",
+    "76px w900",
+    "76px w900",
+    "100px w900",
+    "76px w900"
+   ]
+  },
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "2 families: Archivo, Fraunces"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (0/6 traits)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "One accent hue (30° (w985) e.g. rgb(255,91,20) text \"Skip to content\")"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 109 checked text elements meet AA. Text over imagery was skipped; check it by eye."
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: square"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "2 hero CTA(s)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: linear×64, cubic-bezier(0.16,1,0.3,1)×30, cubic-bezier(0.4,0,0.2,1)×4, cubic-bezier(0.34,1.56,0.64,1)×1"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 42.7% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 8.8 viewports (direction 8 norm 10–16)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/cs-aud-kestrel2/desktop-hero.png",
+  "/tmp/cs-aud-kestrel2/slice-01.jpg … (one per viewport)",
+  "/tmp/cs-aud-kestrel2/desktop-full.jpg",
+  "/tmp/cs-aud-kestrel2/mobile-hero.png",
+  "/tmp/cs-aud-kestrel2/mobile-full.jpg",
+  "/tmp/cs-aud-kestrel2/reduced-motion-hero.png"
+ ]
+}

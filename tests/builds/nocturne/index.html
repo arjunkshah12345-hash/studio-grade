@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<!--
+DESIGN SPINE: NOCTURNE
+DIRECTION   : 7 Institutional (culture) — a festival is a programme to scan (nights, stages, set times, prices), so it gets the
+              institutional system (semantic colour per stage, operational truth as type, visible a11y), played loud for a scene audience.
+REGISTER    : Loud — the bold device is colour as ground: every stage owns one saturated field, and the stage names run poster-scale.
+AXES        : ground colour-block system (black + HAL vermilion / SILO chartreuse / DOK ultramarine + bone for action)
+              · type genre condensed gothic caps (Big Shoulders Display 800, 100–314px) · image medium type poster / kinetic type
+              (the line-up IS the image) · composition banded (full-bleed bands per section) · motion feel kinetic type.
+DEFAULT?    : 0/6 matched (black ground, no mono labels, 2px poster rules not hairlines, no line drawing, colour is the ground,
+              heavy display) → DIFFERENT FROM DEFAULT BY: ground, type genre, image medium, composition, motion.
+MOTIF       : the stage key, three blocks in fixed order HAL / SILO / DOK. 1 hero key bar (navigation into the stages) ·
+              2 line-up colour code + stage filter · 3 day-programme stage squares · 4 ticket coverage bars (the 04–06 DOK
+              segment is the Night Owl) · 5 marquee separators + favicon.
+TYPE        : display Big Shoulders Display 800 · text Archivo 400/600/700 (labels in Archivo at 82% width, caps +0.1em) · no mono.
+SCALE       : poster 314/0.84/−0.01em · h2 152/0.86 · headliner 133 · tier-2 75 · tier-3 44 · claim 68 · body 17/1.55 · label 12 caps
+PALETTE     : ground #0D0C0B · ink bone #EFEAE0 (68% / 60% tiers) · HAL #FF4B1F (ink #1C0700) · SILO #D4F531 (ink #1A2000)
+              · DOK #2E3CF5 (ink #EEF0FF; #8C97FF as text on black) · bone = the action colour (buttons, tickets field, marquee).
+              Each hue means one stage and nothing else.
+GRID        : 12 / 24px · container 1360 · margin 20→40px · bands run full-bleed, rhythm varies 260→1600px
+HERO        : poster — letter-spread NOCTURNE across the full measure, a rotating "loud / strange / slow" line, buy CTA,
+              live doors countdown, and the three-colour stage key as the bottom edge of the first viewport.
+IMAGERY     : type poster / kinetic type; no photography. The line-up is set as the festival poster.
+CONVERSION  : Buy tickets — header (always), hero primary, each pass (3), giant ticket marquee, footer.
+MOTION      : house ease cubic-bezier(.16,1,.3,1) · UI 150–240ms · builds 1400ms · primitives: letter-spread build, rotating word,
+              200px marquee, live countdown. A global "Pause motion" control; reduced motion shows final states.
+SIGNATURES  : #28 letter-spread title · #19 rotating word · #30 marquee at 200px (+ a live countdown).
+VOICE       : "Music for the loud hours." · "Peak-time techno under the crane rails." · "Buy tickets. Doors Friday at 20:00."
+-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nocturne · 12–14 March 2027 · Fenix, Rotterdam</title>
+<meta name="description" content="Three nights of electronic and experimental music in Rotterdam's former Fenix port warehouses. 41 artists, three stages, closing sets at 06:00. Tickets from €65.">
+<meta name="theme-color" content="#0D0C0B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Crect width='30' height='30' fill='%230D0C0B'/%3E%3Crect x='3' y='3' width='8' height='24' fill='%23FF4B1F'/%3E%3Crect x='11' y='3' width='8' height='24' fill='%23D4F531'/%3E%3Crect x='19' y='3' width='8' height='24' fill='%232E3CF5'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..700&family=Big+Shoulders+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="g-black">
+<a class="skip btn btn--solid" href="#main">Skip to content</a>
+
+<header class="hdr g-black">
+  <a class="hdr__mark" href="#top" aria-label="Nocturne, back to top"><span class="hdr__key" aria-hidden="true"><i class="k-hal"></i><i class="k-silo"></i><i class="k-dok"></i></span>Nocturne</a>
+  <nav class="hdr__nav" aria-label="Main">
+    <a href="#lineup">Line-up</a>
+    <a href="#stages">Stages</a>
+    <a href="#by-day">By day</a>
+    <a href="#visit">Visit</a>
+  </nav>
+  <a class="btn btn--solid hdr__cta" href="#tickets">Buy tickets</a>
+</header>
+
+<main id="main">
+
+<!-- ============================== HERO ============================== -->
+<section class="hero" id="top" aria-labelledby="h1">
+  <div class="hero__meta container">
+    <p class="t-label">12—14 March 2027 <span class="dim">·</span> Fenix halls, Katendrecht, Rotterdam</p>
+    <div class="hero__count">
+      <p class="t-label dim">Doors in</p>
+      <p class="cd t-num" data-countdown><span aria-hidden="true"><span data-u="d">155</span><i>d</i> <span data-u="h">00</span><i>h</i> <span data-u="m">00</span><i>m</i> <span data-u="s">00</span><i>s</i></span><span class="sr-only">Doors open Friday 12 March 2027 at 20:00</span></p>
+    </div>
+  </div>
+
+  <h1 id="h1" class="mast container t-poster">
+    <span class="sr-only">Nocturne, 12–14 March 2027, Rotterdam</span>
+    <span class="spread" aria-hidden="true" data-spread="load"><span class="ch" data-ch="N"></span><span class="ch" data-ch="O"></span><span class="ch" data-ch="C"></span><span class="ch" data-ch="T"></span><span class="ch" data-ch="U"></span><span class="ch" data-ch="R"></span><span class="ch" data-ch="N"></span><span class="ch" data-ch="E"></span></span>
+  </h1>
+
+  <div class="hero__row container">
+    <p class="rot t-claim">
+      <span class="sr-only">Music for the loud, strange and slow hours.</span>
+      <span aria-hidden="true">Music for the <span class="rot__win" data-rotate><span class="rot__track"><span class="rot__w c-hal">Loud<sup>HAL</sup></span><span class="rot__w c-silo">Strange<sup>SILO</sup></span><span class="rot__w c-dok">Slow<sup>DOK</sup></span><span class="rot__w c-hal">Loud<sup>HAL</sup></span></span></span> hours.</span>
+    </p>
+    <div class="hero__aside">
+      <p class="hero__sub">Three nights in the old Fenix port warehouses. 41 artists across three stages, talks by day, and closing sets that end at 06:00.</p>
+      <div class="hero__ctas">
+        <a class="btn btn--solid" href="#tickets">Buy tickets <span class="btn__from">from €65</span></a>
+        <a class="btn btn--ghost" href="#lineup">See the line-up</a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="key" aria-label="The three stages">
+    <a class="key__s g-hal" href="#hal"><span class="key__n">HAL</span><span class="key__d"><span class="key__g">Techno, peak time</span> <span class="key__t">20:00–04:00</span></span></a>
+    <a class="key__s g-silo" href="#silo"><span class="key__n">SILO</span><span class="key__d"><span class="key__g">Live and experimental</span> <span class="key__t">21:00–04:00</span></span></a>
+    <a class="key__s g-dok" href="#dok"><span class="key__n">DOK</span><span class="key__d"><span class="key__g">Bass, breaks, sunrise</span> <span class="key__t">20:00–06:00</span></span></a>
+  </nav>
+</section>
+
+<!-- ============================== LINE-UP (the poster) ============================== -->
+<section class="lineup" id="lineup" aria-labelledby="lineup-h">
+  <div class="container lineup__head">
+    <h2 id="lineup-h" class="t-h2">Line-up</h2>
+    <div class="lineup__side">
+      <p class="lineup__intro">41 artists, three nights. The colour is the stage, the small print is the set time. Closing sets at 04:00 run until 06:00 for Night Owl pass holders.</p>
+      <div class="filter" role="group" aria-label="Show artists by stage">
+        <button type="button" class="filter__b" data-f="all" aria-pressed="true">All stages</button>
+        <button type="button" class="filter__b f-hal" data-f="hal" aria-pressed="false"><i aria-hidden="true"></i>HAL</button>
+        <button type="button" class="filter__b f-silo" data-f="silo" aria-pressed="false"><i aria-hidden="true"></i>SILO</button>
+        <button type="button" class="filter__b f-dok" data-f="dok" aria-pressed="false"><i aria-hidden="true"></i>DOK</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="poster" data-filter="all">
+    <div class="night container">
+      <h3 class="night__h"><span class="night__d">Fri</span> <span class="night__n t-num">12.03</span><span class="night__m">Night one</span></h3>
+      <div class="night__bill">
+        <ul class="bill bill--t1">
+          <li class="a c-hal" data-stage="hal">KOLMA <span class="a__slot">HAL 00:30</span></li>
+          <li class="a c-silo" data-stage="silo">Mareld <span class="a__slot">SILO 23:00 · live</span></li>
+        </ul>
+        <ul class="bill bill--t2">
+          <li class="a c-dok" data-stage="dok">Teo Arc <span class="a__slot">DOK 00:00</span></li>
+          <li class="a c-hal" data-stage="hal">Obi Marlowe <span class="a__slot">HAL 22:30</span></li>
+          <li class="a c-silo" data-stage="silo">Quartz Choir <span class="a__slot">SILO 00:30</span></li>
+          <li class="a c-dok" data-stage="dok">Lior Ama <span class="a__slot">DOK 04:00 · closing</span></li>
+        </ul>
+        <ul class="bill bill--t3">
+          <li class="a c-hal" data-stage="hal">Rasa Venn <span class="a__slot">HAL 20:00</span></li>
+          <li class="a c-hal" data-stage="hal">Femke Tor <span class="a__slot">HAL 02:30</span></li>
+          <li class="a c-silo" data-stage="silo">Ines Kahl <span class="a__slot">SILO 21:00</span></li>
+          <li class="a c-silo" data-stage="silo">Oyelaran <span class="a__slot">SILO 02:00</span></li>
+          <li class="a c-dok" data-stage="dok">Nadi Sol <span class="a__slot">DOK 20:00</span></li>
+          <li class="a c-dok" data-stage="dok">Brakwater <span class="a__slot">DOK 22:00</span></li>
+          <li class="a c-dok" data-stage="dok">Juno Esk <span class="a__slot">DOK 02:00</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="night container">
+      <h3 class="night__h"><span class="night__d">Sat</span> <span class="night__n t-num">13.03</span><span class="night__m">Night two</span></h3>
+      <div class="night__bill">
+        <ul class="bill bill--t1">
+          <li class="a c-hal" data-stage="hal">Saoirse Vale <span class="a__slot">HAL 01:00</span></li>
+          <li class="a c-dok" data-stage="dok">Yusuf Okon <span class="b2b">b2b</span> Lune <span class="a__slot">DOK 04:00 · closing</span></li>
+        </ul>
+        <ul class="bill bill--t2">
+          <li class="a c-hal" data-stage="hal">Anouk Reyes <span class="a__slot">HAL 23:00</span></li>
+          <li class="a c-silo" data-stage="silo">Eskel <span class="a__slot">SILO 23:30 · live</span></li>
+          <li class="a c-dok" data-stage="dok">Sable Nines <span class="a__slot">DOK 00:00</span></li>
+        </ul>
+        <ul class="bill bill--t3">
+          <li class="a c-hal" data-stage="hal">Vesna Kirov <span class="a__slot">HAL 20:00</span></li>
+          <li class="a c-hal" data-stage="hal">Mothbank <span class="a__slot">HAL 03:00</span></li>
+          <li class="a c-silo" data-stage="silo">Lieve Stam <span class="a__slot">SILO 21:00</span></li>
+          <li class="a c-silo" data-stage="silo">Tamsin Orr <span class="a__slot">SILO 01:00</span></li>
+          <li class="a c-silo" data-stage="silo">Ruïne <span class="a__slot">SILO 02:30</span></li>
+          <li class="a c-dok" data-stage="dok">Pim Okkerse <span class="a__slot">DOK 20:00</span></li>
+          <li class="a c-dok" data-stage="dok">Kiri Ohana <span class="a__slot">DOK 22:00</span></li>
+          <li class="a c-dok" data-stage="dok">Arno Dielen <span class="a__slot">DOK 02:00</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="night container">
+      <h3 class="night__h"><span class="night__d">Sun</span> <span class="night__n t-num">14.03</span><span class="night__m">Night three</span></h3>
+      <div class="night__bill">
+        <ul class="bill bill--t1">
+          <li class="a c-hal" data-stage="hal">Dita Ferro <span class="a__slot">HAL 00:30</span></li>
+          <li class="a c-silo" data-stage="silo">Halcyon Unit <span class="a__slot">SILO 23:00 · live</span></li>
+        </ul>
+        <ul class="bill bill--t2">
+          <li class="a c-hal" data-stage="hal">Marisol Hedd <span class="a__slot">HAL 22:30</span></li>
+          <li class="a c-silo" data-stage="silo">Fen Atlas <span class="a__slot">SILO 00:30</span></li>
+          <li class="a c-dok" data-stage="dok">Mira Solenne <span class="a__slot">DOK 00:00</span></li>
+          <li class="a c-dok" data-stage="dok">Elke Moor <span class="a__slot">DOK 04:00 · closing</span></li>
+        </ul>
+        <ul class="bill bill--t3">
+          <li class="a c-hal" data-stage="hal">Cato Brem <span class="a__slot">HAL 20:00</span></li>
+          <li class="a c-hal" data-stage="hal">Wren Adeyemi <span class="a__slot">HAL 02:30</span></li>
+          <li class="a c-silo" data-stage="silo">Noor Halsema <span class="a__slot">SILO 20:00</span></li>
+          <li class="a c-silo" data-stage="silo">Tove Ilse <span class="a__slot">SILO 21:30</span></li>
+          <li class="a c-silo" data-stage="silo">Kaito Breuer <span class="a__slot">SILO 02:00</span></li>
+          <li class="a c-dok" data-stage="dok">Ola Fenn <span class="a__slot">DOK 20:00</span></li>
+          <li class="a c-dok" data-stage="dok">Drift Index <span class="a__slot">DOK 22:00</span></li>
+          <li class="a c-dok" data-stage="dok">Bas Verloop <span class="a__slot">DOK 02:00</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <p class="container lineup__foot t-small dim">Set times can move by up to 30 minutes. The final timetable goes live in the app the week before doors.</p>
+</section>
+
+<!-- ============================== STAGES (three bands) ============================== -->
+<div id="stages">
+  <section class="band g-hal" id="hal" aria-labelledby="hal-h">
+    <div class="container">
+      <div class="band__top t-label"><span>Stage 01 of 03</span><span>Fri–Sun · 20:00–04:00</span></div>
+      <h2 id="hal-h" class="stagename"><span class="sr-only">HAL</span><span class="spread t-poster" aria-hidden="true" data-spread="view"><span class="ch" data-ch="H"></span><span class="ch" data-ch="A"></span><span class="ch" data-ch="L"></span></span></h2>
+      <div class="band__body">
+        <p class="band__claim t-claim">Peak-time techno under the crane rails.</p>
+        <div class="band__text">
+          <p>The largest Fenix hall: steel trusses, a poured concrete floor, and the rig hung from the rails that once moved cargo to the quay. Four-to-the-floor from 20:00, the headliners after midnight, house lights at 04:00.</p>
+          <dl class="band__bill">
+            <div><dt>Fri 12</dt><dd>KOLMA <span>00:30</span></dd></div>
+            <div><dt>Sat 13</dt><dd>Saoirse Vale <span>01:00</span></dd></div>
+            <div><dt>Sun 14</dt><dd>Dita Ferro <span>00:30</span></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band g-silo" id="silo" aria-labelledby="silo-h">
+    <div class="container">
+      <div class="band__top t-label"><span>Stage 02 of 03</span><span>Fri–Sat 21:00 · Sun 20:00 · until 04:00</span></div>
+      <h2 id="silo-h" class="stagename"><span class="sr-only">SILO</span><span class="spread t-poster" aria-hidden="true" data-spread="view"><span class="ch" data-ch="S"></span><span class="ch" data-ch="I"></span><span class="ch" data-ch="L"></span><span class="ch" data-ch="O"></span></span></h2>
+      <div class="band__body band__body--flip">
+        <p class="band__claim t-claim">Live, strange, and in the round.</p>
+        <div class="band__text">
+          <p>A circular grain store with speakers on every wall. Live sets, modular rigs, a choir, and the things without a genre yet. In the afternoon it becomes the listening room: seats, low light, one record at a time.</p>
+          <dl class="band__bill">
+            <div><dt>Fri 12</dt><dd>Mareld, live <span>23:00</span></dd></div>
+            <div><dt>Sat 13</dt><dd>Eskel, live <span>23:30</span></dd></div>
+            <div><dt>Sun 14</dt><dd>Halcyon Unit, live <span>23:00</span></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band g-dok" id="dok" aria-labelledby="dok-h">
+    <div class="container">
+      <div class="band__top t-label"><span>Stage 03 of 03</span><span>Fri–Sun · 20:00–06:00</span></div>
+      <h2 id="dok-h" class="stagename"><span class="sr-only">DOK</span><span class="spread t-poster" aria-hidden="true" data-spread="view"><span class="ch" data-ch="D"></span><span class="ch" data-ch="O"></span><span class="ch" data-ch="K"></span></span></h2>
+      <div class="band__body">
+        <p class="band__claim t-claim">Bass, breaks, and a slow sunrise.</p>
+        <div class="band__text">
+          <p>The quayside hall, its loading doors open to the Maas. Broken beats until 04:00, then the closing sets: two more hours for Night Owl pass holders, ending as the river gets light.</p>
+          <dl class="band__bill">
+            <div><dt>Fri 12</dt><dd>Lior Ama <span>04:00–06:00</span></dd></div>
+            <div><dt>Sat 13</dt><dd>Yusuf Okon b2b Lune <span>04:00–06:00</span></dd></div>
+            <div><dt>Sun 14</dt><dd>Elke Moor <span>04:00–06:00</span></dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ============================== BY DAY ============================== -->
+<section class="day" id="by-day" aria-labelledby="day-h">
+  <div class="container day__head">
+    <h2 id="day-h" class="t-h2">By day</h2>
+    <p class="day__intro t-lead">Talks and listening sessions, Saturday and Sunday, 13:00–18:00. Seated and unhurried, and included with a ticket for that day.</p>
+  </div>
+  <ol class="container prog">
+    <li class="prog__row">
+      <p class="prog__when t-num"><span class="prog__day">Sat</span>13:00</p>
+      <div class="prog__what"><p class="t-label dim">Listening session</p><p class="prog__title">Mareld plays <i>Kustlinje</i> start to finish, in quadraphonic sound</p></div>
+      <p class="prog__where c-silo"><i class="sq k-silo" aria-hidden="true"></i>SILO</p>
+    </li>
+    <li class="prog__row">
+      <p class="prog__when t-num"><span class="prog__day">Sat</span>15:00</p>
+      <div class="prog__what"><p class="t-label dim">Talk</p><p class="prog__title">Who owns the night? Rotterdam club licensing, 1990 to now</p></div>
+      <p class="prog__where c-dok"><i class="sq k-dok" aria-hidden="true"></i>DOK</p>
+    </li>
+    <li class="prog__row">
+      <p class="prog__when t-num"><span class="prog__day">Sat</span>16:30</p>
+      <div class="prog__what"><p class="t-label dim">Session</p><p class="prog__title">Tape loops by hand, with Halcyon Unit</p></div>
+      <p class="prog__where c-silo"><i class="sq k-silo" aria-hidden="true"></i>SILO</p>
+    </li>
+    <li class="prog__row">
+      <p class="prog__when t-num"><span class="prog__day">Sun</span>13:00</p>
+      <div class="prog__what"><p class="t-label dim">Talk</p><p class="prog__title">Tuning a warehouse: sound engineers on concrete, steel and water</p></div>
+      <p class="prog__where c-hal"><i class="sq k-hal" aria-hidden="true"></i>HAL</p>
+    </li>
+    <li class="prog__row">
+      <p class="prog__when t-num"><span class="prog__day">Sun</span>15:00</p>
+      <div class="prog__what"><p class="t-label dim">Listening session</p><p class="prog__title">One record each: four artists bring the album they would save from a fire</p></div>
+      <p class="prog__where c-silo"><i class="sq k-silo" aria-hidden="true"></i>SILO</p>
+    </li>
+    <li class="prog__row">
+      <p class="prog__when t-num"><span class="prog__day">Sun</span>16:30</p>
+      <div class="prog__what"><p class="t-label dim">Talk</p><p class="prog__title">Sleep, light and the 06:00 set: a conversation with Elke Moor</p></div>
+      <p class="prog__where c-dok"><i class="sq k-dok" aria-hidden="true"></i>DOK</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ============================== TICKETS (bone = action) ============================== -->
+<section class="tix g-bone" id="tickets" aria-labelledby="tix-h">
+  <div class="container">
+    <div class="tix__head">
+      <h2 id="tix-h" class="t-h2">Tickets</h2>
+      <p class="tix__intro t-lead">Three ways in. Prices per person in euros, 18+ with photo ID. Bars show what each pass covers, night by night.</p>
+    </div>
+
+    <div class="tix__grid">
+      <article class="pass" aria-labelledby="p1">
+        <h3 id="p1" class="pass__name t-h3">Day ticket</h3>
+        <p class="pass__price t-num"><span>€</span>65</p>
+        <p class="pass__what">One night of your choice, 20:00–04:00, plus that day's talks and listening sessions.</p>
+        <div class="cov cov--pick" role="img" aria-label="Covers one night of your choice, Friday, Saturday or Sunday, from 20:00 to 04:00">
+          <div class="cov__axis" aria-hidden="true"><span>20</span><span>00</span><span>04</span><span>06</span></div>
+          <div class="cov__row"><span class="cov__d">Fri</span><span class="cov__t"><i class="cov__f"></i></span></div>
+          <div class="cov__row"><span class="cov__d">Sat</span><span class="cov__t"><i class="cov__f"></i></span></div>
+          <div class="cov__row"><span class="cov__d">Sun</span><span class="cov__t"><i class="cov__f"></i></span></div>
+          <p class="cov__note">Pick one</p>
+        </div>
+        <a class="btn btn--solid pass__buy" href="#tickets">Buy a day ticket <span class="arr" aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="pass" aria-labelledby="p2">
+        <h3 id="p2" class="pass__name t-h3">3-day pass</h3>
+        <p class="pass__price t-num"><span>€</span>149</p>
+        <p class="pass__what">All three nights, 20:00–04:00, and the full daytime programme on Saturday and Sunday.</p>
+        <div class="cov" role="img" aria-label="Covers Friday, Saturday and Sunday, from 20:00 to 04:00 each night">
+          <div class="cov__axis" aria-hidden="true"><span>20</span><span>00</span><span>04</span><span>06</span></div>
+          <div class="cov__row"><span class="cov__d">Fri</span><span class="cov__t"><i class="cov__f"></i></span></div>
+          <div class="cov__row"><span class="cov__d">Sat</span><span class="cov__t"><i class="cov__f"></i></span></div>
+          <div class="cov__row"><span class="cov__d">Sun</span><span class="cov__t"><i class="cov__f"></i></span></div>
+          <p class="cov__note">All three</p>
+        </div>
+        <a class="btn btn--solid pass__buy" href="#tickets">Buy the 3-day pass <span class="arr" aria-hidden="true">→</span></a>
+      </article>
+
+      <article class="pass pass--owl g-black" aria-labelledby="p3">
+        <p class="pass__flag t-label">Limited allocation</p>
+        <h3 id="p3" class="pass__name t-h3">Night Owl</h3>
+        <p class="pass__price t-num"><span>€</span>189</p>
+        <p class="pass__what">Everything in the 3-day pass, plus the closing sets in DOK each night, 04:00–06:00.</p>
+        <div class="cov cov--owl" role="img" aria-label="Covers Friday, Saturday and Sunday, from 20:00 to 06:00 each night, including the closing sets in DOK">
+          <div class="cov__axis" aria-hidden="true"><span>20</span><span>00</span><span>04</span><span>06</span></div>
+          <div class="cov__row"><span class="cov__d">Fri</span><span class="cov__t"><i class="cov__f"></i><i class="cov__o"></i></span></div>
+          <div class="cov__row"><span class="cov__d">Sat</span><span class="cov__t"><i class="cov__f"></i><i class="cov__o"></i></span></div>
+          <div class="cov__row"><span class="cov__d">Sun</span><span class="cov__t"><i class="cov__f"></i><i class="cov__o"></i></span></div>
+          <p class="cov__note">Until 06:00 · <span class="c-dok">DOK</span></p>
+        </div>
+        <a class="btn btn--solid pass__buy" href="#tickets">Buy the Night Owl pass <span class="arr" aria-hidden="true">→</span></a>
+      </article>
+    </div>
+    <p class="tix__fine t-small dim">Tickets are personal and sold through the official shop only. Day and 3-day holders leave at 04:00; the DOK doors close behind the last Night Owl at 06:00.</p>
+  </div>
+</section>
+
+<!-- ============================== VISIT + COUNTDOWN ============================== -->
+<section class="visit" id="visit" aria-labelledby="visit-h">
+  <div class="container">
+    <h2 id="visit-h" class="visit__h t-label">Doors in</h2>
+    <p class="bigcount t-num" data-countdown><span aria-hidden="true"><span data-u="d">155</span><i>d</i><span data-u="h">00</span><i>h</i><span data-u="m">00</span><i>m</i><span data-u="s">00</span><i>s</i></span><span class="sr-only">Doors open Friday 12 March 2027 at 20:00</span></p>
+    <p class="visit__when t-claim">Friday 12 March, 20:00. <span class="dim">Fenix halls, Katendrecht.</span></p>
+    <div class="facts">
+      <div class="fact"><h3 class="t-label">Getting there</h3><p>Metro to Rijnhaven, then ten minutes on foot across Katendrecht. The water taxi stops at the quay. Bike parking at the north gate.</p></div>
+      <div class="fact"><h3 class="t-label">Hours</h3><p>Nights 20:00–04:00, DOK until 06:00. Day programme Saturday and Sunday 13:00–18:00. Last entry 01:00.</p></div>
+      <div class="fact"><h3 class="t-label">Access</h3><p>HAL and DOK are step-free; SILO has a lift. Quiet room, free earplugs and a companion ticket on request.</p></div>
+      <div class="fact"><h3 class="t-label">House rules</h3><p>18+ with photo ID. Cashless bars. Phones welcome, flash photography is not. No re-entry after 02:00.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== MARQUEE (the ask) ============================== -->
+<section class="marq g-bone" aria-label="Buy tickets">
+  <a class="marq__link" href="#tickets">
+    <span class="sr-only">Buy tickets: day ticket €65, 3-day pass €149, Night Owl €189</span>
+    <span class="marq__track" aria-hidden="true">
+      <span class="marq__run">Buy tickets <b class="key3"><i class="k-hal"></i><i class="k-silo"></i><i class="k-dok"></i></b> 3-day €149 <b class="key3"><i class="k-hal"></i><i class="k-silo"></i><i class="k-dok"></i></b> Night Owl €189 <b class="key3"><i class="k-hal"></i><i class="k-silo"></i><i class="k-dok"></i></b> Day €65 <b class="key3"><i class="k-hal"></i><i class="k-silo"></i><i class="k-dok"></i></b></span><span class="marq__run">Buy tickets <b class="key3"><i class="k-hal"></i><i class="k-silo"></i><i class="k-dok"></i></b> 3-day €149 <b class="key3"><i class="k-hal"></i><i class="k-silo"></i><i class="k-dok"></i></b> Night Owl €189 <b class="key3"><i class="k-hal"></i><i class="k-silo"></i><i class="k-dok"></i></b> Day €65 <b class="key3"><i class="k-hal"></i><i class="k-silo"></i><i class="k-dok"></i></b></span>
+    </span>
+  </a>
+  <button type="button" class="motion-toggle t-label" data-motion-toggle>Pause motion</button>
+</section>
+
+</main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="ftr g-black">
+  <div class="container">
+    <p class="now" data-now>Doors at 20:00. On festival Saturday at 01:00 you would hear Saoirse Vale in <span class="c-hal">HAL</span>, Tamsin Orr in <span class="c-silo">SILO</span> and Sable Nines in <span class="c-dok">DOK</span>.</p>
+    <div class="ftr__grid">
+      <div class="ftr__brand">
+        <p class="ftr__mark">Nocturne</p>
+        <p class="t-small dim">Electronic and experimental music.<br>12–14 March 2027, Fenix halls, Rotterdam.</p>
+      </div>
+      <nav class="ftr__col" aria-label="Festival"><h2 class="t-label dim">Festival</h2><a href="#lineup">Line-up</a><a href="#stages">Stages</a><a href="#by-day">By day</a><a href="#tickets">Tickets</a></nav>
+      <nav class="ftr__col" aria-label="Visit"><h2 class="t-label dim">Visit</h2><a href="#visit">Getting there</a><a href="#visit">Access</a><a href="#visit">House rules</a><a href="#visit">Questions</a></nav>
+      <nav class="ftr__col" aria-label="Work with us"><h2 class="t-label dim">Work with us</h2><a href="#top">Press and accreditation</a><a href="#top">Volunteer crew</a><a href="#top">Partners</a></nav>
+      <nav class="ftr__col" aria-label="Follow"><h2 class="t-label dim">Follow</h2><a href="#top">Instagram</a><a href="#top">Resident Advisor</a><a href="#top">Newsletter</a></nav>
+    </div>
+    <div class="ftr__base t-small">
+      <p class="dim">Rotterdam <span class="t-num" data-clock="Europe/Amsterdam">--:--</span></p>
+      <p class="dim">© 2027 Nocturne Festival</p>
+      <a class="ftr__top" href="#top">Back to top ↑</a>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+import { autoInit, reduced } from './motion.js';
+autoInit();
+const root = document.documentElement;
+
+/* ---------- motion pause (marquee, rotating word) ---------- */
+let paused = reduced;
+const setPaused = (p) => {
+  paused = p; root.classList.toggle('is-paused', p);
+  document.querySelectorAll('[data-motion-toggle]').forEach((b) => { b.textContent = p ? 'Play motion' : 'Pause motion'; });
+};
+document.querySelectorAll('[data-motion-toggle]').forEach((b) => b.addEventListener('click', () => setPaused(!paused)));
+setPaused(paused);
+
+/* ---------- live countdown to doors (Fri 12 March 2027, 20:00 CET) ---------- */
+const target = Date.parse('2027-03-12T20:00:00+01:00');
+const pad = (n) => String(n).padStart(2, '0');
+const cds = [...document.querySelectorAll('[data-countdown]')];
+const tick = () => {
+  let s = Math.max(0, Math.floor((target - Date.now()) / 1000));
+  const v = { d: Math.floor(s / 86400), h: pad(Math.floor(s % 86400 / 3600)), m: pad(Math.floor(s % 3600 / 60)), s: pad(s % 60) };
+  cds.forEach((el) => el.querySelectorAll('[data-u]').forEach((u) => { const nv = String(v[u.dataset.u]); if (u.textContent !== nv) u.textContent = nv; }));
+};
+tick(); setInterval(tick, 1000);
+
+/* ---------- letter-spread build: letters start packed as a word, then spread to fill the measure ---------- */
+const pack = (el) => {
+  const chars = [...el.querySelectorAll('.ch')];
+  const fs = parseFloat(getComputedStyle(el).fontSize);
+  const ws = chars.map((c) => c.getBoundingClientRect());
+  const W = ws.reduce((a, r) => a + r.width, 0) + (chars.length - 1) * fs * 0.02;
+  const box = el.getBoundingClientRect();
+  let x = box.left + (box.width - W) / 2;
+  chars.forEach((c, i) => { c.style.transition = 'none'; c.style.transform = `translateX(${x - ws[i].left}px)`; x += ws[i].width + fs * 0.02; });
+  el.classList.add('is-packed');
+};
+const spread = (el) => {
+  void el.offsetWidth;
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    el.querySelectorAll('.ch').forEach((c, i, all) => {
+      const mid = (all.length - 1) / 2;
+      c.style.transition = `transform var(--t-scene) var(--ease) ${Math.abs(i - mid) * 55}ms`;
+      c.style.transform = '';
+    });
+    el.classList.remove('is-packed');
+  }));
+};
+if (!reduced) document.fonts.ready.then(() => {
+  document.querySelectorAll('[data-spread="load"]').forEach((el) => { pack(el); spread(el); });
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { spread(e.target); io.unobserve(e.target); } }), { threshold: 0.6 });
+  document.querySelectorAll('[data-spread="view"]').forEach((el) => {
+    const r = el.getBoundingClientRect();
+    if (r.top > innerHeight) { pack(el); io.observe(el); }
+  });
+});
+
+/* ---------- rotating word: the window resizes to each word ---------- */
+document.querySelectorAll('[data-rotate]').forEach((win) => {
+  const track = win.querySelector('.rot__track');
+  const words = [...track.children]; const n = words.length - 1;   // last item duplicates the first
+  let i = 0;
+  const fit = () => { win.style.width = words[i].getBoundingClientRect().width + 'px'; };
+  document.fonts.ready.then(fit);
+  addEventListener('resize', fit);
+  setInterval(() => {
+    if (paused || document.hidden) return;
+    i++;
+    track.style.transition = ''; track.style.transform = `translateY(${-i * 100 / (n + 1)}%)`;
+    fit();
+    if (i === n) setTimeout(() => { track.style.transition = 'none'; i = 0; track.style.transform = 'translateY(0)'; }, 950);
+  }, 2600);
+});
+
+/* ---------- line-up stage filter ---------- */
+const poster = document.querySelector('.poster');
+document.querySelectorAll('.filter__b').forEach((b) => b.addEventListener('click', () => {
+  document.querySelectorAll('.filter__b').forEach((o) => o.setAttribute('aria-pressed', String(o === b)));
+  poster.dataset.filter = b.dataset.f;
+}));
+
+/* ---------- footer: what would be playing right now, if it were festival Saturday ---------- */
+const SAT = {
+  hal: { end: 480, slots: [[0, 'Vesna Kirov'], [180, 'Anouk Reyes'], [300, 'Saoirse Vale'], [420, 'Mothbank']] },
+  silo: { end: 480, slots: [[60, 'Lieve Stam'], [210, 'Eskel'], [300, 'Tamsin Orr'], [390, 'Ruïne']] },
+  dok: { end: 600, slots: [[0, 'Pim Okkerse'], [120, 'Kiri Ohana'], [240, 'Sable Nines'], [360, 'Arno Dielen'], [480, 'Yusuf Okon b2b Lune']] },
+};
+const nowEl = document.querySelector('[data-now]');
+const fmt = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23', timeZone: 'Europe/Amsterdam' });
+const esc = (s) => s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+const now = () => {
+  const hm = fmt.format(new Date()); const [h, m] = hm.split(':').map(Number);
+  const t = (h * 60 + m - 1200 + 1440) % 1440;    // minutes since 20:00
+  const on = Object.entries(SAT).map(([k, st]) => {
+    if (t >= st.end) return null;
+    const s = st.slots.filter(([start]) => start <= t).pop();
+    return s ? `${esc(s[1])} in <span class="c-${k}">${k.toUpperCase()}</span>` : null;
+  }).filter(Boolean);
+  nowEl.innerHTML = on.length
+    ? `It is ${hm} in Rotterdam. On festival Saturday you would be hearing ${on.length > 1 ? on.slice(0, -1).join(', ') + ' and ' + on.at(-1) : on[0]}.`
+    : `It is ${hm} in Rotterdam. The halls are quiet; doors open at 20:00.`;
+};
+now(); setInterval(now, 30000);
+</script>
+</body>
+</html>

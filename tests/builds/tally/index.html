@@ -1,0 +1,683 @@
+<!doctype html>
+<!--
+DESIGN SPINE: Tally
+DIRECTION   : 2 Ledger Light. Engineers and finance leads at 20–500-person companies scan, compare and convert; they know Stripe's language.
+REGISTER    : Confident. The one bold device: a full-bleed cobalt band (#1D3CF2) that IS the hero stage, with the product straddling its lower edge. Everything after it is white and disciplined.
+AXES        : ground white + one saturated cobalt band · type genre tight neo-grotesk (Hanken Grotesk 500, −0.045em) · image medium product UI on an art layer (payout card, code window and dashboard over a world-map dot field) · composition product stage · motion feel instrumental (ticking FX, payouts changing state, rolling counters, live local clocks)
+DEFAULT?    : 1/6 matched (light display weight). DIFFERENT FROM DEFAULT BY: ground (pure white + saturated cobalt field, not warm paper), labels (sentence-case text face, no mono-caps layer), image (rebuilt product UI on a dot-map art layer, no line drawing), accent (cobalt at field scale, not a tiny mark), no hairline metadata bands.
+MOTIF       : the tally mark (four strokes, then the strike). 1 logo · 2 payout progress in the hero card (one stroke per webhook state, the strike = paid) · 3 the lifecycle chapter drawn at 300px as data-viz · 4 section index (one stroke per chapter, struck at five) · 5 pricing calculator draws one mark per paid contractor · (+ mini status glyph in dashboard rows)
+TYPE        : display Hanken Grotesk 500 · text Hanken Grotesk 400/500 · mono JetBrains Mono 400/500 (code, receipts, event names only)
+SCALE       : display 94px/0.95/−0.045em · mega numerals 216px/0.8/−0.06em · h2 60px/1/−0.035em · body 16–21px · label 14–15px sentence case
+PALETTE     : paper #FFFFFF · ink #0C1230 · ink-2 ink@72% · hairline ink@10% · cobalt #1D3CF2 → the band, primary buttons, live numbers, the strike · on-cobalt #F2F4FF / #CBD5FF · navy #08104A code windows
+GRID        : 12 / 16–24px · container 1280 · margin 20→80px · sections 96–144px, 224px before the finale
+HERO        : product stage on the cobalt band. h1 left, live FX chip above it, payout card + code window composite on the right, the dashboard straddling the band edge into white
+IMAGERY     : product UI on an art layer (canvas world-map dot field with live corridor arcs)
+CONVERSION  : "Get API keys" nav · hero · sandbox card · finale. "Talk to sales" hero ghost · finale ghost
+MOTION      : house ease cubic-bezier(.16,1,.3,1) · UI 150–240ms · reveal 850ms blur-in · instrumental: per-digit ticker, stroke-draw, row flash
+SIGNATURES  : live ticking stat eyebrow (#12) · UI bleeding over the band edge (#32 variant) · tally-mark data-viz/calculator (bespoke)
+VOICE       : "Ninety countries. One API call." · "Every payout is a tally. Four states, then the strike-through." · "Your first payout is one call away."
+-->
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tally: pay contractors in 90 countries with one API call</title>
+<meta name="description" content="Tally is a payroll API for international contractors. One call pays a contractor in 90 countries, in local currency, to a bank account or mobile wallet. 0.35% over mid-market FX, $9 per paid contractor.">
+<meta name="theme-color" content="#1D3CF2">
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;450;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--primary btn--sm" href="#main">Skip to content</a>
+
+
+<header class="nav on-cobalt">
+    <div class="container">
+      <a class="brand" href="#top" aria-label="Tally home">
+        <svg class="tg" viewBox="-2 0 28 24" aria-hidden="true"><line x1="3" y1="2" x2="3" y2="22"/><line x1="9" y1="2" x2="9" y2="22"/><line x1="15" y1="2" x2="15" y2="22"/><line x1="21" y1="2" x2="21" y2="22"/><line class="strike" x1="-1" y1="18" x2="25" y2="6"/></svg>
+        Tally
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="#lifecycle">Product</a>
+        <a href="#coverage">Coverage</a>
+        <a href="#fx">FX</a>
+        <a href="#developers">Docs</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+      <div class="nav__right">
+        <a class="nav__signin" href="#signin">Sign in</a>
+        <a class="btn btn--primary btn--sm" href="#keys">Get API keys</a>
+        <button class="nav__menu" type="button" aria-expanded="false" aria-controls="drawer">Menu</button>
+      </div>
+    </div>
+    <nav class="nav__drawer" id="drawer" aria-label="Mobile" hidden>
+      <a href="#lifecycle">Product</a><a href="#coverage">Coverage</a><a href="#fx">FX</a><a href="#developers">Docs</a><a href="#pricing">Pricing</a><a href="#keys">Get API keys</a>
+    </nav>
+  </header>
+
+<main id="main">
+<div class="band on-cobalt">
+  <canvas class="band__map" id="map" aria-hidden="true"></canvas>
+  <section class="hero" id="top" aria-labelledby="h1">
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <p class="live"><span class="pulse" aria-hidden="true"></span><span>USD → PHP mid-market</span> <b class="mono" data-ticker="58.62140" data-rate="0.00031" data-every="700" data-decimals="5">58.62140</b></p>
+        <h1 id="h1" class="t-display">Ninety countries. <span class="l2">One API call.</span></h1>
+        <p class="hero__sub t-lead">Pay international contractors in their own currency, to a <strong>local bank account</strong> or <strong>mobile wallet</strong>. Tax forms and classification checks come with it.</p>
+        <div class="hero__ctas">
+          <a class="btn btn--primary" href="#keys">Get API keys <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn btn--ghost" href="#sales">Talk to sales</a>
+        </div>
+        <ul class="facts">
+          <li><svg class="tg" viewBox="-2 0 28 24" aria-hidden="true"><line x1="3" y1="2" x2="3" y2="22"/><line x1="9" y1="2" x2="9" y2="22"/><line x1="15" y1="2" x2="15" y2="22"/><line x1="21" y1="2" x2="21" y2="22"/><line class="strike" x1="-1" y1="18" x2="25" y2="6"/></svg><span><b>0.35%</b> over mid-market. No other fees.</span></li>
+          <li><svg class="tg" viewBox="-2 0 28 24" aria-hidden="true"><line x1="3" y1="2" x2="3" y2="22"/><line x1="9" y1="2" x2="9" y2="22"/><line x1="15" y1="2" x2="15" y2="22"/><line x1="21" y1="2" x2="21" y2="22"/><line class="strike" x1="-1" y1="18" x2="25" y2="6"/></svg><span><b>1 business day</b> in 71 countries</span></li>
+        </ul>
+      </div>
+
+      <div class="composite">
+        <figure class="codewin" role="img" aria-label="Code window: a POST to /v1/payouts and the webhook events it triggers, streaming in as the payout moves through each state.">
+          <div class="codewin__bar" aria-hidden="true"><i></i><i></i><i></i><span>POST /v1/payouts</span></div>
+          <pre id="req" aria-hidden="true"></pre>
+          <div class="codewin__log" id="log" aria-hidden="true"></div>
+        </figure>
+
+        <figure class="paycard" role="img" aria-label="A payout card: 2,400 US dollars to Amara Okafor in Lagos, delivered in naira to a bank account, moving through created, funded, FX locked, in transit and paid.">
+          <div class="paycard__top" aria-hidden="true"><span id="pc-id">po_3Nf8Qe21</span><span class="state" id="pc-state">created</span></div>
+          <div class="paycard__who" aria-hidden="true">
+            <span class="avatar" id="pc-av">AO</span>
+            <div><div class="paycard__name" id="pc-name">Amara Okafor</div><div class="paycard__meta" id="pc-meta">Lagos, Nigeria · GTBank ••4821</div></div>
+          </div>
+          <div class="paycard__amt" aria-hidden="true"><span id="pc-out">3,659,452.40</span><small id="pc-cur">NGN</small></div>
+          <div class="paycard__fx" id="pc-fx" aria-hidden="true">2,400.00 USD at 1,524.7718 · mid-market + 0.35%</div>
+          <div class="paycard__track" aria-hidden="true">
+            <svg class="trk" viewBox="0 0 86 40">
+              <line class="ghost" x1="10" y1="4" x2="10" y2="36"/><line class="ghost" x1="26" y1="4" x2="26" y2="36"/><line class="ghost" x1="42" y1="4" x2="42" y2="36"/><line class="ghost" x1="58" y1="4" x2="58" y2="36"/>
+              <line data-s="0" x1="10" y1="36" x2="10" y2="4"/><line data-s="1" x1="26" y1="36" x2="26" y2="4"/><line data-s="2" x1="42" y1="36" x2="42" y2="4"/><line data-s="3" x1="58" y1="36" x2="58" y2="4"/>
+              <line data-s="4" x1="2" y1="30" x2="68" y2="10"/>
+            </svg>
+            <div class="trk__labels" id="pc-labels"><span>payout.created</span><span>payout.funded</span><span>payout.fx_locked</span><span>payout.in_transit</span><span>payout.paid</span></div>
+          </div>
+          <div class="paycard__foot" aria-hidden="true"><span id="pc-method">Bank account</span><span id="pc-eta">Lands Thu 9 Oct</span></div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="straddle container">
+    <figure class="dash" role="img" aria-label="The Tally dashboard: October payouts with totals, and a table of recent payouts to contractors in Nigeria, the Philippines, Brazil, Kenya, Poland and India.">
+      <div class="dash__side" aria-hidden="true">
+        <div class="dash__org"><i></i>Northwind Labs</div>
+        <div class="it">Overview</div><div class="it on">Payouts <em>38</em></div><div class="it">Contractors <em>41</em></div><div class="it">Tax forms <em>3</em></div><div class="it">FX quotes</div><div class="it">Webhooks</div><div class="it">API keys</div>
+        <div class="dash__mode"><b></b>Sandbox</div>
+      </div>
+      <div class="dash__main" aria-hidden="true">
+        <div class="dash__head"><div><h4>October payouts</h4><span>Batch closes Fri 10 Oct, 16:00 UTC</span></div><span class="dash__btn" aria-hidden="true">New payout</span></div>
+        <div class="dash__kpis">
+          <div><small>Paid this month</small><b id="k-paid">38</b></div>
+          <div><small>Volume</small><b>$112,480.00</b></div>
+          <div><small>FX margin</small><b>0.35%</b></div>
+          <div><small>Other fees</small><b>$0.00</b></div>
+        </div>
+        <table>
+          <thead><tr><th>Contractor</th><th class="hide-m">Method</th><th class="r">Amount</th><th class="r hide-m">Delivered</th><th>Status</th></tr></thead>
+          <tbody id="dash-rows">
+            <tr><td><span class="cc">NG</span>Amara Okafor</td><td class="hide-m">Bank account</td><td class="r">$2,400.00</td><td class="r hide-m">₦3,659,452.40</td><td><span class="mini"><svg viewBox="0 0 30 14"><line x1="3" y1="2" x2="3" y2="12"/><line x1="9" y1="2" x2="9" y2="12"/><line x1="15" y1="2" x2="15" y2="12"/><line x1="21" y1="2" x2="21" y2="12"/><line x1="0" y1="10" x2="25" y2="4"/></svg>Paid</span></td></tr>
+            <tr><td><span class="cc">PH</span>Maria Santos</td><td class="hide-m">GCash</td><td class="r">$1,850.00</td><td class="r hide-m">₱108,067.85</td><td><span class="mini"><svg viewBox="0 0 30 14"><line x1="3" y1="2" x2="3" y2="12"/><line x1="9" y1="2" x2="9" y2="12"/><line x1="15" y1="2" x2="15" y2="12"/><line x1="21" y1="2" x2="21" y2="12"/></svg>In transit</span></td></tr>
+            <tr><td><span class="cc">BR</span>Rafael Souza</td><td class="hide-m">Pix</td><td class="r">$3,200.00</td><td class="r hide-m">R$17,276.14</td><td><span class="mini"><svg viewBox="0 0 30 14"><line x1="3" y1="2" x2="3" y2="12"/><line x1="9" y1="2" x2="9" y2="12"/><line x1="15" y1="2" x2="15" y2="12"/><line x1="21" y1="2" x2="21" y2="12"/><line x1="0" y1="10" x2="25" y2="4"/></svg>Paid</span></td></tr>
+            <tr><td><span class="cc">KE</span>Wanjiru Kamau</td><td class="hide-m">M-Pesa</td><td class="r">$1,200.00</td><td class="r hide-m">KSh154,557.15</td><td><span class="mini"><svg viewBox="0 0 30 14"><line x1="3" y1="2" x2="3" y2="12"/><line x1="9" y1="2" x2="9" y2="12"/><line x1="15" y1="2" x2="15" y2="12"/><line class="off" x1="21" y1="2" x2="21" y2="12"/></svg>FX locked</span></td></tr>
+            <tr><td><span class="cc">PL</span>Kacper Nowak</td><td class="hide-m">Bank account</td><td class="r">$4,100.00</td><td class="r hide-m">zł15,165.51</td><td><span class="mini"><svg viewBox="0 0 30 14"><line x1="3" y1="2" x2="3" y2="12"/><line x1="9" y1="2" x2="9" y2="12"/><line x1="15" y1="2" x2="15" y2="12"/><line x1="21" y1="2" x2="21" y2="12"/><line x1="0" y1="10" x2="25" y2="4"/></svg>Paid</span></td></tr>
+            <tr><td><span class="cc">IN</span>Ananya Rao</td><td class="hide-m">Bank account</td><td class="r">$2,750.00</td><td class="r hide-m">₹242,277.15</td><td><span class="mini"><svg viewBox="0 0 30 14"><line x1="3" y1="2" x2="3" y2="12"/><line x1="9" y1="2" x2="9" y2="12"/><line x1="15" y1="2" x2="15" y2="12"/><line x1="21" y1="2" x2="21" y2="12"/><line x1="0" y1="10" x2="25" y2="4"/></svg>Paid</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </figure>
+      </div>
+</div>
+
+  <!-- 01 lifecycle -->
+  <section class="sec life" id="lifecycle" aria-labelledby="h-life">
+    <div class="container">
+      <p class="kick" data-reveal><svg class="tg" viewBox="0 0 6 24" aria-hidden="true" style="width:.25em"><line x1="3" y1="2" x2="3" y2="22"/></svg>Payout lifecycle</p>
+      <h2 id="h-life" class="t-h2" data-reveal>Every payout is a tally. <span class="dim">Four states, then the strike-through.</span></h2>
+      <p class="lede" data-reveal>Each state fires a webhook, so your books, your Slack and your contractor's inbox all know where the money is. <strong>Nothing is "processing" without a name.</strong></p>
+
+      <div class="life__grid">
+        <ol class="states" role="tablist" aria-label="Payout states" id="states">
+          <li><button role="tab" aria-selected="true" aria-controls="ev" data-i="0"><span class="n">01</span><span class="ev">payout.created</span><span class="d">You call <code class="mono">POST /v1/payouts</code>. We validate the contractor, their tax form and the destination account before anything moves.</span></button></li>
+          <li><button role="tab" aria-selected="false" aria-controls="ev" data-i="1" tabindex="-1"><span class="n">02</span><span class="ev">payout.funded</span><span class="d">The USD lands from your balance or a linked bank account. You see the exact amount that left.</span></button></li>
+          <li><button role="tab" aria-selected="false" aria-controls="ev" data-i="2" tabindex="-1"><span class="n">03</span><span class="ev">payout.fx_locked</span><span class="d">The rate is fixed at mid-market plus 0.35%. The contractor's amount can no longer change.</span></button></li>
+          <li><button role="tab" aria-selected="false" aria-controls="ev" data-i="3" tabindex="-1"><span class="n">04</span><span class="ev">payout.in_transit</span><span class="d">Sent on the local rail: a domestic bank transfer, Pix, SPEI, M-Pesa or GCash, with an expected arrival date.</span></button></li>
+          <li><button role="tab" aria-selected="false" aria-controls="ev" data-i="4" tabindex="-1"><span class="n">05</span><span class="ev">payout.paid</span><span class="d">The receiving bank or wallet confirms. That's the strike. Returns and failures get their own events too.</span></button></li>
+        </ol>
+
+        <div class="stage">
+          <figure class="bigtally" role="img" aria-label="A tally mark drawn at large scale: four vertical strokes for created, funded, FX locked and in transit, and a diagonal strike for paid." data-reveal>
+            <svg viewBox="0 0 460 300" aria-hidden="true" id="bt">
+              <line class="g" x1="70" y1="40" x2="70" y2="260"/><line class="g" x1="160" y1="40" x2="160" y2="260"/><line class="g" x1="250" y1="40" x2="250" y2="260"/><line class="g" x1="340" y1="40" x2="340" y2="260"/><line class="g" x1="20" y1="215" x2="410" y2="80"/>
+              <line class="s" x1="70" y1="260" x2="70" y2="40"/><line class="s" x1="160" y1="260" x2="160" y2="40"/><line class="s" x1="250" y1="260" x2="250" y2="40"/><line class="s" x1="340" y1="260" x2="340" y2="40"/><line class="s" x1="20" y1="215" x2="410" y2="80"/>
+            </svg>
+            <figcaption class="bigtally__cap" aria-hidden="true"><span>State <b id="bt-n">1</b> of 5</span><span id="bt-t">0.0s after the call</span></figcaption>
+          </figure>
+          <div class="event" id="ev" role="tabpanel" aria-label="Webhook payload for the selected state">
+            <div class="event__h"><span id="ev-h">POST https://you.example/hooks/tally</span><span id="ev-sig">tally-signature: t=…</span></div>
+            <pre id="ev-body"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 coverage -->
+  <section class="sec cov" id="coverage" aria-labelledby="h-cov">
+    <div class="container">
+      <div class="cov__top">
+        <div>
+          <p class="kick" data-reveal><svg class="tg" viewBox="0 0 12 24" aria-hidden="true" style="width:.5em"><line x1="3" y1="2" x2="3" y2="22"/><line x1="9" y1="2" x2="9" y2="22"/></svg>Coverage</p>
+          <h2 id="h-cov" class="t-h2" data-reveal>Local rails, local currency. <span class="dim">No correspondent-bank roulette.</span></h2>
+          <p class="lede" data-reveal>Tally pays out on each country's domestic network, so contractors receive the full amount in the currency they spend.</p>
+        </div>
+        <div class="cov__nums" data-reveal>
+          <div><b class="num">90</b><span>countries you can pay today</span></div>
+          <div><b class="num">71</b><span>where payouts land in 1 business day</span></div>
+        </div>
+      </div>
+
+      <div class="cov__bar">
+        <div class="chips" role="group" aria-label="Filter by payout method">
+          <button class="chip" type="button" aria-pressed="true" data-f="all">All</button>
+          <button class="chip" type="button" aria-pressed="false" data-f="bank">Bank account</button>
+          <button class="chip" type="button" aria-pressed="false" data-f="wallet">Mobile wallet</button>
+        </div>
+        <p class="cov__note">A sample of corridors (illustrative). The full list lives in the coverage docs.</p>
+      </div>
+
+      <table class="corr" aria-label="Sample payout corridors">
+        <thead><tr><th scope="col">Country</th><th scope="col">Currency</th><th scope="col" class="hide-m">Pays to</th><th scope="col">Lands in</th><th scope="col" class="r">Local time</th></tr></thead>
+        <tbody id="corr">
+          <tr data-m="bank wallet"><td>Philippines</td><td class="cur">PHP</td><td class="hide-m">Bank account, GCash, Maya</td><td class="fast">1 business day</td><td class="r t" data-tz="Asia/Manila">--:--</td></tr>
+          <tr data-m="bank"><td>Nigeria</td><td class="cur">NGN</td><td class="hide-m">Bank account</td><td class="fast">1 business day</td><td class="r t" data-tz="Africa/Lagos">--:--</td></tr>
+          <tr data-m="bank wallet"><td>Kenya</td><td class="cur">KES</td><td class="hide-m">Bank account, M-Pesa</td><td class="fast">1 business day</td><td class="r t" data-tz="Africa/Nairobi">--:--</td></tr>
+          <tr data-m="bank"><td>India</td><td class="cur">INR</td><td class="hide-m">Bank account (IMPS)</td><td class="fast">1 business day</td><td class="r t" data-tz="Asia/Kolkata">--:--</td></tr>
+          <tr data-m="bank"><td>Brazil</td><td class="cur">BRL</td><td class="hide-m">Bank account, Pix</td><td class="fast">1 business day</td><td class="r t" data-tz="America/Sao_Paulo">--:--</td></tr>
+          <tr data-m="bank"><td>Mexico</td><td class="cur">MXN</td><td class="hide-m">Bank account (SPEI)</td><td class="fast">1 business day</td><td class="r t" data-tz="America/Mexico_City">--:--</td></tr>
+          <tr data-m="bank wallet"><td>Ghana</td><td class="cur">GHS</td><td class="hide-m">Bank account, MTN MoMo</td><td class="fast">1 business day</td><td class="r t" data-tz="Africa/Accra">--:--</td></tr>
+          <tr data-m="bank"><td>Poland</td><td class="cur">PLN</td><td class="hide-m">Bank account</td><td class="fast">1 business day</td><td class="r t" data-tz="Europe/Warsaw">--:--</td></tr>
+          <tr data-m="bank wallet"><td>Pakistan</td><td class="cur">PKR</td><td class="hide-m">Bank account, JazzCash</td><td>2 business days</td><td class="r t" data-tz="Asia/Karachi">--:--</td></tr>
+          <tr data-m="bank"><td>Vietnam</td><td class="cur">VND</td><td class="hide-m">Bank account</td><td>2 business days</td><td class="r t" data-tz="Asia/Ho_Chi_Minh">--:--</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 03 FX -->
+  <section class="sec fx" id="fx" aria-labelledby="h-fx">
+    <div class="container fx__grid">
+      <div class="fx__left">
+        <p class="kick" data-reveal><svg class="tg" viewBox="0 0 18 24" aria-hidden="true" style="width:.75em"><line x1="3" y1="2" x2="3" y2="22"/><line x1="9" y1="2" x2="9" y2="22"/><line x1="15" y1="2" x2="15" y2="22"/></svg>FX and fees</p>
+        <span class="fx__mega num" aria-hidden="true">0.35<small>%</small></span>
+        <h2 id="h-fx" class="t-h2" data-reveal>Over mid-market. <span class="dim">That's the whole bill for moving money.</span></h2>
+        <p class="lede">No transfer fee, no receiving fee, no spread hidden in the rate. The quote you see is the quote that locks.</p>
+        <form class="fx__form" id="fxform" onsubmit="return false">
+          <div class="field"><label for="amt">You send (USD)</label><input id="amt" inputmode="decimal" value="2,400.00" autocomplete="off"></div>
+          <div class="field"><label for="cur">They receive in</label>
+            <select id="cur">
+              <option value="NGN">NGN · Nigeria</option>
+              <option value="PHP">PHP · Philippines</option>
+              <option value="BRL">BRL · Brazil</option>
+              <option value="INR">INR · India</option>
+              <option value="KES">KES · Kenya</option>
+              <option value="MXN">MXN · Mexico</option>
+              <option value="PLN">PLN · Poland</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="fx__right">
+        <div class="receipt" aria-live="polite">
+          <div class="receipt__h"><b>Quote</b><span id="q-id">qt_7Hx2Lp · demo rates</span></div>
+          <dl>
+            <dt>You send</dt><dd id="r-send">2,400.00 USD</dd>
+            <dt>Mid-market rate</dt><dd id="r-mid">1,530.1272</dd>
+            <dt>Tally rate (mid − 0.35%)</dt><dd id="r-rate">1,524.7718</dd>
+            <dt>FX cost</dt><dd id="r-cost">8.40 USD</dd>
+            <dt>Transfer and receiving fees</dt><dd class="zero">0.00 USD</dd>
+          </dl>
+          <div class="receipt__total"><span>They receive</span><b id="r-out">3,659,452.40<small>NGN</small></b></div>
+          <p class="receipt__foot"><svg class="tg" viewBox="-2 0 28 24" aria-hidden="true"><line x1="3" y1="2" x2="3" y2="22"/><line x1="9" y1="2" x2="9" y2="22"/><line x1="15" y1="2" x2="15" y2="22"/><line x1="21" y1="2" x2="21" y2="22"/><line class="strike" x1="-1" y1="18" x2="25" y2="6"/></svg>Rates here are illustrative and drift for demo purposes. Live quotes come from <code class="mono">/v1/quotes</code>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 compliance -->
+  <section class="sec comp" id="compliance" aria-labelledby="h-comp">
+    <div class="container comp__grid">
+      <div class="comp__left">
+        <p class="kick" data-reveal><svg class="tg" viewBox="0 0 24 24" aria-hidden="true" style="width:1em"><line x1="3" y1="2" x2="3" y2="22"/><line x1="9" y1="2" x2="9" y2="22"/><line x1="15" y1="2" x2="15" y2="22"/><line x1="21" y1="2" x2="21" y2="22"/></svg>Tax and classification</p>
+        <h2 id="h-comp" class="t-h2" data-reveal>The paperwork travels with the payment.</h2>
+        <ul class="points">
+          <li><span><b>Tax forms collected at onboarding.</b> W-8BEN and the local equivalent, signed inside Tally's hosted flow and renewed before they lapse.</span></li>
+          <li><span><b>Classification checked, not assumed.</b> A questionnaire scores each engagement against contractor tests and flags the ones worth a second look.</span></li>
+          <li><span><b>Payouts wait for paperwork.</b> No valid form, no payout. You get a <code class="mono">tax_form.required</code> event instead of a surprise in April.</span></li>
+        </ul>
+      </div>
+      <div class="comp__right">
+        <figure class="panel" role="img" aria-label="Contractor onboarding table: five contractors with their tax form status, four signed and one awaiting signature.">
+          <div class="panel__h" aria-hidden="true">Contractors<span>41 active · 3 forms need attention</span></div>
+          <table class="onb" aria-hidden="true">
+            <tr><td>Amara Okafor<small>Lagos, NG</small></td><td class="form hide-m">W-8BEN + TIN</td><td><span class="tagx ok">Signed 2 Oct</span></td></tr>
+            <tr><td>Maria Santos<small>Manila, PH</small></td><td class="form hide-m">W-8BEN + TIN</td><td><span class="tagx ok">Signed 28 Sep</span></td></tr>
+            <tr><td>Rafael Souza<small>São Paulo, BR</small></td><td class="form hide-m">W-8BEN + CPF</td><td><span class="tagx ok">Signed 14 Aug</span></td></tr>
+            <tr><td>Ananya Rao<small>Bengaluru, IN</small></td><td class="form hide-m">W-8BEN + PAN</td><td><span class="tagx">Renews in 21 days</span></td></tr>
+            <tr><td>Kacper Nowak<small>Warsaw, PL</small></td><td class="form hide-m">W-8BEN + NIP</td><td><span class="tagx wait">Awaiting signature</span></td></tr>
+          </table>
+        </figure>
+        <figure class="panel classify" role="img" aria-label="Classification check for Kacper Nowak: four factors point to contractor, one marked for review, overall result contractor with low risk.">
+          <div class="panel__h" aria-hidden="true">Classification check<span>Kacper Nowak · PL</span></div>
+          <div class="rows" aria-hidden="true">
+            <div class="row">Sets own hours<b>Contractor</b></div>
+            <div class="row">Uses own equipment<b>Contractor</b></div>
+            <div class="row">Invoices other clients<b>Contractor</b></div>
+            <div class="row">Fixed scope and end date<b>Contractor</b></div>
+            <div class="row">Works only for you<b class="rev">Review</b></div>
+          </div>
+          <div class="classify__res" aria-hidden="true">Contractor · low risk<span>Advisory, not legal advice</span></div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 developers -->
+  <section class="sec dev" id="developers" aria-labelledby="h-dev">
+    <div class="container">
+      <p class="kick" data-reveal><svg class="tg" viewBox="-2 0 28 24" aria-hidden="true" style="width:1.1em"><line x1="3" y1="2" x2="3" y2="22"/><line x1="9" y1="2" x2="9" y2="22"/><line x1="15" y1="2" x2="15" y2="22"/><line x1="21" y1="2" x2="21" y2="22"/><line class="strike" x1="-1" y1="18" x2="25" y2="6"/></svg>Developers</p>
+      <h2 id="h-dev" class="t-h2" data-reveal>REST, four SDKs, <span class="dim">and a webhook for every state.</span></h2>
+      <div class="dev__grid">
+        <div class="sdk">
+          <div class="tabs" role="tablist" aria-label="Language">
+            <button class="tab" role="tab" aria-selected="true" aria-controls="code" data-l="node">Node</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="code" data-l="python" tabindex="-1">Python</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="code" data-l="go" tabindex="-1">Go</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="code" data-l="ruby" tabindex="-1">Ruby</button>
+            <button class="tab" role="tab" aria-selected="false" aria-controls="code" data-l="curl" tabindex="-1">cURL</button>
+          </div>
+          <div class="sdk__code" id="code" role="tabpanel" tabindex="0" aria-label="Code sample"><pre id="code-pre"></pre></div>
+          <div class="install"><span id="inst">npm install @tally/node</span><button class="copy" type="button" id="copy">Copy</button></div>
+        </div>
+        <div class="hooks">
+          <h3>Webhooks, signed and replayable</h3>
+          <p>Every event is signed with your endpoint secret and can be replayed from the dashboard for 30 days.</p>
+          <ul>
+            <li>payout.created<span>accepted</span></li>
+            <li>payout.funded<span>money in</span></li>
+            <li>payout.fx_locked<span>rate fixed</span></li>
+            <li>payout.in_transit<span>on the rail</span></li>
+            <li>payout.paid<span>confirmed</span></li>
+            <li>payout.failed<span>with a reason code</span></li>
+            <li>payout.returned<span>funds back</span></li>
+            <li>tax_form.signed<span>onboarding</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 pricing -->
+  <section class="sec price" id="pricing" aria-labelledby="h-price">
+    <div class="container">
+      <p class="kick" data-reveal><svg class="tg" viewBox="-2 0 34 24" aria-hidden="true" style="width:1.35em"><line x1="3" y1="2" x2="3" y2="22"/><line x1="9" y1="2" x2="9" y2="22"/><line x1="15" y1="2" x2="15" y2="22"/><line x1="21" y1="2" x2="21" y2="22"/><line class="strike" x1="-1" y1="18" x2="25" y2="6"/><line x1="31" y1="2" x2="31" y2="22"/></svg>Pricing</p>
+      <h2 id="h-price" class="t-h2" data-reveal>One line on the invoice. <span class="dim">You count, we multiply.</span></h2>
+      <div class="price__grid">
+        <div class="plan">
+          <div class="plan__price"><b class="num">$9</b><span>per contractor you pay, per month</span></div>
+          <div class="calc">
+            <div class="calc__row"><label for="n">Contractors paid this month</label><output id="n-out" for="n">24</output></div>
+            <input class="range" type="range" id="n" min="1" max="200" value="24" aria-describedby="total">
+            <div class="marks" id="marks" aria-hidden="true"></div>
+            <div class="calc__row"><span class="cov__note">Unpaid contractors in your account cost nothing that month.</span><output id="total" for="n">$216<small>/ month</small></output></div>
+          </div>
+        </div>
+        <div class="sandbox">
+          <b>$0</b>
+          <h3>Sandbox, free forever</h3>
+          <p>The full API with test money. Simulate every state, including the unhappy ones.</p>
+          <ul>
+            <li>All 90 countries, simulated</li>
+            <li>Force failures and returns</li>
+            <li>Real webhooks to your endpoint</li>
+          </ul>
+          <a class="btn" href="#keys">Get sandbox keys <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+        <p class="price__fine">FX is mid-market plus 0.35% on each payout. There are no other fees.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- finale -->
+  <section class="finale" id="keys" aria-labelledby="h-fin">
+    <div class="container">
+      <h2 id="h-fin" data-reveal>Your first payout is <span class="dim">one call away.</span></h2>
+      <div class="finale__row">
+        <a class="btn btn--primary" href="#keys">Get API keys <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn btn--ghost" href="#sales" id="sales">Talk to sales</a>
+        <code class="curl">curl https://api.tally.dev/v1/payouts -u <b>sk_test_…</b>:</code>
+      </div>
+    </div>
+  </section>
+  </main>
+
+  <footer class="foot">
+    <div class="container">
+      <div class="foot__grid">
+        <div class="foot__brand">
+          <a class="brand" href="#top" aria-label="Tally home"><svg class="tg" viewBox="-2 0 28 24" aria-hidden="true"><line x1="3" y1="2" x2="3" y2="22"/><line x1="9" y1="2" x2="9" y2="22"/><line x1="15" y1="2" x2="15" y2="22"/><line x1="21" y1="2" x2="21" y2="22"/><line class="strike" x1="-1" y1="18" x2="25" y2="6"/></svg>Tally</a>
+          <p>Payroll API for international contractors.</p>
+        </div>
+        <div><h3>Product</h3><ul><li><a href="#lifecycle">Payouts</a></li><li><a href="#fx">FX</a></li><li><a href="#compliance">Tax forms</a></li><li><a href="#compliance">Classification</a></li><li><a href="#coverage">Coverage</a></li></ul></div>
+        <div><h3>Developers</h3><ul><li><a href="#developers">Docs</a></li><li><a href="#developers">API reference</a></li><li><a href="#developers">SDKs</a></li><li><a href="#developers">Webhooks</a></li><li><a href="#pricing">Sandbox</a></li></ul></div>
+        <div><h3>Company</h3><ul><li><a href="#top">About</a></li><li><a href="#top">Security</a></li><li><a href="#top">Careers</a></li><li><a href="#sales">Contact sales</a></li></ul></div>
+        <div><h3>Legal</h3><ul><li><a href="#top">Terms</a></li><li><a href="#top">Privacy</a></li><li><a href="#top">Licenses</a></li></ul></div>
+      </div>
+      <div class="clocks" id="clocks">
+        <span>Business hours right now</span>
+        <span class="c" data-tz="Africa/Lagos">Lagos <b>--:--</b><i aria-hidden="true"></i></span>
+        <span class="c" data-tz="Europe/Warsaw">Warsaw <b>--:--</b><i aria-hidden="true"></i></span>
+        <span class="c" data-tz="Africa/Nairobi">Nairobi <b>--:--</b><i aria-hidden="true"></i></span>
+        <span class="c" data-tz="Asia/Kolkata">Bengaluru <b>--:--</b><i aria-hidden="true"></i></span>
+        <span class="c" data-tz="Asia/Manila">Manila <b>--:--</b><i aria-hidden="true"></i></span>
+        <span class="c" data-tz="America/Sao_Paulo">São Paulo <b>--:--</b><i aria-hidden="true"></i></span>
+      </div>
+      <div class="foot__legal"><span>© 2026 Tally. A fictional company for a design study.</span><span>Rates and corridors on this page are illustrative.</span></div>
+    </div>
+  </footer>
+
+<script type="module">
+import { autoInit, reduced } from './motion.js';
+autoInit();
+
+/* ---------- data ---------- */
+const MID = { NGN: 1530.1272, PHP: 58.6214, BRL: 5.4183, INR: 88.4127, KES: 129.2516, MXN: 18.3741, PLN: 3.7128 };
+const MARGIN = 0.0035;
+const fmt = (v, d = 2) => v.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d });
+const PEOPLE = [
+  { id: 'po_3Nf8Qe21', ctr: 'ctr_8KQ2mZ', name: 'Amara Okafor', av: 'AO', meta: 'Lagos, Nigeria · GTBank ••4821', cur: 'NGN', usd: 2400, method: 'Bank account', rail: 'bank_account', eta: 'Lands Thu 9 Oct', city: [6.5, 3.4] },
+  { id: 'po_9Tc4Hb07', ctr: 'ctr_2VmP8s', name: 'Maria Santos', av: 'MS', meta: 'Manila, Philippines · GCash ••7715', cur: 'PHP', usd: 1850, method: 'Mobile wallet', rail: 'mobile_wallet', eta: 'Lands Thu 9 Oct', city: [14.6, 121] },
+  { id: 'po_5Rw1Kd88', ctr: 'ctr_6HsT1q', name: 'Rafael Souza', av: 'RS', meta: 'São Paulo, Brazil · Pix ••9310', cur: 'BRL', usd: 3200, method: 'Pix', rail: 'pix', eta: 'Lands Thu 9 Oct', city: [-23.5, -46.6] },
+  { id: 'po_2Lx7Np54', ctr: 'ctr_4JqW9e', name: 'Wanjiru Kamau', av: 'WK', meta: 'Nairobi, Kenya · M-Pesa ••0442', cur: 'KES', usd: 1200, method: 'Mobile wallet', rail: 'mobile_wallet', eta: 'Lands Thu 9 Oct', city: [-1.3, 36.8] },
+  { id: 'po_8Gv3Zs19', ctr: 'ctr_1BnX5r', name: 'Kacper Nowak', av: 'KN', meta: 'Warsaw, Poland · mBank ••6630', cur: 'PLN', usd: 4100, method: 'Bank account', rail: 'bank_account', eta: 'Lands Thu 9 Oct', city: [52.2, 21] },
+];
+const STATES = ['created', 'funded', 'fx_locked', 'in_transit', 'paid'];
+const LABEL = { created: 'created', funded: 'funded', fx_locked: 'FX locked', in_transit: 'in transit', paid: 'paid' };
+const $ = (s, r = document) => r.querySelector(s);
+const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+
+/* ---------- world dot map (art layer) ---------- */
+const MAP = ["0000000e2bf001ffffc000000000c001fff0007600000","000003a22dec00ffff8000000003000fffffb00000000","0600027f0cff003ffe800000c001077ffffffbff20040","3ffeff9c9763c03ffe000007fc003b7fffffffffff7c0","3fffffffffe1f07fe000001fffafff7ffffffffffffd8","7fffffffff47e03f0078003e7afffffffffffffffffcc","3ffffffffe00d01e000000f9fffffffffffffffffffc0","7f7ffffff807800e000001f9ffffffffffffffffcbc00","1e01fffff8079000000001f8ffffffffffffffe088000","04007ffffe03f800000060b1ffffffffffffff803c000","20001fffffe7fe000000e083ffffffffffffff0038000","00001fffffe7ff000001b3fffffffffffffffff020000","00000fffffffff00000037ffffffffffffffffd000000","000005ffffffd18000001fffffffffffffffffd000000","000003fffffff04000001fffffffffffffffff9000000","000003ffffffd80000001fdfe5f3ffffffffff0000000","000003ffffff80000001fc67c0f3fffffffffe3000000","000003ffffff00000000f09bdff9fffffffff82000000","000003fffffc00000001f00b7ff9fffffffe102000000","000001fffffc0000000061d03ff9ffffffff98c000000","000000fffffc000000007f808bffffffffff13c000000","0000007ffff000000000ffc003ffffffffff060000000","0000003fffe000000001fffbdfffffffffff800000000","0000000ff01000000001fffffff7ffffffff800000000","00000017e01000000007fffffbf9ffffffff000000000","0000000be00000000007fffff9fd07ffffff000000000","00000001e0300000000ffffffdffc1fffffc800000000","00000001e1840000001ffffffeff81ff3fc0000000000","00000000f3008000000ffffffe7f80fc1fa0000000000","000000003f000000000ffffffe7e00781fc0800000000","0000000003c00000001fffffff78007007c0800000000","0000000000c00000000fffffffa0007007e0800000000","000000000043c000000fffffffcc003004c0200000000","00000000002bfc000007fffffff800280480000000000","000000000007fe000003fffffff800080000200000000","000000000007ffc00001a1fffff000000b06000000000","000000000007ffe00000007fffe00000050e000000000","00000000000fffe00000007fffc00000061e800000000","00000000000ffff8000000ffff800000031e060000000","00000000000fffff0000007fff000000019d8ae000000","00000000001fffffc000003fff0000000080407800000","00000000000fffffe000003fff0000000070007c20000","000000000007ffffc000003fff0000000002203408000","000000000007ffff8000001fff0000000000000000000","000000000003ffff8000003fff0800000000071000000","000000000003ffff8000003fff08000000003f1801000","000000000000ffff0000003ffe38000000007f9800000","0000000000007fff0000003ffc38000000007ff800000","0000000000007fff0000001ffc3000000003fffe02000","0000000000007ffc0000001ffc3000000007fffe00000","0000000000007ff00000001ff82000000007ffff00000","0000000000007ff00000000ff00000000007ffff80000","000000000000ffe00000000ff00000000007ffff80000","000000000000ffe000000007e00000000003ffff80000","000000000000ffc000000007c00000000003c1ff00000","000000000000fe0000000000000000000002007e00200","000000000001ff0000000000000000000000003e00100","000000000001f80000000000000000000000000000180","000000000001e80000000000000000000000000c00300","000000000000f00000000000000000000000000400600","000000000001e00000000000000000000000000000c00","000000000001e00000000000000000000000000000000","000000000003c00000000000000002000000000000000","000000000003800000000000000000000000000000000","000000000001c00000000000000000000000000000000","000000000000c00000000000000000000000000000000","000000000000000000000000000000000000000000000"];
+const MAPGEO = { step: 2, lon0: -168, lat0: 76 };
+const cells = []; MAP.forEach((row, y) => { [...row].forEach((h, i) => { const n = parseInt(h, 16); for (let b = 0; b < 4; b++) if (n & (8 >> b)) cells.push([i * 4 + b, y]); }); });
+const cvs = $('#map'), ctx = cvs.getContext('2d');
+let W, H, cell, ox, oy, arcs = [], visible = true;
+const proj = ([lat, lon]) => [ox + ((lon - MAPGEO.lon0) / MAPGEO.step) * cell, oy + ((MAPGEO.lat0 - lat) / MAPGEO.step) * cell];
+const ORIGIN = [40.7, -74];
+function size() {
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+  W = cvs.clientWidth; H = cvs.clientHeight; cvs.width = W * dpr; cvs.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const mobile = W < 720;
+  cell = mobile ? Math.max(5.2, W / 70) : Math.max(6.5, W / 168);
+  ox = mobile ? -cell * 74 : (W - 179 * cell) / 2 + W * 0.04;
+  oy = mobile ? H - 67 * cell * 0.86 : H * 0.18;
+}
+function drawBase() {
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = 'rgba(242,244,255,0.24)';
+  const r = Math.max(1.2, cell * 0.22);
+  for (const [x, y] of cells) { ctx.beginPath(); ctx.arc(ox + (x + .5) * cell, oy + (y + .5) * cell, r, 0, 6.283); ctx.fill(); }
+  ctx.fillStyle = 'rgba(242,244,255,0.75)';
+  for (const p of PEOPLE) { const [x, y] = proj(p.city); ctx.beginPath(); ctx.arc(x, y, r * 1.7, 0, 6.283); ctx.fill(); }
+  const [sx, sy] = proj(ORIGIN); ctx.fillStyle = '#F2F4FF'; ctx.beginPath(); ctx.arc(sx, sy, r * 2.2, 0, 6.283); ctx.fill();
+}
+function arcPt(a, t) { const [x0, y0] = a.from, [x1, y1] = a.to; const mx = (x0 + x1) / 2, my = Math.min(y0, y1) - Math.hypot(x1 - x0, y1 - y0) * 0.28; const u = 1 - t; return [u * u * x0 + 2 * u * t * mx + t * t * x1, u * u * y0 + 2 * u * t * my + t * t * y1]; }
+function frame(now) {
+  drawBase();
+  arcs = arcs.filter((a) => now - a.t0 < 4200);
+  for (const a of arcs) {
+    const p = Math.min(1, (now - a.t0) / 1600), fade = 1 - Math.max(0, (now - a.t0 - 2600) / 1600);
+    ctx.strokeStyle = `rgba(242,244,255,${0.55 * fade})`; ctx.lineWidth = 1.25; ctx.setLineDash([2, 4]); ctx.beginPath();
+    for (let i = 0; i <= 40; i++) { const t = (i / 40) * p; const [x, y] = arcPt(a, t); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.stroke(); ctx.setLineDash([]);
+    const [hx, hy] = arcPt(a, p); ctx.fillStyle = `rgba(255,255,255,${fade})`; ctx.beginPath(); ctx.arc(hx, hy, 3.2, 0, 6.283); ctx.fill();
+    if (p === 1) { const k = ((now - a.t0 - 1600) % 1400) / 1400; ctx.strokeStyle = `rgba(242,244,255,${(1 - k) * 0.8 * fade})`; ctx.lineWidth = 1; ctx.beginPath(); ctx.arc(hx, hy, 4 + k * 16, 0, 6.283); ctx.stroke(); }
+  }
+  if (visible && !reduced) requestAnimationFrame(frame);
+}
+function sendArc(p) { if (reduced) return; arcs.push({ from: proj(ORIGIN), to: proj(p.city), t0: performance.now() }); }
+size(); drawBase();
+addEventListener('resize', () => { size(); drawBase(); });
+if (!reduced) {
+  new IntersectionObserver(([e]) => { const was = visible; visible = e.isIntersecting; if (visible && !was) requestAnimationFrame(frame); }).observe(cvs);
+  requestAnimationFrame(frame);
+}
+
+/* ---------- hero payout card + code window ---------- */
+const trk = [...document.querySelectorAll('.trk line[data-s]')];
+const labels = [...document.querySelectorAll('#pc-labels span')];
+const req = $('#req'), log = $('#log');
+function showPerson(p) {
+  const rate = MID[p.cur] * (1 - MARGIN);
+  $('#pc-id').textContent = p.id; $('#pc-av').textContent = p.av; $('#pc-name').textContent = p.name; $('#pc-meta').textContent = p.meta;
+  $('#pc-out').textContent = fmt(p.usd * rate); $('#pc-cur').textContent = p.cur;
+  $('#pc-fx').textContent = `${fmt(p.usd)} USD at ${fmt(rate, 4)} · mid-market + 0.35%`;
+  $('#pc-method').textContent = p.method; $('#pc-eta').textContent = p.eta;
+  req.innerHTML =
+`<span class="k">const</span> payout = <span class="k">await</span> tally.payouts.<span class="p">create</span>({
+  contractor: <span class="s">"${p.ctr}"</span>,  <span class="c">// ${esc(p.name)}</span>
+  amount: <span class="s">${p.usd * 100}</span>,  currency: <span class="s">"USD"</span>,
+  deliver_as: <span class="s">"${p.cur}"</span>,
+  method: <span class="s">"${p.rail}"</span>,
+});`;
+}
+function setState(i, p) {
+  trk.forEach((l, k) => l.classList.toggle('on', k <= i));
+  labels.forEach((l, k) => { l.classList.toggle('on', k < i); l.classList.toggle('cur', k === i); });
+  const st = $('#pc-state'); st.textContent = LABEL[STATES[i]]; st.classList.toggle('is-paid', i === 4);
+  const t = new Date(); const ts = t.toISOString().slice(11, 19);
+  const row = document.createElement('div');
+  row.innerHTML = `<span>${ts}</span><span>${p.id}</span><span class="ok">200</span><span class="ev">payout.${STATES[i]}</span>`;
+  log.append(row); while (log.children.length > 5) log.firstChild.remove();
+}
+let pi = 0, si = 0;
+showPerson(PEOPLE[0]);
+if (reduced) { [0,1,2,3,4].forEach((i) => setState(i, PEOPLE[0])); }
+else {
+  setState(0, PEOPLE[0]); sendArc(PEOPLE[0]);
+  const tick = () => {
+    si++;
+    if (si > 4) { si = 0; pi = (pi + 1) % PEOPLE.length; showPerson(PEOPLE[pi]); sendArc(PEOPLE[pi]); }
+    setState(si, PEOPLE[pi]);
+    if (si === 4) bumpDash(PEOPLE[pi]);
+    setTimeout(tick, si === 4 ? 2600 : 1050);
+  };
+  setTimeout(tick, 1200);
+}
+let paid = 38;
+function bumpDash(p) {
+  paid++; $('#k-paid').textContent = paid;
+  const rows = $('#dash-rows'); [...rows.querySelectorAll('tr')].forEach((r) => { if (r.textContent.includes(p.name)) r.remove(); }); const row = rows.querySelector('tr'); const clone = row.cloneNode(true);
+  const sym = { NGN: '₦', PHP: '₱', BRL: 'R$', KES: 'KSh', PLN: 'zł', INR: '₹', MXN: 'MX$' }[p.cur] || '';
+  const cc = { NGN: 'NG', PHP: 'PH', BRL: 'BR', KES: 'KE', PLN: 'PL' }[p.cur];
+  const tds = clone.querySelectorAll('td');
+  tds[0].innerHTML = `<span class="cc">${cc}</span>${p.name}`; tds[1].textContent = p.rail === 'pix' ? 'Pix' : p.meta.includes('GCash') ? 'GCash' : p.meta.includes('M-Pesa') ? 'M-Pesa' : 'Bank account';
+  tds[2].textContent = '$' + fmt(p.usd); tds[3].textContent = sym + fmt(p.usd * MID[p.cur] * (1 - MARGIN));
+  tds[4].innerHTML = '<span class="mini"><svg viewBox="0 0 30 14"><line x1="3" y1="2" x2="3" y2="12"/><line x1="9" y1="2" x2="9" y2="12"/><line x1="15" y1="2" x2="15" y2="12"/><line x1="21" y1="2" x2="21" y2="12"/><line x1="0" y1="10" x2="25" y2="4"/></svg>Paid</span>';
+  clone.classList.add('flash'); rows.prepend(clone); while (rows.children.length > 6) rows.lastElementChild.remove();
+}
+
+/* ---------- 01 lifecycle ---------- */
+const EVBODY = (i) => {
+  const p = PEOPLE[0], rate = MID.NGN * (1 - MARGIN), base = Date.UTC(2026, 9, 8, 14, 2, 11) / 1000;
+  const extra = [
+    `  "amount": 240000, "currency": "USD"`,
+    `  "funded_from": "balance_usd", "funded_amount": 240000`,
+    `  "rate": ${rate.toFixed(4)}, "mid_market": ${MID.NGN.toFixed(4)},\n  "margin_bps": 35, "deliver_amount": ${(p.usd * rate).toFixed(2)}`,
+    `  "rail": "ng_nip", "expected_arrival": "2026-10-09"`,
+    `  "confirmed_by": "GTBank", "deliver_amount": ${(p.usd * rate).toFixed(2)},\n  "deliver_currency": "NGN"`,
+  ][i];
+  return `{\n  <span class="k">"type"</span>: <span class="s">"payout.${STATES[i]}"</span>,\n  <span class="k">"created"</span>: ${base + [0, 2, 3, 41, 52200][i]},\n  <span class="k">"payout"</span>: <span class="s">"${p.id}"</span>, <span class="k">"contractor"</span>: <span class="s">"${p.ctr}"</span>,\n${esc(extra)}\n}`;
+};
+const T_AFTER = ['0.0s after the call', '2.1s after the call', '3.4s after the call', '41s after the call', '14h 30m after the call'];
+const tabs = [...document.querySelectorAll('#states button')], bts = [...document.querySelectorAll('#bt .s')];
+let li = 0, auto = true, lifeTimer;
+function setLife(i, focus) {
+  li = i;
+  tabs.forEach((t, k) => { t.setAttribute('aria-selected', k === i); t.tabIndex = k === i ? 0 : -1; });
+  bts.forEach((l, k) => l.classList.toggle('on', k <= i));
+  $('#bt-n').textContent = i + 1; $('#bt-t').textContent = T_AFTER[i];
+  $('#ev-body').innerHTML = EVBODY(i); $('#ev-sig').textContent = `tally-signature: t=${1791511331 + i}…`;
+  if (focus) tabs[i].focus();
+}
+tabs.forEach((t, k) => {
+  t.addEventListener('click', () => { auto = false; clearTimeout(lifeTimer); setLife(k); });
+  t.addEventListener('keydown', (e) => { const d = { ArrowDown: 1, ArrowRight: 1, ArrowUp: -1, ArrowLeft: -1 }[e.key]; if (d) { e.preventDefault(); auto = false; clearTimeout(lifeTimer); setLife((li + d + 5) % 5, true); } });
+});
+if (reduced) setLife(4); else {
+  setLife(0);
+  const run = () => { if (!auto) return; setLife((li + 1) % 5); lifeTimer = setTimeout(run, li === 4 ? 3200 : 1800); };
+  new IntersectionObserver(([e]) => { clearTimeout(lifeTimer); if (e.isIntersecting && auto) lifeTimer = setTimeout(run, 900); }, { threshold: .35 }).observe($('#bt'));
+}
+
+/* ---------- 02 coverage: filter + local times ---------- */
+document.querySelectorAll('.chip').forEach((c) => c.addEventListener('click', () => {
+  document.querySelectorAll('.chip').forEach((x) => x.setAttribute('aria-pressed', x === c));
+  const f = c.dataset.f;
+  document.querySelectorAll('#corr tr').forEach((r) => { r.hidden = f !== 'all' && !r.dataset.m.split(' ').includes(f); });
+}));
+function clocks() {
+  const now = new Date();
+  document.querySelectorAll('[data-tz]').forEach((el) => {
+    const tz = el.dataset.tz;
+    const hm = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: tz }).format(now);
+    const wd = new Intl.DateTimeFormat('en-GB', { weekday: 'short', timeZone: tz }).format(now);
+    const target = el.querySelector('b') || el; target.textContent = hm;
+    if (el.classList.contains('c')) { const h = +hm.slice(0, 2); const open = !/Sat|Sun/.test(wd) && h >= 9 && h < 17; el.classList.toggle('open', open); el.title = open ? 'Banks open' : 'Banks closed'; }
+  });
+}
+clocks(); setInterval(clocks, 15000);
+
+/* ---------- 03 FX receipt ---------- */
+const mid = { ...MID };
+const amt = $('#amt'), cur = $('#cur');
+function quote() {
+  const usd = Math.max(0, parseFloat(amt.value.replace(/[^0-9.]/g, '')) || 0), c = cur.value, m = mid[c], r = m * (1 - MARGIN);
+  $('#r-send').textContent = `${fmt(usd)} USD`; $('#r-mid').textContent = fmt(m, 4); $('#r-rate').textContent = fmt(r, 4);
+  $('#r-cost').textContent = `${fmt(usd * MARGIN)} USD`;
+  $('#r-out').innerHTML = `${fmt(usd * r)}<small>${c}</small>`;
+}
+amt.addEventListener('input', quote); cur.addEventListener('change', quote);
+amt.addEventListener('blur', () => { const v = parseFloat(amt.value.replace(/[^0-9.]/g, '')) || 0; amt.value = fmt(v); });
+quote();
+if (!reduced) setInterval(() => { for (const k in mid) mid[k] = MID[k] * (1 + (Math.random() - .5) * 0.0016); quote(); }, 2400);
+
+/* ---------- 05 SDK tabs ---------- */
+const S = (s) => `<span class="s">${s}</span>`, K = (s) => `<span class="k">${s}</span>`, C = (s) => `<span class="c">${s}</span>`;
+const CODE = {
+  node: [`${K('import')} Tally ${K('from')} ${S('"@tally/node"')};
+${K('const')} tally = ${K('new')} Tally(process.env.TALLY_SECRET_KEY);
+
+${K('const')} payout = ${K('await')} tally.payouts.create({
+  contractor: ${S('"ctr_8KQ2mZ"')},
+  amount: ${S('240000')},          ${C('// cents, USD')}
+  currency: ${S('"USD"')},
+  deliver_as: ${S('"NGN"')},
+  idempotency_key: ${S('"oct-2026-amara"')},
+});
+
+payout.status;  ${C('// "created", then a webhook per state')}`, 'npm install @tally/node'],
+  python: [`${K('import')} tally
+
+client = tally.Client(api_key=os.environ[${S('"TALLY_SECRET_KEY"')}])
+
+payout = client.payouts.create(
+    contractor=${S('"ctr_8KQ2mZ"')},
+    amount=${S('240000')},           ${C('# cents, USD')}
+    currency=${S('"USD"')},
+    deliver_as=${S('"NGN"')},
+    idempotency_key=${S('"oct-2026-amara"')},
+)
+
+payout.status  ${C('# "created"')}`, 'pip install tally-payouts'],
+  go: [`client := tally.NewClient(os.Getenv(${S('"TALLY_SECRET_KEY"')}))
+
+payout, err := client.Payouts.Create(ctx, &tally.PayoutParams{
+    Contractor:     ${S('"ctr_8KQ2mZ"')},
+    Amount:         ${S('240000')}, ${C('// cents, USD')}
+    Currency:       ${S('"USD"')},
+    DeliverAs:      ${S('"NGN"')},
+    IdempotencyKey: ${S('"oct-2026-amara"')},
+})
+${K('if')} err != nil {
+    ${K('return')} err
+}`, 'go get github.com/tally/tally-go'],
+  ruby: [`${K('require')} ${S('"tally"')}
+
+Tally.api_key = ENV.fetch(${S('"TALLY_SECRET_KEY"')})
+
+payout = Tally::Payout.create(
+  contractor: ${S('"ctr_8KQ2mZ"')},
+  amount: ${S('240_000')},            ${C('# cents, USD')}
+  currency: ${S('"USD"')},
+  deliver_as: ${S('"NGN"')},
+  idempotency_key: ${S('"oct-2026-amara"')}
+)
+
+payout.status ${C('# => "created"')}`, 'gem install tally'],
+  curl: [`curl https://api.tally.dev/v1/payouts \\
+  -u ${S('"$TALLY_SECRET_KEY:"')} \\
+  -H ${S('"Idempotency-Key: oct-2026-amara"')} \\
+  -d contractor=${S('ctr_8KQ2mZ')} \\
+  -d amount=${S('240000')} \\
+  -d currency=${S('USD')} \\
+  -d deliver_as=${S('NGN')}
+
+${C('# 201 Created  {"id":"po_3Nf8Qe21","status":"created",…}')}`, 'curl https://api.tally.dev/v1/ping'],
+};
+const ltabs = [...document.querySelectorAll('.tab')];
+function setLang(l, focus) {
+  ltabs.forEach((t) => { const on = t.dataset.l === l; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; if (on && focus) t.focus(); });
+  $('#code-pre').innerHTML = CODE[l][0]; $('#inst').textContent = CODE[l][1];
+}
+ltabs.forEach((t, k) => {
+  t.addEventListener('click', () => setLang(t.dataset.l));
+  t.addEventListener('keydown', (e) => { const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key]; if (d) { e.preventDefault(); setLang(ltabs[(k + d + ltabs.length) % ltabs.length].dataset.l, true); } });
+});
+setLang('node');
+$('#copy').addEventListener('click', async () => { try { await navigator.clipboard.writeText($('#inst').textContent); $('#copy').textContent = 'Copied'; } catch { $('#copy').textContent = 'Select to copy'; } setTimeout(() => ($('#copy').textContent = 'Copy'), 1600); });
+
+/* ---------- 06 pricing tally ---------- */
+const n = $('#n'), marks = $('#marks');
+const NS = 'http://www.w3.org/2000/svg';
+function group(k) {
+  const s = document.createElementNS(NS, 'svg'); s.setAttribute('viewBox', '-2 0 30 26');
+  for (let j = 0; j < Math.min(k, 4); j++) { const l = document.createElementNS(NS, 'line'); l.setAttribute('x1', 3 + j * 6.5); l.setAttribute('x2', 3 + j * 6.5); l.setAttribute('y1', 2); l.setAttribute('y2', 24); s.append(l); }
+  if (k === 5) { const l = document.createElementNS(NS, 'line'); l.setAttribute('class', 'strike'); l.setAttribute('x1', -1); l.setAttribute('y1', 20); l.setAttribute('x2', 26); l.setAttribute('y2', 6); s.append(l); }
+  return s;
+}
+function price() {
+  const v = +n.value; $('#n-out').textContent = v; $('#total').innerHTML = `$${(v * 9).toLocaleString('en-US')}<small>/ month</small>`;
+  n.style.setProperty('--p', ((v - 1) / 199) * 100 + '%');
+  marks.textContent = '';
+  const shown = Math.min(v, 100);
+  for (let i = 0; i < shown; i += 5) marks.append(group(Math.min(5, shown - i)));
+  if (v > shown) { const m = document.createElement('span'); m.className = 'more'; m.textContent = `+ ${v - shown} more`; marks.append(m); }
+}
+n.addEventListener('input', price); price();
+
+/* ---------- mobile menu ---------- */
+const mb = $('.nav__menu'), dr = $('#drawer');
+mb.addEventListener('click', () => { const o = mb.getAttribute('aria-expanded') === 'true'; mb.setAttribute('aria-expanded', !o); dr.hidden = o; mb.textContent = o ? 'Menu' : 'Close'; });
+dr.addEventListener('click', (e) => { if (e.target.closest('a')) { dr.hidden = true; mb.setAttribute('aria-expanded', 'false'); mb.textContent = 'Menu'; } });
+</script>
+</body>
+</html>

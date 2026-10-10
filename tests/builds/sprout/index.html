@@ -1,0 +1,1356 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<!--
+DESIGN SPINE: Sprout
+DIRECTION   : 9 Playful System. A consumer app for 20s–30s serial plant-killers; personality has to come from the cast and the motion, while the grid and colour logic stay strict.
+REGISTER    : LOUD. The one bold device: a full-bleed bubblegum-pink field with a cast of plant characters bursting up through its bottom edge.
+AXES        : ground saturated field (pink #FF6FB1; per-section fields as a system) · type genre soft/rounded (Fredoka + M PLUS Rounded 1c) · image medium illustration cast (6 plant characters with mood faces) · composition collage (rotation, overlap, stickers, tape, scalloped cut edges) · motion feel springy and characterful (linear() springs, pops, wiggles, eyes that follow the cursor; big surfaces critically damped)
+DEFAULT?    : 0/6 matched → DIFFERENT FROM DEFAULT BY: ground (pink field, not paper), type (rounded 600, not light grotesk), labels (display-face sentence case, no mono), no hairline metadata bands, illustration cast not line drawing, colour is the ground not a tiny accent.
+MOTIF       : the face (two eyes + a mood mouth). 1 hero cast, eyes track the cursor · 2 the "o" in the wordmark · 3 avatars in the app UI rows · 4 the pricing count (5 faces free vs a crowd) · 5 the playground: Gary's face IS the readout · 6 footer: a plant that is asleep when it's night where you are.
+TYPE        : display Fredoka 600 (wdth 100) · text M PLUS Rounded 1c 400/700 · labels Fredoka 500 sentence case. 2 families.
+SCALE       : display 168px/.88/−0.035em · word 208/.82/−0.04 · h2 84/.94/−0.03 · h3 32/1.08 · body 17/1.55 · label 13 +0.02em
+PALETTE     : ink #2A0B1D (plum near-black) · ink-2 ink@80% (AA on pink) · fields: pink #FF6FB1 = Sprout talking (hero, finale) · pale #FFEAF3 = playground + FAQ · forest #0E3A29 = how it works / species / footer (cream text, pink highlight) · butter #FFD84A = Sprout Plus only. Characters use the same set + leaf greens.
+GRID        : 12/24 · container 1312 · margin 64 desktop / 20 mobile · section rhythm 96–144 with scalloped edges
+HERO        : poster h1 bottom-left-ish + collage stage right (phone UI tilted 5°, cast in front, stickers). Characters are cut by the hero's bottom edge.
+IMAGERY     : illustration cast (SVG) + product UI rebuilt in HTML (role="img")
+CONVERSION  : download. Nav "Get the app" · hero App Store + Google Play · pricing "Download free" · finale App Store + Google Play
+MOTION      : big surfaces cubic-bezier(.16,1,.3,1) 850ms · small things spring linear() k380/c16 760ms · UI spring-soft · primitive: pop-up from below, wiggle on poke, blink, eye tracking
+SIGNATURES  : (1) characters that react: eye tracking, blink, poke = wiggle + joy face; (2) the playground ("Go on, neglect Gary") where sliders drive the character's mood and the real notification copy; (3) toy-plastic pill buttons that press 6px.
+VOICE       : "Plants with feelings." · "Go on, neglect Gary." · "Keep one alive."
+-->
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sprout: plants with feelings</title>
+<meta name="description" content="Photograph a plant and Sprout gives it a face. It tells you when it's thirsty, cold or needs more light, using your local weather and your window direction. Free for 5 plants.">
+<meta name="theme-color" content="#FF6FB1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2729%27 fill=%27%23FF6FB1%27 stroke=%27%232A0B1D%27 stroke-width=%275%27/%3E%3Ccircle cx=%2723%27 cy=%2728%27 r=%274.5%27 fill=%27%232A0B1D%27/%3E%3Ccircle cx=%2741%27 cy=%2728%27 r=%274.5%27 fill=%27%232A0B1D%27/%3E%3Cpath d=%27M22 40q10 9 20 0%27 fill=%27none%27 stroke=%27%232A0B1D%27 stroke-width=%275%27 stroke-linecap=%27round%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wdth,wght@75..125,400..700&family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--sm btn--ghost" href="#main">Skip to content</a>
+
+<header class="nav" id="top">
+  <nav class="nav__pill" aria-label="Main">
+    <a class="logo" href="#top" aria-label="Sprout, back to top">Spr<span class="logo__o" aria-hidden="true"><i></i><i></i></span>ut</a>
+    <ul class="nav__links" role="list">
+      <li><a href="#how" data-letter-roll>How it works</a></li>
+      <li><a href="#play" data-letter-roll>Meet Gary</a></li>
+      <li><a href="#plus" data-letter-roll>Plus</a></li>
+      <li><a href="#faq" data-letter-roll>FAQ</a></li>
+    </ul>
+    <a class="btn btn--primary btn--sm nav__cta" href="#get">Get the app</a>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- ============================== HERO (pink field) -->
+<section class="hero" data-theme="pink" aria-labelledby="h1">
+  <div class="container hero__grid">
+    <div class="hero__copy">
+      <h1 id="h1" class="t-display hero__h1">
+        <span class="l1">Plants</span>
+        <span class="l2">with <span class="h1-bean-wrap" aria-hidden="true"><svg class="char char--bean h1-bean" data-mood="happy" viewBox="16 100 168 180" aria-hidden="true" focusable="false"><g class="body"><g class="plant"><g transform="translate(100 168) rotate(-78) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(-48) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(-18) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(18) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(48) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(78) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 172) rotate(-56) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(-26) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(0) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(26) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(56) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g></g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#EE7A45" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FFB3D6" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FFB3D6" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g></g></svg></span></span>
+        <span class="l3"><span class="chip-word">feelings.</span></span>
+      </h1>
+      <p class="t-lead hero__lead">Snap a photo. Sprout works out what it is, gives it a face, and from then on it tells you when it's thirsty, cold or stuck in the dark. Free for your first five.</p>
+      <div class="hero__ctas">
+        <a class="btn btn--primary" href="#app-store"><svg class="store" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.9-.9-3.1-.8C6.8 7.4 5.3 8.3 4.5 9.7c-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.7 2.4 3 2.4 1.2 0 1.6-.8 3.1-.8s1.8.8 3.1.8 2.1-1.2 2.9-2.4c.9-1.3 1.3-2.6 1.3-2.7 0 0-2.6-1-2.7-4zM14.1 5.6c.7-.8 1.1-1.9 1-3-1 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.5 2.8-1.3z"/></svg>Download for iPhone</a>
+        <a class="btn btn--ghost" href="#google-play"><svg class="store" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.2 2.6c-.3.3-.4.7-.4 1.2v16.4c0 .5.1.9.4 1.2l9.2-9.4-9.2-9.4zm10.4 10.6 2.6 2.7-11.4 6.5c-.3.2-.7.2-1 .1l9.8-9.3zm0-2.4-9.8-9.3c.3-.1.7-.1 1 .1l11.4 6.5-2.6 2.7zm3.8-1.8 3 1.7c.8.5.8 1.6 0 2.1l-3 1.7-2.8-2.8 2.8-2.7z"/></svg>Get it on Android</a>
+      </div>
+    </div>
+
+    <div class="hero__stage">
+      <div class="phone" role="img" aria-label="The Sprout app home screen. A list called Your jungle shows five plants with faces: Gary the Monstera needs water today, Pip the pothos will be cold tonight, Mabel the fiddle-leaf fig wants more light, and Doris and Lou are happy. The header reads: tonight 4 degrees, east window.">
+        <div class="phone__screen">
+          <div class="app-status"><span>9:41</span><span class="app-dots"><i></i><i></i><i></i></span></div>
+          <div class="app-head">
+            <p class="app-kicker">Tuesday · Tonight 4° · East window</p>
+            <p class="app-title">Your jungle</p>
+          </div>
+          <div class="app-alert"><b>Gary</b> is thirsty. It's been 9 days. About two glasses, slowly.</div>
+          <div class="app-list"><div class="app-row"><span class="app-av"><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#FFD84A" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M15 28 q5 -5 10 0" fill="none" stroke-width="2.6" stroke-linecap="round"/></g></svg></span><span class="app-txt"><b>Gary</b><span>Monstera deliciosa</span></span><span class="chip chip--hot">Water today</span></div><div class="app-row"><span class="app-av"><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#FF6FB1" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M13 26 l2.8 -2.5 l2.8 2.5 l2.8 -2.5 l2.8 2.5 l2.8 -2.5" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g></svg></span><span class="app-txt"><b>Pip</b><span>Golden pothos</span></span><span class="chip chip--hot">Cold tonight</span></div><div class="app-row"><span class="app-av"><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><path d="M10.5 18 h7 M22.5 18 h7" stroke-width="2.6" stroke-linecap="round" fill="none"/><path d="M16 26 h8" fill="none" stroke-width="2.6" stroke-linecap="round"/></g></svg></span><span class="app-txt"><b>Mabel</b><span>Fiddle-leaf fig</span></span><span class="chip chip--soft">Wants light</span></div><div class="app-row"><span class="app-av"><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#EE7A45" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M15 25 q5 5 10 0" fill="none" stroke-width="2.6" stroke-linecap="round"/></g></svg></span><span class="app-txt"><b>Doris</b><span>Bunny-ear cactus</span></span><span class="chip chip--ok">Happy</span></div><div class="app-row"><span class="app-av"><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M15 25 q5 5 10 0" fill="none" stroke-width="2.6" stroke-linecap="round"/></g></svg></span><span class="app-txt"><b>Lou</b><span>Snake plant</span></span><span class="chip chip--ok">Happy</span></div></div>
+          <div class="app-tab"><span>Plants</span><span class="app-snap">Snap a plant</span><span>Me</span></div>
+        </div>
+      </div>
+      <p class="sticker sticker--weather" aria-hidden="true"><b>4°</b> tonight<br>east window</p>
+      <p class="bubble bubble--gary" aria-hidden="true">Psst. It's been 9&nbsp;days.</p>
+      <div class="cast" aria-hidden="true">
+        <svg class="char char--lou cast-lou" data-mood="happy" viewBox="10 -10 180 290" aria-hidden="true" focusable="false"><g class="body"><g class="plant"><g class="lf lf-1"><g transform="translate(100 172) rotate(-24) scale(0.78)">
+  <path d="M0 0 C-16 -40 -16 -104 0 -156 C16 -104 16 -40 0 0 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="6.4" stroke-linejoin="round"/>
+  <path d="M0 -6 C-10 -42 -10 -100 0 -140 C10 -100 10 -42 0 -6 Z" fill="#1F8A55"/>
+  <path d="M-5 -30 l8 -6 M-6 -58 l10 -7 M-6 -86 l10 -7 M-4 -112 l7 -6" stroke="#3BB273" stroke-width="5.1" stroke-linecap="round"/>
+</g></g><g class="lf lf-2"><g transform="translate(100 172) rotate(22) scale(0.74)">
+  <path d="M0 0 C-16 -40 -16 -104 0 -156 C16 -104 16 -40 0 0 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="6.8" stroke-linejoin="round"/>
+  <path d="M0 -6 C-10 -42 -10 -100 0 -140 C10 -100 10 -42 0 -6 Z" fill="#1F8A55"/>
+  <path d="M-5 -30 l8 -6 M-6 -58 l10 -7 M-6 -86 l10 -7 M-4 -112 l7 -6" stroke="#3BB273" stroke-width="5.4" stroke-linecap="round"/>
+</g></g><g class="lf lf-3"><g transform="translate(100 172) rotate(-8) scale(1.04)">
+  <path d="M0 0 C-16 -40 -16 -104 0 -156 C16 -104 16 -40 0 0 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="4.8" stroke-linejoin="round"/>
+  <path d="M0 -6 C-10 -42 -10 -100 0 -140 C10 -100 10 -42 0 -6 Z" fill="#1F8A55"/>
+  <path d="M-5 -30 l8 -6 M-6 -58 l10 -7 M-6 -86 l10 -7 M-4 -112 l7 -6" stroke="#3BB273" stroke-width="3.8" stroke-linecap="round"/>
+</g></g><g class="lf lf-4"><g transform="translate(100 172) rotate(9) scale(0.94)">
+  <path d="M0 0 C-16 -40 -16 -104 0 -156 C16 -104 16 -40 0 0 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="5.3" stroke-linejoin="round"/>
+  <path d="M0 -6 C-10 -42 -10 -100 0 -140 C10 -100 10 -42 0 -6 Z" fill="#1F8A55"/>
+  <path d="M-5 -30 l8 -6 M-6 -58 l10 -7 M-6 -86 l10 -7 M-4 -112 l7 -6" stroke="#3BB273" stroke-width="4.3" stroke-linecap="round"/>
+</g></g></g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g></g></svg>
+        <svg class="char char--gary cast-gary" data-mood="happy" viewBox="-40 -70 280 350" aria-hidden="true" focusable="false"><g class="body"><g class="plant">
+  <g fill="none" stroke="#1F8A55" stroke-width="7" stroke-linecap="round">
+    <path d="M100 172 C96 140 70 118 52 100"/><path d="M100 172 C106 136 130 112 152 96"/><path d="M100 172 C100 130 102 96 100 64"/>
+  </g>
+  <g class="lf lf-1"><g transform="translate(52 102) rotate(-48) scale(0.82)">
+  <path d="M0 0 C-34 -6 -64 -34 -60 -70 C-56 -100 -26 -116 0 -104 C26 -116 56 -100 60 -70 C64 -34 34 -6 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="6.1" stroke-linejoin="round"/>
+  <path d="M0 -8 V-96" stroke="#1F8A55" stroke-width="4.9" stroke-linecap="round"/>
+  <path d="M-59 -62 L-32 -55 M-50 -92 L-25 -77 M-38 -20 L-19 -34 M59 -62 L32 -55 M50 -92 L25 -77 M38 -20 L19 -34" stroke="#2A0B1D" stroke-width="5.5" stroke-linecap="round"/>
+</g></g>
+  <g class="lf lf-2"><g transform="translate(152 98) rotate(46) scale(0.86)">
+  <path d="M0 0 C-34 -6 -64 -34 -60 -70 C-56 -100 -26 -116 0 -104 C26 -116 56 -100 60 -70 C64 -34 34 -6 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="5.8" stroke-linejoin="round"/>
+  <path d="M0 -8 V-96" stroke="#1F8A55" stroke-width="4.7" stroke-linecap="round"/>
+  <path d="M-59 -62 L-32 -55 M-50 -92 L-25 -77 M-38 -20 L-19 -34 M59 -62 L32 -55 M50 -92 L25 -77 M38 -20 L19 -34" stroke="#2A0B1D" stroke-width="5.2" stroke-linecap="round"/>
+</g></g>
+  <g class="lf lf-3"><g transform="translate(100 66) rotate(3) scale(1.0)">
+  <path d="M0 0 C-34 -6 -64 -34 -60 -70 C-56 -100 -26 -116 0 -104 C26 -116 56 -100 60 -70 C64 -34 34 -6 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5.0" stroke-linejoin="round"/>
+  <path d="M0 -8 V-96" stroke="#1F8A55" stroke-width="4.0" stroke-linecap="round"/>
+  <path d="M-59 -62 L-32 -55 M-50 -92 L-25 -77 M-38 -20 L-19 -34 M59 -62 L32 -55 M50 -92 L25 -77 M38 -20 L19 -34" stroke="#2A0B1D" stroke-width="4.5" stroke-linecap="round"/>
+</g></g>
+</g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#FFD84A" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g></g></svg>
+        <svg class="char char--pip cast-pip" data-mood="happy" viewBox="-10 90 220 280" aria-hidden="true" focusable="false"><g class="body"><g class="plant"><g transform="translate(64 170) rotate(-30) scale(1.05)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="4.3" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="2.9" stroke-linecap="round"/></g><g transform="translate(100 166) rotate(0) scale(1.15)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="3.9" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="2.6" stroke-linecap="round"/></g><g transform="translate(136 170) rotate(30) scale(1.05)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="4.3" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="2.9" stroke-linecap="round"/></g><g transform="translate(82 150) rotate(-12) scale(0.8)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="5.6" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.8" stroke-linecap="round"/></g><g transform="translate(118 150) rotate(14) scale(0.8)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5.6" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.8" stroke-linecap="round"/></g></g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#FF6FB1" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#FF6FB1" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FFD0E5" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FFD0E5" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FF6FB1" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FF6FB1" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g><g class="hang"><g class="vines" fill="none" stroke="#1F8A55" stroke-width="5" stroke-linecap="round">
+  <path d="M40 180 C12 206 16 252 26 296 C32 324 22 344 14 356"/><path d="M160 180 C192 214 184 262 176 302"/></g><g transform="translate(20 222) rotate(160) scale(0.9)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5.0" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.3" stroke-linecap="round"/></g><g transform="translate(30 270) rotate(-150) scale(0.85)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="5.3" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.5" stroke-linecap="round"/></g><g transform="translate(18 318) rotate(170) scale(0.8)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5.6" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.8" stroke-linecap="round"/></g><g transform="translate(16 352) rotate(-160) scale(0.7)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="6.4" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="4.3" stroke-linecap="round"/></g><g transform="translate(182 232) rotate(-160) scale(0.9)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="5.0" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.3" stroke-linecap="round"/></g><g transform="translate(176 282) rotate(150) scale(0.85)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5.3" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.5" stroke-linecap="round"/></g><g transform="translate(178 306) rotate(-170) scale(0.7)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="6.4" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="4.3" stroke-linecap="round"/></g></g></g></svg>
+        <svg class="char char--doris cast-doris" data-mood="happy" viewBox="10 10 180 270" aria-hidden="true" focusable="false"><g class="body"><g class="plant">
+  <path d="M82 138 H62 C54 138 49 132 49 124 V96 C49 88 54 83 61 83 C68 83 72 88 72 96 V118 H82 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M118 112 H138 C146 112 151 106 151 98 V68 C151 60 146 55 139 55 C132 55 128 60 128 68 V92 H118 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M75 172 V80 C75 54 87 40 100 40 C113 40 125 54 125 80 V172 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M100 54 V164 M88 64 V164 M112 64 V164" stroke="#1F8A55" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M84 72 l-7 -4 M116 72 l7 -4 M84 104 l-7 -4 M116 104 l7 -4 M84 136 l-7 -4 M116 136 l7 -4 M58 100 l-7 -4 M142 80 l7 -4" stroke="#2A0B1D" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <g class="flower" transform="translate(100 38)">
+    <g fill="#FF6FB1" stroke="#2A0B1D" stroke-width="3.5"><circle cx="0" cy="-11" r="8"/><circle cx="10.5" cy="-3.4" r="8"/><circle cx="6.5" cy="9" r="8"/><circle cx="-6.5" cy="9" r="8"/><circle cx="-10.5" cy="-3.4" r="8"/></g>
+    <circle r="5.5" fill="#FFD84A" stroke="#2A0B1D" stroke-width="3"/>
+  </g>
+</g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#EE7A45" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FFB3D6" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FFB3D6" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g></g></svg>
+        <svg class="char char--bean cast-bean" data-mood="happy" viewBox="16 100 168 180" aria-hidden="true" focusable="false"><g class="body"><g class="plant"><g transform="translate(100 168) rotate(-78) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(-48) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(-18) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(18) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(48) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(78) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 172) rotate(-56) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(-26) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(0) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(26) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(56) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g></g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#EE7A45" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FFB3D6" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FFB3D6" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g></g></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== HOW (forest field) -->
+<section class="how section" id="how" data-theme="forest" aria-labelledby="how-h">
+  <div class="container">
+    <h2 id="how-h" class="t-h2 how__h" data-split="words">One photo. <span class="hl">Then it talks back.</span></h2>
+    <ol class="steps" role="list">
+      <li class="step step--1" data-reveal>
+        <span class="step__n" aria-hidden="true">1</span>
+        <h3 class="t-h3">Snap it.</h3>
+        <p>Point your camera at any plant. Sprout names the species, out of about 9,400 it knows.</p>
+        <div class="vis vis--snap" role="img" aria-label="A camera viewfinder framing a Monstera, with a result chip that says: Monstera deliciosa, Swiss cheese plant.">
+          <span class="vf vf--tl"></span><span class="vf vf--tr"></span><span class="vf vf--bl"></span><span class="vf vf--br"></span>
+          <span class="scan"></span>
+          <svg class="char char--gary snap-gary" data-mood="happy" viewBox="-40 -70 280 350" aria-hidden="true" focusable="false"><g class="body"><g class="plant">
+  <g fill="none" stroke="#1F8A55" stroke-width="7" stroke-linecap="round">
+    <path d="M100 172 C96 140 70 118 52 100"/><path d="M100 172 C106 136 130 112 152 96"/><path d="M100 172 C100 130 102 96 100 64"/>
+  </g>
+  <g class="lf lf-1"><g transform="translate(52 102) rotate(-48) scale(0.82)">
+  <path d="M0 0 C-34 -6 -64 -34 -60 -70 C-56 -100 -26 -116 0 -104 C26 -116 56 -100 60 -70 C64 -34 34 -6 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="6.1" stroke-linejoin="round"/>
+  <path d="M0 -8 V-96" stroke="#1F8A55" stroke-width="4.9" stroke-linecap="round"/>
+  <path d="M-59 -62 L-32 -55 M-50 -92 L-25 -77 M-38 -20 L-19 -34 M59 -62 L32 -55 M50 -92 L25 -77 M38 -20 L19 -34" stroke="#2A0B1D" stroke-width="5.5" stroke-linecap="round"/>
+</g></g>
+  <g class="lf lf-2"><g transform="translate(152 98) rotate(46) scale(0.86)">
+  <path d="M0 0 C-34 -6 -64 -34 -60 -70 C-56 -100 -26 -116 0 -104 C26 -116 56 -100 60 -70 C64 -34 34 -6 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="5.8" stroke-linejoin="round"/>
+  <path d="M0 -8 V-96" stroke="#1F8A55" stroke-width="4.7" stroke-linecap="round"/>
+  <path d="M-59 -62 L-32 -55 M-50 -92 L-25 -77 M-38 -20 L-19 -34 M59 -62 L32 -55 M50 -92 L25 -77 M38 -20 L19 -34" stroke="#2A0B1D" stroke-width="5.2" stroke-linecap="round"/>
+</g></g>
+  <g class="lf lf-3"><g transform="translate(100 66) rotate(3) scale(1.0)">
+  <path d="M0 0 C-34 -6 -64 -34 -60 -70 C-56 -100 -26 -116 0 -104 C26 -116 56 -100 60 -70 C64 -34 34 -6 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5.0" stroke-linejoin="round"/>
+  <path d="M0 -8 V-96" stroke="#1F8A55" stroke-width="4.0" stroke-linecap="round"/>
+  <path d="M-59 -62 L-32 -55 M-50 -92 L-25 -77 M-38 -20 L-19 -34 M59 -62 L32 -55 M50 -92 L25 -77 M38 -20 L19 -34" stroke="#2A0B1D" stroke-width="4.5" stroke-linecap="round"/>
+</g></g>
+</g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#FFD84A" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g></g></svg>
+          <span class="vis__chip">Monstera deliciosa<small>Swiss cheese plant</small></span>
+        </div>
+      </li>
+      <li class="step step--2" data-reveal>
+        <span class="step__n" aria-hidden="true">2</span>
+        <h3 class="t-h3">Meet it.</h3>
+        <p>It gets a face, a name and a care plan built for its species, your room and your weather.</p>
+        <div class="vis vis--meet" role="img" aria-label="The same Monstera, now with a face, wakes up. A name tag reads Gary.">
+          <svg class="char char--gary meet-gary" data-mood="asleep" viewBox="-40 -70 280 350" aria-hidden="true" focusable="false"><g class="body"><g class="plant">
+  <g fill="none" stroke="#1F8A55" stroke-width="7" stroke-linecap="round">
+    <path d="M100 172 C96 140 70 118 52 100"/><path d="M100 172 C106 136 130 112 152 96"/><path d="M100 172 C100 130 102 96 100 64"/>
+  </g>
+  <g class="lf lf-1"><g transform="translate(52 102) rotate(-48) scale(0.82)">
+  <path d="M0 0 C-34 -6 -64 -34 -60 -70 C-56 -100 -26 -116 0 -104 C26 -116 56 -100 60 -70 C64 -34 34 -6 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="6.1" stroke-linejoin="round"/>
+  <path d="M0 -8 V-96" stroke="#1F8A55" stroke-width="4.9" stroke-linecap="round"/>
+  <path d="M-59 -62 L-32 -55 M-50 -92 L-25 -77 M-38 -20 L-19 -34 M59 -62 L32 -55 M50 -92 L25 -77 M38 -20 L19 -34" stroke="#2A0B1D" stroke-width="5.5" stroke-linecap="round"/>
+</g></g>
+  <g class="lf lf-2"><g transform="translate(152 98) rotate(46) scale(0.86)">
+  <path d="M0 0 C-34 -6 -64 -34 -60 -70 C-56 -100 -26 -116 0 -104 C26 -116 56 -100 60 -70 C64 -34 34 -6 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="5.8" stroke-linejoin="round"/>
+  <path d="M0 -8 V-96" stroke="#1F8A55" stroke-width="4.7" stroke-linecap="round"/>
+  <path d="M-59 -62 L-32 -55 M-50 -92 L-25 -77 M-38 -20 L-19 -34 M59 -62 L32 -55 M50 -92 L25 -77 M38 -20 L19 -34" stroke="#2A0B1D" stroke-width="5.2" stroke-linecap="round"/>
+</g></g>
+  <g class="lf lf-3"><g transform="translate(100 66) rotate(3) scale(1.0)">
+  <path d="M0 0 C-34 -6 -64 -34 -60 -70 C-56 -100 -26 -116 0 -104 C26 -116 56 -100 60 -70 C64 -34 34 -6 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5.0" stroke-linejoin="round"/>
+  <path d="M0 -8 V-96" stroke="#1F8A55" stroke-width="4.0" stroke-linecap="round"/>
+  <path d="M-59 -62 L-32 -55 M-50 -92 L-25 -77 M-38 -20 L-19 -34 M59 -62 L32 -55 M50 -92 L25 -77 M38 -20 L19 -34" stroke="#2A0B1D" stroke-width="4.5" stroke-linecap="round"/>
+</g></g>
+</g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#FFD84A" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g></g></svg>
+          <span class="nametag">Name: <b>Gary</b><i class="caret"></i></span>
+        </div>
+      </li>
+      <li class="step step--3" data-reveal>
+        <span class="step__n" aria-hidden="true">3</span>
+        <h3 class="t-h3">Hear it.</h3>
+        <p>When it's thirsty, cold or squinting at a dark corner, it tells you in plain words, before the leaves do.</p>
+        <div class="vis vis--hear" role="img" aria-label="Two notifications. Gary: It's dropping to 4 degrees tonight, can you move me off the windowsill? Pip: Bright morning tomorrow, the east window is perfect.">
+          <div class="note"><span class="note__av"><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#FFD84A" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M13 26 l2.8 -2.5 l2.8 2.5 l2.8 -2.5 l2.8 2.5 l2.8 -2.5" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></g></svg></span><span><b>Gary</b><span class="note__t">now</span><br>It's 4° tonight. Can you move me off the windowsill?</span></div>
+          <div class="note note--2"><span class="note__av"><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#FF6FB1" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M15 25 q5 5 10 0" fill="none" stroke-width="2.6" stroke-linecap="round"/></g></svg></span><span><b>Pip</b><span class="note__t">7:02</span><br>Bright morning tomorrow. East window is perfect.</span></div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================== PLAYGROUND (pale field) -->
+<section class="play section" id="play" data-theme="pale" aria-labelledby="play-h">
+  <div class="peek" aria-hidden="true"><svg class="char char--doris peek-doris" data-mood="happy" viewBox="10 10 180 270" aria-hidden="true" focusable="false"><g class="body"><g class="plant">
+  <path d="M82 138 H62 C54 138 49 132 49 124 V96 C49 88 54 83 61 83 C68 83 72 88 72 96 V118 H82 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M118 112 H138 C146 112 151 106 151 98 V68 C151 60 146 55 139 55 C132 55 128 60 128 68 V92 H118 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M75 172 V80 C75 54 87 40 100 40 C113 40 125 54 125 80 V172 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M100 54 V164 M88 64 V164 M112 64 V164" stroke="#1F8A55" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M84 72 l-7 -4 M116 72 l7 -4 M84 104 l-7 -4 M116 104 l7 -4 M84 136 l-7 -4 M116 136 l7 -4 M58 100 l-7 -4 M142 80 l7 -4" stroke="#2A0B1D" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <g class="flower" transform="translate(100 38)">
+    <g fill="#FF6FB1" stroke="#2A0B1D" stroke-width="3.5"><circle cx="0" cy="-11" r="8"/><circle cx="10.5" cy="-3.4" r="8"/><circle cx="6.5" cy="9" r="8"/><circle cx="-6.5" cy="9" r="8"/><circle cx="-10.5" cy="-3.4" r="8"/></g>
+    <circle r="5.5" fill="#FFD84A" stroke="#2A0B1D" stroke-width="3"/>
+  </g>
+</g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#EE7A45" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FFB3D6" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FFB3D6" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g></g></svg></div>
+  <div class="container play__grid">
+    <div class="play__intro">
+      <h2 id="play-h" class="t-h2" data-split="words">Go on, neglect&nbsp;Gary.</h2>
+      <p class="t-lead dim">Drag the sliders. This is what Sprout keeps an eye on for every plant: when you last watered it, tonight's forecast where you live, and which way the window faces.</p>
+    </div>
+    <div class="play__stage">
+      <div class="stage-disc" aria-hidden="true"></div>
+      <div class="dial-char" aria-hidden="true"><svg class="char char--gary dial-gary" data-mood="happy" viewBox="-40 -70 280 350" aria-hidden="true" focusable="false"><g class="body"><g class="plant">
+  <g fill="none" stroke="#1F8A55" stroke-width="7" stroke-linecap="round">
+    <path d="M100 172 C96 140 70 118 52 100"/><path d="M100 172 C106 136 130 112 152 96"/><path d="M100 172 C100 130 102 96 100 64"/>
+  </g>
+  <g class="lf lf-1"><g transform="translate(52 102) rotate(-48) scale(0.82)">
+  <path d="M0 0 C-34 -6 -64 -34 -60 -70 C-56 -100 -26 -116 0 -104 C26 -116 56 -100 60 -70 C64 -34 34 -6 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="6.1" stroke-linejoin="round"/>
+  <path d="M0 -8 V-96" stroke="#1F8A55" stroke-width="4.9" stroke-linecap="round"/>
+  <path d="M-59 -62 L-32 -55 M-50 -92 L-25 -77 M-38 -20 L-19 -34 M59 -62 L32 -55 M50 -92 L25 -77 M38 -20 L19 -34" stroke="#2A0B1D" stroke-width="5.5" stroke-linecap="round"/>
+</g></g>
+  <g class="lf lf-2"><g transform="translate(152 98) rotate(46) scale(0.86)">
+  <path d="M0 0 C-34 -6 -64 -34 -60 -70 C-56 -100 -26 -116 0 -104 C26 -116 56 -100 60 -70 C64 -34 34 -6 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="5.8" stroke-linejoin="round"/>
+  <path d="M0 -8 V-96" stroke="#1F8A55" stroke-width="4.7" stroke-linecap="round"/>
+  <path d="M-59 -62 L-32 -55 M-50 -92 L-25 -77 M-38 -20 L-19 -34 M59 -62 L32 -55 M50 -92 L25 -77 M38 -20 L19 -34" stroke="#2A0B1D" stroke-width="5.2" stroke-linecap="round"/>
+</g></g>
+  <g class="lf lf-3"><g transform="translate(100 66) rotate(3) scale(1.0)">
+  <path d="M0 0 C-34 -6 -64 -34 -60 -70 C-56 -100 -26 -116 0 -104 C26 -116 56 -100 60 -70 C64 -34 34 -6 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5.0" stroke-linejoin="round"/>
+  <path d="M0 -8 V-96" stroke="#1F8A55" stroke-width="4.0" stroke-linecap="round"/>
+  <path d="M-59 -62 L-32 -55 M-50 -92 L-25 -77 M-38 -20 L-19 -34 M59 -62 L32 -55 M50 -92 L25 -77 M38 -20 L19 -34" stroke="#2A0B1D" stroke-width="4.5" stroke-linecap="round"/>
+</g></g>
+</g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#FFD84A" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g></g></svg></div>
+      <p class="sticker sticker--window" aria-hidden="true" id="win-sticker">East window</p>
+    </div>
+    <div class="play__panel">
+      <div class="notif" aria-live="polite">
+        <span class="notif__app"><span class="notif__logo" aria-hidden="true"><i></i><i></i></span>Sprout · now</span>
+        <p class="notif__msg" id="dial-msg">All good. Gary's soil is still damp and he's getting soft morning light. Nothing to do today.</p>
+      </div>
+      <form class="controls" onsubmit="return false">
+        <div class="ctl">
+          <label for="days">Days since watering <output id="days-out" for="days">3 days</output></label>
+          <input type="range" id="days" min="0" max="14" step="1" value="3">
+        </div>
+        <div class="ctl">
+          <label for="temp">Tonight's low <output id="temp-out" for="temp">12°C</output></label>
+          <input type="range" id="temp" min="-4" max="24" step="1" value="12">
+        </div>
+        <fieldset class="ctl ctl--win">
+          <legend>Window faces</legend>
+          <div class="seg">
+            <label><input type="radio" name="win" value="N"><span>North</span></label>
+            <label><input type="radio" name="win" value="E" checked><span>East</span></label>
+            <label><input type="radio" name="win" value="S"><span>South</span></label>
+            <label><input type="radio" name="win" value="W"><span>West</span></label>
+          </div>
+        </fieldset>
+      </form>
+      <p class="t-small dim play__fine">A demo with Gary's real care rules (a Monstera). In the app your forecast and window direction fill in on their own.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== SPECIES (forest field) -->
+<section class="species section" id="species" data-theme="forest" aria-labelledby="sp-h">
+  <div class="container species__grid">
+    <h2 id="sp-h" class="species__h">
+      <span class="t-word species__num t-num">9,400</span>
+      <span class="t-h3 species__tail">species it can recognise from one photo. <span class="dim">Roughly.</span></span>
+    </h2>
+    <div class="species__crowd" aria-hidden="true">
+      <svg class="char char--mabel sp-mabel" data-mood="happy" viewBox="-10 -110 220 390" aria-hidden="true" focusable="false"><g class="body"><g class="plant"><path d="M100 172 C97 120 104 60 100 -6" stroke="#7A4A2A" stroke-width="8" fill="none" stroke-linecap="round"/><g class="lf lf-1"><g transform="translate(100 140) rotate(-62) scale(0.82)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#2A9D63" stroke="#2A0B1D" stroke-width="6.1" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="4.3" stroke-linecap="round"/></g></g><g class="lf lf-2"><g transform="translate(100 124) rotate(58) scale(0.86)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#1F8A55" stroke="#2A0B1D" stroke-width="5.8" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="4.1" stroke-linecap="round"/></g></g><g class="lf lf-3"><g transform="translate(100 92) rotate(-48) scale(0.9)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#2A9D63" stroke="#2A0B1D" stroke-width="5.6" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="3.9" stroke-linecap="round"/></g></g><g class="lf lf-1"><g transform="translate(100 70) rotate(44) scale(0.92)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#1F8A55" stroke="#2A0B1D" stroke-width="5.4" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="3.8" stroke-linecap="round"/></g></g><g class="lf lf-2"><g transform="translate(100 38) rotate(-28) scale(0.88)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#2A9D63" stroke="#2A0B1D" stroke-width="5.7" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="4.0" stroke-linecap="round"/></g></g><g class="lf lf-3"><g transform="translate(100 14) rotate(24) scale(0.84)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#1F8A55" stroke="#2A0B1D" stroke-width="6.0" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="4.2" stroke-linecap="round"/></g></g><g class="lf lf-1"><g transform="translate(100 -8) rotate(0) scale(0.8)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#2A9D63" stroke="#2A0B1D" stroke-width="6.2" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="4.4" stroke-linecap="round"/></g></g></g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g></g></svg>
+      <svg class="char char--lou sp-lou" data-mood="happy" viewBox="10 -10 180 290" aria-hidden="true" focusable="false"><g class="body"><g class="plant"><g class="lf lf-1"><g transform="translate(100 172) rotate(-24) scale(0.78)">
+  <path d="M0 0 C-16 -40 -16 -104 0 -156 C16 -104 16 -40 0 0 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="6.4" stroke-linejoin="round"/>
+  <path d="M0 -6 C-10 -42 -10 -100 0 -140 C10 -100 10 -42 0 -6 Z" fill="#1F8A55"/>
+  <path d="M-5 -30 l8 -6 M-6 -58 l10 -7 M-6 -86 l10 -7 M-4 -112 l7 -6" stroke="#3BB273" stroke-width="5.1" stroke-linecap="round"/>
+</g></g><g class="lf lf-2"><g transform="translate(100 172) rotate(22) scale(0.74)">
+  <path d="M0 0 C-16 -40 -16 -104 0 -156 C16 -104 16 -40 0 0 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="6.8" stroke-linejoin="round"/>
+  <path d="M0 -6 C-10 -42 -10 -100 0 -140 C10 -100 10 -42 0 -6 Z" fill="#1F8A55"/>
+  <path d="M-5 -30 l8 -6 M-6 -58 l10 -7 M-6 -86 l10 -7 M-4 -112 l7 -6" stroke="#3BB273" stroke-width="5.4" stroke-linecap="round"/>
+</g></g><g class="lf lf-3"><g transform="translate(100 172) rotate(-8) scale(1.04)">
+  <path d="M0 0 C-16 -40 -16 -104 0 -156 C16 -104 16 -40 0 0 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="4.8" stroke-linejoin="round"/>
+  <path d="M0 -6 C-10 -42 -10 -100 0 -140 C10 -100 10 -42 0 -6 Z" fill="#1F8A55"/>
+  <path d="M-5 -30 l8 -6 M-6 -58 l10 -7 M-6 -86 l10 -7 M-4 -112 l7 -6" stroke="#3BB273" stroke-width="3.8" stroke-linecap="round"/>
+</g></g><g class="lf lf-4"><g transform="translate(100 172) rotate(9) scale(0.94)">
+  <path d="M0 0 C-16 -40 -16 -104 0 -156 C16 -104 16 -40 0 0 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="5.3" stroke-linejoin="round"/>
+  <path d="M0 -6 C-10 -42 -10 -100 0 -140 C10 -100 10 -42 0 -6 Z" fill="#1F8A55"/>
+  <path d="M-5 -30 l8 -6 M-6 -58 l10 -7 M-6 -86 l10 -7 M-4 -112 l7 -6" stroke="#3BB273" stroke-width="4.3" stroke-linecap="round"/>
+</g></g></g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g></g></svg>
+      <svg class="char char--bean sp-bean" data-mood="happy" viewBox="16 100 168 180" aria-hidden="true" focusable="false"><g class="body"><g class="plant"><g transform="translate(100 168) rotate(-78) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(-48) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(-18) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(18) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(48) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(78) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 172) rotate(-56) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(-26) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(0) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(26) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(56) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g></g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#EE7A45" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FFB3D6" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FFB3D6" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g></g></svg>
+    </div>
+    <p class="t-lead species__lead">From the pothos everyone owns to the thing from the garden centre with no tag. When it isn't sure, it shows you the closest matches and lets you pick.</p>
+  </div>
+  <div class="marquee" data-marquee>
+    <div class="marquee__track">
+      <ul class="marquee__list" role="list" aria-label="A few of the species Sprout knows"><li>Monstera deliciosa</li><li>Calathea orbifolia</li><li>Ficus lyrata</li><li>Dracaena trifasciata</li><li>Epipremnum aureum</li><li>Pilea peperomioides</li><li>Zamioculcas zamiifolia</li><li>Echeveria elegans</li><li>Maranta leuconeura</li><li>Hoya carnosa</li><li>Aloe vera</li><li>Strelitzia nicolai</li><li>Chlorophytum comosum</li><li>Peperomia obtusifolia</li><li>Alocasia zebrina</li><li>Philodendron hederaceum</li><li>Opuntia microdasys</li><li>Ficus elastica</li></ul>
+      <ul class="marquee__list" role="list" aria-hidden="true"><li>Monstera deliciosa</li><li>Calathea orbifolia</li><li>Ficus lyrata</li><li>Dracaena trifasciata</li><li>Epipremnum aureum</li><li>Pilea peperomioides</li><li>Zamioculcas zamiifolia</li><li>Echeveria elegans</li><li>Maranta leuconeura</li><li>Hoya carnosa</li><li>Aloe vera</li><li>Strelitzia nicolai</li><li>Chlorophytum comosum</li><li>Peperomia obtusifolia</li><li>Alocasia zebrina</li><li>Philodendron hederaceum</li><li>Opuntia microdasys</li><li>Ficus elastica</li></ul>
+    </div>
+    <button class="marquee__toggle" type="button" aria-pressed="false">Pause list</button>
+  </div>
+</section>
+
+<!-- ============================== PLUS (butter field) -->
+<section class="plus section" id="plus" data-theme="butter" aria-labelledby="plus-h">
+  <div class="plus__hang" aria-hidden="true"><span class="string"></span><svg class="char char--pip plus-pip" data-mood="happy" viewBox="-10 90 220 280" aria-hidden="true" focusable="false"><g class="body"><g class="plant"><g transform="translate(64 170) rotate(-30) scale(1.05)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="4.3" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="2.9" stroke-linecap="round"/></g><g transform="translate(100 166) rotate(0) scale(1.15)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="3.9" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="2.6" stroke-linecap="round"/></g><g transform="translate(136 170) rotate(30) scale(1.05)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="4.3" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="2.9" stroke-linecap="round"/></g><g transform="translate(82 150) rotate(-12) scale(0.8)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="5.6" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.8" stroke-linecap="round"/></g><g transform="translate(118 150) rotate(14) scale(0.8)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5.6" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.8" stroke-linecap="round"/></g></g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#FF6FB1" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#FF6FB1" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FFD0E5" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FFD0E5" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FF6FB1" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FF6FB1" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g><g class="hang"><g class="vines" fill="none" stroke="#1F8A55" stroke-width="5" stroke-linecap="round">
+  <path d="M40 180 C12 206 16 252 26 296 C32 324 22 344 14 356"/><path d="M160 180 C192 214 184 262 176 302"/></g><g transform="translate(20 222) rotate(160) scale(0.9)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5.0" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.3" stroke-linecap="round"/></g><g transform="translate(30 270) rotate(-150) scale(0.85)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="5.3" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.5" stroke-linecap="round"/></g><g transform="translate(18 318) rotate(170) scale(0.8)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5.6" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.8" stroke-linecap="round"/></g><g transform="translate(16 352) rotate(-160) scale(0.7)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="6.4" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="4.3" stroke-linecap="round"/></g><g transform="translate(182 232) rotate(-160) scale(0.9)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="5.0" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.3" stroke-linecap="round"/></g><g transform="translate(176 282) rotate(150) scale(0.85)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5.3" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.5" stroke-linecap="round"/></g><g transform="translate(178 306) rotate(-170) scale(0.7)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="6.4" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="4.3" stroke-linecap="round"/></g></g></g></svg></div>
+  <div class="container">
+    <h2 id="plus-h" class="t-h2 plus__h" data-split="words">Five plants free. The whole jungle, $3.99.</h2>
+    <div class="plans">
+      <article class="plan plan--free" data-reveal>
+        <span class="tape" aria-hidden="true"></span>
+        <h3 class="t-h3">Sprout</h3>
+        <p class="plan__price"><span class="t-num">$0</span> <span class="plan__per">for good</span></p>
+        <div class="faces" role="img" aria-label="Five plant faces: the free plan holds five plants."><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#FFD84A" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M15 25 q5 5 10 0" fill="none" stroke-width="2.6" stroke-linecap="round"/></g></svg><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#FF6FB1" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M15 25 q5 5 10 0" fill="none" stroke-width="2.6" stroke-linecap="round"/></g></svg><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><path d="M10.5 17 q3.5 3 7 0 M22.5 17 q3.5 3 7 0" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="20" cy="26" r="2"/></g></svg><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#EE7A45" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M15 25 q5 5 10 0" fill="none" stroke-width="2.6" stroke-linecap="round"/></g></svg><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M15 25 q5 5 10 0" fill="none" stroke-width="2.6" stroke-linecap="round"/></g></svg></div>
+        <ul class="plan__list" role="list">
+          <li>Up to 5 plants</li>
+          <li>Photo ID across about 9,400 species</li>
+          <li>Thirsty, cold and light alerts</li>
+          <li>Local weather and window direction</li>
+        </ul>
+        <a class="btn btn--primary" href="#get">Download free</a>
+      </article>
+      <article class="plan plan--plus" data-theme="forest" data-reveal>
+        <span class="tape" aria-hidden="true"></span>
+        <h3 class="t-h3">Sprout Plus</h3>
+        <p class="plan__price"><span class="t-num">$3.99</span> <span class="plan__per">a month</span></p>
+        <div class="faces faces--crowd" role="img" aria-label="A crowd of plant faces: Plus has no plant limit."><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#FFD84A" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M15 25 q5 5 10 0" fill="none" stroke-width="2.6" stroke-linecap="round"/></g></svg><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#FF6FB1" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M15 25 q5 5 10 0" fill="none" stroke-width="2.6" stroke-linecap="round"/></g></svg><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M15 25 q5 5 10 0" fill="none" stroke-width="2.6" stroke-linecap="round"/></g></svg><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#EE7A45" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><path d="M10.5 17 q3.5 3 7 0 M22.5 17 q3.5 3 7 0" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="20" cy="26" r="2"/></g></svg><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M15 25 q5 5 10 0" fill="none" stroke-width="2.6" stroke-linecap="round"/></g></svg><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#FFD84A" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M15 25 q5 5 10 0" fill="none" stroke-width="2.6" stroke-linecap="round"/></g></svg><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M15 25 q5 5 10 0" fill="none" stroke-width="2.6" stroke-linecap="round"/></g></svg><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#FF6FB1" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M15 25 q5 5 10 0" fill="none" stroke-width="2.6" stroke-linecap="round"/></g></svg><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M15 25 q5 5 10 0" fill="none" stroke-width="2.6" stroke-linecap="round"/></g></svg><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#FFD84A" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><path d="M10.5 17 q3.5 3 7 0 M22.5 17 q3.5 3 7 0" stroke-width="2.4" stroke-linecap="round" fill="none"/><circle cx="20" cy="26" r="2"/></g></svg><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#EE7A45" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M15 25 q5 5 10 0" fill="none" stroke-width="2.6" stroke-linecap="round"/></g></svg><svg class="av" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="2.5"/><g fill="#2A0B1D" stroke="#2A0B1D"><circle cx="14" cy="18" r="2.6"/><circle cx="26" cy="18" r="2.6"/><path d="M15 25 q5 5 10 0" fill="none" stroke-width="2.6" stroke-linecap="round"/></g></svg></div>
+        <ul class="plan__list" role="list">
+          <li><b>Unlimited plants.</b> Name them all.</li>
+          <li><b>Vacation mode.</b> Sprout texts a friend when something needs water.</li>
+          <li><b>Repotting planner.</b> Knows when roots are cramped and which pot is next.</li>
+          <li>Everything in the free app</li>
+        </ul>
+        <p class="t-small plan__note">Upgrade inside the app whenever plant six turns up.</p>
+      </article>
+      <figure class="vac" data-reveal role="img" aria-label="Vacation mode text message from Sprout to a friend called Sam: Hi Sam, Maya's away till Sunday. Could you water Gary, the big leafy one by the window? Two glasses. Doris the cactus is fine, don't touch her. Sam replies: on it.">
+        <span class="tape tape--r" aria-hidden="true"></span>
+        <p class="vac__lab">Vacation mode · Text to Sam</p>
+        <p class="sms sms--in">Hi Sam, it's Sprout. Maya's away till Sunday. Could you water Gary (big leafy one by the window)? Two glasses. Doris the cactus is fine, don't touch her.</p>
+        <p class="sms sms--out">on it</p>
+      </figure>
+      <figure class="repot" data-reveal role="img" aria-label="Repotting planner. Pip the pothos: roots showing. Repot in April into a 14 centimetre pot. Mabel: fine until autumn.">
+        <p class="vac__lab">Repotting planner</p>
+        <div class="repot__row"><b>Pip</b><span class="bar"><i style="--w:86%"></i></span><span>April → 14&nbsp;cm pot</span></div>
+        <div class="repot__row"><b>Mabel</b><span class="bar"><i style="--w:38%"></i></span><span>Fine till autumn</span></div>
+        <div class="repot__row"><b>Gary</b><span class="bar"><i style="--w:62%"></i></span><span>Next spring</span></div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FAQ (pale field) -->
+<section class="faq section" id="faq" data-theme="pale" aria-labelledby="faq-h">
+  <div class="container faq__grid">
+    <div class="faq__side">
+      <h2 id="faq-h" class="t-h2">Fair questions.</h2>
+      <div class="faq__char" aria-hidden="true"><svg class="char char--mabel faq-mabel" data-mood="dark" viewBox="-10 -110 220 390" aria-hidden="true" focusable="false"><g class="body"><g class="plant"><path d="M100 172 C97 120 104 60 100 -6" stroke="#7A4A2A" stroke-width="8" fill="none" stroke-linecap="round"/><g class="lf lf-1"><g transform="translate(100 140) rotate(-62) scale(0.82)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#2A9D63" stroke="#2A0B1D" stroke-width="6.1" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="4.3" stroke-linecap="round"/></g></g><g class="lf lf-2"><g transform="translate(100 124) rotate(58) scale(0.86)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#1F8A55" stroke="#2A0B1D" stroke-width="5.8" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="4.1" stroke-linecap="round"/></g></g><g class="lf lf-3"><g transform="translate(100 92) rotate(-48) scale(0.9)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#2A9D63" stroke="#2A0B1D" stroke-width="5.6" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="3.9" stroke-linecap="round"/></g></g><g class="lf lf-1"><g transform="translate(100 70) rotate(44) scale(0.92)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#1F8A55" stroke="#2A0B1D" stroke-width="5.4" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="3.8" stroke-linecap="round"/></g></g><g class="lf lf-2"><g transform="translate(100 38) rotate(-28) scale(0.88)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#2A9D63" stroke="#2A0B1D" stroke-width="5.7" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="4.0" stroke-linecap="round"/></g></g><g class="lf lf-3"><g transform="translate(100 14) rotate(24) scale(0.84)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#1F8A55" stroke="#2A0B1D" stroke-width="6.0" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="4.2" stroke-linecap="round"/></g></g><g class="lf lf-1"><g transform="translate(100 -8) rotate(0) scale(0.8)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#2A9D63" stroke="#2A0B1D" stroke-width="6.2" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="4.4" stroke-linecap="round"/></g></g></g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g></g></svg></div>
+    </div>
+    <div class="faq__list">
+      <details open>
+        <summary>What if it gets my plant wrong?</summary>
+        <p>Tap "Not this one" and Sprout shows the closest matches, or search all 9,400 species by name. Your plant keeps its name and face either way.</p>
+      </details>
+      <details>
+        <summary>Why does it want to know which way my window faces?</summary>
+        <p>Light is what most people get wrong. Sprout combines the window direction with your local forecast to work out how much light each plant actually gets, and tells you when to move it.</p>
+      </details>
+      <details>
+        <summary>What happens when I add a sixth plant?</summary>
+        <p>Your first five stay free. Adding a sixth asks if you'd like Sprout Plus at $3.99 a month. Say no and nothing changes.</p>
+      </details>
+      <details>
+        <summary>How does vacation mode work?</summary>
+        <p>Set your dates and pick a friend from your contacts. While you're away, Sprout texts them when a plant needs water: which one, where it is, and how much. They don't need the app.</p>
+      </details>
+      <details>
+        <summary>iPhone or Android?</summary>
+        <p>Both. Same app, same faces.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FINALE (pink field) -->
+<section class="finale" id="get" data-theme="pink" aria-labelledby="fin-h">
+  <div class="container finale__in">
+    <h2 id="fin-h" class="t-word finale__h">Keep one <span class="chip-word">alive.</span></h2>
+    <p class="t-lead finale__lead">Start with the one on your windowsill that's looking a bit sad.</p>
+    <div class="hero__ctas finale__ctas">
+      <a class="btn btn--primary" href="#app-store"><svg class="store" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M16.4 12.6c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.9-.9-3.1-.8C6.8 7.4 5.3 8.3 4.5 9.7c-1.7 2.9-.4 7.2 1.2 9.6.8 1.2 1.7 2.4 3 2.4 1.2 0 1.6-.8 3.1-.8s1.8.8 3.1.8 2.1-1.2 2.9-2.4c.9-1.3 1.3-2.6 1.3-2.7 0 0-2.6-1-2.7-4zM14.1 5.6c.7-.8 1.1-1.9 1-3-1 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.5 2.8-1.3z"/></svg>Download for iPhone</a>
+      <a class="btn btn--ghost" href="#google-play"><svg class="store" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4.2 2.6c-.3.3-.4.7-.4 1.2v16.4c0 .5.1.9.4 1.2l9.2-9.4-9.2-9.4zm10.4 10.6 2.6 2.7-11.4 6.5c-.3.2-.7.2-1 .1l9.8-9.3zm0-2.4-9.8-9.3c.3-.1.7-.1 1 .1l11.4 6.5-2.6 2.7zm3.8-1.8 3 1.7c.8.5.8 1.6 0 2.1l-3 1.7-2.8-2.8 2.8-2.7z"/></svg>Get it on Android</a>
+    </div>
+  </div>
+  <div class="lineup" aria-hidden="true">
+    <svg class="char char--mabel fin fin-mabel" data-mood="happy" viewBox="-10 -110 220 390" aria-hidden="true" focusable="false"><g class="body"><g class="plant"><path d="M100 172 C97 120 104 60 100 -6" stroke="#7A4A2A" stroke-width="8" fill="none" stroke-linecap="round"/><g class="lf lf-1"><g transform="translate(100 140) rotate(-62) scale(0.82)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#2A9D63" stroke="#2A0B1D" stroke-width="6.1" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="4.3" stroke-linecap="round"/></g></g><g class="lf lf-2"><g transform="translate(100 124) rotate(58) scale(0.86)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#1F8A55" stroke="#2A0B1D" stroke-width="5.8" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="4.1" stroke-linecap="round"/></g></g><g class="lf lf-3"><g transform="translate(100 92) rotate(-48) scale(0.9)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#2A9D63" stroke="#2A0B1D" stroke-width="5.6" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="3.9" stroke-linecap="round"/></g></g><g class="lf lf-1"><g transform="translate(100 70) rotate(44) scale(0.92)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#1F8A55" stroke="#2A0B1D" stroke-width="5.4" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="3.8" stroke-linecap="round"/></g></g><g class="lf lf-2"><g transform="translate(100 38) rotate(-28) scale(0.88)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#2A9D63" stroke="#2A0B1D" stroke-width="5.7" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="4.0" stroke-linecap="round"/></g></g><g class="lf lf-3"><g transform="translate(100 14) rotate(24) scale(0.84)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#1F8A55" stroke="#2A0B1D" stroke-width="6.0" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="4.2" stroke-linecap="round"/></g></g><g class="lf lf-1"><g transform="translate(100 -8) rotate(0) scale(0.8)"><path d="M0 0 C-26 -6 -34 -30 -28 -52 C-24 -66 -30 -80 -16 -92 C-6 -100 6 -100 16 -92 C30 -80 24 -66 28 -52 C34 -30 26 -6 0 0 Z" fill="#2A9D63" stroke="#2A0B1D" stroke-width="6.2" stroke-linejoin="round"/><path d="M0 -6 V-86" stroke="#8ED1A8" stroke-width="4.4" stroke-linecap="round"/></g></g></g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g></g></svg><svg class="char char--doris fin fin-doris" data-mood="happy" viewBox="10 10 180 270" aria-hidden="true" focusable="false"><g class="body"><g class="plant">
+  <path d="M82 138 H62 C54 138 49 132 49 124 V96 C49 88 54 83 61 83 C68 83 72 88 72 96 V118 H82 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M118 112 H138 C146 112 151 106 151 98 V68 C151 60 146 55 139 55 C132 55 128 60 128 68 V92 H118 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M75 172 V80 C75 54 87 40 100 40 C113 40 125 54 125 80 V172 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M100 54 V164 M88 64 V164 M112 64 V164" stroke="#1F8A55" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M84 72 l-7 -4 M116 72 l7 -4 M84 104 l-7 -4 M116 104 l7 -4 M84 136 l-7 -4 M116 136 l7 -4 M58 100 l-7 -4 M142 80 l7 -4" stroke="#2A0B1D" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <g class="flower" transform="translate(100 38)">
+    <g fill="#FF6FB1" stroke="#2A0B1D" stroke-width="3.5"><circle cx="0" cy="-11" r="8"/><circle cx="10.5" cy="-3.4" r="8"/><circle cx="6.5" cy="9" r="8"/><circle cx="-6.5" cy="9" r="8"/><circle cx="-10.5" cy="-3.4" r="8"/></g>
+    <circle r="5.5" fill="#FFD84A" stroke="#2A0B1D" stroke-width="3"/>
+  </g>
+</g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#EE7A45" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FFB3D6" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FFB3D6" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g></g></svg><svg class="char char--gary fin fin-gary" data-mood="happy" viewBox="-40 -70 280 350" aria-hidden="true" focusable="false"><g class="body"><g class="plant">
+  <g fill="none" stroke="#1F8A55" stroke-width="7" stroke-linecap="round">
+    <path d="M100 172 C96 140 70 118 52 100"/><path d="M100 172 C106 136 130 112 152 96"/><path d="M100 172 C100 130 102 96 100 64"/>
+  </g>
+  <g class="lf lf-1"><g transform="translate(52 102) rotate(-48) scale(0.82)">
+  <path d="M0 0 C-34 -6 -64 -34 -60 -70 C-56 -100 -26 -116 0 -104 C26 -116 56 -100 60 -70 C64 -34 34 -6 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="6.1" stroke-linejoin="round"/>
+  <path d="M0 -8 V-96" stroke="#1F8A55" stroke-width="4.9" stroke-linecap="round"/>
+  <path d="M-59 -62 L-32 -55 M-50 -92 L-25 -77 M-38 -20 L-19 -34 M59 -62 L32 -55 M50 -92 L25 -77 M38 -20 L19 -34" stroke="#2A0B1D" stroke-width="5.5" stroke-linecap="round"/>
+</g></g>
+  <g class="lf lf-2"><g transform="translate(152 98) rotate(46) scale(0.86)">
+  <path d="M0 0 C-34 -6 -64 -34 -60 -70 C-56 -100 -26 -116 0 -104 C26 -116 56 -100 60 -70 C64 -34 34 -6 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="5.8" stroke-linejoin="round"/>
+  <path d="M0 -8 V-96" stroke="#1F8A55" stroke-width="4.7" stroke-linecap="round"/>
+  <path d="M-59 -62 L-32 -55 M-50 -92 L-25 -77 M-38 -20 L-19 -34 M59 -62 L32 -55 M50 -92 L25 -77 M38 -20 L19 -34" stroke="#2A0B1D" stroke-width="5.2" stroke-linecap="round"/>
+</g></g>
+  <g class="lf lf-3"><g transform="translate(100 66) rotate(3) scale(1.0)">
+  <path d="M0 0 C-34 -6 -64 -34 -60 -70 C-56 -100 -26 -116 0 -104 C26 -116 56 -100 60 -70 C64 -34 34 -6 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5.0" stroke-linejoin="round"/>
+  <path d="M0 -8 V-96" stroke="#1F8A55" stroke-width="4.0" stroke-linecap="round"/>
+  <path d="M-59 -62 L-32 -55 M-50 -92 L-25 -77 M-38 -20 L-19 -34 M59 -62 L32 -55 M50 -92 L25 -77 M38 -20 L19 -34" stroke="#2A0B1D" stroke-width="4.5" stroke-linecap="round"/>
+</g></g>
+</g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#FFD84A" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g></g></svg><svg class="char char--bean fin fin-bean" data-mood="happy" viewBox="16 100 168 180" aria-hidden="true" focusable="false"><g class="body"><g class="plant"><g transform="translate(100 168) rotate(-78) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(-48) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(-18) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(18) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(48) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(78) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 172) rotate(-56) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(-26) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(0) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(26) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(56) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g></g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#EE7A45" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FFB3D6" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FFB3D6" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g></g></svg><svg class="char char--pip fin fin-pip" data-mood="happy" viewBox="-10 90 220 280" aria-hidden="true" focusable="false"><g class="body"><g class="plant"><g transform="translate(64 170) rotate(-30) scale(1.05)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="4.3" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="2.9" stroke-linecap="round"/></g><g transform="translate(100 166) rotate(0) scale(1.15)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="3.9" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="2.6" stroke-linecap="round"/></g><g transform="translate(136 170) rotate(30) scale(1.05)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="4.3" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="2.9" stroke-linecap="round"/></g><g transform="translate(82 150) rotate(-12) scale(0.8)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="5.6" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.8" stroke-linecap="round"/></g><g transform="translate(118 150) rotate(14) scale(0.8)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5.6" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.8" stroke-linecap="round"/></g></g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#FF6FB1" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#FF6FB1" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FFD0E5" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FFD0E5" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FF6FB1" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FF6FB1" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g><g class="hang"><g class="vines" fill="none" stroke="#1F8A55" stroke-width="5" stroke-linecap="round">
+  <path d="M40 180 C12 206 16 252 26 296 C32 324 22 344 14 356"/><path d="M160 180 C192 214 184 262 176 302"/></g><g transform="translate(20 222) rotate(160) scale(0.9)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5.0" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.3" stroke-linecap="round"/></g><g transform="translate(30 270) rotate(-150) scale(0.85)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="5.3" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.5" stroke-linecap="round"/></g><g transform="translate(18 318) rotate(170) scale(0.8)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5.6" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.8" stroke-linecap="round"/></g><g transform="translate(16 352) rotate(-160) scale(0.7)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="6.4" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="4.3" stroke-linecap="round"/></g><g transform="translate(182 232) rotate(-160) scale(0.9)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="5.0" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.3" stroke-linecap="round"/></g><g transform="translate(176 282) rotate(150) scale(0.85)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#3BB273" stroke="#2A0B1D" stroke-width="5.3" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="3.5" stroke-linecap="round"/></g><g transform="translate(178 306) rotate(-170) scale(0.7)"><path d="M0 0 C-20 -8 -27 -28 -18 -40 C-10 -48 0 -43 0 -35 C0 -43 10 -48 18 -40 C27 -28 20 -8 0 0 Z" fill="#45C07F" stroke="#2A0B1D" stroke-width="6.4" stroke-linejoin="round"/><path d="M0 -4 V-30" stroke="#1F8A55" stroke-width="4.3" stroke-linecap="round"/></g></g></g></svg><svg class="char char--lou fin fin-lou" data-mood="happy" viewBox="10 -10 180 290" aria-hidden="true" focusable="false"><g class="body"><g class="plant"><g class="lf lf-1"><g transform="translate(100 172) rotate(-24) scale(0.78)">
+  <path d="M0 0 C-16 -40 -16 -104 0 -156 C16 -104 16 -40 0 0 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="6.4" stroke-linejoin="round"/>
+  <path d="M0 -6 C-10 -42 -10 -100 0 -140 C10 -100 10 -42 0 -6 Z" fill="#1F8A55"/>
+  <path d="M-5 -30 l8 -6 M-6 -58 l10 -7 M-6 -86 l10 -7 M-4 -112 l7 -6" stroke="#3BB273" stroke-width="5.1" stroke-linecap="round"/>
+</g></g><g class="lf lf-2"><g transform="translate(100 172) rotate(22) scale(0.74)">
+  <path d="M0 0 C-16 -40 -16 -104 0 -156 C16 -104 16 -40 0 0 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="6.8" stroke-linejoin="round"/>
+  <path d="M0 -6 C-10 -42 -10 -100 0 -140 C10 -100 10 -42 0 -6 Z" fill="#1F8A55"/>
+  <path d="M-5 -30 l8 -6 M-6 -58 l10 -7 M-6 -86 l10 -7 M-4 -112 l7 -6" stroke="#3BB273" stroke-width="5.4" stroke-linecap="round"/>
+</g></g><g class="lf lf-3"><g transform="translate(100 172) rotate(-8) scale(1.04)">
+  <path d="M0 0 C-16 -40 -16 -104 0 -156 C16 -104 16 -40 0 0 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="4.8" stroke-linejoin="round"/>
+  <path d="M0 -6 C-10 -42 -10 -100 0 -140 C10 -100 10 -42 0 -6 Z" fill="#1F8A55"/>
+  <path d="M-5 -30 l8 -6 M-6 -58 l10 -7 M-6 -86 l10 -7 M-4 -112 l7 -6" stroke="#3BB273" stroke-width="3.8" stroke-linecap="round"/>
+</g></g><g class="lf lf-4"><g transform="translate(100 172) rotate(9) scale(0.94)">
+  <path d="M0 0 C-16 -40 -16 -104 0 -156 C16 -104 16 -40 0 0 Z" fill="#FFD84A" stroke="#2A0B1D" stroke-width="5.3" stroke-linejoin="round"/>
+  <path d="M0 -6 C-10 -42 -10 -100 0 -140 C10 -100 10 -42 0 -6 Z" fill="#1F8A55"/>
+  <path d="M-5 -30 l8 -6 M-6 -58 l10 -7 M-6 -86 l10 -7 M-4 -112 l7 -6" stroke="#3BB273" stroke-width="4.3" stroke-linecap="round"/>
+</g></g></g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FF6FB1" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g></g></svg>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot" data-theme="forest">
+  <div class="container foot__grid">
+    <div class="foot__brand">
+      <a class="logo logo--foot" href="#top" aria-label="Sprout, back to top">Spr<span class="logo__o" aria-hidden="true"><i></i><i></i></span>ut</a>
+      <p class="t-small dim">Plants with feelings. For people who have killed a few.</p>
+    </div>
+    <nav class="foot__col" aria-label="App"><p class="foot__h">App</p><a href="#app-store">Download for iPhone</a><a href="#google-play">Get it on Android</a><a href="#plus">Sprout Plus</a></nav>
+    <nav class="foot__col" aria-label="Help"><p class="foot__h">Help</p><a href="#faq">FAQ</a><a href="#species">Species list</a><a href="#contact">Contact</a></nav>
+    <nav class="foot__col" aria-label="Company"><p class="foot__h">Company</p><a href="#about">About</a><a href="#press">Press kit</a></nav>
+    <nav class="foot__col" aria-label="Legal"><p class="foot__h">Legal</p><a href="#privacy">Privacy</a><a href="#terms">Terms</a></nav>
+  </div>
+  <div class="container foot__bottom">
+    <p class="t-small">© 2026 Sprout</p>
+    <p class="t-small foot__clock"><span class="foot__bean" aria-hidden="true"><svg class="char char--bean foot-bean" data-mood="asleep" viewBox="16 100 168 180" aria-hidden="true" focusable="false"><g class="body"><g class="plant"><g transform="translate(100 168) rotate(-78) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(-48) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(-18) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(18) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(48) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 168) rotate(78) scale(.95)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#8ED1A8" stroke="#2A0B1D" stroke-width="4.5" stroke-linejoin="round"/><path d="M0 -40 L0 -52 C-3 -48 -5 -44 -5 -40Z" fill="#FF6FB1"/></g><g transform="translate(100 172) rotate(-56) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(-26) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(0) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(26) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g><g transform="translate(100 172) rotate(56) scale(.78)"><path d="M0 0 C-15 -10 -16 -36 0 -52 C16 -36 15 -10 0 0 Z" fill="#A6DDBB" stroke="#2A0B1D" stroke-width="5.5" stroke-linejoin="round"/></g></g><g class="pot">
+  <path d="M40 180 H160 L149 262 Q147 272 137 272 H63 Q53 272 51 262 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="5" stroke-linejoin="round"/>
+  <rect x="28" y="164" width="144" height="30" rx="14" fill="#EE7A45" stroke="#2A0B1D" stroke-width="5"/>
+  <g class="face">
+  <ellipse cx="63" cy="240" rx="10" ry="6" fill="#FFB3D6" opacity=".85"/>
+  <ellipse cx="137" cy="240" rx="10" ry="6" fill="#FFB3D6" opacity=".85"/>
+  <g class="eye" transform="translate(80 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="eye" transform="translate(120 222)">
+  <g class="eye-open" data-m="happy thirsty cold dark bright"><ellipse rx="11.5" ry="13.5" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4"/><circle class="pupil" r="6" fill="#2A0B1D"/></g>
+  <path data-m="dark bright" d="M-13.5 1 A13.5 15 0 0 1 13.5 1 Z" fill="#EE7A45" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+  <path data-m="joy" d="M-11 3 Q0 -11 11 3" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+  <path data-m="asleep" d="M-11 -1 Q0 8 11 -1" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round"/>
+</g>
+  <g class="mouth" fill="none" stroke="#2A0B1D" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path data-m="happy" d="M87 245 Q100 258 113 245"/>
+    <g data-m="joy"><path d="M84 242 Q100 270 116 242 Z" fill="#2A0B1D"/><path d="M93 256 Q100 250 107 256 Q100 263 93 256Z" fill="#FF6FB1" stroke="none"/></g>
+    <g data-m="thirsty"><path d="M88 254 Q100 244 112 254"/><path d="M104 252 q3 11 9 6 q2 -4 -2 -7" fill="#FF6FB1" stroke-width="3.5"/></g>
+    <path data-m="cold" d="M83 250 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5 l5.6 -5 l5.6 5"/>
+    <path data-m="dark" d="M90 250 H110"/>
+    <path data-m="bright" d="M88 251 q6 -6 12 0 t12 0"/>
+    <circle data-m="asleep" cx="100" cy="250" r="4.5" fill="#2A0B1D"/>
+  </g>
+  <g class="xtra">
+    <path data-m="thirsty" class="drop" d="M166 186 C160 196 156 202 156 207 a10 10 0 0 0 20 0 C176 202 172 196 166 186 Z" fill="#FFF6EC" stroke="#2A0B1D" stroke-width="4" stroke-linejoin="round"/>
+    <g data-m="cold" class="frost" stroke="#2A0B1D" stroke-width="3.5" stroke-linecap="round"><path d="M22 150 v18 M13 159 h18 M16 152 l12 14 M28 152 l-12 14"/><path d="M178 136 v14 M171 143 h14"/></g>
+    <g data-m="asleep" class="zz" fill="#2A0B1D"><text x="150" y="160" font-family="Fredoka, sans-serif" font-weight="600" font-size="26">z</text><text x="168" y="140" font-family="Fredoka, sans-serif" font-weight="600" font-size="18">z</text></g>
+    <g data-m="bright" class="rays" stroke="#2A0B1D" stroke-width="4" stroke-linecap="round"><path d="M172 150 l10 -8 M176 166 h13 M168 136 l4 -12"/></g>
+  </g>
+</g>
+</g></g></svg></span><span id="clock-line">It's late where you are. Bean is asleep.</span></p>
+  </div>
+</footer>
+
+<script type="module">
+import { autoInit, reduced } from './motion.js';
+autoInit();
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+/* ---------- eyes follow the pointer (every face on the page) ---------- */
+const chars = $$('.char');
+if (!reduced && matchMedia('(pointer: fine)').matches) {
+  let px = innerWidth / 2, py = innerHeight / 2, queued = false;
+  const visible = new Set();
+  const io = new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting ? visible.add(e.target) : visible.delete(e.target)));
+  chars.forEach((c) => io.observe(c));
+  const logoEyes = $$('.logo__o');
+  const frame = () => {
+    queued = false;
+    visible.forEach((c) => {
+      c.querySelectorAll('.eye').forEach((eye) => {
+        const r = eye.getBoundingClientRect();
+        const dx = px - (r.left + r.width / 2), dy = py - (r.top + r.height / 2);
+        const d = Math.hypot(dx, dy) || 1, k = Math.min(1, d / 260) * 3.6;
+        eye.querySelector('.pupil')?.setAttribute('transform', `translate(${(dx / d * k).toFixed(2)} ${(dy / d * k * 1.15).toFixed(2)})`);
+      });
+    });
+    logoEyes.forEach((o) => {
+      const r = o.getBoundingClientRect();
+      const dx = px - (r.left + r.width / 2), dy = py - (r.top + r.height / 2), d = Math.hypot(dx, dy) || 1;
+      o.style.setProperty('--ex', (dx / d * 2).toFixed(2) + 'px'); o.style.setProperty('--ey', (dy / d * 2).toFixed(2) + 'px');
+    });
+  };
+  addEventListener('pointermove', (e) => { px = e.clientX; py = e.clientY; if (!queued) { queued = true; requestAnimationFrame(frame); } }, { passive: true });
+}
+
+/* ---------- blink + poke (wiggle + joy face) ---------- */
+if (!reduced) {
+  setInterval(() => {
+    const vis = chars.filter((c) => { const r = c.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight; });
+    const c = vis[(Math.random() * vis.length) | 0]; if (!c) return;
+    c.classList.add('blink'); setTimeout(() => c.classList.remove('blink'), 140);
+  }, 1400);
+}
+const poke = (c) => {
+  if (c.dataset.poke) return;
+  c.dataset.poke = '1';
+  setTimeout(() => delete c.dataset.poke, 900);
+};
+chars.forEach((c) => {
+  c.addEventListener('pointerenter', () => poke(c));
+  c.addEventListener('pointerdown', () => poke(c));
+});
+
+/* ---------- step 2: Gary wakes up when the card is seen ---------- */
+const meet = $('.meet-gary');
+if (meet) {
+  const io = new IntersectionObserver(([e]) => {
+    if (!e.isIntersecting) return;
+    io.disconnect();
+    setTimeout(() => { meet.dataset.mood = 'joy'; meet.classList.add('woke'); }, reduced ? 0 : 700);
+    setTimeout(() => { meet.dataset.mood = 'happy'; }, reduced ? 0 : 1900);
+  }, { threshold: .6 });
+  io.observe(meet);
+}
+
+/* ---------- the playground ---------- */
+const g = $('.dial-gary'), msg = $('#dial-msg');
+const days = $('#days'), temp = $('#temp'), dOut = $('#days-out'), tOut = $('#temp-out'), winSticker = $('#win-sticker');
+const dayName = (n) => n <= 0 ? 'today' : n === 1 ? 'tomorrow' : 'on ' + new Date(Date.now() + n * 864e5).toLocaleDateString('en-US', { weekday: 'long' });
+let last = '';
+const update = () => {
+  const d = +days.value, t = +temp.value, w = $('input[name="win"]:checked').value;
+  dOut.textContent = d === 1 ? '1 day' : `${d} days`;
+  days.style.setProperty('--p', (d / 14 * 100) + '%'); temp.style.setProperty('--p', ((t + 4) / 28 * 100) + '%');
+  tOut.textContent = `${t}°C`;
+  winSticker.textContent = { N: 'North window', E: 'East window', S: 'South window', W: 'West window' }[w];
+  const issues = [];
+  if (t < 10) issues.push(['cold', `It's dropping to ${t}° tonight. Move Gary back from the window until morning; Monstera leaves hate anything under 10°.`]);
+  if (d >= 9) issues.push(['thirsty', `Gary's thirsty. It's been ${d} days. Give him about two glasses, slowly, until water comes out of the bottom.`]);
+  if (w === 'N') issues.push(['dark', `A north window is dim for a Monstera. Gary's new leaves will come in small. Try him a metre from an east or west window.`]);
+  if (w === 'S' && t > 18) issues.push(['bright', `Strong sun on a south window this week. Pull Gary back from the glass so his leaves don't scorch.`]);
+  let mood = 'happy', text;
+  if (issues.length) {
+    [mood, text] = issues[0];
+    if (issues.length > 1) text += ` Also: ${issues.length - 1 === 1 ? 'one more thing' : (issues.length - 1) + ' more things'} in the app.`;
+  } else if (d >= 6) {
+    text = `Gary's fine. He'll want water ${dayName(9 - d)}. I'll remind you.`;
+  } else {
+    text = `All good. Gary's soil is still damp and he's getting ${w === 'S' ? 'plenty of' : 'soft ' + (w === 'W' ? 'afternoon' : 'morning')} light. Nothing to do today.`;
+  }
+  g.dataset.mood = mood;
+  g.dataset.win = w;
+  if (text !== last) { msg.textContent = text; last = text; msg.parentElement.classList.remove('pop'); void msg.offsetWidth; msg.parentElement.classList.add('pop'); }
+};
+[days, temp].forEach((i) => i.addEventListener('input', update));
+$$('input[name="win"]').forEach((i) => i.addEventListener('change', update));
+update();
+
+/* ---------- marquee pause ---------- */
+const mq = $('[data-marquee]'), mqBtn = $('.marquee__toggle');
+mqBtn.addEventListener('click', () => {
+  const on = mqBtn.getAttribute('aria-pressed') !== 'true';
+  mqBtn.setAttribute('aria-pressed', on); mqBtn.textContent = on ? 'Play list' : 'Pause list';
+  mq.classList.toggle('is-paused', on);
+});
+
+/* ---------- finale line-up pops in on a spring ---------- */
+const lineup = $('.lineup');
+new IntersectionObserver(([e], o) => { if (e.isIntersecting) { lineup.classList.add('is-in'); o.disconnect(); } }, { threshold: .25 }).observe(lineup);
+
+/* ---------- footer: local time decides whether Bean is asleep ---------- */
+const fb = $('.foot-bean'), line = $('#clock-line');
+const tick = () => {
+  const now = new Date(), h = now.getHours();
+  const hhmm = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+  const night = h >= 21 || h < 7;
+  fb.dataset.mood = night ? 'asleep' : 'happy';
+  line.textContent = night ? `It's ${hhmm} where you are. Bean is asleep.` : `It's ${hhmm} where you are. Bean is wide awake.`;
+};
+tick(); setInterval(tick, 30000);
+</script>
+</body>
+</html>

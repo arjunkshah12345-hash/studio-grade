@@ -1,0 +1,114 @@
+{
+ "url": "http://127.0.0.1:61002/index.html",
+ "outDir": "/tmp/cs-aud-tally",
+ "ms": 46261,
+ "counts": {
+  "PASS": 9,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Hanken Grotesk×170",
+   "JetBrains Mono×81"
+  ],
+  "display": [
+   "216px/0.78/-0.06em w500 \"$9\"",
+   "117px/0.92/-0.055em w500 \"Your first payout is one cal\"",
+   "117px/0.92/-0.055em w500 \"one call away.\""
+  ],
+  "bodySize": "21",
+  "weights": [
+   "400×133",
+   "500×92",
+   "450×26"
+  ],
+  "upperShare": 0,
+  "paper": "rgb(255,255,255)",
+  "accents": [
+   "rgb(29,60,242) bg a.skip"
+  ],
+  "buttons": [
+   "square 36px \"Skip to content\"",
+   "square 36px \"Get API keys\"",
+   "square 48px \"Get API keys\n→\"",
+   "square 48px \"Talk to sales\"",
+   "square 36px \"Bank account\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)"
+  ],
+  "nav": {
+   "h": 72,
+   "links": 14
+  },
+  "pageVh": 10.1
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "2 families: Hanken Grotesk, JetBrains Mono"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 216px · lh 0.78 · -0.06em · weight 500 · Hanken Grotesk)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (2/6 traits: hairlineBands, lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "One accent hue (240° (w387) e.g. rgb(29,60,242) bg a.skip)"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 221 checked text elements meet AA. Text over imagery was skipped; check it by eye."
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: square"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "2 hero CTA(s)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.4,0,0.2,1)×36, cubic-bezier(0.16,1,0.3,1)×35, cubic-bezier(0.22,1,0.36,1)×7"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 14.3% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 10.1 viewports (direction 2 norm 8–11)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/cs-aud-tally/desktop-hero.png",
+  "/tmp/cs-aud-tally/slice-01.jpg … (one per viewport)",
+  "/tmp/cs-aud-tally/desktop-full.jpg",
+  "/tmp/cs-aud-tally/mobile-hero.png",
+  "/tmp/cs-aud-tally/mobile-full.jpg",
+  "/tmp/cs-aud-tally/reduced-motion-hero.png"
+ ]
+}

@@ -1,0 +1,494 @@
+<!doctype html>
+<!--
+DESIGN SPINE — Relay
+DIRECTION   : 1 Engineered Dark — staff engineers and EMs judge a review tool by the review itself, so the page is mostly a believable PR review, on a tinted near-black.
+MOTIF       : the review gutter — mono line numbers in the left margin and an amber 2px marker on the line Relay commented on. Appears in the hero diff, the section line numbers, the chapter list, the review log, the pricing plan and the footer "EOF".
+TYPE        : display Inter 510 · text Inter 400 · mono/label JetBrains Mono 400/500 (2 families)
+SCALE       : display 72px/1.0/−0.028em (40px at 390) · h2 48px/1.06/−0.022em · h3 24px/1.2 · body 16px/1.55/+0.01em · ui 13px · label 11px/+0.08em mono caps
+PALETTE     : paper #0A0B0C · ink #F2F3F0 · ink-2 ink@62% · ink-3 ink@50% · hairline ink@8% · accent amber #F2A93B → ONLY Relay's review marker and the primary CTA
+GRID        : 12/24px · container 1280px · side margin 80px (20px mobile) · section rhythm 128px, with 200px voids between chapters
+HERO        : H1 left text + product UI below — two-line h1, sub, 2 CTAs, changelog link on the right; a PR review window bleeds off the fold
+IMAGERY     : product UI rebuilt in HTML (diff + comment thread, check run, learned conventions) over a canvas "code field" at 6% ink with flagged lines in amber
+MOTION      : house ease cubic-bezier(.16,1,.3,1) · UI 160ms · reveal 850ms · blur-in; one "Reviewing…" shimmer at 1.8s and a typing caret
+SIGNATURES  : product UI frame with top-edge glow line (§7) · scroll-spy chapter list (§42) · FIG captions + spec tables (§35)
+VOICE       : "A second reviewer on every pull request." · "Comments where the code is. Not a summary pasted under the PR." · "Install on GitHub"
+-->
+<html lang="en" class="no-js" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relay — a second reviewer on every pull request</title>
+<meta name="description" content="Relay reviews every pull request, leaves line comments, catches bugs before merge, and learns your team's conventions. Free for open source; Team is $24 per seat per month.">
+<meta name="theme-color" content="#0A0B0C">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400..600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--sm btn--primary" href="#main">Skip to content</a>
+
+<header class="nav" id="top">
+  <div class="container nav-in">
+    <a class="wordmark" href="#top" aria-label="Relay home">
+      <svg class="mark" viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="3" width="2" height="14" rx="1" class="mark-bar"/><rect x="7" y="5" width="11" height="2" rx="1"/><rect x="7" y="9" width="8" height="2" rx="1"/><rect x="7" y="13" width="10" height="2" rx="1"/></svg>
+      <span>Relay</span>
+    </a>
+    <nav class="nav-links t-ui" aria-label="Primary">
+      <a href="#product">Product</a>
+      <a href="#log">Review log</a>
+      <a href="#setup">Setup</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-end">
+      <a class="nav-signin t-ui" href="#signin">Sign in</a>
+      <a class="btn btn--sm btn--primary" href="#install">Install</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============================================================ HERO -->
+<section class="hero">
+  <div class="container hero-head">
+    <span class="ln" aria-hidden="true">001</span>
+    <div class="hero-copy">
+      <h1 class="t-display" data-split="words">A second reviewer on every pull&nbsp;request.</h1>
+      <p class="hero-sub" data-reveal style="--i:6">Relay reviews every diff in context, leaves the line comments a senior engineer would, and learns your team’s conventions as you resolve threads.</p>
+      <div class="hero-ctas" data-reveal style="--i:8">
+        <a class="btn btn--accent" id="install" href="#pricing">Install on GitHub <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn btn--ghost" href="#product">See a sample review</a>
+      </div>
+    </div>
+    <a class="changelog t-small" href="#changelog" data-reveal style="--i:9"><span class="dimmer">New:</span> Relay learns from resolved threads <span aria-hidden="true">→</span></a>
+  </div>
+
+  <div class="container hero-stage" data-reveal style="--i:11">
+    <canvas class="codefield" data-seed="1" aria-hidden="true"></canvas>
+    <figure class="app" role="img" aria-label="Relay reviewing pull request 2318 in a billing service. A line comment on proration.ts flags that rounding happens per seat before summing, and suggests rounding once." inert>
+      <div class="app-bar">
+        <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="crumb">northwind / billing-service</span>
+        <span class="pr-title"><b>#2318</b> Prorate seat changes mid-cycle</span>
+        <span class="status"><i class="pulse"></i><span class="shimmer">Relay is reviewing 14 files</span></span>
+      </div>
+      <div class="app-body">
+        <aside class="app-side">
+          <p class="side-h">Files changed <span>14</span></p>
+          <ul class="tree">
+            <li class="dir">src/billing</li>
+            <li class="on"><span>proration.ts</span><em>+31 −9</em></li>
+            <li><span>invoice.ts</span><em>+4 −2</em></li>
+            <li><span>seats.ts</span><em>+12</em></li>
+            <li><span>money.ts</span><em>+2 −2</em></li>
+            <li class="dir">db/migrations</li>
+            <li><span>0042_seat_events.sql</span><em>+18</em></li>
+            <li class="dir">test/billing</li>
+            <li><span>proration.test.ts</span><em>+64 −3</em></li>
+            <li><span>fixtures.ts</span><em>+22</em></li>
+            <li class="dir">docs</li>
+            <li><span>billing.md</span><em>+6</em></li>
+          </ul>
+        </aside>
+        <div class="app-main">
+          <div class="file-h"><span>src/billing/proration.ts</span><em>+31 −9</em><span class="viewed">Viewed</span></div>
+          <div class="hunk">@@ -108,9 +108,12 @@ export function prorate(sub, change)</div>
+          <div class="diff">
+            <div class="row"><b>108</b><b>108</b><i> </i><code>export function prorate(sub: Subscription, change: SeatChange): Money {</code></div>
+            <div class="row"><b>109</b><b>109</b><i> </i><code>  const cycleDays = daysIn(sub.cycle);</code></div>
+            <div class="row del"><b>110</b><b></b><i>−</i><code>  const remaining = cycleDays - dayOf(change.at, sub.cycle);</code></div>
+            <div class="row add"><b></b><b>110</b><i>+</i><code>  const perSeat = sub.price.perSeat;</code></div>
+            <div class="row del"><b>111</b><b></b><i>−</i><code>  return sub.price.perSeat.times(change.delta).times(remaining / cycleDays);</code></div>
+            <div class="row add"><b></b><b>111</b><i>+</i><code>  const daily = change.seats.map((s) =&gt;</code></div>
+            <div class="row add flag"><b></b><b>112</b><i>+</i><code>    round(perSeat.times(s.days / cycleDays), "cent"),</code></div>
+            <div class="row add"><b></b><b>113</b><i>+</i><code>  );</code></div>
+            <div class="row add"><b></b><b>114</b><i>+</i><code>  return sum(daily);</code></div>
+          </div>
+          <div class="thread">
+            <div class="c-head"><span class="av">R</span><b>relay</b><span class="bot">bot</span><span class="when">just now</span><span class="kind">bug</span></div>
+            <p class="c-body"><code>round()</code> runs once per seat, before <code>sum()</code>. On a 40-seat downgrade the invoice can drift by up to 40¢. Sum first, round once — the same fix landed in <u>#2291</u>.</p>
+            <div class="suggest">
+              <div class="s-h">Suggested change</div>
+              <div class="row del"><i>−</i><code>  const daily = change.seats.map((s) =&gt;</code></div>
+              <div class="row del"><i>−</i><code>    round(perSeat.times(s.days / cycleDays), "cent"),</code></div>
+              <div class="row add"><i>+</i><code>  const raw = sum(change.seats.map((s) =&gt; perSeat.times(s.days / cycleDays)));</code></div>
+              <div class="row add"><i>+</i><code>  return round(raw, "cent");</code></div>
+            </div>
+            <div class="c-actions"><span class="b">Commit suggestion</span><span class="b ghost">Resolve thread</span></div>
+          </div>
+          <div class="diff">
+            <div class="row"><b>115</b><b>115</b><i> </i><code>}</code></div>
+            <div class="row"><b>116</b><b>116</b><i> </i><code></code></div>
+            <div class="row"><b>117</b><b>117</b><i> </i><code>export function credit(sub: Subscription, change: SeatChange): Money {</code></div>
+          </div>
+          <div class="thread typing">
+            <div class="c-head"><span class="av">R</span><b>relay</b><span class="when">reading seats.ts and 2 callers</span><span class="caret"></span></div>
+          </div>
+        </div>
+        <aside class="app-sum">
+          <p class="side-h">Review</p>
+          <dl class="spec">
+            <div><dt>Comments</dt><dd>3</dd></div>
+            <div><dt>Blocking</dt><dd>1</dd></div>
+            <div><dt>Conventions applied</dt><dd>4</dd></div>
+            <div><dt>Files read</dt><dd>14 of 14</dd></div>
+            <div><dt>Context</dt><dd>9 callers</dd></div>
+          </dl>
+          <p class="side-h">Conventions</p>
+          <ul class="conv-mini">
+            <li>Money is rounded once, at the edge</li>
+            <li>Migrations ship in two steps</li>
+            <li>No <code>Date.now()</code> in billing</li>
+            <li>Tests name the plan, not the price</li>
+          </ul>
+        </aside>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================ MANIFESTO -->
+<section class="manifesto">
+  <div class="container">
+    <span class="ln is-flag" aria-hidden="true">042</span>
+    <h2 class="t-h2 manifesto-h" data-reveal>Review is where a team’s standards live. <span class="dim">Relay brings them to every pull request, not only the ones a senior engineer had time to read.</span></h2>
+  </div>
+</section>
+
+<!-- ============================================================ CHAPTERS -->
+<section class="chapters" id="product">
+  <div class="container">
+    <span class="ln" aria-hidden="true">058</span>
+    <div class="spy" data-spy="#chapter-list">
+      <div class="ch-rail">
+        <p class="t-label dimmer">What Relay does</p>
+        <ol class="ch-list" id="chapter-list">
+          <li data-spy-item="c1"><a href="#c1"><span class="t-label">01</span> Line comments</a></li>
+          <li data-spy-item="c2"><a href="#c2"><span class="t-label">02</span> Bugs before merge</a></li>
+          <li data-spy-item="c3"><a href="#c3"><span class="t-label">03</span> Your conventions</a></li>
+        </ol>
+      </div>
+
+      <div class="ch-panels">
+        <!-- 01 -->
+        <article class="ch" id="c1" data-spy-panel="c1">
+          <p class="t-label fig dimmer">FIG 01 · comment on api/sessions.go:212</p>
+          <div class="stage" data-reveal>
+            <canvas class="codefield" data-seed="2" aria-hidden="true"></canvas>
+            <figure class="card-ui" role="img" aria-label="A Relay comment on line 212 of sessions.go suggesting a constant-time comparison for session tokens, with a one-line suggested change." inert>
+              <div class="file-h"><span>api/sessions.go</span><em>+7 −2</em></div>
+              <div class="diff">
+                <div class="row"><b>210</b><i> </i><code>func (s *Store) Valid(id, token string) bool {</code></div>
+                <div class="row"><b>211</b><i> </i><code>    rec, ok := s.byID[id]</code></div>
+                <div class="row add flag"><b>212</b><i>+</i><code>    return ok &amp;&amp; rec.Token == token</code></div>
+                <div class="row"><b>213</b><i> </i><code>}</code></div>
+              </div>
+              <div class="thread">
+                <div class="c-head"><span class="av">R</span><b>relay</b><span class="when">2m</span><span class="kind">security</span></div>
+                <p class="c-body"><code>==</code> on a secret returns early on the first wrong byte, which leaks timing. Compare in constant time.</p>
+                <div class="suggest">
+                  <div class="row del"><i>−</i><code>    return ok &amp;&amp; rec.Token == token</code></div>
+                  <div class="row add"><i>+</i><code>    return ok &amp;&amp; subtle.ConstantTimeCompare([]byte(rec.Token), []byte(token)) == 1</code></div>
+                </div>
+                <div class="c-actions"><span class="b">Commit suggestion</span></div>
+              </div>
+            </figure>
+          </div>
+          <h3 class="t-h3">Comments where the code is. <span class="dim">Not a summary pasted under the PR.</span></h3>
+          <p class="ch-p">Relay comments on the exact line, explains the reason in a sentence or two, and offers a suggested change you can commit from the thread. It stays quiet on code it has nothing useful to say about.</p>
+          <ul class="plus">
+            <li>Suggested changes, one click to commit</li>
+            <li>Reads callers and tests, not only the diff</li>
+            <li>Nits off by default</li>
+            <li>Replies when you push back</li>
+          </ul>
+        </article>
+
+        <!-- 02 -->
+        <article class="ch" id="c2" data-spy-panel="c2">
+          <p class="t-label fig dimmer">FIG 02 · check run on pull request #4417</p>
+          <div class="stage" data-reveal>
+            <canvas class="codefield" data-seed="3" aria-hidden="true"></canvas>
+            <figure class="card-ui" role="img" aria-label="A Relay check run blocking merge: one race condition in the sync worker, with three non-blocking suggestions listed below." inert>
+              <div class="check-h"><span class="x">✕</span><b>Relay review</b><span class="dim2">1 blocking · 3 suggestions</span></div>
+              <div class="blocked">Merging is blocked until the blocking thread is resolved</div>
+              <ul class="findings">
+                <li class="open">
+                  <div class="f-top"><span class="sev">Blocking</span><b>Two workers can claim the same job</b><code>worker/sync.ts:88</code></div>
+                  <div class="lanes">
+                    <div class="lane"><span>worker A</span><i style="--x:8%">SELECT job 8812</i><i style="--x:58%">UPDATE status</i></div>
+                    <div class="lane"><span>worker B</span><i style="--x:22%">SELECT job 8812</i><i style="--x:72%">UPDATE status</i></div>
+                  </div>
+                  <p>The read and the claim aren’t atomic. Use <code>FOR UPDATE SKIP LOCKED</code> inside the transaction.</p>
+                </li>
+                <li><div class="f-top"><span class="sev s2">Suggestion</span><b>Retry loop sleeps instead of using backoff()</b><code>lib/retry.ts:57</code></div></li>
+                <li><div class="f-top"><span class="sev s2">Suggestion</span><b>Effect re-subscribes on every render</b><code>web/useJobs.ts:31</code></div></li>
+                <li><div class="f-top"><span class="sev s2">Suggestion</span><b>New column is NOT NULL with no default</b><code>0043_jobs.sql:9</code></div></li>
+              </ul>
+            </figure>
+          </div>
+          <h3 class="t-h3">Bugs caught before merge. <span class="dim">Races, off-by-ones, unsafe migrations, missing awaits.</span></h3>
+          <p class="ch-p">Relay posts a check run on every pull request. You decide which findings block a merge on protected branches; everything else arrives as a suggestion the author can take or leave.</p>
+          <ul class="plus">
+            <li>Blocking rules per branch</li>
+            <li>Severity you can tune</li>
+            <li>Re-reviews only what changed</li>
+            <li>Links to the commit that fixed it before</li>
+          </ul>
+        </article>
+
+        <!-- 03 -->
+        <article class="ch" id="c3" data-spy-panel="c3">
+          <p class="t-label fig dimmer">FIG 03 · conventions learned in northwind/billing-service</p>
+          <div class="stage" data-reveal>
+            <canvas class="codefield" data-seed="4" aria-hidden="true"></canvas>
+            <figure class="card-ui" role="img" aria-label="A list of conventions Relay learned from resolved review threads, each with its scope and the number of threads it came from, plus one new proposed convention waiting for approval." inert>
+              <div class="check-h"><b>Conventions</b><span class="dim2">learned from 212 resolved threads</span></div>
+              <ul class="conv">
+                <li class="new"><div><b>Feature flags are read once per request</b><span>proposed from #2318 · 3 threads</span></div><span class="acts"><span class="b">Accept</span><span class="b ghost">Dismiss</span></span></li>
+                <li><div><b>Money is rounded once, at the edge</b><span>src/billing · 12 threads</span></div><span class="tog on"></span></li>
+                <li><div><b>Migrations add columns nullable, then backfill</b><span>db/migrations · 9 threads</span></div><span class="tog on"></span></li>
+                <li><div><b>Errors return Result, never throw</b><span>src/billing · 7 threads</span></div><span class="tog on"></span></li>
+                <li><div><b>Tests name the plan, not the price</b><span>test/** · 5 threads</span></div><span class="tog"></span></li>
+              </ul>
+            </figure>
+          </div>
+          <h3 class="t-h3">It learns how your team writes code. <span class="dim">From resolved threads, not a rules file.</span></h3>
+          <p class="ch-p">When a reviewer pushes back on a comment, or a pattern keeps coming up in human reviews, Relay proposes a convention. A maintainer accepts it once; from then on it is applied on every pull request in that path.</p>
+          <ul class="plus">
+            <li>Scoped to paths and languages</li>
+            <li>Every rule cites its threads</li>
+            <li>Accept, edit, or turn off</li>
+            <li>Exportable as plain YAML</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ REVIEW LOG -->
+<section class="log" id="log">
+  <div class="container">
+    <span class="ln" aria-hidden="true">137</span>
+    <div class="log-head">
+      <h2 class="t-h2" data-reveal>One week of comments. <span class="dim">Six that changed the code before it merged.</span></h2>
+      <p class="t-label dimmer fig">FIG 04 · illustrative log, sample repository</p>
+    </div>
+    <div class="table-wrap">
+      <table class="log-t">
+        <thead><tr><th scope="col">Location</th><th scope="col">Comment</th><th scope="col">Kind</th><th scope="col">Outcome</th></tr></thead>
+        <tbody>
+          <tr class="is-flag"><td><code>api/sessions.go:212</code></td><td>Session token compared with <code>==</code>; use a constant-time compare.</td><td>security</td><td>Fixed before merge</td></tr>
+          <tr class="is-flag"><td><code>worker/sync.ts:88</code></td><td>Two workers can claim the same job; the read and the claim aren’t atomic.</td><td>race</td><td>Fixed before merge</td></tr>
+          <tr><td><code>billing/proration.ts:112</code></td><td>Rounds per seat before summing; round once at the end.</td><td>bug</td><td>Suggestion committed</td></tr>
+          <tr><td><code>db/0042_seat_events.sql:9</code></td><td>NOT NULL column with no default on a 40M-row table locks writes.</td><td>migration</td><td>Split into two steps</td></tr>
+          <tr><td><code>web/useInvoices.ts:31</code></td><td><code>filters</code> is a new object each render, so the effect re-subscribes.</td><td>performance</td><td>Fixed</td></tr>
+          <tr><td><code>lib/http/retry.py:57</code></td><td>Team convention: retries go through <code>backoff()</code>, not a sleep loop.</td><td>convention</td><td>Resolved</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ SETUP -->
+<section class="setup" id="setup">
+  <div class="container setup-grid">
+    <span class="ln" aria-hidden="true">166</span>
+    <div class="setup-copy">
+      <h2 class="t-h2" data-reveal>Installed before your next standup. <span class="dim">No pipeline changes, no rules to write first.</span></h2>
+      <ol class="steps">
+        <li><span class="t-label">01</span><div><b>Install the GitHub App</b><p>Choose the repositories Relay may read. Permissions are scoped to pull requests and contents.</p></div></li>
+        <li><span class="t-label">02</span><div><b>Open a pull request</b><p>Relay reviews the next PR that opens, and every one after it, including drafts if you want.</p></div></li>
+        <li><span class="t-label">03</span><div><b>Resolve threads as usual</b><p>Agree, push back, or ignore. Relay keeps what your team agrees with and proposes it as a convention.</p></div></li>
+      </ol>
+    </div>
+    <figure class="config" data-reveal>
+      <figcaption class="t-label dimmer">.relay.yml · optional</figcaption>
+<pre><code><span class="k">review</span>:
+  <span class="k">drafts</span>: false
+  <span class="k">nits</span>: off
+  <span class="k">block_on</span>: [security, race, migration]
+  <span class="k">branches</span>: [main, release/*]
+
+<span class="k">paths</span>:
+  <span class="s">"src/billing/**"</span>:
+    <span class="k">conventions</span>: learned
+    <span class="k">reviewers</span>: [@northwind/payments]
+  <span class="s">"vendor/**"</span>: ignore
+
+<span class="c"># Code is read to review it. It is never</span>
+<span class="c"># used to train models.</span></code></pre>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================================================ PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <span class="ln is-flag" aria-hidden="true">201</span>
+    <h2 class="t-h2 pricing-h" data-reveal>Free for open source. <span class="dim">$24&nbsp;a&nbsp;seat when your team relies on&nbsp;it.</span></h2>
+    <div class="plans">
+      <div class="plan">
+        <p class="t-label dimmer">Free</p>
+        <p class="price t-num"><span class="amt">$0</span></p>
+        <p class="plan-note">For individuals and open-source maintainers.</p>
+        <a class="btn btn--ghost" href="#install">Install free</a>
+        <dl class="spec">
+          <div><dt>Public repositories</dt><dd>Unlimited</dd></div>
+          <div><dt>Private repositories</dt><dd>1</dd></div>
+          <div><dt>Line comments and suggestions</dt><dd>Included</dd></div>
+          <div><dt>Learned conventions</dt><dd>—</dd></div>
+          <div><dt>Blocking checks</dt><dd>—</dd></div>
+          <div><dt>Support</dt><dd>Community</dd></div>
+        </dl>
+      </div>
+      <div class="plan plan--team">
+        <p class="t-label">Team</p>
+        <p class="price t-num"><span class="amt">$24</span><span class="per">per seat / month</span></p>
+        <p class="plan-note">For engineering teams that want every PR reviewed the same way.</p>
+        <a class="btn btn--accent" href="#install">Start the Team plan <span class="arr" aria-hidden="true">→</span></a>
+        <dl class="spec">
+          <div><dt>Public repositories</dt><dd>Unlimited</dd></div>
+          <div><dt>Private repositories</dt><dd>Unlimited</dd></div>
+          <div><dt>Line comments and suggestions</dt><dd>Included</dd></div>
+          <div><dt>Learned conventions</dt><dd>Included</dd></div>
+          <div><dt>Blocking checks</dt><dd>Per branch</dd></div>
+          <div><dt>Support</dt><dd>Email, 1 business day</dd></div>
+        </dl>
+      </div>
+    </div>
+    <p class="fine t-small dimmer">A seat is anyone who opens pull requests in a reviewed repository. Reviewers who only comment are free.</p>
+  </div>
+</section>
+
+<!-- ============================================================ FAQ -->
+<section class="faq" id="faq">
+  <div class="container faq-grid">
+    <span class="ln" aria-hidden="true">236</span>
+    <h2 class="t-h2 faq-h" data-reveal>Questions staff engineers ask first.</h2>
+    <div class="qa">
+      <details open><summary>Is our code used to train models?</summary><p>No. Relay reads code to review the pull request in front of it. Diffs and context are not used to train models, and you can delete a repository’s data from settings at any time.</p></details>
+      <details><summary>How noisy is it?</summary><p>Nits are off by default, and Relay only comments where it can name a concrete problem or a convention your team has agreed on. If a thread is resolved without a change, that counts against the pattern next time.</p></details>
+      <details><summary>Can it block merges?</summary><p>Yes, on the Team plan. Choose which kinds of findings block, and on which branches. Everything else stays a suggestion.</p></details>
+      <details><summary>Where do conventions come from?</summary><p>From your own review history. Relay proposes a convention when the same feedback appears across resolved threads; a maintainer accepts it before it is applied.</p></details>
+      <details><summary>Which languages does it review?</summary><p>TypeScript, JavaScript, Go, Python, Java, Kotlin, Ruby, Rust, C# and SQL migrations, with more on the changelog.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ FINALE -->
+<section class="finale">
+  <div class="container">
+    <span class="ln is-flag" aria-hidden="true">271</span>
+    <p class="t-display finale-h" data-reveal>Merge with a second read.</p>
+    <p class="finale-sub" data-reveal style="--i:1">Install Relay on one repository and see what it says about your next pull request.</p>
+    <div class="hero-ctas" data-reveal style="--i:2">
+      <a class="btn btn--accent" href="#install">Install on GitHub <span class="arr" aria-hidden="true">→</span></a>
+      <a class="btn btn--ghost" href="#contact">Talk to an engineer</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============================================================ FOOTER -->
+<footer class="foot">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="wordmark" href="#top" aria-label="Relay home">
+          <svg class="mark" viewBox="0 0 20 20" aria-hidden="true"><rect x="2" y="3" width="2" height="14" rx="1" class="mark-bar"/><rect x="7" y="5" width="11" height="2" rx="1"/><rect x="7" y="9" width="8" height="2" rx="1"/><rect x="7" y="13" width="10" height="2" rx="1"/></svg>
+          <span>Relay</span>
+        </a>
+        <p class="t-small dimmer">Code review for teams that would rather spend senior time on design.</p>
+      </div>
+      <nav aria-label="Product"><p class="t-label dimmer">Product</p><a href="#c1">Line comments</a><a href="#c2">Bug catching</a><a href="#c3">Conventions</a><a href="#pricing">Pricing</a><a href="#changelog">Changelog</a></nav>
+      <nav aria-label="Developers"><p class="t-label dimmer">Developers</p><a href="#docs">Docs</a><a href="#config">.relay.yml reference</a><a href="#api">API</a><a href="#status">Status</a></nav>
+      <nav aria-label="Company"><p class="t-label dimmer">Company</p><a href="#about">About</a><a href="#careers">Careers</a><a href="#security">Security</a><a href="#contact">Contact</a></nav>
+      <nav aria-label="Legal"><p class="t-label dimmer">Legal</p><a href="#privacy">Privacy</a><a href="#terms">Terms</a><a href="#dpa">DPA</a></nav>
+    </div>
+    <div class="eof t-label">
+      <span class="eof-mark"><i aria-hidden="true"></i>EOF · 0 unresolved threads</span>
+      <span class="dimmer">© 2026 Relay</span>
+      <span class="dimmer"><i class="ok" aria-hidden="true"></i>All systems normal · <span data-clock="UTC">--:--</span> UTC</span>
+    </div>
+  </div>
+</footer>
+
+<script type="module">
+  import { autoInit, reduced } from './motion.js';
+  autoInit();
+
+  // nav: hairline once the page scrolls
+  const nav = document.querySelector('.nav');
+  const onScroll = () => nav.classList.toggle('is-scrolled', scrollY > 8);
+  addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // code field: a quiet canvas of source text; flagged lines carry the amber review marker
+  const SRC = `export function prorate(sub: Subscription, change: SeatChange): Money {
+  const cycleDays = daysIn(sub.cycle);
+  const perSeat = sub.price.perSeat;
+  const raw = sum(change.seats.map((s) => perSeat.times(s.days / cycleDays)));
+  return round(raw, "cent");
+}
+func (s *Store) Valid(id, token string) bool {
+    rec, ok := s.byID[id]
+    return ok && subtle.ConstantTimeCompare([]byte(rec.Token), []byte(token)) == 1
+}
+async function claim(db: Tx, worker: string) {
+  const job = await db.one("SELECT * FROM jobs WHERE status = 'queued' FOR UPDATE SKIP LOCKED LIMIT 1");
+  await db.none("UPDATE jobs SET status = 'running', worker = $1 WHERE id = $2", [worker, job.id]);
+  return job;
+}
+ALTER TABLE seat_events ADD COLUMN plan_id uuid;
+UPDATE seat_events SET plan_id = s.plan_id FROM subscriptions s WHERE s.id = seat_events.sub_id;
+def retry(fn, attempts=5):
+    for delay in backoff(base=0.2, cap=8.0, attempts=attempts):
+        try:
+            return fn()
+        except TransientError:
+            time.sleep(delay)
+useEffect(() => subscribe(filters), [filters.status, filters.owner]);
+export const isEnabled = (flag: Flag, req: Request) => req.flags.get(flag) ?? false;`.split('\n');
+
+  const css = getComputedStyle(document.documentElement);
+  const inkRGB = css.getPropertyValue('--ink-rgb').trim().split(/\s+/).join(',');
+  const accent = css.getPropertyValue('--accent').trim();
+
+  function drawField(cv) {
+    const seed = +cv.dataset.seed || 1;
+    const dpr = Math.min(devicePixelRatio || 1, 1.5);
+    const w = cv.clientWidth, h = cv.clientHeight;
+    if (!w || !h) return;
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    const g = cv.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.font = '400 11px "JetBrains Mono", ui-monospace, monospace';
+    g.textBaseline = 'top';
+    const lh = 18, colW = 620, cols = Math.ceil(w / colW) + 1;
+    for (let c = 0; c < cols; c++) {
+      const x0 = c * colW - (seed * 97) % 180;
+      for (let r = 0, y = 6; y < h; r++, y += lh) {
+        const n = (r + c * 11 + seed * 7);
+        const line = SRC[n % SRC.length].slice(0, Math.floor((colW - 64) / 6.7));
+        const flagged = (n * 7 + seed) % 23 === 0;
+        g.fillStyle = `rgba(${inkRGB},${flagged ? 0.0 : 0.07})`;
+        g.fillText(String(100 + r + c * 40).padStart(3, '0'), x0, y);
+        if (flagged) {
+          g.fillStyle = accent; g.globalAlpha = 0.55; g.fillRect(x0 + 30, y - 2, 2, lh - 2);
+          g.globalAlpha = 0.22; g.fillText(line, x0 + 40, y); g.globalAlpha = 1;
+        } else {
+          g.fillStyle = `rgba(${inkRGB},${cv.closest('.stage') ? 0.045 : 0.06})`; g.fillText(line, x0 + 40, y);
+        }
+      }
+    }
+  }
+  const fields = [...document.querySelectorAll('canvas.codefield')];
+  const drawAll = () => fields.forEach(drawField);
+  (document.fonts ? document.fonts.load('11px "JetBrains Mono"') : Promise.resolve()).then(drawAll, drawAll);
+  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(drawAll, 150); });
+</script>
+</body>
+</html>

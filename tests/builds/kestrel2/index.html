@@ -1,0 +1,422 @@
+<!doctype html>
+<!--
+DESIGN SPINE · Kestrel K-1
+DIRECTION   : 8 Deep-Tech Spec. Industrial-AI hardware sold to wind-farm operations directors, who buy on hours and euros of downtime.
+REGISTER    : LOUD. The bold device is a colour-block system of full-bleed hi-vis bands, with giant live numerals as the image.
+AXES        : ground colour blocks (hi-vis orange / black / white, each with one meaning) · type genre heavy display grotesk (Archivo 900, 88% width, −0.045em) + one Fraunces italic accent word per band · image medium data as art (11:00 countdown, ticking € downtime clock, 0.2 mm, blade drawn as one bold bar chart) · composition banded · motion feel instrumental (rolling digits, filling bars, a scrubbed scan)
+DEFAULT?    : 0/6 matched → DIFFERENT FROM DEFAULT BY: ground (colour blocks, not paper), type (900 heavy grotesk, not 300–500), no mono labels, no hairline metadata bands (6–14px solid rules only), no line drawing (filled bars), colour as field rather than a tiny accent
+MOTIF       : THE BAR, one thick filling bar → hero flight-progress bar (instrument) · rope-vs-K-1 time race (comparison) · the blade itself as 64 bars, scanned on scroll (subject) · same-day timeline and severity bars in the report (data) · the hover underline and the floating CTA's scroll-progress bar (UI)
+TYPE        : display Archivo 900 wdth 88 · text Archivo 400–800 · accent Fraunces 800 italic (one word per band)   (2 families)
+SCALE       : clock 412px/.8/−.045em · mega 239px/.8/−.05em · h1 92px/.9/−.045em · h2 77px/.94/−.04em · body 17px · label 15px sentence case
+PALETTE     : orange #FF5B14 (K-1 does) with ink #220B00 · black #131211 (problem) with ink #F4F3F0 · white #FFFFFF (report) with ink #151413 · tiers 74/66% (84/80% on orange) · accent = orange → ONLY the K-1 meaning + the primary CTA
+GRID        : 12 / 16–24px · container 1344 · side margin 20–48px (edge-hugging) · section rhythm 80–144px, one thin band
+HERO        : poster, orange field; h1 top-left, subline + 2 CTAs right; a 412px live 11:00 countdown with a 24px progress bar across the bottom
+IMAGERY     : data as art (no photos or renders exist)
+CONVERSION  : "Book a field demo": nav, hero primary, floating dock (after the hero), finale form. Secondary: "See a sample report".
+MOTION      : house ease cubic-bezier(.16,1,.3,1) · UI 150–240ms · reveal 700ms · primitives: digit roll, bar fill (scaleX), scroll-scrubbed scan. Time is linear.
+SIGNATURES  : live ticking stat (techniques §12) as a € downtime clock · interactive calculator (Terminal) · mixed-font headline (§21)
+VOICE       : "One blade. Eleven minutes." · "Rope teams take the day. Your rotor stands still for all of it." · "Book a field demo."
+-->
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kestrel K-1 · One blade, eleven minutes</title>
+<meta name="description" content="Kestrel K-1 is an autonomous drone that inspects a wind-turbine blade in 11 minutes, finds cracks and leading-edge erosion down to 0.2 mm, and files the report the same day.">
+<meta name="theme-color" content="#FF5B14">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%23FF5B14%27/%3E%3Crect x=%274%27 y=%2720%27 width=%2724%27 height=%276%27 fill=%27%23220B00%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Fraunces:ital,opsz,wght,SOFT,WONK@1,9..144,800,0,1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<main id="main">
+
+<!-- ===================================================== ORANGE · what K-1 does -->
+<section class="hero" data-band="orange" id="top" aria-labelledby="h1">
+  <div class="wrap">
+    <header class="hdr">
+      <a class="brand" href="#top" aria-label="Kestrel K-1, home">Kestrel <b>K-1</b></a>
+      <nav class="nav" aria-label="Main">
+        <a href="#problem">Downtime</a>
+        <a href="#detect">Detection</a>
+        <a href="#report">The report</a>
+        <a class="btn btn--sm" href="#demo">Book a field demo</a>
+      </nav>
+    </header>
+    <div class="grid hero-top">
+      <h1 class="t-display" id="h1">One blade.<br>Eleven <span class="alt">minutes.</span></h1>
+      <div class="hero-side">
+        <p class="t-lead">Kestrel K-1 is an autonomous drone that flies every blade, finds cracks and leading-edge erosion down to 0.2&nbsp;mm, and files the report the same day.</p>
+        <div class="ctas">
+          <a class="btn" href="#demo">Book a field demo <span class="arr" aria-hidden="true">→</span></a>
+          <a class="tlink" href="#report">See a sample report</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="wrap clock">
+    <div class="clock-num t-clock" role="img" aria-label="Flight timer: 11 minutes per blade" data-countdown>11:00</div>
+    <div class="bar" aria-hidden="true"><i data-flight-bar></i></div>
+    <div class="clock-row">
+      <span aria-hidden="true">Blade <span class="num" data-blade>1</span> of 3 · root to tip · <span class="num" data-pct>0%</span> scanned</span>
+      <button class="speed" type="button" aria-pressed="false" data-speed>Fast-forward ×20</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================== BLACK · the problem -->
+<section class="band problem" data-band="black" id="problem" aria-labelledby="h-problem">
+  <div class="wrap">
+    <div class="grid"><div class="head" data-reveal>
+      <p class="kicker">Downtime</p>
+      <h2 class="t-h2" id="h-problem">Rope teams take the day. <span class="dim">Your rotor stands <span class="alt">still</span> for all of it.</span></h2>
+    </div></div>
+
+    <div class="loss">
+      <div class="loss-num t-mega" data-loss aria-hidden="true">€0.00</div>
+      <div class="loss-cap">
+        <span class="clockline num" data-stopped aria-hidden="true">00:00:00<small>rotor stopped</small></span>
+        <p>Lost by one stopped turbine since you opened this page.</p>
+        <p class="sr-only">One stopped turbine loses about <span data-rate-sr>€1.73</span> a minute at the assumptions below.</p>
+      </div>
+    </div>
+
+    <div class="race" data-race>
+      <div class="race-row rope">
+        <div class="race-name">Rope access team<small>Most of a working day per turbine</small></div>
+        <div>
+          <div class="race-track" aria-hidden="true"><i class="race-fill"></i></div>
+          <div class="race-val"><span class="t num" data-race-t="480" data-unit="h">8 h</span><span>≈ <span class="num" data-cost="480">€830</span> of generation lost</span></div>
+        </div>
+      </div>
+      <div class="race-row k1">
+        <div class="race-name">Kestrel K-1<small>Three blades × 11 minutes of flight</small></div>
+        <div>
+          <div class="race-track" aria-hidden="true"><i class="race-fill"></i></div>
+          <div class="race-val"><span class="t num" data-race-t="33" data-unit="min">33 min</span><span>≈ <span class="num" data-cost="33">€57</span> of generation lost</span></div>
+        </div>
+      </div>
+    </div>
+
+    <form class="calc" data-calc aria-labelledby="h-calc" onsubmit="return false">
+      <h3 class="t-h3" id="h-calc">Run it on your turbines.</h3>
+      <div class="f"><label for="c-mw">Rated power, MW</label><input id="c-mw" name="mw" type="number" inputmode="decimal" min="0.5" max="20" step="0.1" value="4.2"></div>
+      <div class="f"><label for="c-cf">Capacity factor, %</label><input id="c-cf" name="cf" type="number" inputmode="decimal" min="5" max="70" step="1" value="38"></div>
+      <div class="f"><label for="c-px">Power price, €/MWh</label><input id="c-px" name="px" type="number" inputmode="decimal" min="0" max="500" step="1" value="65"></div>
+      <output for="c-mw c-cf c-px" data-rate aria-live="polite"><small>Lost per stopped minute</small>€1.73</output>
+    </form>
+    <p class="foot">Illustrative figures, not Kestrel data. Lost generation = rated power × capacity factor × power price, for the minutes the rotor is stopped. The rope-access bar is drawn at 8 hours to stand for “most of a working day”; the K-1 bar shows flight time only (3 × 11 minutes), not set-up.</p>
+  </div>
+</section>
+
+<!-- ===================================================== ORANGE · what K-1 does: detection -->
+<section class="band detect" data-band="orange" id="detect" aria-labelledby="h-detect">
+  <div class="wrap">
+    <div class="grid detect-head">
+      <p class="mm t-mega" aria-hidden="true"><span data-mm>0.2</span><small>mm</small></p>
+      <div class="copy" data-reveal>
+        <p class="kicker">Detection</p>
+        <h2 class="t-h2" id="h-detect">It sees 0.2&nbsp;mm. <span class="alt">Every</span> metre.</h2>
+        <p class="t-lead">That is about two sheets of paper. K-1 flies root to tip and logs every crack and every patch of leading-edge erosion by its position on the blade.</p>
+      </div>
+    </div>
+
+    <figure class="blade" data-blade-scan>
+      <svg viewBox="0 0 1344 300" role="img" aria-label="Sample 62-metre blade drawn as 64 bars, root on the left and tip on the right. The flat top edge is the leading edge. Three findings are marked: a crack at 12.4 metres, a crack at 31.8 metres, and leading-edge erosion from 54.0 to 60.2 metres." preserveAspectRatio="none"><rect x="3.5" y="0" width="14.0" height="120.0"/><rect x="24.5" y="0" width="14.0" height="120.0"/><rect x="45.5" y="0" width="14.0" height="120.0"/><rect x="66.5" y="0" width="14.0" height="123.4"/><rect x="87.5" y="0" width="14.0" height="133.6"/><rect x="108.5" y="0" width="14.0" height="149.2"/><rect x="129.5" y="0" width="14.0" height="168.8"/><rect x="150.5" y="0" width="14.0" height="190.9"/><rect x="171.5" y="0" width="14.0" height="214.2"/><rect x="192.5" y="0" width="14.0" height="237.3"/><rect x="213.5" y="0" width="14.0" height="258.7"/><rect x="234.5" y="0" width="14.0" height="277.0"/><rect x="255.5" y="0" width="14.0" height="290.8" class="fx" data-f="f1"/><rect x="276.5" y="0" width="14.0" height="298.7"/><rect x="297.5" y="0" width="14.0" height="295.7"/><rect x="318.5" y="0" width="14.0" height="287.9"/><rect x="339.5" y="0" width="14.0" height="281.0"/><rect x="360.5" y="0" width="14.0" height="274.5"/><rect x="381.5" y="0" width="14.0" height="268.3"/><rect x="402.5" y="0" width="14.0" height="262.3"/><rect x="423.5" y="0" width="14.0" height="256.4"/><rect x="444.5" y="0" width="14.0" height="250.7"/><rect x="465.5" y="0" width="14.0" height="245.1"/><rect x="486.5" y="0" width="14.0" height="239.7"/><rect x="507.5" y="0" width="14.0" height="234.3"/><rect x="528.5" y="0" width="14.0" height="228.9"/><rect x="549.5" y="0" width="14.0" height="223.7"/><rect x="570.5" y="0" width="14.0" height="218.5"/><rect x="591.5" y="0" width="14.0" height="213.3"/><rect x="612.5" y="0" width="14.0" height="208.3"/><rect x="633.5" y="0" width="14.0" height="203.2"/><rect x="654.5" y="0" width="14.0" height="198.2"/><rect x="675.5" y="0" width="14.0" height="193.3" class="fx" data-f="f2"/><rect x="696.5" y="0" width="14.0" height="188.4"/><rect x="717.5" y="0" width="14.0" height="183.5"/><rect x="738.5" y="0" width="14.0" height="178.7"/><rect x="759.5" y="0" width="14.0" height="173.9"/><rect x="780.5" y="0" width="14.0" height="169.1"/><rect x="801.5" y="0" width="14.0" height="164.4"/><rect x="822.5" y="0" width="14.0" height="159.7"/><rect x="843.5" y="0" width="14.0" height="155.0"/><rect x="864.5" y="0" width="14.0" height="150.4"/><rect x="885.5" y="0" width="14.0" height="145.7"/><rect x="906.5" y="0" width="14.0" height="141.1"/><rect x="927.5" y="0" width="14.0" height="136.6"/><rect x="948.5" y="0" width="14.0" height="132.0"/><rect x="969.5" y="0" width="14.0" height="127.5"/><rect x="990.5" y="0" width="14.0" height="123.0"/><rect x="1011.5" y="0" width="14.0" height="118.5"/><rect x="1032.5" y="0" width="14.0" height="114.0"/><rect x="1053.5" y="0" width="14.0" height="109.5"/><rect x="1074.5" y="0" width="14.0" height="105.1"/><rect x="1095.5" y="0" width="14.0" height="100.7"/><rect x="1116.5" y="0" width="14.0" height="96.3"/><rect x="1137.5" y="0" width="14.0" height="91.9"/><rect x="1158.5" y="0" width="14.0" height="87.5" class="fx" data-f="f3"/><rect x="1179.5" y="0" width="14.0" height="83.2" class="fx" data-f="f3"/><rect x="1200.5" y="0" width="14.0" height="78.8" class="fx" data-f="f3"/><rect x="1221.5" y="0" width="14.0" height="74.5" class="fx" data-f="f3"/><rect x="1242.5" y="0" width="14.0" height="70.2" class="fx" data-f="f3"/><rect x="1263.5" y="0" width="14.0" height="65.9" class="fx" data-f="f3"/><rect x="1284.5" y="0" width="14.0" height="61.6" class="fx" data-f="f3"/><rect x="1305.5" y="0" width="14.0" height="57.4" class="fx" data-f="f3"/><rect x="1326.5" y="0" width="14.0" height="53.1"/></svg>
+      <div class="blade-axis" aria-hidden="true"><span>Root · 0 m</span><span>Leading edge along the top</span><span>Tip · 62 m</span></div>
+    </figure>
+    <p class="scanline" aria-hidden="true"><b class="num" data-scan-m>0.0 m</b> of 62.0 m scanned</p>
+
+    <ul class="finds" aria-label="Findings on the sample blade">
+      <li data-find="f1"><span class="at num">12.4 m</span><span class="what">Crack, 0.4 mm wide<span>Shell, pressure side</span></span></li>
+      <li data-find="f2"><span class="at num">31.8 m</span><span class="what">Crack, 0.2 mm wide<span>At the detection limit</span></span></li>
+      <li data-find="f3"><span class="at num">54.0–60.2 m</span><span class="what">Leading-edge erosion<span>Coating loss along 6.2 m</span></span></li>
+    </ul>
+    <p class="sample">Sample blade with illustrative findings.</p>
+  </div>
+</section>
+
+<!-- ===================================================== WHITE · the report -->
+<section class="band report" data-band="white" id="report" aria-labelledby="h-report">
+  <div class="wrap">
+    <div class="grid report-head" data-reveal>
+      <h2 class="t-h2" id="h-report">Flown this morning. <span class="dim">Filed this <span class="alt">afternoon.</span></span></h2>
+      <p class="t-lead">No week of waiting for photos to be sorted. The report reaches you the same day, finding by finding, metre by metre.</p>
+    </div>
+
+    <div class="day" data-day>
+      <div class="day-big">
+        <p class="t-mega num" aria-hidden="true" data-filed-at>15:40</p>
+        <p class="lbl">Report filed. Flights finished at 10:01.</p>
+      </div>
+      <div class="day-track" role="img" aria-label="Timeline of an inspection day from 06:00 to 22:00. Three blade flights between 09:12 and 10:01, report filed at 15:40.">
+        <i class="fl" style="left:20%;width:1.15%"></i>
+        <i class="fl" style="left:21.98%;width:1.15%"></i>
+        <i class="fl" style="left:23.96%;width:1.15%"></i>
+        <i class="filed" style="left:60.42%"></i>
+        <i class="head"></i>
+      </div>
+      <div class="day-ticks" aria-hidden="true">
+        <span style="left:0">06:00</span><span style="left:25%">10:00</span><span style="left:50%">14:00</span><span style="left:75%">18:00</span><span style="left:100%">22:00</span>
+      </div>
+      <div class="day-legend" aria-hidden="true"><span><i></i>K-1 flying, one bar per blade</span><span><i class="k"></i>Report filed</span></div>
+    </div>
+
+    <article class="doc" aria-label="Sample inspection report">
+      <div class="doc-top">
+        <p class="id">WTG-14 · Blade B</p>
+        <dl>
+          <div><dt>Flown</dt><dd class="num">09:31</dd></div>
+          <div><dt>Flight</dt><dd class="num">11:00</dd></div>
+          <div><dt>Findings</dt><dd class="num">3</dd></div>
+        </dl>
+      </div>
+      <table>
+        <caption>Sample report. Turbine, times and findings are illustrative, to show the format.</caption>
+        <thead><tr><th scope="col">Position</th><th scope="col">Finding</th><th scope="col">Severity</th><th scope="col">Next step</th></tr></thead>
+        <tbody>
+          <tr><td class="big num" data-k="Position">12.4 m</td><td data-k="Finding"><b>Crack</b>, 0.4 mm wide, 180 mm long. Shell, pressure side.</td><td data-k="Severity"><span class="sev" aria-hidden="true"><i class="s"></i><i class="s"></i><i class="s"></i><i></i><i></i></span>3 of 5</td><td data-k="Next step">Repair at the next planned stop.</td></tr>
+          <tr><td class="big num" data-k="Position">31.8 m</td><td data-k="Finding"><b>Crack</b>, 0.2 mm wide, 60 mm long. Trailing edge.</td><td data-k="Severity"><span class="sev" aria-hidden="true"><i class="s"></i><i class="s"></i><i></i><i></i><i></i></span>2 of 5</td><td data-k="Next step">Re-inspect next season.</td></tr>
+          <tr><td class="big num" data-k="Position">54.0–60.2 m</td><td data-k="Finding"><b>Leading-edge erosion</b>, coating loss along 6.2 m.</td><td data-k="Severity"><span class="sev hot" aria-hidden="true"><i class="s"></i><i class="s"></i><i class="s"></i><i class="s"></i><i></i></span>4 of 5</td><td data-k="Next step">Send the repair crew before winter.</td></tr>
+        </tbody>
+      </table>
+      <div class="mini"><svg viewBox="0 0 1344 90" role="img" aria-label="Blade map for the sample report, with findings marked in orange at 12.4, 31.8 and 54.0 to 60.2 metres." preserveAspectRatio="none"><rect x="2.5" y="0" width="16.0" height="36.0"/><rect x="23.5" y="0" width="16.0" height="36.0"/><rect x="44.5" y="0" width="16.0" height="36.0"/><rect x="65.5" y="0" width="16.0" height="37.0"/><rect x="86.5" y="0" width="16.0" height="40.1"/><rect x="107.5" y="0" width="16.0" height="44.8"/><rect x="128.5" y="0" width="16.0" height="50.6"/><rect x="149.5" y="0" width="16.0" height="57.3"/><rect x="170.5" y="0" width="16.0" height="64.3"/><rect x="191.5" y="0" width="16.0" height="71.2"/><rect x="212.5" y="0" width="16.0" height="77.6"/><rect x="233.5" y="0" width="16.0" height="83.1"/><rect x="254.5" y="0" width="16.0" height="87.2" class="fx" data-f="f1"/><rect x="275.5" y="0" width="16.0" height="89.6"/><rect x="296.5" y="0" width="16.0" height="88.7"/><rect x="317.5" y="0" width="16.0" height="86.4"/><rect x="338.5" y="0" width="16.0" height="84.3"/><rect x="359.5" y="0" width="16.0" height="82.3"/><rect x="380.5" y="0" width="16.0" height="80.5"/><rect x="401.5" y="0" width="16.0" height="78.7"/><rect x="422.5" y="0" width="16.0" height="76.9"/><rect x="443.5" y="0" width="16.0" height="75.2"/><rect x="464.5" y="0" width="16.0" height="73.5"/><rect x="485.5" y="0" width="16.0" height="71.9"/><rect x="506.5" y="0" width="16.0" height="70.3"/><rect x="527.5" y="0" width="16.0" height="68.7"/><rect x="548.5" y="0" width="16.0" height="67.1"/><rect x="569.5" y="0" width="16.0" height="65.5"/><rect x="590.5" y="0" width="16.0" height="64.0"/><rect x="611.5" y="0" width="16.0" height="62.5"/><rect x="632.5" y="0" width="16.0" height="61.0"/><rect x="653.5" y="0" width="16.0" height="59.5"/><rect x="674.5" y="0" width="16.0" height="58.0" class="fx" data-f="f2"/><rect x="695.5" y="0" width="16.0" height="56.5"/><rect x="716.5" y="0" width="16.0" height="55.1"/><rect x="737.5" y="0" width="16.0" height="53.6"/><rect x="758.5" y="0" width="16.0" height="52.2"/><rect x="779.5" y="0" width="16.0" height="50.7"/><rect x="800.5" y="0" width="16.0" height="49.3"/><rect x="821.5" y="0" width="16.0" height="47.9"/><rect x="842.5" y="0" width="16.0" height="46.5"/><rect x="863.5" y="0" width="16.0" height="45.1"/><rect x="884.5" y="0" width="16.0" height="43.7"/><rect x="905.5" y="0" width="16.0" height="42.3"/><rect x="926.5" y="0" width="16.0" height="41.0"/><rect x="947.5" y="0" width="16.0" height="39.6"/><rect x="968.5" y="0" width="16.0" height="38.2"/><rect x="989.5" y="0" width="16.0" height="36.9"/><rect x="1010.5" y="0" width="16.0" height="35.5"/><rect x="1031.5" y="0" width="16.0" height="34.2"/><rect x="1052.5" y="0" width="16.0" height="32.9"/><rect x="1073.5" y="0" width="16.0" height="31.5"/><rect x="1094.5" y="0" width="16.0" height="30.2"/><rect x="1115.5" y="0" width="16.0" height="28.9"/><rect x="1136.5" y="0" width="16.0" height="27.6"/><rect x="1157.5" y="0" width="16.0" height="26.3" class="fx" data-f="f3"/><rect x="1178.5" y="0" width="16.0" height="25.0" class="fx" data-f="f3"/><rect x="1199.5" y="0" width="16.0" height="23.7" class="fx" data-f="f3"/><rect x="1220.5" y="0" width="16.0" height="22.4" class="fx" data-f="f3"/><rect x="1241.5" y="0" width="16.0" height="21.1" class="fx" data-f="f3"/><rect x="1262.5" y="0" width="16.0" height="19.8" class="fx" data-f="f3"/><rect x="1283.5" y="0" width="16.0" height="18.5" class="fx" data-f="f3"/><rect x="1304.5" y="0" width="16.0" height="17.2" class="fx" data-f="f3"/><rect x="1325.5" y="0" width="16.0" height="15.9"/></svg></div>
+    </article>
+  </div>
+</section>
+
+<!-- ===================================================== BLACK · the honest limit (thin band) -->
+<section class="band limits" data-band="black" aria-labelledby="h-limits">
+  <div class="wrap grid" data-reveal>
+    <h2 class="t-h2" id="h-limits">K-1 finds the damage. <span class="dim">Your crew still <span class="alt">fixes</span> it.</span></h2>
+    <p><strong>It does not repair blades.</strong> It tells your repair crew where to go, what they will find and how bad it is, before anyone ropes down.</p>
+  </div>
+</section>
+
+<!-- ===================================================== ORANGE · book the demo -->
+<section class="band demo" data-band="orange" id="demo" aria-labelledby="h-demo">
+  <div class="wrap">
+    <h2 class="t-word ask" id="h-demo">Book a field<br> <span class="alt">demo.</span></h2>
+    <div class="grid demo-grid">
+      <ol class="steps" aria-label="What happens on demo day">
+        <li><span class="n" aria-hidden="true">1</span><p class="t">You pick the turbine.<span>Any turbine on your site. We bring K-1 and the crew to fly it.</span></p></li>
+        <li><span class="n" aria-hidden="true">2</span><p class="t">We fly all three blades while you watch.<span>About 11 minutes a blade, root to tip.</span></p></li>
+        <li><span class="n" aria-hidden="true">3</span><p class="t">The report reaches you the same day.<span>Every finding with its position, size and severity.</span></p></li>
+      </ol>
+      <form class="form" data-form novalidate aria-labelledby="h-demo">
+        <div class="f"><label for="d-name">Your name</label><input id="d-name" name="name" autocomplete="name" required></div>
+        <div class="f"><label for="d-email">Work email</label><input id="d-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="f"><label for="d-site">Wind farm</label><input id="d-site" name="site" placeholder="Site name and country" required></div>
+        <div class="f"><label for="d-n">Turbines on site</label>
+          <select id="d-n" name="turbines"><option>Under 20</option><option>20 to 100</option><option>More than 100</option></select></div>
+        <p class="err" data-err hidden role="alert">Add your name, a work email and the wind farm so we can plan the flight.</p>
+        <button class="btn" type="submit">Book a field demo <span class="arr" aria-hidden="true">→</span></button>
+        <div class="done" data-done hidden role="status" tabindex="-1"><strong>Booked in.</strong>We will be in touch to agree the turbine and the date.</div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===================================================== WHITE · footer (the paperwork) -->
+<footer class="ftr" data-band="white">
+  <div class="wrap">
+    <div class="grid ftr-cols">
+      <div><h3>Kestrel K-1</h3><ul><li><a href="#top">How it flies</a></li><li><a href="#detect">What it detects</a></li><li><a href="#report">Sample report</a></li></ul></div>
+      <div><h3>Field demo</h3><ul><li><a href="#demo">Book a field demo</a></li><li><a href="#demo">What happens on the day</a></li></ul></div>
+      <div><h3>Downtime</h3><ul><li><a href="#problem">Downtime calculator</a></li><li><a href="#problem">Rope access vs K-1</a></li></ul></div>
+      <div><h3>Kestrel</h3><ul><li><a href="#demo">Contact</a></li><li><a href="#top">Back to top</a></li></ul></div>
+      <p class="meter" aria-hidden="true"><span>This page has been open <b data-open>00:00</b>. In that time one stopped turbine lost <b data-open-loss>€0.00</b>.</span><span>© 2026 Kestrel</span></p>
+    </div>
+    <p class="ftr-mark" aria-hidden="true">Kestrel <span class="alt">K-1</span></p>
+  </div>
+</footer>
+
+<div class="dock" data-dock><a class="btn" href="#demo" tabindex="-1">Book a field demo <span class="arr" aria-hidden="true">→</span></a></div>
+
+<script type="module">
+import { autoInit, reduced } from './motion.js';
+autoInit();
+
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const eur = (v) => '€' + v.toLocaleString('en-GB', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+const eur0 = (v) => '€' + Math.round(v).toLocaleString('en-GB');
+const pad = (n) => String(n).padStart(2, '0');
+
+/* ---- rolling digits: one column per digit, transform only */
+function roller(el, { fastLast = 0 } = {}) {
+  el.textContent = '';
+  const box = document.createElement('span'); box.className = 'roll'; box.setAttribute('aria-hidden', 'true'); el.append(box);
+  let shape = '', cols = [];
+  return (str) => {
+    const sh = str.replace(/\d/g, '0');
+    if (sh !== shape) {
+      shape = sh; box.textContent = ''; cols = [];
+      const digits = [...str].filter((c) => /\d/.test(c)).length; let d = 0;
+      for (const ch of str) {
+        const c = document.createElement('span');
+        if (/\d/.test(ch)) { d++; c.innerHTML = '0123456789'.split('').map((x) => `<span>${x}</span>`).join(''); if (d > digits - fastLast) c.className = 'fast'; cols.push(c); }
+        else { c.className = 'sep'; c.innerHTML = `<span>${ch}</span>`; cols.push(null); }
+        box.append(c);
+      }
+    }
+    [...str].forEach((ch, i) => { if (cols[i]) cols[i].style.transform = `translateY(${-ch * 0.8}em)`; });
+  };
+}
+
+/* ---- downtime model (shared by the calculator, the € clock and the footer meter) */
+const model = { mw: 4.2, cf: 38, px: 65 };
+const perMin = () => (model.mw * (model.cf / 100) * model.px) / 60;
+function paintCosts() {
+  const r = perMin();
+  $('[data-rate]').innerHTML = `<small>Lost per stopped minute</small>${eur(r)}`;
+  $('[data-rate-sr]').textContent = eur(r);
+  $$('[data-cost]').forEach((el) => { el.textContent = eur0(r * +el.dataset.cost); });
+}
+$('[data-calc]').addEventListener('input', (e) => {
+  const v = parseFloat(e.target.value); if (!Number.isFinite(v) || v < 0) return;
+  model[e.target.name] = v; paintCosts();
+});
+paintCosts();
+
+/* ---- € downtime clock + footer meter */
+const t0 = performance.now();
+const lossEl = $('[data-loss]'), stoppedEl = $('[data-stopped]');
+const setLoss = reduced ? (s) => { lossEl.textContent = s; } : roller(lossEl, { fastLast: 1 });
+function tickLoss() {
+  const sec = (performance.now() - t0) / 1000, lost = (sec / 60) * perMin();
+  setLoss(eur(lost));
+  const h = Math.floor(sec / 3600), m = Math.floor(sec / 60) % 60, s = Math.floor(sec) % 60;
+  stoppedEl.firstChild.textContent = `${pad(h)}:${pad(m)}:${pad(s)}`;
+  $('[data-open]').textContent = `${pad(Math.floor(sec / 60))}:${pad(Math.floor(sec) % 60)}`;
+  $('[data-open-loss]').textContent = eur(lost);
+}
+tickLoss(); setInterval(tickLoss, reduced ? 5000 : 500);
+
+/* ---- hero countdown: 11:00 per blade, three blades, loops */
+const clockEl = $('[data-countdown]'), fbar = $('[data-flight-bar]'), bladeEl = $('[data-blade]'), pctEl = $('[data-pct]'), speedBtn = $('[data-speed]');
+const FLIGHT = 660;
+if (reduced) { fbar.style.setProperty('--p', 1); pctEl.textContent = '100%'; speedBtn.hidden = true; }
+else {
+  const setClock = roller(clockEl);
+  let left = FLIGHT, blade = 1, speed = 1, last = performance.now(), hold = 0;
+  setClock('11:00');
+  speedBtn.addEventListener('click', () => {
+    speed = speed === 1 ? 20 : 1; speedBtn.setAttribute('aria-pressed', String(speed > 1));
+    speedBtn.textContent = speed > 1 ? 'Back to real time' : 'Fast-forward ×20';
+    clockEl.classList.toggle('is-fast', speed > 1);
+  });
+  const frame = (now) => {
+    const dt = (now - last) / 1000; last = now;
+    if (hold > 0) { hold -= dt; if (hold <= 0) { left = FLIGHT; blade = blade % 3 + 1; } }
+    else { left = Math.max(0, left - dt * speed); if (left === 0) hold = 1.6; }
+    const whole = Math.ceil(left);
+    setClock(`${pad(Math.floor(whole / 60))}:${pad(whole % 60)}`);
+    const p = 1 - left / FLIGHT;
+    fbar.style.setProperty('--p', p.toFixed(4));
+    pctEl.textContent = Math.floor(p * 100) + '%'; bladeEl.textContent = blade;
+    requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+}
+
+/* ---- in-view helper */
+const once = (el, fn, margin = '0px 0px -20% 0px') => {
+  if (reduced || !('IntersectionObserver' in window)) return fn(true);
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { fn(false); io.disconnect(); } }), { rootMargin: margin });
+  io.observe(el);
+};
+
+/* ---- the race: bars fill at a speed proportional to the time they stand for */
+const race = $('[data-race]');
+once(race, (instant) => {
+  const rows = $$('.race-row', race);
+  rows.forEach((row) => {
+    const tEl = $('[data-race-t]', row), total = +tEl.dataset.raceT, fill = $('.race-fill', row);
+    const target = total / 480, dur = instant ? 0 : Math.max(500, 5200 * target);
+    const start = performance.now();
+    const step = (now) => {
+      const k = dur ? Math.min(1, (now - start) / dur) : 1;
+      fill.style.setProperty('--p', (target * k).toFixed(4));
+      const mins = total * k;
+      tEl.textContent = tEl.dataset.unit === 'h' ? `${(mins / 60).toFixed(1).replace(/\.0$/, '')} h` : `${Math.round(mins)} min`;
+      if (k < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  });
+});
+
+/* ---- 0.2 mm: digits roll down from 9.9 when the band arrives */
+const mmEl = $('[data-mm]');
+if (!reduced) {
+  const setMm = roller(mmEl); setMm('9.9');
+  once(mmEl, () => setTimeout(() => setMm('0.2'), 150), '0px 0px -10% 0px');
+}
+
+/* ---- blade scan: scrubbed by scroll, monotonic */
+const scan = $('[data-blade-scan]'), bars = $$('rect', scan), scanM = $('[data-scan-m]'), finds = $$('[data-find]');
+let lit = 0;
+function paintScan(n) {
+  bars.forEach((b, i) => b.classList.toggle('on', i < n));
+  scanM.textContent = (n / bars.length * 62).toFixed(1) + ' m';
+  finds.forEach((li) => { const first = bars.findIndex((b) => b.dataset.f === li.dataset.find); li.classList.toggle('on', n > first); });
+}
+if (reduced) paintScan(bars.length);
+else {
+  const upd = () => {
+    const r = scan.getBoundingClientRect(), vh = innerHeight;
+    const p = Math.min(1, Math.max(0, (vh * 0.92 - r.top) / (vh * 0.62)));
+    const n = Math.max(lit, Math.round(p * bars.length));
+    if (n !== lit) { lit = n; paintScan(n); }
+  };
+  addEventListener('scroll', () => requestAnimationFrame(upd), { passive: true }); upd();
+}
+
+/* ---- same-day timeline: a playhead runs 06:00 → 15:40 */
+const day = $('[data-day]'), head = $('.day-track .head', day), fls = $$('.fl', day), filed = $('.filed', day), filedAt = $('[data-filed-at]');
+const flAt = [20, 21.98, 23.96];
+once(day, (instant) => {
+  const end = 60.42, dur = instant ? 0 : 2600, start = performance.now();
+  const setT = reduced ? null : roller(filedAt);
+  const step = (now) => {
+    const k = dur ? Math.min(1, (now - start) / dur) : 1, e = 1 - Math.pow(1 - k, 3), x = end * e;
+    head.style.transform = `translateX(${(x / 100) * day.querySelector('.day-track').clientWidth}px)`;
+    fls.forEach((f, i) => f.classList.toggle('on', x >= flAt[i]));
+    const mins = 360 + (x / 100) * 960;
+    if (setT) setT(`${pad(Math.floor(mins / 60))}:${pad(Math.floor(mins % 60))}`);
+    if (k < 1) requestAnimationFrame(step); else { filed.classList.add('on'); if (setT) setT('15:40'); head.style.opacity = 0; }
+  };
+  requestAnimationFrame(step);
+});
+
+/* ---- floating CTA: appears after the hero, hides on the demo band; its bar is scroll progress */
+const dock = $('[data-dock]'), heroEl = $('.hero'), demoEl = $('#demo');
+const dockUpd = () => {
+  const past = heroEl.getBoundingClientRect().bottom < 0, atDemo = demoEl.getBoundingClientRect().top < innerHeight * 0.8;
+  const on = past && !atDemo; dock.classList.toggle('on', on); dock.querySelector('a').tabIndex = on ? 0 : -1;
+  const max = document.documentElement.scrollHeight - innerHeight;
+  dock.style.setProperty('--sp', (scrollY / max).toFixed(3));
+};
+addEventListener('scroll', () => requestAnimationFrame(dockUpd), { passive: true }); dockUpd();
+
+/* ---- demo form */
+const form = $('[data-form]');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const v = (id) => document.getElementById(id).value.trim();
+  const ok = v('d-name') && /.+@.+\..+/.test(v('d-email')) && v('d-site');
+  $('[data-err]', form).hidden = !!ok;
+  if (!ok) return;
+  $$('.f, button[type=submit]', form).forEach((n) => (n.hidden = true));
+  const d = $('[data-done]', form); d.hidden = false; d.focus();
+  d.firstElementChild.textContent = `Booked in, ${v('d-name').split(' ')[0]}.`;
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+{
+ "url": "http://127.0.0.1:61478/index.html",
+ "outDir": "/tmp/cs-aud-fieldwork",
+ "ms": 46203,
+ "counts": {
+  "PASS": 9,
+  "INFO": 3
+ },
+ "profile": {
+  "families": [
+   "Archivo×73",
+   "Source Serif 4×22"
+  ],
+  "display": [
+   "148px/0.86/-0.05em w500 \"Send us your site.\"",
+   "106px/0.9/-0.045em w500 \"Ground that\"",
+   "106px/0.9/-0.045em w500 \"holds the rain.\""
+  ],
+  "bodySize": "17",
+  "weights": [
+   "400×52",
+   "500×33",
+   "550×5",
+   "600×5"
+  ],
+  "upperShare": 0,
+  "paper": "rgb(160,138,109)",
+  "accents": [
+   "rgb(31,75,99) text \"Discuss a commission\""
+  ],
+  "buttons": [
+   "square 38px \"Skip to content\"",
+   "square 41px \"Discuss a commission\"",
+   "square 50px \"Discuss a commission\n→\"",
+   "square 50px \"See the work\"",
+   "square 50px \"Send your portfolio\n→\""
+  ],
+  "eases": [
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)",
+   "cubic-bezier(.19,1,.22,1)"
+  ],
+  "nav": {
+   "h": 57,
+   "links": 11
+  },
+  "pageVh": 19.3
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "2 families: Archivo, Source Serif 4"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 148px · lh 0.86 · -0.05em · weight 500 · Archivo)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (1/6 traits: lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "One accent hue (210° (w312) e.g. rgb(31,75,99) text \"Discuss a commission\")"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 92 checked text elements meet AA. Text over imagery was skipped; check it by eye."
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: square"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "2 hero CTA(s)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.19,1,0.22,1)×54, cubic-bezier(0.76,0,0.24,1)×40, linear×36"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 6.2% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 19.3 viewports (direction 4 norm 12–23)"
+  },
+  {
+   "level": "INFO",
+   "rule": "motion.smoothScroll",
+   "msg": "Smooth scroll (Lenis) detected. Appropriate only for editorial, place, deep-tech, and immersive directions."
+  }
+ ],
+ "screenshots": [
+  "/tmp/cs-aud-fieldwork/desktop-hero.png",
+  "/tmp/cs-aud-fieldwork/slice-01.jpg … (one per viewport)",
+  "/tmp/cs-aud-fieldwork/desktop-full.jpg",
+  "/tmp/cs-aud-fieldwork/mobile-hero.png",
+  "/tmp/cs-aud-fieldwork/mobile-full.jpg",
+  "/tmp/cs-aud-fieldwork/reduced-motion-hero.png"
+ ]
+}

@@ -64,7 +64,7 @@ GSAP equivalents: `power2.out` (most common entrance), `power3.out`, `power4.out
   transition:opacity .8s var(--ease-out),filter .8s var(--ease-out),transform .8s var(--ease-out);
   transition-delay:calc(var(--i,0) * 90ms)}
 ```
-Use blur 4–10px on text and up to 18px on media, with translate ≤ 12px. These studios barely move things; they *focus* them. Trigger at `rootMargin:"0px 0px -20% 0px"` (≈ ScrollTrigger "top 80%"). `assets/motion.js` → `reveal()` implements this.
+**Tune it with variables, never with a more specific selector.** `tokens.css` reads `--reveal-filter` and `--reveal-transform`, so write `.t-poster .w{--reveal-filter:blur(12px)}`. A rule like `.js .t-poster .w[data-reveal]{filter:blur(12px)}` outranks `.is-in`, and the words stay blurred forever (this shipped once; the audit now fails it as `motion.stuckReveal`). Use blur 4–10px on text and up to 18px on media, with translate ≤ 12px. These studios barely move things; they *focus* them. Trigger at `rootMargin:"0px 0px -20% 0px"` (≈ ScrollTrigger "top 80%"). `assets/motion.js` → `reveal()` implements this.
 
 ### 5.2 Ink-in (no movement) (Steve Jobs Archive)
 Split into lines and animate `opacity .2→1` and `color #bbb→ink` with a 120–200ms line stagger. Best for statements on white.

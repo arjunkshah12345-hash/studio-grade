@@ -183,11 +183,13 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* ---------- Reveal (pairs with motion.js) ----------
    Hidden state applies only when <html> has class "js" (add it with an inline <script> in <head>).
-   No JS, a failed module load, or file:// → content simply shows. */
-.js [data-reveal]{opacity:0;filter:blur(8px);transform:translateY(10px);
+   No JS, a failed module load, or file:// → content simply shows.
+   Tune the hidden state with --reveal-filter / --reveal-transform on the element or a parent. Don't set
+   filter or transform on [data-reveal] with a more specific selector: it outranks .is-in and the text stays blurred. */
+.js [data-reveal]{opacity:0;filter:var(--reveal-filter,blur(8px));transform:var(--reveal-transform,translateY(10px));
   transition:opacity var(--t-reveal) var(--ease),filter var(--t-reveal) var(--ease),transform var(--t-reveal) var(--ease);
   transition-delay:calc(var(--i, 0) * var(--stagger))}
-.js [data-reveal].is-in{opacity:1;filter:blur(0);transform:none}
+.js [data-reveal].is-in{opacity:1;filter:none;transform:none}
 
 /* ---------- Utilities ---------- */
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}

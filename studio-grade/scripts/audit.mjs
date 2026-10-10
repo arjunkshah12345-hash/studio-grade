@@ -207,6 +207,8 @@ const COLLECT = () => {
   out.weights = tally(txt.map((el) => st(el).fontWeight)).slice(0, 6);
   out.textShadowBig = txt.filter((el) => st(el).textShadow !== 'none' && parseFloat(st(el).fontSize) >= 24).length;
   out.textStroke = all.filter((el) => parseFloat(st(el).webkitTextStrokeWidth) > 0).length;
+  // after the scroll-through every reveal should have fired: text still blurred or a reveal still invisible is stuck
+  out.stuckReveal = all.filter((el) => { if (!C.vis(el) || el.closest('svg,.sr-only,[aria-hidden="true"] [aria-hidden="true"]')) return false; const s = st(el); const b = (s.filter.match(/blur\(([\d.]+)px\)/) || [])[1]; const txt = (el.innerText || '').trim().length > 1; return (txt && +b >= 1 && C.cumOpacity(el) > 0.05) || (el.matches('[data-reveal]') && txt && parseFloat(s.opacity) < 0.1); }).slice(0, 6).map((el) => `${el.tagName.toLowerCase()}.${String(el.className).split(' ')[0]} "${el.innerText.trim().slice(0, 28)}" ${st(el).filter !== 'none' ? st(el).filter : 'opacity ' + st(el).opacity}`);
   out.gradientText = all.filter((el) => C.vis(el) && (st(el).backgroundClip === 'text' || st(el).webkitBackgroundClip === 'text') && parseFloat(st(el).fontSize) >= 22 && /gradient/.test(st(el).backgroundImage)).map((el) => el.innerText.trim().slice(0, 40));
   // ---- measure (line length)
   out.longMeasure = [...document.querySelectorAll('p')].filter(C.vis).filter((p) => { const s = st(p); return p.innerText.length > 160 && p.getBoundingClientRect().width / (parseFloat(s.fontSize) * 0.5) > 92; }).map((p) => p.innerText.slice(0, 40));
@@ -361,8 +363,9 @@ async function scrollThrough(page, { contrast = false } = {}) {
 }
 
 const t0 = Date.now();
-const step = (m) => { if (!AS_JSON) process.stderr.write(`  · ${m} (${((Date.now() - t0) / 1000).toFixed(0)}s)\n`); };
-setTimeout(() => { console.error('Audit timed out after 240s (very long page or a hanging loader). Try --quick.'); process.exit(3); }, 240000).unref();
+let AT = 'start';
+const step = (m) => { AT = m; if (!AS_JSON) process.stderr.write(`  · ${m} (${((Date.now() - t0) / 1000).toFixed(0)}s)\n`); };
+setTimeout(() => { console.error(`Audit timed out after 240s during: ${AT} (very long page or a hanging loader). Try --quick.`); process.exit(3); }, 240000).unref();
 let D = {}, M = {}, RM = {};
 try {
   // ---------------- desktop ----------------
@@ -376,17 +379,17 @@ try {
   step('desktop 1440×900'); await page.goto(url, { waitUntil: 'load', timeout: 45000 });
   await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {});
   await page.waitForTimeout(QUICK ? 1200 : 2600);                // let intros finish
-  await page.screenshot({ path: path.join(OUT, 'desktop-hero.png') });
+  step('desktop hero shot'); await page.screenshot({ path: path.join(OUT, 'desktop-hero.png') });
   await page.evaluate(PAGE_LIB);
   const firstFrame = await page.evaluate(() => { const C = window.__cs; const h1 = document.querySelector('h1'); const inView = (el) => { const r = el.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; };
     const hidden = [...document.querySelectorAll('h1, main a, main button, header ~ * a, section a')].filter((el) => C.vis(el) && inView(el) && el.innerText.trim() && !C.intentionallyHidden(el) && C.cumOpacity(el) < 0.1).map((el) => el.innerText.trim().slice(0, 30));
     return { h1Hidden: !!(h1 && inView(h1) && C.cumOpacity(h1) < 0.1), hidden: [...new Set(hidden)].slice(0, 6) }; });
   { const H = await page.evaluate(() => document.documentElement.scrollHeight); const n = Math.min(12, Math.ceil(H / 900));
     const at = (i) => (Math.ceil(H / 900) <= 12 ? i * 900 : Math.round(i * (H - 900) / (n - 1)));   // long pages: evenly spaced, always incl. the end
-    for (let i = 0; i < n; i++) { await page.evaluate((y) => window.scrollTo(0, y), at(i)); await page.waitForTimeout(QUICK ? 450 : 900); await page.screenshot({ path: path.join(OUT, `slice-${String(i + 1).padStart(2, '0')}.jpg`), type: 'jpeg', quality: 70 }); }
+    step('desktop slices'); for (let i = 0; i < n; i++) { await page.evaluate((y) => window.scrollTo(0, y), at(i)); await page.waitForTimeout(QUICK ? 450 : 900); await page.screenshot({ path: path.join(OUT, `slice-${String(i + 1).padStart(2, '0')}.jpg`), type: 'jpeg', quality: 70 }); }
     await page.evaluate(() => window.scrollTo(0, 0)); await page.waitForTimeout(300); }
-  await scrollThrough(page, { contrast: true });
-  D = await page.evaluate(COLLECT);
+  step('desktop scroll + contrast'); await scrollThrough(page, { contrast: true });
+  step('desktop collect'); D = await page.evaluate(COLLECT);
   D.firstFrame = firstFrame;
   if (/just a moment|attention required|security verification|access denied|are you a robot/i.test((D.title || '') + ' ' + (await page.evaluate(() => document.body.innerText.slice(0, 400))))) {
     add('FAIL', 'load.blocked', 'The page served a bot or security challenge, so the results describe the challenge page, not the site. Audit a local build or a preview URL instead.');
@@ -395,7 +398,7 @@ try {
   D.consoleErrors = [...new Set(consoleErrors)].slice(0, 5);
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.waitForTimeout(500);
-  await page.screenshot({ path: path.join(OUT, 'desktop-full.jpg'), fullPage: true, type: 'jpeg', quality: 70 }).catch(() => {});
+  step('desktop full shot'); await page.screenshot({ path: path.join(OUT, 'desktop-full.jpg'), fullPage: true, type: 'jpeg', quality: 70 }).catch(() => {});
   await ctx.close();
 
 } catch (e) {
@@ -411,9 +414,9 @@ try {
   await mp.evaluate(PAGE_LIB);
   for (let i = 0; i < 30; i++) { await mp.evaluate(() => scrollBy(0, innerHeight * 0.6)); await mp.waitForTimeout(QUICK ? 120 : 220); }
   await mp.waitForTimeout(700);
-  M = await mp.evaluate(MOBILE);
+  step('mobile measure'); M = await mp.evaluate(MOBILE);
   await mp.evaluate(() => window.scrollTo(0, 0)); await mp.waitForTimeout(400);
-  await mp.screenshot({ path: path.join(OUT, 'mobile-full.jpg'), fullPage: true, type: 'jpeg', quality: 65 }).catch(() => {});
+  step('mobile full shot'); await mp.screenshot({ path: path.join(OUT, 'mobile-full.jpg'), fullPage: true, type: 'jpeg', quality: 65 }).catch(() => {});
   await mctx.close();
 } catch (e) { add('WARN', 'load', 'Mobile pass failed: ' + String(e).slice(0, 200)); }
 try {
@@ -424,10 +427,10 @@ try {
   await rp.waitForTimeout(1200);
   await rp.evaluate(PAGE_LIB);
   RM = await rp.evaluate(() => { const C = window.__cs; const els = [...document.querySelectorAll('h1,h2,h3,p,a,button')].filter((el) => { const r = el.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0 && C.vis(el) && el.innerText.trim(); }); return { firstViewport: els.length, hidden: els.filter((el) => !C.intentionallyHidden(el) && C.cumOpacity(el) < 0.1).map((el) => el.innerText.trim().slice(0, 30)).slice(0, 5) }; });
-  await rp.screenshot({ path: path.join(OUT, 'reduced-motion-hero.png') });
+  step('reduced-motion shot'); await rp.screenshot({ path: path.join(OUT, 'reduced-motion-hero.png') });
   await rctx.close();
 } catch (e) { add('WARN', 'load', 'Reduced-motion pass failed: ' + String(e).slice(0, 200)); }
-await browser.close();
+step('closing browser'); await browser.close();
 if (server) server.close();
 
 // ======================================================================================
@@ -466,6 +469,7 @@ if (D.bigCapsSentences?.length) add('WARN', 'type.caps', 'Sentence-length all-ca
 if (D.tinyText > 0) add('WARN', 'type.tiny', `${D.tinyText} non-uppercase text element(s) under 11px`);
 if (D.textShadowBig) add('WARN', 'type.effects', `text-shadow on ${D.textShadowBig} large text element(s). Never seen on the top tier.`);
 if (D.textStroke) add('WARN', 'type.effects', `Outlined/stroked text on ${D.textStroke} element(s)`);
+if (D.stuckReveal?.length) add('FAIL', 'motion.stuckReveal', 'Text is still blurred or hidden after scrolling the whole page: a reveal never finished. Usually a selector more specific than .is-in sets filter/transform; tune --reveal-filter / --reveal-transform instead (motion.md 5.1).', D.stuckReveal);
 if (D.gradientText?.length) add('WARN', 'color.gradientText', 'Gradient-filled headline text. Use a two-tone heading (ink + 60% ink) instead.', D.gradientText);
 if (D.longMeasure?.length) add('WARN', 'type.measure', `${D.longMeasure.length} paragraph(s) wider than ~90 characters (aim 45–75ch)`, D.longMeasure);
 
@@ -618,4 +622,6 @@ else {
   console.log(`Screenshots → ${OUT}  (open desktop-hero.png, the slice-NN.jpg viewports and mobile-hero.png, and judge every one by eye)`);
   console.log('The script cannot judge taste. Also run the squint, logo, and template tests (SKILL.md Step 6).\n');
 }
-process.exit(counts.FAIL ? 1 : 0);
+// exit only once stdout has flushed: on macOS a pipe is async, and an early exit drops the JSON
+process.exitCode = counts.FAIL ? 1 : 0;
+process.stdout.write('', () => process.exit());

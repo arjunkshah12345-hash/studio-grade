@@ -178,7 +178,7 @@ a{color:inherit}
 .book__close:hover{color:var(--ink)}
 
 /* ---------------------------------------------------------------- reveals: blur-in words for posters */
-.js .t-poster .w[data-reveal]{filter:blur(12px);transform:translateY(.06em)}
+.t-poster .w{--reveal-filter:blur(12px);--reveal-transform:translateY(.06em)}
 
 /* ---------------------------------------------------------------- mobile: its own composition */
 @media (max-width:899px){
@@ -214,5 +214,5 @@ a{color:inherit}
   .steam,.tw{animation:none}
   .steam{opacity:.5}
   .layer{will-change:auto;transition:opacity var(--t-reveal) linear}
-  .js .t-poster .w[data-reveal]{filter:none;transform:none}
+  .t-poster .w{--reveal-filter:none;--reveal-transform:none}
 }

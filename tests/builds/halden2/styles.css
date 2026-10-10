@@ -90,7 +90,9 @@ a{color:inherit}
    A poster with content after it pins inside its own .pin track, so it has scrolled away before that content arrives. */
 .pin{height:175vh}
 /* hero intro: the word rises from behind the far ridge (it sits between the glow and far planes), the copy settles after it */
-.is-intro .hero__word{animation:hero-rise 2.2s cubic-bezier(.16,1,.3,1) .2s both}
+.is-intro .hero__word{animation:hero-wipe 1.6s cubic-bezier(.16,1,.3,1) .2s both}   /* phones, portrait: the word is in flow, so it rises inside its own box */
+@media (min-width:900px) and (min-aspect-ratio:4/3){ .is-intro .hero__word{animation:hero-rise 2.2s cubic-bezier(.16,1,.3,1) .2s both} }   /* wide: it rises from behind the far ridge */
+@keyframes hero-wipe{from{clip-path:inset(100% -5% -20% -5%)}to{clip-path:inset(-20% -5% -20% -5%)}}
 .is-intro .hero__kicker{animation:hero-in 1.2s cubic-bezier(.16,1,.3,1) 1.1s both}
 @keyframes hero-rise{from{transform:translateY(58%)}to{transform:none}}
 @keyframes hero-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}

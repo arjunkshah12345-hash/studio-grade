@@ -378,19 +378,24 @@ const TEXT_OVERLAP = () => {
     if (C.cumOpacity(el) < 0.4 || C.intentionallyHidden(el) || bar(el) || rotated(el)) return false;
     return true;
   }).slice(0, 600).map((el) => {
-    // display type: measure the glyph band, not the line box (its leading and ascender room are empty by design)
-    const b0 = el.getBoundingClientRect(), fs = parseFloat(getComputedStyle(el).fontSize);
-    const r = fs >= 40 ? { left: b0.left, right: b0.right, width: b0.width, top: b0.top + b0.height * 0.22, bottom: b0.bottom - b0.height * 0.1, height: b0.height * 0.68 } : b0;
-    return { el, r, b: blockOf(el) };
-  });
+    // per-line fragments (a wrapped link is two boxes, not one), clipped by overflow:hidden/auto ancestors
+    const clips = []; for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) { const s = getComputedStyle(p); if (s.overflowX !== 'visible' || s.overflowY !== 'visible') clips.push(p.getBoundingClientRect()); }
+    const fs = parseFloat(getComputedStyle(el).fontSize);
+    const rs = [...el.getClientRects()].map((q) => {
+      let r = { left: q.left, right: q.right, top: q.top, bottom: q.bottom };
+      if (fs >= 40) { const h = q.bottom - q.top; r.top += h * 0.22; r.bottom -= h * 0.1; }   // display type: the glyph band, not the line box
+      for (const c of clips) r = { left: Math.max(r.left, c.left), right: Math.min(r.right, c.right), top: Math.max(r.top, c.top), bottom: Math.min(r.bottom, c.bottom) };
+      return r;
+    }).filter((r) => r.right - r.left > 3 && r.bottom - r.top > 4);
+    return { el, rs, b: blockOf(el) };
+  }).filter((x) => x.rs.length);
   const hits = [];
   for (let i = 0; i < els.length; i++) for (let j = i + 1; j < els.length; j++) {
     const A = els[i], B = els[j];
     if (A.b === B.b || A.el.contains(B.el) || B.el.contains(A.el) || A.b.contains(B.el) || B.b.contains(A.el)) continue;
-    const w = Math.min(A.r.right, B.r.right) - Math.max(A.r.left, B.r.left), h = Math.min(A.r.bottom, B.r.bottom) - Math.max(A.r.top, B.r.top);
-    if (w <= 0 || h <= 0) continue;
-    const small = Math.min(A.r.width * A.r.height, B.r.width * B.r.height);
-    if ((w * h) / small > 0.3) hits.push(`"${C.ownText(A.el).slice(0, 24)}" × "${C.ownText(B.el).slice(0, 24)}"`);
+    const area = (r) => (r.right - r.left) * (r.bottom - r.top);
+    const hit = A.rs.some((a) => B.rs.some((b) => { const w = Math.min(a.right, b.right) - Math.max(a.left, b.left), h = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top); return w > 0 && h > 0 && (w * h) / Math.min(area(a), area(b)) > 0.3; }));
+    if (hit) hits.push(`"${C.ownText(A.el).slice(0, 24)}" × "${C.ownText(B.el).slice(0, 24)}"`);
   }
   return hits;
 };

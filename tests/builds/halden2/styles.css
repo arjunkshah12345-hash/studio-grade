@@ -86,12 +86,19 @@ a{color:inherit}
   .hero__aside{position:absolute;right:var(--margin);top:calc(var(--nav-h) + 6vh);width:min(25rem,29vw);margin:0}
 }
 
-/* ---------------------------------------------------------------- chapters: sticky posters over the print */
+/* ---------------------------------------------------------------- chapters: sticky posters over the print
+   A poster with content after it pins inside its own .pin track, so it has scrolled away before that content arrives. */
+.pin{height:175vh}
+/* hero intro: the word rises from behind the far ridge (it sits between the glow and far planes), the copy settles after it */
+.is-intro .hero__word{animation:hero-rise 2.2s cubic-bezier(.16,1,.3,1) .2s both}
+.is-intro .hero__kicker{animation:hero-in 1.2s cubic-bezier(.16,1,.3,1) 1.1s both}
+@keyframes hero-rise{from{transform:translateY(58%)}to{transform:none}}
+@keyframes hero-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 .chapter{position:relative;z-index:10;padding-inline:var(--margin)}
 .chapter--sauna{min-height:240vh}
-.chapter--rooms{min-height:300vh}
+.chapter--rooms{min-height:0}
 .chapter--table{min-height:210vh}
-.chapter--season{min-height:300vh}
+.chapter--season{min-height:0}
 .poster{position:sticky;top:calc(var(--nav-h) + 3vh);display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);
   row-gap:var(--s-4);padding-top:2vh}
 .poster .kicker{grid-column:1/-1}
@@ -105,7 +112,7 @@ a{color:inherit}
   background:var(--ember)}
 
 /* rooms index */
-.rooms{list-style:none;margin:70vh 0 0;padding:0}
+.rooms{list-style:none;margin:8vh 0 0;padding:0}
 .room{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:baseline;padding-block:var(--s-6)}
 .room+.room{box-shadow:0 -1px 0 var(--hairline)}
 .room__name{grid-column:1/6;font:var(--h3-wt) var(--h3)/var(--h3-lh) var(--font-display);letter-spacing:var(--h3-ls);margin:0}
@@ -115,14 +122,16 @@ a{color:inherit}
 .rooms__note{margin:var(--s-5) 0 0;font-size:var(--small);color:var(--ink-3);padding-bottom:40vh}
 
 /* season band: daylight drawn as carved ember */
-.months{margin-top:85vh;padding-bottom:30vh}
+.months{margin-top:8vh;padding-bottom:30vh}
+.months__inner{position:relative}
+.months__inner::before{content:"";position:absolute;z-index:-1;inset:-6vh calc(var(--margin) * -1);background:linear-gradient(to bottom,transparent,color-mix(in srgb,var(--night) 86%,transparent) 14%,color-mix(in srgb,var(--night) 86%,transparent) 86%,transparent);pointer-events:none}
 .months__title{font:500 italic var(--kicker)/1.1 var(--font-serif);color:var(--ink-2);margin:0 0 var(--s-6)}
 .months__list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);align-items:end}
 .month{display:flex;flex-direction:column;gap:6px}
 .bar{display:block;fill:var(--ember)}
 .bar--v{width:100%;height:clamp(140px,26vh,250px);margin-bottom:var(--s-3)}
 .bar--h{display:none}
-.month__h{font:200 clamp(1.5rem,.9rem + 1.5vw,2.5rem)/1 var(--font-display);letter-spacing:-.03em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.month__h{font:200 min(2.25rem,1.6vw)/1 var(--font-display);letter-spacing:-.03em;font-variant-numeric:tabular-nums;white-space:nowrap}
 .month__name{font-size:var(--small);color:var(--ink)}
 .month__note{font-size:var(--small);color:var(--ink-3);line-height:1.35}
 .is-closed .bar{fill:var(--fjord)}
@@ -194,7 +203,8 @@ a{color:inherit}
   .room__count{grid-column:2;justify-self:end;font-size:1.25rem}
   .room__text{grid-column:1/-1}
   .room__rate{grid-column:1/-1;justify-self:start;color:var(--ink-2)}
-  .rooms{margin-top:60vh}
+  .rooms{margin-top:6vh}
+  .pin{height:150vh}
   .months__list{grid-template-columns:1fr;row-gap:var(--s-3)}
   .month{display:grid;grid-template-columns:5.5em 1fr 4.6em;grid-template-areas:"name bar h" "name note note";column-gap:var(--s-3);row-gap:2px;align-items:center}
   .month__name{grid-area:name}

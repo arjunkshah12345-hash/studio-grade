@@ -103,6 +103,15 @@ addEventListener('scroll', () => requestAnimationFrame(tick), { passive: true })
 ```
 Map `--p` to state with `calc()` (`transform: translateY(calc((1 - var(--p)) * 40%))`) or step through named states in JS (low → rising → high). Under reduced motion, drop the 300vh height and show the key state statically. Scroll-driven CSS (`animation-timeline: view()`) is a progressive enhancement over this, not a replacement.
 
+**A pinned element must never share its scroll range with other content.** A sticky poster stays put while everything after it in the same section scrolls *over* it: room lists, charts and the next headline slide across the pinned text (this shipped once). Give the pin its own track, and put the follow-on content after the track, so the poster has scrolled away before that content arrives:
+```html
+<section class="chapter">
+  <div class="pin" style="height:175vh"><div class="poster" style="position:sticky;top:12vh">…headline + copy…</div></div>
+  <ol class="rooms">…arrives after the poster has left…</ol>
+</section>
+```
+When content must read over an illustrated stage, give it a soft scrim in the ground colour (a vertical gradient at about 85%) rather than letting it sit on bright artwork. The audit fails text drawn over other text as `layout.textOverlap` and names the slice.
+
 ### 5.9 Letter-split titles without breaking semantics
 Splitting an h1 into letter spans inflates word counts for screen readers and audits. Keep the real text in the heading, and draw the letters as presentation:
 ```html

@@ -363,6 +363,38 @@ async function scrollThrough(page, { contrast = false } = {}) {
 }
 
 const t0 = Date.now();
+
+// Text from two different blocks drawn on top of each other in the viewport (sticky posters, pinned sections,
+// absolutely placed copy). Bars (fixed/sticky under 200px tall) are skipped: they have their own background.
+const TEXT_OVERLAP = () => {
+  const C = window.__cs, vw = innerWidth, vh = innerHeight;
+  const bar = (el) => { for (let p = el; p && p !== document.body; p = p.parentElement) { const s = getComputedStyle(p); if ((s.position === 'fixed' || s.position === 'sticky') && p.getBoundingClientRect().height < 200) return true; } return false; };
+  // rotated text has an axis-aligned box far bigger than its glyphs, so boxes overlap where letters don't
+  const rotated = (el) => { for (let p = el; p && p !== document.body; p = p.parentElement) { const m = getComputedStyle(p).transform.match(/^matrix\(([^,]+),\s*([^,]+)/); if (m && Math.abs(+m[2]) > 0.01) return true; } return false; };
+  const blockOf = (el) => el.closest('h1,h2,h3,h4,h5,h6,p,li,dt,dd,figcaption,blockquote,a,button,label,td,th') || el;
+  const els = [...document.querySelectorAll('body *')].filter((el) => {
+    if (el.closest('svg,script,style,noscript,.sr-only') || !C.ownText(el) || C.ownText(el).length < 2) return false;
+    const r = el.getBoundingClientRect(); if (r.width < 4 || r.height < 6 || r.bottom < 0 || r.top > vh || r.right < 0 || r.left > vw) return false;
+    if (C.cumOpacity(el) < 0.4 || C.intentionallyHidden(el) || bar(el) || rotated(el)) return false;
+    return true;
+  }).slice(0, 600).map((el) => {
+    // display type: measure the glyph band, not the line box (its leading and ascender room are empty by design)
+    const b0 = el.getBoundingClientRect(), fs = parseFloat(getComputedStyle(el).fontSize);
+    const r = fs >= 40 ? { left: b0.left, right: b0.right, width: b0.width, top: b0.top + b0.height * 0.22, bottom: b0.bottom - b0.height * 0.1, height: b0.height * 0.68 } : b0;
+    return { el, r, b: blockOf(el) };
+  });
+  const hits = [];
+  for (let i = 0; i < els.length; i++) for (let j = i + 1; j < els.length; j++) {
+    const A = els[i], B = els[j];
+    if (A.b === B.b || A.el.contains(B.el) || B.el.contains(A.el) || A.b.contains(B.el) || B.b.contains(A.el)) continue;
+    const w = Math.min(A.r.right, B.r.right) - Math.max(A.r.left, B.r.left), h = Math.min(A.r.bottom, B.r.bottom) - Math.max(A.r.top, B.r.top);
+    if (w <= 0 || h <= 0) continue;
+    const small = Math.min(A.r.width * A.r.height, B.r.width * B.r.height);
+    if ((w * h) / small > 0.3) hits.push(`"${C.ownText(A.el).slice(0, 24)}" × "${C.ownText(B.el).slice(0, 24)}"`);
+  }
+  return hits;
+};
+const OVERLAPS = [];
 let AT = 'start';
 const step = (m) => { AT = m; if (!AS_JSON) process.stderr.write(`  · ${m} (${((Date.now() - t0) / 1000).toFixed(0)}s)\n`); };
 setTimeout(() => { console.error(`Audit timed out after 240s during: ${AT} (very long page or a hanging loader). Try --quick.`); process.exit(3); }, 240000).unref();
@@ -386,10 +418,10 @@ try {
     return { h1Hidden: !!(h1 && inView(h1) && C.cumOpacity(h1) < 0.1), hidden: [...new Set(hidden)].slice(0, 6) }; });
   { const H = await page.evaluate(() => document.documentElement.scrollHeight); const n = Math.min(12, Math.ceil(H / 900));
     const at = (i) => (Math.ceil(H / 900) <= 12 ? i * 900 : Math.round(i * (H - 900) / (n - 1)));   // long pages: evenly spaced, always incl. the end
-    step('desktop slices'); for (let i = 0; i < n; i++) { await page.evaluate((y) => window.scrollTo(0, y), at(i)); await page.waitForTimeout(QUICK ? 450 : 900); await page.screenshot({ path: path.join(OUT, `slice-${String(i + 1).padStart(2, '0')}.jpg`), type: 'jpeg', quality: 70 }); }
+    const overlaps = OVERLAPS; step('desktop slices'); for (let i = 0; i < n; i++) { await page.evaluate((y) => window.scrollTo(0, y), at(i)); await page.waitForTimeout(QUICK ? 450 : 900); await page.screenshot({ path: path.join(OUT, `slice-${String(i + 1).padStart(2, '0')}.jpg`), type: 'jpeg', quality: 70 }); const ov = await page.evaluate(TEXT_OVERLAP).catch(() => []); if (ov.length) overlaps.push(`slice-${String(i + 1).padStart(2, '0')}: ${ov.slice(0, 2).join(' · ')}`); }
     await page.evaluate(() => window.scrollTo(0, 0)); await page.waitForTimeout(300); }
   step('desktop scroll + contrast'); await scrollThrough(page, { contrast: true });
-  step('desktop collect'); D = await page.evaluate(COLLECT);
+  step('desktop collect'); D = await page.evaluate(COLLECT); D.textOverlap = OVERLAPS;
   D.firstFrame = firstFrame;
   if (/just a moment|attention required|security verification|access denied|are you a robot/i.test((D.title || '') + ' ' + (await page.evaluate(() => document.body.innerText.slice(0, 400))))) {
     add('FAIL', 'load.blocked', 'The page served a bot or security challenge, so the results describe the challenge page, not the site. Audit a local build or a preview URL instead.');
@@ -430,7 +462,7 @@ try {
   step('reduced-motion shot'); await rp.screenshot({ path: path.join(OUT, 'reduced-motion-hero.png') });
   await rctx.close();
 } catch (e) { add('WARN', 'load', 'Reduced-motion pass failed: ' + String(e).slice(0, 200)); }
-step('closing browser'); await browser.close();
+step('closing browser'); await Promise.race([browser.close(), new Promise((r) => setTimeout(r, 5000))]);   // Chrome sometimes never acks close; results are already collected
 if (server) server.close();
 
 // ======================================================================================
@@ -469,6 +501,7 @@ if (D.bigCapsSentences?.length) add('WARN', 'type.caps', 'Sentence-length all-ca
 if (D.tinyText > 0) add('WARN', 'type.tiny', `${D.tinyText} non-uppercase text element(s) under 11px`);
 if (D.textShadowBig) add('WARN', 'type.effects', `text-shadow on ${D.textShadowBig} large text element(s). Never seen on the top tier.`);
 if (D.textStroke) add('WARN', 'type.effects', `Outlined/stroked text on ${D.textStroke} element(s)`);
+if (D.textOverlap?.length) add('FAIL', 'layout.textOverlap', `Text drawn over other text while scrolling (${D.textOverlap.length} slice(s)). Usually a sticky poster that stays pinned while the rest of its section scrolls over it: pin it inside its own track, or let it scroll away first. Open the slices named here.`, D.textOverlap.slice(0, 5));
 if (D.stuckReveal?.length) add('FAIL', 'motion.stuckReveal', 'Text is still blurred or hidden after scrolling the whole page: a reveal never finished. Usually a selector more specific than .is-in sets filter/transform; tune --reveal-filter / --reveal-transform instead (motion.md 5.1).', D.stuckReveal);
 if (D.gradientText?.length) add('WARN', 'color.gradientText', 'Gradient-filled headline text. Use a two-tone heading (ink + 60% ink) instead.', D.gradientText);
 if (D.longMeasure?.length) add('WARN', 'type.measure', `${D.longMeasure.length} paragraph(s) wider than ~90 characters (aim 45–75ch)`, D.longMeasure);

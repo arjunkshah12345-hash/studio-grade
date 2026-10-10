@@ -1,12 +1,26 @@
-# Launch checklist
+# Launch
 
-Status on 2026-10-09: the skill and `site/` are ready. The site passes the skill's own audit with 0 fail and 0 warn at 1440 and 390px. The items below need a decision or an account.
+Live since 2026-10-10.
 
-- [ ] **Pick the public name.** Agent Skills reserve the words "claude" and "anthropic" in the `name` field, so `studio-grade` may be rejected by claude.ai and the API, and it's a trademark risk on a public directory. Rename the skill folder, the `name:` frontmatter in `SKILL.md`, and the site wordmark together.
-- [ ] **Set the repo owner.** Replace `OWNER/studio-grade` in `README.md` and in the `REPO` constant at the top of `site/site.js`. Every copy button and command on the site reads from that constant.
-- [ ] **Add a license**, for example MIT for the skill. The research notes record measurements of public sites, not their code or assets.
-- [x] **Install tested locally (2026-10-09).** `npx skills add <repo path> --list` finds exactly 1 skill, and the frontmatter validates. A project install copied the full folder (SKILL.md, all 12 references, assets, scripts). The audit runs from the installed copy.
-- [ ] **Push, then re-test from GitHub:** `npx skills add OWNER/studio-grade`.
-- [ ] **Deploy `site/`** as a static folder; no build step is needed (Vercel, Netlify or Cloudflare Pages). Run `./tools/build-site.sh` first so `site/work/` and `site/shots/` are current.
-- [ ] **Add the domain to the page:** set `<link rel="canonical">`, and make the `og:image` an absolute URL in `site/index.html`. `og.png` is already generated: 1200×630, the blue Institutional state.
-- [ ] **Optional:** re-run `node studio-grade/scripts/audit.mjs <deployed-url> --direction 2 --register confident` against production.
+- **Repo:** https://github.com/arjunkshah12345-hash/studio-grade (public, MIT)
+- **Install:** `npx skills add arjunkshah12345-hash/studio-grade`. Tested from GitHub: the CLI finds exactly 1 skill (`studio-grade`).
+- **Site:** https://studio-grade.vercel.app (Vercel project `studio-grade`, deployed from `web/dist`)
+- **Audit:** the skill's own audit gives 0 fail and 0 warn on every page in production, at 1440 and 390px.
+
+## Ship a site change
+
+```bash
+node tools/web/build.mjs                                  # → web/dist
+cd web/dist && vercel deploy --prod --yes --name studio-grade
+```
+
+## Add a project to the work
+
+1. Build it in `tests/builds/<slug>/` with an agent that reads only the skill. Keep the Design Spine comment at the top of the HTML.
+2. Serve the repo root on 4317 and run `node tools/web/shoot.mjs`. Save its audit JSON as `web/src/media/audit-<slug>.json`.
+3. Add it to `PROJECTS` in `tools/web/build.mjs` and whitelist the folder in `.gitignore`. Then rebuild and deploy.
+
+## Next
+
+- [ ] Submit to the skills.sh directory once installs register. Share the OG card: `web/src/og.png`.
+- [ ] Optional custom domain: point it at the Vercel project, then update `SITE` in `tools/web/build.mjs`.

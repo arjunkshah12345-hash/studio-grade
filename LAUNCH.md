@@ -20,6 +20,12 @@ cd web/dist && vercel deploy --prod --yes --name studio-grade
 2. Serve the repo root on 4317 and run `node tools/web/shoot.mjs`. Save its audit JSON as `web/src/media/audit-<slug>.json`.
 3. Add it to `PROJECTS` in `tools/web/build.mjs` and whitelist the folder in `.gitignore`. Then rebuild and deploy.
 
+## Since launch
+
+- 2026-10-10: a real install from GitHub (`npx skills add … -a claude-code -y`) copies the full skill. `skills update` pulls new commits. The installed audit runs from its install location. skills.sh lists skills from install telemetry, so the listing should appear once installs register.
+- Audit additions, each from a bug found in a real build: `motion.stuckReveal` (text still blurred after scrolling), `layout.textOverlap` (text drawn over text at any scroll slice; per line fragment, clipped, display type measured by its glyph band, rotated text skipped), and a 5s cap on closing Chrome (the rare 240s hang).
+- Halden: posters pin in their own tracks, the hero has an intro, and the daylight chart has a scrim.
+
 ## Next
 
 - [ ] Submit to the skills.sh directory once installs register. Share the OG card: `web/src/og.png`.

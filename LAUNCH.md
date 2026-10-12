@@ -28,8 +28,8 @@ cd web/dist && vercel deploy --prod --yes --name studio-grade
 
 ## Launch assets (2026-10-11)
 
-- Release **v1.0.0** with the 51s launch film (1080p MP4) attached: https://github.com/arjunkshah12345-hash/studio-grade/releases/tag/v1.0.0
-- The film plays on the site at /#film (6.5MB web encode, poster frame, click to play, no autoplay)
+- Release **v1.0.0** with the 35s launch film (1080p MP4) attached: https://github.com/arjunkshah12345-hash/studio-grade/releases/tag/v1.0.0
+- The film plays on the site at /#film (9.9MB web encode, poster frame, click to play, no autoplay)
 - skills.sh: https://skills.sh/arjunkshah12345-hash/studio-grade/studio-grade (listed; security audits Gen · Socket · Snyk pass)
 - Post copy, images and the film: `launch/` (local only; not committed)
 

@@ -214,7 +214,7 @@ Contents: 1 Engineered Dark · 2 Ledger Light · 3 Warm Paper · 4 Editorial Mot
 ## 9. Playful System
 
 **When:** consumer apps, games, communities, kids, food and drink, or a B2B brand that wants warmth. Personality comes from illustration and motion; the grid stays strict.
-**Exemplars:** Family (crypto wallet), MindMarket (Louis Paquet / KOKI-KIKO, SOTM), Lando Norris (OFF+BRAND, SOTY 2025), Choo-Choo World (Lusion), Floema (Bürocratik).
+**Exemplars:** Family (crypto wallet), MindMarket (Louis Paquet / KOKI-KIKO, SOTM), Lando Norris (OFF+BRAND, SOTY 2025), Choo-Choo World (Lusion), Floema (Bürocratik), Ignura (launch studio, 2026).
 
 ```css
 :root{
@@ -230,6 +230,7 @@ Contents: 1 Engineered Dark · 2 Ledger Light · 3 Warm Paper · 4 Editorial Mot
 - **Rules:** multi-color is allowed **only as a system**: each hue is assigned to one feature or section (Family gives each feature its own display-p3 hue). Illustration is bespoke and consistent (a flat character cast, rubber-hose figures, blob creatures), never a stock pack. Type stays disciplined: one family, tight tracking, weights 400–600. Big friendly radii are allowed here (24–64px).
 - **Hero:** a centered h1 with character illustrations bursting in from the edges or the bottom on springs, word by word (Family: words appear one by one, illustrations pop on springs, CTAs last). Or a full-bleed saturated field with a huge −0.06em headline (MindMarket).
 - **Signatures:** a path ribbon drawn across a photo with text on the path; cards stacking on scroll; stat counters at 144px; a mixed-font headline (one word in a second display face at the same size, as Lando does); toy-plastic buttons (`box-shadow:0 6px 0 <darker>` that press to `translateY(4px)`); wiggle and pop micro-interactions.
+- **Studio / service variant (Ignura):** the whole site is one illustrated world (sky, ground, fire), and every service is a character in the cast. Tiers and steps are named from the brand metaphor (Ignite / Burn / lift-off), pricing is drawn as tickets, and the process is a journey map. Copy carries inline UI tokens (`thing▍`, `localhost:3000▍`). Four role-locked type voices: statement serif, body sans, pixel for prices/UI, one handwritten word per heading in the accent (techniques.md §61–67).
 - **Motion:** springs everywhere, but **critically damped on big surfaces** (Family `mass 4, stiffness 800, damping 80`). Overshoot `cubic-bezier(.34,1.56,.64,1)` only on small pops. Rive or Lottie for illustration.
 - **Avoid:** Comic Sans energy, rainbow gradients, emoji as icons, uncontrolled multi-color UI (color must map to meaning), and childish copy for adult products.
 

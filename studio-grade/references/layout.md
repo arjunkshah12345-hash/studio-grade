@@ -44,6 +44,8 @@ Nothing good lives in the ambiguous 50–60px zone *by accident*. Content contai
 | H14 | **Branded loader → reveal** | the loader is a brand object; an aperture or blur reveal into the hero | illoca, Atlas, Cartier 365 |
 | H15 | **Transformation pair** | centered or left h1 + ≤2 CTAs; below, two object cards (before → after) with mono filename + metric, the improved metric in accent, an arrow node between them, on a textured stage | convt.app |
 | H16 | **Technical drawing as hero** | the product or its subject drawn to scale (SVG) across the full width on a hairline grid; the action drawn as a path or flow; outputs annotated with measured callouts; h1 bottom-left, ≤2 CTAs | Kestrel (test build), Baseten isometrics |
+| H17 | **Profile card (personal / founder sites)** | a framed 680–760px document column on graph paper; avatar + name at 20–28px + role in ink-2 + 2–3 small buttons (email first); scroll-spy TOC in the left margin; no monumental h1, because the person is the subject (techniques.md §65) | jawadjalal.com |
+| H18 | **Illustrated world with a framed film** | headline (statement face + one handwritten word in the accent) over a landscape; the cast peeks over the edge of a framed film or window that holds the demo; one CTA; a "Read the film" transcript below (techniques.md §61–67) | ignura.com |
 
 Hero constraints on every archetype: h1 **≤ 2 lines on desktop** (3 max for editorial bottom-left), **≤ 2 CTAs**, and **one** subject. Text sits on the left, the bottom-left, or overlapping the subject; a vertically centered stack is reserved for H3 and H4, which compensate with a strong subject.
 

@@ -476,7 +476,8 @@ if (server) server.close();
 if (D.families) {
   const fams = D.families.map(([f]) => f);
   const OVERUSED = ['Poppins', 'Montserrat', 'Roboto', 'Open Sans', 'Lato', 'Raleway', 'Nunito', 'Plus Jakarta Sans', 'Space Grotesk', 'Syne', 'Clash Display', 'Playfair Display', 'DM Serif Display', 'Bebas Neue', 'Anton', 'Arial', 'Helvetica', 'Times New Roman', 'Times'];
-  if (fams.length > 3) add('FAIL', 'type.families', `${fams.length} type families in use (top tier: median 2, max 3)`, fams);
+  if (fams.length === 4 && REGISTER === 'loud') add('WARN', 'type.families', '4 type families: allowed in the Loud register only when each face has exactly one written job (statement · body · pixel/mono for numbers · one handwritten word per heading). Confirm the jobs in the Spine (techniques.md §66).', fams);
+  else if (fams.length > 3) add('FAIL', 'type.families', `${fams.length} type families in use (top tier: median 2, max 3; Loud may run 4 role-locked faces)`, fams);
   else add('PASS', 'type.families', `${fams.length} famil${fams.length === 1 ? 'y' : 'ies'}: ${fams.join(', ')}`);
   const primary = fams[0] || '';
   if (/^(Times New Roman|Times|serif|-apple-system|system-ui|sans-serif|Arial|Helvetica)$/i.test(primary)) add('FAIL', 'type.load', `Primary text family is a fallback (${primary}). The web font did not load or none was set.`);

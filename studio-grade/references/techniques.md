@@ -313,3 +313,65 @@ Add a 5px accent dot at each branch terminal. Each leaf card starts with a mono 
 /* light theme: inset 0 -1px 0 rgb(0 0 0/.04), 0 0 0 1px rgb(0 0 0/.08), 0 1px 2px rgb(0 0 0/.06) */
 ```
 An inner top highlight + a 1px ring + two tight drops makes buttons feel pressable without looking skeuomorphic. The gradient is a ~8% L step in the same hue, which is not decoration.
+
+## F. Studio and personal-site moves (ignura.com, jawadjalal.com)
+
+### 61. Inline UI tokens in copy (ignura, jawadjalal)
+Let the domain show up inside the sentence. A word becomes the thing it names: a terminal pill with a caret, an input field, a code chip, or a struck-out word with a handwritten rewrite. One or two per paragraph, never every noun.
+```html
+<h2>You built the <span class="tok tok--term">thing<i class="caret"></i></span>.</h2>
+<p>Months of 2am vibe<code class="tok">coding</code>, and it works: on <span class="tok tok--input">localhost:3000<i class="caret"></i></span>.</p>
+<p>Launch day slips: the <s>14th</s>, the <s>28th</s>, <em class="hand">“soon”</em>.</p>
+<p>i’m jawad, a <span class="tok tok--chip"><svg>…pencil…</svg>designer</span> and founder in london.</p>
+```
+```css
+.tok{font:500 .82em/1 var(--font-mono);padding:.18em .42em;border-radius:6px;background:rgb(var(--ink-rgb)/.06);white-space:nowrap}
+.tok--term{background:var(--ink);color:var(--paper);padding:.08em .3em}           /* sized to the heading, not the body */
+.tok--input{background:var(--surface);box-shadow:inset 0 0 0 1.5px var(--ink)}
+.tok--chip{font:inherit;background:color-mix(in oklab,var(--accent) 14%,transparent);box-shadow:inset 0 -1.5px 0 var(--accent)}
+.caret{display:inline-block;width:.5ch;height:1em;margin-left:.06em;background:currentColor;vertical-align:-.12em}
+s{text-decoration-thickness:.08em;text-decoration-color:var(--accent);color:var(--ink-3)}
+```
+**Contrast:** the "grey prose, ink nouns" look only works if the grey still passes AA. jawadjalal.com's `oklch(.72 …)` grey on near-white is about 2.3:1, and 96 of 160 text elements fail. Use ink at 60–65% (about 5:1) for the receding text, and let the chips and ink weight carry the contrast.
+
+The caret blink is a finite reveal-triggered animation, not an infinite loop on the whole page. On dev-tool and creator-tool brands this replaces product screenshots in the early sections, because the copy itself proves you know the world.
+
+### 62. Pricing as an object (ignura)
+When there are 1–3 offers, draw them as a physical thing from the brand's world (tickets, receipts, boarding passes, menu cards), not as a feature-checklist table.
+- **Each offer is a ticket:** a stub torn off with a perforated edge (`border-left:2px dashed`, plus two half-circle cut-outs via `radial-gradient` masks). A punch-hole radio sits on the stub. The offer's name is in the display face, and a one-line promise is in the handwriting voice: "the whole launch" / "keeps the fire going".
+- **The price is the biggest number on the card:** "from" sits small above it and the unit ("one-off" / "a month") under it, in the pixel or mono voice with `tabular-nums`.
+- **Live truth beside it:** a status pill with a dot, "Now booking November launches". It's a scarcity cue *only if it's true*, so wire it to a real date or omit it. Add a currency toggle when the audience is international.
+- **Tags on the ticket edge:** a rotated tag ("4 weeks") and a round sticker ("monthly · one month's notice"). Each answers one buying question.
+```css
+.ticket{position:relative;border-radius:18px;background:var(--c1);--hole:radial-gradient(circle at 0 50%,transparent 14px,#000 14.5px);
+  -webkit-mask:var(--hole) left/51% 100% no-repeat,radial-gradient(circle at 100% 50%,transparent 14px,#000 14.5px) right/51% 100% no-repeat}
+.ticket .price{font:600 clamp(2.4rem,1.6rem+2.4vw,3.6rem)/1 var(--font-pixel,var(--font-mono));font-variant-numeric:tabular-nums}
+```
+
+### 63. A naming system from the brand metaphor (ignura)
+Pick the brand's central metaphor and name *everything* from it: tiers, steps, the CTA, even the 404. Ignura is fire, so the tiers are **Ignite** (one launch) and **Burn** (monthly), the process ends at "lift-off", and the service cast is a fire, a campfire, a rocket and a matchstick fuse. Write the list in the Spine: `NAMING: <metaphor> → tier A, tier B, process end, CTA verb, 404 line`. When a name needs explaining, the metaphor is wrong for that item, so use a plain word instead.
+
+### 64. Process as a journey map (ignura)
+Replace "Step 1 / 2 / 3" cards with one wide illustrated landscape. A path winds through it (an SVG `path` drawn with `stroke-dashoffset` as it enters view), with numbered station markers. Each station has a short title and a two-line body. Put the headline above it as a promise with an end point: "Four weeks, start to *lift-off*." On mobile, turn the path vertical and stack the stations down it. Don't just shrink the wide map.
+
+### 65. The personal README page (jawadjalal)
+For a personal or founder site, the page is a document, not a landing page:
+- **Frame:** a single 680–760px column with 1px borders on both sides, sitting on a faint graph-paper page (`background:linear-gradient(var(--hairline) 1px,transparent 1px) 0 0/24px 24px, linear-gradient(90deg,var(--hairline) 1px,transparent 1px) 0 0/24px 24px`). A dot-matrix band forms the header.
+- **Hero = profile card:** avatar, name at **20–28px**, role in ink-2, and 2–3 small buttons (email first). The person is the subject, so no monumental h1.
+- **A scroll-spy table of contents** sits in the left margin (desktop ≥1280px only), with the current section in ink and the rest at 40%.
+- **Ventures as a dotted-leader ledger:** `name ·········· role · metric`, using a `flex:1` leader span with a dotted `border-bottom`. Hovering a row floats a preview card of the product.
+- **Small type, still accessible:** body at 15–17px (not 12–13px), secondary text at ≥4.5:1, and buttons at ≥36px tall with a 44px tap area on mobile. The audit will still flag the short page length and the small mobile h1; for this archetype those are judged, not fixed.
+- **One data-art moment** that shows how the person thinks, such as a Venn of their skills with their avatar at the centre ("Where it overlaps").
+- **Finale + ghost wordmark:** a voiced one-liner ("Still reading? That means something clicked. Let's talk.") and one button. Then the name at ~190px in 8–10% ink, cut off by the page edge.
+
+### 66. Role-locked type voices (ignura)
+The Loud and Playful register may run **up to 4 faces only if each has exactly one job**. Write the jobs into the Spine:
+- **Statement serif or sans:** headings.
+- **Body:** the reading text.
+- **Pixel or mono:** prices, numbers and UI labels.
+- **Handwriting:** **one** emphasised word or phrase per heading, always in the accent colour (`<em class="hand">lift-off</em>`).
+
+The handwriting voice is the spice, so a second handwritten phrase in the same heading means you're decorating. In Quiet and Confident registers, the ≤3-family rule stands.
+
+### 67. "Read the film" and opt-in sound (ignura)
+Under any hero video or launch film, add a quiet disclosure: **Read the film**, "the words on screen and the key sounds, in order". It opens the transcript as a list. That makes the video accessible, indexable and skimmable, and signals craft. If the site has ambient sound, it is **off by default**, behind a labelled nav toggle (a speaker icon with a strike), and the state persists in `localStorage`.

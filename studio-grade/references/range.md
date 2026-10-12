@@ -18,7 +18,7 @@ Choose one register in Step 1, next to the direction. Each direction can be play
 
 The ceiling for loud is Agent Arcade: five accents, gradient headline text, glow borders. **Loud is not many colours; loud is one colour logic played big.**
 
-What stays fixed in every register: ≤3 families, one motif, one colour *logic* (not necessarily one hue), contrast ≥ AA, ≤2 hero CTAs, a voice in the copy, and real content as the image.
+What stays fixed in every register: ≤3 families (Loud/Playful may run a 4th only when every face has exactly one written job, techniques.md §66), one motif, one colour *logic* (not necessarily one hue), contrast ≥ AA, ≤2 hero CTAs, a voice in the copy, and real content as the image.
 
 Loud-register rules:
 - Colour may cover 30–100% of a viewport as a **field**. Use one hue per field, and set the text in a dark or light tint *of the same hue* (Dropbox Brand: `#684505` on `#FAD24B`), or in pure ink if it passes AA.
@@ -134,6 +134,9 @@ Word-chip headlines (each word in a bordered white box), burgundy and lavender b
 
 **Sport / personality (Lando)**
 A tinted-dark ground (olive-black), one neon accent taken from the subject (the helmet), mixed-font caps headlines (one word in a heavy display face), a collectible gallery, `elastic.out` only on small pops.
+
+**Illustrated launch world (Ignura)**
+A warm paper ground with landscape fields (sky blue, grass green, sun yellow) and one fire-orange brand colour for the CTA and the handwritten emphasis word. A bespoke cast with faces maps 1:1 to services. Sections divide on horizons and torn-paper bands. Headlines are a Fraunces-style serif at 600–650 with one Caveat-style handwritten word. Prices sit in a pixel face on ticket objects. Motion: characters idle (blink, hop) on finite loops, small pops spring, and big surfaces ease out.
 
 **Agency index (Seventeen / Bennett & Clive)**
 No display type: the hero is a colour-bar totem or a 150px client-name stack, with video behind the active item and a `mix-blend-mode: difference` header.

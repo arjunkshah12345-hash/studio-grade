@@ -27,6 +27,8 @@ Section heads are **two-tone sentences**: a statement + elaboration ("A new spec
 - **Humane / contrarian** (Daylight, Anthropic): "We refuse to accept a future where our devices are exhausting, addictive, and distracting."
 - **Civic / imperative** (Obama, AIC): "We need your help to turn hope into action." · "Admission is always free."
 - **Laconic luxury** (Totême, Aman): place names as headlines ("Amanvari, Mexico"), two-word captions ("The New Shearling"), "Discover more".
+- **Founder, lowercase** (jawadjalal): "i'm jawad, a designer and founder in london (yc soon). i started making things for money at thirteen and never really stopped." Lowercase reads personal only on a personal site; never on a company page. Key nouns carry the weight (as inline chips), and the rest sits in ink-2.
+- **Launch-studio wit** (ignura): "You built the thing." · "Then comes the bit you can't prompt…" · "Launch day slips: the ~~14th~~, the ~~28th~~, 'soon'." Specific, self-aware, written by someone who has shipped. Strikethrough-and-rewrite is the joke format, so use it once per page.
 - **Wry tech** (Serve, Bennett & Clive): "Why move a 2-pound burrito in a 2-ton car?" · "THOUGHTFUL. PRECISE. THE OPPOSITE OF CHAOTIC."
 
 Write 3 sample lines in the Design Spine before building. If a line could appear on a competitor's site unchanged, rewrite it.
@@ -36,6 +38,8 @@ Write 3 sample lines in the Design Spine before building. If a line could appear
 Good: "Download for Mac" · "Start building" · "Talk to an engineer" · "Plan your visit" · "Explore the collection" · "Book appointment" · "Reserve" · "Configure now" · "Create your mission" · "Read the story" · "See all hours" · "Watch film ▶".
 Acceptable when paired with context: "Get started", "Learn more →".
 Bad: "Get Started Today!" · "Unlock the Power" · "Join the Revolution" · "Click Here" · "Submit" · "Shop now!!".
+
+**Finales with a voice:** "Still reading? That means something clicked. Let's talk." (jawadjalal) beats "Get in touch". Name the reader's state, then the one action.
 
 ## 4. Proof copy
 

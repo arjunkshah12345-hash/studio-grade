@@ -35,13 +35,13 @@ Read the brief. Pick one direction from this table (the *system*), then a **regi
 |---|---|---|---|
 | 1 | **Engineered Dark** | dev tools, AI products, power-user apps, indie utilities | Linear, Raycast, Resend, Black Forest Labs, convt |
 | 2 | **Ledger Light** | B2B SaaS, fintech, infra, docs, APIs | Stripe, Vercel, Mintlify, Attio, Factory, Baseten, Ramp |
-| 3 | **Warm Paper** | AI labs, thoughtful tools, founder-led products, hardware with a mission | Anthropic, Cursor, Daylight, Steve Jobs Archive |
+| 3 | **Warm Paper** | AI labs, thoughtful tools, founder-led products, personal sites, hardware with a mission | Anthropic, Cursor, Daylight, Steve Jobs Archive, jawadjalal.com |
 | 4 | **Editorial Motion** | studios, architecture, portfolios, culture, premium services | Studio D (Exo Ape), Populous (Locomotive), Bennett & Clive, Atlas Motion |
 | 5 | **Quiet Luxury Commerce** | fashion, beauty, fragrance, objects, D2C premium | Aesop, Totême, Magda Butrym, Aman, Akris |
 | 6 | **Cinematic Place** | hospitality, travel, real estate, wine, experiences | White Desert (Malvah), ERA Residence, Tengile, Ace Hotel |
 | 7 | **Institutional** | museums, nonprofits, publishers, foundations, government, large content | Art Institute of Chicago, Obama Foundation, Pentagram, Norton |
 | 8 | **Deep-Tech Spec** | robotics, aerospace, climate, biotech, hardware, industrial AI | Terminal Industries, ICOMAT, Inversa, Glyphic, Vast, Radian |
-| 9 | **Playful System** | consumer apps, games, community, B2B that wants warmth | Family, MindMarket, Lando Norris, Choo-Choo World |
+| 9 | **Playful System** | consumer apps, games, community, studios and B2B that want warmth | Family, MindMarket, Lando Norris, Choo-Choo World, Ignura |
 | 10 | **Immersive** | launches with one hero object, campaigns, cause pieces, dwell-time KPIs | illoca (Unseen), Lusion, Immersive Garden, Active Theory |
 
 How to choose:
@@ -191,7 +191,7 @@ The full list, with the replacement for each item, is in `references/anti-slop.m
 | `references/layout.md` | Grids, margins, hero archetypes, section-pattern library, page rhythm, mobile |
 | `references/motion.md` | Eases, durations, springs, reveal primitives, loaders, smooth-scroll policy, reduced motion |
 | `references/components.md` | Buttons, nav forms, eyebrows, cards, logo walls, testimonials, stats, forms, footers |
-| `references/techniques.md` | 60 signature techniques with copy-paste code (rails, ticker, letter-roll, aperture…) |
+| `references/techniques.md` | 67 signature techniques with copy-paste code (rails, ticker, letter-roll, aperture…) |
 | `references/imagery.md` | Product-UI-as-hero, generative ornament, photo art direction, placeholders |
 | `references/copy.md` | Headline formulas, voice, CTA verbs, banned phrases, microcopy |
 | `references/anti-slop.md` | The full list of AI tells, each with its fix; use it for redesign audits |

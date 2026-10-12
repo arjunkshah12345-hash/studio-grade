@@ -2,6 +2,10 @@
 
 [![skills.sh](https://img.shields.io/badge/skills.sh-studio--grade-2B2BF2)](https://skills.sh/arjunkshah12345-hash/studio-grade/studio-grade) [![security audits: pass](https://img.shields.io/badge/security%20audits-Gen%20·%20Socket%20·%20Snyk%20pass-2B2BF2)](https://skills.sh/arjunkshah12345-hash/studio-grade/studio-grade) [![license: MIT](https://img.shields.io/badge/license-MIT-0B0B10)](LICENSE)
 
+[![Watch the 51-second launch film](.github/media/film.jpg)](https://studio-grade.vercel.app/#film)
+
+**[▶ Watch the launch film](https://studio-grade.vercel.app/#film)** (51s), or [download the MP4](https://github.com/arjunkshah12345-hash/studio-grade/releases/latest).
+
 ![Seven briefs, seven agents, one skill: the seven sites built with Studio Grade](.github/media/gallery.jpg)
 
 An agent skill for studio-grade web design. It was measured from 99 live sites built by about 40 studios and in-house teams: basement.studio, Exo Ape, Work & Co, AREA 17, Locomotive, Lusion, Malvah and others. Your agent picks a direction, sets how loud to be, builds from measured tokens, and audits its own work before you see it.

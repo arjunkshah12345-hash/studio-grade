@@ -146,6 +146,18 @@ function home() {
   <h2 class="statement-h" data-scroll-fill>Every AI-built site looks the same, because it’s the average of everything. This skill was measured from the best of it, and it can tell when it’s being average.</h2>
 </section>
 
+<section class="film" id="film" aria-labelledby="film-h">
+  <div class="film-in wrap">
+    <div class="film-head"><h2 id="film-h" class="film-h" data-reveal>The launch film</h2><p class="film-meta" data-reveal style="--i:1">51 seconds · built with HyperFrames from the real builds and real audit output</p></div>
+    <figure class="film-frame" data-reveal style="--i:2">
+      <video class="film-video" controls playsinline preload="none" poster="/media/film/poster.jpg" width="1920" height="1080">
+        <source src="/media/film/studio-grade-launch.mp4" type="video/mp4">
+        <a href="/media/film/studio-grade-launch.mp4">Download the launch film (MP4)</a>
+      </video>
+    </figure>
+  </div>
+</section>
+
 <section class="feat wrap" aria-labelledby="feat-h">
   <div class="sec-head"><h2 id="feat-h" class="sec-h" data-reveal>Selected work</h2><a class="link" href="/work/">All ${total} projects <span aria-hidden="true">→</span></a></div>
   <div class="feat-grid">

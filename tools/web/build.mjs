@@ -148,7 +148,7 @@ function home() {
 
 <section class="film" id="film" aria-labelledby="film-h">
   <div class="film-in wrap">
-    <div class="film-head"><h2 id="film-h" class="film-h" data-reveal>The launch film</h2><p class="film-meta" data-reveal style="--i:1">51 seconds · built with HyperFrames from the real builds and real audit output</p></div>
+    <div class="film-head"><h2 id="film-h" class="film-h" data-reveal>The launch film</h2><p class="film-meta" data-reveal style="--i:1">35 seconds · built with HyperFrames from the real builds and real audit output</p></div>
     <figure class="film-frame" data-reveal style="--i:2">
       <video class="film-video" controls playsinline preload="none" poster="/media/film/poster.jpg" width="1920" height="1080">
         <source src="/media/film/studio-grade-launch.mp4" type="video/mp4">

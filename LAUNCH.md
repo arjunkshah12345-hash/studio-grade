@@ -26,7 +26,14 @@ cd web/dist && vercel deploy --prod --yes --name studio-grade
 - Audit additions, each from a bug found in a real build: `motion.stuckReveal` (text still blurred after scrolling), `layout.textOverlap` (text drawn over text at any scroll slice; per line fragment, clipped, display type measured by its glyph band, rotated text skipped), and a 5s cap on closing Chrome (the rare 240s hang).
 - Halden: posters pin in their own tracks, the hero has an intro, and the daylight chart has a scrim.
 
+## Launch assets (2026-10-11)
+
+- Release **v1.0.0** with the 51s launch film (1080p MP4) attached: https://github.com/arjunkshah12345-hash/studio-grade/releases/tag/v1.0.0
+- The film plays on the site at /#film (6.5MB web encode, poster frame, click to play, no autoplay)
+- skills.sh: https://skills.sh/arjunkshah12345-hash/studio-grade/studio-grade (listed; security audits Gen · Socket · Snyk pass)
+- Post copy, images and the film: `launch/` (local only; not committed)
+
 ## Next
 
-- [ ] Submit to the skills.sh directory once installs register. Share the OG card: `web/src/og.png`.
+- [x] skills.sh listing is live (it fills from installs; nothing to submit). Share the OG card: `web/src/og.png`.
 - [ ] Optional custom domain: point it at the Vercel project, then update `SITE` in `tools/web/build.mjs`.

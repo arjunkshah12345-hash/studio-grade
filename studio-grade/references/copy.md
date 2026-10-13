@@ -28,7 +28,7 @@ Section heads are **two-tone sentences**: a statement + elaboration ("A new spec
 - **Civic / imperative** (Obama, AIC): "We need your help to turn hope into action." · "Admission is always free."
 - **Laconic luxury** (Totême, Aman): place names as headlines ("Amanvari, Mexico"), two-word captions ("The New Shearling"), "Discover more".
 - **Founder, lowercase** (jawadjalal): "i'm jawad, a designer and founder in london (yc soon). i started making things for money at thirteen and never really stopped." Lowercase reads personal only on a personal site; never on a company page. Key nouns carry the weight (as inline chips), and the rest sits in ink-2.
-- **Launch-studio wit** (ignura): "You built the thing." · "Then comes the bit you can't prompt…" · "Launch day slips: the ~~14th~~, the ~~28th~~, 'soon'." Specific, self-aware, written by someone who has shipped. Strikethrough-and-rewrite is the joke format, so use it once per page.
+- **Launch-studio wit** (ignura): "You built the thing." · "Then comes the bit you can't prompt…" · "Launch day slips: the ~~14th~~, the ~~28th~~, 'soon'." Specific, self-aware, written by someone who has shipped. Strikethrough-and-rewrite is the joke format, so use it once per page in body copy (marks inside a figure, where correction is the motif, don't count).
 - **Wry tech** (Serve, Bennett & Clive): "Why move a 2-pound burrito in a 2-ton car?" · "THOUGHTFUL. PRECISE. THE OPPOSITE OF CHAOTIC."
 
 Write 3 sample lines in the Design Spine before building. If a line could appear on a competitor's site unchanged, rewrite it.
@@ -41,9 +41,12 @@ Bad: "Get Started Today!" · "Unlock the Power" · "Join the Revolution" · "Cli
 
 **Finales with a voice:** "Still reading? That means something clicked. Let's talk." (jawadjalal) beats "Get in touch". Name the reader's state, then the one action.
 
+**In → out headlines** (Fornax): "Work goes in cold. Comes out finished." Two short sentences, the second the transformation's end state. Works for any product that converts one thing into another.
+
 ## 4. Proof copy
 
 - **Precise numbers beat round ones:** "99.999%", "$1.9T", "1.72802563%", "Pages read 10,759,862". Footnote claims ("86%…¹").
+- **No customers yet? Show where it plugs in.** "Works inside the tools your business already runs on." over integration logos is honest proof; "Trusted by" over the same logos is a lie. Label early testimonials "From early access".
 - **Name names:** customers, quotes with roles, and real logos instead of "Trusted by 10,000+ teams".
 - Quantified customer proof per chapter: "Notion powers millions of agent conversations daily on Vercel."
 

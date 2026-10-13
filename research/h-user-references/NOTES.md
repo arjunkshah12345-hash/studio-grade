@@ -81,3 +81,20 @@ Measured 2026-10-12 (`sites/jawadjalal-com/`). Page 5.3 viewports.
 
 - **ignura.com** (`--register loud --direction 9`): 2 fails, 10 warns. It runs 6 type families, 9 text elements are below AA, 22 controls have no accessible name, it has text-shadow and stroked text, and it's centered throughout. **Take** the ideas: inline UI tokens, pricing as tickets, metaphor naming, the journey map, role-locked voices capped at 4, and "Read the film". **Leave** the excess faces, the unlabelled icon buttons and the contrast misses.
 - **jawadjalal.com** (`--register quiet --direction 3`): 1 fail, 7 warns. 96 of 160 text elements are below AA because the receding grey is about 2.3:1, and 16 controls have no accessible name. The short page and 20px mobile h1 are intrinsic to the personal-README archetype. **Take** the framed document column, profile-card hero, dotted-leader ledger, Venn and ghost wordmark. **Leave** the failing grey; the skill's version uses ink at 60–65%.
+
+---
+
+## Fornax: "the front office that turns calls, emails and forms into finished work" (screenshot only)
+
+Supplied by the user on 2026-10-12 as a single presentation image (`shots/fornax.jpg`), with no URL. **Nothing here is measured**: values are read from the image, not from computed styles.
+
+- **Photo composed for the type.** The hero is one generated, sunlit photograph: clear blue sky over the top ~45%, a city skyline and lake on a low horizon, a tree canopy breaking in top-right, and the subject (a woman working on a laptop on a picnic blanket) in the lower-right third. The centered serif headline "Work goes in cold. / Comes out finished." sits in the sky in white, with no scrim, because the sky *is* the scrim. The nav lies on the sky with a 1px white hairline under it and a white pill CTA.
+- **The photo bookends the page.** The same photograph, re-cropped into a rounded ~24px card, is the finale ("Hand off the busywork. Keep the good part.") with an inline email capture and "14 day free trial. No card needed."
+- **UI vignettes on crops of the photo.** The three steps are cards whose top half is a crop of the hero (sky gradient, a corner of the tree) with a real UI fragment floating on it. Input: missed call, emailed quote request, web form, each with a timestamp. Processing: an extracted lead with Wants / Available / Budget and "Reply drafted". Output: a calendar slot booked, "Confirmation sent · SMS", "Contact updated · HubSpot". It is a transformation told in three frames, and the photo becomes the brand's colour field across the page. Persona rows ("For solo operators who are done being their own receptionist") repeat the move at larger size.
+- **Type:** a warm book serif at regular weight for display (a Tiempos/Newsreader-like face), and a neutral grotesk for UI and body. The "Why Fornax" statement is two-tone: the first sentence in ink, the rest in grey.
+- **Proof that doesn't fake customers:** the logo row is framed as integrations ("Works inside the tools your business already runs on.": Gmail, HubSpot, Slack, QuickBooks, Outlook). The testimonials are labelled "From early access" with a note that the numbers come from early-access businesses.
+- **Ghost wordmark** at full width, filled with a sky-blue → paper gradient and cut off by the page's bottom edge.
+
+### Honest read: take / leave
+- **Take:** the photo composed for the headline; the photo reused as the finale; UI vignettes on photo crops as the three-step transformation; the in → out headline; integrations as proof; the wordmark tinted with the photo's sky.
+- **Leave:** the white ghost secondary button on a pale sky (fails contrast) and its typo ("See How Its Works"); the wordmark that spells FORMAX for a brand called Fornax; Title Case card titles under sentence-case heads; two sections that appear twice; centered heads on every section. The person with a laptop in a park sits right on the "not models pointing at laptops" line. It works only because the photo shows the *outcome* (the work is handled, so you're in the park), not the product.

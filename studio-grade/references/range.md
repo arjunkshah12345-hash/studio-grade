@@ -92,7 +92,7 @@ The **Studio Grade default look** is this combination:
 5. a thin SVG line drawing (chart, diagram, product elevation) as the hero image;
 6. one tiny accent used on marks only.
 
-**If your Spine matches 4 or more of these, change at least 2**, unless the brief truly demands them (a deep-tech spec sheet, say). Write "DIFFERENT FROM DEFAULT BY:" in the Spine with the axes you changed. The audit flags the default look (`style.defaultLook`).
+**Count the final Spine. If it matches 4 or more of these, change at least 2** (Quiet Warm Paper sits at 3/6 by design, so spend your changes on labels, metadata and the hero medium), unless the brief truly demands them (a deep-tech spec sheet, say). Write "DIFFERENT FROM DEFAULT BY:" in the Spine with the axes you changed. The audit flags the default look (`style.defaultLook`).
 
 **In a set** (several sites in one project, a portfolio, a gallery, variants for a client), **no two sites may share more than 2 of the 5 axis values**. Change the ground, the type genre, *and* the image medium between them.
 

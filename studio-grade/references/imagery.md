@@ -80,7 +80,7 @@ Don't fill slots with random stock or AI-gradient art. Build a placeholder that 
 ```
 `.ph{background:var(--sunken);display:grid;place-items:end start;padding:16px;background-image:<subtle hatch>}`. This shows the layout honestly, gives the client an art-direction shot list, and still looks designed. Tell the user which slots need real imagery.
 
-If an image-generation tool is available, prompt like a photographer: subject, lens, light direction, grade, crop, and what to exclude ("no text, no logos, no people looking at camera"). Generate **one consistent series**, not a mixed bag.
+If an image-generation tool is available, prompt like a photographer: subject, lens, light direction, grade, crop, and what to exclude ("no text, no logos, no people looking at camera"). Generate **one consistent series**, not a mixed bag. When the photo carries the headline, compose it around the type (reserve the zone, horizon low, subject in a lower third) and reuse that one image across hero, step cards and finale (techniques.md §68–70).
 
 
 **Placeholder discipline** (learned from test builds):
@@ -103,6 +103,15 @@ If an image-generation tool is available, prompt like a photographer: subject, l
 - **Grain:** one shared paper-grain overlay (SVG turbulence, 4–6% opacity) over everything, so all pieces read as the same stock.
 - **Craft details:** masking-tape strips at corners (semi-transparent cream, 4% rotation), offcuts in empty corners, handwritten-style captions on paper slips ("model 1:500").
 - **Motion:** pieces slide, peel and stack like hands are moving them (expo-out, 600–900ms, small rotation settle). Scrubbed sequences can flood, fill or peel layers. Keep text on *untilted* slips so it renders crisp; tilt only the paper behind it.
+
+## 6c. Flat colour still life (quiet commerce with no packshots: Morrow test build)
+
+When there's no photography of an object, draw it as a Hammershøi-style still life: a wall plane, a shelf plane, a window-light parallelogram on the wall, the object, and **its cast shadow**, all as flat SVG fills in one restrained palette per scene. It beats line art for fragrance, ceramics, food and objects, because colour and light carry the mood that a packshot would.
+- **One light vector per scene** `v = (dx, dy)` for the window light and the shadow alike. Shadow = the convex hull of the object's footprint and the footprint shifted by `v`; tall parts (a cap) cast a second, offset hull at `v·h/H`.
+- **Give the footprint real depth** (≈20 units at a ¾ view). With a thin footprint, sideways shadows collapse into sticks.
+- **Glass reads as glass** with a lighter "caustic" band inside the shadow (from `v·.3` to `v·.75`) and a 1px highlight down one edge of the object.
+- **A series, not one picture:** keep the shelf height, the camera and the object constant, and vary only the wall colour and light angle. Then the scenes become the product range's system (Morrow: one scene per hour of the day).
+- Reveal with **light-up** (motion.md §5): from grey into colour, no movement.
 
 ## 7. Icons
 

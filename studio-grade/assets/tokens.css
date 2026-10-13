@@ -180,7 +180,7 @@ button,input,select,textarea{font:inherit;color:inherit}
 
 /* ---------- Art-directed placeholder ---------- */
 .ph{background:var(--paper-2) repeating-linear-gradient(45deg,transparent 0 9px,var(--hairline) 9px 10px);
-  display:grid;align-items:end;padding:16px;color:var(--ink-3);border-radius:var(--r-media)}
+  display:grid;align-items:end;padding:16px;color:var(--ink-2);border-radius:var(--r-media)}   /* ink-2: ink-3 on the hatch fails AA */
 
 /* ---------- Reveal (pairs with motion.js) ----------
    Hidden state applies only when <html> has class "js" (add it with an inline <script> in <head>).

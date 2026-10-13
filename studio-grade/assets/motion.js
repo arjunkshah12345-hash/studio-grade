@@ -168,13 +168,23 @@ export function scrollSpy(container, list = document.querySelector(container.dat
   if (!list) return;
   const panels = [...container.querySelectorAll('[data-spy-panel]')];
   const items = [...list.querySelectorAll('[data-spy-item]')];
-  const set = (id) => items.forEach((it) => {
-    const on = it.dataset.spyItem === id; it.classList.toggle('is-active', on);
-    if (on) it.setAttribute('aria-current', 'step'); else it.removeAttribute('aria-current');
-  });
-  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) set(e.target.dataset.spyPanel); }),
-    { rootMargin: '-45% 0px -45% 0px' });
-  panels.forEach((p) => io.observe(p));
+  if (!panels.length) return;
+  let cur = null;
+  const set = (id) => {
+    if (id === cur) return; cur = id;
+    items.forEach((it) => {
+      const on = it.dataset.spyItem === id; it.classList.toggle('is-active', on);
+      if (!/^(A|BUTTON)$/.test(it.tagName)) return;                      // aria-current only on controls, not on media layers
+      if (on) it.setAttribute('aria-current', 'step'); else it.removeAttribute('aria-current');
+    });
+  };
+  // the active panel is the last one whose top has passed 55% of the viewport:
+  // survives fast jumps (anchor links) and still reaches the final panel
+  let raf = 0;
+  const update = () => { raf = 0; let id = panels[0].dataset.spyPanel; for (const p of panels) if (p.getBoundingClientRect().top < innerHeight * 0.55) id = p.dataset.spyPanel; set(id); };
+  const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+  addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll, { passive: true });
+  update();
 }
 
 /* ---------------------------------------------------------------- auto-init */

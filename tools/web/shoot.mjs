@@ -6,7 +6,7 @@ import fs from 'node:fs'; import path from 'node:path';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const OUT = path.join(ROOT, 'web/src/media');
 let b; try { b = await chromium.launch(); } catch { b = await chromium.launch({ channel: 'chrome' }); }
-const settle = async (p) => { await p.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {}); await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(2200); };
+const settle = async (p) => { await p.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {}); await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(+process.env.SHOOT_WAIT || 2200); };   // SHOOT_WAIT=6000 for heroes that animate in for longer
 for (const slug of process.argv.slice(2)) {
   const url = `http://127.0.0.1:4317/tests/builds/${slug}/index.html`;
   const dir = path.join(OUT, slug); fs.mkdirSync(dir, { recursive: true });

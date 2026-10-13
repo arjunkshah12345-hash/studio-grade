@@ -1,8 +1,8 @@
-# Signature techniques: 67 moves with code
+# Signature techniques: 71 moves with code
 
 Choose **2–3 per site**, and make sure they serve the motif. **System rules don't count toward the 2–3:** §63 (naming), §66 (type voices) and §67 ("Read the film") shape the whole build rather than one moment, so they sit alongside your signatures. A page that uses ten of these is a demo reel, not a design. Each entry names its origin so you can match it to a direction.
 
-Index: **A. Structure & framing** 1–11 · **B. Type moves** 12–30 · **C. Product & proof** 31–37 · **D. Interaction & motion** 38–55 · **E. Small-product moves** 56–60 · **F. Studio and personal-site moves** 61–67 (visual signatures: 61, 62, 64, 65; system rules: 63, 66, 67)
+Index: **A. Structure & framing** 1–11 · **B. Type moves** 12–30 · **C. Product & proof** 31–37 · **D. Interaction & motion** 38–55 · **E. Small-product moves** 56–60 · **F. Studio and personal-site moves** 61–67 (visual signatures: 61, 62, 64, 65; system rules: 63, 66, 67) · **G. Photo-led product moves** 68–70 · **H. Editorial marks** 71
 
 ---
 
@@ -403,3 +403,49 @@ The handwriting voice is the spice, so a second handwritten phrase in the same h
 
 ### 67. "Read the film / trailer / episode" and opt-in sound (ignura)
 Under any hero video or launch film, add a quiet disclosure: **Read the film**, "the words on screen and the key sounds, in order". It opens the transcript as a list. That makes the video accessible, indexable and skimmable, and signals craft. No real film yet? A silent kinetic-caption cut is fine: label it as captions-only, still ship the transcript, and give any finite autoplaying caption sequence the same pause control as a video. If the site has ambient sound, it is **off by default**, behind a labelled nav toggle (a speaker icon with a strike), and the state persists in `localStorage`.
+
+## G. Photo-led product moves (Fornax, a user-supplied screenshot)
+
+### 68. A photo composed for the headline (Fornax)
+When the page has one photograph, compose (or generate) it *around the type*, not the other way round. Reserve a clean zone (sky, wall, water, table) for the headline, put the horizon low, and put the subject in a lower third on the side away from the CTA. The zone becomes the scrim, so no overlay is needed.
+- **Generation prompt, written like a shot list:** `wide 21:9 photograph, clear late-morning sky filling the top 45%, horizon at 62% height, [subject: the outcome state, e.g. "a contractor reading on a park bench, phone face-down"] in the lower-right third, a tree canopy entering top-right, 35mm, soft warm grade, no text, no logos, subject not looking at camera`.
+- **Check the zone before you set type:** sample the region behind the headline (a 1/8-scale canvas average) and require ≥4.5:1 for the body line and ≥3:1 for the display line. If it fails, regenerate or re-crop. Don't add a 40% black overlay.
+- **Every control on the photo needs contrast:** a ghost "white at 20%" secondary button on a pale sky is the classic failure. Make it a solid paper pill, a dark pill, or a text link with a 1px underline.
+- **Show the outcome, not the product.** A person with a laptop is stock unless the picture says what changes ("the work is handled, so you're outside"). Write that sentence in the Spine; if you can't, use type or UI instead.
+- **Bookend it:** re-crop the same photo for the finale band (rounded 20–28px, inset inside the page margins) with the one CTA. Use one photograph, two crops, and no third image.
+```css
+.hero--photo{position:relative;min-height:min(100svh,920px);display:grid;align-content:start;padding-top:clamp(7rem,14vh,10rem);text-align:center;color:#fff;
+  background:url(hero.avif) 70% 100%/cover no-repeat}            /* object-position keeps the subject in frame on mobile */
+.hero--photo .nav{border-bottom:1px solid rgb(255 255 255/.35)}
+@media (max-width:760px){.hero--photo{background-position:78% 100%;padding-top:6.5rem}}
+```
+
+### 69. UI vignettes on crops of the photo (Fornax)
+Tell the product's transformation in three cards: **input → processing → output**. Each card's top half is a crop of the hero photograph (`background:url(hero.avif) <x>% <y>%/<size>`, with a different region per card: sky, sky + leaves, horizon), and a real UI fragment floats on it. The input card holds 3 incoming items with timestamps. The processing card holds the one extracted record ("Wants · Available · Budget") with a status chip. The output card holds the booked result plus the systems updated ("Confirmation sent · SMS", "Contact updated · HubSpot"). Card titles say the arc in sentence case ("It comes in cold" → "Fornax works out the job" → "It comes out finished"). The photo becomes the brand's colour field without a single decorative gradient. Pair it with §56 (transformation pair) when the product converts one thing into another.
+
+### 70. Ghost wordmark tinted from the photo (Fornax)
+A variant of §27 for photo-led sites: the closing wordmark at full width, filled with a gradient sampled from the hero (`background:linear-gradient(to bottom,<sky top>,<sky bottom> 60%,var(--paper));-webkit-background-clip:text;color:transparent`), and cut off by the page's bottom edge (`margin-bottom:-.22em;overflow:hidden` on the footer). Mark it `aria-hidden="true"`, and **spell-check it against the brand name**: the reference ships "FORMAX" for a brand called Fornax.
+
+
+## H. Editorial marks
+
+### 71. Hand-drawn annotation over live text (Lantern test build)
+For research, editorial, legal and education brands, the motif can be a proofreader's pen: a circle, an underline, a wavy line, a strike with an inline correction, and a margin note in the accent. The text underneath stays real and selectable.
+```html
+<span class="mark">206<svg class="mark-svg" viewBox="0 0 100 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 C 30 18, 70 18, 98 12"/></svg></span>
+<del>212</del> <ins class="fix">206</ins>     <!-- the correction sits inline after the struck word, never absolutely positioned -->
+```
+```css
+.mark{position:relative;white-space:nowrap}
+.mark-svg{position:absolute;left:-4%;bottom:-.28em;width:108%;height:.5em;max-width:none;overflow:visible}  /* max-width:none: tokens.css caps svg at 100% */
+.mark-svg path{fill:none;stroke:var(--accent);stroke-width:1.6;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.mark-svg{clip-path:inset(0 100% 0 0);transition:clip-path .7s var(--ease) var(--d,0s)}   /* wipe it in left to right */
+.is-in .mark-svg{clip-path:inset(0 0 0 0)}
+.fix{text-decoration:none;font-style:italic;color:var(--accent)}
+del{text-decoration-color:var(--accent);text-decoration-thickness:.08em}
+@media (prefers-reduced-motion:reduce){.mark-svg{clip-path:none;transition:none}}
+```
+- Wipe the mark with `clip-path`, not `stroke-dashoffset`. With `preserveAspectRatio="none"` and `non-scaling-stroke`, dash lengths are unreliable.
+- Overlay SVGs need `max-width:none`, because `tokens.css` caps `svg` at 100% of its inline host and silently halves them.
+- An absolutely positioned correction collides with the line above when the word wraps to the start of a line, so keep `ins` inline.
+- Use 3–5 marks across the page (the motif rule), and stage them in the order a reader would make them.

@@ -163,7 +163,11 @@ const CONTRAST_PASS = () => {
     const op = C.cumOpacity(el); if (op < 0.05) continue;                // not revealed yet / clone: re-check later
     C.checked.add(el);
     if (C.decorative(el) || el.closest('select,option')) continue;
-    const sb = C.stackBg(el); if (sb === 'media') continue;              // text over imagery: judge by eye
+    const sb = C.stackBg(el);
+    if (sb === 'media') {                                                 // text over imagery: queue it for pixel sampling after the pass
+      if (!el.closest('[aria-hidden="true"]') && (C.media ||= []).length < 30) { const s2 = getComputedStyle(el); el.setAttribute('data-sg-m', String(C.media.length)); const r0 = el.getBoundingClientRect(); const under = document.elementsFromPoint(r0.left + Math.min(r0.width / 2, 20), r0.top + r0.height / 2).find((e) => e !== el && !el.contains(e) && (/^(IMG|VIDEO|CANVAS|PICTURE|IFRAME|svg)$/i.test(e.tagName) || getComputedStyle(e).backgroundImage !== 'none')); const kind = under && !/^(IMG|VIDEO|CANVAS|PICTURE|IFRAME)$/.test(under.tagName) && !/url\(/.test(getComputedStyle(under).backgroundImage) ? 'pattern' : 'image'; C.media.push({ kind, fg: C.toRGBA(s2.color), op, size: parseFloat(s2.fontSize), bold: +s2.fontWeight >= 700, text: C.ownText(el).slice(0, 36) }); }
+      continue;
+    }
     const bg = sb || C.effBg(el); if (!bg) continue;
     const s = getComputedStyle(el); const fg0 = C.toRGBA(s.color);
     const fg = C.over([fg0[0], fg0[1], fg0[2], fg0[3] * op], bg);
@@ -209,7 +213,7 @@ const COLLECT = () => {
   out.textStroke = all.filter((el) => parseFloat(st(el).webkitTextStrokeWidth) > 0).length;
   // after the scroll-through every reveal should have fired: text still blurred or a reveal still invisible is stuck
   out.stuckReveal = all.filter((el) => { if (!C.vis(el) || el.closest('svg,.sr-only,[aria-hidden="true"] [aria-hidden="true"]')) return false; const s = st(el); const b = (s.filter.match(/blur\(([\d.]+)px\)/) || [])[1]; const txt = (el.innerText || '').trim().length > 1; return (txt && +b >= 1 && C.cumOpacity(el) > 0.05) || (el.matches('[data-reveal]') && txt && parseFloat(s.opacity) < 0.1); }).slice(0, 6).map((el) => `${el.tagName.toLowerCase()}.${String(el.className).split(' ')[0]} "${el.innerText.trim().slice(0, 28)}" ${st(el).filter !== 'none' ? st(el).filter : 'opacity ' + st(el).opacity}`);
-  out.gradientText = all.filter((el) => C.vis(el) && (st(el).backgroundClip === 'text' || st(el).webkitBackgroundClip === 'text') && parseFloat(st(el).fontSize) >= 22 && /gradient/.test(st(el).backgroundImage)).map((el) => el.innerText.trim().slice(0, 40));
+  out.gradientText = all.filter((el) => C.vis(el) && !el.closest('[aria-hidden="true"]') && (st(el).backgroundClip === 'text' || st(el).webkitBackgroundClip === 'text') && parseFloat(st(el).fontSize) >= 22 && /gradient/.test(st(el).backgroundImage)).map((el) => el.innerText.trim().slice(0, 40));
   // ---- measure (line length)
   out.longMeasure = [...document.querySelectorAll('p')].filter(C.vis).filter((p) => { const s = st(p); return p.innerText.length > 160 && p.getBoundingClientRect().width / (parseFloat(s.fontSize) * 0.5) > 92; }).map((p) => p.innerText.slice(0, 40));
   // ---- colour
@@ -326,7 +330,7 @@ const COLLECT = () => {
     const monoUpper = txt.filter((el) => { const s = st(el); return /mono|code|courier|consol|menlo/i.test(s.fontFamily) && (s.textTransform === 'uppercase' || (C.ownText(el) === C.ownText(el).toUpperCase() && /[A-Z]{2}/.test(C.ownText(el)))); }).length / Math.max(1, txt.length);
     const hairlines = all.filter((el) => { if (!C.vis(el) || el.closest('table,[role="img"],[role="table"],form')) return false; const s = st(el); return ['Top', 'Bottom'].some((k) => { const w = parseFloat(s['border' + k + 'Width']); const c = C.toRGBA(s['border' + k + 'Color']); return w > 0 && w <= 1.5 && c[3] > 0 && (c[3] <= 0.3 || !C.chromatic(c)); }); }).length;
     const lineHero = [...document.querySelectorAll('svg')].some((sv) => { const r = sv.getBoundingClientRect(); if (r.top + scrollY > vh * 1.1 || r.width < vw * 0.3) return false; const strokes = [...sv.querySelectorAll('path,line,polyline,circle,rect,ellipse')].filter((n) => { const s = getComputedStyle(n); return s.stroke !== 'none' && (s.fill === 'none' || C.toRGBA(s.fill)[3] < 0.1); }).length; return strokes >= 15; });
-    const tinyAccent = (out.accentHues || []).length <= 1 && out.chromaCoverage < 1.5;
+    const tinyAccent = (out.accentHues || []).length === 1 && out.chromaCoverage < 1.5;   // zero accent hues is restraint (Totême), not the default look
     const lightWeights = display.length ? display.filter((d) => d.weight <= 500).length / display.length >= 0.8 : false;
     const sig = { warmOffWhite: lightWarm, monoUpperLabels: monoUpper >= 0.1, hairlineBands: hairlines >= 14, lineDrawingHero: lineHero, tinyAccent, lightDisplay: lightWeights };
     out.defaultLook = { sig, score: Object.values(sig).filter(Boolean).length, monoUpperShare: +monoUpper.toFixed(2), hairlines };
@@ -424,11 +428,11 @@ try {
   step('desktop hero shot'); await page.screenshot({ path: path.join(OUT, 'desktop-hero.png') });
   await page.evaluate(PAGE_LIB);
   const firstFrame = await page.evaluate(() => { const C = window.__cs; const h1 = document.querySelector('h1'); const inView = (el) => { const r = el.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; };
-    const hidden = [...document.querySelectorAll('h1, main a, main button, header ~ * a, section a')].filter((el) => C.vis(el) && inView(el) && el.innerText.trim() && !C.intentionallyHidden(el) && C.cumOpacity(el) < 0.1).map((el) => el.innerText.trim().slice(0, 30));
+    const hidden = [...document.querySelectorAll('h1, main a, main button, header ~ * a, section a')].filter((el) => C.vis(el) && inView(el) && el.innerText.trim() && !C.intentionallyHidden(el) && !(el.tagName !== 'H1' && el.closest('figure,[role="img"]')) && C.cumOpacity(el) < 0.1).map((el) => el.innerText.trim().slice(0, 30));   // controls inside a figure (Replay, play) aren't hero copy
     return { h1Hidden: !!(h1 && inView(h1) && C.cumOpacity(h1) < 0.1), hidden: [...new Set(hidden)].slice(0, 6) }; });
   { const H = await page.evaluate(() => document.documentElement.scrollHeight); const n = Math.min(12, Math.ceil(H / 900));
     const at = (i) => (Math.ceil(H / 900) <= 12 ? i * 900 : Math.round(i * (H - 900) / (n - 1)));   // long pages: evenly spaced, always incl. the end
-    const overlaps = OVERLAPS; step('desktop slices'); for (let i = 0; i < n; i++) { await page.evaluate((y) => window.scrollTo(0, y), at(i)); await page.waitForTimeout(QUICK ? 450 : 900); await page.screenshot({ path: path.join(OUT, `slice-${String(i + 1).padStart(2, '0')}.jpg`), type: 'jpeg', quality: 70 }); const ov = await page.evaluate(TEXT_OVERLAP).catch(() => []); if (ov.length) overlaps.push(`slice-${String(i + 1).padStart(2, '0')}: ${ov.slice(0, 2).join(' · ')}`); }
+    const overlaps = OVERLAPS; step('desktop slices'); for (let i = 0; i < n; i++) { await page.evaluate((y) => window.scrollTo(0, y), at(i)); await page.waitForTimeout(QUICK ? 450 : 900); if (!QUICK) await page.evaluate(() => Promise.race([Promise.all(document.getAnimations().filter((a) => { const t = a.effect?.getComputedTiming?.(); return t && Number.isFinite(t.endTime) && t.endTime < 6000; }).map((a) => a.finished.catch(() => {}))), new Promise((r) => setTimeout(r, 3000))])).catch(() => {}); /* finite reveals finish before the shot */ await page.screenshot({ path: path.join(OUT, `slice-${String(i + 1).padStart(2, '0')}.jpg`), type: 'jpeg', quality: 70 }); const ov = await page.evaluate(TEXT_OVERLAP).catch(() => []); if (ov.length) overlaps.push(`slice-${String(i + 1).padStart(2, '0')}: ${ov.slice(0, 2).join(' · ')}`); }
     await page.evaluate(() => window.scrollTo(0, 0)); await page.waitForTimeout(300); }
   step('desktop scroll + contrast'); await scrollThrough(page, { contrast: true });
   step('desktop collect'); D = await page.evaluate(COLLECT); D.textOverlap = OVERLAPS;
@@ -437,6 +441,31 @@ try {
     add('FAIL', 'load.blocked', 'The page served a bot or security challenge, so the results describe the challenge page, not the site. Audit a local build or a preview URL instead.');
   }
   D.contrast = await page.evaluate(() => ({ checked: window.__cs.checkedCount, low: window.__cs.lowCount, lowBody: window.__cs.lowBody || 0, examples: window.__cs.low }));
+  step('contrast over imagery');
+  D.mediaContrast = { checked: 0, low: [] };
+  const mediaTexts = await page.evaluate(() => window.__cs.media || []);
+  if (mediaTexts.length) await page.addStyleTag({ content: '[data-sg-hide],[data-sg-hide] *{color:transparent!important;-webkit-text-fill-color:transparent!important;caret-color:transparent!important}' });
+  for (let i = 0; i < mediaTexts.length; i++) {
+    const m = mediaTexts[i]; const sel = `[data-sg-m="${i}"]`;
+    const box = await page.evaluate(async (sel) => { const el = document.querySelector(sel); if (!el) return null; el.scrollIntoView({ block: 'center', behavior: 'instant' }); await new Promise((r) => setTimeout(r, 200)); const r = el.getBoundingClientRect(); return { x: Math.max(0, r.left), y: Math.max(0, r.top), w: Math.min(innerWidth, r.right) - Math.max(0, r.left), h: Math.min(innerHeight, r.bottom) - Math.max(0, r.top) }; }, sel).catch(() => null);
+    if (!box || box.w < 4 || box.h < 4) continue;
+    await page.evaluate((sel) => document.querySelector(sel)?.setAttribute('data-sg-hide', ''), sel);
+    const buf = await page.screenshot({ clip: { x: box.x, y: box.y, width: box.w, height: box.h }, type: 'png' }).catch(() => null);
+    await page.evaluate((sel) => document.querySelector(sel)?.removeAttribute('data-sg-hide'), sel);
+    if (!buf) continue;
+    // contrast of the text colour against the worst 20% of the pixels behind it
+    const ratio = await page.evaluate(async ({ b64, m }) => {
+      const C = window.__cs; const img = new Image(); img.src = 'data:image/png;base64,' + b64; await img.decode();
+      const k = Math.min(1, 240 / img.width); const cv = document.createElement('canvas'); cv.width = Math.max(1, Math.round(img.width * k)); cv.height = Math.max(1, Math.round(img.height * k));
+      const g = cv.getContext('2d'); g.drawImage(img, 0, 0, cv.width, cv.height); const px = g.getImageData(0, 0, cv.width, cv.height).data; const rs = [];
+      for (let j = 0; j < px.length; j += 4) { const bg = [px[j], px[j + 1], px[j + 2], 1]; rs.push(C.contrast(C.over([m.fg[0], m.fg[1], m.fg[2], m.fg[3] * m.op], bg), bg)); }
+      rs.sort((a, b) => a - b); return rs[Math.floor(rs.length * 0.2)] || 21;
+    }, { b64: buf.toString('base64'), m }).catch(() => null);
+    if (ratio == null) continue;
+    D.mediaContrast.checked++;
+    const large = m.size >= 24 || (m.size >= 18.66 && m.bold);
+    if (ratio < (large ? 3 : 4.5)) D.mediaContrast.low.push({ ratio: +ratio.toFixed(2), large, text: m.text, kind: m.kind });
+  }
   D.consoleErrors = [...new Set(consoleErrors)].slice(0, 5);
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.waitForTimeout(500);
@@ -563,7 +592,12 @@ if (D.glows > 2) add('WARN', 'color.glow', `${D.glows} element(s) with coloured 
 if (D.contrast) {
   const c = D.contrast;
   if (c.low > 0) add(c.lowBody > 0 || c.low > 6 ? 'FAIL' : 'WARN', 'a11y.contrast', `${c.low}/${c.checked} text element(s) below WCAG AA contrast${c.lowBody ? ` (${c.lowBody} are body paragraphs)` : ''}. If they sit inside a product-UI replica, mark the replica role="img" + aria-label (imagery.md §1).`, c.examples);
-  else add('PASS', 'a11y.contrast', `All ${c.checked} checked text elements meet AA. Text over imagery was skipped; check it by eye.`);
+  else add('PASS', 'a11y.contrast', `All ${c.checked} checked text elements on solid grounds meet AA.`);
+}
+if (D.mediaContrast?.checked) {
+  const ml = D.mediaContrast.low;
+  if (ml.length) add(ml.some((x) => !x.large) ? 'FAIL' : 'WARN', 'a11y.contrast.media', `${ml.length}/${D.mediaContrast.checked} text element(s) over imagery fall below AA against the worst 20% of the pixels behind them. ${ml.some((x) => x.kind === 'image') ? 'Over photos/canvas: re-crop or regenerate so a clean zone sits behind the type, or put the control on a solid pill (techniques.md §68); ghost buttons on photos are the usual culprit. ' : ''}${ml.some((x) => x.kind === 'pattern') ? 'Over CSS patterns/gradients: darken the text or lighten the pattern.' : ''}`, ml.map((x) => `${x.ratio}:1 ${x.kind} "${x.text}"`));
+  else add('PASS', 'a11y.contrast.media', `All ${D.mediaContrast.checked} text elements over imagery meet AA (sampled from pixels)`);
 }
 
 // shape

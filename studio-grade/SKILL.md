@@ -54,7 +54,7 @@ How to choose:
 
 ### Step 2: Write the Design Spine before any code
 
-Write this block in your reply or in a comment at the top of the main file. Each line must be concrete. "Modern and clean" is not a spine.
+Write this block in your reply or in a comment at the top of the main file (a comment above `<!doctype html>` is safe: it doesn't trigger quirks mode, and the audit reads it from there). Each line must be concrete. "Modern and clean" is not a spine.
 
 ```
 DIRECTION   : <one of the 10> — why it fits the audience in one sentence
@@ -102,7 +102,7 @@ Work through `references/components.md` and the checklist below. This pass is th
 - [ ] Display tracking scales with size: −0.04 to −0.06em at 100px+, −0.02em at 48px, about 0 at body size, **+0.04 to +0.12em on ≤12px uppercase labels**.
 - [ ] Two-tone headings: the statement in ink, the elaboration in ink at 55–65%, at the same size and on the same line.
 - [ ] Hairlines are 1px at 6–12% ink. Use `box-shadow: 0 0 0 1px` rings instead of borders where stacking matters.
-- [ ] Numbers use `font-variant-numeric: tabular-nums`. Uppercase uses `font-feature-settings: "case"`.
+- [ ] Numbers that change or align in columns use `font-variant-numeric: tabular-nums` (check punctuation: some grotesks widen `,` and `:` in tabular mode, so prices in running text may need proportional figures). Uppercase uses `font-feature-settings: "case"`.
 - [ ] Buttons follow one radius camp across the whole site (0–4px **or** pill), with heights of 36–52px and optical padding (1px less on the bottom).
 - [ ] Every image has an aspect ratio, a defined crop, and alt text. Every autoplay video has a pause control.
 - [ ] Mobile has its own composition (390px): a 32–44px h1, stacked full-width CTAs, and media cropped deliberately. It is not just the desktop layout shrunk.
@@ -192,7 +192,7 @@ The full list, with the replacement for each item, is in `references/anti-slop.m
 | `references/layout.md` | Grids, margins, hero archetypes, section-pattern library, page rhythm, mobile |
 | `references/motion.md` | Eases, durations, springs, reveal primitives, loaders, smooth-scroll policy, reduced motion |
 | `references/components.md` | Buttons, nav forms, eyebrows, cards, logo walls, testimonials, stats, forms, footers |
-| `references/techniques.md` | 67 signature techniques with copy-paste code (rails, ticker, letter-roll, aperture…) |
+| `references/techniques.md` | 71 signature techniques with copy-paste code (rails, ticker, letter-roll, aperture…) |
 | `references/imagery.md` | Product-UI-as-hero, generative ornament, photo art direction, placeholders |
 | `references/copy.md` | Headline formulas, voice, CTA verbs, banned phrases, microcopy |
 | `references/anti-slop.md` | The full list of AI tells, each with its fix; use it for redesign audits |

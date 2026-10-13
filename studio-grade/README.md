@@ -28,7 +28,7 @@ references/
   layout.md              grids, margins, 16 hero archetypes, 22 section patterns, nav forms, mobile
   motion.md              eases, durations, springs, reveal primitives, loader/scroll policy
   components.md          buttons, cards, product-UI frame, logos, testimonials, forms, footers
-  techniques.md          67 signature techniques with code
+  techniques.md          71 signature techniques with code
   imagery.md             product-UI-as-hero, generative ornament, photo art direction, placeholders
   copy.md                headline formulas, voice registers, CTA verbs, banned phrases
   anti-slop.md           38 AI tells, each with its fix

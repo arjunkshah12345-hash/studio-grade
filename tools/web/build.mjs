@@ -342,9 +342,9 @@ function method() {
 │  ├─ range.md         <span>quiet · confident · loud</span>
 │  ├─ typography.md    <span>tracking tables, free faces</span>
 │  ├─ color.md         <span>40 measured palettes</span>
-│  ├─ layout.md        <span>16 heroes, 22 sections</span>
+│  ├─ layout.md        <span>18 heroes, 22 sections</span>
 │  ├─ motion.md        <span>eases, springs, policy</span>
-│  ├─ techniques.md    <span>60 moves with code</span>
+│  ├─ techniques.md    <span>67 moves with code</span>
 │  ├─ imagery.md       <span>no-photo strategies</span>
 │  └─ copy · anti-slop · components · evidence
 ├─ assets/             <span>tokens.css · motion.js</span>
@@ -378,7 +378,7 @@ function evidence() {
     ['Big-brand agencies', 15, 'Systems over set pieces: named token bundles, one house ease.'],
     ['Fashion and luxury', 12, 'Hero text 18–31px, never 64+; restraint measured +11% conversion.'],
     ['Award winners 2023–26', 18, 'Juries pay for motion craft and forgive weak accessibility; we don’t.'],
-    ['User reference', 1, 'convt.app: one idea shown concretely in every section.'],
+    ['User references', 3, 'convt.app, ignura.com, jawadjalal.com: inline UI tokens, pricing as an object, the personal README page. Each audited; we keep the ideas, not the contrast misses.'],
   ];
   return layout({
     title: 'Evidence · Studio Grade', desc: 'The research behind Studio Grade: 99 live sites by 40 studios, measured from computed styles and the motion values in their JavaScript.', page: 'evidence', here: 'Evidence', canonical: '/evidence/',

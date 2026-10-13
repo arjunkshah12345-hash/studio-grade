@@ -20,9 +20,13 @@ const PROJECTS = [
   { slug: 'fieldwork', name: 'Fieldwork', kind: 'Landscape architecture', brief: 'A 22-person Rotterdam studio designing parks, waterfronts and streets that hold rainwater, looking for commissions and recruits. No photographs.', line: 'Cut-paper models that flood as you scroll.', accent: '#1F4B63' },
   { slug: 'relay', name: 'Relay', kind: 'Developer tool', brief: 'An AI code reviewer that reads every pull request, comments on the line, and learns a team’s conventions. For staff engineers and their managers.', line: 'A real pull-request review is the hero.', accent: '#F2A93B' },
   { slug: 'halden2', name: 'Halden', kind: 'Hospitality', brief: 'A fourteen-room hotel on a Norwegian fjord with a sauna on the water and a twenty-seat farm kitchen. Open March to November. No photographs.', line: 'A woodcut fjord whose light changes as you scroll.', accent: '#C9733E' },
+  { slug: 'onair', name: 'On Air', kind: 'Podcast studio', brief: 'A four-person Manchester studio that takes a founder from first recording to a launched show: a six-week Pilot or a monthly Season. No clients, quotes or listener numbers to show yet.', line: 'Pricing as cassette J-cards, an ON AIR lamp that lights as you scroll.', accent: '#E8432A' },
   { slug: 'kestrel2', name: 'Kestrel K-1', kind: 'Industrial hardware', brief: 'An autonomous drone that inspects wind-turbine blades: eleven minutes a blade, defects to 0.2 mm, a report the same day. For wind-farm operations directors.', line: 'An inspection drawn as it happens.', accent: '#F0541E' },
 ];
 
+const WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
+const N = WORDS[PROJECTS.length] || String(PROJECTS.length);
+const Ncap = N[0].toUpperCase() + N.slice(1);
 const read = (p) => fs.readFileSync(p, 'utf8');
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
@@ -134,7 +138,7 @@ function home() {
 </section>
 
 <section class="reel" aria-label="Sites built with the skill">
-  <div class="reel-head"><p>Seven briefs, seven agents. Every one built with the skill and passed by its audit.</p><a href="/work/" class="reel-all">All work <span aria-hidden="true">→</span></a></div>
+  <div class="reel-head"><p>${Ncap} briefs, ${N} agents. Every one built with the skill and passed by its audit.</p><a href="/work/" class="reel-all">All work <span aria-hidden="true">→</span></a></div>
   <div class="reel-track" tabindex="0" aria-label="Scrolling reel of the work. Hover or focus to pause.">
     <ul class="reel-list">${reel}</ul>
   </div>
@@ -224,11 +228,11 @@ function workIndex() {
       </a>
     </li>`).join('');
   return layout({
-    title: 'Work · Studio Grade', desc: 'Seven sites designed and built by agents with the Studio Grade skill, each passed by its audit.', page: 'work', here: 'Work', canonical: '/work/',
+    title: 'Work · Studio Grade', desc: `${Ncap} sites designed and built by agents with the Studio Grade skill, each passed by its audit.`, page: 'work', here: 'Work', canonical: '/work/',
     body: `
 <section class="page-head wrap">
   <h1 class="page-h" data-split="words">Work</h1>
-  <p class="page-sub" data-reveal>Seven briefs given to seven agents that read only the skill. Different directions, different registers, no templates and no stock imagery. Each passed the skill’s audit at 1440 and 390&nbsp;pixels.</p>
+  <p class="page-sub" data-reveal>${Ncap} briefs given to ${N} agents that read only the skill. Different directions, different registers, no templates and no stock imagery. Each passed the skill’s audit at 1440 and 390&nbsp;pixels.</p>
   <div class="filters" role="group" aria-label="Filter by register" data-reveal>
     ${['All', 'Loud', 'Confident'].map((f, i) => `<button type="button" class="chip" aria-pressed="${i === 0}" data-filter="${f.toLowerCase()}">${f}<span class="chip-n">${f === 'All' ? total : PROJECTS.filter((p) => p.register === f).length}</span></button>`).join('')}
   </div>

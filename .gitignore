@@ -29,6 +29,7 @@
 !/tests/builds/relay/
 !/tests/builds/halden2/
 !/tests/builds/kestrel2/
+!/tests/builds/onair/
 
 # research: our notes only, never third-party screenshots or scraped pages
 !/research/

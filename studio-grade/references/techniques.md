@@ -1,8 +1,8 @@
-# Signature techniques: 60 moves with code
+# Signature techniques: 67 moves with code
 
-Choose **2–3 per site**, and make sure they serve the motif. A page that uses ten of these is a demo reel, not a design. Each entry names its origin so you can match it to a direction.
+Choose **2–3 per site**, and make sure they serve the motif. **System rules don't count toward the 2–3:** §63 (naming), §66 (type voices) and §67 ("Read the film") shape the whole build rather than one moment, so they sit alongside your signatures. A page that uses ten of these is a demo reel, not a design. Each entry names its origin so you can match it to a direction.
 
-Index: **A. Structure & framing** 1–11 · **B. Type moves** 12–30 · **C. Product & proof** 31–37 · **D. Interaction & motion** 38–55 · **E. Small-product moves** 56–60
+Index: **A. Structure & framing** 1–11 · **B. Type moves** 12–30 · **C. Product & proof** 31–37 · **D. Interaction & motion** 38–55 · **E. Small-product moves** 56–60 · **F. Studio and personal-site moves** 61–67 (visual signatures: 61, 62, 64, 65; system rules: 63, 66, 67)
 
 ---
 
@@ -321,11 +321,12 @@ Let the domain show up inside the sentence. A word becomes the thing it names: a
 ```html
 <h2>You built the <span class="tok tok--term">thing<i class="caret"></i></span>.</h2>
 <p>Months of 2am vibe<code class="tok">coding</code>, and it works: on <span class="tok tok--input">localhost:3000<i class="caret"></i></span>.</p>
-<p>Launch day slips: the <s>14th</s>, the <s>28th</s>, <em class="hand">“soon”</em>.</p>
+<p>Launch day slips: the <s>14th</s>, the <s>28th</s>, “soon”.</p>   <!-- in body copy the rewrite is set in ink; the handwritten voice belongs to headings (§66) -->
 <p>i’m jawad, a <span class="tok tok--chip"><svg>…pencil…</svg>designer</span> and founder in london.</p>
 ```
 ```css
-.tok{font:500 .82em/1 var(--font-mono);padding:.18em .42em;border-radius:6px;background:rgb(var(--ink-rgb)/.06);white-space:nowrap}
+/* tokens use the build's mono voice if it has one; otherwise the body face at 500. Never add a typeface just for tokens. */
+.tok{font:500 .82em/1 var(--font-mono,var(--font-text));padding:.18em .42em;border-radius:6px;background:rgb(var(--ink-rgb)/.06);white-space:nowrap}
 .tok--term{background:var(--ink);color:var(--paper);padding:.08em .3em}           /* sized to the heading, not the body */
 .tok--input{background:var(--surface);box-shadow:inset 0 0 0 1.5px var(--ink)}
 .tok--chip{font:inherit;background:color-mix(in oklab,var(--accent) 14%,transparent);box-shadow:inset 0 -1.5px 0 var(--accent)}
@@ -345,14 +346,41 @@ When there are 1–3 offers, draw them as a physical thing from the brand's worl
 ```css
 .ticket{position:relative;border-radius:18px;background:var(--c1);--hole:radial-gradient(circle at 0 50%,transparent 14px,#000 14.5px);
   -webkit-mask:var(--hole) left/51% 100% no-repeat,radial-gradient(circle at 100% 50%,transparent 14px,#000 14.5px) right/51% 100% no-repeat}
-.ticket .price{font:600 clamp(2.4rem,1.6rem+2.4vw,3.6rem)/1 var(--font-pixel,var(--font-mono));font-variant-numeric:tabular-nums}
+.ticket .price{font:600 clamp(2.4rem,1.6rem+2.4vw,3.6rem)/1 var(--font-num);   /* --font-num: the pixel/LED/mono numbers voice from tokens.css */font-variant-numeric:tabular-nums}
 ```
 
 ### 63. A naming system from the brand metaphor (ignura)
 Pick the brand's central metaphor and name *everything* from it: tiers, steps, the CTA, even the 404. Ignura is fire, so the tiers are **Ignite** (one launch) and **Burn** (monthly), the process ends at "lift-off", and the service cast is a fire, a campfire, a rocket and a matchstick fuse. Write the list in the Spine: `NAMING: <metaphor> → tier A, tier B, process end, CTA verb, 404 line`. When a name needs explaining, the metaphor is wrong for that item, so use a plain word instead.
 
 ### 64. Process as a journey map (ignura)
-Replace "Step 1 / 2 / 3" cards with one wide illustrated landscape. A path winds through it (an SVG `path` drawn with `stroke-dashoffset` as it enters view), with numbered station markers. Each station has a short title and a two-line body. Put the headline above it as a promise with an end point: "Four weeks, start to *lift-off*." On mobile, turn the path vertical and stack the stations down it. Don't just shrink the wide map.
+Replace "Step 1 / 2 / 3" cards with one wide illustrated landscape.
+```html
+<div class="journey">
+  <svg viewBox="0 0 1200 360" preserveAspectRatio="none" aria-hidden="true"><path class="route" pathLength="1" d="M20 300 C 220 300 260 120 420 140 S 700 300 860 220 1100 60 1180 80"/></svg>
+  <ol class="stations">   <!-- HTML over the SVG, so labels stay real text -->
+    <li style="--x:4%;--y:83%"  class="below"><b>01</b> Teardown + plan<span>…</span></li>
+    <li style="--x:35%;--y:39%" class="above"><b>02</b> Film + UGC<span>…</span></li>
+    <li style="--x:71%;--y:61%" class="below"><b>03</b> Polish, shots, page<span>…</span></li>
+    <li style="--x:96%;--y:22%" class="above"><b>04</b> Launch day<span>…</span></li>
+  </ol>
+</div>
+```
+```css
+.journey{position:relative;aspect-ratio:10/3}
+.journey svg{position:absolute;inset:0;width:100%;height:100%}
+.route{fill:none;stroke:var(--ink);stroke-width:3;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 1.6s var(--ease)}
+.journey.is-in .route{stroke-dashoffset:0}
+.stations li{position:absolute;left:var(--x);top:var(--y);width:16ch;transform:translate(-50%,12px)}
+.stations li.above{transform:translate(-50%,calc(-100% - 12px))}           /* alternate with the path's peaks and troughs */
+.stations li:first-child{transform:translate(0,12px)} .stations li:last-child{transform:translate(-100%,calc(-100% - 12px))} /* edge stations step inward */
+@media (max-width:760px){                                                   /* mobile: a vertical line, not the map shrunk */
+  .journey{aspect-ratio:auto} .journey svg{display:none}
+  .stations{position:relative;padding-left:28px;border-left:3px solid var(--ink)}
+  .stations li{position:relative;left:auto;top:auto;width:auto;transform:none;margin:0 0 28px}
+  .stations li::before{content:"";position:absolute;left:-38px;top:.2em;width:16px;height:16px;border-radius:50%;background:var(--accent)}
+}
+```
+Put the station coordinates on the path (sample `path.getPointAtLength()` once while designing, then hard-code the % values). Keep illustration props out of the label boxes. A path winds through it (an SVG `path` drawn with `stroke-dashoffset` as it enters view), with numbered station markers. Each station has a short title and a two-line body. Put the headline above it as a promise with an end point: "Four weeks, start to *lift-off*." On mobile, turn the path vertical and stack the stations down it. Don't just shrink the wide map.
 
 ### 65. The personal README page (jawadjalal)
 For a personal or founder site, the page is a document, not a landing page:
@@ -371,7 +399,7 @@ The Loud and Playful register may run **up to 4 faces only if each has exactly o
 - **Pixel or mono:** prices, numbers and UI labels.
 - **Handwriting:** **one** emphasised word or phrase per heading, always in the accent colour (`<em class="hand">lift-off</em>`).
 
-The handwriting voice is the spice, so a second handwritten phrase in the same heading means you're decorating. In Quiet and Confident registers, the ≤3-family rule stands.
+The handwriting voice is the spice, so a second handwritten phrase in the same heading means you're decorating. **When the field is the accent's own hue** (a red band with a red hand word), put the word on a carrier (a tape strip or paper chip in the paper colour) and check its contrast there. The numbers slot is either a pixel/LED face or a mono, not both; inline tokens (§61) reuse it or fall back to the body face. In Quiet and Confident registers, the ≤3-family rule stands.
 
-### 67. "Read the film" and opt-in sound (ignura)
-Under any hero video or launch film, add a quiet disclosure: **Read the film**, "the words on screen and the key sounds, in order". It opens the transcript as a list. That makes the video accessible, indexable and skimmable, and signals craft. If the site has ambient sound, it is **off by default**, behind a labelled nav toggle (a speaker icon with a strike), and the state persists in `localStorage`.
+### 67. "Read the film / trailer / episode" and opt-in sound (ignura)
+Under any hero video or launch film, add a quiet disclosure: **Read the film**, "the words on screen and the key sounds, in order". It opens the transcript as a list. That makes the video accessible, indexable and skimmable, and signals craft. No real film yet? A silent kinetic-caption cut is fine: label it as captions-only, still ship the transcript, and give any finite autoplaying caption sequence the same pause control as a video. If the site has ambient sound, it is **off by default**, behind a labelled nav toggle (a speaker icon with a strike), and the state persists in `localStorage`.

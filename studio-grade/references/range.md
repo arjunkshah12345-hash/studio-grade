@@ -20,7 +20,7 @@ The ceiling for loud is Agent Arcade: five accents, gradient headline text, glow
 
 What stays fixed in every register: ≤3 families (Loud/Playful may run a 4th only when every face has exactly one written job, techniques.md §66), one motif, one colour *logic* (not necessarily one hue), contrast ≥ AA, ≤2 hero CTAs, a voice in the copy, and real content as the image.
 
-Loud-register rules:
+Loud-register rules (a saturated field is a mid-tone ground for contrast: use §4's 88/80% ink tiers on it):
 - Colour may cover 30–100% of a viewport as a **field**. Use one hue per field, and set the text in a dark or light tint *of the same hue* (Dropbox Brand: `#684505` on `#FAD24B`), or in pure ink if it passes AA.
 - A multi-hue system is fine when **each hue is assigned to a meaning**: a section, a product line, a category (Norton per section, Family per feature, Fondation Cartier per exhibition, Seventeen per project).
 - Display type may go heavy (600–900) **if** it is condensed, a brand display cut, or a deliberate poster register (Obama, Lando, Ace). Bold + wide + neutral grotesk is still template-y.
@@ -77,6 +77,7 @@ Mono uppercase labels are a **device of directions 1, 2, and 8** (dev, SaaS, dee
 Product stage (UI on an art layer) · **Poster** (one giant statement per viewport) · **Index** (the list is the hero: Bennett & Clive, Pentagram) · **Banded** (full-bleed colour bands per section: Norton, Drake) · **Collage** (overlap, rotation, cut-outs: Scout, Daylight testimonials) · Editorial asymmetric grid (Studio D) · Spec sheet (rules, tables, coordinates; the skill's default, **overused**) · Small image, big room (Totême).
 
 ### E. Motion feel
+For any feel other than calm resolve, retune the reveal through the tokens.css hooks `--reveal-filter` and `--reveal-transform` (e.g. `--reveal-filter:none;--reveal-transform:translateY(24px) rotate(-2deg)` with a spring ease), not a new selector.
 Calm resolve (blur-in, ink-in; the default) · **Springy and characterful** (Family springs, MindMarket blob morphs, Choo-Choo pops and wiggles) · **Cinematic scrub** (pinned sequences, Apple, Radian lights-up) · **Kinetic type** (rotating words, letter-spread builds, marquees at 200px) · Instrumental (tickers, decode, counters).
 
 ---
@@ -135,7 +136,7 @@ Word-chip headlines (each word in a bordered white box), burgundy and lavender b
 **Sport / personality (Lando)**
 A tinted-dark ground (olive-black), one neon accent taken from the subject (the helmet), mixed-font caps headlines (one word in a heavy display face), a collectible gallery, `elastic.out` only on small pops.
 
-**Illustrated launch world (Ignura)**
+**Illustrated launch world (Ignura).** Keep the structure, not the costume: the brand's own world, objects and faces replace sky/grass/fire, Fraunces and Caveat.
 A warm paper ground with landscape fields (sky blue, grass green, sun yellow) and one fire-orange brand colour for the CTA and the handwritten emphasis word. A bespoke cast with faces maps 1:1 to services. Sections divide on horizons and torn-paper bands. Headlines are a Fraunces-style serif at 600–650 with one Caveat-style handwritten word. Prices sit in a pixel face on ticket objects. Motion: characters idle (blink, hop) on finite loops, small pops spring, and big surfaces ease out.
 
 **Agency index (Seventeen / Bennett & Clive)**

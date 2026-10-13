@@ -401,19 +401,24 @@ const TEXT_OVERLAP = () => {
 };
 const OVERLAPS = [];
 let AT = 'start';
+let SPINE = '';
 const step = (m) => { AT = m; if (!AS_JSON) process.stderr.write(`  · ${m} (${((Date.now() - t0) / 1000).toFixed(0)}s)\n`); };
 setTimeout(() => { console.error(`Audit timed out after 240s during: ${AT} (very long page or a hanging loader). Try --quick.`); process.exit(3); }, 240000).unref();
 let D = {}, M = {}, RM = {};
 try {
   // ---------------- desktop ----------------
   const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 });
+  await ctx.addInitScript(() => { const k = () => { const st = document.createElement('style'); st.textContent = 'html,body{scroll-behavior:auto!important}'; (document.head || document.documentElement).appendChild(st); }; if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', k); else k(); });   // smooth scrolling makes the contrast pass sample mid-scroll
   const page = await ctx.newPage();
   const consoleErrors = [];
   page.on('pageerror', (e) => consoleErrors.push(String(e).slice(0, 160)));
   page.on('console', (m) => { if (m.type() === 'error' && !/Failed to load resource/.test(m.text())) consoleErrors.push(m.text().slice(0, 160)); });
   const origin = new URL(url).origin;
   page.on('response', (r) => { if (r.status() >= 400 && !/favicon/.test(r.url()) && r.url().startsWith(origin)) consoleErrors.push(`HTTP ${r.status()} ${r.url().slice(0, 120)}`); });
-  step('desktop 1440×900'); await page.goto(url, { waitUntil: 'load', timeout: 45000 });
+  step('desktop 1440×900'); const navResp = await page.goto(url, { waitUntil: 'load', timeout: 45000 });
+  // the raw response, not page.content(): the DOM serialiser drops comments placed before <html>, which is where Spines usually live
+  const rawHtml = (await navResp?.text().catch(() => '')) || (await page.content());
+  SPINE = ([...rawHtml.matchAll(/<!--([\s\S]*?)-->/g)].map((m) => m[1]).find((c) => /TYPE\s*:/.test(c)) || '');
   await page.waitForLoadState('networkidle', { timeout: 8000 }).catch(() => {});
   await page.waitForTimeout(QUICK ? 1200 : 2600);                // let intros finish
   step('desktop hero shot'); await page.screenshot({ path: path.join(OUT, 'desktop-hero.png') });
@@ -444,6 +449,7 @@ try {
 try {
   // ---------------- mobile ----------------
   const mctx = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
+  await mctx.addInitScript(() => { const k = () => { const st = document.createElement('style'); st.textContent = 'html,body{scroll-behavior:auto!important}'; (document.head || document.documentElement).appendChild(st); }; if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', k); else k(); });   // smooth scrolling makes the contrast pass sample mid-scroll
   const mp = await mctx.newPage();
   step('mobile 390×844'); await mp.goto(url, { waitUntil: 'load', timeout: 45000 });
   await mp.waitForTimeout(QUICK ? 1200 : 2400);
@@ -459,6 +465,7 @@ try {
 try {
   // ---------------- reduced motion: is first-viewport content visible without scrolling/animation? ----------------
   const rctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' });
+  await rctx.addInitScript(() => { const k = () => { const st = document.createElement('style'); st.textContent = 'html,body{scroll-behavior:auto!important}'; (document.head || document.documentElement).appendChild(st); }; if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', k); else k(); });   // smooth scrolling makes the contrast pass sample mid-scroll
   const rp = await rctx.newPage();
   step('reduced motion'); await rp.goto(url, { waitUntil: 'load', timeout: 45000 });
   await rp.waitForTimeout(1200);
@@ -476,7 +483,9 @@ if (server) server.close();
 if (D.families) {
   const fams = D.families.map(([f]) => f);
   const OVERUSED = ['Poppins', 'Montserrat', 'Roboto', 'Open Sans', 'Lato', 'Raleway', 'Nunito', 'Plus Jakarta Sans', 'Space Grotesk', 'Syne', 'Clash Display', 'Playfair Display', 'DM Serif Display', 'Bebas Neue', 'Anton', 'Arial', 'Helvetica', 'Times New Roman', 'Times'];
-  if (fams.length === 4 && REGISTER === 'loud') add('WARN', 'type.families', '4 type families: allowed in the Loud register only when each face has exactly one written job (statement · body · pixel/mono for numbers · one handwritten word per heading). Confirm the jobs in the Spine (techniques.md §66).', fams);
+  const typeLine = (SPINE.match(/^\s*TYPE\s*:[\s\S]*?(?=^\s*[A-Z][A-Z ?]{2,}\s*:|(?![\s\S]))/m) || [''])[0];   // the TYPE key plus any continuation lines
+  if (fams.length === 4 && REGISTER === 'loud' && /hand|marker|script|caveat|cursive/i.test(typeLine) && /(pixel|led|num|mono|price)/i.test(typeLine)) add('PASS', 'type.families', `4 role-locked faces declared in the Spine: ${fams.join(', ')}`);
+  else if (fams.length === 4 && REGISTER === 'loud') add('WARN', 'type.families', '4 type families: allowed in the Loud register only when each face has exactly one written job (statement · body · pixel/mono for numbers · one handwritten word per heading). Confirm the jobs in the Spine (techniques.md §66).', fams);
   else if (fams.length > 3) add('FAIL', 'type.families', `${fams.length} type families in use (top tier: median 2, max 3; Loud may run 4 role-locked faces)`, fams);
   else add('PASS', 'type.families', `${fams.length} famil${fams.length === 1 ? 'y' : 'ies'}: ${fams.join(', ')}`);
   const primary = fams[0] || '';
@@ -488,7 +497,8 @@ const big = (D.largest || [])[0];
 if (big) {
   if (D.h1Count === 0) add('FAIL', 'semantics.h1', 'No <h1> on the page');
   else if (D.h1Count > 1) add('WARN', 'semantics.h1', `${D.h1Count} <h1> elements`);
-  const disp = (D.display || []).filter((d) => d.size >= 56);
+  const VOICE_FACE = /caveat|hand|script|marker|kalam|patrick|indie flower|gochi|pixel|silkscreen|doto|vt323|press start|dot ?gothic|lcd|dseg|led/i;   // role voices (techniques.md §66): never tightened or weight-checked
+  const disp = (D.display || []).filter((d) => d.size >= 56 && !VOICE_FACE.test(d.family || ''));
   const loose = disp.filter((d) => d.lh > 1.15);
   const pos = disp.filter((d) => d.ls > 0.012 && !d.upper);
   const deflt = disp.filter((d) => Math.abs(d.ls) < 0.004 && !d.upper);

@@ -70,7 +70,8 @@ HERO        : <archetype from references/layout.md> — what the first viewport 
 IMAGERY     : <medium from range.md §2C: product UI / photo / illustration cast / colour blocks / type poster / object / collage / data / line drawing>
 CONVERSION  : <the primary action and every place it appears>
 MOTION      : house ease <cubic-bezier> · UI <ms> · reveal <ms> · primitive <blur-in / ink-in / mask>
-SIGNATURES  : 2–3 named moves from references/techniques.md (no more)
+NAMING      : <the brand metaphor> → tiers · steps · CTA verb · 404 line   (techniques.md §63; omit if the brand has no metaphor)
+SIGNATURES  : 2–3 named moves from references/techniques.md (no more; system rules §63/§66/§67 don't count)
 VOICE       : 3 sample lines (hero, section, CTA) in the brand's voice
 ```
 

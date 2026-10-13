@@ -1,0 +1,458 @@
+<!doctype html>
+<!--
+DESIGN SPINE — On Air (fictional podcast production studio, Manchester)
+
+DIRECTION   : 9 Playful System (studio / service variant) — founders and marketing teams buying "a show that doesn't
+              sound like everyone else's" need the page itself to prove personality; a broadcast-studio world does that,
+              a quiet portfolio would not.
+REGISTER    : Loud — colour is the ground (signal-red "on air" field), poster type at ~150px, studio objects on springs.
+              Bold device: the ON AIR tally lamp.
+AXES        : ground colour-block system (signal red = on air · night = in the studio · tape cream = notes) ·
+              type genre heavy condensed display + one marker word (mixed font) · image medium objects in CSS/SVG
+              (lamp, mixing-desk channel strips, cassette J-cards, audiogram monitor, foam-wedge map) ·
+              composition banded · motion springy and characterful (critically damped on big surfaces)
+DEFAULT?    : default-look check 0/6 matched → DIFFERENT FROM DEFAULT BY: ground, type genre, image medium,
+              composition, motion (no mono labels, no hairline spec bands, no line-drawing hero)
+MOTIF       : the ON AIR tally lamp, 5 uses, each a new role/scale:
+              1 nav wordmark lit lamp (brand, 28px) · 2 hero monitor tally lights while the trailer plays (status, 10px) ·
+              3 running-order stations are lamps that light in sequence as the cable draws (progress, 28px) ·
+              4 finale: giant ON AIR sign flicks on (the ask, ~16vw) · 5 footer studio lamp, live Manchester time (live truth)
+TYPE        : 4 role-locked faces (techniques §66, Loud only):
+              statement  Bricolage Grotesque 600, wdth 75 → headings ONLY
+              body       Instrument Sans 400/500 → reading text, labels, buttons
+              LED        Doto 800 → numbers ONLY: prices, timecodes, channel numbers, week marks, clock
+              marker     Permanent Marker → ONE word per heading, accent red, on a masking-tape strip
+SCALE       : display clamp(3.5rem,1rem+8.6vw,9.25rem)/.86/-0.02em · h2 clamp(2.5rem,1.2rem+4.4vw,5.25rem)/.92/-0.015em ·
+              h3 clamp(1.4rem,1.1rem+.9vw,1.9rem) · body 18px/1.5 · label 13px caps +0.08em
+PALETTE     : field red #FF5A36 · ink-on-red #260803 (6.0:1) · ink-2 on red = 82% (4.7:1, mid-tone rule) ·
+              night #16132B · cream ink #F8EDE0 · tape #F3E6D3 · hairline = ink @12–16% ·
+              accent #C42A1B → ONLY the marker word and the lamp glass (#D8341F)
+GRID        : 12 cols / 24px gap · fluid container max 1360px · side margin 40px (20px mobile) · section 120–160px
+HERO        : H18 variant (illustrated world with a framed film) — red field; poster h1 left with one taped marker
+              word; framed audiogram monitor playing the trailer (captions-only) right; "Read the trailer" disclosure
+IMAGERY     : objects in CSS/SVG (no photos, no stock)
+CONVERSION  : "Book a free format call" — nav, hero, Pilot J-card, Season J-card, finale, footer
+MOTION      : house ease cubic-bezier(.16,1,.3,1) · UI 240ms · reveal 850ms · primitives: rise (no blur) ·
+              --spring-ui faders · --spring-pop stickers + cassette · path draw (stroke-dashoffset) · lamp flicker (finite)
+SIGNATURES  : §61 inline UI tokens in copy · §62 pricing as an object (cassette J-cards) · §64 process as a journey
+              map (cable across a foam-wedge landscape). System rules also applied: §63 naming, §66 voices, §67 transcript.
+NAMING      : broadcast → tiers Pilot / Season · sections The desk / Running order / Rate card / Before the call ·
+              process Format call → Format → Soundcheck → The cut → Promo → Air date · CTA verb "Book a free format call" ·
+              404 "Dead air. Nothing is broadcasting on this page." · footer status On air / Off air
+VOICE       : hero "Sound like nobody else." · section "Five channels, one mix." · finale "Let's get your show on air."
+
+PLACEHOLDERS (no real clients, quotes or listener numbers exist — all marked on the page):
+  P1 trailer audio (captions-only cut) · P2–P4 three client shows on "the shelf" · P5 one host quote ·
+  P6 booking link / email (studio@onair.example) · P7 studio street address · P8 studio hours (assumed Mon–Fri 9–6)
+-->
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>On Air — podcast production studio, Manchester</title>
+<meta name="description" content="On Air is a four-person podcast studio in Manchester. Format, recording kit, editing, sound design, artwork, trailer and launch, from first recording to a launched show.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Doto:wght@700..900&family=Instrument+Sans:wght@400..600&family=Permanent+Marker&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--sm" href="#main">Skip to content</a>
+
+<!-- ============================== HERO (on air: red field) ============================== -->
+<header class="f-red hero-wrap">
+  <nav class="nav container" aria-label="Main">
+    <a class="logo" href="#top" aria-label="On Air, home">
+      <span class="lamp lamp--logo is-lit" aria-hidden="true"><span>On Air</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#desk">The desk</a></li>
+      <li><a href="#running-order">Running order</a></li>
+      <li><a href="#rates">Rate card</a></li>
+      <li><a href="#before">Before the call</a></li>
+    </ul>
+    <a class="btn btn--sm btn--night nav-cta" href="#call">Book a free format call</a>
+  </nav>
+
+  <section class="hero container" id="top" aria-labelledby="h1">
+    <div class="hero-copy">
+      <p class="kicker">Podcast production · Manchester</p>
+      <h1 id="h1" class="display"><span class="l1">Sound like</span> <em class="hand">nobody</em> else.</h1>
+      <p class="sub">On Air is a four-person studio that takes founders and brands from the first recording to a launched show.</p>
+      <div class="ctas">
+        <a class="btn btn--night" href="#call">Book a free format call <span class="arr" aria-hidden="true">→</span></a>
+        <a class="textlink" href="#rates">See the rate card</a>
+      </div>
+    </div>
+
+    <div class="hero-media">
+      <figure class="monitor" aria-label="On Air trailer, a captions-only audiogram" data-trailer>
+        <div class="mon-bar">
+          <span class="tally" data-tally aria-hidden="true"></span>
+          <span class="mon-title">Trailer</span>
+          <span class="led mon-tc" aria-hidden="true"><span data-tc>00:00</span> / 00:35</span>
+        </div>
+        <div class="mon-screen" aria-hidden="true">
+          <div class="mon-show"><span class="cover"><span>On<br>Air</span></span><span class="show-meta"><b>On Air, the trailer</b><span>Episode 0 · audiogram</span></span></div>
+          <p class="mon-cue" data-cue>[Room tone. A chair creaks.]</p>
+          <p class="mon-cap" data-cap>Every company has a podcast now.</p>
+          <div class="wave" data-wave></div>
+        </div>
+        <div class="mon-ctl">
+          <button class="play" type="button" data-play aria-label="Play the trailer">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-play" d="M8 5.5v13l11-6.5z"/><path class="i-pause" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/></svg>
+          </button>
+          <div class="scrub" aria-hidden="true"><i data-prog></i></div>
+          <span class="mon-note">Captions only · <span class="ph-tag">Placeholder</span> audio</span>
+        </div>
+      </figure>
+
+      <details class="read">
+        <summary>Read the trailer</summary>
+        <p class="read-note">The words on screen and the key sounds, in order.</p>
+        <ol class="read-list">
+          <li><span class="led">00:00</span> <i>Room tone. A chair creaks.</i></li>
+          <li><span class="led">00:02</span> Every company has a podcast now.</li>
+          <li><span class="led">00:05</span> Most of them open the same way:</li>
+          <li><span class="led">00:09</span> “Hi, and welcome to the podcast.”</li>
+          <li><span class="led">00:12</span> <i>The tape stops.</i></li>
+          <li><span class="led">00:14</span> We’d rather open with a reason to listen.</li>
+          <li><span class="led">00:18</span> On Air. A podcast studio in Manchester.</li>
+          <li><span class="led">00:22</span> Format. Kit. Edit. Artwork. Trailer. Launch.</li>
+          <li><span class="led">00:26</span> Four people, from first recording to air date.</li>
+          <li><span class="led">00:30</span> <i>The on-air light clicks on.</i></li>
+          <li><span class="led">00:32</span> Book a free format call.</li>
+        </ol>
+      </details>
+    </div>
+  </section>
+</header>
+
+<main id="main">
+
+<!-- ============================== WHY (notes: tape field) ============================== -->
+<section class="f-tape band why" aria-labelledby="why-h">
+  <div class="container grid">
+    <h2 id="why-h" class="h2 why-h" data-reveal>Most company shows sound <em class="hand">the same</em>.</h2>
+    <div class="why-copy" data-reveal-group>
+      <p class="lead">Two chairs, one <span class="tok tok--input">zoom.us/j/…<i class="caret"></i></span>, a stock jingle and forty minutes of <code class="tok">“great question”</code>. The first episode is called <s>Welcome to the podcast</s>, and the file is called <code class="tok">ep01_final_FINAL2.wav</code>.</p>
+      <p class="lead">We start before anyone presses <span class="tok tok--rec"><b aria-hidden="true"></b>REC</span>: with what the show is for, who it’s for, and the one thing only you can say out loud.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== THE DESK (in the studio: night field) ============================== -->
+<section class="f-night band desk" id="desk" aria-labelledby="desk-h">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <p class="kicker">The desk</p>
+      <h2 id="desk-h" class="h2">Five channels, one <em class="hand">mix</em>. <span class="tail">Same four people on every one.</span></h2>
+    </div>
+
+    <ol class="console" data-console>
+      <li class="ch" style="--to:.78">
+        <div class="ch-head"><span class="led ch-n">01</span><span class="knob" aria-hidden="true"></span></div>
+        <h3 class="ch-name">Format &amp; pilot</h3>
+        <p>We find the angle only you can own, write the format, and make episode one.</p>
+        <p class="ch-out">Format doc · Pilot episode · Running order</p>
+        <div class="fader" aria-hidden="true"><span class="meter"><i></i></span><span class="slot"><b></b></span></div>
+      </li>
+      <li class="ch" style="--to:.62">
+        <div class="ch-head"><span class="led ch-n">02</span><span class="knob" aria-hidden="true"></span></div>
+        <h3 class="ch-name">Kit &amp; remote sessions</h3>
+        <p>A recording kit on every host’s desk, and a producer on every remote session.</p>
+        <p class="ch-out">Kit sent out · Room check · Remote producing</p>
+        <div class="fader" aria-hidden="true"><span class="meter"><i></i></span><span class="slot"><b></b></span></div>
+      </li>
+      <li class="ch" style="--to:.86">
+        <div class="ch-head"><span class="led ch-n">03</span><span class="knob" aria-hidden="true"></span></div>
+        <h3 class="ch-name">Editing &amp; sound design</h3>
+        <p>Tight edits, music and room tone that are yours, mixed to platform loudness.</p>
+        <p class="ch-out">Edit · Mix and master · Music and sound</p>
+        <div class="fader" aria-hidden="true"><span class="meter"><i></i></span><span class="slot"><b></b></span></div>
+      </li>
+      <li class="ch" style="--to:.7">
+        <div class="ch-head"><span class="led ch-n">04</span><span class="knob" aria-hidden="true"></span></div>
+        <h3 class="ch-name">Artwork &amp; trailer</h3>
+        <p>Cover art that still reads at thumbnail size, and a trailer worth pressing play on.</p>
+        <p class="ch-out">Cover art · Trailer · Audiograms</p>
+        <div class="fader" aria-hidden="true"><span class="meter"><i></i></span><span class="slot"><b></b></span></div>
+      </li>
+      <li class="ch" style="--to:.74">
+        <div class="ch-head"><span class="led ch-n">05</span><span class="knob" aria-hidden="true"></span></div>
+        <h3 class="ch-name">Launch &amp; growth</h3>
+        <p>A launch plan, show notes, clips for every channel, and a monthly note on what moved.</p>
+        <p class="ch-out">Launch plan · Show notes · Clips · Growth report</p>
+        <div class="fader" aria-hidden="true"><span class="meter"><i></i></span><span class="slot"><b></b></span></div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================== RUNNING ORDER (journey map) ============================== -->
+<section class="f-night band route" id="running-order" aria-labelledby="route-h">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <p class="kicker">Running order · the Pilot</p>
+      <h2 id="route-h" class="h2">Six weeks, first call to <em class="hand">air date</em>.</h2>
+    </div>
+
+    <div class="map" data-map>
+      <svg class="map-art" viewBox="0 0 1200 640" preserveAspectRatio="none" aria-hidden="true">
+        <polygon class="foam-b" points="0,640 0,170 0,170 40,69 80,170 120,74 160,170 200,47 240,170 280,55 320,170 360,67 400,170 440,70 480,170 520,45 560,170 600,93 640,170 680,75 720,170 760,65 800,170 840,57 880,170 920,87 960,170 1000,79 1040,170 1080,45 1120,170 1160,70 1200,170 1200,640"/>
+        <polygon class="foam-f" points="0,640 0,200 0,200 20,140 40,200 60,155 80,200 100,137 120,200 140,151 160,200 180,149 200,200 220,138 240,200 260,134 280,200 300,164 320,200 340,165 360,200 380,136 400,200 420,147 440,200 460,164 480,200 500,138 520,200 540,146 560,200 580,151 600,200 620,155 640,200 660,142 680,200 700,138 720,200 740,166 760,200 780,147 800,200 820,140 840,200 860,151 880,200 900,143 920,200 940,137 960,200 980,158 1000,200 1020,144 1040,200 1060,144 1080,200 1100,135 1120,200 1140,163 1160,200 1180,140 1200,200 1200,640"/>
+        <g class="mic"><rect x="20" y="404" width="28" height="46" rx="14"/><path d="M34 450v32M20 482h28"/></g>
+        <path class="cable-shadow" d="M48 428 C72 428 70 470 90 470 C195 470 195 350 300 350 S405 470 510 470 S615 350 720 350 S815 470 920 470 S1015 350 1110 350"/>
+        <path class="cable" data-cable pathLength="1" d="M48 428 C72 428 70 470 90 470 C195 470 195 350 300 350 S405 470 510 470 S615 350 720 350 S815 470 920 470 S1015 350 1110 350"/>
+        <g class="stops">
+          <g class="stop" data-stop><circle class="housing" cx="90" cy="470" r="17"/><circle class="glass" cx="90" cy="470" r="10"/></g>
+          <g class="stop" data-stop><circle class="housing" cx="300" cy="350" r="17"/><circle class="glass" cx="300" cy="350" r="10"/></g>
+          <g class="stop" data-stop><circle class="housing" cx="510" cy="470" r="17"/><circle class="glass" cx="510" cy="470" r="10"/></g>
+          <g class="stop" data-stop><circle class="housing" cx="720" cy="350" r="17"/><circle class="glass" cx="720" cy="350" r="10"/></g>
+          <g class="stop" data-stop><circle class="housing" cx="920" cy="470" r="17"/><circle class="glass" cx="920" cy="470" r="10"/></g>
+          <g class="stop stop--end" data-stop><circle class="housing" cx="1110" cy="350" r="22"/><circle class="glass" cx="1110" cy="350" r="14"/></g>
+        </g>
+      </svg>
+
+      <ol class="stations">
+        <li class="stn stn--below stn--first" style="--x:7.5%;--y:78%"><span class="led">wk 0</span><h3>Format call</h3><p>Free. What the show is for, who it’s for, and what only you can say.</p></li>
+        <li class="stn stn--above" style="--x:25%;--y:50%"><span class="led">wk 1</span><h3>Format</h3><p>A written format: name, structure, segments and episode one.</p></li>
+        <li class="stn stn--below" style="--x:42.5%;--y:78%"><span class="led">wk 2</span><h3>Soundcheck</h3><p>Kit at every host’s desk, rooms tested, then the pilot session.</p></li>
+        <li class="stn stn--above" style="--x:60%;--y:50%"><span class="led">wk 3–4</span><h3>The cut</h3><p>Edit and sound design: pace, music, room, loudness.</p></li>
+        <li class="stn stn--below" style="--x:76.6%;--y:78%"><span class="led">wk 5</span><h3>Promo</h3><p>Cover art and a trailer built from the best minute you recorded.</p></li>
+        <li class="stn stn--above stn--last" style="--x:92.5%;--y:50%"><span class="led">wk 6</span><h3>Air date</h3><p>The show goes live with a launch plan. Season keeps it on air.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== RATE CARD (on air: red field) ============================== -->
+<section class="f-red band rates" id="rates" aria-labelledby="rates-h">
+  <div class="container">
+    <div class="sec-head" data-reveal>
+      <p class="kicker">Rate card</p>
+      <h2 id="rates-h" class="h2">Two ways to go <em class="hand">on air</em>. <span class="tail">Once, or every month.</span></h2>
+    </div>
+
+    <div class="jcards">
+      <article class="jcard" aria-labelledby="pilot-h" data-reveal>
+        <div class="spine" aria-hidden="true"><span>On Air · Pilot · Side A</span></div>
+        <div class="jc-body">
+          <div class="cassette" aria-hidden="true"><span class="c-label"><span class="led">C-60</span></span><span class="reel"></span><span class="reel"></span></div>
+          <p class="jc-kind">One-off package</p>
+          <h3 id="pilot-h" class="jc-name">Pilot</h3>
+          <p class="jc-promise">Your show, from nothing to episode one, ready to air.</p>
+          <div class="price">
+            <span class="from">from</span>
+            <span class="led amount">£4,800</span>
+            <span class="unit">one-off · six weeks</span>
+          </div>
+          <ol class="tracks" aria-label="What the Pilot includes">
+            <li><span class="led">A1</span> Format</li>
+            <li><span class="led">A2</span> Pilot episode</li>
+            <li><span class="led">A3</span> Trailer</li>
+            <li><span class="led">A4</span> Artwork</li>
+            <li><span class="led">A5</span> Launch plan</li>
+          </ol>
+          <a class="btn btn--night" href="#call">Book a free format call <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+        <span class="sticker" aria-hidden="true"><span class="led">6</span>weeks</span>
+      </article>
+
+      <article class="jcard jcard--b" aria-labelledby="season-h" data-reveal>
+        <div class="spine" aria-hidden="true"><span>On Air · Season · Side B</span></div>
+        <div class="jc-body">
+          <div class="cassette" aria-hidden="true"><span class="c-label"><span class="led">C-90</span></span><span class="reel"></span><span class="reel"></span></div>
+          <p class="jc-kind">Monthly retainer</p>
+          <h3 id="season-h" class="jc-name">Season</h3>
+          <p class="jc-promise">Keeps the show on air, episode after episode.</p>
+          <div class="price">
+            <span class="from">from</span>
+            <span class="led amount">£2,200</span>
+            <span class="unit">a month · cancel with a month’s notice</span>
+          </div>
+          <ol class="tracks" aria-label="What a Season includes">
+            <li><span class="led">B1</span> Editing</li>
+            <li><span class="led">B2</span> Show notes</li>
+            <li><span class="led">B3</span> Clips</li>
+            <li><span class="led">B4</span> Monthly growth report</li>
+          </ol>
+          <a class="btn btn--night" href="#call">Book a free format call <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+        <span class="sticker sticker--wide" aria-hidden="true">One month’s notice</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== SHELF + BEFORE THE CALL (notes: tape field) ============================== -->
+<section class="f-tape band notes" aria-label="Work and questions">
+  <div class="container grid">
+    <div class="shelf-col" id="shelf">
+      <p class="kicker">The shelf</p>
+      <h2 class="h2 h2--sm" data-reveal>Shows we’ve <em class="hand">made</em>.</h2>
+      <p class="shelf-note">Every slot below is a placeholder. No client shows are listed until they exist.</p>
+      <ul class="shelf" data-reveal-group>
+        <li class="spine-ph"><span class="ph-tag">Placeholder</span><span class="sp-t">Client show title</span><span class="sp-m">Host · company · one line on what changed after launch</span></li>
+        <li class="spine-ph"><span class="ph-tag">Placeholder</span><span class="sp-t">Client show title</span><span class="sp-m">Host · company · one line on what changed after launch</span></li>
+        <li class="spine-ph"><span class="ph-tag">Placeholder</span><span class="sp-t">Client show title</span><span class="sp-m">Host · company · one line on what changed after launch</span></li>
+      </ul>
+      <figure class="quote-ph" data-reveal>
+        <span class="ph-tag">Placeholder</span>
+        <blockquote>A quote from a host about working with On Air goes here, in their words.</blockquote>
+        <figcaption>Name, role, company</figcaption>
+      </figure>
+    </div>
+
+    <div class="faq-col" id="before">
+      <p class="kicker">Before the call</p>
+      <h2 class="h2 h2--sm" data-reveal>Fair <em class="hand">questions</em>.</h2>
+      <div class="faq">
+        <details open>
+          <summary>What happens on the format call?</summary>
+          <p>We ask what the show is for, who it’s for, and what you can say that nobody else can. You leave with a working format idea, whether or not you book.</p>
+        </details>
+        <details>
+          <summary>Do we need our own recording kit?</summary>
+          <p>No. The Pilot includes a kit for each host and producer-led remote sessions, or you can record with us in Manchester.</p>
+        </details>
+        <details>
+          <summary>We already have a show. Can we start with Season?</summary>
+          <p>Yes. Season picks up from your next episode: editing, show notes, clips and a monthly growth report.</p>
+        </details>
+        <details>
+          <summary>How do we stop a Season?</summary>
+          <p>Give us a month’s notice. That’s the whole contract term.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FINALE (on air: red field) ============================== -->
+<section class="f-red finale" id="call" aria-labelledby="call-h">
+  <div class="container">
+    <div class="sign" data-sign aria-hidden="true"><span class="sign-glass"><span>On Air</span></span></div>
+    <div class="finale-row">
+      <h2 id="call-h" class="h2">Let’s get your show <em class="hand">on air</em>.</h2>
+      <div class="finale-act">
+        <p>A free call with two of the four of us. Bring the idea, even if it’s half of one.</p>
+        <a class="btn btn--night btn--lg" href="mailto:studio@onair.example?subject=Format%20call">Book a free format call <span class="arr" aria-hidden="true">→</span></a>
+        <p class="fine"><span class="ph-tag">Placeholder</span> booking link: studio@onair.example</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============================== FOOTER (night) ============================== -->
+<footer class="f-night foot">
+  <div class="container foot-grid">
+    <div class="foot-brand">
+      <span class="lamp lamp--logo" data-studio-lamp aria-hidden="true"><span>On Air</span></span>
+      <p class="status"><span data-studio-status>Studio status</span> · Manchester <span class="led" data-clock="Europe/London">--:--</span></p>
+      <p class="fine">Studio hours Mon–Fri, 9–6 <span class="ph-tag">Placeholder</span></p>
+    </div>
+    <nav class="foot-col" aria-label="Offers">
+      <p class="foot-h">Offers</p>
+      <a href="#rates">Pilot, from £4,800</a>
+      <a href="#rates">Season, from £2,200 a month</a>
+      <a href="#call">Free format call</a>
+    </nav>
+    <nav class="foot-col" aria-label="Studio">
+      <p class="foot-h">Studio</p>
+      <a href="#desk">The desk</a>
+      <a href="#running-order">Running order</a>
+      <a href="#before">Before the call</a>
+    </nav>
+    <div class="foot-col">
+      <p class="foot-h">Find us</p>
+      <a href="mailto:studio@onair.example">studio@onair.example</a>
+      <p>Street address, Manchester <span class="ph-tag">Placeholder</span></p>
+    </div>
+    <div class="foot-col foot-cta">
+      <p class="foot-h">Ready?</p>
+      <a class="btn btn--red" href="#call">Book a free format call</a>
+    </div>
+  </div>
+  <div class="container foot-base">
+    <p>© 2026 On Air. A fictional studio.</p>
+    <p>Lost? <span class="dead">Dead air.</span> Nothing is broadcasting on a page that doesn’t exist.</p>
+  </div>
+</footer>
+
+<script type="module">
+  import { autoInit, reduced } from './motion.js';
+  autoInit();
+
+  /* ---------- trailer: captions-only audiogram (finite, pausable) ---------- */
+  const T = document.querySelector('[data-trailer]');
+  const script = [
+    [0, 'cue', 'Room tone. A chair creaks.'], [1800, 'say', 'Every company has a podcast now.'],
+    [5200, 'say', 'Most of them open the same way:'], [8600, 'say', '“Hi, and welcome to the podcast.”'],
+    [12000, 'cue', 'The tape stops.'], [13800, 'say', 'We’d rather open with a reason to listen.'],
+    [17800, 'say', 'On Air. A podcast studio in Manchester.'], [21800, 'say', 'Format. Kit. Edit. Artwork. Trailer. Launch.'],
+    [26000, 'say', 'Four people, from first recording to air date.'], [30000, 'cue', 'The on-air light clicks on.'],
+    [32000, 'say', 'Book a free format call.']];
+  const END = 35000;
+  const cap = T.querySelector('[data-cap]'), cue = T.querySelector('[data-cue]'), tc = T.querySelector('[data-tc]');
+  const prog = T.querySelector('[data-prog]'), btn = T.querySelector('[data-play]'), tally = T.querySelector('[data-tally]');
+  const wave = T.querySelector('[data-wave]');
+  const N = 44; const bars = Array.from({ length: N }, (_, i) => { const b = document.createElement('i'); b.style.setProperty('--h', (0.18 + 0.5 * Math.abs(Math.sin(i * 1.7))).toFixed(2)); wave.append(b); return b; });
+  let t = 0, playing = false, last = 0, idx = -1, raf = 0, waveTimer = 0;
+  const fmt = (ms) => '00:' + String(Math.floor(ms / 1000)).padStart(2, '0');
+  function show(i) {
+    if (i === idx) return; idx = i; const [, kind, text] = script[i];
+    if (kind === 'cue') { cue.textContent = '[' + text + ']'; cue.classList.remove('pop'); void cue.offsetWidth; cue.classList.add('pop'); }
+    else { cap.textContent = text; cap.classList.remove('pop'); void cap.offsetWidth; cap.classList.add('pop'); }
+    T.classList.toggle('is-quiet', kind === 'cue');
+    if (i === script.length - 2) tally.classList.add('is-lit');
+  }
+  function frame(now) {
+    if (!playing) return;
+    t = Math.min(END, t + (now - last)); last = now;
+    let i = 0; while (i + 1 < script.length && script[i + 1][0] <= t) i++;
+    show(i); tc.textContent = fmt(t); prog.style.transform = `scaleX(${t / END})`;
+    if (t >= END) { stop(true); return; }
+    raf = requestAnimationFrame(frame);
+  }
+  function jiggle() { const quiet = T.classList.contains('is-quiet'); bars.forEach((b) => b.style.setProperty('--h', (quiet ? 0.06 + Math.random() * 0.08 : 0.15 + Math.random() * 0.85).toFixed(2))); }
+  function play() {
+    if (t >= END) { t = 0; idx = -1; tally.classList.remove('is-lit'); }
+    playing = true; last = performance.now(); T.classList.add('is-playing'); tally.classList.add('is-rec');
+    btn.setAttribute('aria-label', 'Pause the trailer'); raf = requestAnimationFrame(frame);
+    if (!reduced) waveTimer = setInterval(jiggle, 140);
+  }
+  function stop(ended) {
+    playing = false; cancelAnimationFrame(raf); clearInterval(waveTimer); T.classList.remove('is-playing'); tally.classList.remove('is-rec');
+    btn.setAttribute('aria-label', ended ? 'Replay the trailer' : 'Play the trailer');
+  }
+  btn.addEventListener('click', () => (playing ? stop(false) : play()));
+  if (!reduced) setTimeout(() => { if (!playing && t === 0) play(); }, 1100);
+
+  /* ---------- the desk: faders spring up when the console comes into view ---------- */
+  const consoleEl = document.querySelector('[data-console]');
+  const io = (el, fn, rm = '0px 0px -25% 0px') => { const o = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { fn(); o.disconnect(); } }), { rootMargin: rm }); o.observe(el); };
+  io(consoleEl, () => consoleEl.classList.add('is-up'));
+
+  /* ---------- running order: cable draws, lamps light in sequence ---------- */
+  const map = document.querySelector('[data-map]');
+  io(map, () => {
+    map.classList.add('is-drawn');
+    map.querySelectorAll('[data-stop]').forEach((s, i) => setTimeout(() => s.classList.add('is-lit'), reduced ? 0 : 300 + i * 260));
+  });
+
+  /* ---------- finale: the sign flicks on ---------- */
+  const sign = document.querySelector('[data-sign]');
+  io(sign, () => sign.classList.add('is-lit'), '0px 0px -15% 0px');
+
+  /* ---------- footer: studio lamp follows Manchester time (assumed hours) ---------- */
+  const lamp = document.querySelector('[data-studio-lamp]'), status = document.querySelector('[data-studio-status]');
+  const parts = Object.fromEntries(new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', weekday: 'short', hour: 'numeric', hour12: false }).formatToParts(new Date()).map((p) => [p.type, p.value]));
+  const open = !['Sat', 'Sun'].includes(parts.weekday) && +parts.hour >= 9 && +parts.hour < 18;
+  lamp.classList.toggle('is-lit', open); status.textContent = open ? 'On air now' : 'Off air right now';
+</script>
+</body>
+</html>

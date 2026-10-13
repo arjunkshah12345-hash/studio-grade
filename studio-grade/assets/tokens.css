@@ -25,6 +25,7 @@
   --font-display: "Inter Tight", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-text:    var(--font-display);   /* set explicitly if you use a separate text face */
   --font-serif:   var(--font-display);   /* .t-lead / .serif-i use this: point it at a real serif only if your system has one */
+  --font-num:     var(--font-mono);      /* the numbers voice (prices, timecodes, counters): a pixel/LED face in Loud builds (techniques.md §66), else mono */
   --font-mono:    var(--font-display);   /* mono labels are a dev/SaaS/deep-tech device (typography.md §5); point at a mono face only then */
 
   /* ---------- Type scale (fluid; 390px → 1440px) ---------- */

@@ -153,3 +153,16 @@ Supplied 2026-10-13 (`shots/bugscout.jpg`), hero only.
 ## What the six supplied references have in common (became direction 11, Bright Product)
 
 Fornax, Answerr, Mugic, Wandor, BugScout and, louder, Ignura: a bright page, one generated image system that bookends it, product shown as small UI vignettes, a serif or friendly display, and warm task-verb copy. Every one also had copy and craft errors (duplicated sections, Title Case, filler UI, ghost buttons on photos), which is why the direction's Avoid list is long.
+
+
+---
+
+## mkdir.directory: "Curated design inspiration directories." (Astro + GSAP + Lenis; measured 2026-10-14)
+
+`sites/mkdir-directory/`. 3.9 viewports.
+- **The list is the page:** a two-line intro, then 30 directories ranked by votes, each name at 48px in Geist 500 (−0.96px). Tiny mono rank numbers sit in the left gutter and mono vote counts (▲ 300) at the right. Rows tint grey on hover, and small thumbnails of the linked sites appear near the cursor.
+- **Type and colour:** Geist and Geist Mono only; 12px and 48px make up 60 of 73 text nodes. Ink `rgb(22 24 31)` and grey `rgb(107 111 123)` on `rgb(250 250 252)`. No radii, no backgrounds and no CTAs measured.
+- **Wordmark as a window:** the footer's giant "mkdir" is cut out of the page onto a live black-and-white marbling texture (2 canvases).
+- **Voice:** "picked by hand and kept short on purpose", "Free galleries only. No paywall, no sign-up.", "Vote for the ones you use and the order updates on your next visit. One vote per directory." Honest form states: "is in the review queue" / "is already on the list".
+- Motion: UI at .15–.2s with four eases; GSAP + SplitText for the intro, Lenis for scrolling.
+- **Take:** the whole page as one ranked list (techniques §78), the wordmark window (§79), and the restraint (two families, two colours). **Leave:** nothing notable. Check the grey's contrast at 12px before copying it (it's about 5:1 on that paper, which passes).

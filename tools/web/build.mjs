@@ -345,7 +345,7 @@ function method() {
 │  ├─ color.md         <span>40 measured palettes</span>
 │  ├─ layout.md        <span>21 heroes, 22 sections</span>
 │  ├─ motion.md        <span>eases, springs, policy</span>
-│  ├─ techniques.md    <span>77 moves with code</span>
+│  ├─ techniques.md    <span>79 moves with code</span>
 │  ├─ imagery.md       <span>no-photo strategies</span>
 │  └─ copy · anti-slop · components · evidence
 ├─ assets/             <span>tokens.css · motion.js</span>
@@ -379,7 +379,7 @@ function evidence() {
     ['Big-brand agencies', 15, 'Systems over set pieces: named token bundles, one house ease.'],
     ['Fashion and luxury', 12, 'Hero text 18–31px, never 64+; restraint measured +11% conversion.'],
     ['Award winners 2023–26', 18, 'Juries pay for motion craft and forgive weak accessibility; we don’t.'],
-    ['User references', 7, 'convt.app, ignura.com, jawadjalal.com and four supplied screenshots (Fornax, Answerr, Mugic, Wandor): inline UI tokens, pricing as an object, a photo composed for the headline, the input drawn as a domain object. We keep the ideas, not the mistakes.'],
+    ['User references', 9, 'convt.app, ignura.com, jawadjalal.com, mkdir.directory and five supplied screenshots (Fornax, Answerr, Mugic, Wandor, BugScout): inline UI tokens, pricing as an object, a photo composed for the headline, the input drawn as a domain object. We keep the ideas, not the mistakes.'],
   ];
   return layout({
     title: 'Evidence · Studio Grade', desc: 'The research behind Studio Grade: 99 live sites by 40 studios, measured from computed styles and the motion values in their JavaScript.', page: 'evidence', here: 'Evidence', canonical: '/evidence/',

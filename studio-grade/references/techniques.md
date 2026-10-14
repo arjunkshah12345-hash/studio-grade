@@ -1,8 +1,8 @@
-# Signature techniques: 77 moves with code
+# Signature techniques: 79 moves with code
 
 Choose **2–3 per site**, and make sure they serve the motif. **System rules don't count toward the 2–3:** §63 (naming), §66 (type voices) and §67 ("Read the film") shape the whole build rather than one moment, so they sit alongside your signatures. A page that uses ten of these is a demo reel, not a design. Each entry names its origin so you can match it to a direction.
 
-Index: **A. Structure & framing** 1–11 · **B. Type moves** 12–30 · **C. Product & proof** 31–37 · **D. Interaction & motion** 38–55 · **E. Small-product moves** 56–60 · **F. Studio and personal-site moves** 61–67 (visual signatures: 61, 62, 64, 65; system rules: 63, 66, 67) · **G. Photo-led product moves** 68–70 · **H. Editorial marks** 71 · **I. AI-product and illustration-system moves** 72–77
+Index: **A. Structure & framing** 1–11 · **B. Type moves** 12–30 · **C. Product & proof** 31–37 · **D. Interaction & motion** 38–55 · **E. Small-product moves** 56–60 · **F. Studio and personal-site moves** 61–67 (visual signatures: 61, 62, 64, 65; system rules: 63, 66, 67) · **G. Photo-led product moves** 68–70 · **H. Editorial marks** 71 · **I. AI-product and illustration-system moves** 72–77 · **J. Directory and index moves** 78–79
 
 ---
 
@@ -511,3 +511,37 @@ A hero for a product with three capabilities and no single hero image:
 @media (max-width:760px){.tray{grid-template-columns:1fr}.tray > :nth-child(2){margin-top:0}}
 ```
 **Image-beside variant:** when the hero image's empty zone is on the left, stack the copy left over the paper and put the image right, parked on the tray's top edge (Haul's van sits with its wheels on the tray). At 1440×900, about 330px of the tray shows above the fold. Put **real content in the vignettes**: the reference's three identical "Debugger" rows are filler. Write three real runs ("checkout.js · TypeError fixed · 2s", …). Each card's vignette plays its one action once on view.
+
+## J. Directory and index moves (mkdir.directory)
+
+### 78. The list is the page (mkdir.directory)
+For a directory, index, changelog or ranking, skip the hero, cards and feature sections: a two-line intro, then **one ranked list set big**, then the footer. That's about 4 viewports.
+- **Rows:** the name at ~48px in the display sans at 500 (−0.02em, line-height 1.1). A tiny mono rank number (`01`–`30`) sits in the left gutter and the count (▲ 300) at the right edge in mono 12px. Hairlines between rows.
+- **Hover:** the row tints (`--paper-2`) and a small preview thumbnail follows the cursor. Use real screenshots of the linked items, so the list stays type and the image only appears on intent.
+- **Ranking by the people who use it:** a vote button per row ("one vote per directory; the order updates on your next visit"). Don't reorder under the cursor.
+- **Honest states** on the suggest form: "Thanks. X is in the review queue." / "X is already on the list."
+- **Two families, two text colours** (ink and a grey at ≥4.5:1). The restraint is the design.
+```css
+.rank{list-style:none;margin:0;padding:0;counter-reset:r}
+.rank li{display:grid;grid-template-columns:3ch 1fr auto;align-items:baseline;gap:12px;padding:6px 8px;border-bottom:1px solid var(--hairline);border-radius:6px;transition:background-color .2s var(--ease)}
+.rank li::before{counter-increment:r;content:counter(r,decimal-leading-zero);font:500 11px/1 var(--font-mono);color:var(--ink-3)}
+.rank a{font:500 clamp(1.75rem,1rem + 2.4vw,3rem)/1.1 var(--font-display);letter-spacing:-.02em;color:var(--ink);text-decoration:none}
+.rank li:hover{background:var(--paper-2)}
+.rank .votes{font:500 12px/1 var(--font-mono);color:var(--ink-3);font-variant-numeric:tabular-nums}
+.peek{position:fixed;width:180px;aspect-ratio:16/10;border-radius:6px;pointer-events:none;opacity:0;transform:translate(16px,16px) scale(.96);transition:opacity .15s,transform .2s var(--ease)}
+.peek.is-on{opacity:1;transform:translate(16px,16px)}
+@media (hover:none){.peek{display:none}}
+```
+
+### 79. The wordmark as a window (mkdir.directory)
+End on the name at full width, cut out of the page so a **live texture shows through the letters**: marbling, ink in water, slow noise. It's the one moment of motion on an otherwise still page. The cheap version needs no WebGL mask: draw the texture on a canvas, then lay a paper-coloured block over it with the wordmark in black and `mix-blend-mode:screen`. Screen keeps the paper white and lets the canvas show only through the black letters. (On a dark page, use a dark block, white letters and `multiply`.)
+```html
+<div class="window" aria-hidden="true"><canvas></canvas><p class="window-mark">mkdir</p></div>
+```
+```css
+.window{position:relative;overflow:hidden;isolation:isolate}
+.window canvas{position:absolute;inset:0;width:100%;height:100%}
+.window-mark{position:relative;margin:0;background:var(--paper);color:#000;mix-blend-mode:screen;
+  font:600 clamp(6rem,2rem + 18vw,22rem)/.8 var(--font-display);letter-spacing:-.05em;text-align:center}
+```
+Keep the texture slow (one full cycle ≥ 20s) and pause it offscreen and under reduced motion (the audit's `perf.offscreen` checks the first). Spell-check the wordmark (§70).

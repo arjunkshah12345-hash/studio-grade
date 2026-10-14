@@ -40,7 +40,7 @@ Nothing good lives in the ambiguous 50–60px zone *by accident*. Content contai
 | H10 | **80vh film + bottom caption** | 80svh so the next heading peeks; a bottom scrim; kicker → 31px title → dek → wide ghost button | Aesop |
 | H11 | **Rotating noun sentence** | "[A campus] that brings change home" in two columns; the left word cycles | Obama |
 | H12 | **Demo-as-hero** | a 5-word h1 + a playable product panel directly under it (segmented control, orbs, composer) | ElevenLabs, OpenAI |
-| H13 | **Index as hero** | the work list *is* the hero (client names with video behind, a colour-spine index) | Bennett & Clive, Seventeen |
+| H13 | **Index as hero** | the work list *is* the hero (client names with video behind, a colour-spine index); or the whole page is one ranked list at ~48px with mono ranks and counts (techniques.md §78) | Bennett & Clive, Seventeen, mkdir.directory |
 | H14 | **Branded loader → reveal** | the loader is a brand object; an aperture or blur reveal into the hero | illoca, Atlas, Cartier 365 |
 | H15 | **Transformation pair** | centered or left h1 + ≤2 CTAs; below, two object cards (before → after) with mono filename + metric, the improved metric in accent, an arrow node between them, on a textured stage | convt.app |
 | H16 | **Technical drawing as hero** | the product or its subject drawn to scale (SVG) across the full width on a hairline grid; the action drawn as a path or flow; outputs annotated with measured callouts; h1 bottom-left, ≤2 CTAs | Kestrel (test build), Baseten isometrics |

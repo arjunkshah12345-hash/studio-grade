@@ -4,7 +4,7 @@ On every award winner, juries scored Animations/Transitions as the highest dev s
 
 ## 0. What actually moves (measured live on 106 sites, October 2026)
 
-Probe: load each site, read the hero heading at ~100ms and again at 4s, then count which below-the-fold elements start hidden waiting for a scroll reveal (`research/motion-probe.json`, `tools/motion-probe.mjs`).
+Probe: load each site, read the hero heading at ~100ms and again at 4s, then count which below-the-fold elements start hidden waiting for a scroll reveal (the probe script and raw results are kept with the unpublished research).
 
 | | Measured | So |
 |---|---|---|

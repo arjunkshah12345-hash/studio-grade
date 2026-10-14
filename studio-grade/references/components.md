@@ -112,3 +112,8 @@ Design it. ERA set its cookie card in the display script. illoca uses a tiny mon
 ## Status and metadata texture
 
 Use these like jewelry, 1–3 per page: a live clock, coordinates, counts in parentheses ("Urban (51)"), read-time labels ("Five-minute read"), "Since 2021" / "EST 2022", version numbers, FIG numbers, patent numbers as data pills (Glyphic), stock lines ("✓ IN STOCK · SHIPS IN 3-5 BUSINESS DAYS"), an "Open today 10–5" line.
+
+
+**Code lines as a list:** put `white-space:pre` on each `li`, not on the `ol`. On the `ol`, the newlines between items render as blank lines and double the vignette's height.
+
+**Choosing a logo mark:** render a size sheet (16, 24, 32, 64 and 128px, light and dark) before choosing. It kills weak candidates fast: side-view objects read as hamburger menus at 16px, and plain leaf tiles read as eco apps.

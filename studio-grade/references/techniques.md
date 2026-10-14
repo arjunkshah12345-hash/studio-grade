@@ -503,6 +503,8 @@ End the page on the brand's world instead of a grey footer. The footer columns s
 - Link columns share one grid; don't left-align the columns and then right-align a stray note.
 - No clever colophon one-liners ("Printed in two inks…", "This page: 1 box, 0 any"). Readers didn't get them and called them AI. A footer says plain things.
 
+**Deckled edges as section edges:** cut a strip from a plate's own brushed or torn edge and mask it into the band, so every coloured field starts and ends like a print. In the SuperCompress build it was the biggest finish gain after the hero.
+
 The art starts **below the footer's base row**, so nothing like a clock or a copyright line sits on chimneys; with a flat-topped sky, pull the image up under the footer with a negative margin and mask its top so the columns sit on the sky itself. Keep it `aria-hidden="true"`, ≤ 40vh tall, and cropped to its central object on mobile (`object-position:50% 100%`). **Shaped edges:** when the hero ends in illustration, let its bottom edge follow the art's silhouette (`clip-path:path(...)` or an SVG `mask`) instead of a straight line, as Wandor's die-cut collage does.
 
 ### 77. Split header over a staggered vignette tray (BugScout)

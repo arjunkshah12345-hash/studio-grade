@@ -301,7 +301,7 @@ const COLLECT = () => {
   out.emoji = [...document.querySelectorAll('h1,h2,h3,h4,button,a,[class*="btn" i],[class*="badge" i],label')].filter(C.vis).map((e) => e.innerText.trim()).filter((t) => pict.test(t.replace(/[©®™↗→←↑↓↳⌄›»✓✕×◆●○⊕+]/g, ''))).slice(0, 6);
   out.exclaim = [...document.querySelectorAll('h1,h2')].map((e) => e.innerText.trim()).filter((t) => /!/.test(t));
   const BANNED = ['supercharge', 'unleash', 'unlock the', 'unlock your', 'revolutioniz', 'elevate your', 'empower', 'seamless', 'next-gen', 'next generation of', 'cutting-edge', 'cutting edge', 'game-changer', 'game changer', 'state-of-the-art', 'best-in-class', 'world-class', 'harness the', 'leverage', 'synergy', 'look no further', 'fast-paced', 'to the next level', 'transform your', 'take your', 'ai-powered', 'lorem ipsum', 'feature one', 'feature 1'];
-  const copy = [...document.querySelectorAll('h1,h2,h3,p,a,button,li')].filter(C.vis).map((e) => e.innerText.toLowerCase());
+  const copy = [...document.querySelectorAll('h1,h2,h3,p,a,button,li')].filter(C.vis).filter((e) => !e.closest('del,s,[data-counterexample]')).map((e) => e.innerText.toLowerCase());   // struck-out "we don't write" examples aren't copy
   out.banned = [...new Set(BANNED.filter((b) => copy.some((t) => t.includes(b))))];
   out.lorem = copy.some((t) => t.includes('lorem ipsum'));
   // ---- motion
@@ -320,7 +320,7 @@ const COLLECT = () => {
   out.pauseControl = !![...document.querySelectorAll('button,[role="button"]')].find((b) => /pause|play/i.test((b.getAttribute('aria-label') || '') + b.innerText));
   // ---- a11y basics
   out.imgNoAlt = [...document.images].filter((i) => !i.hasAttribute('alt')).length;
-  out.unnamedControls = [...document.querySelectorAll('a,button')].filter((el) => C.vis(el) && !(el.innerText.trim() || el.getAttribute('aria-label') || el.getAttribute('title') || el.querySelector('img[alt]:not([alt=""]),svg title'))).length;
+  out.unnamedControls = [...document.querySelectorAll('a,button')].filter((el) => C.vis(el) && !el.closest('details:not([open]) > :not(summary)') && !(el.innerText.trim() || el.getAttribute('aria-label') || el.getAttribute('title') || el.querySelector('img[alt]:not([alt=""]),svg title'))).length;
   out.skipLink = !![...document.querySelectorAll('a[href^="#"]')].find((a) => /skip/i.test(a.innerText));
   // never-revealed content (text still invisible after a full scroll)
   out.hiddenText = txt.filter((el) => !el.closest('nav,header') && !C.intentionallyHidden(el) && C.cumOpacity(el) < 0.05 && el.getBoundingClientRect().top + scrollY < document.documentElement.scrollHeight - 50).map((el) => C.ownText(el).slice(0, 30)).slice(0, 8);

@@ -113,3 +113,6 @@ Rules: 3–7 visible items. Everything else goes in a drawer or mega panel. The 
 - Margins are 16–24px. Logo grids go to 2–3 columns. Sticky CTAs persist (Ramp ticker, Mintlify "Ask assistant" pill).
 - Hide custom cursors and heavy WebGL on touch; swap in a poster or video.
 - Test for horizontal overflow; giant display type is the usual culprit, so use `clamp()` with a vw term and `overflow-wrap:anywhere` on long words.
+
+
+**Measure on the heading itself:** set `max-width` in `em` on the h2 (of its own size), not on a wrapper. A wrapper's `max-width:15em` at body size squeezed an h2 into a 3-word column.

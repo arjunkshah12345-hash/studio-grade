@@ -293,6 +293,7 @@ Contents: 1 Engineered Dark · 2 Ledger Light · 3 Warm Paper · 4 Editorial Mot
   - No integrations (a consumer product)? Use a **promise strip** ("No ads · No chat · Reviewed by a person").
   - No reviews or customers? Show **a sample of the output** (a story page, a sample route, a week in the product) or **limits as proof** ("Planning help, not a guarantee", with numbered truths and the emergency number). For regulated buyers (health, finance, legal), the honesty layer is content: a certification panel with visible Placeholder chips reads as care, not as a disclaimer.
   - No pricing? Show the **buying process** (how a pilot runs, in weeks). Never invent prices.
+  - Benchmark-led dev tools: print the limits beside the numbers ("What these numbers don't say", numbered, in a paper card on the band). In testing it read as the strongest proof section.
 - **Copy:**
   - Headline formulas: in → out ("Work goes in cold. Comes out finished."), two-sided ("Institutions buy it. People carry it."), or claim → challenge.
   - Sentence case everywhere, and task-verb CTAs ("Plan my trip", "Get early access").

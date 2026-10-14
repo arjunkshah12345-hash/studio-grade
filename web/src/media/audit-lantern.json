@@ -1,0 +1,121 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/lantern/index.html",
+ "outDir": "/tmp/gal-lantern",
+ "ms": 44841,
+ "counts": {
+  "PASS": 10,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Newsreader×83",
+   "Instrument Sans×70"
+  ],
+  "display": [
+   "104px/0.98/-0.035em w300 \"Read it. Then push back.\"",
+   "104px/0.98/-0.035em w300 \"Then push back.\"",
+   "100px/0.95/-0.035em w300 \"Read with us.\""
+  ],
+  "bodySize": "18",
+  "weights": [
+   "400×84",
+   "500×53",
+   "340×9",
+   "300×5",
+   "330×2"
+  ],
+  "upperShare": 0.03,
+  "paper": "rgb(247,244,236)",
+  "accents": [
+   "rgb(184,60,30) text \"Pressure: claimed au\""
+  ],
+  "buttons": [
+   "soft 50px \"Read the latest report\n→\"",
+   "soft 50px \"Join the reading group\"",
+   "soft 50px \"Read the latest report\n→\"",
+   "soft 50px \"Back issues\"",
+   "soft 44px \"Join the reading group\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)"
+  ],
+  "nav": {
+   "h": 72,
+   "links": 7
+  },
+  "pageVh": 8.2
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "2 families: Newsreader, Instrument Sans"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 104px · lh 0.98 · -0.035em · weight 300 · Newsreader)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (3/6 traits: warmOffWhite, tinyAccent, lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "One accent hue (0° (w5) e.g. rgb(184,60,30) text \"Pressure: claimed au\")"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 136 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 11 text elements over imagery meet AA (sampled from pixels)"
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: soft"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "2 hero CTA(s)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.16,1,0.3,1)×50, cubic-bezier(0.76,0,0.24,1)×3, linear×1"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 0% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 8.2 viewports (direction 3 norm 8–14)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/gal-lantern/desktop-hero.png",
+  "/tmp/gal-lantern/slice-01.jpg … (one per viewport)",
+  "/tmp/gal-lantern/desktop-full.jpg",
+  "/tmp/gal-lantern/mobile-hero.png",
+  "/tmp/gal-lantern/mobile-full.jpg",
+  "/tmp/gal-lantern/reduced-motion-hero.png"
+ ]
+}

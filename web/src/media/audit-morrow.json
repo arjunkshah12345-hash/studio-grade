@@ -1,0 +1,117 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/morrow/index.html",
+ "outDir": "/tmp/gal-morrow",
+ "ms": 43564,
+ "counts": {
+  "PASS": 9,
+  "INFO": 3
+ },
+ "profile": {
+  "families": [
+   "Schibsted Grotesk×125",
+   "Bodoni Moda×28"
+  ],
+  "display": [
+   "64px/1.02/-0.02em w400 \"Six days to find your hour.\"",
+   "56px/1/-0.02em w400 \"05:40\"",
+   "56px/1/-0.02em w400 \"08:15\""
+  ],
+  "bodySize": "15",
+  "weights": [
+   "400×138",
+   "500×15"
+  ],
+  "upperShare": 0.05,
+  "paper": "rgb(255,255,255)",
+  "accents": [],
+  "buttons": [
+   "square 48px \"Order the discovery set\n240 DK\"",
+   "square 48px \"Add 05:40 to bag\"",
+   "square 48px \"Add 08:15 to bag\"",
+   "square 48px \"Add 12:00 to bag\"",
+   "square 48px \"Add 16:50 to bag\""
+  ],
+  "eases": [
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)",
+   "cubic-bezier(.215,.61,.355,1)"
+  ],
+  "nav": {
+   "h": 64,
+   "links": 5
+  },
+  "pageVh": 9.5
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "2 families: Schibsted Grotesk, Bodoni Moda"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 64px · lh 1.02 · -0.02em · weight 400 · Bodoni Moda)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (1/6 traits: lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 148 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 5 text elements over imagery meet AA (sampled from pixels)"
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: square"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "1 hero CTA(s)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.215,0.61,0.355,1)×49, cubic-bezier(0.76,0,0.24,1)×6"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.accent",
+   "msg": "No accent hue in the page chrome (illustrations/replicas use: 30°×37, 60°×3). Fine if that matches your Spine."
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 0% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 9.5 viewports (direction 5 norm 3–9)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/gal-morrow/desktop-hero.png",
+  "/tmp/gal-morrow/slice-01.jpg … (one per viewport)",
+  "/tmp/gal-morrow/desktop-full.jpg",
+  "/tmp/gal-morrow/mobile-hero.png",
+  "/tmp/gal-morrow/mobile-full.jpg",
+  "/tmp/gal-morrow/reduced-motion-hero.png"
+ ]
+}

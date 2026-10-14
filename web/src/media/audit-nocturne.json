@@ -1,16 +1,15 @@
 {
- "url": "http://127.0.0.1:60665/index.html",
- "outDir": "/tmp/cs-aud-nocturne",
- "ms": 45195,
+ "url": "http://127.0.0.1:4317/tests/builds/nocturne/index.html",
+ "outDir": "/tmp/gal-nocturne",
+ "ms": 45400,
  "counts": {
-  "WARN": 1,
-  "PASS": 8,
+  "PASS": 10,
   "INFO": 2
  },
  "profile": {
   "families": [
    "Archivo×168",
-   "Big Shoulders Display×88"
+   "Big Shoulders Display×91"
   ],
   "display": [
    "152px/0.86/-0.01em w800 \"LINE-UP\"",
@@ -21,11 +20,11 @@
   "weights": [
    "800×87",
    "600×75",
-   "700×51",
+   "700×54",
    "400×35",
    "500×8"
   ],
-  "upperShare": 0.8,
+  "upperShare": 0.79,
   "paper": "rgb(13,12,11)",
   "accents": [
    "rgb(46,60,245) bg a.key__s",
@@ -33,11 +32,11 @@
    "rgb(255,75,31) bg a.key__s"
   ],
   "buttons": [
-   "square 56px \"SKIP TO CONTENT\"",
    "square 44px \"BUY TICKETS\"",
    "square 56px \"BUY TICKETS\nFROM €65\"",
    "square 56px \"SEE THE LINE-UP\"",
-   "square 44px \"ALL STAGES\""
+   "square 56px \"BUY A DAY TICKET\n→\"",
+   "square 56px \"BUY THE 3-DAY PASS\n→\""
   ],
   "eases": [
    "cubic-bezier(.16,1,.3,1)",
@@ -48,19 +47,9 @@
    "h": 64,
    "links": 6
   },
-  "pageVh": 11.1
+  "pageVh": 11.2
  },
  "findings": [
-  {
-   "level": "WARN",
-   "rule": "hero.ctas",
-   "msg": "3 CTAs in the first viewport (max 2: primary + ghost/text)",
-   "examples": [
-    "SKIP TO CONTENT",
-    "BUY TICKETS\nFROM €65",
-    "SEE THE LINE-UP"
-   ]
-  },
   {
    "level": "PASS",
    "rule": "type.families",
@@ -81,20 +70,30 @@
    "rule": "color.accent",
    "msg": "Colour-block system: 3 hues used as full-bleed fields. Loud register is fine if each hue has one meaning (range.md §1).",
    "examples": [
-    "240° (w285) e.g. rgb(46,60,245) bg a.key__s",
-    "60° (w282) e.g. rgb(212,245,49) bg a.key__s",
-    "0° (w279) e.g. rgb(255,75,31) bg a.key__s"
+    "240° (w286) e.g. rgb(46,60,245) bg a.key__s",
+    "60° (w283) e.g. rgb(212,245,49) bg a.key__s",
+    "0° (w280) e.g. rgb(255,75,31) bg a.key__s"
    ]
   },
   {
    "level": "PASS",
    "rule": "a11y.contrast",
-   "msg": "All 239 checked text elements meet AA. Text over imagery was skipped; check it by eye."
+   "msg": "All 242 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 4 text elements over imagery meet AA (sampled from pixels)"
   },
   {
    "level": "PASS",
    "rule": "shape.buttons",
    "msg": "Consistent button radius camp: square"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "2 hero CTA(s)"
   },
   {
    "level": "PASS",
@@ -109,20 +108,20 @@
   {
    "level": "INFO",
    "rule": "color.coverage",
-   "msg": "Saturated background coverage ≈ 27.8% of page area"
+   "msg": "Saturated background coverage ≈ 27.5% of page area"
   },
   {
    "level": "INFO",
    "rule": "layout.length",
-   "msg": "Page length 11.1 viewports (direction 7 norm 7–12)"
+   "msg": "Page length 11.2 viewports (direction 7 norm 7–12)"
   }
  ],
  "screenshots": [
-  "/tmp/cs-aud-nocturne/desktop-hero.png",
-  "/tmp/cs-aud-nocturne/slice-01.jpg … (one per viewport)",
-  "/tmp/cs-aud-nocturne/desktop-full.jpg",
-  "/tmp/cs-aud-nocturne/mobile-hero.png",
-  "/tmp/cs-aud-nocturne/mobile-full.jpg",
-  "/tmp/cs-aud-nocturne/reduced-motion-hero.png"
+  "/tmp/gal-nocturne/desktop-hero.png",
+  "/tmp/gal-nocturne/slice-01.jpg … (one per viewport)",
+  "/tmp/gal-nocturne/desktop-full.jpg",
+  "/tmp/gal-nocturne/mobile-hero.png",
+  "/tmp/gal-nocturne/mobile-full.jpg",
+  "/tmp/gal-nocturne/reduced-motion-hero.png"
  ]
 }

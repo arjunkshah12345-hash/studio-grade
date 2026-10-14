@@ -98,3 +98,43 @@ Supplied by the user on 2026-10-12 as a single presentation image (`shots/fornax
 ### Honest read: take / leave
 - **Take:** the photo composed for the headline; the photo reused as the finale; UI vignettes on photo crops as the three-step transformation; the in → out headline; integrations as proof; the wordmark tinted with the photo's sky.
 - **Leave:** the white ghost secondary button on a pale sky (fails contrast) and its typo ("See How Its Works"); the wordmark that spells FORMAX for a brand called Fornax; Title Case card titles under sentence-case heads; two sections that appear twice; centered heads on every section. The person with a laptop in a park sits right on the "not models pointing at laptops" line. It works only because the photo shows the *outcome* (the work is handled, so you're in the park), not the product.
+
+---
+
+## Answerr, Mugic, Wandor (three supplied screenshots, unmeasured)
+
+Supplied by the user on 2026-10-13 as presentation images (`shots/answerr.jpg`, `mugic.jpg`, `wandor.jpg`), without URLs. Values are read from the images.
+
+### Answerr: "Anyone can use AI. Can you prove you use it well?" (an AI-readiness credential)
+- **One engraving system carries the brand.** Navy steel-engraving illustration (crosshatched clouds, a domed university, a library interior, graduate portraits in circles, compliance icons) in one ink on white. It is the language of banknotes and diplomas, so the image style *is* the metaphor: certified, official, hard to forge. It appears in the hero band, a case-study panel, a portrait grid, the badge grid and the footer.
+- **Security-print framing:** fine vertical hairline strips (guilloché-like) frame the hero band and divide the finale, like the margin of a certificate.
+- **The output is the hero artifact:** a credential card over the engraving: "Verified", the person's name, 87/100, a radar chart, five sub-scores, a "Top 8%" archetype, a verification URL (`answerr.ai/aiq/certified/sarah`) and "Issued by Answerr". It shows what a person *carries away*, not the app.
+- **Stepped scale diagram:** "From one person to an entire institution" as three tiles stepping diagonally down (individual earns AIQ → readiness measured at scale → institution deploys), each with a label at its corner.
+- **Two-sided headlines:** "Institutions buy it. People carry it." · "The old contract / The new contract" side by side.
+- **Footer as skyline:** the engraved capitol building rises from the bottom edge, with the footer columns and "All systems operational" sitting above it.
+- Type: a book serif display (centered), a grotesk for body, small uppercase labels with ■ navy square bullets.
+
+### Mugic: "Bring the music you imagine in your head to life" (AI music)
+- **The input is an object.** The hero prompt box is drawn as a pastel radio/synth: a speaker-grille dot-matrix panel, chunky round buttons (attach · Generate ✦ · shuffle), a toy-plastic bottom edge, a faint doodle pattern of instruments. The pricing card is the same device with a jack cable plugged in below and equalizer bars framing both sides.
+- **Prompt starters as onboarding:** "You don't need the right words. Just the feeling." Mood cards (Dreamy · Nostalgic · Energetic) each hold an illustration, a speaker button to preview, a sample prompt in quotes and "Use prompt →".
+- **Each feature owns a pastel field** (peach Generate, mint Shape, pink Export), and the testimonial marquee uses the same fields.
+- **Constructed wordmark finale:** "Mugic" spelled in the footer with letters built from music glyphs (an M of beamed notes, an i whose dot is a note head), in the section pastels.
+
+### Wandor: "Where will you go next?" (AI trip planner)
+- **Painterly landmark collage as hero ground:** sky and clouds, the prompt box in the sky, and a sticker-cut collage of world landmarks rising from below. The hero's bottom edge follows the collage's wavy die-cut silhouette instead of a straight line.
+- **Bookended by the world:** the footer ends in a second, different landmark collage (Sagrada Família, Opera House, Eiffel Tower, Big Ben, pyramids), and the final CTA repeats the hero's prompt box with the same placeholder.
+- **UI on illustrated grounds:** product screens float on painted landscapes (as Fornax does with photo crops), and the main app screenshot is framed by an illustrated floral garland.
+- **Inline stickers in prose:** "No two people experience 🗿 a place the same way…" with small illustrated objects set in the sentence, the visual cousin of inline UI tokens.
+- An aeroplane-window porthole as a single object; a typewriter-serif logotype; a teal pill CTA.
+
+### Honest read: take / leave
+- **Take:** an illustration style that *is* the brand's metaphor (engraving = certified); showing the output artifact (credential) rather than the app; the stepped scale diagram; two-sided headlines; the input drawn as a domain object; prompt starters that fill the hero input; the hero input repeated as the finale; finale illustrations rising from the bottom edge (skyline, collage, constructed wordmark); shaped hero edges that follow the illustration.
+- **Leave (and they repeat across all four supplied screenshots, Fornax included):**
+  - **Duplicated sections.** Answerr, Mugic and Wandor each show a section twice, as Fornax did.
+  - **Pasted copy:** Mugic's subheading repeats its heading word for word, and its FAQ intro is copied from the mood section.
+  - **Typos in claims:** "HIPPA" for HIPAA in Answerr's compliance grid (and Fornax's "Its" and "FORMAX").
+  - **Title Case headings:** "Bring The Music You Imagine In Your Head To Life", "It Comes In Cold".
+  - **Vague or unverifiable proof:** "MILLIONS" and "U.S." as stats; named testimonials and a named college study with no source.
+  - **Labels that map to nothing:** Wandor's uppercase labels in three unrelated colours.
+  - **Unaligned zig-zags:** feature rows with wide gaps between the text and the device.
+  The audit now catches the first and fourth (`copy.integrity`, `copy.case`), and anti-slop.md has a pre-ship copy check for the rest.

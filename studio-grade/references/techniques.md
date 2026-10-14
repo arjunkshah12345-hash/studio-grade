@@ -1,8 +1,8 @@
-# Signature techniques: 71 moves with code
+# Signature techniques: 76 moves with code
 
 Choose **2–3 per site**, and make sure they serve the motif. **System rules don't count toward the 2–3:** §63 (naming), §66 (type voices) and §67 ("Read the film") shape the whole build rather than one moment, so they sit alongside your signatures. A page that uses ten of these is a demo reel, not a design. Each entry names its origin so you can match it to a direction.
 
-Index: **A. Structure & framing** 1–11 · **B. Type moves** 12–30 · **C. Product & proof** 31–37 · **D. Interaction & motion** 38–55 · **E. Small-product moves** 56–60 · **F. Studio and personal-site moves** 61–67 (visual signatures: 61, 62, 64, 65; system rules: 63, 66, 67) · **G. Photo-led product moves** 68–70 · **H. Editorial marks** 71
+Index: **A. Structure & framing** 1–11 · **B. Type moves** 12–30 · **C. Product & proof** 31–37 · **D. Interaction & motion** 38–55 · **E. Small-product moves** 56–60 · **F. Studio and personal-site moves** 61–67 (visual signatures: 61, 62, 64, 65; system rules: 63, 66, 67) · **G. Photo-led product moves** 68–70 · **H. Editorial marks** 71 · **I. AI-product and illustration-system moves** 72–76
 
 ---
 
@@ -449,3 +449,50 @@ del{text-decoration-color:var(--accent);text-decoration-thickness:.08em}
 - Overlay SVGs need `max-width:none`, because `tokens.css` caps `svg` at 100% of its inline host and silently halves them.
 - An absolutely positioned correction collides with the line above when the word wraps to the start of a line, so keep `ins` inline.
 - Use 3–5 marks across the page (the motif rule), and stage them in the order a reader would make them.
+
+## I. AI-product and illustration-system moves (Answerr, Mugic, Wandor: user-supplied screenshots)
+
+### 72. An illustration style that *is* the metaphor (Answerr)
+Choose the illustration *technique* from what the brand claims, not from what's fashionable. If the brand certifies, use steel engraving and guilloché, the language of banknotes and diplomas. If it plans journeys, use painted travel posters. If it's about records and proof, use etching or blueprint. Then use that one technique everywhere: the hero band, case-study panels, portraits, compliance icons and the footer. **One ink on paper**, so it reads as a system, not a stock pack.
+- **No assets?** Generate a consistent series: `steel engraving, banknote style, single navy ink (#24407A) on white, fine crosshatching, no grey fills, no text, [subject]`, and keep the subject list in the Spine. For small icons, draw SVGs with one stroke weight and `pattern` hatching.
+- **Security-print hairlines** frame the band, like a certificate margin:
+```css
+.guilloche{background:repeating-linear-gradient(90deg,var(--hairline) 0 1px,transparent 1px 7px);height:56px}
+.band{display:grid;grid-template-columns:clamp(24px,6vw,96px) 1fr clamp(24px,6vw,96px)}
+.band::before,.band::after{content:"";background:repeating-linear-gradient(90deg,var(--hairline) 0 1px,transparent 1px 6px)}
+```
+
+### 73. Show the output artifact, not the app (Answerr)
+When the product produces something a person keeps or shares (a credential, a score, a report, an itinerary, a certificate), make *that* the hero object instead of a dashboard. Give it every field the real thing has: a status ("✓ Verified"), the person or subject, the headline number with its scale (`87 /100`), a 4–6-part breakdown, a rank ("Top 8%"), the issuer, and a verification URL in mono. Set it on the brand's illustration (§72) like a document on a desk. It answers "what do I get?" in one look. Use an obviously fictional name and mark it `role="img"` with an `aria-label` that reads the card aloud.
+
+### 74. Stepped scale diagram (Answerr)
+"From one person to an entire institution": three square tiles stepping diagonally down-right, each one bigger in scope (individual → team → institution). Each tile has a ■ label at its top-right corner and a one-line icon drawing inside.
+```css
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));width:min(100%,560px)}
+.steps li{aspect-ratio:1;background:var(--paper-2);position:relative}
+.steps li:nth-child(2){grid-column:2;grid-row:2}.steps li:nth-child(3){grid-column:3;grid-row:3}
+.steps li span{position:absolute;left:calc(100% + 10px);top:0;white-space:nowrap}   /* the label sits beside the tile's top corner */
+@media (max-width:760px){.steps{grid-template-columns:1fr}.steps li{grid-column:auto!important;grid-row:auto!important;margin-left:calc(var(--i)*18%)}}
+```
+
+### 75. The input is the hero, drawn as a domain object (Mugic, Wandor)
+For AI tools whose core action is a prompt, the hero is a **working form**, not a screenshot of one:
+- **Make it an object from the domain:** a radio or synth for music (speaker-grille dot matrix, round hardware buttons, a plastic lip), a boarding pass for travel, an index card for writing. Keep the textarea itself plain and readable.
+- **A live placeholder** types one specific example ("a dreamy indie pop track with warm harmonies, delicate guitars…"), so a visitor learns what a good prompt looks like.
+- **Prompt starters** below: 3–6 cards (mood, use case, persona), each with a short title, the example prompt in quotes and **"Use prompt →"**, which fills the hero input and focuses it. A preview button (▶ or 🔊) is allowed only if there's real audio.
+- **Bookend it:** the same input returns as the finale CTA ("Let's make this trip yours"), so the page can be started from the bottom.
+```js
+document.querySelectorAll('[data-prompt]').forEach((b) => b.addEventListener('click', () => {
+  const ta = document.querySelector('#prompt'); ta.value = b.dataset.prompt; ta.focus();
+  ta.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+}));
+```
+It needs a `<label>` (visually hidden is fine), a real submit button with a task verb ("Generate", "Plan my trip"), and `aria-live` for the result or error.
+
+### 76. Finale illustration that rises from the bottom edge (Answerr, Wandor, Mugic)
+End the page on the brand's world instead of a grey footer. The footer columns sit on paper, and below them a full-width illustration rises from the bottom edge and is cut by it:
+- **A skyline from the illustration system** (Answerr's engraved capitol building).
+- **A second collage that completes the hero's** (Wandor: the hero has one set of landmarks, the footer the rest of the world).
+- **A constructed wordmark:** the brand name built from domain glyphs (Mugic's letters made of musical notes) in the section colours. This is a drawn cousin of §27 and §70, so spell-check it too.
+
+Keep it `aria-hidden="true"`, ≤ 40vh tall, and cropped to its central object on mobile (`object-position:50% 100%`). **Shaped edges:** when the hero ends in illustration, let its bottom edge follow the art's silhouette (`clip-path:path(...)` or an SVG `mask`) instead of a straight line, as Wandor's die-cut collage does.

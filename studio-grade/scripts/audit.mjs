@@ -165,7 +165,7 @@ const CONTRAST_PASS = () => {
     if (C.decorative(el) || el.closest('select,option')) continue;
     const sb = C.stackBg(el);
     if (sb === 'media') {                                                 // text over imagery: queue it for pixel sampling after the pass
-      if (!el.closest('[aria-hidden="true"]') && (C.media ||= []).length < 30) { const s2 = getComputedStyle(el); el.setAttribute('data-sg-m', String(C.media.length)); const r0 = el.getBoundingClientRect(); const under = document.elementsFromPoint(r0.left + Math.min(r0.width / 2, 20), r0.top + r0.height / 2).find((e) => e !== el && !el.contains(e) && (/^(IMG|VIDEO|CANVAS|PICTURE|IFRAME|svg)$/i.test(e.tagName) || getComputedStyle(e).backgroundImage !== 'none')); const kind = under && !/^(IMG|VIDEO|CANVAS|PICTURE|IFRAME)$/.test(under.tagName) && !/url\(/.test(getComputedStyle(under).backgroundImage) ? 'pattern' : 'image'; C.media.push({ kind, fg: C.toRGBA(s2.color), op, size: parseFloat(s2.fontSize), bold: +s2.fontWeight >= 700, text: C.ownText(el).slice(0, 36) }); }
+      if (!el.closest('[aria-hidden="true"]') && (C.media ||= []).length < 60) { const s2 = getComputedStyle(el); el.setAttribute('data-sg-m', String(C.media.length)); const r0 = el.getBoundingClientRect(); const under = document.elementsFromPoint(r0.left + Math.min(r0.width / 2, 20), r0.top + r0.height / 2).find((e) => e !== el && !el.contains(e) && (/^(IMG|VIDEO|CANVAS|PICTURE|IFRAME|svg)$/i.test(e.tagName) || getComputedStyle(e).backgroundImage !== 'none')); const kind = under && !/^(IMG|VIDEO|CANVAS|PICTURE|IFRAME)$/.test(under.tagName) && !/url\(/.test(getComputedStyle(under).backgroundImage) ? 'pattern' : 'image'; C.media.push({ kind, fg: C.toRGBA(s2.color), op, size: parseFloat(s2.fontSize), bold: +s2.fontWeight >= 700, text: C.ownText(el).slice(0, 36) }); }
       continue;
     }
     const bg = sb || C.effBg(el); if (!bg) continue;
@@ -337,6 +337,26 @@ const COLLECT = () => {
   }
   // nav
   out.nav = header ? { h: Math.round(header.getBoundingClientRect().height), links: header.querySelectorAll('a').length } : null;
+  // copy integrity: repeated headings or paragraphs (a pasted section) and Title Case headings
+  {
+    const real = (el) => C.vis(el) && !el.closest('[aria-hidden="true"],nav,footer,header,[role="marquee"],.marquee') && !C.intentionallyHidden(el);
+    const norm = (t) => t.replace(/\s+/g, ' ').trim().toLowerCase();
+    const seen = new Map();
+    for (const el of document.querySelectorAll('h1,h2,h3,p')) {
+      if (!real(el)) continue; const t = norm(el.innerText || ''); if (t.length < (el.tagName === 'P' ? 40 : 12)) continue;
+      seen.set(t, (seen.get(t) || 0) + 1);
+    }
+    out.copyDupes = [...seen].filter(([, n]) => n > 1).map(([t, n]) => `×${n} "${t.slice(0, 50)}"`).slice(0, 6);
+    const SMALL = /^(a|an|and|as|at|but|by|for|from|in|into|of|on|or|the|to|vs|with|your|you|we|it|is)$/i;
+    out.titleCase = [...document.querySelectorAll('h1,h2,h3')].filter(real).map((el) => (el.innerText || '').replace(/\s+/g, ' ').trim()).filter((t) => {
+      const w = t.split(' ').filter((x) => /^[A-Za-z]/.test(x)); const big = w.filter((x) => x.length > 2 && !SMALL.test(x));
+      if (w.length < 4 || t === t.toUpperCase()) return false;
+      const toks = t.split(' ');
+      const capSmall = toks.some((x, i) => i > 0 && !/[.!?:;—–-]$/.test(toks[i - 1]) && SMALL.test(x.replace(/[^A-Za-z]/g, '')) && /^[A-Z]/.test(x));   // "It Comes In Cold" (sentence starts don't count)
+      const allCaps = !/[.!?]\s/.test(t) && w.length >= 5 && big.length >= 4 && w.every((x) => /^[A-Z]/.test(x));      // every word capitalised, one sentence
+      return capSmall || allCaps;           // proper nouns in a sentence-case head ("Built for GPT-6 Astra") pass
+    }).slice(0, 6);
+  }
   return out;
 };
 
@@ -413,6 +433,16 @@ try {
   // ---------------- desktop ----------------
   const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 });
   await ctx.addInitScript(() => { const k = () => { const st = document.createElement('style'); st.textContent = 'html,body{scroll-behavior:auto!important}'; (document.head || document.documentElement).appendChild(st); }; if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', k); else k(); });   // smooth scrolling makes the contrast pass sample mid-scroll
+  await ctx.addInitScript(() => {   // which canvases draw (for perf.offscreen)
+    window.__draws = new Map();
+    for (const P of [window.CanvasRenderingContext2D, window.WebGLRenderingContext, window.WebGL2RenderingContext]) {
+      if (!P) continue;
+      for (const m of ['clearRect', 'fillRect', 'drawImage', 'putImageData', 'clear', 'drawArrays', 'drawElements']) {
+        const o = P.prototype[m]; if (typeof o !== 'function') continue;
+        P.prototype[m] = function (...a) { const c = this.canvas; if (c && window.__draws) window.__draws.set(c, (window.__draws.get(c) || 0) + 1); return o.apply(this, a); };
+      }
+    }
+  });
   const page = await ctx.newPage();
   const consoleErrors = [];
   page.on('pageerror', (e) => consoleErrors.push(String(e).slice(0, 160)));
@@ -434,6 +464,8 @@ try {
     const at = (i) => (Math.ceil(H / 900) <= 12 ? i * 900 : Math.round(i * (H - 900) / (n - 1)));   // long pages: evenly spaced, always incl. the end
     const overlaps = OVERLAPS; step('desktop slices'); for (let i = 0; i < n; i++) { await page.evaluate((y) => window.scrollTo(0, y), at(i)); await page.waitForTimeout(QUICK ? 450 : 900); if (!QUICK) await page.evaluate(() => Promise.race([Promise.all(document.getAnimations().filter((a) => { const t = a.effect?.getComputedTiming?.(); return t && Number.isFinite(t.endTime) && t.endTime < 6000; }).map((a) => a.finished.catch(() => {}))), new Promise((r) => setTimeout(r, 3000))])).catch(() => {}); /* finite reveals finish before the shot */ await page.screenshot({ path: path.join(OUT, `slice-${String(i + 1).padStart(2, '0')}.jpg`), type: 'jpeg', quality: 70 }); const ov = await page.evaluate(TEXT_OVERLAP).catch(() => []); if (ov.length) overlaps.push(`slice-${String(i + 1).padStart(2, '0')}: ${ov.slice(0, 2).join(' · ')}`); }
     await page.evaluate(() => window.scrollTo(0, 0)); await page.waitForTimeout(300); }
+  // elementsFromPoint ignores pointer-events:none, which hides decorative canvases/images from the contrast pass
+  await page.addStyleTag({ content: 'canvas,video,img,picture,iframe,svg{pointer-events:auto!important}' }).catch(() => {});
   step('desktop scroll + contrast'); await scrollThrough(page, { contrast: true });
   step('desktop collect'); D = await page.evaluate(COLLECT); D.textOverlap = OVERLAPS;
   D.firstFrame = firstFrame;
@@ -441,6 +473,14 @@ try {
     add('FAIL', 'load.blocked', 'The page served a bot or security challenge, so the results describe the challenge page, not the site. Audit a local build or a preview URL instead.');
   }
   D.contrast = await page.evaluate(() => ({ checked: window.__cs.checkedCount, low: window.__cs.lowCount, lowBody: window.__cs.lowBody || 0, examples: window.__cs.low }));
+  step('offscreen canvases');
+  D.perf = await page.evaluate(async () => {
+    const cs = [...document.querySelectorAll('canvas')]; if (!cs.length) return null;
+    window.scrollTo({ top: document.documentElement.scrollHeight, behavior: 'instant' });
+    await new Promise((r) => setTimeout(r, 900)); window.__draws = new Map(); await new Promise((r) => setTimeout(r, 1000));
+    const out = []; for (const [c, n] of window.__draws) { const r = c.getBoundingClientRect(); const off = r.bottom <= 0 || r.top >= innerHeight || r.width === 0 || r.height === 0 || getComputedStyle(c).visibility === 'hidden'; if (off && n > 5) out.push(`${c.id ? '#' + c.id : c.className ? '.' + String(c.className).split(' ')[0] : 'canvas'} drew ${n}× in 1s while off screen`); }
+    window.scrollTo({ top: 0, behavior: 'instant' }); return { canvases: cs.length, offscreen: out };
+  }).catch(() => null);
   step('contrast over imagery');
   D.mediaContrast = { checked: 0, low: [] };
   const mediaTexts = await page.evaluate(() => window.__cs.media || []);
@@ -542,7 +582,7 @@ if (big) {
   if (D.h1Lines > 3) add('WARN', 'layout.h1', `h1 wraps to ~${D.h1Lines} lines at 1440px (keep ≤2, or ≤3 bottom-left editorial)`);
 }
 if (D.labelCount > 0 && D.labelsTight?.length) add('WARN', 'type.labels', `${D.labelsTight.length}/${D.labelCount} small uppercase labels have tracking < 0.02em. Track ≤12px caps out to +0.04–0.12em.`, D.labelsTight);
-if (D.bigCapsSentences?.length) add('WARN', 'type.caps', 'Sentence-length all-caps at ≥32px. Use uppercase only for labels, or as a deliberate stance.', D.bigCapsSentences);
+if (D.bigCapsSentences?.length) add(REGISTER === 'loud' ? 'INFO' : 'WARN', 'type.caps', 'Sentence-length all-caps at ≥32px. Use uppercase only for labels, or as a deliberate stance.', D.bigCapsSentences);
 if (D.tinyText > 0) add('WARN', 'type.tiny', `${D.tinyText} non-uppercase text element(s) under 11px`);
 if (D.textShadowBig) add('WARN', 'type.effects', `text-shadow on ${D.textShadowBig} large text element(s). Never seen on the top tier.`);
 if (D.textStroke) add('WARN', 'type.effects', `Outlined/stroked text on ${D.textStroke} element(s)`);
@@ -650,6 +690,12 @@ if (D.hiddenText?.length) add('WARN', 'motion.neverRevealed', `Text still invisi
 if (D.autoplayVideos && !D.pauseControl) add('WARN', 'a11y.video', `${D.autoplayVideos} autoplay video(s) without a visible pause/play control`);
 
 if (D.firstFrame?.h1Hidden || D.firstFrame?.hidden?.length) add('FAIL', 'hero.firstFrame', 'Hero content is invisible in the first frame (waiting for an animation or scroll). Hero copy and CTAs must be visible on load.', D.firstFrame.hidden);
+if (D.copyDupes?.length) add('WARN', 'copy.integrity', 'The same heading or paragraph appears more than once: a pasted or duplicated section. Each section should say one new thing.', D.copyDupes);
+if (D.titleCase?.length) add('WARN', 'copy.case', 'Title Case headings. Top-tier sites set headings in sentence case ("It comes in cold", not "It Comes In Cold"); keep capitals for names.', D.titleCase);
+if (D.perf) {
+  if (D.perf.offscreen.length) add('WARN', 'perf.offscreen', 'A canvas keeps drawing while it is off screen. Pause render loops with an IntersectionObserver and when the tab is hidden (motion.md §5.8, directions.md §10).', D.perf.offscreen);
+  else add('PASS', 'perf.offscreen', `${D.perf.canvases} canvas(es); none draws while off screen`);
+}
 if (D.dupIds?.length) add('FAIL', 'semantics.ids', 'Duplicate id attributes (anchors and labels will break)', D.dupIds);
 if (D.hiddenShown?.length) add('WARN', 'semantics.hidden', 'Elements with the hidden attribute are still displayed (a display rule overrides [hidden]). Add [hidden]{display:none!important}.', D.hiddenShown);
 

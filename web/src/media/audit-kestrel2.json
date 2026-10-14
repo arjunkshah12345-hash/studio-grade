@@ -1,10 +1,10 @@
 {
- "url": "http://127.0.0.1:62854/index.html",
- "outDir": "/tmp/cs-aud-kestrel2",
- "ms": 44963,
+ "url": "http://127.0.0.1:4317/tests/builds/kestrel2/index.html",
+ "outDir": "/tmp/gal-kestrel2",
+ "ms": 42215,
  "counts": {
   "WARN": 1,
-  "PASS": 8,
+  "PASS": 9,
   "INFO": 2
  },
  "profile": {
@@ -31,10 +31,8 @@
    "rgb(255,91,20) text \"Skip to content\""
   ],
   "buttons": [
-   "square 44px \"Skip to content\"",
    "square 44px \"Book a field demo\"",
    "square 56px \"Book a field demo\n→\"",
-   "square 44px \"Fast-forward ×20\"",
    "square 64px \"Book a field demo\n→\""
   ],
   "eases": [
@@ -80,7 +78,12 @@
   {
    "level": "PASS",
    "rule": "a11y.contrast",
-   "msg": "All 109 checked text elements meet AA. Text over imagery was skipped; check it by eye."
+   "msg": "All 109 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 3 text elements over imagery meet AA (sampled from pixels)"
   },
   {
    "level": "PASS",
@@ -90,7 +93,7 @@
   {
    "level": "PASS",
    "rule": "hero.ctas",
-   "msg": "2 hero CTA(s)"
+   "msg": "1 hero CTA(s)"
   },
   {
    "level": "PASS",
@@ -114,11 +117,11 @@
   }
  ],
  "screenshots": [
-  "/tmp/cs-aud-kestrel2/desktop-hero.png",
-  "/tmp/cs-aud-kestrel2/slice-01.jpg … (one per viewport)",
-  "/tmp/cs-aud-kestrel2/desktop-full.jpg",
-  "/tmp/cs-aud-kestrel2/mobile-hero.png",
-  "/tmp/cs-aud-kestrel2/mobile-full.jpg",
-  "/tmp/cs-aud-kestrel2/reduced-motion-hero.png"
+  "/tmp/gal-kestrel2/desktop-hero.png",
+  "/tmp/gal-kestrel2/slice-01.jpg … (one per viewport)",
+  "/tmp/gal-kestrel2/desktop-full.jpg",
+  "/tmp/gal-kestrel2/mobile-hero.png",
+  "/tmp/gal-kestrel2/mobile-full.jpg",
+  "/tmp/gal-kestrel2/reduced-motion-hero.png"
  ]
 }

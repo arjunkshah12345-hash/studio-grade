@@ -30,6 +30,9 @@
 !/tests/builds/halden2/
 !/tests/builds/kestrel2/
 !/tests/builds/onair/
+!/tests/builds/lantern/
+!/tests/builds/morrow/
+!/tests/builds/darksky/
 
 # research: our notes only, never third-party screenshots or scraped pages
 !/research/

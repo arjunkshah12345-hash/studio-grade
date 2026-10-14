@@ -59,6 +59,16 @@ From the kargul.studio vs. basement.studio comparison (both competent; one reads
 - Glow-tile iconography (icons with blurred coloured glows).
 - Coded UI with no art layer behind it.
 
+## Pre-ship copy check (four supplied reference screenshots all failed it)
+
+Polished visuals don't excuse broken copy, and these slip through because nobody reads the page top to bottom:
+- **A section shown twice**, usually from duplicating a block to edit and never deleting the original.
+- **A subheading that repeats its heading word for word**, or an FAQ intro pasted from another section.
+- **Typos in claims and names:** "HIPPA", "See How Its Works", a footer wordmark that misspells the brand.
+- **Title Case headings** next to sentence-case ones.
+- **Vague proof:** "MILLIONS", "U.S." as a stat, named testimonials with no source.
+Read the page once, aloud, top to bottom, before you call it done.
+
 ## Self-review prompts (ask before shipping)
 
 1. Cover the logo. Could this be any other company's site? If yes, the motif and voice are too weak.

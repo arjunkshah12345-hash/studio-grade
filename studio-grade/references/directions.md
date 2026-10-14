@@ -214,7 +214,7 @@ Contents: 1 Engineered Dark · 2 Ledger Light · 3 Warm Paper · 4 Editorial Mot
 ## 9. Playful System
 
 **When:** consumer apps, games, communities, kids, food and drink, or a B2B brand that wants warmth. Personality comes from illustration and motion; the grid stays strict.
-**Exemplars:** Family (crypto wallet), MindMarket (Louis Paquet / KOKI-KIKO, SOTM), Lando Norris (OFF+BRAND, SOTY 2025), Choo-Choo World (Lusion), Floema (Bürocratik), Ignura (launch studio, 2026).
+**Exemplars:** Family (crypto wallet), MindMarket (Louis Paquet / KOKI-KIKO, SOTM), Lando Norris (OFF+BRAND, SOTY 2025), Choo-Choo World (Lusion), Floema (Bürocratik), Ignura (launch studio, 2026), Mugic (AI music: the input as a synth, pastel feature fields; screenshot).
 
 ```css
 :root{
@@ -239,6 +239,7 @@ Contents: 1 Engineered Dark · 2 Ledger Light · 3 Warm Paper · 4 Editorial Mot
 **When:** a launch built around one hero object, a campaign microsite, a cause piece, a luxury collection, or when the 3D *is* the information (a city map, architecture). **Don't** use it for anything where users need to scan, compare, or convert.
 **Exemplars:** illoca (Unseen), Atlas Motion and Oryzo (Lusion), David Whyte and 100 Lost Species (Immersive Garden), 365 A Year of Cartier (14islands), BOSS Dubai (Dogstudio), Miu Miu (Merci-Michel).
 
+- **The loader lives inside the subject and never covers the h1 or the CTA** (SKILL.md: hero copy is visible from the first frame). Lamps switching on, a horizon brightening, the object assembling: the page is readable while it happens.
 - **The loader is the first impression, and often the only one.** 8 of 14 immersive sites never got past their loader in a software-rendered browser. Design it like a hero and cap it:
   - Make it a **brand object as progress**: the product drawn as a CAD diagram with a rotating pie-sweep (Oryzo), a stator ring filling (Atlas), a gold card growing that *becomes the first image* (Cartier 365), a terrain contour line (Symphony of Vines), or a logo assembling tile by tile (illoca).
   - Loader type is tiny (8–12px), mono or light serif, tracked +0.05 to +0.16em when in caps. Show a 1px ring or a segmented bar plus a % counter. Put the value proposition in a teaser line (David Whyte).

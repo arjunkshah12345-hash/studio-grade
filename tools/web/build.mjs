@@ -21,6 +21,9 @@ const PROJECTS = [
   { slug: 'relay', name: 'Relay', kind: 'Developer tool', brief: 'An AI code reviewer that reads every pull request, comments on the line, and learns a team’s conventions. For staff engineers and their managers.', line: 'A real pull-request review is the hero.', accent: '#F2A93B' },
   { slug: 'halden2', name: 'Halden', kind: 'Hospitality', brief: 'A fourteen-room hotel on a Norwegian fjord with a sauna on the water and a twenty-seat farm kitchen. Open March to November. No photographs.', line: 'A woodcut fjord whose light changes as you scroll.', accent: '#C9733E' },
   { slug: 'onair', name: 'On Air', kind: 'Podcast studio', brief: 'A four-person Manchester studio that takes a founder from first recording to a launched show: a six-week Pilot or a monthly Season. No clients, quotes or listener numbers to show yet.', line: 'Pricing as cassette J-cards, an ON AIR lamp that lights as you scroll.', accent: '#E8432A' },
+  { slug: 'lantern', name: 'Lantern', kind: 'Research lab', brief: 'A twelve-person nonprofit lab in Edinburgh studying when and why AI models change their answers under pressure. Papers, open datasets and a quarterly drift report. No real papers or funders to show yet.', line: 'A transcript where the model gives up the right answer, marked up in red pencil.', accent: '#B83C1E' },
+  { slug: 'morrow', name: 'Morrow', kind: 'Fragrance house', brief: 'A Copenhagen fragrance house with six scents, each named for an hour of the day, and a discovery set credited against a full bottle. No photographs, reviews or stockists.', line: 'Six still lifes; the light changes with the hour as you read.', accent: '#C9A27A' },
+  { slug: 'darksky', name: 'Leave the Lights', kind: 'Civic campaign', brief: 'A one-page campaign asking a northern city to adopt a dark-sky lighting ordinance: shielded, warm, dimmable street lights. The page is the argument.', line: 'The sky over 69.7°N at 22:00 loses and regains its stars as you scroll.', accent: '#FFB15C' },
   { slug: 'kestrel2', name: 'Kestrel K-1', kind: 'Industrial hardware', brief: 'An autonomous drone that inspects wind-turbine blades: eleven minutes a blade, defects to 0.2 mm, a report the same day. For wind-farm operations directors.', line: 'An inspection drawn as it happens.', accent: '#F0541E' },
 ];
 
@@ -47,9 +50,9 @@ for (const p of PROJECTS) {
   p.register = (p.spine.REGISTER || '').match(/Quiet|Confident|Loud/i)?.[0] || '';
   p.register = p.register ? p.register[0].toUpperCase() + p.register.slice(1).toLowerCase() : '';
   if (!p.register) p.register = { relay: 'Confident' }[p.slug] || 'Confident';   // Relay predates the REGISTER line
-  p.direction = (p.spine.DIRECTION || '').split(/[.—–:]/)[0].replace(/^\s*\d+\s*/, (d) => d).trim();
+  p.direction = (p.spine.DIRECTION || '').split(/[.—–:(]/)[0].replace(/^\s*\d+\s*/, (d) => d).trim();   // drop '(studio / service variant)'-style asides
   p.dirNo = (p.spine.DIRECTION || '').match(/^\s*(\d+)/)?.[1]?.padStart(2, '0') || '';
-  p.dirName = (p.spine.DIRECTION || '').replace(/^\s*\d+\s*/, '').split(/[.—–]/)[0].trim();
+  p.dirName = (p.spine.DIRECTION || '').replace(/^\s*\d+\s*/, '').split(/[.—–(]/)[0].trim();
   p.palette = [...new Set(((p.spine.PALETTE || '') + ' ' + (p.spine.AXES || '')).match(/#[0-9A-Fa-f]{6}\b/g) || [])].slice(0, 6);
   try { const a = JSON.parse(read(path.join(SRC, 'media', `audit-${p.slug}.json`))); p.audit = a.counts; p.defaultLook = (a.findings.find((f) => f.rule === 'style.defaultLook')?.msg.match(/(\d)\/6/) || [])[1]; } catch { p.audit = null; }
   try { p.meta = JSON.parse(read(path.join(SRC, 'media', p.slug, 'meta.json'))); } catch { p.meta = { slices: 0, vh: '' }; }
@@ -234,7 +237,7 @@ function workIndex() {
   <h1 class="page-h" data-split="words">Work</h1>
   <p class="page-sub" data-reveal>${Ncap} briefs given to ${N} agents that read only the skill. Different directions, different registers, no templates and no stock imagery. Each passed the skill’s audit at 1440 and 390&nbsp;pixels.</p>
   <div class="filters" role="group" aria-label="Filter by register" data-reveal>
-    ${['All', 'Loud', 'Confident'].map((f, i) => `<button type="button" class="chip" aria-pressed="${i === 0}" data-filter="${f.toLowerCase()}">${f}<span class="chip-n">${f === 'All' ? total : PROJECTS.filter((p) => p.register === f).length}</span></button>`).join('')}
+    ${['All', ...['Loud', 'Confident', 'Quiet'].filter((r) => PROJECTS.some((p) => p.register === r))].map((f, i) => `<button type="button" class="chip" aria-pressed="${i === 0}" data-filter="${f.toLowerCase()}">${f}<span class="chip-n">${f === 'All' ? total : PROJECTS.filter((p) => p.register === f).length}</span></button>`).join('')}
   </div>
 </section>
 <ol class="w-list">${rows}</ol>`,
@@ -346,9 +349,9 @@ function method() {
 │  ├─ range.md         <span>quiet · confident · loud</span>
 │  ├─ typography.md    <span>tracking tables, free faces</span>
 │  ├─ color.md         <span>40 measured palettes</span>
-│  ├─ layout.md        <span>18 heroes, 22 sections</span>
+│  ├─ layout.md        <span>20 heroes, 22 sections</span>
 │  ├─ motion.md        <span>eases, springs, policy</span>
-│  ├─ techniques.md    <span>67 moves with code</span>
+│  ├─ techniques.md    <span>76 moves with code</span>
 │  ├─ imagery.md       <span>no-photo strategies</span>
 │  └─ copy · anti-slop · components · evidence
 ├─ assets/             <span>tokens.css · motion.js</span>
@@ -382,7 +385,7 @@ function evidence() {
     ['Big-brand agencies', 15, 'Systems over set pieces: named token bundles, one house ease.'],
     ['Fashion and luxury', 12, 'Hero text 18–31px, never 64+; restraint measured +11% conversion.'],
     ['Award winners 2023–26', 18, 'Juries pay for motion craft and forgive weak accessibility; we don’t.'],
-    ['User references', 3, 'convt.app, ignura.com, jawadjalal.com: inline UI tokens, pricing as an object, the personal README page. Each audited; we keep the ideas, not the contrast misses.'],
+    ['User references', 7, 'convt.app, ignura.com, jawadjalal.com and four supplied screenshots (Fornax, Answerr, Mugic, Wandor): inline UI tokens, pricing as an object, a photo composed for the headline, the input drawn as a domain object. We keep the ideas, not the mistakes.'],
   ];
   return layout({
     title: 'Evidence · Studio Grade', desc: 'The research behind Studio Grade: 99 live sites by 40 studios, measured from computed styles and the motion values in their JavaScript.', page: 'evidence', here: 'Evidence', canonical: '/evidence/',

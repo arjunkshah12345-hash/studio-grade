@@ -1,9 +1,9 @@
 {
  "url": "http://127.0.0.1:4317/tests/builds/onair/index.html",
- "outDir": "/tmp/onair-g",
- "ms": 40379,
+ "outDir": "/tmp/gal-onair",
+ "ms": 46680,
  "counts": {
-  "PASS": 9,
+  "PASS": 10,
   "INFO": 2
  },
  "profile": {
@@ -74,7 +74,12 @@
   {
    "level": "PASS",
    "rule": "a11y.contrast",
-   "msg": "All 160 checked text elements meet AA. Text over imagery was skipped; check it by eye."
+   "msg": "All 160 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 22 text elements over imagery meet AA (sampled from pixels)"
   },
   {
    "level": "PASS",
@@ -108,11 +113,11 @@
   }
  ],
  "screenshots": [
-  "/tmp/onair-g/desktop-hero.png",
-  "/tmp/onair-g/slice-01.jpg … (one per viewport)",
-  "/tmp/onair-g/desktop-full.jpg",
-  "/tmp/onair-g/mobile-hero.png",
-  "/tmp/onair-g/mobile-full.jpg",
-  "/tmp/onair-g/reduced-motion-hero.png"
+  "/tmp/gal-onair/desktop-hero.png",
+  "/tmp/gal-onair/slice-01.jpg … (one per viewport)",
+  "/tmp/gal-onair/desktop-full.jpg",
+  "/tmp/gal-onair/mobile-hero.png",
+  "/tmp/gal-onair/mobile-full.jpg",
+  "/tmp/gal-onair/reduced-motion-hero.png"
  ]
 }

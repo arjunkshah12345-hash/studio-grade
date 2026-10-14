@@ -41,6 +41,8 @@ Bad: "Get Started Today!" · "Unlock the Power" · "Join the Revolution" · "Cli
 
 **Finales with a voice:** "Still reading? That means something clicked. Let's talk." (jawadjalal) beats "Get in touch". Name the reader's state, then the one action.
 
+**Two-sided headlines** (Answerr): "Institutions buy it. People carry it." Who pays, then who benefits, in two short sentences. Use them for any two-sided product (buyer ≠ user).
+**Claim → challenge headlines** (Answerr): "Anyone can use AI. Can you prove you use it well?" The common claim, then the question the product answers.
 **In → out headlines** (Fornax): "Work goes in cold. Comes out finished." Two short sentences, the second the transformation's end state. Works for any product that converts one thing into another.
 
 ## 4. Proof copy

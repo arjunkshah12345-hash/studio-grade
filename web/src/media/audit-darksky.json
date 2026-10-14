@@ -1,0 +1,126 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/darksky/index.html",
+ "outDir": "/tmp/gal-darksky",
+ "ms": 68746,
+ "counts": {
+  "PASS": 11,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Big Shoulders Display×58",
+   "Newsreader×58"
+  ],
+  "display": [
+   "232px/0.8/-0.015em w700 \"LEAVE THE SKY.\"",
+   "167px/0.84/-0.01em w700 \"LIGHT THE STREET.\"",
+   "167px/0.84/-0.01em w700 \"LEAVE THE SKY.\""
+  ],
+  "bodySize": "18",
+  "weights": [
+   "400×52",
+   "600×30",
+   "700×28",
+   "500×6"
+  ],
+  "upperShare": 0.5,
+  "paper": "rgb(5,7,12)",
+  "accents": [
+   "rgb(255,177,92) bg a.skip"
+  ],
+  "buttons": [
+   "square 40px \"SIGN THE LETTER\"",
+   "square 58px \"SIGN THE LETTER TO THE COUNCIL\"",
+   "square 58px \"WALK THE SCALE\n↓\"",
+   "square 58px \"SIGN THE LETTER TO THE COUNCIL\"",
+   "square 58px \"SIGN THE LETTER TO THE COUNCIL\""
+  ],
+  "eases": [
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)",
+   "cubic-bezier(.19,1,.22,1)"
+  ],
+  "nav": {
+   "h": 68,
+   "links": 4
+  },
+  "pageVh": 20.9
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "2 families: Big Shoulders Display, Newsreader"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 232px · lh 0.8 · -0.015em · weight 700 · Big Shoulders Display)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (0/6 traits)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "One accent hue (30° (w443) e.g. rgb(255,177,92) bg a.skip)"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 51 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 60 text elements over imagery meet AA (sampled from pixels)"
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: square"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "2 hero CTA(s)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.19,1,0.22,1)×14, cubic-bezier(0.4,0,0.2,1)×13"
+  },
+  {
+   "level": "PASS",
+   "rule": "perf.offscreen",
+   "msg": "1 canvas(es); none draws while off screen"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 8.1% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 20.9 viewports (direction 10 norm 8–55)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/gal-darksky/desktop-hero.png",
+  "/tmp/gal-darksky/slice-01.jpg … (one per viewport)",
+  "/tmp/gal-darksky/desktop-full.jpg",
+  "/tmp/gal-darksky/mobile-hero.png",
+  "/tmp/gal-darksky/mobile-full.jpg",
+  "/tmp/gal-darksky/reduced-motion-hero.png"
+ ]
+}

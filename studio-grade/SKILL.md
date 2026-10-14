@@ -102,6 +102,7 @@ Work through `references/components.md` and the checklist below. This pass is th
 - [ ] Display tracking scales with size: −0.04 to −0.06em at 100px+, −0.02em at 48px, about 0 at body size, **+0.04 to +0.12em on ≤12px uppercase labels**.
 - [ ] Two-tone headings: the statement in ink, the elaboration in ink at 55–65%, at the same size and on the same line.
 - [ ] Hairlines are 1px at 6–12% ink. Use `box-shadow: 0 0 0 1px` rings instead of borders where stacking matters.
+- [ ] Copy integrity: no section, heading or paragraph appears twice (audit `copy.integrity`); headings are in sentence case (`copy.case`); the brand name, wordmark and every compliance acronym are spelled right (HIPAA, not HIPPA; WCAG 2.2 AA); no FAQ or subheading reuses another section's text.
 - [ ] Numbers that change or align in columns use `font-variant-numeric: tabular-nums` (check punctuation: some grotesks widen `,` and `:` in tabular mode, so prices in running text may need proportional figures). Uppercase uses `font-feature-settings: "case"`.
 - [ ] Buttons follow one radius camp across the whole site (0–4px **or** pill), with heights of 36–52px and optical padding (1px less on the bottom).
 - [ ] Every image has an aspect ratio, a defined crop, and alt text. Every autoplay video has a pause control.
@@ -192,7 +193,7 @@ The full list, with the replacement for each item, is in `references/anti-slop.m
 | `references/layout.md` | Grids, margins, hero archetypes, section-pattern library, page rhythm, mobile |
 | `references/motion.md` | Eases, durations, springs, reveal primitives, loaders, smooth-scroll policy, reduced motion |
 | `references/components.md` | Buttons, nav forms, eyebrows, cards, logo walls, testimonials, stats, forms, footers |
-| `references/techniques.md` | 71 signature techniques with copy-paste code (rails, ticker, letter-roll, aperture…) |
+| `references/techniques.md` | 76 signature techniques with copy-paste code (rails, ticker, letter-roll, aperture…) |
 | `references/imagery.md` | Product-UI-as-hero, generative ornament, photo art direction, placeholders |
 | `references/copy.md` | Headline formulas, voice, CTA verbs, banned phrases, microcopy |
 | `references/anti-slop.md` | The full list of AI tells, each with its fix; use it for redesign audits |

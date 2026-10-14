@@ -1,0 +1,392 @@
+<!--
+DESIGN SPINE · Leave the Lights (darksky)
+
+DIRECTION   : 10 Immersive. A cause piece where the canvas IS the argument: a modelled northern sky that loses and regains real stars as you read.
+REGISTER    : Loud. Colour is the ground, not an accent: the page's ground is the sky itself, scrubbed from cold grey-blue skyglow (Bortle 9) to blue-black (Bortle 1), and the ask sits on a full-bleed 2700K amber field. Bold device: the living sky at full bleed, with 168px condensed poster caps over it.
+AXES        : ground saturated field (skyglow → night; the letter on a warm-light amber field) · type genre condensed gothic caps (civic poster) + a book serif for the argument · image medium data as art (real stars at real positions and magnitudes, filtered by limiting magnitude) · composition poster over a fixed stage (one statement per viewport) · motion feel cinematic scrub
+DEFAULT?    : default-look check 0/6 (dark field ground, heavy condensed caps, no mono labels, no hairline metadata bands, no line drawing, accent is a field + CTA) → DIFFERENT FROM DEFAULT BY: ground, type genre, image medium, composition, motion
+MOTIF       : the cutoff line. Light belongs below the horizontal, never above it. (1) canvas: every lamp gains a hood and its light stops at the line (subject) · (2) intro/loader: lamps switch on one by one along the horizon and the stars drown, counted "4 of 7" (loader) · (3) chapter dividers: a 1px rule with warm light pooled only beneath it (divider) · (4) primary buttons and letter inputs: hover/focus pools warm light under the line (UI state) · (5) the Bortle rail marker is a tiny hooded lamp (icon)
+TYPE        : display Big Shoulders Display 700 (caps) · text Newsreader 400/italic · labels + numerals Big Shoulders Display 600 (caps, +0.1em). Two families.
+SCALE       : poster h1 clamp(55px→168px)/0.84/−0.01em · class numerals 112→240px/0.78 · h2 44→104px/0.88/−0.005em · lead 20→24px serif · body 18px/1.6 · label 13px caps +0.1em
+PALETTE     : night #05070C · ink #F1EEE6 (cream) · ink-2 cream@78% · hairline cream@12% · accent "2700 K" #FFB15C → used ONLY on the primary action + the warm-light meaning (good light). Field: amber #F2A257 with ink #2A1505 (same-hue dark). Cold skyglow #96A2BA lives only in the canvas and means waste.
+GRID        : 12 col / 24px gap · container 1312px · side margin 20→56px (edge-hugging camp) · section rhythm 96–144px, poster beats 100svh
+HERO        : H14 Branded loader → reveal, played as a lights-up: the h1 and CTA are visible from frame one over a full dark sky; the street lamps switch on along the horizon (the loader) and the stars drown into a Bortle 9 city glow.
+IMAGERY     : data as art. Canvas 2D: ~85 catalogue stars (Polaris, the Dippers, Cassiopeia, Capella, Vega…) placed for 69.7°N at 21:00 UTC tonight, ~20k fainter stars at the real ~3× per magnitude rate, the Milky Way along the real galactic plane, M31 and M33; everything drawn only if brighter than the Bortle class's limiting magnitude. Lamps drawn as fixtures whose shield, colour and output follow the argument.
+CONVERSION  : "Sign the letter to the council" → nav button (persistent) · hero primary · after the three asks · the letter form itself (submit). Endpoint is a marked placeholder.
+MOTION      : house ease cubic-bezier(.19,1,.22,1) (expo-out) · UI 180ms · reveal 800ms blur(6px)→0 · in-out cubic-bezier(.76,0,.24,1) · sky params lerp 0.09/frame, linear for the intro's time-based lamp sequence
+NAMING      : light/dark → CTA "Sign the letter" · success "Signed. Now look north." · the three asks are adjectives the council can write into law: Shielded, Warm, Dimmable
+SIGNATURES  : §46 Branded loader (the lamps switching on are the progress) · §51 Lights-up reveal (inverted: lights up, stars down) · §50 Mascot progress rail (the Bortle rail, 9 → 1, marker = hooded lamp)
+VOICE       : hero "Light the street. Leave the sky." · section "Nothing up there changed. Only the light underneath it." · CTA "Sign the letter to the council"
+-->
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leave the Lights · A dark-sky ordinance for Brekkøy</title>
+<meta name="description" content="A campaign asking Brekkøy council for street lights that are shielded, warm and dimmable. Scroll through the Bortle scale and watch the sky lose and regain its stars.">
+<meta name="theme-color" content="#05070C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 fill=%27%2305070C%27/%3E%3Cpath d=%27M5 14 Q16 2 27 14 Z%27 fill=%27%23F1EEE6%27/%3E%3Cpath d=%27M10 15 L22 15 L28 30 L4 30 Z%27 fill=%27%23FFB15C%27/%3E%3C/svg%3E">
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--warm" href="#main">Skip to the argument</a>
+
+<!-- The sky. A visual duplicate of what the text says; the argument reads without it. -->
+<canvas id="sky" class="sky" aria-hidden="true"></canvas>
+<div class="sky-veil" aria-hidden="true"></div>
+<div class="sky-static" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <a class="nav__mark" href="#top" aria-label="Leave the Lights, back to top">Leave the Lights</a>
+  <nav class="nav__links" aria-label="Sections">
+    <a href="#scale">The scale</a>
+    <a href="#ordinance">The ask</a>
+  </nav>
+  <a class="btn btn--warm btn--sm nav__cta" href="#letter">Sign the letter</a>
+</header>
+
+<!-- HUD: live readout of the sky model (fixed, < 200px tall). Mirrors the text, so hidden from AT. -->
+<aside class="hud" id="hud" aria-hidden="true" data-mode="scale">
+  <div class="hud__scale">
+    <div class="hud__head">
+      <span class="hud__k">Bortle class</span>
+      <span class="hud__n" data-hud="n">9</span>
+    </div>
+    <p class="hud__name" data-hud="name">Inner-city sky</p>
+    <dl class="hud__rows">
+      <div><dt>Faintest star</dt><dd data-hud="lim">mag 4.0</dd></div>
+      <div><dt>Little Dipper</dt><dd data-hud="umi">3 of 7 stars</dd></div>
+      <div><dt>Milky Way</dt><dd data-hud="mw">invisible</dd></div>
+      <div><dt>Andromeda Galaxy</dt><dd data-hud="m31">hidden</dd></div>
+    </dl>
+  </div>
+  <div class="hud__fix">
+    <div class="hud__head"><span class="hud__k">The street lights</span></div>
+    <dl class="hud__rows">
+      <div><dt>Light above the line</dt><dd data-hud="up">yes</dd></div>
+      <div><dt>Colour</dt><dd data-hud="cct">4000 K, cold</dd></div>
+      <div><dt>After midnight</dt><dd data-hud="dim">full</dd></div>
+    </dl>
+    <p class="hud__note">Illustration, not a measurement</p>
+  </div>
+  <p class="hud__boot" data-hud="boot">Switching on street lights <span class="t-num">0 of 7</span></p>
+</aside>
+
+<!-- The Bortle rail (§50): 9 at the top, 1 at the bottom; the hooded-lamp marker follows the sky. -->
+<div class="rail" id="rail" aria-hidden="true">
+  <ol>
+    <li>9</li><li>8</li><li>7</li><li>6</li><li>5</li><li>4</li><li>3</li><li>2</li><li>1</li>
+  </ol>
+  <span class="rail__mark"><svg viewBox="0 0 22 16" width="22" height="16"><path d="M1 7 Q11 -3 21 7 Z" fill="currentColor"/><rect x="1" y="7" width="20" height="1" fill="var(--night)"/><path d="M6 8 L16 8 L21 16 L1 16 Z" fill="var(--warm)" opacity=".6"/></svg></span>
+</div>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top" data-sky="b:9;zoom:0;shield:0;cct:4000;dim:1;labels:0;hud:scale">
+    <div class="hero__inner container">
+      <p class="kicker">A letter to Brekkøy council · 69.7° N</p>
+      <h1 class="poster">
+        <span class="poster__line poster__line--warm">Light the street.</span>
+        <span class="poster__line">Leave the sky.</span>
+      </h1>
+      <p class="hero__sub t-lead">One ordinance for Brekkøy: street lights that are shielded, warm and dimmable. Scroll down, and the sky behind this page shows what our light does to it.</p>
+      <div class="hero__cta">
+        <a class="btn btn--warm btn--lg" href="#letter">Sign the letter to the council <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn btn--line btn--lg" href="#scale">Walk the scale <span class="arr" aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+    <p class="hero__where container">The northern sky over Brekkøy, centred on Polaris, at <span data-sky-time>22:00</span> tonight.</p>
+  </section>
+
+  <!-- ============ THE SCALE ============ -->
+  <section class="scale" id="scale" aria-labelledby="scale-h">
+    <div class="intro container" data-sky="b:9;labels:1;hud:scale">
+      <hr class="cutoff">
+      <h2 class="t-poster" id="scale-h" data-reveal>Nine skies. <span class="dim">One switch.</span></h2>
+      <p class="t-lead intro__p" data-reveal>In 2001 the amateur astronomer John E.&nbsp;Bortle published a nine-class scale for judging a night sky by what you can actually see in it.<sup><a href="#src-1" aria-label="Source 1">1</a></sup> Class 9 is a city centre. Class 1 is as dark as Earth gets. Keep scrolling to walk out of town, and the sky behind this page follows the scale.</p>
+    </div>
+
+    <ol class="classes">
+      <li class="cls container" data-sky="b:9;hud:scale" style="--glow:.9;--faint:0">
+        <p class="cls__n" aria-hidden="true">9</p>
+        <div class="cls__body">
+          <h3 class="cls__name"><span class="sr-only">Class 9: </span>Inner-city sky</h3>
+          <p class="cls__lim">Faintest star · magnitude 4.0 at best</p>
+          <p class="cls__p">The whole sky glows. Beyond the Moon, the planets and the brightest stars, there is little to find, and most constellations are missing pieces. The Little Dipper is down to Polaris and the two stars at the end of its bowl.</p>
+          <span class="chip" aria-hidden="true"></span>
+        </div>
+      </li>
+      <li class="cls container" data-sky="b:8;hud:scale" style="--glow:.78;--faint:.05">
+        <p class="cls__n" aria-hidden="true">8</p>
+        <div class="cls__body">
+          <h3 class="cls__name"><span class="sr-only">Class 8: </span>City sky</h3>
+          <p class="cls__lim">Faintest star · magnitude 4.1 to 4.5</p>
+          <p class="cls__p">The sky is whitish grey or orange, bright enough to read a headline by. Familiar patterns are there but thin, and the faint constellations are gone.</p>
+          <span class="chip" aria-hidden="true"></span>
+        </div>
+      </li>
+      <li class="cls container" data-sky="b:7;hud:scale" style="--glow:.64;--faint:.12">
+        <p class="cls__n" aria-hidden="true">7</p>
+        <div class="cls__body">
+          <h3 class="cls__name"><span class="sr-only">Class 7: </span>Suburban/urban transition</h3>
+          <p class="cls__lim">Faintest star · magnitude 4.6 to 5.0</p>
+          <p class="cls__p">A grey-white glow covers everything, with light domes in every direction. The Milky Way is gone, or nearly. The Andromeda Galaxy can be glimpsed as a smudge.</p>
+          <span class="chip" aria-hidden="true"></span>
+        </div>
+      </li>
+      <li class="cls container" data-sky="b:6;hud:scale" style="--glow:.5;--faint:.22">
+        <p class="cls__n" aria-hidden="true">6</p>
+        <div class="cls__body">
+          <h3 class="cls__name"><span class="sr-only">Class 6: </span>Bright suburban sky</h3>
+          <p class="cls__lim">Faintest star · magnitude 5.1 to 5.5</p>
+          <p class="cls__p">The sky glows grey-white up to about 35° above the horizon. The Milky Way shows only straight overhead, and only just. All seven stars of the Little Dipper are back.</p>
+          <span class="chip" aria-hidden="true"></span>
+        </div>
+      </li>
+      <li class="cls container" data-sky="b:5;hud:scale" style="--glow:.36;--faint:.36">
+        <p class="cls__n" aria-hidden="true">5</p>
+        <div class="cls__body">
+          <h3 class="cls__name"><span class="sr-only">Class 5: </span>Suburban sky</h3>
+          <p class="cls__lim">Faintest star · magnitude 5.6 to 6.0</p>
+          <p class="cls__p">Light domes sit over towns in most directions, and clouds look brighter than the sky behind them. The Milky Way is weak overhead and washed out toward the horizon.</p>
+          <span class="chip" aria-hidden="true"></span>
+        </div>
+      </li>
+      <li class="cls container" data-sky="b:4;hud:scale" style="--glow:.24;--faint:.52">
+        <p class="cls__n" aria-hidden="true">4</p>
+        <div class="cls__body">
+          <h3 class="cls__name"><span class="sr-only">Class 4: </span>Rural/suburban transition</h3>
+          <p class="cls__lim">Faintest star · magnitude 6.1 to 6.5</p>
+          <p class="cls__p">The glow of distant towns sits low on the horizon. Overhead, the Milky Way is still impressive, though its fine detail is gone. Clouds are lit only toward the towns.</p>
+          <span class="chip" aria-hidden="true"></span>
+        </div>
+      </li>
+      <li class="cls container" data-sky="b:3;hud:scale" style="--glow:.14;--faint:.7">
+        <p class="cls__n" aria-hidden="true">3</p>
+        <div class="cls__body">
+          <h3 class="cls__name"><span class="sr-only">Class 3: </span>Rural sky</h3>
+          <p class="cls__lim">Faintest star · magnitude 6.6 to 7.0</p>
+          <p class="cls__p">A little glow along the horizon, and nothing above it. The Milky Way looks complex, split by dark lanes of dust. The Triangulum Galaxy appears if you look slightly beside it.</p>
+          <span class="chip" aria-hidden="true"></span>
+        </div>
+      </li>
+      <li class="cls container" data-sky="b:2;hud:scale" style="--glow:.06;--faint:.86">
+        <p class="cls__n" aria-hidden="true">2</p>
+        <div class="cls__body">
+          <h3 class="cls__name"><span class="sr-only">Class 2: </span>Typical truly dark site</h3>
+          <p class="cls__lim">Faintest star · magnitude 7.1 to 7.5</p>
+          <p class="cls__p">Airglow shows faintly near the horizon. The Milky Way is highly structured, the Triangulum Galaxy is easy to see, and clouds appear only as black holes in the stars.</p>
+          <span class="chip" aria-hidden="true"></span>
+        </div>
+      </li>
+      <li class="cls container" data-sky="b:1;hud:scale" style="--glow:0;--faint:1">
+        <p class="cls__n" aria-hidden="true">1</p>
+        <div class="cls__body">
+          <h3 class="cls__name"><span class="sr-only">Class 1: </span>Excellent dark-sky site</h3>
+          <p class="cls__lim">Faintest star · magnitude 7.6 to 8.0</p>
+          <p class="cls__p">Zodiacal light, gegenschein and airglow are all visible. The Triangulum Galaxy is plain to the naked eye. The brightest parts of the Milky Way cast faint shadows, and Venus or Jupiter can spoil your night vision.</p>
+          <span class="chip" aria-hidden="true"></span>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ SAME SKY ============ -->
+  <section class="beat container" id="same-sky" data-sky="b:1;hud:none" aria-labelledby="same-h">
+    <h2 class="t-poster t-poster--xl" id="same-h" data-reveal>This is the same sky.</h2>
+    <p class="t-lead beat__p" data-reveal>Nothing up there changed between class 9 and class 1. Only the light underneath it.</p>
+  </section>
+
+  <!-- ============ WHAT WE LOSE ============ -->
+  <section class="lose" id="losing" aria-labelledby="lose-h">
+    <div class="container lose__head" data-sky="b:2;hud:none">
+      <hr class="cutoff">
+      <h2 class="t-h2x" id="lose-h" data-reveal>Fewer stars every year. <span class="dim">Three published findings.</span></h2>
+    </div>
+    <ol class="facts container">
+      <li class="fact" data-sky="b:4;hud:scale">
+        <p class="fact__big" aria-hidden="true">1 in 3</p>
+        <p class="fact__p"><strong>More than a third of humanity can no longer see the Milky Way from home.</strong> In Europe the figure is 60 percent.<sup><a href="#src-2" aria-label="Source 2">2</a></sup></p>
+      </li>
+      <li class="fact" data-sky="b:6;hud:scale">
+        <p class="fact__big" aria-hidden="true">9.6%</p>
+        <p class="fact__p"><strong>The night sky brightened by about 9.6 percent a year</strong> between 2011 and 2022, measured by more than 50,000 citizen observations of which stars people could still see.<sup><a href="#src-3" aria-label="Source 3">3</a></sup></p>
+      </li>
+      <li class="fact" data-sky="b:8;hud:scale">
+        <p class="fact__big" aria-hidden="true">Snow</p>
+        <p class="fact__p"><strong>Snow throws street light back up into the sky,</strong> and low cloud throws it back down. Together they can make a suburban night brighter than a full moon.<sup><a href="#src-4" aria-label="Source 4">4</a></sup> From late November to mid-January the sun does not rise at this latitude, and the lamps burn through the day.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ============ THE ORDINANCE ============ -->
+  <section class="ord" id="ordinance" aria-labelledby="ord-h">
+    <div class="container ord__head" data-sky="b:8;zoom:1;shield:0;cct:4000;dim:1;hud:fix">
+      <hr class="cutoff">
+      <p class="kicker">The ordinance</p>
+      <h2 class="t-poster" id="ord-h" data-reveal>Three words <span class="dim">for the council.</span></h2>
+      <p class="t-lead ord__p" data-reveal>We are not asking for a dark city. We are asking that every street light Brekkøy installs from now on meets three conditions, each written so it can go straight into the ordinance.</p>
+    </div>
+
+    <ol class="asks">
+      <li class="ask container" data-sky="b:8;zoom:1;shield:1;cct:4000;dim:1;hud:fix">
+        <p class="ask__n" aria-hidden="true">01</p>
+        <div class="ask__body">
+          <h3 class="ask__h">Shielded</h3>
+          <p class="ask__law">Fully shielded fittings: no light emitted above the horizontal.</p>
+          <p class="ask__p">A globe lamp sends its light every way at once: onto the street, into bedroom windows, and straight up, where it lights nothing but the sky. A hood stops it at the line, and the street gets the light it was paying for.</p>
+        </div>
+      </li>
+      <li class="ask container" data-sky="b:8;zoom:1;shield:1;cct:3000;dim:1;hud:fix">
+        <p class="ask__n" aria-hidden="true">02</p>
+        <div class="ask__body">
+          <h3 class="ask__h ask__h--warm">Warm</h3>
+          <p class="ask__law">A colour temperature of 3000&nbsp;K or lower.</p>
+          <p class="ask__p">Blue-rich white light scatters in the atmosphere far more than warm light does, so it builds more skyglow from the same lamp. It is also the part of the spectrum that most suppresses melatonin. The American Medical Association recommended 3000&nbsp;K or lower for street lighting in 2016.<sup><a href="#src-5" aria-label="Source 5">5</a></sup></p>
+        </div>
+      </li>
+      <li class="ask container" data-sky="b:8;zoom:1;shield:1;cct:3000;dim:.45;hud:fix">
+        <p class="ask__n" aria-hidden="true">03</p>
+        <div class="ask__body">
+          <h3 class="ask__h">Dimmable</h3>
+          <p class="ask__law">Fittings that can be dimmed, and are, in the hours when the streets are empty.</p>
+          <p class="ask__p">Bright when the street is busy, low when it is not. The night bus and the snowplough still see the road. “Controlled” is one of the five principles for responsible outdoor lighting from DarkSky International and the Illuminating Engineering Society: light when it is needed, dimmed when possible.<sup><a href="#src-6" aria-label="Source 6">6</a></sup></p>
+          <a class="btn btn--warm btn--lg ask__cta" href="#letter">Sign the letter to the council <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+      </li>
+    </ol>
+    <div class="container ord__honest" data-sky="b:8;zoom:1;shield:1;cct:3000;dim:.45;hud:fix"><p>The street above is an illustration. How much darker a town’s sky gets depends on its fittings, its snow and its weather, and the letter asks the council to measure it.</p></div>
+  </section>
+
+  <!-- ============ QUESTIONS ============ -->
+  <section class="qa container" id="questions" aria-labelledby="qa-h" data-sky="b:5;zoom:0;shield:1;cct:3000;dim:1;hud:none">
+    <hr class="cutoff">
+    <h2 class="t-h2x" id="qa-h" data-reveal>Three fair questions.</h2>
+    <dl class="qa__list">
+      <div class="qa__item">
+        <dt>Won’t the streets get darker?</dt>
+        <dd>The ordinance is about where the light goes, not how little of it there is. A shielded fitting aims its light down at the street it is meant to light, instead of into windows, eyes and sky.</dd>
+      </div>
+      <div class="qa__item">
+        <dt>Why 3000&nbsp;K, and not lower?</dt>
+        <dd>3000&nbsp;K is the ceiling the American Medical Association recommended and DarkSky International uses. The letter sets it as a maximum, so the council can choose warmer where it suits a street.</dd>
+      </div>
+      <div class="qa__item">
+        <dt>What will it cost?</dt>
+        <dd>That is the council’s figure to produce, and the letter asks for it. The ordinance sets a standard for every fitting from here on, so that each replacement is the right one.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- ============ THE LETTER ============ -->
+  <section class="letter" id="letter" aria-labelledby="letter-h" data-opaque>
+    <div class="letter__inner container">
+      <div class="letter__intro">
+        <p class="kicker kicker--ink">Your name goes here</p>
+        <h2 class="t-poster t-poster--ink" id="letter-h">Sign the letter to the council.</h2>
+        <p class="letter__lede">Add your name and it goes on the letter. No petition counter, no follow-up you didn’t ask for.</p>
+      </div>
+
+      <div class="sheet">
+        <div class="sheet__letter">
+          <p class="sheet__to">To the members of Brekkøy municipal council,</p>
+          <p>We ask the council to adopt a dark-sky lighting ordinance, so that every street light installed or replaced in Brekkøy from its adoption is:</p>
+          <ol class="sheet__asks">
+            <li><strong>Shielded</strong>, emitting no light above the horizontal;</li>
+            <li><strong>Warm</strong>, at a colour temperature of 3000&nbsp;K or lower;</li>
+            <li><strong>Dimmable</strong>, and dimmed in the hours when the streets are empty.</li>
+          </ol>
+          <p>We also ask the council to measure the night sky over the town before and after, and to publish the cost.</p>
+          <p class="sheet__sig">Signed,</p>
+        </div>
+
+        <!-- PLACEHOLDER ENDPOINT: replace action with the real submission endpoint. Front-end only. -->
+        <form class="sign" id="sign" action="/api/PLACEHOLDER-sign-letter" method="post" novalidate data-endpoint-placeholder>
+          <div class="field">
+            <label for="f-name">Your name, as it should appear</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required aria-describedby="e-name">
+            <p class="field__err" id="e-name" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="h-email e-email">
+            <p class="field__hint" id="h-email">Only to confirm your signature. Never shown on the letter.</p>
+            <p class="field__err" id="e-email" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="f-area">Where in Brekkøy you live</label>
+            <select id="f-area" name="area" required aria-describedby="e-area">
+              <option value="">Choose a neighbourhood</option>
+              <option>Sentrum</option>
+              <option>Havnegata and the harbour</option>
+              <option>Fjellsida</option>
+              <option>Strandvika</option>
+              <option>Kvaløysletta</option>
+              <option>Outside Brekkøy, but I visit</option>
+            </select>
+            <p class="field__err" id="e-area" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label for="f-note">A line of your own <span class="opt">(optional)</span></label>
+            <textarea id="f-note" name="note" rows="3" maxlength="280" aria-describedby="h-note"></textarea>
+            <p class="field__hint" id="h-note">Up to 280 characters. What would you like to see from your window?</p>
+          </div>
+          <label class="check"><input type="checkbox" name="public" value="yes"> <span>Show my name on the published letter</span></label>
+          <button class="btn btn--ink btn--lg sign__go" type="submit">Sign the letter to the council <span class="arr" aria-hidden="true">→</span></button>
+          <p class="sign__proto">Prototype: the submission endpoint is a placeholder, so nothing is sent yet.</p>
+        </form>
+
+        <div class="signed" id="signed" hidden tabindex="-1">
+          <p class="signed__k">Signed</p>
+          <p class="signed__h"><span data-signed-name>Your name</span> is on the letter.</p>
+          <p class="signed__p">Now go outside, turn your back to the nearest lamp, and look north. Give your eyes twenty minutes.</p>
+          <p class="sign__proto">Demo state: nothing was sent, because the endpoint is still a placeholder.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot" data-opaque>
+  <div class="container">
+    <p class="foot__finale">Leave the sky.</p>
+    <div class="foot__cols">
+      <div>
+        <p class="foot__k">Leave the Lights</p>
+        <p>A campaign for one ordinance in Brekkøy. Brekkøy is a fictional town, and so is this campaign: a design study. The astronomy and the published findings are real.</p>
+      </div>
+      <div>
+        <p class="foot__k">Tonight</p>
+        <p class="t-num">69.7° N · 19.4° E<br>Polar night: late November to mid-January<br>Sky drawn for <span data-sky-time>22:00</span></p>
+      </div>
+      <div class="foot__src">
+        <p class="foot__k">Sources</p>
+        <ol>
+          <li id="src-1">J. E. Bortle, “Introducing the Bortle Dark-Sky Scale,” <i>Sky &amp; Telescope</i>, February 2001.</li>
+          <li id="src-2">F. Falchi et al., “The new world atlas of artificial night sky brightness,” <i>Science Advances</i>, 2016.</li>
+          <li id="src-3">C. C. M. Kyba et al., “Citizen scientists report global rapid reductions in the visibility of stars from 2011 to 2022,” <i>Science</i>, 2023.</li>
+          <li id="src-4">A. Jechow and F. Hölker, “Snowglow: the amplification of skyglow by snow and clouds can exceed full moon illuminance in suburban areas,” <i>Journal of Imaging</i>, 2019.</li>
+          <li id="src-5">American Medical Association, “Human and environmental effects of light-emitting diode (LED) community lighting,” 2016.</li>
+          <li id="src-6">DarkSky International and IES, “Five Principles for Responsible Outdoor Lighting,” 2020.</li>
+        </ol>
+      </div>
+      <div>
+        <p class="foot__k">How the sky is drawn</p>
+        <p>About 85 catalogue stars at their real positions and magnitudes, fainter stars modelled at the real rate of roughly three times more per magnitude, and the Milky Way along the galactic plane. A star is drawn only if it is brighter than the faintest star for that Bortle class.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<noscript><style>.hud,.rail,.sky{display:none}</style></noscript>
+<script type="module" src="app.js"></script>
+</body>
+</html>

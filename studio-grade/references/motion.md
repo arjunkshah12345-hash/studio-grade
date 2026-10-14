@@ -112,7 +112,7 @@ Map `--p` to state with `calc()` (`transform: translateY(calc((1 - var(--p)) * 4
   <ol class="rooms">…arrives after the poster has left…</ol>
 </section>
 ```
-When content must read over an illustrated stage, give it a soft scrim in the ground colour (a vertical gradient at about 85%) rather than letting it sit on bright artwork. The audit fails text drawn over other text as `layout.textOverlap` and names the slice.
+When content must read over an illustrated stage, give it a soft scrim in the ground colour (a vertical gradient at about 85%). **Over a full-bleed live stage (a fixed canvas), veil the reading side of the viewport instead of each block:** one fixed gradient in the ground colour (≈62% → 0 across the left 70%), so the other side of the stage stays clean to carry data. Per-block scrims drift across a sky like dark clouds. HUDs and readouts over scrolling copy must stay under 200px tall, or the audit treats them as pinned posters. **Reduced motion for a scroll-scrubbed canvas:** skip the intro and snap to the nearest anchor's state (discrete, no lerp). Use crossfades, not scrubs. Don't let text sit on bright artwork. The audit fails text drawn over other text as `layout.textOverlap` and names the slice.
 
 ### 5.9 Letter-split titles without breaking semantics
 Splitting an h1 into letter spans inflates word counts for screen readers and audits. Keep the real text in the heading, and draw the letters as presentation:

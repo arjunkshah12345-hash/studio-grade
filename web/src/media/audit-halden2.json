@@ -1,9 +1,9 @@
 {
- "url": "http://127.0.0.1:62568/index.html",
- "outDir": "/tmp/cs-aud-halden2",
- "ms": 33889,
+ "url": "http://127.0.0.1:4317/tests/builds/halden2/index.html",
+ "outDir": "/tmp/gal-halden2",
+ "ms": 60820,
  "counts": {
-  "PASS": 9,
+  "PASS": 10,
   "INFO": 3
  },
  "profile": {
@@ -28,13 +28,14 @@
    "rgb(240,168,104) bg a.skip"
   ],
   "buttons": [
-   "square 48px \"Skip to content\"",
    "square 40px \"Book a stay\"",
    "square 48px \"Book a stay\"",
    "square 48px \"See the rooms\"",
-   "square 48px \"Book a stay\""
+   "square 48px \"Book a stay\"",
+   "square 48px \"Write to us\""
   ],
   "eases": [
+   "cubic-bezier(0.16,1,0.3,1)",
    "cubic-bezier(.16,1,.3,1)",
    "cubic-bezier(.76,0,.24,1)",
    "cubic-bezier(.34,1.56,.64,1)"
@@ -43,7 +44,7 @@
    "h": 72,
    "links": 6
   },
-  "pageVh": 13.7
+  "pageVh": 13
  },
  "findings": [
   {
@@ -69,7 +70,12 @@
   {
    "level": "PASS",
    "rule": "a11y.contrast",
-   "msg": "All 94 checked text elements meet AA. Text over imagery was skipped; check it by eye."
+   "msg": "All 28 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 60 text elements over imagery meet AA (sampled from pixels)"
   },
   {
    "level": "PASS",
@@ -99,7 +105,7 @@
   {
    "level": "INFO",
    "rule": "layout.length",
-   "msg": "Page length 13.7 viewports (direction 6 norm 12–27)"
+   "msg": "Page length 13 viewports (direction 6 norm 12–27)"
   },
   {
    "level": "INFO",
@@ -108,11 +114,11 @@
   }
  ],
  "screenshots": [
-  "/tmp/cs-aud-halden2/desktop-hero.png",
-  "/tmp/cs-aud-halden2/slice-01.jpg … (one per viewport)",
-  "/tmp/cs-aud-halden2/desktop-full.jpg",
-  "/tmp/cs-aud-halden2/mobile-hero.png",
-  "/tmp/cs-aud-halden2/mobile-full.jpg",
-  "/tmp/cs-aud-halden2/reduced-motion-hero.png"
+  "/tmp/gal-halden2/desktop-hero.png",
+  "/tmp/gal-halden2/slice-01.jpg … (one per viewport)",
+  "/tmp/gal-halden2/desktop-full.jpg",
+  "/tmp/gal-halden2/mobile-hero.png",
+  "/tmp/gal-halden2/mobile-full.jpg",
+  "/tmp/gal-halden2/reduced-motion-hero.png"
  ]
 }

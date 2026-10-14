@@ -1,0 +1,1008 @@
+<!--
+DESIGN SPINE: Morrow
+DIRECTION   : 5 Quiet Luxury Commerce. A fragrance house sells restraint; the buyer compares six scents and starts with one small purchase.
+REGISTER    : Quiet. White page, charcoal type, charcoal transactional buttons. The only colour on the page is the light of the six hours, and it stays inside the drawings.
+AXES        : ground white #FFFFFF with a cool ink · type genre Didone numerals and heads (Bodoni Moda) over a Scandinavian grotesk (Schibsted Grotesk) · image medium colour-block still lifes in SVG: wall, window light, shelf, glass and shadow as flat planes (after Hammershoi's Copenhagen interiors) · composition small image, big room, plus a sticky stage beside a reading column · motion feel light-up: drawings resolve from grey into the hour's colour; on the stage the light crossfades across the wall as you read.
+DEFAULT?    : 1/6 matched (near-black ink only) -> DIFFERENT FROM DEFAULT BY: ground (white, not warm paper), labels (sentence-case grotesk, no mono caps), image (filled colour still lifes, not line art), no accent marks, no hairline spec bands (one price ledger).
+MOTIF       : the light of one hour falling through a window. (1) hero: six tall slats, the day from left to right, the link to each hour; (2) stage: one large still life whose light moves as you read; (3) day ruler: six swatches placed at their true minute on a 24-hour line, the index and nav of the stage; (4) the discovery-set lid printed with the six colours, and a colour band on each vial; (5) footer: the live Copenhagen time and the nearest hour.
+TYPE        : display Bodoni Moda 400 (italic for each scent's one-line place) · text Schibsted Grotesk 400/500 · no mono
+SCALE       : h1 44/1.04/-0.012em · hour numerals 56/1/-0.02em · h2 36/1.14/-0.008em · body 14-15/1.6 · label 12/1.35 sentence case
+PALETTE     : paper #FFFFFF · ink #1B1D20 · ink-2 ink@72% · ink-3 ink@64% · hairline ink@10% · accent: none. Charcoal ink fills transactional buttons only. Hour colours (#C5CDD2 05:40 ... #253149 23:10) live only inside the drawings.
+GRID        : 12 cols / 24px · container 1248px · side margin 20 -> 92px · section padding 96-144px, 200px+ voids between chapters
+HERO        : H9 small image, big room, varied: six still-life slats bleeding off the right edge; statement and the one action bottom-left
+IMAGERY     : colour blocks + object, in SVG (no photographs exist)
+CONVERSION  : "Order the discovery set" (240 DKK, credited against a 50 ml bottle): hero primary, nav, discovery-set chapter, finale. Each hour has a ghost "Add 50 ml".
+MOTION      : house ease cubic-bezier(.215,.61,.355,1) · UI 300ms · reveal 1000ms · primitive light-up (saturate 0 -> 1) for drawings, 4px blur-in for text; stage crossfade 900ms ease-inout. CSS only, native scroll.
+NAMING      : the clock. Scents are named by the minute; the set is "the six hours"; CTA verb "Order".
+SIGNATURES  : techniques 42 (opacity index / scroll-spy: the day ruler drives the sticky stage) · 52 (live Copenhagen clock in nav and footer, with the nearest hour)
+VOICE       : hero "Six hours of a Copenhagen day." · section "Wear one hour a day. In six days you will know." · CTA "Order the discovery set"
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Morrow: six hours of a Copenhagen day</title>
+<meta name="description" content="Morrow is a Copenhagen perfume house with six eaux de parfum, each named for an hour of the day. Try all six in the discovery set for 240 DKK, credited against your first 50 ml bottle.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23CDB496'/%3E%3Cg fill='%23E9C28B' transform='translate(4 3) skewX(18)'%3E%3Crect width='8' height='8'/%3E%3Crect x='10' width='8' height='8'/%3E%3Crect y='10' width='8' height='8'/%3E%3Crect x='10' y='10' width='8' height='8'/%3E%3C/g%3E%3Crect x='12' y='14' width='8' height='14' rx='1' fill='%2326221E'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Schibsted+Grotesk:wght@400;500&display=swap">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--primary btn--sm" href="#main">Skip to content</a>
+
+<header class="nav" id="top">
+  <div class="nav-in">
+    <nav class="nav-l" aria-label="Main">
+      <button class="nav-menu" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+      <ul class="nav-links" id="menu">
+        <li><a href="#hours">The six hours</a></li>
+        <li><a href="#set">Discovery set</a></li>
+        <li><a href="#refill">Refilling</a></li>
+      </ul>
+    </nav>
+    <a class="wordmark" href="#top" aria-label="Morrow, home">Morrow</a>
+    <div class="nav-r">
+      <p class="nav-clock"><span class="nav-clock-l">Copenhagen</span> <span data-clock="Europe/Copenhagen">--:--</span></p>
+      <a class="nav-bag" href="#set" aria-live="polite">Bag <span class="t-num" data-bag-count>(0)</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <p class="kicker">Six eaux de parfum, Copenhagen</p>
+      <h1 class="t-display" id="hero-title">Six hours of a Copenhagen day.</h1>
+      <p class="hero-dek">Each perfume is made from what the city smells like at one hour. Try all six for 240&nbsp;DKK; we take it off your first bottle.</p>
+      <div class="hero-cta">
+        <button class="btn btn--primary" type="button" data-add="The discovery set" data-price="240 DKK">Order the discovery set <span class="btn-price">240 DKK</span></button>
+        <a class="link-quiet" href="#hours">Read the six hours</a>
+      </div>
+    </div>
+    <ol class="strip" aria-label="The six hours, from dawn to night" data-reveal-group>
+        <li class="slat" style="--i:0">
+          <a href="#h-0540" class="slat-link" data-hour="0540">
+            <figure class="slat-fig" role="img" aria-label="05:40: Blue-grey wall at first light, a faint rose window of sun high on the left, the bottle casting a long shadow across the shelf"><svg class="scene " viewBox="0 0 140 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" >
+  <rect width="140" height="562.4" fill="#C5CDD2"/>
+  <clipPath id="w054014076050"><rect width="140" height="562.4"/></clipPath>
+  <g clip-path="url(#w054014076050)"><g fill="#E4D8D3" transform="translate(4.2 56.2) skewX(-34) scale(0.65 0.26)"><rect x="0" y="0" width="52" height="52.7"/><rect x="0" y="58.7" width="52" height="52.7"/><rect x="0" y="117.3" width="52" height="52.7"/><rect x="58" y="0" width="52" height="52.7"/><rect x="58" y="58.7" width="52" height="52.7"/><rect x="58" y="117.3" width="52" height="52.7"/></g></g>
+  <rect y="562.4" width="140" height="197.6" fill="#B4BDC3"/>
+  <rect y="562.4" width="140" height="2" fill="#9AA4AC" opacity=".45"/>
+  
+  <g transform="translate(70 661.2) scale(0.6)">
+    <clipPath id="w054014076050t"><rect x="-116.7" y="-164.7" width="233.3" height="329.3"/></clipPath>
+    <g clip-path="url(#w054014076050t)"><polygon points="-339,-54 -261,-54 39,-14 39,5 -39,5 -339,-35" fill="#9AA4AC"/><polygon points="-343.8,-50.8 -313.8,-50.8 -285,-47 -285,-38 -315,-38 -343.8,-41.8" fill="#9AA4AC"/><polygon points="-460.7,-67.6 -418.7,-67.6 -279,-49 -279,-37 -321,-37 -460.7,-55.6" fill="#9AA4AC"/><polygon points="-248,-38.6 -196,-38.6 -64,-21 -64,-10 -116,-10 -248,-27.6" fill="#EFE1D6" opacity=".7"/></g>
+    <ellipse cx="0" cy="1" rx="43" ry="5" fill="#9AA4AC" opacity=".7"/>
+    
+  <rect x="-39" y="-146" width="78" height="146" rx="8" fill="#E6EBEE" opacity=".62"/>
+  <rect x="-32" y="-118" width="64" height="100" rx="3" fill="#E9E3D2" opacity=".9"/>
+  <rect x="-32" y="-118" width="64" height="2.5" fill="#FFFFFF" opacity=".55"/>
+  <rect x="-39" y="-146" width="78" height="14" rx="7" fill="#E6EBEE" opacity=".85"/>
+  <rect x="-39" y="-20" width="78" height="20" rx="5" fill="#E6EBEE" opacity=".95"/>
+  <rect x="-35" y="-17" width="70" height="2" fill="#FFFFFF" opacity=".5"/>
+  <rect x="29" y="-140" width="4" height="124" rx="2" fill="#FFFFFF" opacity=".8"/>
+  <rect x="20" y="-136" width="2" height="116" rx="1" fill="#FFFFFF" opacity=".4"/>
+  <rect x="-38" y="-140" width="3" height="134" rx="1.5" fill="#9AA4AC" opacity=".35"/>
+  <rect x="-24" y="-98" width="48" height="58" fill="#F4F2ED"/>
+  <text x="0" y="-70" text-anchor="middle" font-family="Bodoni Moda, Didot, serif" font-size="13.5" fill="#26282C">05:40</text>
+  <text x="0" y="-55" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="4.6" letter-spacing="1.6" fill="#26282C" opacity=".8">MORROW</text>
+  <rect x="-15" y="-160" width="30" height="14" fill="#B9BDC1"/>
+  <rect x="-15" y="-153.5" width="30" height="1" fill="#26282C" opacity=".25"/>
+  <rect x="-21" y="-214" width="42" height="54" rx="2.5" fill="#26282C"/>
+  <rect x="13" y="-210" width="3" height="46" rx="1.5" fill="#FFFFFF" opacity=".2"/>
+  </g>
+</svg></figure>
+            <span class="slat-cap"><span class="slat-t">05:40</span><span class="slat-w">Harbour</span><span class="slat-now">Now</span></span>
+          </a>
+        </li>
+        <li class="slat" style="--i:1">
+          <a href="#h-0815" class="slat-link" data-hour="0815">
+            <figure class="slat-fig" role="img" aria-label="08:15: Pale lemon-grey wall in clear morning sun, a bright window of light on the left, a long shadow falling left with a gold glint through the glass"><svg class="scene " viewBox="0 0 140 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" >
+  <rect width="140" height="562.4" fill="#DCD9C9"/>
+  <clipPath id="w081514076050"><rect width="140" height="562.4"/></clipPath>
+  <g clip-path="url(#w081514076050)"><g fill="#F6F1DB" transform="translate(9.8 146.2) skewX(-22) scale(0.5 0.41)"><rect x="0" y="0" width="52" height="52.7"/><rect x="0" y="58.7" width="52" height="52.7"/><rect x="0" y="117.3" width="52" height="52.7"/><rect x="58" y="0" width="52" height="52.7"/><rect x="58" y="58.7" width="52" height="52.7"/><rect x="58" y="117.3" width="52" height="52.7"/></g></g>
+  <rect y="562.4" width="140" height="197.6" fill="#CAC6B2"/>
+  <rect y="562.4" width="140" height="2" fill="#A9A58F" opacity=".45"/>
+  
+  <g transform="translate(70 661.2) scale(0.6)">
+    <clipPath id="w081514076050t"><rect x="-116.7" y="-164.7" width="233.3" height="329.3"/></clipPath>
+    <g clip-path="url(#w081514076050t)"><polygon points="-214,-60 -136,-60 39,-14 39,5 -39,5 -214,-41" fill="#A9A58F"/><polygon points="-206.8,-57.4 -176.8,-57.4 -160,-53 -160,-44 -190,-44 -206.8,-48.4" fill="#A9A58F"/><polygon points="-277.5,-76.4 -235.5,-76.4 -154,-55 -154,-43 -196,-43 -277.5,-64.4" fill="#A9A58F"/><polygon points="-155.5,-43 -103.5,-43 -26.5,-22.8 -26.5,-11.8 -78.5,-11.8 -155.5,-32" fill="#F6E3A0" opacity=".7"/></g>
+    <ellipse cx="0" cy="1" rx="43" ry="5" fill="#A9A58F" opacity=".7"/>
+    
+  <rect x="-39" y="-146" width="78" height="146" rx="8" fill="#F2F0E5" opacity=".62"/>
+  <rect x="-32" y="-118" width="64" height="100" rx="3" fill="#EDE1B6" opacity=".9"/>
+  <rect x="-32" y="-118" width="64" height="2.5" fill="#FFFFFF" opacity=".55"/>
+  <rect x="-39" y="-146" width="78" height="14" rx="7" fill="#F2F0E5" opacity=".85"/>
+  <rect x="-39" y="-20" width="78" height="20" rx="5" fill="#F2F0E5" opacity=".95"/>
+  <rect x="-35" y="-17" width="70" height="2" fill="#FFFFFF" opacity=".5"/>
+  <rect x="29" y="-140" width="4" height="124" rx="2" fill="#FFFFFF" opacity=".8"/>
+  <rect x="20" y="-136" width="2" height="116" rx="1" fill="#FFFFFF" opacity=".4"/>
+  <rect x="-38" y="-140" width="3" height="134" rx="1.5" fill="#A9A58F" opacity=".35"/>
+  <rect x="-24" y="-98" width="48" height="58" fill="#F8F6EF"/>
+  <text x="0" y="-70" text-anchor="middle" font-family="Bodoni Moda, Didot, serif" font-size="13.5" fill="#26282C">08:15</text>
+  <text x="0" y="-55" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="4.6" letter-spacing="1.6" fill="#26282C" opacity=".8">MORROW</text>
+  <rect x="-15" y="-160" width="30" height="14" fill="#C2BFB2"/>
+  <rect x="-15" y="-153.5" width="30" height="1" fill="#26282C" opacity=".25"/>
+  <rect x="-21" y="-214" width="42" height="54" rx="2.5" fill="#26282C"/>
+  <rect x="13" y="-210" width="3" height="46" rx="1.5" fill="#FFFFFF" opacity=".2"/>
+  </g>
+</svg></figure>
+            <span class="slat-cap"><span class="slat-t">08:15</span><span class="slat-w">Cobbles</span><span class="slat-now">Now</span></span>
+          </a>
+        </li>
+        <li class="slat" style="--i:2">
+          <a href="#h-1200" class="slat-link" data-hour="1200">
+            <figure class="slat-fig" role="img" aria-label="12:00: Near-white wall in high midday light, a small square of sun low on the wall, a short shadow tucked behind the bottle"><svg class="scene " viewBox="0 0 140 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" >
+  <rect width="140" height="562.4" fill="#E6E5E1"/>
+  <clipPath id="w120014076050"><rect width="140" height="562.4"/></clipPath>
+  <g clip-path="url(#w120014076050)"><g fill="#F8F7F4" transform="translate(70 337.4) skewX(-8) scale(0.41 0.2)"><rect x="0" y="0" width="52" height="52.7"/><rect x="0" y="58.7" width="52" height="52.7"/><rect x="0" y="117.3" width="52" height="52.7"/><rect x="58" y="0" width="52" height="52.7"/><rect x="58" y="58.7" width="52" height="52.7"/><rect x="58" y="117.3" width="52" height="52.7"/></g></g>
+  <rect y="562.4" width="140" height="197.6" fill="#D8D6D0"/>
+  <rect y="562.4" width="140" height="2" fill="#BEBBB4" opacity=".45"/>
+  
+  <g transform="translate(70 661.2) scale(0.6)">
+    <clipPath id="w120014076050t"><rect x="-116.7" y="-164.7" width="233.3" height="329.3"/></clipPath>
+    <g clip-path="url(#w120014076050t)"><polygon points="-39,-14 -17,-58 61,-58 61,-39 39,5 -39,5" fill="#BEBBB4"/><polygon points="7,-51 9.1,-55.2 39.1,-55.2 39.1,-46.2 37,-42 7,-42" fill="#BEBBB4"/><polygon points="1,-53 11.2,-73.5 53.2,-73.5 53.2,-61.5 43,-41 1,-41" fill="#BEBBB4"/><polygon points="-19.4,-22.2 -9.7,-41.6 42.3,-41.6 42.3,-30.6 32.6,-11.2 -19.4,-11.2" fill="#F5EFD7" opacity=".7"/></g>
+    <ellipse cx="0" cy="1" rx="43" ry="5" fill="#BEBBB4" opacity=".7"/>
+    
+  <rect x="-39" y="-146" width="78" height="146" rx="8" fill="#F5F5F2" opacity=".62"/>
+  <rect x="-32" y="-118" width="64" height="100" rx="3" fill="#EEEADB" opacity=".9"/>
+  <rect x="-32" y="-118" width="64" height="2.5" fill="#FFFFFF" opacity=".55"/>
+  <rect x="-39" y="-146" width="78" height="14" rx="7" fill="#F5F5F2" opacity=".85"/>
+  <rect x="-39" y="-20" width="78" height="20" rx="5" fill="#F5F5F2" opacity=".95"/>
+  <rect x="-35" y="-17" width="70" height="2" fill="#FFFFFF" opacity=".5"/>
+  <rect x="-3" y="-140" width="4" height="124" rx="2" fill="#FFFFFF" opacity=".8"/>
+  <rect x="22" y="-138" width="2.5" height="118" rx="1" fill="#FFFFFF" opacity=".45"/>
+  <rect x="35" y="-140" width="3" height="134" rx="1.5" fill="#BEBBB4" opacity=".35"/>
+  <rect x="-24" y="-98" width="48" height="58" fill="#FBFAF7"/>
+  <text x="0" y="-70" text-anchor="middle" font-family="Bodoni Moda, Didot, serif" font-size="13.5" fill="#26282C">12:00</text>
+  <text x="0" y="-55" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="4.6" letter-spacing="1.6" fill="#26282C" opacity=".8">MORROW</text>
+  <rect x="-15" y="-160" width="30" height="14" fill="#C6C4BE"/>
+  <rect x="-15" y="-153.5" width="30" height="1" fill="#26282C" opacity=".25"/>
+  <rect x="-21" y="-214" width="42" height="54" rx="2.5" fill="#26282C"/>
+  <rect x="13" y="-210" width="3" height="46" rx="1.5" fill="#FFFFFF" opacity=".2"/>
+  </g>
+</svg></figure>
+            <span class="slat-cap"><span class="slat-t">12:00</span><span class="slat-w">Reading room</span><span class="slat-now">Now</span></span>
+          </a>
+        </li>
+        <li class="slat" style="--i:3">
+          <a href="#h-1650" class="slat-link" data-hour="1650">
+            <figure class="slat-fig" role="img" aria-label="16:50: Ochre wall in low amber afternoon sun, a tall window of light on the right, the shadow stretching right with an amber glow through the glass"><svg class="scene " viewBox="0 0 140 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" >
+  <rect width="140" height="562.4" fill="#CDB496"/>
+  <clipPath id="w165014076050"><rect width="140" height="562.4"/></clipPath>
+  <g clip-path="url(#w165014076050)"><g fill="#E9C28B" transform="translate(70 101.2) skewX(26) scale(0.525 0.38)"><rect x="0" y="0" width="52" height="52.7"/><rect x="0" y="58.7" width="52" height="52.7"/><rect x="0" y="117.3" width="52" height="52.7"/><rect x="58" y="0" width="52" height="52.7"/><rect x="58" y="58.7" width="52" height="52.7"/><rect x="58" y="117.3" width="52" height="52.7"/></g></g>
+  <rect y="562.4" width="140" height="197.6" fill="#BB9E7F"/>
+  <rect y="562.4" width="140" height="2" fill="#987B5E" opacity=".45"/>
+  
+  <g transform="translate(70 661.2) scale(0.6)">
+    <clipPath id="w165014076050t"><rect x="-116.7" y="-164.7" width="233.3" height="329.3"/></clipPath>
+    <g clip-path="url(#w165014076050t)"><polygon points="-39,-14 191,-54 269,-54 269,-35 39,5 -39,5" fill="#987B5E"/><polygon points="215,-47 237.1,-50.8 267.1,-50.8 267.1,-41.8 245,-38 215,-38" fill="#987B5E"/><polygon points="209,-49 316.1,-67.6 358.1,-67.6 358.1,-55.6 251,-37 209,-37" fill="#987B5E"/><polygon points="43,-21 144.2,-38.6 196.2,-38.6 196.2,-27.6 95,-10 43,-10" fill="#F4C977" opacity=".7"/></g>
+    <ellipse cx="0" cy="1" rx="43" ry="5" fill="#987B5E" opacity=".7"/>
+    
+  <rect x="-39" y="-146" width="78" height="146" rx="8" fill="#E3D0B7" opacity=".62"/>
+  <rect x="-32" y="-118" width="64" height="100" rx="3" fill="#E2B672" opacity=".9"/>
+  <rect x="-32" y="-118" width="64" height="2.5" fill="#FFF6E8" opacity=".55"/>
+  <rect x="-39" y="-146" width="78" height="14" rx="7" fill="#E3D0B7" opacity=".85"/>
+  <rect x="-39" y="-20" width="78" height="20" rx="5" fill="#E3D0B7" opacity=".95"/>
+  <rect x="-35" y="-17" width="70" height="2" fill="#FFF6E8" opacity=".5"/>
+  <rect x="-33" y="-140" width="4" height="124" rx="2" fill="#FFF6E8" opacity=".8"/>
+  <rect x="-24" y="-136" width="2" height="116" rx="1" fill="#FFF6E8" opacity=".4"/>
+  <rect x="35" y="-140" width="3" height="134" rx="1.5" fill="#987B5E" opacity=".35"/>
+  <rect x="-24" y="-98" width="48" height="58" fill="#F6F0E6"/>
+  <text x="0" y="-70" text-anchor="middle" font-family="Bodoni Moda, Didot, serif" font-size="13.5" fill="#26221E">16:50</text>
+  <text x="0" y="-55" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="4.6" letter-spacing="1.6" fill="#26221E" opacity=".8">MORROW</text>
+  <rect x="-15" y="-160" width="30" height="14" fill="#B9A385"/>
+  <rect x="-15" y="-153.5" width="30" height="1" fill="#26221E" opacity=".25"/>
+  <rect x="-21" y="-214" width="42" height="54" rx="2.5" fill="#26221E"/>
+  <rect x="-17" y="-210" width="3" height="46" rx="1.5" fill="#FFF6E8" opacity=".2"/>
+  </g>
+</svg></figure>
+            <span class="slat-cap"><span class="slat-t">16:50</span><span class="slat-w">Pine boards</span><span class="slat-now">Now</span></span>
+          </a>
+        </li>
+        <li class="slat" style="--i:4">
+          <a href="#h-1930" class="slat-link" data-hour="1930">
+            <figure class="slat-fig" role="img" aria-label="19:30: Dusky mauve wall after sunset, the last pale light high on the wall, a soft short shadow to the right"><svg class="scene " viewBox="0 0 140 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" >
+  <rect width="140" height="562.4" fill="#B39EA6"/>
+  <clipPath id="w193014076050"><rect width="140" height="562.4"/></clipPath>
+  <g clip-path="url(#w193014076050)"><g fill="#C3AEB4" transform="translate(61.6 11.2) skewX(40) scale(0.625 0.17)"><rect x="0" y="0" width="52" height="52.7"/><rect x="0" y="58.7" width="52" height="52.7"/><rect x="0" y="117.3" width="52" height="52.7"/><rect x="58" y="0" width="52" height="52.7"/><rect x="58" y="58.7" width="52" height="52.7"/><rect x="58" y="117.3" width="52" height="52.7"/></g></g>
+  <rect y="562.4" width="140" height="197.6" fill="#A38D96"/>
+  <rect y="562.4" width="140" height="2" fill="#8D7781" opacity=".45"/>
+  
+  <g transform="translate(70 661.2) scale(0.6)">
+    <clipPath id="w193014076050t"><rect x="-116.7" y="-164.7" width="233.3" height="329.3"/></clipPath>
+    <g clip-path="url(#w193014076050t)"><g opacity=".55"><polygon points="-39,-14 51,-36 129,-36 129,-17 39,5 -39,5" fill="#8D7781"/><polygon points="75,-29 83.6,-31.1 113.6,-31.1 113.6,-22.1 105,-20 75,-20" fill="#8D7781"/><polygon points="69,-31 110.9,-41.2 152.9,-41.2 152.9,-29.2 111,-19 69,-19" fill="#8D7781"/></g></g>
+    <ellipse cx="0" cy="1" rx="43" ry="5" fill="#8D7781" opacity=".7"/>
+    
+  <rect x="-39" y="-146" width="78" height="146" rx="8" fill="#CEBFC4" opacity=".62"/>
+  <rect x="-32" y="-118" width="64" height="100" rx="3" fill="#DCC0AE" opacity=".9"/>
+  <rect x="-32" y="-118" width="64" height="2.5" fill="#F7EEF0" opacity=".55"/>
+  <rect x="-39" y="-146" width="78" height="14" rx="7" fill="#CEBFC4" opacity=".85"/>
+  <rect x="-39" y="-20" width="78" height="20" rx="5" fill="#CEBFC4" opacity=".95"/>
+  <rect x="-35" y="-17" width="70" height="2" fill="#F7EEF0" opacity=".5"/>
+  <rect x="-33" y="-140" width="4" height="124" rx="2" fill="#F7EEF0" opacity=".8"/>
+  <rect x="-24" y="-136" width="2" height="116" rx="1" fill="#F7EEF0" opacity=".4"/>
+  <rect x="35" y="-140" width="3" height="134" rx="1.5" fill="#8D7781" opacity=".35"/>
+  <rect x="-24" y="-98" width="48" height="58" fill="#EFE8E8"/>
+  <text x="0" y="-70" text-anchor="middle" font-family="Bodoni Moda, Didot, serif" font-size="13.5" fill="#2A2427">19:30</text>
+  <text x="0" y="-55" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="4.6" letter-spacing="1.6" fill="#2A2427" opacity=".8">MORROW</text>
+  <rect x="-15" y="-160" width="30" height="14" fill="#A6959B"/>
+  <rect x="-15" y="-153.5" width="30" height="1" fill="#2A2427" opacity=".25"/>
+  <rect x="-21" y="-214" width="42" height="54" rx="2.5" fill="#2A2427"/>
+  <rect x="-17" y="-210" width="3" height="46" rx="1.5" fill="#F7EEF0" opacity=".2"/>
+  </g>
+</svg></figure>
+            <span class="slat-cap"><span class="slat-t">19:30</span><span class="slat-w">Open windows</span><span class="slat-now">Now</span></span>
+          </a>
+        </li>
+        <li class="slat" style="--i:5">
+          <a href="#h-2310" class="slat-link" data-hour="2310">
+            <figure class="slat-fig" role="img" aria-label="23:10: Night-blue wall lit only by a street lamp outside, a cool window of light on the left, the bottle glinting with its shadow thrown left"><svg class="scene " viewBox="0 0 140 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" >
+  <rect width="140" height="562.4" fill="#253149"/>
+  <clipPath id="w231014076050"><rect width="140" height="562.4"/></clipPath>
+  <g clip-path="url(#w231014076050)"><g fill="#3A4A69" transform="translate(8.4 180) skewX(-14) scale(0.45 0.475)"><rect x="0" y="0" width="52" height="52.7"/><rect x="0" y="58.7" width="52" height="52.7"/><rect x="0" y="117.3" width="52" height="52.7"/><rect x="58" y="0" width="52" height="52.7"/><rect x="58" y="58.7" width="52" height="52.7"/><rect x="58" y="117.3" width="52" height="52.7"/></g></g>
+  <rect y="562.4" width="140" height="197.6" fill="#1E273B"/>
+  <rect y="562.4" width="140" height="2" fill="#141B2A" opacity=".45"/>
+  
+  <g transform="translate(70 661.2) scale(0.6)">
+    <clipPath id="w231014076050t"><rect x="-116.7" y="-164.7" width="233.3" height="329.3"/></clipPath>
+    <g clip-path="url(#w231014076050t)"><polygon points="-174,-44 -96,-44 39,-14 39,5 -39,5 -174,-25" fill="#141B2A"/><polygon points="-162.9,-39.9 -132.9,-39.9 -120,-37 -120,-28 -150,-28 -162.9,-30.9" fill="#141B2A"/><polygon points="-218.9,-53 -176.9,-53 -114,-39 -114,-27 -156,-27 -218.9,-41" fill="#141B2A"/><polygon points="-125.9,-31.2 -73.9,-31.2 -14.5,-18 -14.5,-7 -66.5,-7 -125.9,-20.2" fill="#4C5B78" opacity=".7"/></g>
+    <ellipse cx="0" cy="1" rx="43" ry="5" fill="#141B2A" opacity=".7"/>
+    
+  <rect x="-39" y="-146" width="78" height="146" rx="8" fill="#40506B" opacity=".62"/>
+  <rect x="-32" y="-118" width="64" height="100" rx="3" fill="#727A90" opacity=".9"/>
+  <rect x="-32" y="-118" width="64" height="2.5" fill="#A9BBD9" opacity=".55"/>
+  <rect x="-39" y="-146" width="78" height="14" rx="7" fill="#40506B" opacity=".85"/>
+  <rect x="-39" y="-20" width="78" height="20" rx="5" fill="#40506B" opacity=".95"/>
+  <rect x="-35" y="-17" width="70" height="2" fill="#A9BBD9" opacity=".5"/>
+  <rect x="29" y="-140" width="4" height="124" rx="2" fill="#A9BBD9" opacity=".8"/>
+  <rect x="20" y="-136" width="2" height="116" rx="1" fill="#A9BBD9" opacity=".4"/>
+  <rect x="-38" y="-140" width="3" height="134" rx="1.5" fill="#141B2A" opacity=".35"/>
+  <rect x="-24" y="-98" width="48" height="58" fill="#AEB4C1"/>
+  <text x="0" y="-70" text-anchor="middle" font-family="Bodoni Moda, Didot, serif" font-size="13.5" fill="#1E2433">23:10</text>
+  <text x="0" y="-55" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="4.6" letter-spacing="1.6" fill="#1E2433" opacity=".8">MORROW</text>
+  <rect x="-15" y="-160" width="30" height="14" fill="#5B6884"/>
+  <rect x="-15" y="-153.5" width="30" height="1" fill="#0F1218" opacity=".25"/>
+  <rect x="-21" y="-214" width="42" height="54" rx="2.5" fill="#0F1218"/>
+  <rect x="13" y="-210" width="3" height="46" rx="1.5" fill="#A9BBD9" opacity=".2"/>
+  </g>
+</svg></figure>
+            <span class="slat-cap"><span class="slat-t">23:10</span><span class="slat-w">Last swim</span><span class="slat-now">Now</span></span>
+          </a>
+        </li>
+    </ol>
+  </section>
+
+  <section class="hours" id="hours" aria-labelledby="hours-title">
+    <header class="sec-head">
+      <h2 class="t-h2" id="hours-title">The six hours. <span class="dim">Each is named for the minute it smells most like itself.</span></h2>
+    </header>
+    <div class="hours-grid">
+      <div class="aside" id="hours-aside">
+        <div class="stage" role="img" aria-label="The bottle on a shelf; the light on the wall changes with the hour you are reading about">
+            <div class="layer is-active" data-spy-item="0540"><svg class="scene " viewBox="0 0 720 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" >
+  <rect width="720" height="448" fill="#C5CDD2"/>
+  <clipPath id="w054072064052"><rect width="720" height="448"/></clipPath>
+  <g clip-path="url(#w054072064052)"><g fill="#E4D8D3" transform="translate(21.6 44.8) skewX(-34) scale(2.015 0.8059999999999999)"><rect x="0" y="0" width="52" height="52.7"/><rect x="0" y="58.7" width="52" height="52.7"/><rect x="0" y="117.3" width="52" height="52.7"/><rect x="58" y="0" width="52" height="52.7"/><rect x="58" y="58.7" width="52" height="52.7"/><rect x="58" y="117.3" width="52" height="52.7"/></g></g>
+  <rect y="448" width="720" height="192" fill="#B4BDC3"/>
+  <rect y="448" width="720" height="2" fill="#9AA4AC" opacity=".45"/>
+  <rect y="608" width="720" height="32" fill="#A3ACB3"/>
+  <g transform="translate(374.4 550.4) scale(1.42)">
+    <clipPath id="w054072064052t"><rect x="-263.7" y="-72.1" width="507" height="135.2"/></clipPath>
+    <g clip-path="url(#w054072064052t)"><polygon points="-339,-54 -261,-54 39,-14 39,5 -39,5 -339,-35" fill="#9AA4AC"/><polygon points="-343.8,-50.8 -313.8,-50.8 -285,-47 -285,-38 -315,-38 -343.8,-41.8" fill="#9AA4AC"/><polygon points="-460.7,-67.6 -418.7,-67.6 -279,-49 -279,-37 -321,-37 -460.7,-55.6" fill="#9AA4AC"/><polygon points="-248,-38.6 -196,-38.6 -64,-21 -64,-10 -116,-10 -248,-27.6" fill="#EFE1D6" opacity=".7"/></g>
+    <ellipse cx="0" cy="1" rx="43" ry="5" fill="#9AA4AC" opacity=".7"/>
+    
+  <rect x="-39" y="-146" width="78" height="146" rx="8" fill="#E6EBEE" opacity=".62"/>
+  <rect x="-32" y="-118" width="64" height="100" rx="3" fill="#E9E3D2" opacity=".9"/>
+  <rect x="-32" y="-118" width="64" height="2.5" fill="#FFFFFF" opacity=".55"/>
+  <rect x="-39" y="-146" width="78" height="14" rx="7" fill="#E6EBEE" opacity=".85"/>
+  <rect x="-39" y="-20" width="78" height="20" rx="5" fill="#E6EBEE" opacity=".95"/>
+  <rect x="-35" y="-17" width="70" height="2" fill="#FFFFFF" opacity=".5"/>
+  <rect x="29" y="-140" width="4" height="124" rx="2" fill="#FFFFFF" opacity=".8"/>
+  <rect x="20" y="-136" width="2" height="116" rx="1" fill="#FFFFFF" opacity=".4"/>
+  <rect x="-38" y="-140" width="3" height="134" rx="1.5" fill="#9AA4AC" opacity=".35"/>
+  <rect x="-24" y="-98" width="48" height="58" fill="#F4F2ED"/>
+  <text x="0" y="-70" text-anchor="middle" font-family="Bodoni Moda, Didot, serif" font-size="13.5" fill="#26282C">05:40</text>
+  <text x="0" y="-55" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="4.6" letter-spacing="1.6" fill="#26282C" opacity=".8">MORROW</text>
+  <rect x="-15" y="-160" width="30" height="14" fill="#B9BDC1"/>
+  <rect x="-15" y="-153.5" width="30" height="1" fill="#26282C" opacity=".25"/>
+  <rect x="-21" y="-214" width="42" height="54" rx="2.5" fill="#26282C"/>
+  <rect x="13" y="-210" width="3" height="46" rx="1.5" fill="#FFFFFF" opacity=".2"/>
+  </g>
+</svg></div>
+            <div class="layer" data-spy-item="0815"><svg class="scene " viewBox="0 0 720 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" >
+  <rect width="720" height="448" fill="#DCD9C9"/>
+  <clipPath id="w081572064052"><rect width="720" height="448"/></clipPath>
+  <g clip-path="url(#w081572064052)"><g fill="#F6F1DB" transform="translate(50.4 116.5) skewX(-22) scale(1.55 1.271)"><rect x="0" y="0" width="52" height="52.7"/><rect x="0" y="58.7" width="52" height="52.7"/><rect x="0" y="117.3" width="52" height="52.7"/><rect x="58" y="0" width="52" height="52.7"/><rect x="58" y="58.7" width="52" height="52.7"/><rect x="58" y="117.3" width="52" height="52.7"/></g></g>
+  <rect y="448" width="720" height="192" fill="#CAC6B2"/>
+  <rect y="448" width="720" height="2" fill="#A9A58F" opacity=".45"/>
+  <rect y="608" width="720" height="32" fill="#B9B5A1"/>
+  <g transform="translate(374.4 550.4) scale(1.42)">
+    <clipPath id="w081572064052t"><rect x="-263.7" y="-72.1" width="507" height="135.2"/></clipPath>
+    <g clip-path="url(#w081572064052t)"><polygon points="-214,-60 -136,-60 39,-14 39,5 -39,5 -214,-41" fill="#A9A58F"/><polygon points="-206.8,-57.4 -176.8,-57.4 -160,-53 -160,-44 -190,-44 -206.8,-48.4" fill="#A9A58F"/><polygon points="-277.5,-76.4 -235.5,-76.4 -154,-55 -154,-43 -196,-43 -277.5,-64.4" fill="#A9A58F"/><polygon points="-155.5,-43 -103.5,-43 -26.5,-22.8 -26.5,-11.8 -78.5,-11.8 -155.5,-32" fill="#F6E3A0" opacity=".7"/></g>
+    <ellipse cx="0" cy="1" rx="43" ry="5" fill="#A9A58F" opacity=".7"/>
+    
+  <rect x="-39" y="-146" width="78" height="146" rx="8" fill="#F2F0E5" opacity=".62"/>
+  <rect x="-32" y="-118" width="64" height="100" rx="3" fill="#EDE1B6" opacity=".9"/>
+  <rect x="-32" y="-118" width="64" height="2.5" fill="#FFFFFF" opacity=".55"/>
+  <rect x="-39" y="-146" width="78" height="14" rx="7" fill="#F2F0E5" opacity=".85"/>
+  <rect x="-39" y="-20" width="78" height="20" rx="5" fill="#F2F0E5" opacity=".95"/>
+  <rect x="-35" y="-17" width="70" height="2" fill="#FFFFFF" opacity=".5"/>
+  <rect x="29" y="-140" width="4" height="124" rx="2" fill="#FFFFFF" opacity=".8"/>
+  <rect x="20" y="-136" width="2" height="116" rx="1" fill="#FFFFFF" opacity=".4"/>
+  <rect x="-38" y="-140" width="3" height="134" rx="1.5" fill="#A9A58F" opacity=".35"/>
+  <rect x="-24" y="-98" width="48" height="58" fill="#F8F6EF"/>
+  <text x="0" y="-70" text-anchor="middle" font-family="Bodoni Moda, Didot, serif" font-size="13.5" fill="#26282C">08:15</text>
+  <text x="0" y="-55" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="4.6" letter-spacing="1.6" fill="#26282C" opacity=".8">MORROW</text>
+  <rect x="-15" y="-160" width="30" height="14" fill="#C2BFB2"/>
+  <rect x="-15" y="-153.5" width="30" height="1" fill="#26282C" opacity=".25"/>
+  <rect x="-21" y="-214" width="42" height="54" rx="2.5" fill="#26282C"/>
+  <rect x="13" y="-210" width="3" height="46" rx="1.5" fill="#FFFFFF" opacity=".2"/>
+  </g>
+</svg></div>
+            <div class="layer" data-spy-item="1200"><svg class="scene " viewBox="0 0 720 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" >
+  <rect width="720" height="448" fill="#E6E5E1"/>
+  <clipPath id="w120072064052"><rect width="720" height="448"/></clipPath>
+  <g clip-path="url(#w120072064052)"><g fill="#F8F7F4" transform="translate(360 268.8) skewX(-8) scale(1.271 0.62)"><rect x="0" y="0" width="52" height="52.7"/><rect x="0" y="58.7" width="52" height="52.7"/><rect x="0" y="117.3" width="52" height="52.7"/><rect x="58" y="0" width="52" height="52.7"/><rect x="58" y="58.7" width="52" height="52.7"/><rect x="58" y="117.3" width="52" height="52.7"/></g></g>
+  <rect y="448" width="720" height="192" fill="#D8D6D0"/>
+  <rect y="448" width="720" height="2" fill="#BEBBB4" opacity=".45"/>
+  <rect y="608" width="720" height="32" fill="#C9C7C0"/>
+  <g transform="translate(374.4 550.4) scale(1.42)">
+    <clipPath id="w120072064052t"><rect x="-263.7" y="-72.1" width="507" height="135.2"/></clipPath>
+    <g clip-path="url(#w120072064052t)"><polygon points="-39,-14 -17,-58 61,-58 61,-39 39,5 -39,5" fill="#BEBBB4"/><polygon points="7,-51 9.1,-55.2 39.1,-55.2 39.1,-46.2 37,-42 7,-42" fill="#BEBBB4"/><polygon points="1,-53 11.2,-73.5 53.2,-73.5 53.2,-61.5 43,-41 1,-41" fill="#BEBBB4"/><polygon points="-19.4,-22.2 -9.7,-41.6 42.3,-41.6 42.3,-30.6 32.6,-11.2 -19.4,-11.2" fill="#F5EFD7" opacity=".7"/></g>
+    <ellipse cx="0" cy="1" rx="43" ry="5" fill="#BEBBB4" opacity=".7"/>
+    
+  <rect x="-39" y="-146" width="78" height="146" rx="8" fill="#F5F5F2" opacity=".62"/>
+  <rect x="-32" y="-118" width="64" height="100" rx="3" fill="#EEEADB" opacity=".9"/>
+  <rect x="-32" y="-118" width="64" height="2.5" fill="#FFFFFF" opacity=".55"/>
+  <rect x="-39" y="-146" width="78" height="14" rx="7" fill="#F5F5F2" opacity=".85"/>
+  <rect x="-39" y="-20" width="78" height="20" rx="5" fill="#F5F5F2" opacity=".95"/>
+  <rect x="-35" y="-17" width="70" height="2" fill="#FFFFFF" opacity=".5"/>
+  <rect x="-3" y="-140" width="4" height="124" rx="2" fill="#FFFFFF" opacity=".8"/>
+  <rect x="22" y="-138" width="2.5" height="118" rx="1" fill="#FFFFFF" opacity=".45"/>
+  <rect x="35" y="-140" width="3" height="134" rx="1.5" fill="#BEBBB4" opacity=".35"/>
+  <rect x="-24" y="-98" width="48" height="58" fill="#FBFAF7"/>
+  <text x="0" y="-70" text-anchor="middle" font-family="Bodoni Moda, Didot, serif" font-size="13.5" fill="#26282C">12:00</text>
+  <text x="0" y="-55" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="4.6" letter-spacing="1.6" fill="#26282C" opacity=".8">MORROW</text>
+  <rect x="-15" y="-160" width="30" height="14" fill="#C6C4BE"/>
+  <rect x="-15" y="-153.5" width="30" height="1" fill="#26282C" opacity=".25"/>
+  <rect x="-21" y="-214" width="42" height="54" rx="2.5" fill="#26282C"/>
+  <rect x="13" y="-210" width="3" height="46" rx="1.5" fill="#FFFFFF" opacity=".2"/>
+  </g>
+</svg></div>
+            <div class="layer" data-spy-item="1650"><svg class="scene " viewBox="0 0 720 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" >
+  <rect width="720" height="448" fill="#CDB496"/>
+  <clipPath id="w165072064052"><rect width="720" height="448"/></clipPath>
+  <g clip-path="url(#w165072064052)"><g fill="#E9C28B" transform="translate(360 80.6) skewX(26) scale(1.6280000000000001 1.178)"><rect x="0" y="0" width="52" height="52.7"/><rect x="0" y="58.7" width="52" height="52.7"/><rect x="0" y="117.3" width="52" height="52.7"/><rect x="58" y="0" width="52" height="52.7"/><rect x="58" y="58.7" width="52" height="52.7"/><rect x="58" y="117.3" width="52" height="52.7"/></g></g>
+  <rect y="448" width="720" height="192" fill="#BB9E7F"/>
+  <rect y="448" width="720" height="2" fill="#987B5E" opacity=".45"/>
+  <rect y="608" width="720" height="32" fill="#A98C6D"/>
+  <g transform="translate(374.4 550.4) scale(1.42)">
+    <clipPath id="w165072064052t"><rect x="-263.7" y="-72.1" width="507" height="135.2"/></clipPath>
+    <g clip-path="url(#w165072064052t)"><polygon points="-39,-14 191,-54 269,-54 269,-35 39,5 -39,5" fill="#987B5E"/><polygon points="215,-47 237.1,-50.8 267.1,-50.8 267.1,-41.8 245,-38 215,-38" fill="#987B5E"/><polygon points="209,-49 316.1,-67.6 358.1,-67.6 358.1,-55.6 251,-37 209,-37" fill="#987B5E"/><polygon points="43,-21 144.2,-38.6 196.2,-38.6 196.2,-27.6 95,-10 43,-10" fill="#F4C977" opacity=".7"/></g>
+    <ellipse cx="0" cy="1" rx="43" ry="5" fill="#987B5E" opacity=".7"/>
+    
+  <rect x="-39" y="-146" width="78" height="146" rx="8" fill="#E3D0B7" opacity=".62"/>
+  <rect x="-32" y="-118" width="64" height="100" rx="3" fill="#E2B672" opacity=".9"/>
+  <rect x="-32" y="-118" width="64" height="2.5" fill="#FFF6E8" opacity=".55"/>
+  <rect x="-39" y="-146" width="78" height="14" rx="7" fill="#E3D0B7" opacity=".85"/>
+  <rect x="-39" y="-20" width="78" height="20" rx="5" fill="#E3D0B7" opacity=".95"/>
+  <rect x="-35" y="-17" width="70" height="2" fill="#FFF6E8" opacity=".5"/>
+  <rect x="-33" y="-140" width="4" height="124" rx="2" fill="#FFF6E8" opacity=".8"/>
+  <rect x="-24" y="-136" width="2" height="116" rx="1" fill="#FFF6E8" opacity=".4"/>
+  <rect x="35" y="-140" width="3" height="134" rx="1.5" fill="#987B5E" opacity=".35"/>
+  <rect x="-24" y="-98" width="48" height="58" fill="#F6F0E6"/>
+  <text x="0" y="-70" text-anchor="middle" font-family="Bodoni Moda, Didot, serif" font-size="13.5" fill="#26221E">16:50</text>
+  <text x="0" y="-55" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="4.6" letter-spacing="1.6" fill="#26221E" opacity=".8">MORROW</text>
+  <rect x="-15" y="-160" width="30" height="14" fill="#B9A385"/>
+  <rect x="-15" y="-153.5" width="30" height="1" fill="#26221E" opacity=".25"/>
+  <rect x="-21" y="-214" width="42" height="54" rx="2.5" fill="#26221E"/>
+  <rect x="-17" y="-210" width="3" height="46" rx="1.5" fill="#FFF6E8" opacity=".2"/>
+  </g>
+</svg></div>
+            <div class="layer" data-spy-item="1930"><svg class="scene " viewBox="0 0 720 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" >
+  <rect width="720" height="448" fill="#B39EA6"/>
+  <clipPath id="w193072064052"><rect width="720" height="448"/></clipPath>
+  <g clip-path="url(#w193072064052)"><g fill="#C3AEB4" transform="translate(316.8 9) skewX(40) scale(1.9380000000000002 0.527)"><rect x="0" y="0" width="52" height="52.7"/><rect x="0" y="58.7" width="52" height="52.7"/><rect x="0" y="117.3" width="52" height="52.7"/><rect x="58" y="0" width="52" height="52.7"/><rect x="58" y="58.7" width="52" height="52.7"/><rect x="58" y="117.3" width="52" height="52.7"/></g></g>
+  <rect y="448" width="720" height="192" fill="#A38D96"/>
+  <rect y="448" width="720" height="2" fill="#8D7781" opacity=".45"/>
+  <rect y="608" width="720" height="32" fill="#937D87"/>
+  <g transform="translate(374.4 550.4) scale(1.42)">
+    <clipPath id="w193072064052t"><rect x="-263.7" y="-72.1" width="507" height="135.2"/></clipPath>
+    <g clip-path="url(#w193072064052t)"><g opacity=".55"><polygon points="-39,-14 51,-36 129,-36 129,-17 39,5 -39,5" fill="#8D7781"/><polygon points="75,-29 83.6,-31.1 113.6,-31.1 113.6,-22.1 105,-20 75,-20" fill="#8D7781"/><polygon points="69,-31 110.9,-41.2 152.9,-41.2 152.9,-29.2 111,-19 69,-19" fill="#8D7781"/></g></g>
+    <ellipse cx="0" cy="1" rx="43" ry="5" fill="#8D7781" opacity=".7"/>
+    
+  <rect x="-39" y="-146" width="78" height="146" rx="8" fill="#CEBFC4" opacity=".62"/>
+  <rect x="-32" y="-118" width="64" height="100" rx="3" fill="#DCC0AE" opacity=".9"/>
+  <rect x="-32" y="-118" width="64" height="2.5" fill="#F7EEF0" opacity=".55"/>
+  <rect x="-39" y="-146" width="78" height="14" rx="7" fill="#CEBFC4" opacity=".85"/>
+  <rect x="-39" y="-20" width="78" height="20" rx="5" fill="#CEBFC4" opacity=".95"/>
+  <rect x="-35" y="-17" width="70" height="2" fill="#F7EEF0" opacity=".5"/>
+  <rect x="-33" y="-140" width="4" height="124" rx="2" fill="#F7EEF0" opacity=".8"/>
+  <rect x="-24" y="-136" width="2" height="116" rx="1" fill="#F7EEF0" opacity=".4"/>
+  <rect x="35" y="-140" width="3" height="134" rx="1.5" fill="#8D7781" opacity=".35"/>
+  <rect x="-24" y="-98" width="48" height="58" fill="#EFE8E8"/>
+  <text x="0" y="-70" text-anchor="middle" font-family="Bodoni Moda, Didot, serif" font-size="13.5" fill="#2A2427">19:30</text>
+  <text x="0" y="-55" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="4.6" letter-spacing="1.6" fill="#2A2427" opacity=".8">MORROW</text>
+  <rect x="-15" y="-160" width="30" height="14" fill="#A6959B"/>
+  <rect x="-15" y="-153.5" width="30" height="1" fill="#2A2427" opacity=".25"/>
+  <rect x="-21" y="-214" width="42" height="54" rx="2.5" fill="#2A2427"/>
+  <rect x="-17" y="-210" width="3" height="46" rx="1.5" fill="#F7EEF0" opacity=".2"/>
+  </g>
+</svg></div>
+            <div class="layer" data-spy-item="2310"><svg class="scene " viewBox="0 0 720 640" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" >
+  <rect width="720" height="448" fill="#253149"/>
+  <clipPath id="w231072064052"><rect width="720" height="448"/></clipPath>
+  <g clip-path="url(#w231072064052)"><g fill="#3A4A69" transform="translate(43.2 143.4) skewX(-14) scale(1.395 1.473)"><rect x="0" y="0" width="52" height="52.7"/><rect x="0" y="58.7" width="52" height="52.7"/><rect x="0" y="117.3" width="52" height="52.7"/><rect x="58" y="0" width="52" height="52.7"/><rect x="58" y="58.7" width="52" height="52.7"/><rect x="58" y="117.3" width="52" height="52.7"/></g></g>
+  <rect y="448" width="720" height="192" fill="#1E273B"/>
+  <rect y="448" width="720" height="2" fill="#141B2A" opacity=".45"/>
+  <rect y="608" width="720" height="32" fill="#171F30"/>
+  <g transform="translate(374.4 550.4) scale(1.42)">
+    <clipPath id="w231072064052t"><rect x="-263.7" y="-72.1" width="507" height="135.2"/></clipPath>
+    <g clip-path="url(#w231072064052t)"><polygon points="-174,-44 -96,-44 39,-14 39,5 -39,5 -174,-25" fill="#141B2A"/><polygon points="-162.9,-39.9 -132.9,-39.9 -120,-37 -120,-28 -150,-28 -162.9,-30.9" fill="#141B2A"/><polygon points="-218.9,-53 -176.9,-53 -114,-39 -114,-27 -156,-27 -218.9,-41" fill="#141B2A"/><polygon points="-125.9,-31.2 -73.9,-31.2 -14.5,-18 -14.5,-7 -66.5,-7 -125.9,-20.2" fill="#4C5B78" opacity=".7"/></g>
+    <ellipse cx="0" cy="1" rx="43" ry="5" fill="#141B2A" opacity=".7"/>
+    
+  <rect x="-39" y="-146" width="78" height="146" rx="8" fill="#40506B" opacity=".62"/>
+  <rect x="-32" y="-118" width="64" height="100" rx="3" fill="#727A90" opacity=".9"/>
+  <rect x="-32" y="-118" width="64" height="2.5" fill="#A9BBD9" opacity=".55"/>
+  <rect x="-39" y="-146" width="78" height="14" rx="7" fill="#40506B" opacity=".85"/>
+  <rect x="-39" y="-20" width="78" height="20" rx="5" fill="#40506B" opacity=".95"/>
+  <rect x="-35" y="-17" width="70" height="2" fill="#A9BBD9" opacity=".5"/>
+  <rect x="29" y="-140" width="4" height="124" rx="2" fill="#A9BBD9" opacity=".8"/>
+  <rect x="20" y="-136" width="2" height="116" rx="1" fill="#A9BBD9" opacity=".4"/>
+  <rect x="-38" y="-140" width="3" height="134" rx="1.5" fill="#141B2A" opacity=".35"/>
+  <rect x="-24" y="-98" width="48" height="58" fill="#AEB4C1"/>
+  <text x="0" y="-70" text-anchor="middle" font-family="Bodoni Moda, Didot, serif" font-size="13.5" fill="#1E2433">23:10</text>
+  <text x="0" y="-55" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="4.6" letter-spacing="1.6" fill="#1E2433" opacity=".8">MORROW</text>
+  <rect x="-15" y="-160" width="30" height="14" fill="#5B6884"/>
+  <rect x="-15" y="-153.5" width="30" height="1" fill="#0F1218" opacity=".25"/>
+  <rect x="-21" y="-214" width="42" height="54" rx="2.5" fill="#0F1218"/>
+  <rect x="13" y="-210" width="3" height="46" rx="1.5" fill="#A9BBD9" opacity=".2"/>
+  </g>
+</svg></div>
+        </div>
+        <nav class="ruler" aria-label="Jump to an hour">
+          <span class="ruler-line" aria-hidden="true"></span>
+          <span class="ruler-q" style="--x:25%" aria-hidden="true"></span><span class="ruler-q" style="--x:50%" aria-hidden="true"></span><span class="ruler-q" style="--x:75%" aria-hidden="true"></span>
+            <a href="#h-0540" class="tick is-active" data-spy-item="0540" style="--x:23.61%;--sw:#C5CDD2"><span class="tick-sw" aria-hidden="true"></span><span>05:40</span></a>
+            <a href="#h-0815" class="tick" data-spy-item="0815" style="--x:34.38%;--sw:#DCD9C9"><span class="tick-sw" aria-hidden="true"></span><span>08:15</span></a>
+            <a href="#h-1200" class="tick" data-spy-item="1200" style="--x:50.00%;--sw:#E6E5E1"><span class="tick-sw" aria-hidden="true"></span><span>12:00</span></a>
+            <a href="#h-1650" class="tick" data-spy-item="1650" style="--x:70.14%;--sw:#CDB496"><span class="tick-sw" aria-hidden="true"></span><span>16:50</span></a>
+            <a href="#h-1930" class="tick" data-spy-item="1930" style="--x:81.25%;--sw:#B39EA6"><span class="tick-sw" aria-hidden="true"></span><span>19:30</span></a>
+            <a href="#h-2310" class="tick" data-spy-item="2310" style="--x:96.53%;--sw:#253149"><span class="tick-sw" aria-hidden="true"></span><span>23:10</span></a>
+        </nav>
+      </div>
+      <div class="entries">
+          <article class="hour" id="h-0540" data-spy-panel="0540" aria-labelledby="t-0540">
+            <figure class="hour-fig" role="img" aria-label="05:40: Blue-grey wall at first light, a faint rose window of sun high on the left, the bottle casting a long shadow across the shelf"><svg class="scene " viewBox="0 0 400 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" >
+  <rect width="400" height="322" fill="#C5CDD2"/>
+  <clipPath id="w054040046050"><rect width="400" height="322"/></clipPath>
+  <g clip-path="url(#w054040046050)"><g fill="#E4D8D3" transform="translate(12 32.2) skewX(-34) scale(1.17 0.46799999999999997)"><rect x="0" y="0" width="52" height="52.7"/><rect x="0" y="58.7" width="52" height="52.7"/><rect x="0" y="117.3" width="52" height="52.7"/><rect x="58" y="0" width="52" height="52.7"/><rect x="58" y="58.7" width="52" height="52.7"/><rect x="58" y="117.3" width="52" height="52.7"/></g></g>
+  <rect y="322" width="400" height="138" fill="#B4BDC3"/>
+  <rect y="322" width="400" height="2" fill="#9AA4AC" opacity=".45"/>
+  <rect y="437" width="400" height="23" fill="#A3ACB3"/>
+  <g transform="translate(200 395.6) scale(0.98)">
+    <clipPath id="w054040046050t"><rect x="-204.1" y="-75.1" width="408.2" height="140.8"/></clipPath>
+    <g clip-path="url(#w054040046050t)"><polygon points="-339,-54 -261,-54 39,-14 39,5 -39,5 -339,-35" fill="#9AA4AC"/><polygon points="-343.8,-50.8 -313.8,-50.8 -285,-47 -285,-38 -315,-38 -343.8,-41.8" fill="#9AA4AC"/><polygon points="-460.7,-67.6 -418.7,-67.6 -279,-49 -279,-37 -321,-37 -460.7,-55.6" fill="#9AA4AC"/><polygon points="-248,-38.6 -196,-38.6 -64,-21 -64,-10 -116,-10 -248,-27.6" fill="#EFE1D6" opacity=".7"/></g>
+    <ellipse cx="0" cy="1" rx="43" ry="5" fill="#9AA4AC" opacity=".7"/>
+    
+  <rect x="-39" y="-146" width="78" height="146" rx="8" fill="#E6EBEE" opacity=".62"/>
+  <rect x="-32" y="-118" width="64" height="100" rx="3" fill="#E9E3D2" opacity=".9"/>
+  <rect x="-32" y="-118" width="64" height="2.5" fill="#FFFFFF" opacity=".55"/>
+  <rect x="-39" y="-146" width="78" height="14" rx="7" fill="#E6EBEE" opacity=".85"/>
+  <rect x="-39" y="-20" width="78" height="20" rx="5" fill="#E6EBEE" opacity=".95"/>
+  <rect x="-35" y="-17" width="70" height="2" fill="#FFFFFF" opacity=".5"/>
+  <rect x="29" y="-140" width="4" height="124" rx="2" fill="#FFFFFF" opacity=".8"/>
+  <rect x="20" y="-136" width="2" height="116" rx="1" fill="#FFFFFF" opacity=".4"/>
+  <rect x="-38" y="-140" width="3" height="134" rx="1.5" fill="#9AA4AC" opacity=".35"/>
+  <rect x="-24" y="-98" width="48" height="58" fill="#F4F2ED"/>
+  <text x="0" y="-70" text-anchor="middle" font-family="Bodoni Moda, Didot, serif" font-size="13.5" fill="#26282C">05:40</text>
+  <text x="0" y="-55" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="4.6" letter-spacing="1.6" fill="#26282C" opacity=".8">MORROW</text>
+  <rect x="-15" y="-160" width="30" height="14" fill="#B9BDC1"/>
+  <rect x="-15" y="-153.5" width="30" height="1" fill="#26282C" opacity=".25"/>
+  <rect x="-21" y="-214" width="42" height="54" rx="2.5" fill="#26282C"/>
+  <rect x="13" y="-210" width="3" height="46" rx="1.5" fill="#FFFFFF" opacity=".2"/>
+  </g>
+</svg></figure>
+            <h3 class="t-hour t-num" id="t-0540">05:40</h3>
+            <p class="hour-line">The harbour, before the bakeries open</p>
+            <p class="hour-desc">Cold water slapping stone, a coil of wet hemp rope, and from a side street the first rye loaves going into the oven. Salt first; the warmth arrives late.</p>
+            <dl class="notes"><div><dt>Opening</dt><dd>Sea air, cold stone</dd></div><div><dt>Heart</dt><dd>Hemp rope, rye crust</dd></div><div><dt>Base</dt><dd>Ambrette seed, toasted malt</dd></div></dl>
+            <div class="buy">
+              <p class="buy-price"><span>Eau de parfum, 50 ml</span> <span>1,450 DKK</span></p>
+              <button class="btn btn--ghost btn--wide" type="button" data-add="A 50 ml bottle of 05:40" data-price="1,450 DKK">Add 05:40 to bag</button>
+            </div>
+          </article>
+          <article class="hour" id="h-0815" data-spy-panel="0815" aria-labelledby="t-0815">
+            <figure class="hour-fig" role="img" aria-label="08:15: Pale lemon-grey wall in clear morning sun, a bright window of light on the left, a long shadow falling left with a gold glint through the glass"><svg class="scene " viewBox="0 0 400 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" >
+  <rect width="400" height="322" fill="#DCD9C9"/>
+  <clipPath id="w081540046050"><rect width="400" height="322"/></clipPath>
+  <g clip-path="url(#w081540046050)"><g fill="#F6F1DB" transform="translate(28 83.7) skewX(-22) scale(0.9 0.738)"><rect x="0" y="0" width="52" height="52.7"/><rect x="0" y="58.7" width="52" height="52.7"/><rect x="0" y="117.3" width="52" height="52.7"/><rect x="58" y="0" width="52" height="52.7"/><rect x="58" y="58.7" width="52" height="52.7"/><rect x="58" y="117.3" width="52" height="52.7"/></g></g>
+  <rect y="322" width="400" height="138" fill="#CAC6B2"/>
+  <rect y="322" width="400" height="2" fill="#A9A58F" opacity=".45"/>
+  <rect y="437" width="400" height="23" fill="#B9B5A1"/>
+  <g transform="translate(200 395.6) scale(0.98)">
+    <clipPath id="w081540046050t"><rect x="-204.1" y="-75.1" width="408.2" height="140.8"/></clipPath>
+    <g clip-path="url(#w081540046050t)"><polygon points="-214,-60 -136,-60 39,-14 39,5 -39,5 -214,-41" fill="#A9A58F"/><polygon points="-206.8,-57.4 -176.8,-57.4 -160,-53 -160,-44 -190,-44 -206.8,-48.4" fill="#A9A58F"/><polygon points="-277.5,-76.4 -235.5,-76.4 -154,-55 -154,-43 -196,-43 -277.5,-64.4" fill="#A9A58F"/><polygon points="-155.5,-43 -103.5,-43 -26.5,-22.8 -26.5,-11.8 -78.5,-11.8 -155.5,-32" fill="#F6E3A0" opacity=".7"/></g>
+    <ellipse cx="0" cy="1" rx="43" ry="5" fill="#A9A58F" opacity=".7"/>
+    
+  <rect x="-39" y="-146" width="78" height="146" rx="8" fill="#F2F0E5" opacity=".62"/>
+  <rect x="-32" y="-118" width="64" height="100" rx="3" fill="#EDE1B6" opacity=".9"/>
+  <rect x="-32" y="-118" width="64" height="2.5" fill="#FFFFFF" opacity=".55"/>
+  <rect x="-39" y="-146" width="78" height="14" rx="7" fill="#F2F0E5" opacity=".85"/>
+  <rect x="-39" y="-20" width="78" height="20" rx="5" fill="#F2F0E5" opacity=".95"/>
+  <rect x="-35" y="-17" width="70" height="2" fill="#FFFFFF" opacity=".5"/>
+  <rect x="29" y="-140" width="4" height="124" rx="2" fill="#FFFFFF" opacity=".8"/>
+  <rect x="20" y="-136" width="2" height="116" rx="1" fill="#FFFFFF" opacity=".4"/>
+  <rect x="-38" y="-140" width="3" height="134" rx="1.5" fill="#A9A58F" opacity=".35"/>
+  <rect x="-24" y="-98" width="48" height="58" fill="#F8F6EF"/>
+  <text x="0" y="-70" text-anchor="middle" font-family="Bodoni Moda, Didot, serif" font-size="13.5" fill="#26282C">08:15</text>
+  <text x="0" y="-55" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="4.6" letter-spacing="1.6" fill="#26282C" opacity=".8">MORROW</text>
+  <rect x="-15" y="-160" width="30" height="14" fill="#C2BFB2"/>
+  <rect x="-15" y="-153.5" width="30" height="1" fill="#26282C" opacity=".25"/>
+  <rect x="-21" y="-214" width="42" height="54" rx="2.5" fill="#26282C"/>
+  <rect x="13" y="-210" width="3" height="46" rx="1.5" fill="#FFFFFF" opacity=".2"/>
+  </g>
+</svg></figure>
+            <h3 class="t-hour t-num" id="t-0815">08:15</h3>
+            <p class="hour-line">Bicycles over wet cobbles</p>
+            <p class="hour-desc">Rush hour on the bridge: rain drying off the stones, a cardamom bun eaten one-handed, a wool scarf that has been out in it. Brisk and green, softer by nine.</p>
+            <dl class="notes"><div><dt>Opening</dt><dd>Green cardamom, petrichor</dd></div><div><dt>Heart</dt><dd>Black coffee, wet wool</dd></div><div><dt>Base</dt><dd>Cashmeran, oat</dd></div></dl>
+            <div class="buy">
+              <p class="buy-price"><span>Eau de parfum, 50 ml</span> <span>1,450 DKK</span></p>
+              <button class="btn btn--ghost btn--wide" type="button" data-add="A 50 ml bottle of 08:15" data-price="1,450 DKK">Add 08:15 to bag</button>
+            </div>
+          </article>
+          <article class="hour" id="h-1200" data-spy-panel="1200" aria-labelledby="t-1200">
+            <figure class="hour-fig" role="img" aria-label="12:00: Near-white wall in high midday light, a small square of sun low on the wall, a short shadow tucked behind the bottle"><svg class="scene " viewBox="0 0 400 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" >
+  <rect width="400" height="322" fill="#E6E5E1"/>
+  <clipPath id="w120040046050"><rect width="400" height="322"/></clipPath>
+  <g clip-path="url(#w120040046050)"><g fill="#F8F7F4" transform="translate(200 193.2) skewX(-8) scale(0.738 0.36)"><rect x="0" y="0" width="52" height="52.7"/><rect x="0" y="58.7" width="52" height="52.7"/><rect x="0" y="117.3" width="52" height="52.7"/><rect x="58" y="0" width="52" height="52.7"/><rect x="58" y="58.7" width="52" height="52.7"/><rect x="58" y="117.3" width="52" height="52.7"/></g></g>
+  <rect y="322" width="400" height="138" fill="#D8D6D0"/>
+  <rect y="322" width="400" height="2" fill="#BEBBB4" opacity=".45"/>
+  <rect y="437" width="400" height="23" fill="#C9C7C0"/>
+  <g transform="translate(200 395.6) scale(0.98)">
+    <clipPath id="w120040046050t"><rect x="-204.1" y="-75.1" width="408.2" height="140.8"/></clipPath>
+    <g clip-path="url(#w120040046050t)"><polygon points="-39,-14 -17,-58 61,-58 61,-39 39,5 -39,5" fill="#BEBBB4"/><polygon points="7,-51 9.1,-55.2 39.1,-55.2 39.1,-46.2 37,-42 7,-42" fill="#BEBBB4"/><polygon points="1,-53 11.2,-73.5 53.2,-73.5 53.2,-61.5 43,-41 1,-41" fill="#BEBBB4"/><polygon points="-19.4,-22.2 -9.7,-41.6 42.3,-41.6 42.3,-30.6 32.6,-11.2 -19.4,-11.2" fill="#F5EFD7" opacity=".7"/></g>
+    <ellipse cx="0" cy="1" rx="43" ry="5" fill="#BEBBB4" opacity=".7"/>
+    
+  <rect x="-39" y="-146" width="78" height="146" rx="8" fill="#F5F5F2" opacity=".62"/>
+  <rect x="-32" y="-118" width="64" height="100" rx="3" fill="#EEEADB" opacity=".9"/>
+  <rect x="-32" y="-118" width="64" height="2.5" fill="#FFFFFF" opacity=".55"/>
+  <rect x="-39" y="-146" width="78" height="14" rx="7" fill="#F5F5F2" opacity=".85"/>
+  <rect x="-39" y="-20" width="78" height="20" rx="5" fill="#F5F5F2" opacity=".95"/>
+  <rect x="-35" y="-17" width="70" height="2" fill="#FFFFFF" opacity=".5"/>
+  <rect x="-3" y="-140" width="4" height="124" rx="2" fill="#FFFFFF" opacity=".8"/>
+  <rect x="22" y="-138" width="2.5" height="118" rx="1" fill="#FFFFFF" opacity=".45"/>
+  <rect x="35" y="-140" width="3" height="134" rx="1.5" fill="#BEBBB4" opacity=".35"/>
+  <rect x="-24" y="-98" width="48" height="58" fill="#FBFAF7"/>
+  <text x="0" y="-70" text-anchor="middle" font-family="Bodoni Moda, Didot, serif" font-size="13.5" fill="#26282C">12:00</text>
+  <text x="0" y="-55" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="4.6" letter-spacing="1.6" fill="#26282C" opacity=".8">MORROW</text>
+  <rect x="-15" y="-160" width="30" height="14" fill="#C6C4BE"/>
+  <rect x="-15" y="-153.5" width="30" height="1" fill="#26282C" opacity=".25"/>
+  <rect x="-21" y="-214" width="42" height="54" rx="2.5" fill="#26282C"/>
+  <rect x="13" y="-210" width="3" height="46" rx="1.5" fill="#FFFFFF" opacity=".2"/>
+  </g>
+</svg></figure>
+            <h3 class="t-hour t-num" id="t-1200">12:00</h3>
+            <p class="hour-line">A reading room facing the water</p>
+            <p class="hour-desc">Flat white light on long tables. Paper, cedar pencil shavings, the warm dust of a radiator that has been on since October. The quietest of the six.</p>
+            <dl class="notes"><div><dt>Opening</dt><dd>Aldehydes, pencil cedar</dd></div><div><dt>Heart</dt><dd>Paper, orris</dd></div><div><dt>Base</dt><dd>Radiator dust, white musk</dd></div></dl>
+            <div class="buy">
+              <p class="buy-price"><span>Eau de parfum, 50 ml</span> <span>1,450 DKK</span></p>
+              <button class="btn btn--ghost btn--wide" type="button" data-add="A 50 ml bottle of 12:00" data-price="1,450 DKK">Add 12:00 to bag</button>
+            </div>
+          </article>
+          <article class="hour" id="h-1650" data-spy-panel="1650" aria-labelledby="t-1650">
+            <figure class="hour-fig" role="img" aria-label="16:50: Ochre wall in low amber afternoon sun, a tall window of light on the right, the shadow stretching right with an amber glow through the glass"><svg class="scene " viewBox="0 0 400 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" >
+  <rect width="400" height="322" fill="#CDB496"/>
+  <clipPath id="w165040046050"><rect width="400" height="322"/></clipPath>
+  <g clip-path="url(#w165040046050)"><g fill="#E9C28B" transform="translate(200 58) skewX(26) scale(0.945 0.684)"><rect x="0" y="0" width="52" height="52.7"/><rect x="0" y="58.7" width="52" height="52.7"/><rect x="0" y="117.3" width="52" height="52.7"/><rect x="58" y="0" width="52" height="52.7"/><rect x="58" y="58.7" width="52" height="52.7"/><rect x="58" y="117.3" width="52" height="52.7"/></g></g>
+  <rect y="322" width="400" height="138" fill="#BB9E7F"/>
+  <rect y="322" width="400" height="2" fill="#987B5E" opacity=".45"/>
+  <rect y="437" width="400" height="23" fill="#A98C6D"/>
+  <g transform="translate(200 395.6) scale(0.98)">
+    <clipPath id="w165040046050t"><rect x="-204.1" y="-75.1" width="408.2" height="140.8"/></clipPath>
+    <g clip-path="url(#w165040046050t)"><polygon points="-39,-14 191,-54 269,-54 269,-35 39,5 -39,5" fill="#987B5E"/><polygon points="215,-47 237.1,-50.8 267.1,-50.8 267.1,-41.8 245,-38 215,-38" fill="#987B5E"/><polygon points="209,-49 316.1,-67.6 358.1,-67.6 358.1,-55.6 251,-37 209,-37" fill="#987B5E"/><polygon points="43,-21 144.2,-38.6 196.2,-38.6 196.2,-27.6 95,-10 43,-10" fill="#F4C977" opacity=".7"/></g>
+    <ellipse cx="0" cy="1" rx="43" ry="5" fill="#987B5E" opacity=".7"/>
+    
+  <rect x="-39" y="-146" width="78" height="146" rx="8" fill="#E3D0B7" opacity=".62"/>
+  <rect x="-32" y="-118" width="64" height="100" rx="3" fill="#E2B672" opacity=".9"/>
+  <rect x="-32" y="-118" width="64" height="2.5" fill="#FFF6E8" opacity=".55"/>
+  <rect x="-39" y="-146" width="78" height="14" rx="7" fill="#E3D0B7" opacity=".85"/>
+  <rect x="-39" y="-20" width="78" height="20" rx="5" fill="#E3D0B7" opacity=".95"/>
+  <rect x="-35" y="-17" width="70" height="2" fill="#FFF6E8" opacity=".5"/>
+  <rect x="-33" y="-140" width="4" height="124" rx="2" fill="#FFF6E8" opacity=".8"/>
+  <rect x="-24" y="-136" width="2" height="116" rx="1" fill="#FFF6E8" opacity=".4"/>
+  <rect x="35" y="-140" width="3" height="134" rx="1.5" fill="#987B5E" opacity=".35"/>
+  <rect x="-24" y="-98" width="48" height="58" fill="#F6F0E6"/>
+  <text x="0" y="-70" text-anchor="middle" font-family="Bodoni Moda, Didot, serif" font-size="13.5" fill="#26221E">16:50</text>
+  <text x="0" y="-55" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="4.6" letter-spacing="1.6" fill="#26221E" opacity=".8">MORROW</text>
+  <rect x="-15" y="-160" width="30" height="14" fill="#B9A385"/>
+  <rect x="-15" y="-153.5" width="30" height="1" fill="#26221E" opacity=".25"/>
+  <rect x="-21" y="-214" width="42" height="54" rx="2.5" fill="#26221E"/>
+  <rect x="-17" y="-210" width="3" height="46" rx="1.5" fill="#FFF6E8" opacity=".2"/>
+  </g>
+</svg></figure>
+            <h3 class="t-hour t-num" id="t-1650">16:50</h3>
+            <p class="hour-line">Low sun across pine boards</p>
+            <p class="hour-desc">The sun drops under the roofline and lands on an oiled pine floor. Black tea gone cold in the cup, a little tar from the boats on the canal, and the heat that stays in wood after the light has gone.</p>
+            <dl class="notes"><div><dt>Opening</dt><dd>Black tea, bitter orange</dd></div><div><dt>Heart</dt><dd>Scots pine, linseed</dd></div><div><dt>Base</dt><dd>Birch tar, labdanum</dd></div></dl>
+            <div class="buy">
+              <p class="buy-price"><span>Eau de parfum, 50 ml</span> <span>1,450 DKK</span></p>
+              <button class="btn btn--ghost btn--wide" type="button" data-add="A 50 ml bottle of 16:50" data-price="1,450 DKK">Add 16:50 to bag</button>
+            </div>
+          </article>
+          <article class="hour" id="h-1930" data-spy-panel="1930" aria-labelledby="t-1930">
+            <figure class="hour-fig" role="img" aria-label="19:30: Dusky mauve wall after sunset, the last pale light high on the wall, a soft short shadow to the right"><svg class="scene " viewBox="0 0 400 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" >
+  <rect width="400" height="322" fill="#B39EA6"/>
+  <clipPath id="w193040046050"><rect width="400" height="322"/></clipPath>
+  <g clip-path="url(#w193040046050)"><g fill="#C3AEB4" transform="translate(176 6.4) skewX(40) scale(1.125 0.306)"><rect x="0" y="0" width="52" height="52.7"/><rect x="0" y="58.7" width="52" height="52.7"/><rect x="0" y="117.3" width="52" height="52.7"/><rect x="58" y="0" width="52" height="52.7"/><rect x="58" y="58.7" width="52" height="52.7"/><rect x="58" y="117.3" width="52" height="52.7"/></g></g>
+  <rect y="322" width="400" height="138" fill="#A38D96"/>
+  <rect y="322" width="400" height="2" fill="#8D7781" opacity=".45"/>
+  <rect y="437" width="400" height="23" fill="#937D87"/>
+  <g transform="translate(200 395.6) scale(0.98)">
+    <clipPath id="w193040046050t"><rect x="-204.1" y="-75.1" width="408.2" height="140.8"/></clipPath>
+    <g clip-path="url(#w193040046050t)"><g opacity=".55"><polygon points="-39,-14 51,-36 129,-36 129,-17 39,5 -39,5" fill="#8D7781"/><polygon points="75,-29 83.6,-31.1 113.6,-31.1 113.6,-22.1 105,-20 75,-20" fill="#8D7781"/><polygon points="69,-31 110.9,-41.2 152.9,-41.2 152.9,-29.2 111,-19 69,-19" fill="#8D7781"/></g></g>
+    <ellipse cx="0" cy="1" rx="43" ry="5" fill="#8D7781" opacity=".7"/>
+    
+  <rect x="-39" y="-146" width="78" height="146" rx="8" fill="#CEBFC4" opacity=".62"/>
+  <rect x="-32" y="-118" width="64" height="100" rx="3" fill="#DCC0AE" opacity=".9"/>
+  <rect x="-32" y="-118" width="64" height="2.5" fill="#F7EEF0" opacity=".55"/>
+  <rect x="-39" y="-146" width="78" height="14" rx="7" fill="#CEBFC4" opacity=".85"/>
+  <rect x="-39" y="-20" width="78" height="20" rx="5" fill="#CEBFC4" opacity=".95"/>
+  <rect x="-35" y="-17" width="70" height="2" fill="#F7EEF0" opacity=".5"/>
+  <rect x="-33" y="-140" width="4" height="124" rx="2" fill="#F7EEF0" opacity=".8"/>
+  <rect x="-24" y="-136" width="2" height="116" rx="1" fill="#F7EEF0" opacity=".4"/>
+  <rect x="35" y="-140" width="3" height="134" rx="1.5" fill="#8D7781" opacity=".35"/>
+  <rect x="-24" y="-98" width="48" height="58" fill="#EFE8E8"/>
+  <text x="0" y="-70" text-anchor="middle" font-family="Bodoni Moda, Didot, serif" font-size="13.5" fill="#2A2427">19:30</text>
+  <text x="0" y="-55" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="4.6" letter-spacing="1.6" fill="#2A2427" opacity=".8">MORROW</text>
+  <rect x="-15" y="-160" width="30" height="14" fill="#A6959B"/>
+  <rect x="-15" y="-153.5" width="30" height="1" fill="#2A2427" opacity=".25"/>
+  <rect x="-21" y="-214" width="42" height="54" rx="2.5" fill="#2A2427"/>
+  <rect x="-17" y="-210" width="3" height="46" rx="1.5" fill="#F7EEF0" opacity=".2"/>
+  </g>
+</svg></figure>
+            <h3 class="t-hour t-num" id="t-1930">19:30</h3>
+            <p class="hour-line">Dinner with the windows open</p>
+            <p class="hour-desc">Smoke from a grill two courtyards over, sea buckthorn on the table, juniper in the glass, and the first cold air of the evening coming in over the sill.</p>
+            <dl class="notes"><div><dt>Opening</dt><dd>Sea buckthorn, blackcurrant leaf</dd></div><div><dt>Heart</dt><dd>Juniper berry, rhubarb</dd></div><div><dt>Base</dt><dd>Beechwood smoke, tonka</dd></div></dl>
+            <div class="buy">
+              <p class="buy-price"><span>Eau de parfum, 50 ml</span> <span>1,450 DKK</span></p>
+              <button class="btn btn--ghost btn--wide" type="button" data-add="A 50 ml bottle of 19:30" data-price="1,450 DKK">Add 19:30 to bag</button>
+            </div>
+          </article>
+          <article class="hour" id="h-2310" data-spy-panel="2310" aria-labelledby="t-2310">
+            <figure class="hour-fig" role="img" aria-label="23:10: Night-blue wall lit only by a street lamp outside, a cool window of light on the left, the bottle glinting with its shadow thrown left"><svg class="scene " viewBox="0 0 400 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false" >
+  <rect width="400" height="322" fill="#253149"/>
+  <clipPath id="w231040046050"><rect width="400" height="322"/></clipPath>
+  <g clip-path="url(#w231040046050)"><g fill="#3A4A69" transform="translate(24 103) skewX(-14) scale(0.81 0.855)"><rect x="0" y="0" width="52" height="52.7"/><rect x="0" y="58.7" width="52" height="52.7"/><rect x="0" y="117.3" width="52" height="52.7"/><rect x="58" y="0" width="52" height="52.7"/><rect x="58" y="58.7" width="52" height="52.7"/><rect x="58" y="117.3" width="52" height="52.7"/></g></g>
+  <rect y="322" width="400" height="138" fill="#1E273B"/>
+  <rect y="322" width="400" height="2" fill="#141B2A" opacity=".45"/>
+  <rect y="437" width="400" height="23" fill="#171F30"/>
+  <g transform="translate(200 395.6) scale(0.98)">
+    <clipPath id="w231040046050t"><rect x="-204.1" y="-75.1" width="408.2" height="140.8"/></clipPath>
+    <g clip-path="url(#w231040046050t)"><polygon points="-174,-44 -96,-44 39,-14 39,5 -39,5 -174,-25" fill="#141B2A"/><polygon points="-162.9,-39.9 -132.9,-39.9 -120,-37 -120,-28 -150,-28 -162.9,-30.9" fill="#141B2A"/><polygon points="-218.9,-53 -176.9,-53 -114,-39 -114,-27 -156,-27 -218.9,-41" fill="#141B2A"/><polygon points="-125.9,-31.2 -73.9,-31.2 -14.5,-18 -14.5,-7 -66.5,-7 -125.9,-20.2" fill="#4C5B78" opacity=".7"/></g>
+    <ellipse cx="0" cy="1" rx="43" ry="5" fill="#141B2A" opacity=".7"/>
+    
+  <rect x="-39" y="-146" width="78" height="146" rx="8" fill="#40506B" opacity=".62"/>
+  <rect x="-32" y="-118" width="64" height="100" rx="3" fill="#727A90" opacity=".9"/>
+  <rect x="-32" y="-118" width="64" height="2.5" fill="#A9BBD9" opacity=".55"/>
+  <rect x="-39" y="-146" width="78" height="14" rx="7" fill="#40506B" opacity=".85"/>
+  <rect x="-39" y="-20" width="78" height="20" rx="5" fill="#40506B" opacity=".95"/>
+  <rect x="-35" y="-17" width="70" height="2" fill="#A9BBD9" opacity=".5"/>
+  <rect x="29" y="-140" width="4" height="124" rx="2" fill="#A9BBD9" opacity=".8"/>
+  <rect x="20" y="-136" width="2" height="116" rx="1" fill="#A9BBD9" opacity=".4"/>
+  <rect x="-38" y="-140" width="3" height="134" rx="1.5" fill="#141B2A" opacity=".35"/>
+  <rect x="-24" y="-98" width="48" height="58" fill="#AEB4C1"/>
+  <text x="0" y="-70" text-anchor="middle" font-family="Bodoni Moda, Didot, serif" font-size="13.5" fill="#1E2433">23:10</text>
+  <text x="0" y="-55" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="4.6" letter-spacing="1.6" fill="#1E2433" opacity=".8">MORROW</text>
+  <rect x="-15" y="-160" width="30" height="14" fill="#5B6884"/>
+  <rect x="-15" y="-153.5" width="30" height="1" fill="#0F1218" opacity=".25"/>
+  <rect x="-21" y="-214" width="42" height="54" rx="2.5" fill="#0F1218"/>
+  <rect x="13" y="-210" width="3" height="46" rx="1.5" fill="#A9BBD9" opacity=".2"/>
+  </g>
+</svg></figure>
+            <h3 class="t-hour t-num" id="t-2310">23:10</h3>
+            <p class="hour-line">The last swim off the quay</p>
+            <p class="hour-desc">Cold harbour water drying on warm skin, the lime trees along the quay, a bar somewhere with its door propped open. It sits close and lasts until morning.</p>
+            <dl class="notes"><div><dt>Opening</dt><dd>Linden blossom, bergamot</dd></div><div><dt>Heart</dt><dd>Mineral accord, skin musk</dd></div><div><dt>Base</dt><dd>Vetiver, oak cask</dd></div></dl>
+            <div class="buy">
+              <p class="buy-price"><span>Eau de parfum, 50 ml</span> <span>1,450 DKK</span></p>
+              <button class="btn btn--ghost btn--wide" type="button" data-add="A 50 ml bottle of 23:10" data-price="1,450 DKK">Add 23:10 to bag</button>
+            </div>
+          </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="set" id="set" aria-labelledby="set-title">
+    <div class="set-copy">
+      <p class="kicker">The discovery set</p>
+      <h2 class="t-h2" id="set-title">Wear one hour a day. <span class="dim">In six days you will know.</span></h2>
+      <ol class="steps">
+        <li><span class="step-n t-num">1</span><p>Six 2&nbsp;ml vials arrive in a box the size of a paperback, one for each hour.</p></li>
+        <li><span class="step-n t-num">2</span><p>Wear a different one each day. Notice which one you miss.</p></li>
+        <li><span class="step-n t-num">3</span><p>Order that bottle. The card in the lid takes the 240&nbsp;DKK off.</p></li>
+      </ol>
+      <table class="ledger">
+        <caption class="sr-only">What the discovery set costs, and what a bottle costs after it</caption>
+        <tbody>
+          <tr><th scope="row">Discovery set, 6 × 2 ml</th><td>240 DKK</td></tr>
+          <tr><th scope="row">Eau de parfum, 50 ml, any hour</th><td>1,450 DKK</td></tr>
+          <tr><th scope="row">Less the set</th><td>−240 DKK</td></tr>
+          <tr class="ledger-total"><th scope="row">Your bottle, after the set</th><td>1,210 DKK</td></tr>
+        </tbody>
+      </table>
+      <div class="set-cta">
+        <button class="btn btn--primary" type="button" data-add="The discovery set" data-price="240 DKK">Order the discovery set <span class="btn-price">240 DKK</span></button>
+        <p class="fine">Prices include Danish VAT.</p>
+      </div>
+    </div>
+    <figure class="set-fig" role="img" aria-label="The discovery set: an open charcoal box printed with the six hour colours, six small vials standing in a row, each with a colour band and its time, and a card in front that reads 240 DKK off your first 50 ml bottle" data-reveal><svg class="set-svg" viewBox="0 0 760 560" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+  <rect width="760" height="560" fill="#E9E8E4"/>
+  <rect y="402" width="760" height="158" fill="#DCDAD4"/>
+  <rect y="402" width="760" height="2" fill="#C7C5BE"/>
+  <!-- lid leaning behind -->
+  <polygon points="164,92 618,92 630,404 152,404" fill="#24262A"/>
+  <text x="391" y="122" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="9" letter-spacing="5" fill="#E8E6E1">MORROW</text>
+  <rect x="306" y="140" width="18" height="18" fill="#C5CDD2"/><rect x="332" y="140" width="18" height="18" fill="#DCD9C9"/><rect x="358" y="140" width="18" height="18" fill="#E6E5E1"/><rect x="384" y="140" width="18" height="18" fill="#CDB496"/><rect x="410" y="140" width="18" height="18" fill="#B39EA6"/><rect x="436" y="140" width="18" height="18" fill="#253149"/>
+  <text x="391" y="182" text-anchor="middle" font-family="Bodoni Moda, serif" font-style="italic" font-size="11" fill="#CFCDC7">six hours of a Copenhagen day</text>
+  <!-- shadow of the tray to the right -->
+  <polygon points="600,404 664,404 700,470 640,470" fill="#C6C3BB"/>
+  <!-- tray -->
+  <rect x="170" y="372" width="430" height="36" fill="#3A3D43"/>
+  <g transform="translate(214 0)">
+      <rect x="0" y="232" width="26" height="156" rx="5" fill="#F3F3F0" opacity=".55"/>
+      <rect x="4" y="262" width="18" height="122" rx="3" fill="#E9E3D2"/>
+      <rect x="20" y="240" width="2.5" height="140" rx="1" fill="#fff" opacity=".85"/>
+      <rect x="0" y="300" width="26" height="40" fill="#C5CDD2"/>
+      <text x="13" y="323.5" text-anchor="middle" font-family="Bodoni Moda, serif" font-size="8.6" fill="#26282C">05:40</text>
+      <rect x="2" y="206" width="22" height="28" rx="2" fill="#1C1D20"/>
+      <rect x="18" y="209" width="2" height="22" rx="1" fill="#fff" opacity=".18"/>
+    </g><g transform="translate(280 0)">
+      <rect x="0" y="232" width="26" height="156" rx="5" fill="#F3F3F0" opacity=".55"/>
+      <rect x="4" y="262" width="18" height="122" rx="3" fill="#EDE1B6"/>
+      <rect x="20" y="240" width="2.5" height="140" rx="1" fill="#fff" opacity=".85"/>
+      <rect x="0" y="300" width="26" height="40" fill="#DCD9C9"/>
+      <text x="13" y="323.5" text-anchor="middle" font-family="Bodoni Moda, serif" font-size="8.6" fill="#26282C">08:15</text>
+      <rect x="2" y="206" width="22" height="28" rx="2" fill="#1C1D20"/>
+      <rect x="18" y="209" width="2" height="22" rx="1" fill="#fff" opacity=".18"/>
+    </g><g transform="translate(346 0)">
+      <rect x="0" y="232" width="26" height="156" rx="5" fill="#F3F3F0" opacity=".55"/>
+      <rect x="4" y="262" width="18" height="122" rx="3" fill="#EEEADB"/>
+      <rect x="20" y="240" width="2.5" height="140" rx="1" fill="#fff" opacity=".85"/>
+      <rect x="0" y="300" width="26" height="40" fill="#E6E5E1"/>
+      <text x="13" y="323.5" text-anchor="middle" font-family="Bodoni Moda, serif" font-size="8.6" fill="#26282C">12:00</text>
+      <rect x="2" y="206" width="22" height="28" rx="2" fill="#1C1D20"/>
+      <rect x="18" y="209" width="2" height="22" rx="1" fill="#fff" opacity=".18"/>
+    </g><g transform="translate(412 0)">
+      <rect x="0" y="232" width="26" height="156" rx="5" fill="#F3F3F0" opacity=".55"/>
+      <rect x="4" y="262" width="18" height="122" rx="3" fill="#E2B672"/>
+      <rect x="20" y="240" width="2.5" height="140" rx="1" fill="#fff" opacity=".85"/>
+      <rect x="0" y="300" width="26" height="40" fill="#CDB496"/>
+      <text x="13" y="323.5" text-anchor="middle" font-family="Bodoni Moda, serif" font-size="8.6" fill="#26282C">16:50</text>
+      <rect x="2" y="206" width="22" height="28" rx="2" fill="#1C1D20"/>
+      <rect x="18" y="209" width="2" height="22" rx="1" fill="#fff" opacity=".18"/>
+    </g><g transform="translate(478 0)">
+      <rect x="0" y="232" width="26" height="156" rx="5" fill="#F3F3F0" opacity=".55"/>
+      <rect x="4" y="262" width="18" height="122" rx="3" fill="#DCC0AE"/>
+      <rect x="20" y="240" width="2.5" height="140" rx="1" fill="#fff" opacity=".85"/>
+      <rect x="0" y="300" width="26" height="40" fill="#B39EA6"/>
+      <text x="13" y="323.5" text-anchor="middle" font-family="Bodoni Moda, serif" font-size="8.6" fill="#26282C">19:30</text>
+      <rect x="2" y="206" width="22" height="28" rx="2" fill="#1C1D20"/>
+      <rect x="18" y="209" width="2" height="22" rx="1" fill="#fff" opacity=".18"/>
+    </g><g transform="translate(544 0)">
+      <rect x="0" y="232" width="26" height="156" rx="5" fill="#F3F3F0" opacity=".55"/>
+      <rect x="4" y="262" width="18" height="122" rx="3" fill="#727A90"/>
+      <rect x="20" y="240" width="2.5" height="140" rx="1" fill="#fff" opacity=".85"/>
+      <rect x="0" y="300" width="26" height="40" fill="#253149"/>
+      <text x="13" y="323.5" text-anchor="middle" font-family="Bodoni Moda, serif" font-size="8.6" fill="#E8EAF0">23:10</text>
+      <rect x="2" y="206" width="22" height="28" rx="2" fill="#1C1D20"/>
+      <rect x="18" y="209" width="2" height="22" rx="1" fill="#fff" opacity=".18"/>
+    </g>
+  <rect x="170" y="384" width="430" height="10" fill="#3A3D43"/>
+  <rect x="160" y="392" width="450" height="78" fill="#2A2C30"/>
+  <rect x="160" y="392" width="450" height="2" fill="#4A4D54"/>
+  <!-- contact shadow -->
+  <rect x="160" y="470" width="450" height="5" fill="#BDBAB2"/>
+  <!-- credit card on the table -->
+  <g transform="translate(486 488) rotate(-4)">
+    <rect x="3" y="4" width="196" height="54" fill="#C9C6BE"/>
+    <rect width="196" height="54" fill="#FBFAF7"/>
+    <text x="14" y="25" font-family="Bodoni Moda, serif" font-size="15" fill="#26282C">240 DKK</text>
+    <text x="14" y="41" font-family="Schibsted Grotesk, sans-serif" font-size="7.4" fill="#26282C" opacity=".75">off your first 50 ml bottle, any hour</text>
+  </g>
+</svg></figure>
+  </section>
+
+  <section class="refill" id="refill" aria-labelledby="refill-title">
+    <figure class="refill-fig" role="img" aria-label="The 16:50 bottle taken apart on an ochre wall: the cap, the collar and pump, and the heavy glass, nearly empty" data-reveal>
+      <svg class="refill-svg" viewBox="0 0 640 760" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+  <rect width="640" height="760" fill="#CDB496"/>
+  <g transform="translate(70 40) skewX(24) scale(1.6 1.15)" fill="#E9C28B">
+    <rect x="0" y="0" width="52" height="52.7"/><rect x="58" y="0" width="52" height="52.7"/>
+    <rect x="0" y="58.7" width="52" height="52.7"/><rect x="58" y="58.7" width="52" height="52.7"/>
+    <rect x="0" y="117.3" width="52" height="52.7"/><rect x="58" y="117.3" width="52" height="52.7"/>
+  </g>
+  <rect y="560" width="640" height="200" fill="#BB9E7F"/>
+  <rect y="560" width="640" height="2" fill="#987B5E" opacity=".45"/>
+  <rect y="724" width="640" height="36" fill="#A98C6D"/>
+  <g transform="translate(320 0)">
+    <!-- axis -->
+    <line x1="0" y1="96" x2="0" y2="626" stroke="#26221E" stroke-opacity=".28" stroke-dasharray="3 5"/>
+    <!-- cap -->
+    <g transform="translate(0 196)">
+      <rect x="-31" y="-81" width="62" height="81" rx="3.5" fill="#26221E"/>
+      <rect x="-25" y="-75" width="4" height="69" rx="2" fill="#FFF6E8" opacity=".2"/>
+    </g>
+    <!-- collar + pump -->
+    <g transform="translate(0 330)">
+      <rect x="-3" y="-62" width="6" height="40" fill="#B9A385"/>
+      <rect x="-22" y="-22" width="44" height="22" fill="#B9A385"/>
+      <rect x="-22" y="-14" width="44" height="1.5" fill="#26221E" opacity=".3"/>
+      <rect x="-22" y="-8" width="44" height="1.5" fill="#26221E" opacity=".3"/>
+      <rect x="-1.5" y="0" width="3" height="96" fill="#26221E" opacity=".35"/>
+    </g>
+    <!-- glass -->
+    <g transform="translate(0 624) scale(1.5)">
+      <ellipse cx="0" cy="0" rx="44" ry="3.5" fill="#987B5E" opacity=".8"/>
+      <polygon points="-39,-14 101,-42 179,-42 179,-23 39,5 -39,5" fill="#987B5E"/><polygon points="76,-35 128,-35 160,-30 108,-30" fill="#F4C977" opacity=".7"/>
+      <rect x="-39" y="-146" width="78" height="146" rx="8" fill="#E3D0B7" opacity=".62"/>
+      <rect x="-32" y="-60" width="64" height="42" rx="3" fill="#E2B672" opacity=".9"/>
+      <rect x="-32" y="-60" width="64" height="2" fill="#FFF6E8" opacity=".55"/>
+      <rect x="-39" y="-146" width="78" height="14" rx="7" fill="#E3D0B7" opacity=".85"/>
+      <rect x="-39" y="-20" width="78" height="20" rx="5" fill="#E3D0B7" opacity=".95"/>
+      <rect x="-33" y="-140" width="4" height="124" rx="2" fill="#FFF6E8" opacity=".8"/>
+      <rect x="-24" y="-98" width="48" height="58" fill="#F6F0E6"/>
+      <text x="0" y="-70" text-anchor="middle" font-family="Bodoni Moda, serif" font-size="13.5" fill="#26221E">16:50</text>
+      <text x="0" y="-55" text-anchor="middle" font-family="Schibsted Grotesk, sans-serif" font-size="4.6" letter-spacing="1.6" fill="#26221E" opacity=".8">MORROW</text>
+      <rect x="-12" y="-152" width="24" height="6" fill="#E3D0B7" opacity=".9"/>
+    </g>
+  </g>
+</svg>
+      <ul class="parts" aria-hidden="true">
+        <li style="--x:58%;--y:16%">Cap</li>
+        <li style="--x:58%;--y:37%">Collar and pump, unscrews by hand</li>
+        <li style="--x:68%;--y:66%">Glass, 50 ml</li>
+      </ul>
+    </figure>
+    <div class="refill-copy">
+      <h2 class="t-h2" id="refill-title">The bottle stays. <span class="dim">Refill it when the hour runs out.</span></h2>
+      <p>The collar unscrews by hand, so the glass is refilled rather than thrown away. The base is heavy enough to outlast the perfume many times over.</p>
+      <p>Keep it on the shelf where the light comes in. That is where we drew it.</p>
+    </div>
+  </section>
+
+  <section class="finale" aria-labelledby="finale-title">
+    <h2 class="t-finale" id="finale-title">Six days to find your hour.</h2>
+    <div class="finale-cta">
+      <button class="btn btn--primary" type="button" data-add="The discovery set" data-price="240 DKK">Order the discovery set <span class="btn-price">240 DKK</span></button>
+      <p class="fine">Six 2&nbsp;ml vials. Credited against your first 50&nbsp;ml bottle.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <p class="wordmark wordmark--foot">Morrow</p>
+      <p class="dimmer">A perfume house in Copenhagen. Six scents, one for each hour we could not stop smelling.</p>
+    </div>
+    <nav class="foot-col" aria-label="Shop">
+      <p class="foot-h">Shop</p>
+      <ul>
+        <li><a href="#hours">The six hours</a></li>
+        <li><a href="#set">Discovery set</a></li>
+        <li><a href="#refill">Refilling</a></li>
+      </ul>
+    </nav>
+    <nav class="foot-col" aria-label="The hours">
+      <p class="foot-h">Hours</p>
+      <ul class="foot-hours"><li><a href="#h-0540"><span class="tick-sw" style="--sw:#C5CDD2" aria-hidden="true"></span><span>05:40</span></a></li><li><a href="#h-0815"><span class="tick-sw" style="--sw:#DCD9C9" aria-hidden="true"></span><span>08:15</span></a></li><li><a href="#h-1200"><span class="tick-sw" style="--sw:#E6E5E1" aria-hidden="true"></span><span>12:00</span></a></li><li><a href="#h-1650"><span class="tick-sw" style="--sw:#CDB496" aria-hidden="true"></span><span>16:50</span></a></li><li><a href="#h-1930"><span class="tick-sw" style="--sw:#B39EA6" aria-hidden="true"></span><span>19:30</span></a></li><li><a href="#h-2310"><span class="tick-sw" style="--sw:#253149" aria-hidden="true"></span><span>23:10</span></a></li></ul>
+    </nav>
+    <form class="foot-col letters" novalidate>
+      <label class="foot-h" for="em">Letters</label>
+      <p class="dimmer">Four a year, when the light changes.</p>
+      <div class="field"><input id="em" type="email" name="email" autocomplete="email" placeholder="Your email" required><button class="field-btn" type="submit">Sign up</button></div>
+      <p class="field-msg" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+  <div class="foot-base">
+    <p class="foot-now">In Copenhagen it is <span data-clock="Europe/Copenhagen">--:--</span>. <span data-now-line>The nearest hour is <a href="#hours">12:00</a>.</span></p>
+    <p class="dimmer">© 2026 Morrow</p>
+  </div>
+</footer>
+
+<div class="toast" role="status" aria-live="polite" hidden><p class="toast-t"></p><p class="toast-s"></p><button class="toast-x" type="button" aria-label="Close">Close</button></div>
+
+<script type="module">
+  import { autoInit } from './motion.js';
+  autoInit();
+
+  const HOURS = [{"id":"0540","t":"05:40","min":340},{"id":"0815","t":"08:15","min":495},{"id":"1200","t":"12:00","min":720},{"id":"1650","t":"16:50","min":1010},{"id":"1930","t":"19:30","min":1170},{"id":"2310","t":"23:10","min":1390}];
+
+  // the hour nearest to now, in Copenhagen
+  const now = () => {
+    const p = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hourCycle: 'h23', timeZone: 'Europe/Copenhagen' }).formatToParts(new Date());
+    const m = +p.find((x) => x.type === 'hour').value * 60 + +p.find((x) => x.type === 'minute').value;
+    const d = (a) => Math.min(Math.abs(a - m), 1440 - Math.abs(a - m));
+    return HOURS.reduce((a, b) => (d(b.min) < d(a.min) ? b : a));
+  };
+  const markNow = () => {
+    const h = now();
+    document.querySelectorAll('.slat-link').forEach((a) => a.classList.toggle('is-now', a.dataset.hour === h.id));
+    const line = document.querySelector('[data-now-line]');
+    if (line) line.innerHTML = 'The nearest hour is <a href="#h-' + h.id + '">' + h.t + '</a>.';
+  };
+  markNow(); setInterval(markNow, 60000);
+
+  // the stage follows the hour being read: the last entry whose top has passed 55% of the viewport
+  const entries = [...document.querySelectorAll('.hour')];
+  const items = [...document.querySelectorAll('#hours-aside [data-spy-item]')];
+  let cur = '';
+  const spy = () => {
+    let id = entries[0].dataset.spyPanel;
+    for (const e of entries) if (e.getBoundingClientRect().top < innerHeight * 0.55) id = e.dataset.spyPanel;
+    if (id === cur) return; cur = id;
+    items.forEach((it) => {
+      const on = it.dataset.spyItem === id; it.classList.toggle('is-active', on);
+      if (it.tagName === 'A') { if (on) it.setAttribute('aria-current', 'step'); else it.removeAttribute('aria-current'); }
+    });
+  };
+  let sp = false;
+  addEventListener('scroll', () => { if (!sp) { sp = true; requestAnimationFrame(() => { sp = false; spy(); }); } }, { passive: true });
+  spy();
+
+  // bag
+  let count = 0;
+  const bag = document.querySelector('[data-bag-count]');
+  const toast = document.querySelector('.toast');
+  let tt;
+  document.querySelectorAll('[data-add]').forEach((b) => b.addEventListener('click', () => {
+    count++; bag.textContent = '(' + count + ')';
+    toast.querySelector('.toast-t').textContent = b.dataset.add + ' is in your bag.';
+    toast.querySelector('.toast-s').textContent = b.dataset.price === '240 DKK'
+      ? '240 DKK. The card in the lid takes it off your first bottle.'
+      : b.dataset.price + '. Refillable for as long as you keep it.';
+    toast.hidden = false; requestAnimationFrame(() => toast.classList.add('is-in'));
+    clearTimeout(tt); tt = setTimeout(close, 6000);
+  }));
+  const close = () => { toast.classList.remove('is-in'); setTimeout(() => (toast.hidden = true), 300); };
+  toast.querySelector('.toast-x').addEventListener('click', close);
+
+  // mobile menu
+  const mb = document.querySelector('.nav-menu');
+  mb.addEventListener('click', () => {
+    const open = mb.getAttribute('aria-expanded') !== 'true';
+    mb.setAttribute('aria-expanded', open); document.querySelector('.nav').classList.toggle('is-open', open);
+  });
+  document.querySelectorAll('.nav-links a').forEach((a) => a.addEventListener('click', () => {
+    mb.setAttribute('aria-expanded', 'false'); document.querySelector('.nav').classList.remove('is-open');
+  }));
+
+  // letters
+  const f = document.querySelector('.letters');
+  f.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const i = f.querySelector('input'), msg = f.querySelector('.field-msg');
+    if (!i.value || !i.checkValidity()) { msg.textContent = 'That address looks unfinished. Check for a typo?'; i.setAttribute('aria-invalid', 'true'); i.focus(); return; }
+    i.removeAttribute('aria-invalid');
+    msg.textContent = 'Noted. The first letter arrives with the next change of light.';
+    f.querySelector('.field').hidden = true;
+  });
+
+  // header hairline once scrolled
+  const nav = document.querySelector('.nav');
+  const onS = () => nav.classList.toggle('is-scrolled', scrollY > 8);
+  addEventListener('scroll', onS, { passive: true }); onS();
+</script>
+</body>
+</html>

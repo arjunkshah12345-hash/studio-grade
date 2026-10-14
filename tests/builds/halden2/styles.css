@@ -105,11 +105,11 @@ a{color:inherit}
   row-gap:var(--s-4);padding-top:2vh}
 .poster .kicker{grid-column:1/-1}
 .poster .t-poster{grid-column:1/10}
-.poster__copy{grid-column:1/6;margin:var(--s-4) 0 0;color:var(--ink-2);max-width:34rem}
+.poster__copy{grid-column:1/6;margin:var(--s-4) 0 0;color:rgb(var(--ink-rgb) / .88);max-width:34rem}   /* .88 over the woodcut (range.md §4 mid-tone tier) */
 .poster__copy p{margin:0}
 .poster--right .kicker,.poster--right .t-poster{grid-column:4/-1}
 .poster--right .poster__copy{grid-column:8/-1}
-.facts{list-style:none;padding:0;margin:var(--s-5) 0 0;display:grid;gap:var(--s-2);font-size:var(--small);color:var(--ink-3)}
+.facts{list-style:none;padding:0;margin:var(--s-5) 0 0;display:grid;gap:var(--s-2);font-size:var(--small);color:rgb(var(--ink-rgb) / .8)}   /* small text over the woodcut needs .8, not ink-3 */
 .facts li::before{content:"";display:inline-block;width:.7em;height:.7em;margin-right:.7em;vertical-align:-.04em;border-radius:50%;
   background:var(--ember)}
 

@@ -1,7 +1,7 @@
 {
- "url": "http://127.0.0.1:61478/index.html",
- "outDir": "/tmp/cs-aud-fieldwork",
- "ms": 46203,
+ "url": "http://127.0.0.1:4317/tests/builds/fieldwork/index.html",
+ "outDir": "/tmp/gal-fieldwork",
+ "ms": 49288,
  "counts": {
   "PASS": 9,
   "INFO": 3
@@ -29,11 +29,11 @@
    "rgb(31,75,99) text \"Discuss a commission\""
   ],
   "buttons": [
-   "square 38px \"Skip to content\"",
    "square 41px \"Discuss a commission\"",
    "square 50px \"Discuss a commission\n→\"",
    "square 50px \"See the work\"",
-   "square 50px \"Send your portfolio\n→\""
+   "square 50px \"Send your portfolio\n→\"",
+   "square 50px \"Discuss a commission\n→\""
   ],
   "eases": [
    "cubic-bezier(.76,0,.24,1)",
@@ -72,7 +72,7 @@
   {
    "level": "PASS",
    "rule": "a11y.contrast",
-   "msg": "All 92 checked text elements meet AA. Text over imagery was skipped; check it by eye."
+   "msg": "All 92 checked text elements on solid grounds meet AA."
   },
   {
    "level": "PASS",
@@ -111,11 +111,11 @@
   }
  ],
  "screenshots": [
-  "/tmp/cs-aud-fieldwork/desktop-hero.png",
-  "/tmp/cs-aud-fieldwork/slice-01.jpg … (one per viewport)",
-  "/tmp/cs-aud-fieldwork/desktop-full.jpg",
-  "/tmp/cs-aud-fieldwork/mobile-hero.png",
-  "/tmp/cs-aud-fieldwork/mobile-full.jpg",
-  "/tmp/cs-aud-fieldwork/reduced-motion-hero.png"
+  "/tmp/gal-fieldwork/desktop-hero.png",
+  "/tmp/gal-fieldwork/slice-01.jpg … (one per viewport)",
+  "/tmp/gal-fieldwork/desktop-full.jpg",
+  "/tmp/gal-fieldwork/mobile-hero.png",
+  "/tmp/gal-fieldwork/mobile-full.jpg",
+  "/tmp/gal-fieldwork/reduced-motion-hero.png"
  ]
 }

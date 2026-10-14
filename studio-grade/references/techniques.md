@@ -421,7 +421,7 @@ When the page has one photograph, compose (or generate) it *around the type*, no
 ```
 
 ### 69. UI vignettes on crops of the photo (Fornax)
-Tell the product's transformation in three cards: **input → processing → output**. Each card's top half is a crop of the hero photograph (`background:url(hero.avif) <x>% <y>%/<size>`, with a different region per card: sky, sky + leaves, horizon), and a real UI fragment floats on it. The input card holds 3 incoming items with timestamps. The processing card holds the one extracted record ("Wants · Available · Budget") with a status chip. The output card holds the booked result plus the systems updated ("Confirmation sent · SMS", "Contact updated · HubSpot"). Card titles say the arc in sentence case ("It comes in cold" → "Fornax works out the job" → "It comes out finished"). The photo becomes the brand's colour field without a single decorative gradient. Pair it with §56 (transformation pair) when the product converts one thing into another.
+Tell the product's transformation in three cards: **input → processing → output**. Each card's top half is a crop of any shot from the series (the 4:3 supporting shots usually beat crops of the hero) (`background:url(hero.avif) <x>% <y>%/<size>`, with a different region per card: sky, sky + leaves, horizon), and a real UI fragment floats on it. The input card holds 3 incoming items with timestamps. The processing card holds the one extracted record ("Wants · Available · Budget") with a status chip. The output card holds the booked result plus the systems updated ("Confirmation sent · SMS", "Contact updated · HubSpot"). Card titles say the arc in sentence case ("It comes in cold" → "Fornax works out the job" → "It comes out finished"). The photo becomes the brand's colour field without a single decorative gradient. Inset the vignette from the top so the photo reads in the bottom 35–40% of the card. In feature rows, let a vignette **cross the photo's edge** into the empty grid column beside it (`left:-64px`); it was the strongest composition move in testing. Pair it with §56 (transformation pair) when the product converts one thing into another.
 
 ### 70. Ghost wordmark tinted from the photo (Fornax)
 A variant of §27 for photo-led sites: the closing wordmark at full width, filled with a gradient sampled from the hero (`background:linear-gradient(to bottom,<sky top>,<sky bottom> 60%,var(--paper));-webkit-background-clip:text;color:transparent`), and cut off by the page's bottom edge (`margin-bottom:-.22em;overflow:hidden` on the footer). Mark it `aria-hidden="true"`, and **spell-check it against the brand name**: the reference ships "FORMAX" for a brand called Fornax.
@@ -457,13 +457,13 @@ Choose the illustration *technique* from what the brand claims, not from what's 
 - **No assets?** Generate a consistent series: `steel engraving, banknote style, single navy ink (#24407A) on white, fine crosshatching, no grey fills, no text, [subject]`, and keep the subject list in the Spine. For small icons, draw SVGs with one stroke weight and `pattern` hatching.
 - **Security-print hairlines** frame the band, like a certificate margin:
 ```css
-.guilloche{background:repeating-linear-gradient(90deg,var(--hairline) 0 1px,transparent 1px 7px);height:56px}
+.guilloche{background:repeating-linear-gradient(90deg,color-mix(in oklab,var(--series-ink) 22%,transparent) 0 1px,transparent 1px 7px);height:56px}   /* tint with the series ink; grey reads as a barcode */
 .band{display:grid;grid-template-columns:clamp(24px,6vw,96px) 1fr clamp(24px,6vw,96px)}
 .band::before,.band::after{content:"";background:repeating-linear-gradient(90deg,var(--hairline) 0 1px,transparent 1px 6px)}
 ```
 
 ### 73. Show the output artifact, not the app (Answerr)
-When the product produces something a person keeps or shares (a credential, a score, a report, an itinerary, a certificate), make *that* the hero object instead of a dashboard. Give it every field the real thing has: a status ("✓ Verified"), the person or subject, the headline number with its scale (`87 /100`), a 4–6-part breakdown, a rank ("Top 8%"), the issuer, and a verification URL in mono. Set it on the brand's illustration (§72) like a document on a desk. It answers "what do I get?" in one look. Use an obviously fictional name and mark it `role="img"` with an `aria-label` that reads the card aloud.
+When the product produces something a person keeps or shares (a credential, a score, a report, an itinerary, a certificate), make *that* the hero object instead of a dashboard. Give it every field the real thing has: a status ("✓ Verified"), the person or subject, the headline number with its scale (`87 /100`), a 4–6-part breakdown, a rank ("Top 8%"), the issuer, and a verification URL in mono. Set it on the brand's illustration (§72) like a document on a desk: centred over the clear zone, at most ~58% of the plate's width. On mobile, take a 5:4 crop of the plate anchored at the bottom and let the card overlap it by about a quarter, rather than shrinking the plate. **Default finale:** the same plate re-cropped *without* the artifact, with the closing headline on the now-empty wall ("Two chairs, one conversation."). It answers "what do I get?" in one look. Use an obviously fictional name and mark it `role="img"` with an `aria-label` that reads the card aloud.
 
 ### 74. Stepped scale diagram (Answerr)
 "From one person to an entire institution": three square tiles stepping diagonally down-right, each one bigger in scope (individual → team → institution). Each tile has a ■ label at its top-right corner and a one-line icon drawing inside.
@@ -487,6 +487,7 @@ document.querySelectorAll('[data-prompt]').forEach((b) => b.addEventListener('cl
   ta.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
 }));
 ```
+**Picker variant** (the input is a choice, not text: a toy box, a mood board): `aria-pressed` toggles, a visible "n of 3" counter, a cap with a live-region message on the extra pick ("Put one back to swap in the rocket"), and the live placeholder becomes a typed example *output* line that turns real once the picks are made. Prompt starters are redundant when the input already shows the options. **The finale form shares state with the hero form**, so the same picks appear in both; two independent forms feel broken. A typed placeholder still needs ≥4.5:1 (ink at .64 on white is the floor). If submitting can't produce a real result, show a clearly labelled **sample** result ("this preview shows the example route, whatever you type").
 It needs a `<label>` (visually hidden is fine), a real submit button with a task verb ("Generate", "Plan my trip"), and `aria-live` for the result or error.
 
 ### 76. Finale illustration that rises from the bottom edge (Answerr, Wandor, Mugic)
@@ -495,7 +496,7 @@ End the page on the brand's world instead of a grey footer. The footer columns s
 - **A second collage that completes the hero's** (Wandor: the hero has one set of landmarks, the footer the rest of the world).
 - **A constructed wordmark:** the brand name built from domain glyphs (Mugic's letters made of musical notes) in the section colours. This is a drawn cousin of §27 and §70, so spell-check it too.
 
-Keep it `aria-hidden="true"`, ≤ 40vh tall, and cropped to its central object on mobile (`object-position:50% 100%`). **Shaped edges:** when the hero ends in illustration, let its bottom edge follow the art's silhouette (`clip-path:path(...)` or an SVG `mask`) instead of a straight line, as Wandor's die-cut collage does.
+The art starts **below the footer's base row**, so nothing like a clock or a copyright line sits on chimneys; with a flat-topped sky, pull the image up under the footer with a negative margin and mask its top so the columns sit on the sky itself. Keep it `aria-hidden="true"`, ≤ 40vh tall, and cropped to its central object on mobile (`object-position:50% 100%`). **Shaped edges:** when the hero ends in illustration, let its bottom edge follow the art's silhouette (`clip-path:path(...)` or an SVG `mask`) instead of a straight line, as Wandor's die-cut collage does.
 
 ### 77. Split header over a staggered vignette tray (BugScout)
 A hero for a product with three capabilities and no single hero image:
@@ -504,8 +505,9 @@ A hero for a product with three capabilities and no single hero image:
 - **Each card** holds one small UI vignette (a prompt with a sparkle node wired below it, a list of checked runs, a flow with dashed connectors to image nodes) and a one-line caption in the display face at ~22px at the bottom-left.
 ```css
 .tray{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding:20px;border-radius:24px;background:var(--paper-2);align-items:start}
-.tray > :nth-child(2){margin-top:clamp(80px,14vw,200px)}
+.tray > :nth-child(2){margin-top:clamp(64px,10vw,136px)}   /* ~136px keeps the middle card readable in the first viewport */
+.tray > *{min-width:0}   /* a white-space:pre diff inside a vignette otherwise blows the column wider than the tray */
 .tray .card{background:var(--surface);border-radius:18px;padding:28px;display:grid;gap:28px;align-content:space-between;min-height:340px}
 @media (max-width:760px){.tray{grid-template-columns:1fr}.tray > :nth-child(2){margin-top:0}}
 ```
-Put **real content in the vignettes**: the reference's three identical "Debugger" rows are filler. Write three real runs ("checkout.js · TypeError fixed · 2s", …). Each card's vignette plays its one action once on view.
+**Image-beside variant:** when the hero image's empty zone is on the left, stack the copy left over the paper and put the image right, parked on the tray's top edge (Haul's van sits with its wheels on the tray). At 1440×900, about 330px of the tray shows above the fold. Put **real content in the vignettes**: the reference's three identical "Debugger" rows are filler. Write three real runs ("checkout.js · TypeError fixed · 2s", …). Each card's vignette plays its one action once on view.

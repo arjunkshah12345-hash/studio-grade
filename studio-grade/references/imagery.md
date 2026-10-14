@@ -121,6 +121,8 @@ The user-supplied references that read as most finished (Fornax, Answerr, Mugic,
 **1. Write a style bible in the Spine before generating anything:**
 ```
 IMAGES      : medium      steel engraving, one navy ink (#24407A) on white, fine crosshatching
+              setting     a 19th-century university town; the same buildings recur
+              recurring   describe any object that appears twice in full, every time ("the same small white van with a blue stripe")
               light       soft, from upper left
               palette     #24407A, #F4EFE3 (paper), nothing else
               viewpoint   eye level, slight low angle for buildings
@@ -128,13 +130,31 @@ IMAGES      : medium      steel engraving, one navy ink (#24407A) on white, fine
               exclude     no text, no logos, no watermarks, no UI, no people looking at camera, no grey fills
               shot list   hero 21:9 · 3 supporting 4:3 · finale (re-crop of hero or companion) · 4–8 small objects (transparent PNG)
 ```
-**2. Prompt every image with the whole bible**, then the shot: `[medium] of [subject], [composition and type zone], [light], palette [hexes], [viewpoint], [texture]; part of a consistent series; [exclusions]`. Generate one image per call, in order, and reuse the exact wording, so the series doesn't drift.
+**2. Prompt every image with the whole bible**, then the shot: `[medium] of [subject], [composition and type zone], [light], palette [hexes], [viewpoint], [texture]; part of a consistent series; [exclusions]`. Generate one image per call, in order, and reuse the exact wording, so the series doesn't drift. For object sets (toys, icons, ingredients), generate **one sprite sheet** ("SIX separate objects in a 3×2 grid, wide even spacing, pure white background, objects floating, no contact shadows") and cut it apart (step 5). Shadows are easier to add back with CSS `drop-shadow` than to remove.
+
+**Derive crops before you build:** write a crop table in the Spine (hero → mobile 4:5 crop, step cards → three regions of the 4:3 shots, finale → re-crop or companion). A single file can serve several crops with `background-position`/`object-position`. It stops you reaching for a fifth image.
 
 **3. Choose the medium from the brand's claim** (techniques.md §72). Certifies → engraving. Plans journeys → painted travel poster or collage. Frees your time → a sunlit photo of the outcome (§68). Makes music or toys → pastel objects with faces or chunky hardware. Calm and craft → a flat still life (§6c).
 
-**4. Check every image before using it:** hands and faces, letter-like artefacts (any text in the image is a regenerate), palette match, the type zone actually clear (the audit's `a11y.contrast.media` measures it), and the subject matching the brief. Regenerate; don't patch with overlays.
+**4. Check every image before using it:**
+- Hands, faces and anatomy.
+- Letter-like artefacts: regenerate if they're large or central; a speck under ~0.5% of the frame can be clone-retouched in the file.
+- Palette match, and the **same level of detail** as the hero: a series drifts from flat poster to painterly.
+- The **same recurring objects**: you asked for the van and got a box truck.
+- In one-ink media, accept tint drift only if it reads as the same ink at low density.
+- The type zone is actually clear: the audit's `a11y.contrast.media` measures it.
 
-**5. Ship it properly:** crop with intent (`object-position` per breakpoint), export AVIF or WebP plus a JPG fallback at 1× and 2× (`sips`, `cwebp` or `sharp`), set `width`/`height`, `fetchpriority="high"` on the hero and `loading="lazy"` on the rest. Keep first-view image weight under ~1.5 MB. Alt text says what the image shows ("A woman working on a laptop in a park above the city"), not what it means.
+Regenerate rather than patch with CSS overlays.
+
+**5. Ship it properly** with `scripts/images.py` (Pillow; numpy optional):
+- **Sources are read-only.** Write processed files under new names (`hero-1916.webp`, `toy-fox.png`). A cut-out named `moon.png` once overwrote the footer sky called `moon.png`.
+- **One paper per series:** generators return each image on a slightly different paper (four engravings came back on four creams). `images.py paper SRC OUT --to '#F3ECDF'` maps each to the bible's paper. Then plates sit seamlessly on a band of that colour.
+- **Images that blend onto other grounds:** `images.py paper SRC OUT --to white` divides the paper out to white, so `mix-blend-mode:multiply` works on any tint (paper × paper is a darker box). Put the blend mode on the wrapper: a wrapper with `z-index:-1` is its own stacking context and blends with nothing.
+- **Sprite sheets:** `images.py cutout SHEET --grid 3x2 --names fox,rocket,… --prefix toy-` cuts each cell from the border inward. It reopens enclosed holes (a teapot handle), drops fragments of neighbouring cells, feathers the edge and removes the white halo. It writes WebP with alpha plus a PNG fallback.
+- **Sizes:** `images.py export SRC --name hero --widths 960,1916`. Generated 21:9 heroes are about 1916px wide, so ship 960/1916 and never upscale. Ask the generator for ≥2400px if a full-bleed hero must be crisp at 1440 on 2× screens. Add a separate **mobile crop** (`--crop x,y,w,h`) through `<picture><source media="(max-width:760px)">`; `object-position` on a 21:9 can't keep both subject and type zone at 390px. Use `--flat` (q90) for images with large flat paper or sky, which posterise at q80.
+- **Sample the type-zone colour and use it as the section ground,** feathering the image's top edge into it with a 12–24% mask. Then the image can end at any viewport height. Mask the container, not the `img`, or a seam shows when the image is taller than its box.
+
+Then export AVIF or WebP plus a JPG fallback at 1× and 2× (`sips`, `cwebp` or `sharp`), set `width`/`height`, `fetchpriority="high"` on the hero and `loading="lazy"` on the rest. Keep first-view image weight under ~1.5 MB. Alt text says what the image shows ("A woman working on a laptop in a park above the city"), not what it means.
 
 **6. Honesty:** generated people are not customers, and generated places are not your office. Never caption them as real. Never generate a "screenshot" of the product UI: build the UI in HTML (§1) and put it *on* the image (techniques.md §69).
 

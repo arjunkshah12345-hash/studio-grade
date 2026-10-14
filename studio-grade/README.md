@@ -38,4 +38,5 @@ assets/
   motion.js              reveal / split / ticker / letter-roll / scroll-spy / clock / scramble
 scripts/
   audit.mjs              Playwright audit at 1440 and 390px with screenshots; exit 1 on FAIL
+  images.py              paper matching, sprite-sheet cut-outs and sized exports for generated images
 ```

@@ -261,17 +261,19 @@ Contents: 1 Engineered Dark · 2 Ledger Light · 3 Warm Paper · 4 Editorial Mot
   --paper:#FFFFFF; --paper-2:#F4F4F2;              /* the tray behind card groups */
   --ink:#18202B; --ink-2:rgb(24 32 43 / .68); --ink-3:rgb(24 32 43 / .6);
   --accent:#4F46E5;                                 /* ONE brand hue: indigo, teal #0E9384, navy #24407A, lavender #7C5CF0. The image supplies the rest of the colour */
-  --font-display:"Newsreader",serif;                /* a book serif at 400 (Fornax, Answerr) OR a characterful sans at 500 (Instrument Sans, Geist, Bricolage); never Inter-at-700 */
+  --font-display:"Newsreader",serif;                /* a book serif at 400 (Fornax, Answerr; Fraunces with SOFT 100 tested well) OR a characterful sans at 500 (Instrument Sans, Geist, Bricolage); never Inter-at-700 */
   --display:clamp(2.75rem,1.4rem + 3.8vw,4.75rem); --display-lh:1.02; --display-ls:-.02em; --display-wt:400;
   --radius-card:20px; --radius-btn:999px;
   --shadow-card:0 1px 2px rgb(16 24 40 / .05),0 10px 28px -14px rgb(16 24 40 / .16);   /* soft and low; vignettes float, the page doesn't */
+  --reveal-filter:none; --reveal-transform:translateY(8px);   /* no blur-in in this direction */
 }
 ```
+- **The ground comes from the images.** Sample the series' paper or the hero's type-zone colour and use it as the section ground (a sky blue above the painting, cream bands under the engravings), instead of pure white beside an off-white image edge. Bookend with two fields from the series (morning sky → sunset sandstone) as well as two crops. Text shades come from the image's accent, darkened for contrast (riso pink #FF48B0 is 2.8:1 on paper; #C2186F is 5.2:1). Two inks with two jobs (pink = moved, blue = interface) is a fine variant of "one hue".
 - **The image system is not optional.** Generate one consistent series (imagery.md §8) in a medium chosen from the brand's claim (techniques.md §72): a sunlit photo of the outcome, an engraving, a painterly collage, pastel objects. Use it to **bookend** the page (hero and finale) and as the ground under UI vignettes (techniques.md §69). No image tool? Pick another direction rather than shipping this one bare.
 - **Product as vignettes, not dashboards:** small rounded UI fragments that each show one moment: three incoming items with timestamps, one extracted record with a status chip, a booked calendar slot, a prompt with a typed example. Use real, specific content ("Quote for kitchen rewiring · 8:14"), never filler ("Debugger" ×3). Each vignette animates its one action once when it enters the viewport.
 - **Hero (pick one):**
-  a) **H19**, a photo composed for the headline (techniques.md §68).
-  b) **H20**, the prompt as the hero, drawn as a domain object (§75).
+  a) **H19**, a photo composed for the headline (techniques.md §68). Set the h1 in **ink** on pale or golden skies (white fails there) and in white only where the sampled zone allows. On mobile, put the text on paper above a **portrait crop** of the subject, because a 21:9 frame has no clean sky behind a 390px headline. Put the nav links in a solid paper capsule, because white links over a busy photo edge measured 1.1:1.
+  b) **H20**, the prompt as the hero, drawn as a domain object (§75). Budget the form: ≤ 340px tall, with its submit row inside the first viewport at 1440×900. The form will cover the image's centre, so the shot list should keep the readable subject at the sides.
   c) **H21**, a split header over a staggered tray of 3 vignette cards (§77).
   d) The output artifact (a credential, report or itinerary) on the illustration (§73).
 - **Anatomy:**
@@ -286,7 +288,11 @@ Contents: 1 Engineered Dark · 2 Ledger Light · 3 Warm Paper · 4 Editorial Mot
   9. A finale bookend (a hero re-crop, or the input repeated).
   10. A footer that ends in the image system (§76).
 
-  8–12 viewports.
+  7–12 viewports. **Pick two of** the why statement, the three-step transformation and a journey map, or the page runs long.
+- **When the brief lacks a slot, substitute; never invent:**
+  - No integrations (a consumer product)? Use a **promise strip** ("No ads · No chat · Reviewed by a person").
+  - No reviews or customers? Show **a sample of the output** (a story page, a sample route, a week in the product) or **limits as proof** ("Planning help, not a guarantee", with numbered truths and the emergency number). For regulated buyers (health, finance, legal), the honesty layer is content: a certification panel with visible Placeholder chips reads as care, not as a disclaimer.
+  - No pricing? Show the **buying process** (how a pilot runs, in weeks). Never invent prices.
 - **Copy:**
   - Headline formulas: in → out ("Work goes in cold. Comes out finished."), two-sided ("Institutions buy it. People carry it."), or claim → challenge.
   - Sentence case everywhere, and task-verb CTAs ("Plan my trip", "Get early access").

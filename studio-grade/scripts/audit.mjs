@@ -17,7 +17,7 @@ const AS_JSON = args.includes('--json');
 const QUICK = args.includes('--quick');
 const DIRECTION = +opt('--direction', 0) || 0;                    // 1–11, see references/directions.md
 const REGISTER = (opt('--register', '') || '').toLowerCase();     // quiet | confident | loud
-const LENGTH = { 1: [8, 11], 2: [8, 11], 3: [8, 14], 4: [12, 23], 5: [3, 9], 6: [12, 27], 7: [7, 12], 8: [10, 16], 9: [8, 16], 10: [8, 55], 11: [8, 12] };
+const LENGTH = { 1: [8, 11], 2: [8, 11], 3: [8, 14], 4: [12, 23], 5: [3, 9], 6: [12, 27], 7: [7, 12], 8: [10, 16], 9: [8, 16], 10: [8, 55], 11: [7, 12] };
 if (!target) { console.error('usage: node audit.mjs <url|file|dir> [--out dir] [--direction 1-11] [--register quiet|confident|loud] [--json] [--quick]'); process.exit(2); }
 
 // ---------- load playwright from wherever it is installed ----------
@@ -250,7 +250,7 @@ const COLLECT = () => {
   // gradients
   out.gradients = [];
   for (const el of all) {
-    const s = st(el); if (!/gradient/.test(s.backgroundImage) || !C.vis(el) || C.cumOpacity(el) < 0.2) continue;
+    const s = st(el); if (!/gradient/.test(s.backgroundImage) || !C.vis(el) || C.cumOpacity(el) < 0.2 || el.closest('[aria-hidden="true"]')) continue;
     if ((s.maskImage && s.maskImage !== 'none') || (s.webkitMaskImage && s.webkitMaskImage !== 'none')) continue;   // masked = border/line effects
     const r = el.getBoundingClientRect(); const area = r.width * r.height / (vw * vh);
     const cols = (s.backgroundImage.match(/(rgba?\([^)]+\)|#[0-9a-f]{3,8}|oklch\([^)]+\)|hsla?\([^)]+\)|lab\([^)]+\)|color\([^)]+\))/gi) || []).map(C.toRGBA);
@@ -268,7 +268,7 @@ const COLLECT = () => {
   out.buttons = btnLike.slice(0, 16).map((el) => ({ text: el.innerText.trim().slice(0, 30), camp: camp(el), h: Math.round(el.getBoundingClientRect().height), top: Math.round(el.getBoundingClientRect().top + scrollY), nav: inNav(el) }));
   out.buttonCamps = tally(btnLike.filter((el) => !inNav(el)).map(camp));
   out.bigRadiusCards = all.filter((el) => { if (!C.vis(el) || /^(IMG|VIDEO|PICTURE|A|BUTTON)$/.test(el.tagName)) return false; const s = st(el); const r = el.getBoundingClientRect(); const boxed = C.toRGBA(s.backgroundColor)[3] > 0.05 || parseFloat(s.borderTopWidth) > 0 || s.boxShadow !== 'none'; return boxed && r.width > 200 && r.height > 120 && r.width < vw * 0.95 && parseFloat(s.borderTopLeftRadius) >= 28; }).length;
-  out.dropShadows = all.filter((el) => { const s = st(el); if (s.boxShadow === 'none' || !C.vis(el) || /^(A|BUTTON|INPUT|SELECT)$/.test(el.tagName) || el.getBoundingClientRect().height < 64) return false; return s.boxShadow.split(/,(?![^(]*\))/).some((sh) => { if (/inset/.test(sh)) return false; const n = sh.replace(/(rgba?|oklch|lab|color)\([^)]+\)/g, '').match(/-?[\d.]+px/g) || []; return parseFloat(n[2] || 0) >= 8 && parseFloat(n[1] || 0) > 0; }); }).length;
+  out.dropShadows = all.filter((el) => { const s = st(el); if (s.boxShadow === 'none' || !C.vis(el) || el.closest('[role="img"]') || /^(A|BUTTON|INPUT|SELECT)$/.test(el.tagName) || el.getBoundingClientRect().height < 64) return false; return s.boxShadow.split(/,(?![^(]*\))/).some((sh) => { if (/inset/.test(sh)) return false; const n = sh.replace(/(rgba?|oklch|lab|color)\([^)]+\)/g, '').match(/-?[\d.]+px/g) || []; return parseFloat(n[2] || 0) >= 8 && parseFloat(n[1] || 0) > 0; }); }).length;
   // ---- hero / layout
   const header = document.querySelector('header') || document.querySelector('nav');
   out.heroCtas = btnLike.filter((el) => { const r = el.getBoundingClientRect(); return r.top + scrollY < vh && !inNav(el); }).map((el) => el.innerText.trim().slice(0, 30));
@@ -278,7 +278,7 @@ const COLLECT = () => {
     out.h1Words = h1.innerText.trim().split(/\s+/).length;
     out.h1Lines = Math.round(hr.height / (parseFloat(st(h1).lineHeight) || parseFloat(st(h1).fontSize) * 1.1));
     out.h1Centered = Math.abs(hr.left + hr.width / 2 - vw / 2) < 24 && st(h1).textAlign === 'center';
-    out.badgeAboveH1 = [...document.querySelectorAll('a,span,div,p')].filter((el) => { if (!C.vis(el) || el.contains(h1)) return false; const r = el.getBoundingClientRect(); const s = st(el); return r.bottom <= hr.top + 4 && hr.top - r.bottom < 90 && r.height < 40 && r.height > 16 && parseFloat(s.borderTopLeftRadius) >= r.height / 2 - 1 && (C.toRGBA(s.backgroundColor)[3] > 0.05 || parseFloat(s.borderTopWidth) > 0) && r.width < 420; }).map((el) => el.innerText.trim().slice(0, 40)).slice(0, 2);
+    out.badgeAboveH1 = [...document.querySelectorAll('a,span,div,p')].filter((el) => { if (!C.vis(el) || el.contains(h1) || el.closest('nav,header > div:first-child,[role="navigation"]')) return false; const r = el.getBoundingClientRect(); const s = st(el); return r.bottom <= hr.top + 4 && hr.top - r.bottom < 90 && r.height < 40 && r.height > 16 && parseFloat(s.borderTopLeftRadius) >= r.height / 2 - 1 && (C.toRGBA(s.backgroundColor)[3] > 0.05 || parseFloat(s.borderTopWidth) > 0) && r.width < 420; }).map((el) => el.innerText.trim().slice(0, 40)).slice(0, 2);
   }
   const h2s = [...document.querySelectorAll('h2')].filter(C.vis);
   out.h2Count = h2s.length;
@@ -368,7 +368,7 @@ const MOBILE = () => {
   const small = [...document.querySelectorAll('a,button,input,select,[role="button"]')].filter((el) => { if (!C.vis(el) || C.decorative(el) || el.tabIndex < 0) return false; const r = el.getBoundingClientRect(); const inline = getComputedStyle(el).display === 'inline' && el.closest('p,li'); const lab = el.closest('label'); if (lab && lab.getBoundingClientRect().height >= 40) return false; return !inline && (r.height < 24 || r.width < 24); }).map((el) => (el.innerText || el.getAttribute('aria-label') || el.tagName).trim().slice(0, 24));
   const h1 = document.querySelector('h1');
   const h1Size = h1 ? parseFloat(getComputedStyle(h1).fontSize) : null;
-  const tinyEls = [...document.querySelectorAll('p,li')].filter((el) => C.vis(el) && !el.closest('footer') && el.innerText.trim().length > 60 && parseFloat(getComputedStyle(el).fontSize) < 13);
+  const tinyEls = [...document.querySelectorAll('p,li')].filter((el) => C.vis(el) && !el.closest('footer,[role="img"]') && el.innerText.trim().length > 60 && parseFloat(getComputedStyle(el).fontSize) < 13);
   return { overflow, offenders, small: small.slice(0, 8), smallCount: small.length, h1Size, tinyBody: tinyEls.length, tinyEx: tinyEls.slice(0, 4).map((el) => `${Math.round(parseFloat(getComputedStyle(el).fontSize))}px "${el.innerText.trim().slice(0, 40)}"`) };
 };
 
@@ -449,6 +449,10 @@ try {
   page.on('console', (m) => { if (m.type() === 'error' && !/Failed to load resource/.test(m.text())) consoleErrors.push(m.text().slice(0, 160)); });
   const origin = new URL(url).origin;
   page.on('response', (r) => { if (r.status() >= 400 && !/favicon/.test(r.url()) && r.url().startsWith(origin)) consoleErrors.push(`HTTP ${r.status()} ${r.url().slice(0, 120)}`); });
+  if (/^https?:/.test(url)) {   // fail fast on a dead or wrong server instead of timing out as a "hanging loader"
+    const ok = await fetch(url, { method: 'GET', signal: AbortSignal.timeout(8000) }).then((r) => r.status).catch(() => 0);
+    if (!ok) { console.error(`Server not reachable: ${url}. Start it (python3 -m http.server <port>) and re-run.`); process.exit(4); }
+  }
   step('desktop 1440×900'); const navResp = await page.goto(url, { waitUntil: 'load', timeout: 45000 });
   // the raw response, not page.content(): the DOM serialiser drops comments placed before <html>, which is where Spines usually live
   const rawHtml = (await navResp?.text().catch(() => '')) || (await page.content());
@@ -555,7 +559,7 @@ if (D.families) {
   const typeLine = (SPINE.match(/^\s*TYPE\s*:[\s\S]*?(?=^\s*[A-Z][A-Z ?]{2,}\s*:|(?![\s\S]))/m) || [''])[0];   // the TYPE key plus any continuation lines
   if (fams.length === 4 && REGISTER === 'loud' && /hand|marker|script|caveat|cursive/i.test(typeLine) && /(pixel|led|num|mono|price)/i.test(typeLine)) add('PASS', 'type.families', `4 role-locked faces declared in the Spine: ${fams.join(', ')}`);
   else if (fams.length === 4 && REGISTER === 'loud') add('WARN', 'type.families', '4 type families: allowed in the Loud register only when each face has exactly one written job (statement · body · pixel/mono for numbers · one handwritten word per heading). Confirm the jobs in the Spine (techniques.md §66).', fams);
-  else if (fams.length > 3) add('FAIL', 'type.families', `${fams.length} type families in use (top tier: median 2, max 3; Loud may run 4 role-locked faces)`, fams);
+  else if (fams.length > 3) add('FAIL', 'type.families', `${fams.length} type families in use (top tier: median 2, max 3; Loud may run 4 role-locked faces)${fams.some((f) => /^(monospace|serif|sans-serif|system-ui|Times|Times New Roman|Courier|Courier New)$/i.test(f)) ? '. A generic family is counted: a bare <pre>, <code>, <kbd>, <input> or <button> falls back to the browser default. Set font-family on it.' : ''}`, fams);
   else add('PASS', 'type.families', `${fams.length} famil${fams.length === 1 ? 'y' : 'ies'}: ${fams.join(', ')}`);
   const primary = fams[0] || '';
   if (/^(Times New Roman|Times|serif|-apple-system|system-ui|sans-serif|Arial|Helvetica)$/i.test(primary)) add('FAIL', 'type.load', `Primary text family is a fallback (${primary}). The web font did not load or none was set.`);
@@ -646,8 +650,8 @@ if (D.buttonCamps) {
   if (camps.length > 1) add('WARN', 'shape.buttons', `Buttons mix radius camps (${D.buttonCamps.map(([k, n]) => `${k}×${n}`).join(', ')}). Pick one camp: 0–4px, 6–10px, or pill (nav may differ).`, D.buttons.filter((b) => !b.nav).map((b) => `${b.camp} ${b.h}px "${b.text}"${b.nav ? ' (nav)' : ''}`));
   else if (camps.length) add('PASS', 'shape.buttons', `Consistent button radius camp: ${camps[0]}`);
 }
-if (D.bigRadiusCards > 3 && DIRECTION !== 9 && REGISTER !== 'loud') add('WARN', 'shape.cards', `${D.bigRadiusCards} card(s) with radius ≥28px (top tier: 4–12px; 16–28 only for playful directions or media)`);
-if (D.dropShadows > 6) add('WARN', 'shape.shadows', `${D.dropShadows} elements have drop shadows. Use rings, fills, or hairlines; keep real shadow for floating product windows.`);
+if (D.bigRadiusCards > 3 && DIRECTION !== 9 && DIRECTION !== 11 && REGISTER !== 'loud') add('WARN', 'shape.cards', `${D.bigRadiusCards} card(s) with radius ≥28px (top tier: 4–12px; 16–28 only for playful directions or media)`);
+if (D.dropShadows > 6) add(DIRECTION === 11 ? 'INFO' : 'WARN', 'shape.shadows', `${D.dropShadows} elements have drop shadows. Use rings, fills, or hairlines; keep real shadow for floating product windows.`);
 
 // layout / hero
 if (D.heroCtas) {
@@ -731,7 +735,7 @@ fs.writeFileSync(path.join(OUT, 'report.json'), JSON.stringify({ ...report, raw:
 if (AS_JSON) console.log(JSON.stringify(report, null, 1));
 else {
   const icon = { FAIL: '✖ FAIL', WARN: '! WARN', PASS: '✔ PASS', INFO: '· INFO' };
-  console.log(`\nStudio Grade audit: ${url}\n${'─'.repeat(72)}`);
+  console.log(`\nStudio Grade audit: ${url}\n  page: "${(D.title || '').slice(0, 70)}"   (check this is the site you meant: a port held by another server audits that server)\n${'─'.repeat(72)}`);
   if (profile) {
     console.log('Measured profile');
     console.log(`  type     ${profile.families.join(' · ')}`);

@@ -203,5 +203,6 @@ The full list, with the replacement for each item, is in `references/anti-slop.m
 | `assets/tokens.css` | Starting point for every build |
 | `assets/motion.js` | Dependency-free reveal, split-text, ticker, letter-roll, and scroll-spy helpers (reduced-motion aware) |
 | `scripts/audit.mjs` | Step 6, run on every build |
+| `scripts/images.py` | Generated image series: one paper per series, cut-outs from sprite sheets, sized WebP/JPG exports (imagery.md §8) |
 
 Stack notes: plain HTML/CSS with `assets/motion.js` covers most directions. In React, use Framer Motion springs with the values above. GSAP + ScrollTrigger + Lenis is warranted **only** for directions 4, 6, 8, and 10. For WebGL, keep all headings in the DOM, bake the lighting, cap DPR at 1.5, and always ship a non-WebGL fallback.

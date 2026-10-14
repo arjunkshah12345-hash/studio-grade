@@ -138,3 +138,18 @@ Supplied by the user on 2026-10-13 as presentation images (`shots/answerr.jpg`, 
   - **Labels that map to nothing:** Wandor's uppercase labels in three unrelated colours.
   - **Unaligned zig-zags:** feature rows with wide gaps between the text and the device.
   The audit now catches the first and fourth (`copy.integrity`, `copy.case`), and anti-slop.md has a pre-ship copy check for the rest.
+
+
+---
+
+## BugScout: "Find & fix JavaScript bugs in seconds" (screenshot, unmeasured)
+
+Supplied 2026-10-13 (`shots/bugscout.jpg`), hero only.
+- **Split header:** a slate-navy grotesk h1 at ~76px in the left half; the grey lede and two pill CTAs (a gradient indigo "Get Bugscout for free" with a glow, and a white "Install Extension") top-aligned in the right column.
+- **Staggered tray:** a light-grey rounded tray holds three white cards with the middle card dropped lower. Each card has an abstract UI vignette and a caption: a prompt box wired by three short lines to a sparkle node ("Let AI show you the fix"); three checked "Debugger" rows ("Session Replay Integration"); a step list with dashed connectors to image nodes ("Real-Time error detection").
+- **Take:** the split header and the staggered tray, which became techniques.md §77 and layout H21.
+- **Leave:** Title Case h1 and captions mixed with sentence case; filler content in the vignettes ("Debugger" three times); the gradient pill with a coloured glow.
+
+## What the six supplied references have in common (became direction 11, Bright Product)
+
+Fornax, Answerr, Mugic, Wandor, BugScout and, louder, Ignura: a bright page, one generated image system that bookends it, product shown as small UI vignettes, a serif or friendly display, and warm task-verb copy. Every one also had copy and craft errors (duplicated sections, Title Case, filler UI, ghost buttons on photos), which is why the direction's Avoid list is long.

@@ -43,6 +43,7 @@ Read the brief. Pick one direction from this table (the *system*), then a **regi
 | 8 | **Deep-Tech Spec** | robotics, aerospace, climate, biotech, hardware, industrial AI | Terminal Industries, ICOMAT, Inversa, Glyphic, Vast, Radian |
 | 9 | **Playful System** | consumer apps, games, community, studios and B2B that want warmth | Family, MindMarket, Lando Norris, Choo-Choo World, Ignura |
 | 10 | **Immersive** | launches with one hero object, campaigns, cause pieces, dwell-time KPIs | illoca (Unseen), Lusion, Immersive Garden, Active Theory |
+| 11 | **Bright Product** | AI tools, SaaS and consumer apps that should feel friendly and finished; needs an image system (generated series) | Fornax, Answerr, Mugic, Wandor, BugScout (user-supplied screenshots) |
 
 How to choose:
 - **Users who must scan, compare, or convert** (pricing, docs, catalogs, SaaS) → 1, 2, 5, or 7. Native scroll, no preloader.
@@ -70,6 +71,7 @@ HERO        : <archetype from references/layout.md> — what the first viewport 
 IMAGERY     : <medium from range.md §2C: product UI / photo / illustration cast / colour blocks / type poster / object / collage / data / line drawing>
 CONVERSION  : <the primary action and every place it appears>
 MOTION      : house ease <cubic-bezier> · UI <ms> · reveal <ms> · primitive <blur-in / ink-in / mask>
+IMAGES      : the style bible if you generate images (medium · palette hexes · light · viewpoint · type zone · exclusions · shot list), imagery.md §8; or "none: <the medium instead>"
 NAMING      : <the brand metaphor> → tiers · steps · CTA verb · 404 line   (techniques.md §63; omit if the brand has no metaphor)
 SIGNATURES  : 2–3 named moves from references/techniques.md (no more; system rules §63/§66/§67 don't count)
 VOICE       : 3 sample lines (hero, section, CTA) in the brand's voice
@@ -115,7 +117,7 @@ Work through `references/components.md` and the checklist below. This pass is th
 ### Step 6: Audit, look, and fix (mandatory)
 
 ```bash
-node <skill-dir>/scripts/audit.mjs <url-or-path-to-index.html> --out ./audit --direction <1-10> --register <quiet|confident|loud>
+node <skill-dir>/scripts/audit.mjs <url-or-path-to-index.html> --out ./audit --direction <1-11> --register <quiet|confident|loud>
 ```
 
 The script loads the page at 1440px and 390px. It measures the rules in this skill (font count, display tracking and leading, pure black/white, accent count, gradient text, emoji and hype copy, hero CTA count, icon-card grids, radius consistency, shadows, contrast, mobile overflow, tap targets, reduced-motion support, text drawn over other text while scrolling, and reveals that never finish) and saves screenshots, including one `slice-NN.jpg` per viewport down the whole page. **Open every slice and look at it.** In every test build, the screenshots caught more real bugs than the report did. Fix every FAIL and judge every WARN. Then re-run. The script needs Playwright: `npm i -D playwright && npx playwright install chromium` if it is missing.
@@ -193,7 +195,7 @@ The full list, with the replacement for each item, is in `references/anti-slop.m
 | `references/layout.md` | Grids, margins, hero archetypes, section-pattern library, page rhythm, mobile |
 | `references/motion.md` | Eases, durations, springs, reveal primitives, loaders, smooth-scroll policy, reduced motion |
 | `references/components.md` | Buttons, nav forms, eyebrows, cards, logo walls, testimonials, stats, forms, footers |
-| `references/techniques.md` | 76 signature techniques with copy-paste code (rails, ticker, letter-roll, aperture…) |
+| `references/techniques.md` | 77 signature techniques with copy-paste code (rails, ticker, letter-roll, aperture…) |
 | `references/imagery.md` | Product-UI-as-hero, generative ornament, photo art direction, placeholders |
 | `references/copy.md` | Headline formulas, voice, CTA verbs, banned phrases, microcopy |
 | `references/anti-slop.md` | The full list of AI tells, each with its fix; use it for redesign audits |

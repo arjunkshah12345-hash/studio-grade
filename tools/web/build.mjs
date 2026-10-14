@@ -307,7 +307,7 @@ function method() {
     ['10', 'Immersive', 'Launches, campaigns, one hero object', 'Lusion, Immersive Garden, Unseen'],
   ];
   const steps = [
-    ['Direction and register', 'Pick one of ten directions measured from real studio work, then how loud to play it: quiet, confident or loud. Choose five range axes (ground, type genre, image medium, composition, motion) so the site can’t default to the last one.'],
+    ['Direction and register', 'Pick one of eleven directions (ten measured from real studio work, one built from user-supplied product references), then how loud to play it: quiet, confident or loud. Choose five range axes (ground, type genre, image medium, composition, motion) so the site can’t default to the last one.'],
     ['The spine', 'Commit in writing to direction, motif, type, scale, palette, grid, hero, imagery, conversion, motion and voice. If a line could describe any site, it isn’t a spine.'],
     ['Tokens first', 'Every size, colour, radius, ease and duration comes from a token. Each text style is a bundle of family, size, line-height, tracking and weight, the way AREA 17 builds.'],
     ['Compose', 'One statement and one subject per hero. Features become chapters with real media, not icon cards. Break the symmetry after the fold. End on a confident line and a real footer.'],
@@ -345,13 +345,13 @@ function method() {
   <pre class="tree" aria-label="Files in the skill"><b>studio-grade/</b>
 ├─ SKILL.md            <span>workflow, directions, bans</span>
 ├─ references/
-│  ├─ directions.md    <span>10 measured recipes</span>
+│  ├─ directions.md    <span>11 recipes</span>
 │  ├─ range.md         <span>quiet · confident · loud</span>
 │  ├─ typography.md    <span>tracking tables, free faces</span>
 │  ├─ color.md         <span>40 measured palettes</span>
-│  ├─ layout.md        <span>20 heroes, 22 sections</span>
+│  ├─ layout.md        <span>21 heroes, 22 sections</span>
 │  ├─ motion.md        <span>eases, springs, policy</span>
-│  ├─ techniques.md    <span>76 moves with code</span>
+│  ├─ techniques.md    <span>77 moves with code</span>
 │  ├─ imagery.md       <span>no-photo strategies</span>
 │  └─ copy · anti-slop · components · evidence
 ├─ assets/             <span>tokens.css · motion.js</span>

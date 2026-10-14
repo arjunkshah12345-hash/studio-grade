@@ -15,10 +15,10 @@ const opt = (k, d) => { const i = args.indexOf(k); return i >= 0 && args[i + 1] 
 const OUT = path.resolve(opt('--out', './audit'));
 const AS_JSON = args.includes('--json');
 const QUICK = args.includes('--quick');
-const DIRECTION = +opt('--direction', 0) || 0;                    // 1–10, see references/directions.md
+const DIRECTION = +opt('--direction', 0) || 0;                    // 1–11, see references/directions.md
 const REGISTER = (opt('--register', '') || '').toLowerCase();     // quiet | confident | loud
-const LENGTH = { 1: [8, 11], 2: [8, 11], 3: [8, 14], 4: [12, 23], 5: [3, 9], 6: [12, 27], 7: [7, 12], 8: [10, 16], 9: [8, 16], 10: [8, 55] };
-if (!target) { console.error('usage: node audit.mjs <url|file|dir> [--out dir] [--direction 1-10] [--register quiet|confident|loud] [--json] [--quick]'); process.exit(2); }
+const LENGTH = { 1: [8, 11], 2: [8, 11], 3: [8, 14], 4: [12, 23], 5: [3, 9], 6: [12, 27], 7: [7, 12], 8: [10, 16], 9: [8, 16], 10: [8, 55], 11: [8, 12] };
+if (!target) { console.error('usage: node audit.mjs <url|file|dir> [--out dir] [--direction 1-11] [--register quiet|confident|loud] [--json] [--quick]'); process.exit(2); }
 
 // ---------- load playwright from wherever it is installed ----------
 async function loadPlaywright() {

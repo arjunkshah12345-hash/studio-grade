@@ -1,8 +1,8 @@
-# Signature techniques: 76 moves with code
+# Signature techniques: 77 moves with code
 
 Choose **2–3 per site**, and make sure they serve the motif. **System rules don't count toward the 2–3:** §63 (naming), §66 (type voices) and §67 ("Read the film") shape the whole build rather than one moment, so they sit alongside your signatures. A page that uses ten of these is a demo reel, not a design. Each entry names its origin so you can match it to a direction.
 
-Index: **A. Structure & framing** 1–11 · **B. Type moves** 12–30 · **C. Product & proof** 31–37 · **D. Interaction & motion** 38–55 · **E. Small-product moves** 56–60 · **F. Studio and personal-site moves** 61–67 (visual signatures: 61, 62, 64, 65; system rules: 63, 66, 67) · **G. Photo-led product moves** 68–70 · **H. Editorial marks** 71 · **I. AI-product and illustration-system moves** 72–76
+Index: **A. Structure & framing** 1–11 · **B. Type moves** 12–30 · **C. Product & proof** 31–37 · **D. Interaction & motion** 38–55 · **E. Small-product moves** 56–60 · **F. Studio and personal-site moves** 61–67 (visual signatures: 61, 62, 64, 65; system rules: 63, 66, 67) · **G. Photo-led product moves** 68–70 · **H. Editorial marks** 71 · **I. AI-product and illustration-system moves** 72–77
 
 ---
 
@@ -496,3 +496,16 @@ End the page on the brand's world instead of a grey footer. The footer columns s
 - **A constructed wordmark:** the brand name built from domain glyphs (Mugic's letters made of musical notes) in the section colours. This is a drawn cousin of §27 and §70, so spell-check it too.
 
 Keep it `aria-hidden="true"`, ≤ 40vh tall, and cropped to its central object on mobile (`object-position:50% 100%`). **Shaped edges:** when the hero ends in illustration, let its bottom edge follow the art's silhouette (`clip-path:path(...)` or an SVG `mask`) instead of a straight line, as Wandor's die-cut collage does.
+
+### 77. Split header over a staggered vignette tray (BugScout)
+A hero for a product with three capabilities and no single hero image:
+- **Split header:** the h1 sits in the left ~55%. The lede and the two CTAs sit in the right column, top-aligned to the h1's cap height, not centered under it.
+- **The tray:** below it, a full-width grey tray (`--paper-2`, radius 24px, 20px padding) holds three white cards. **The middle card drops** ~200px lower, so the row reads as a sequence, not a grid.
+- **Each card** holds one small UI vignette (a prompt with a sparkle node wired below it, a list of checked runs, a flow with dashed connectors to image nodes) and a one-line caption in the display face at ~22px at the bottom-left.
+```css
+.tray{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;padding:20px;border-radius:24px;background:var(--paper-2);align-items:start}
+.tray > :nth-child(2){margin-top:clamp(80px,14vw,200px)}
+.tray .card{background:var(--surface);border-radius:18px;padding:28px;display:grid;gap:28px;align-content:space-between;min-height:340px}
+@media (max-width:760px){.tray{grid-template-columns:1fr}.tray > :nth-child(2){margin-top:0}}
+```
+Put **real content in the vignettes**: the reference's three identical "Debugger" rows are filler. Write three real runs ("checkout.js · TypeError fixed · 2s", …). Each card's vignette plays its one action once on view.

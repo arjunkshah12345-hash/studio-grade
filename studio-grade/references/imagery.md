@@ -1,13 +1,14 @@
 # Imagery: what fills the visual space
 
-Across all 98 sites: **zero stock photography, zero generic 3D blobs, zero illustration packs** in top-tier work. The visual is always *the subject itself* or an ornament that is true to the domain. That is the hardest thing for an agent to do and the most important.
+Across all 98 sites: **zero stock photography, zero generic 3D blobs, zero illustration packs** in top-tier work. (A generated series art-directed to the brand, §8, is not stock: it's made for this page, to a written brief.) The visual is always *the subject itself* or an ornament that is true to the domain. That is the hardest thing for an agent to do and the most important.
 
 ## Decision ladder
 
 1. Does the product have a UI? → **Rebuild it in HTML** (§1). Every tier-1 SaaS site does this.
-2. Is there a physical product, place, or person? → **Photograph or film it** (§4). If you have no assets, use art-directed placeholders (§5) and say so to the user.
+2. Is there a physical product, place, or person? → **Photograph or film it** (§4). No assets but an image-generation tool (Codex, gpt-image, Gemini/Imagen, Flux)? → **Generate one art-directed series** (§8). Neither? → art-directed placeholders (§5), and say so to the user.
 3. Neither, or not yet? → choose the **medium from the brand and register** (range.md §2C): typography as the image (§2), an illustration cast (§6), a colour-block composition, a tactile object, a collage, or domain-specific ornament (§3). A thin line drawing with mono labels is right for deep-tech and dev tools and overused everywhere else; one per set at most.
 4. Need colour and energy? → **Semantic colour fields** (color.md §1.6), not gradients.
+5. Building a bright product site (direction 11)? → it **needs** an image system. Generate it (§8) or choose another direction: a direction-11 page without its image is the default AI look.
 
 ## 1. Product UI as the hero illustration (Linear, Attio, Ramp, Cursor, Sierra, BFL)
 
@@ -112,6 +113,37 @@ When there's no photography of an object, draw it as a Hammershøi-style still l
 - **Glass reads as glass** with a lighter "caustic" band inside the shadow (from `v·.3` to `v·.75`) and a 1px highlight down one edge of the object.
 - **A series, not one picture:** keep the shelf height, the camera and the object constant, and vary only the wall colour and light angle. Then the scenes become the product range's system (Morrow: one scene per hour of the day).
 - Reveal with **light-up** (motion.md §5): from grey into colour, no movement.
+
+## 8. Generated image series (when an image tool is available)
+
+The user-supplied references that read as most finished (Fornax, Answerr, Mugic, Wandor) all run on **one generated image system**: a sunlit photo composed for the headline, a steel engraving, a pastel object set, a painterly landmark collage. The tool is not the hard part; consistency and art direction are.
+
+**1. Write a style bible in the Spine before generating anything:**
+```
+IMAGES      : medium      steel engraving, one navy ink (#24407A) on white, fine crosshatching
+              light       soft, from upper left
+              palette     #24407A, #F4EFE3 (paper), nothing else
+              viewpoint   eye level, slight low angle for buildings
+              type zone   top 40% clear sky in the hero; left third clear in feature crops
+              exclude     no text, no logos, no watermarks, no UI, no people looking at camera, no grey fills
+              shot list   hero 21:9 · 3 supporting 4:3 · finale (re-crop of hero or companion) · 4–8 small objects (transparent PNG)
+```
+**2. Prompt every image with the whole bible**, then the shot: `[medium] of [subject], [composition and type zone], [light], palette [hexes], [viewpoint], [texture]; part of a consistent series; [exclusions]`. Generate one image per call, in order, and reuse the exact wording, so the series doesn't drift.
+
+**3. Choose the medium from the brand's claim** (techniques.md §72). Certifies → engraving. Plans journeys → painted travel poster or collage. Frees your time → a sunlit photo of the outcome (§68). Makes music or toys → pastel objects with faces or chunky hardware. Calm and craft → a flat still life (§6c).
+
+**4. Check every image before using it:** hands and faces, letter-like artefacts (any text in the image is a regenerate), palette match, the type zone actually clear (the audit's `a11y.contrast.media` measures it), and the subject matching the brief. Regenerate; don't patch with overlays.
+
+**5. Ship it properly:** crop with intent (`object-position` per breakpoint), export AVIF or WebP plus a JPG fallback at 1× and 2× (`sips`, `cwebp` or `sharp`), set `width`/`height`, `fetchpriority="high"` on the hero and `loading="lazy"` on the rest. Keep first-view image weight under ~1.5 MB. Alt text says what the image shows ("A woman working on a laptop in a park above the city"), not what it means.
+
+**6. Honesty:** generated people are not customers, and generated places are not your office. Never caption them as real. Never generate a "screenshot" of the product UI: build the UI in HTML (§1) and put it *on* the image (techniques.md §69).
+
+**With Codex CLI** (image generation is on by default in recent versions):
+```bash
+codex exec --skip-git-repo-check --sandbox workspace-write -C ./img \
+  "Use your image generation tool to create ONE image: <style bible> <shot>. Save it in the current directory as hero.png. Reply only with the path." < /dev/null
+```
+Run the calls one after another (parallel calls drift and hit rate limits), then convert: `sips -s format jpeg -s formatOptions 82 hero.png --out hero.jpg` and `cwebp -q 80 hero.png -o hero.webp`.
 
 ## 7. Icons
 

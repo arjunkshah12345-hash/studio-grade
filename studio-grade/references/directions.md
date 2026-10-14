@@ -250,3 +250,47 @@ Contents: 1 Engineered Dark · 2 Ledger Light · 3 Warm Paper · 4 Editorial Mot
 - **WebGL rules:** bake lighting (Blender/Cycles lightmaps + matcaps, `MeshBasicMaterial`, no real-time lights); use camera presets per section lerped at 0.05–0.1; cap DPR at 1.5; keep all headings as DOM over the canvas; ship explicit "WebGL not supported / rotate device" states; offer a video or poster fallback on mobile.
 - **Motion:** easeOutExpo `cubic-bezier(.19,1,.22,1)` (83× on David Whyte), 0.8s as the single most common reveal duration, char staggers 0.02–0.035s, line staggers 0.1–0.15s with `from:"end"` and `from:"center"` variants, Lenis lerp 0.06–0.1, **linear easing for anything that represents time**.
 - **Reduced motion:** skip the loader choreography, turn Lenis off, replace camera scrubs with crossfades, and turn blur reveals into opacity.
+
+## 11. Bright Product
+
+**When:** AI tools, SaaS and consumer apps that want to feel friendly, capable and finished rather than editorial or "award-site". This is the look of most product launches in 2025–26, done properly. The page is bright, the product shows up as small real UI, and **one generated image system** gives it a world.
+**Exemplars (user-supplied screenshots, unmeasured):** Fornax (a photo composed for the headline), Answerr (engraving as the brand metaphor), Mugic (the input as a pastel synth), Wandor (painterly landmark collage), BugScout (split header and staggered tray), Ignura (an illustrated world at full volume, direction 9's loud cousin).
+
+```css
+:root{
+  --paper:#FFFFFF; --paper-2:#F4F4F2;              /* the tray behind card groups */
+  --ink:#18202B; --ink-2:rgb(24 32 43 / .68); --ink-3:rgb(24 32 43 / .6);
+  --accent:#4F46E5;                                 /* ONE brand hue: indigo, teal #0E9384, navy #24407A, lavender #7C5CF0. The image supplies the rest of the colour */
+  --font-display:"Newsreader",serif;                /* a book serif at 400 (Fornax, Answerr) OR a characterful sans at 500 (Instrument Sans, Geist, Bricolage); never Inter-at-700 */
+  --display:clamp(2.75rem,1.4rem + 3.8vw,4.75rem); --display-lh:1.02; --display-ls:-.02em; --display-wt:400;
+  --radius-card:20px; --radius-btn:999px;
+  --shadow-card:0 1px 2px rgb(16 24 40 / .05),0 10px 28px -14px rgb(16 24 40 / .16);   /* soft and low; vignettes float, the page doesn't */
+}
+```
+- **The image system is not optional.** Generate one consistent series (imagery.md §8) in a medium chosen from the brand's claim (techniques.md §72): a sunlit photo of the outcome, an engraving, a painterly collage, pastel objects. Use it to **bookend** the page (hero and finale) and as the ground under UI vignettes (techniques.md §69). No image tool? Pick another direction rather than shipping this one bare.
+- **Product as vignettes, not dashboards:** small rounded UI fragments that each show one moment: three incoming items with timestamps, one extracted record with a status chip, a booked calendar slot, a prompt with a typed example. Use real, specific content ("Quote for kitchen rewiring · 8:14"), never filler ("Debugger" ×3). Each vignette animates its one action once when it enters the viewport.
+- **Hero (pick one):**
+  a) **H19**, a photo composed for the headline (techniques.md §68).
+  b) **H20**, the prompt as the hero, drawn as a domain object (§75).
+  c) **H21**, a split header over a staggered tray of 3 vignette cards (§77).
+  d) The output artifact (a credential, report or itinerary) on the illustration (§73).
+- **Anatomy:**
+  1. Hero.
+  2. Integrations row ("Works inside the tools you already use").
+  3. A two-tone "why" statement.
+  4. The three-step transformation (§69).
+  5. 2–3 persona or feature rows (a vignette on an image crop, alternating sides, aligned to a 12-column grid, with no dead zig-zag gaps).
+  6. Honest proof ("From early access", labelled).
+  7. Pricing: three cards, or an object (§62).
+  8. FAQ beside a contact card.
+  9. A finale bookend (a hero re-crop, or the input repeated).
+  10. A footer that ends in the image system (§76).
+
+  8–12 viewports.
+- **Copy:**
+  - Headline formulas: in → out ("Work goes in cold. Comes out finished."), two-sided ("Institutions buy it. People carry it."), or claim → challenge.
+  - Sentence case everywhere, and task-verb CTAs ("Plan my trip", "Get early access").
+  - One voice line per section.
+- **Motion:** calm. Fade plus an 8px rise at 0.5–0.7s with `cubic-bezier(.2,.8,.2,1)`, a 60–80ms stagger, and a hover lift of 2px on cards. Vignettes play their one action, and a typing placeholder runs once. No smooth scroll, no pinning, no blur-in on body text.
+- **What separates it from the default AI look** (white, rounded cards, one accent, which this direction sits next to): the art-directed image system, real content inside the vignettes, a serif or characterful display, and copy with a voice. Lose any of those and it's a template.
+- **Avoid (every supplied reference got at least two of these wrong):** duplicated sections; Title Case headings; ghost buttons on photos; gradient pill buttons with coloured glows; labels in several colours that map to nothing; filler UI; vague stats ("MILLIONS"); unsourced named testimonials; typos in compliance acronyms; a person with a laptop that doesn't show an outcome; purple-to-blue gradient blobs.

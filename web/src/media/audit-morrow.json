@@ -1,9 +1,9 @@
 {
  "url": "http://127.0.0.1:4317/tests/builds/morrow/index.html",
  "outDir": "/tmp/gal-morrow",
- "ms": 43564,
+ "ms": 45346,
  "counts": {
-  "PASS": 9,
+  "PASS": 10,
   "INFO": 3
  },
  "profile": {
@@ -84,6 +84,11 @@
    "level": "PASS",
    "rule": "motion.ease",
    "msg": "Eases in use: cubic-bezier(0.215,0.61,0.355,1)×49, cubic-bezier(0.76,0,0.24,1)×6"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (0/15 paragraphs wait for scroll)"
   },
   {
    "level": "PASS",

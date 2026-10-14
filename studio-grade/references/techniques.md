@@ -496,6 +496,13 @@ End the page on the brand's world instead of a grey footer. The footer columns s
 - **A second collage that completes the hero's** (Wandor: the hero has one set of landmarks, the footer the rest of the world).
 - **A constructed wordmark:** the brand name built from domain glyphs (Mugic's letters made of musical notes) in the section colours. This is a drawn cousin of §27 and §70, so spell-check it too.
 
+**Footer structure over finale art** (reader feedback on the Haul build):
+- Nothing touches the art: no text line or hairline runs into it, and there's clear air (≥ 48px) between the last line of text and the art's highest point.
+- The legal line (© year, company) sits on the left under the brand, as a second line, not floating at the bottom right beside the art.
+- Terms and Privacy are real links to a real page.
+- Link columns share one grid; don't left-align the columns and then right-align a stray note.
+- No clever colophon one-liners ("Printed in two inks…", "This page: 1 box, 0 any"). Readers didn't get them and called them AI. A footer says plain things.
+
 The art starts **below the footer's base row**, so nothing like a clock or a copyright line sits on chimneys; with a flat-topped sky, pull the image up under the footer with a negative margin and mask its top so the columns sit on the sky itself. Keep it `aria-hidden="true"`, ≤ 40vh tall, and cropped to its central object on mobile (`object-position:50% 100%`). **Shaped edges:** when the hero ends in illustration, let its bottom edge follow the art's silhouette (`clip-path:path(...)` or an SVG `mask`) instead of a straight line, as Wandor's die-cut collage does.
 
 ### 77. Split header over a staggered vignette tray (BugScout)

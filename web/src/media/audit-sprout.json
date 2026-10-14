@@ -1,10 +1,10 @@
 {
  "url": "http://127.0.0.1:4317/tests/builds/sprout/index.html",
  "outDir": "/tmp/gal-sprout",
- "ms": 43972,
+ "ms": 44527,
  "counts": {
-  "PASS": 9,
-  "INFO": 2
+  "PASS": 10,
+  "INFO": 3
  },
  "profile": {
   "families": [
@@ -95,6 +95,11 @@
   },
   {
    "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (4/16 paragraphs wait for scroll)"
+  },
+  {
+   "level": "PASS",
    "rule": "mobile.overflow",
    "msg": "No horizontal overflow at 390px"
   },
@@ -107,6 +112,11 @@
    "level": "INFO",
    "rule": "layout.length",
    "msg": "Page length 9 viewports (direction 9 norm 8–16)"
+  },
+  {
+   "level": "INFO",
+   "rule": "motion.splitHeading",
+   "msg": "The hero heading is split into word/character spans for an animation. Only 1 in 5 top sites does this; outside Loud, editorial (4) and immersive (10) pages, show the heading on the first frame (motion.md §0)."
   }
  ],
  "screenshots": [

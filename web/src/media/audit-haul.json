@@ -1,15 +1,15 @@
 {
  "url": "http://127.0.0.1:4317/tests/builds/haul/index.html",
  "outDir": "/tmp/gal-haul",
- "ms": 45315,
+ "ms": 45381,
  "counts": {
-  "PASS": 10,
+  "PASS": 11,
   "INFO": 2
  },
  "profile": {
   "families": [
-   "Geist×128",
-   "Geist Mono×95",
+   "Geist×129",
+   "Geist Mono×94",
    "Bricolage Grotesque×52"
   ],
   "display": [
@@ -47,7 +47,7 @@
    "h": 68,
    "links": 6
   },
-  "pageVh": 10
+  "pageVh": 10.1
  },
  "findings": [
   {
@@ -73,12 +73,12 @@
   {
    "level": "PASS",
    "rule": "a11y.contrast",
-   "msg": "All 153 checked text elements on solid grounds meet AA."
+   "msg": "All 156 checked text elements on solid grounds meet AA."
   },
   {
    "level": "PASS",
    "rule": "a11y.contrast.media",
-   "msg": "All 8 text elements over imagery meet AA (sampled from pixels)"
+   "msg": "All 6 text elements over imagery meet AA (sampled from pixels)"
   },
   {
    "level": "PASS",
@@ -97,6 +97,11 @@
   },
   {
    "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (3/31 paragraphs wait for scroll)"
+  },
+  {
+   "level": "PASS",
    "rule": "mobile.overflow",
    "msg": "No horizontal overflow at 390px"
   },
@@ -108,7 +113,7 @@
   {
    "level": "INFO",
    "rule": "layout.length",
-   "msg": "Page length 10 viewports (direction 11 norm 7–12)"
+   "msg": "Page length 10.1 viewports (direction 11 norm 7–12)"
   }
  ],
  "screenshots": [

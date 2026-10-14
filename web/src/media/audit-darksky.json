@@ -1,9 +1,9 @@
 {
  "url": "http://127.0.0.1:4317/tests/builds/darksky/index.html",
  "outDir": "/tmp/gal-darksky",
- "ms": 68746,
+ "ms": 75463,
  "counts": {
-  "PASS": 11,
+  "PASS": 12,
   "INFO": 2
  },
  "profile": {
@@ -93,6 +93,11 @@
    "level": "PASS",
    "rule": "motion.ease",
    "msg": "Eases in use: cubic-bezier(0.19,1,0.22,1)×14, cubic-bezier(0.4,0,0.2,1)×13"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (3/46 paragraphs wait for scroll)"
   },
   {
    "level": "PASS",

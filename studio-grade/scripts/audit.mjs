@@ -464,6 +464,17 @@ try {
   const firstFrame = await page.evaluate(() => { const C = window.__cs; const h1 = document.querySelector('h1'); const inView = (el) => { const r = el.getBoundingClientRect(); return r.top < innerHeight && r.bottom > 0; };
     const hidden = [...document.querySelectorAll('h1, main a, main button, header ~ * a, section a')].filter((el) => C.vis(el) && inView(el) && el.innerText.trim() && !C.intentionallyHidden(el) && !(el.tagName !== 'H1' && el.closest('figure,[role="img"]')) && C.cumOpacity(el) < 0.1).map((el) => el.innerText.trim().slice(0, 30));   // controls inside a figure (Replay, play) aren't hero copy
     return { h1Hidden: !!(h1 && inView(h1) && C.cumOpacity(h1) < 0.1), hidden: [...new Set(hidden)].slice(0, 6) }; });
+  // before any scrolling: how much text waits for a reveal, and is the hero heading split (motion.md §0)
+  const textMotion = await page.evaluate(() => {
+    const H = innerHeight; const op = (el) => { let o = 1; for (let e = el; e && e.nodeType === 1; e = e.parentElement) o *= +getComputedStyle(e).opacity; return o; };
+    const ps = [...document.querySelectorAll('main p, main li, section p')].filter((el) => { const r = el.getBoundingClientRect(); return r.top > H * 1.2 && r.width > 40 && (el.innerText || '').trim().length > 40; }).slice(0, 300);
+    // text hidden because its *card* is revealing (a card group fading in) is fine: count only text hidden on its own or as a text block
+    const cardish = (el) => el.matches('article, li, figure, [role="img"], [class*="card"], [class*="plan"], [class*="tile"]') && !!el.querySelector('img, picture, svg, canvas, video, [class*="price"], h3, h4');
+    const hider = (el) => { for (let e = el; e && e.nodeType === 1 && e !== document.body; e = e.parentElement) if (+getComputedStyle(e).opacity < 0.15) return e; return null; };
+    const hidden = ps.filter((el) => { const h = op(el) < 0.15 ? hider(el) : null; return h && !(h !== el && cardish(h)); }).length;
+    const h1 = document.querySelector('h1'); const words = h1 ? (h1.innerText || '').trim().split(/\s+/).length : 0;
+    return { paras: ps.length, hidden, h1Split: !!h1 && h1.querySelectorAll('span,div').length >= Math.max(3, words * 0.8) };
+  }).catch(() => null);
   { const H = await page.evaluate(() => document.documentElement.scrollHeight); const n = Math.min(12, Math.ceil(H / 900));
     const at = (i) => (Math.ceil(H / 900) <= 12 ? i * 900 : Math.round(i * (H - 900) / (n - 1)));   // long pages: evenly spaced, always incl. the end
     const overlaps = OVERLAPS; step('desktop slices'); for (let i = 0; i < n; i++) { await page.evaluate((y) => window.scrollTo(0, y), at(i)); await page.waitForTimeout(QUICK ? 450 : 900); if (!QUICK) await page.evaluate(() => Promise.race([Promise.all(document.getAnimations().filter((a) => { const t = a.effect?.getComputedTiming?.(); return t && Number.isFinite(t.endTime) && t.endTime < 6000; }).map((a) => a.finished.catch(() => {}))), new Promise((r) => setTimeout(r, 3000))])).catch(() => {}); /* finite reveals finish before the shot */ await page.screenshot({ path: path.join(OUT, `slice-${String(i + 1).padStart(2, '0')}.jpg`), type: 'jpeg', quality: 70 }); const ov = await page.evaluate(TEXT_OVERLAP).catch(() => []); if (ov.length) overlaps.push(`slice-${String(i + 1).padStart(2, '0')}: ${ov.slice(0, 2).join(' · ')}`); }
@@ -471,7 +482,7 @@ try {
   // elementsFromPoint ignores pointer-events:none, which hides decorative canvases/images from the contrast pass
   await page.addStyleTag({ content: 'canvas,video,img,picture,iframe,svg{pointer-events:auto!important}' }).catch(() => {});
   step('desktop scroll + contrast'); await scrollThrough(page, { contrast: true });
-  step('desktop collect'); D = await page.evaluate(COLLECT); D.textOverlap = OVERLAPS;
+  step('desktop collect'); D = await page.evaluate(COLLECT); D.textOverlap = OVERLAPS; D.textMotion = textMotion;
   D.firstFrame = firstFrame;
   if (/just a moment|attention required|security verification|access denied|are you a robot/i.test((D.title || '') + ' ' + (await page.evaluate(() => document.body.innerText.slice(0, 400))))) {
     add('FAIL', 'load.blocked', 'The page served a bot or security challenge, so the results describe the challenge page, not the site. Audit a local build or a preview URL instead.');
@@ -696,6 +707,12 @@ if (D.autoplayVideos && !D.pauseControl) add('WARN', 'a11y.video', `${D.autoplay
 if (D.firstFrame?.h1Hidden || D.firstFrame?.hidden?.length) add('FAIL', 'hero.firstFrame', 'Hero content is invisible in the first frame (waiting for an animation or scroll). Hero copy and CTAs must be visible on load.', D.firstFrame.hidden);
 if (D.copyDupes?.length) add('WARN', 'copy.integrity', 'The same heading or paragraph appears more than once: a pasted or duplicated section. Each section should say one new thing.', D.copyDupes);
 if (D.titleCase?.length) add('WARN', 'copy.case', 'Title Case headings. Top-tier sites set headings in sentence case ("It comes in cold", not "It Comes In Cold"); keep capitals for names.', D.titleCase);
+if (D.textMotion?.paras >= 5) {
+  const share = D.textMotion.hidden / D.textMotion.paras;
+  if (share > 0.6) add('WARN', 'motion.text', `${Math.round(share * 100)}% of below-the-fold paragraphs start hidden, waiting for a scroll reveal. On top sites it's 25%, and 4 in 5 leave body copy in place. Reveal media and card groups instead, and let text sit (motion.md §0).`, [`${D.textMotion.hidden}/${D.textMotion.paras} paragraphs`]);
+  else add('PASS', 'motion.text', `Body copy mostly present without a reveal (${D.textMotion.hidden}/${D.textMotion.paras} paragraphs wait for scroll)`);
+}
+if (D.textMotion?.h1Split) add(REGISTER === 'loud' || [4, 10].includes(DIRECTION) ? 'INFO' : 'WARN', 'motion.splitHeading', 'The hero heading is split into word/character spans for an animation. Only 1 in 5 top sites does this; outside Loud, editorial (4) and immersive (10) pages, show the heading on the first frame (motion.md §0).');
 if (D.perf) {
   if (D.perf.offscreen.length) add('WARN', 'perf.offscreen', 'A canvas keeps drawing while it is off screen. Pause render loops with an IntersectionObserver and when the tab is hidden (motion.md §5.8, directions.md §10).', D.perf.offscreen);
   else add('PASS', 'perf.offscreen', `${D.perf.canvases} canvas(es); none draws while off screen`);

@@ -1,9 +1,9 @@
 {
  "url": "http://127.0.0.1:4317/tests/builds/onair/index.html",
  "outDir": "/tmp/gal-onair",
- "ms": 46680,
+ "ms": 46949,
  "counts": {
-  "PASS": 10,
+  "PASS": 11,
   "INFO": 2
  },
  "profile": {
@@ -95,6 +95,11 @@
    "level": "PASS",
    "rule": "motion.ease",
    "msg": "Eases in use: cubic-bezier(0.4,0,0.2,1)×61, cubic-bezier(0.16,1,0.3,1)×22, linear(00%,0.224%,0.6210%,0.917%,1.0424%,1.0730%,1.0440%,152%,0.9966%,1100%)×10, cubic-bezier(0.76,0,0.24,1)×1"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (7/36 paragraphs wait for scroll)"
   },
   {
    "level": "PASS",

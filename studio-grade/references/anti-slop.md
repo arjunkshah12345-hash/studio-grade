@@ -67,6 +67,7 @@ Polished visuals don't excuse broken copy, and these slip through because nobody
 - **Typos in claims and names:** "HIPPA", "See How Its Works", a footer wordmark that misspells the brand.
 - **Title Case headings** next to sentence-case ones.
 - **Vague proof:** "MILLIONS", "U.S." as a stat, named testimonials with no source.
+- **Clever footer colophons** ("Printed in two inks: pink for what's moved…", "This page: 1 box, 0 any"). Real readers called them AI and didn't understand them. Footers say plain things, and include Terms and Privacy.
 Read the page once, aloud, top to bottom, before you call it done.
 
 ## Self-review prompts (ask before shipping)

@@ -188,7 +188,7 @@ button,input,select,textarea{font:inherit;color:inherit}
    Tune the hidden state with --reveal-filter / --reveal-transform on the element or a parent. Don't set
    filter or transform on [data-reveal] with a more specific selector: it outranks .is-in and the text stays blurred.
    Revealed elements end at filter:none, which removes a resting drop-shadow: set --rest-filter:drop-shadow(...) on them. */
-.js [data-reveal]{opacity:0;filter:var(--reveal-filter,blur(8px));transform:var(--reveal-transform,translateY(10px));
+.js [data-reveal]{opacity:0;filter:var(--reveal-filter,none);transform:var(--reveal-transform,translateY(8px));   /* text fades; give media --reveal-filter:blur(8px) (motion.md §0) */
   transition:opacity var(--t-reveal) var(--ease),filter var(--t-reveal) var(--ease),transform var(--t-reveal) var(--ease);
   transition-delay:calc(var(--i, 0) * var(--stagger))}
 .js [data-reveal].is-in{opacity:1;filter:var(--rest-filter,none);transform:none}   /* an element that needs a filter at rest (drop-shadow on a masked card) sets --rest-filter, or puts data-reveal on a wrapper */

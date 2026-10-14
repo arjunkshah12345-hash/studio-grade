@@ -1,9 +1,9 @@
 {
  "url": "http://127.0.0.1:4317/tests/builds/switchback/index.html",
  "outDir": "/tmp/gal-switchback",
- "ms": 47382,
+ "ms": 45731,
  "counts": {
-  "PASS": 10,
+  "PASS": 11,
   "INFO": 3
  },
  "profile": {
@@ -70,7 +70,7 @@
   {
    "level": "PASS",
    "rule": "a11y.contrast",
-   "msg": "All 166 checked text elements on solid grounds meet AA."
+   "msg": "All 168 checked text elements on solid grounds meet AA."
   },
   {
    "level": "PASS",
@@ -90,7 +90,12 @@
   {
    "level": "PASS",
    "rule": "motion.ease",
-   "msg": "Eases in use: cubic-bezier(0.2,0.8,0.2,1)×42, cubic-bezier(0.4,0,0.2,1)×6"
+   "msg": "Eases in use: cubic-bezier(0.2,0.8,0.2,1)×29, cubic-bezier(0.4,0,0.2,1)×6"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (8/36 paragraphs wait for scroll)"
   },
   {
    "level": "PASS",

@@ -357,17 +357,16 @@ details p{padding:0 0 22px;color:var(--ink-2);max-width:40rem}
 /* ---------- footer + the road (§76) ---------- */
 .foot{position:relative;padding-top:var(--s-8);overflow:hidden}
 .foot__grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);row-gap:var(--s-6)}
-.foot__brand{grid-column:1 / span 5;display:grid;gap:12px;align-content:start}
+.foot__brand{grid-column:1 / span 4;display:grid;gap:12px;align-content:start}
 .foot__brand p{color:var(--ink-2);font-size:.9375rem;max-width:28ch}
 .foot__col{grid-column:span 2;display:grid;gap:10px;align-content:start;font-size:.9375rem}
-.foot__col:first-of-type{grid-column:7 / span 2}
+.foot__col:first-of-type{grid-column:5 / span 2}
 .foot__col p{font-weight:500;margin-bottom:4px}
 .foot__col a{color:var(--ink-2);text-decoration:none;padding-block:4px}
 .foot__col a:hover{color:var(--ink);text-decoration:underline}
-.stamp{display:inline-flex!important;align-items:center;gap:8px;width:max-content;font:500 .8125rem/1 var(--font-text)!important;color:var(--pink-ink)!important;padding:8px 12px;border-radius:999px;box-shadow:inset 0 0 0 1px rgb(194 24 111 / .35)}
-.stamp code{font-size:.8125rem}
-.foot__base{display:flex;justify-content:space-between;gap:var(--s-5);flex-wrap:wrap;margin-top:var(--s-7);font-size:.8125rem;color:var(--ink-3)}
-.foot__road{display:block;margin-top:calc(var(--s-5) * -1);pointer-events:none}
+/* the legal line sits on the left under the brand, never beside the art (techniques.md §76) */
+.foot__legal{grid-column:1 / span 4;margin:0;font-size:.8125rem;color:var(--ink-3)}
+.foot__road{display:block;margin-top:clamp(48px,6vw,96px);pointer-events:none}   /* clear air between the last line of text and the tallest tree */
 .foot__road img{width:100%;height:clamp(200px, 27vw, 40vh);object-fit:cover;object-position:50% 100%;mix-blend-mode:multiply}
 
 /* ---------- motion: card hover lift ---------- */
@@ -429,6 +428,7 @@ details p{padding:0 0 22px;color:var(--ink-2);max-width:40rem}
   .cmd--lg{text-align:center}
   .foot__brand{grid-column:1 / -1}
   .foot__col,.foot__col:first-of-type{grid-column:span 6}
+  .foot__legal{grid-column:1 / -1}
   .foot__road img{max-height:none;width:180%;max-width:none;margin-left:-55%}
 }
 

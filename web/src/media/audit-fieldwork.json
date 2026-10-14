@@ -1,9 +1,9 @@
 {
  "url": "http://127.0.0.1:4317/tests/builds/fieldwork/index.html",
  "outDir": "/tmp/gal-fieldwork",
- "ms": 49288,
+ "ms": 51160,
  "counts": {
-  "PASS": 9,
+  "PASS": 10,
   "INFO": 3
  },
  "profile": {
@@ -88,6 +88,11 @@
    "level": "PASS",
    "rule": "motion.ease",
    "msg": "Eases in use: cubic-bezier(0.19,1,0.22,1)×54, cubic-bezier(0.76,0,0.24,1)×40, linear×36"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (2/22 paragraphs wait for scroll)"
   },
   {
    "level": "PASS",

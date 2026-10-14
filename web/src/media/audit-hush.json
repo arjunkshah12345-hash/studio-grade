@@ -1,9 +1,9 @@
 {
  "url": "http://127.0.0.1:4317/tests/builds/hush/index.html",
  "outDir": "/tmp/gal-hush",
- "ms": 45684,
+ "ms": 44932,
  "counts": {
-  "PASS": 10,
+  "PASS": 11,
   "INFO": 2
  },
  "profile": {
@@ -71,7 +71,7 @@
   {
    "level": "PASS",
    "rule": "a11y.contrast",
-   "msg": "All 145 checked text elements on solid grounds meet AA."
+   "msg": "All 147 checked text elements on solid grounds meet AA."
   },
   {
    "level": "PASS",
@@ -91,7 +91,12 @@
   {
    "level": "PASS",
    "rule": "motion.ease",
-   "msg": "Eases in use: cubic-bezier(0.2,0.8,0.2,1)×51, cubic-bezier(0.4,0,0.2,1)×6"
+   "msg": "Eases in use: cubic-bezier(0.2,0.8,0.2,1)×36, cubic-bezier(0.4,0,0.2,1)×6"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (11/35 paragraphs wait for scroll)"
   },
   {
    "level": "PASS",

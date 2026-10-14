@@ -2,6 +2,29 @@
 
 On every award winner, juries scored Animations/Transitions as the highest dev sub-score (7.4–9.6). The motion behind those scores is **specific and quiet**: one house ease, short UI timings, reveals that *focus* rather than travel, and overshoot only on tiny elements.
 
+## 0. What actually moves (measured live on 106 sites, October 2026)
+
+Probe: load each site, read the hero heading at ~100ms and again at 4s, then count which below-the-fold elements start hidden waiting for a scroll reveal (`research/motion-probe.json`, `tools/motion-probe.mjs`).
+
+| | Measured | So |
+|---|---|---|
+| Hero heading visible within ~100ms | **71 of 95 (75%)** | the headline is there on the first frame |
+| Hero heading animates in on load | 18 of 95 (19%) | a load-in headline is a device, not a default |
+| Hero heading split into word/char spans | 19 of 95 (20%) | split text is for Loud, editorial and immersive pages |
+| Below-fold paragraphs hidden before scroll | 878 of 3,549 (25%) | body copy mostly just sits there |
+| Sites that reveal most of their body text | 16 of 75 (21%) | |
+| Below-fold images/video hidden before scroll | 775 of 2,539 (31%) | media is what reveals |
+| Cards and containers hidden before scroll | 704 of 2,012 (35%) | groups reveal, not lines |
+| Sites with no scroll reveals at all | 21 of 78 (27%) | "no reveals" is a legitimate choice |
+| Load a JS animation library | 54 of 106 | GSAP on 41 (`power2`/`power3`/`expo` eases), spring UI (Framer Motion/Motion) on 20, Lenis on 29 |
+| First screen visibly changes between 0.35s and 3.2s | 40 of 104 | most first screens are simply *there* |
+
+**Rules that follow:**
+- **Text is still by default.** The h1, sublines and body copy are present from the first frame. Animate the hero heading only if the direction calls for it (Loud, editorial, immersive), and then only the heading. Never split body text or reveal paragraphs line by line.
+- **Motion goes to the things that aren't text:** images and video (clip or scale reveals, ≤ 0.8s), card groups (one fade and 8–12px rise per group, staggered 60–90ms), the product (UI vignettes playing their one action, live data), and interaction (hover, press, the cursor).
+- **When text does reveal, it fades:** opacity only, or opacity plus ≤ 8px, at 0.3–0.5s, with no blur on reading text. Blur-to-sharp (§5.1) is for media and the hero object.
+- **The engine is JavaScript, used lightly:** GSAP (or the native Web Animations API) for timelines and scroll-linked moments, springs for UI. A page with no reveals at all is fine, and often better for the Quiet register.
+
 ## 1. Easing tokens (frequency across 98 sites)
 
 ```css
@@ -57,7 +80,7 @@ GSAP equivalents: `power2.out` (most common entrance), `power3.out`, `power4.out
 
 ## 5. Reveal primitives (ranked by how often top studios use them)
 
-### 5.1 Blur-to-sharp (the #1 primitive in immersive, editorial and tech heroes)
+### 5.1 Blur-to-sharp (the #1 primitive in immersive, editorial and tech heroes; for media and the hero object, not reading text: see §0)
 ```css
 [data-reveal]{opacity:0;filter:blur(8px);transform:translateY(10px)}
 [data-reveal].is-in{opacity:1;filter:blur(0);transform:none;

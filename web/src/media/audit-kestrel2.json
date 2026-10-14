@@ -1,10 +1,10 @@
 {
  "url": "http://127.0.0.1:4317/tests/builds/kestrel2/index.html",
  "outDir": "/tmp/gal-kestrel2",
- "ms": 42215,
+ "ms": 43977,
  "counts": {
   "WARN": 1,
-  "PASS": 9,
+  "PASS": 10,
   "INFO": 2
  },
  "profile": {
@@ -99,6 +99,11 @@
    "level": "PASS",
    "rule": "motion.ease",
    "msg": "Eases in use: linear×64, cubic-bezier(0.16,1,0.3,1)×30, cubic-bezier(0.4,0,0.2,1)×4, cubic-bezier(0.34,1.56,0.64,1)×1"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (3/15 paragraphs wait for scroll)"
   },
   {
    "level": "PASS",

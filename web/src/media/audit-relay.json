@@ -1,26 +1,26 @@
 {
  "url": "http://127.0.0.1:4317/tests/builds/relay/index.html",
  "outDir": "/tmp/gal-relay",
- "ms": 45592,
+ "ms": 45159,
  "counts": {
-  "PASS": 11,
+  "PASS": 12,
   "INFO": 2
  },
  "profile": {
   "families": [
-   "Inter×117",
+   "Inter×118",
    "JetBrains Mono×54"
   ],
   "display": [
+   "67px/1/-0.028em w510 \"A second reviewer on every p\"",
    "67px/1/-0.028em w510 \"Merge with a second read.\"",
-   "64px/1/-0.04em w400 \"$0\"",
-   "64px/1/-0.04em w400 \"$24\""
+   "64px/1/-0.04em w400 \"$0\""
   ],
   "bodySize": "16",
   "weights": [
    "400×107",
    "500×33",
-   "510×21",
+   "510×22",
    "450×10"
   ],
   "upperShare": 0.15,
@@ -71,7 +71,7 @@
   {
    "level": "PASS",
    "rule": "a11y.contrast",
-   "msg": "All 153 checked text elements on solid grounds meet AA."
+   "msg": "All 154 checked text elements on solid grounds meet AA."
   },
   {
    "level": "PASS",
@@ -91,7 +91,12 @@
   {
    "level": "PASS",
    "rule": "motion.ease",
-   "msg": "Eases in use: cubic-bezier(0.16,1,0.3,1)×60"
+   "msg": "Eases in use: cubic-bezier(0.16,1,0.3,1)×53"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (12/28 paragraphs wait for scroll)"
   },
   {
    "level": "PASS",

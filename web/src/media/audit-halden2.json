@@ -1,9 +1,9 @@
 {
  "url": "http://127.0.0.1:4317/tests/builds/halden2/index.html",
  "outDir": "/tmp/gal-halden2",
- "ms": 60820,
+ "ms": 61633,
  "counts": {
-  "PASS": 10,
+  "PASS": 11,
   "INFO": 3
  },
  "profile": {
@@ -90,7 +90,12 @@
   {
    "level": "PASS",
    "rule": "motion.ease",
-   "msg": "Eases in use: cubic-bezier(0.16,1,0.3,1)×63, cubic-bezier(0.76,0,0.24,1)×29"
+   "msg": "Eases in use: cubic-bezier(0.16,1,0.3,1)×50, cubic-bezier(0.76,0,0.24,1)×29"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (1/15 paragraphs wait for scroll)"
   },
   {
    "level": "PASS",

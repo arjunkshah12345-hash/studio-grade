@@ -1,9 +1,9 @@
 {
  "url": "http://127.0.0.1:4317/tests/builds/tidewell/index.html",
  "outDir": "/tmp/gal-tidewell",
- "ms": 45319,
+ "ms": 44426,
  "counts": {
-  "PASS": 10,
+  "PASS": 11,
   "INFO": 2
  },
  "profile": {
@@ -91,6 +91,11 @@
    "level": "PASS",
    "rule": "motion.ease",
    "msg": "Eases in use: cubic-bezier(0.2,0.8,0.2,1)×31, cubic-bezier(0.4,0,0.2,1)×7"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (13/23 paragraphs wait for scroll)"
   },
   {
    "level": "PASS",

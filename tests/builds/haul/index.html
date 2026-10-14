@@ -1,0 +1,422 @@
+<!--
+DESIGN SPINE · Haul
+DIRECTION   : 11 Bright Product. Staff engineers and EMs want a tool that feels finished and friendly, not a research demo; a generated riso image system gives the migration a world (moving house) that no competitor's dashboard screenshot has.
+REGISTER    : Confident. Bold device: one full-bleed riso-blue (#3255A4) band holding the move board, a grid of 412 module "boxes" printed in pink. Everything else stays on paper.
+AXES        : ground off-white paper #F6F3EC (the print's own paper, so the art sits on the page with no frame) · type genre characterful grotesk (Bricolage Grotesque 500) · image medium two-ink risograph series + real UI vignettes · composition split header over a staggered tray, then alternating vignette-on-crop rows, one colour band · motion feel calm: fade + 8px rise, each vignette plays its one action once
+DEFAULT?    : default-look check: 2/6 matched (warm paper, mid-weight display) → DIFFERENT FROM DEFAULT BY: image medium (riso print, not line drawing), labels in sentence case (no mono caps), no hairline metadata bands, two-ink colour logic instead of one tiny accent
+MOTIF       : the moving box / box label. (1) hero: each vignette carries a "Box 21 of 38" label tab (ornament) · (2) eyebrows: a small pink square instead of a dot (marker) · (3) move board: 412 square boxes, one per module (data-viz) · (4) pricing: two shipping labels with a from/to address and tape (object) · (5) footer: "This page: 1 box, 0 any" stamp (boring-place detail)
+TYPE        : display Bricolage Grotesque 500 · text Geist 400/500 · mono Geist Mono (code inside vignettes and commands only)
+SCALE       : display 42→76px / 1.0 / -0.035em · h2 32→52px / 1.04 / -0.03em · h3 22px · body 17px · label 13px sentence case
+PALETTE     : paper #F6F3EC · paper-2 #ECE6D9 (tray) · surface #FFFDF8 · ink #161D33 (riso blue pushed to near-black) · ink-2 72% · hairline 10% · blue #3255A4 → interface ink ONLY: primary button, links, focus, terminal · pink #FF48B0 → "moved / typed" ONLY: progress fills, added diff lines, marks; pink text uses #C2186F (5.2:1 on paper)
+GRID        : 12 cols / 24px · container 1280 · margin 20→80px · section rhythm 96–144px with a 200px void before the band
+HERO        : H21 split header over a staggered tray (§77). Copy left over the print's empty paper, the van on the right parks its wheels on the tray's top edge; the tray holds Pack / Check / PR vignettes, middle card dropped.
+IMAGERY     : generated riso series (hero van, boxes, house, road) as grounds and bookends + product UI rebuilt in HTML on top (§69)
+CONVERSION  : "Start a migration" → nav pill, hero primary, Team label, finale. "Read a sample PR" → hero secondary (jumps to #sample-pr). "Install the CLI" on the open-source label.
+MOTION      : house ease cubic-bezier(.2,.8,.2,1) · UI 160–240ms · reveal 600ms, 70ms stagger · primitive fade + 8px rise; vignettes: .js→.ts swap, test counter 0→212, review → approved, board boxes fill
+IMAGES      : medium      two-colour risograph print, fluorescent pink (#FF48B0) and blue (#3255A4) inks only, overprinting where they overlap, visible grain, slight misregistration, on off-white paper (#F6F3EC). Friendly, witty, flat shapes. The metaphor is moving house.
+              exclude     no text, no letters, no numbers, no logos, no watermarks, no faces
+              shot list   hero 16:9 van with back open being loaded, hand trolley, van right half, left 45% empty paper · boxes 4:3 tidy stack of moving boxes, packing peanuts · house 4:3 new house, door open, boxes on the step, left third empty · road 21:9 footer, the van driving away over hills cut by the bottom edge, top 55% empty
+              note        hero.png had a 40px letter-like scribble on the bumper: clone-retouched from the adjacent bumper (8 px feather), not regenerated
+NAMING      : moving house → tiers "Carry it yourself" (Open source) / "We bring the van" (Team) · steps Survey the house → Move a box a night → Lock the old door · module states Moved / In the van / At the old house · manifest MOVING.md · CTA verb "Start a migration" · 404 "This box isn't on the manifest."
+SIGNATURES  : §77 split header + staggered vignette tray · §69 UI vignettes on crops of the print · §76 footer road rising from the bottom edge
+VOICE       : hero "Move to TypeScript box by box." · section "Big-bang rewrites stall. Boxes don't." · CTA/finale "Start with one box."
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Haul · Move to TypeScript box by box</title>
+<meta name="description" content="Haul moves a JavaScript codebase to TypeScript one module at a time: it adds the types, runs your tests, and opens small pull requests your team can actually review.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500&family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/hero-1672.webp" imagesrcset="img/hero-880.webp 880w, img/hero-1672.webp 1672w" imagesizes="(max-width: 760px) 150vw, 78vw" fetchpriority="high">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--primary btn--sm" href="#main">Skip to content</a>
+
+<header class="nav" data-nav>
+  <div class="nav__in container">
+    <a class="brand" href="#top" aria-label="Haul, home">
+      <svg class="brand__mark" viewBox="0 0 28 28" aria-hidden="true"><rect x="2" y="7" width="22" height="18" rx="2.5" class="ink-p"/><rect x="11.5" y="3.5" width="6" height="12" rx="1" class="ink-b"/></svg>
+      <span class="brand__word">haul</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#how">How a move runs</a>
+      <a href="#sample-pr">Sample PR</a>
+      <a href="#board">Move board</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <a class="btn btn--primary btn--sm nav__cta" href="#start">Start a migration</a>
+  </div>
+</header>
+
+<main id="main">
+<!-- ============ HERO: H21 split header over a staggered tray (§77) ============ -->
+<section class="hero" id="top" aria-labelledby="hero-title">
+  <div class="hero__stage">
+    <picture class="hero__art">
+      <source type="image/webp" srcset="img/hero-880.webp 880w, img/hero-1672.webp 1672w" sizes="(max-width: 760px) 150vw, 78vw">
+      <img src="img/hero-1672.jpg" srcset="img/hero-880.jpg 880w, img/hero-1672.jpg 1672w" sizes="(max-width: 760px) 150vw, 78vw" width="1672" height="940" alt="A risograph print in pink and blue: a small moving van with its back doors open, half loaded with cardboard boxes, a hand trolley and more boxes waiting beside it." fetchpriority="high">
+    </picture>
+    <div class="hero__copy container">
+      <div class="hero__text">
+        <h1 id="hero-title" class="t-display">Move to TypeScript <span class="pink">box by box.</span></h1>
+        <p class="hero__lede">Haul types one module at a time, runs your tests, and opens a small pull request for a person to review. Main keeps shipping the whole way.</p>
+        <div class="hero__ctas">
+          <a class="btn btn--primary" href="#start">Start a migration</a>
+          <a class="btn btn--quiet" href="#sample-pr">Read a sample PR <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="tray" data-reveal-group>
+      <!-- Card 1: pack -->
+      <article class="tcard">
+        <figure class="vg vg--pack" role="img" aria-label="Haul packing src/billing/invoice.js into invoice.ts: four of the 14 inferred types listed, with 2 leftover any types logged in MOVING.md." data-play>
+          <div class="vg__label"><span class="boxsq" aria-hidden="true"></span>Box 21 of 38 · src/billing</div>
+          <div class="vg__file">
+            <svg viewBox="0 0 14 16" aria-hidden="true"><path d="M2 1h7l3 3v11H2z" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M9 1v3h3" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+            <span class="mono">invoice<span class="ext"><s>.js</s><b>.ts</b></span></span>
+            <span class="vg__dim">src/billing</span>
+          </div>
+          <ul class="vg__types">
+            <li><span class="plus">+</span><code>Invoice</code><span>interface · 6 fields</span></li>
+            <li><span class="plus">+</span><code>LineItem</code><span>interface · 4 fields</span></li>
+            <li><span class="plus">+</span><code>TaxRate</code><span>'standard' | 'reduced' | 'zero'</span></li>
+            <li><span class="plus">+</span><code>Money</code><span>number, branded</span></li>
+          </ul>
+          <div class="vg__foot"><span><b class="t-num" data-count="14">14</b> types added</span><span>2 <code>any</code> logged</span></div>
+        </figure>
+        <div class="tcard__cap"><h3>Packs one module</h3><p>Types come from how your code is called, not from guesses.</p></div>
+      </article>
+
+      <!-- Card 2: check (dropped) -->
+      <article class="tcard">
+        <figure class="vg vg--term" role="img" aria-label="Terminal: haul check src/billing. tsc strict reports 0 errors, vitest reports 212 tests passed in 4.1 seconds, eslint is clean, and the emitted JavaScript is identical to main." data-play>
+          <div class="term__bar"><i></i><i></i><i></i><span>acme/storefront · CI</span></div>
+          <div class="term__body mono">
+            <p class="term__cmd"><span class="dim">$</span> haul check src/billing</p>
+            <p><span class="ok">✓</span> tsc --strict --noEmit<em>0 errors</em></p>
+            <p><span class="ok">✓</span> vitest run src/billing<em><b class="t-num" data-count="212">212</b> passed · 4.1s</em></p>
+            <p><span class="ok">✓</span> eslint --max-warnings 0<em>clean</em></p>
+            <p><span class="ok">✓</span> emitted JS vs main<em>identical</em></p>
+          </div>
+          <div class="term__ticks" aria-hidden="true"></div>
+        </figure>
+        <div class="tcard__cap"><h3>Checks nothing broke</h3><p>Your own tests decide. The compiled output has to match main, byte for byte.</p></div>
+      </article>
+
+      <!-- Card 3: PR -->
+      <article class="tcard">
+        <figure class="vg vg--pr" role="img" aria-label="Pull request 418, Move src/billing to TypeScript, 6 files, 186 additions and 171 deletions, approved by reviewer Priya N." data-play>
+          <div class="pr__head">
+            <span class="pr__state">Open</span><span class="vg__dim">#418</span>
+          </div>
+          <p class="pr__title">Move src/billing to TypeScript</p>
+          <p class="pr__meta"><span>haul-bot</span> · 6 files · <span class="add">+186</span> <span class="del">−171</span></p>
+          <pre class="pr__diff mono"><span class="d-del">- function total(invoice) {</span><span class="d-add">+ function total(invoice: Invoice): Money {</span></pre>
+          <div class="pr__review">
+            <span class="avatar" aria-hidden="true">PN</span>
+            <span class="pr__who">Priya N.</span>
+            <span class="pr__status"><span class="s-wait">Review requested</span><span class="s-ok">Approved</span></span>
+          </div>
+        </figure>
+        <div class="tcard__cap"><h3>Opens a PR you can read</h3><p>One box per pull request, routed to whoever owns the folder.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORKS WITH ============ -->
+<section class="works container" aria-label="Compatibility">
+  <p class="works__lead">Runs inside the repo and CI you already have.</p>
+  <ul class="works__list">
+    <li>GitHub Actions</li><li>GitLab CI</li><li>Buildkite</li><li>Jest</li><li>Vitest</li><li>Mocha</li><li>ESLint</li><li>pnpm</li><li>Yarn</li><li>Nx</li><li>Turborepo</li>
+  </ul>
+</section>
+
+<!-- ============ WHY (two-tone statement, §61 tokens) ============ -->
+<section class="why container" aria-labelledby="why-h">
+  <p class="eyebrow">Why box by box</p>
+  <h2 id="why-h" class="why__text" data-reveal>Big-bang rewrites stall. <span class="dim">The branch drifts, the freeze slips from <s>March</s> to <s>June</s> to “after the launch”, and nobody can review a 900-file diff.</span> Haul moves <span class="tok">one module</span> at a time, checks it with <span class="tok">your tests</span>, and leaves <span class="tok tok--file">main</span> green every night.</h2>
+</section>
+
+<!-- ============ HOW A MOVE RUNS (§69 vignettes on crops) ============ -->
+<section class="how container" id="how" aria-labelledby="how-h">
+  <div class="sec-head">
+    <h2 id="how-h" class="t-h2">Three trips, no freeze. <span class="dim">Survey the house, move it a box a night, then lock the old door.</span></h2>
+  </div>
+  <ol class="steps" data-reveal-group>
+    <li class="step">
+      <div class="step__art step__art--boxes">
+        <figure class="vg vg--manifest" role="img" aria-label="MOVING.md for acme/storefront: 412 modules packed into 38 boxes, leaves first. Box 1 src/utils with 21 files, box 2 src/money with 9, box 3 src/i18n with 12.">
+          <div class="vg__label"><span class="boxsq" aria-hidden="true"></span>MOVING.md</div>
+          <p class="man__sum"><b>412</b> modules · <b>38</b> boxes · leaves first</p>
+          <ul class="man__rows mono">
+            <li><span>Box 01</span><span>src/utils/</span><span>21 files</span></li>
+            <li><span>Box 02</span><span>src/money/</span><span>9 files</span></li>
+            <li><span>Box 03</span><span>src/i18n/</span><span>12 files</span></li>
+            <li class="man__more"><span>…</span><span>35 more boxes</span><span></span></li>
+          </ul>
+        </figure>
+      </div>
+      <div class="step__txt">
+        <p class="step__n">Trip 1</p>
+        <h3 class="t-h3">Survey the house</h3>
+        <p><code class="cmd">npx haul survey</code> reads your import graph and packs modules into boxes, leaves first, so nothing gets typed before the code it depends on.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step__art step__art--van">
+        <figure class="vg vg--queue" role="img" aria-label="Tonight's queue at 02:00 in CI: box 21 src/billing, pull request 418, approved. Box 22 src/cart, pull request 421, tests running. Box 23 src/geo, held because tests mock a file path.">
+          <div class="vg__label"><span class="boxsq" aria-hidden="true"></span>Tonight · 02:00 in your CI</div>
+          <ul class="q">
+            <li><span class="mono">Box 21</span><span>src/billing</span><span class="chip chip--ok">#418 approved</span></li>
+            <li><span class="mono">Box 22</span><span>src/cart</span><span class="chip chip--run">#421 tests running</span></li>
+            <li><span class="mono">Box 23</span><span>src/geo</span><span class="chip chip--held">Held</span></li>
+          </ul>
+        </figure>
+      </div>
+      <div class="step__txt">
+        <p class="step__n">Trip 2</p>
+        <h3 class="t-h3">Move a box a night</h3>
+        <p>Haul runs as a step in your CI on the schedule you set. Each box is one pull request. A box that fails a test stays where it was, with a note.</p>
+      </div>
+    </li>
+    <li class="step">
+      <div class="step__art step__art--house">
+        <figure class="vg vg--tsconfig" role="img" aria-label="The last pull request edits tsconfig.json: allowJs goes from true to false and strict is set to true. 412 of 412 modules moved.">
+          <div class="vg__label"><span class="boxsq" aria-hidden="true"></span>Box 38 of 38 · tsconfig.json</div>
+          <pre class="mono cfg"><span class="d-del">-  "allowJs": true,</span><span class="d-add">+  "allowJs": false,</span><span class="d-add">+  "strict": true,</span></pre>
+          <p class="cfg__done"><span class="ok">✓</span> 412 of 412 modules moved</p>
+        </figure>
+      </div>
+      <div class="step__txt">
+        <p class="step__n">Trip 3</p>
+        <h3 class="t-h3">Lock the old door</h3>
+        <p>When the last box is in, one final pull request turns off <code>allowJs</code> and turns on <code>strict</code>. No JavaScript can sneak back in.</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- ============ FEATURE ROW A: the sample PR ============ -->
+<section class="row container" id="sample-pr" aria-labelledby="pr-h">
+  <div class="row__copy">
+    <p class="eyebrow">A sample pull request</p>
+    <h2 id="pr-h" class="t-h2">Delivered to your door. <span class="dim">One box, one pull request, read in minutes.</span></h2>
+    <ul class="ticks">
+      <li>Types inferred from real call sites, never invented.</li>
+      <li>Leftover <code>any</code> listed with a reason, not hidden.</li>
+      <li>One folder per PR. Your CODEOWNERS file picks the reviewer.</li>
+      <li>No runtime changes. If the emitted JavaScript differs, it doesn’t ship.</li>
+    </ul>
+  </div>
+  <div class="row__art row__art--house">
+    <figure class="win vg--bigpr" role="img" aria-label="Pull request 418 by haul-bot: Move src/billing to TypeScript, box 21 of 38. Six files, 186 additions, 171 deletions. The diff adds an Invoice parameter type and a Money return type to total, and a TaxRate union type. Checks: tsc strict, 212 tests, emitted JavaScript identical. Priya N. approved: read it in four minutes.">
+      <div class="win__bar"><span class="pr__state">Open</span><b>Move src/billing to TypeScript</b><span class="vg__dim">#418</span></div>
+      <div class="win__body">
+        <p class="bigpr__desc">Box 21 of 38. Types inferred from 38 call sites. <span class="mark-any">2 <code>any</code> left</span>: <code>legacyDiscount()</code> is called with 4 shapes, and one CSV row type. Both are logged in MOVING.md.</p>
+        <div class="files mono">
+          <div class="files__h"><span>src/billing/invoice.ts</span><span><span class="add">+86</span> <span class="del">−71</span></span></div>
+<pre class="diff"><span class="ln">12</span><span class="d-add">+ export type TaxRate = 'standard' | 'reduced' | 'zero'</span>
+<span class="ln">13</span><span class="d-ctx"> </span>
+<span class="ln">14</span><span class="d-del">- export function total(invoice) {</span>
+<span class="ln">14</span><span class="d-add">+ export function total(invoice: Invoice): Money {</span>
+<span class="ln">15</span><span class="d-ctx">    return invoice.lines.reduce(</span>
+<span class="ln">16</span><span class="d-del">-     (sum, line) => sum + line.qty * line.unitPrice, 0)</span>
+<span class="ln">16</span><span class="d-add">+     (sum: Money, line: LineItem) => sum + line.qty * line.unitPrice, 0 as Money)</span></pre>
+        </div>
+        <ul class="checks">
+          <li><span class="ok">✓</span>tsc --strict</li>
+          <li><span class="ok">✓</span>212 tests passed</li>
+          <li><span class="ok">✓</span>emitted JS identical</li>
+        </ul>
+        <div class="comment">
+          <span class="avatar" aria-hidden="true">PN</span>
+          <div><p class="comment__who">Priya N. <span class="chip chip--ok">Approved</span></p><p>Read the whole thing in four minutes. The TaxRate union is nicer than what we had.</p></div>
+        </div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ FEATURE ROW B: the test gate ============ -->
+<section class="row row--flip container" aria-labelledby="held-h">
+  <div class="row__copy">
+    <p class="eyebrow">When a test fails</p>
+    <h2 id="held-h" class="t-h2">Your tests are the inspector. <span class="dim">Fail one, and the box stays home.</span></h2>
+    <ul class="ticks">
+      <li>Nothing half-typed ever reaches main.</li>
+      <li>Haul never edits a test without asking you first.</li>
+      <li>The note and a suggested fix go into MOVING.md.</li>
+    </ul>
+  </div>
+  <div class="row__art row__art--boxes">
+    <figure class="win vg--held" role="img" aria-label="Box 23, src/geo, held at the old house. Three tests in test/geo.test.js mock the module by its file path, ../src/geo/distance.js, which no longer exists after renaming to .ts. Haul changed no code and added a suggested fix to MOVING.md.">
+      <div class="win__bar"><span class="chip chip--held">Held</span><b>Box 23 · src/geo</b><span class="vg__dim">02:14</span></div>
+      <div class="win__body">
+        <pre class="mono fail"><span class="x">✗</span> test/geo.test.js › distance › rounds to 2dp
+  <span class="dim">Cannot find module</span> '../src/geo/distance.js'
+  <span class="dim">from</span> test/geo.test.js:3  jest.mock(…)</pre>
+        <p class="held__why"><b>Why:</b> 3 tests mock <code>distance.js</code> by its file path. Renaming it to <code>.ts</code> would break them.</p>
+        <div class="held__note">
+          <p class="mono held__file">MOVING.md · Box 23</p>
+          <p>Kept as JavaScript. Suggested fix: mock <code>'../src/geo/distance'</code> without the extension, then re-run <code>haul pack src/geo</code>.</p>
+        </div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ THE MOVE BOARD: the bold device (riso-blue band) ============ -->
+<section class="band" id="board" aria-labelledby="board-h">
+  <div class="container band__in">
+    <div class="band__head">
+      <h2 id="board-h" class="t-h2">Know what’s moved. <span class="dim">Every module has an address, kept in MOVING.md.</span></h2>
+      <p class="band__ex">Example repo: acme/storefront</p>
+    </div>
+    <div class="board">
+      <div class="board__grid" role="img" aria-label="412 modules drawn as small boxes: 247 moved, 14 in the van, 151 still at the old house." data-board data-moved="247" data-van="14" data-total="412"></div>
+      <div class="board__cols">
+        <div class="bcol">
+          <p class="bcol__h"><span class="key key--moved" aria-hidden="true"></span>Moved</p>
+          <p class="bcol__n t-num">247</p>
+          <ul class="mono"><li>src/utils/</li><li>src/money/</li><li>src/i18n/</li><li>src/api/client/</li><li>…16 more boxes</li></ul>
+        </div>
+        <div class="bcol">
+          <p class="bcol__h"><span class="key key--van" aria-hidden="true"></span>In the van</p>
+          <p class="bcol__n t-num">14</p>
+          <ul class="mono"><li>src/billing/ <span>#418 approved</span></li><li>src/cart/ <span>#421 tests running</span></li></ul>
+        </div>
+        <div class="bcol">
+          <p class="bcol__h"><span class="key key--old" aria-hidden="true"></span>At the old house</p>
+          <p class="bcol__n t-num">151</p>
+          <ul class="mono"><li>src/geo/ <span>held, see note</span></li><li>src/admin/</li><li>src/legacy/</li><li>…13 more boxes</li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ THE MOVING CONTRACT (honest proof) ============ -->
+<section class="contract container" aria-labelledby="contract-h">
+  <div class="contract__head">
+    <p class="eyebrow">The moving contract</p>
+    <h2 id="contract-h" class="t-h2">No customers to quote yet. <span class="dim">So here is what we promise instead.</span></h2>
+  </div>
+  <ol class="terms">
+    <li><h3>No runtime changes</h3><p>Haul adds types and renames files. If the compiled JavaScript differs from main, the box doesn’t ship.</p></li>
+    <li><h3>No hidden <code>any</code></h3><p>Every <code>any</code> and <code>@ts-expect-error</code> Haul leaves is listed in MOVING.md with the reason.</p></li>
+    <li><h3>Your code stays in your CI</h3><p>Haul runs as a step in your pipeline. The open-source CLI runs on your laptop.</p></li>
+    <li><h3>Stop on any night</h3><p>Cancel and you keep merged boxes and untouched JavaScript. Never a half-typed module.</p></li>
+  </ol>
+</section>
+
+<!-- ============ PRICING: two shipping labels ============ -->
+<section class="pricing container" id="pricing" aria-labelledby="pricing-h">
+  <div class="sec-head">
+    <h2 id="pricing-h" class="t-h2">Carry it yourself, <span class="dim">or let us bring the van.</span></h2>
+    <p class="pricing__note">Same engine in both. Team adds the nightly runs, the board and the triage.</p>
+  </div>
+  <div class="labels">
+    <article class="label">
+      <div class="label__top"><span class="label__tier">Open source</span><span class="label__tag">MIT</span></div>
+      <p class="label__name">Carry it yourself</p>
+      <p class="label__price"><span class="t-num">$0</span></p>
+      <p class="label__unit">free, forever</p>
+      <div class="label__addr"><span><i>From</i>src/**/*.js</span><span><i>To</i>src/**/*.ts</span></div>
+      <ul class="ticks ticks--sm">
+        <li><code>haul survey</code>, <code>pack</code> and <code>check</code> on your machine</li>
+        <li>MOVING.md manifest and notes</li>
+        <li>You open the pull requests</li>
+      </ul>
+      <a class="btn btn--quiet label__cta" href="#start">Install the CLI</a>
+    </article>
+    <article class="label label--team">
+      <div class="label__top"><span class="label__tier">Team</span><span class="label__tag label__tag--pink">Billed monthly</span></div>
+      <p class="label__name">We bring the van</p>
+      <p class="label__price"><span class="t-num">$40</span></p>
+      <p class="label__unit">per engineer, per month</p>
+      <div class="label__addr"><span><i>From</i>your CI, nightly</span><span><i>To</i>a PR per box</span></div>
+      <ul class="ticks ticks--sm">
+        <li>Nightly moves in your CI, at the pace you set</li>
+        <li>The move board, shared with the team</li>
+        <li>Reviewers picked from CODEOWNERS</li>
+        <li>Held boxes triaged with a suggested fix</li>
+      </ul>
+      <a class="btn btn--primary label__cta" href="#start">Start a migration</a>
+    </article>
+  </div>
+</section>
+
+<!-- ============ FAQ + contact ============ -->
+<section class="faq container" aria-labelledby="faq-h">
+  <div class="faq__side">
+    <h2 id="faq-h" class="t-h2">Before the move.</h2>
+    <div class="contact">
+      <p class="contact__h">Moving a monorepo?</p>
+      <p>Tell us the size and the test runner. An engineer replies, usually within a working day.</p>
+      <a class="link" href="mailto:moves@haul.example">moves@haul.example</a>
+    </div>
+  </div>
+  <div class="faq__list">
+    <details open><summary>Does Haul change how my code runs?</summary><p>No. It adds type annotations, type files and renames. Every box is compiled and compared with main; if the emitted JavaScript differs, the box is held.</p></details>
+    <details><summary>Where do the types come from?</summary><p>From the TypeScript compiler’s inference plus your call sites, tests and JSDoc. When a value genuinely has several shapes, Haul writes <code>any</code> and logs it instead of guessing.</p></details>
+    <details><summary>What happens when a test fails?</summary><p>The box stays as JavaScript, nothing is merged, and the failure and a suggested fix go into MOVING.md. The next night Haul moves on to the next box.</p></details>
+    <details><summary>Does our code leave our infrastructure?</summary><p>No. Team runs as a step inside your own CI runners; the open-source CLI runs locally. The hosted board only receives module paths and status.</p></details>
+    <details><summary>Can we pause or set the pace?</summary><p>Yes. Set how many boxes a night, which folders to skip, and which days to stay quiet, such as release weeks.</p></details>
+  </div>
+</section>
+
+<!-- ============ FINALE bookend (hero re-crop) ============ -->
+<section class="finale" id="start" aria-labelledby="finale-h">
+  <div class="finale__card container">
+    <picture class="finale__art" aria-hidden="true">
+      <source type="image/webp" srcset="img/hero-880.webp 880w, img/hero-1672.webp 1672w" sizes="(max-width: 760px) 160vw, 72vw">
+      <img src="img/hero-1672.jpg" srcset="img/hero-880.jpg 880w, img/hero-1672.jpg 1672w" sizes="(max-width: 760px) 160vw, 72vw" width="1672" height="940" alt="" loading="lazy">
+    </picture>
+    <div class="finale__copy">
+      <h2 id="finale-h" class="t-display">Start with one box.</h2>
+      <p>Survey your repo in about a minute. Nothing changes until you merge a pull request.</p>
+      <div class="finale__ctas">
+        <a class="btn btn--primary" href="#pricing">Start a migration</a>
+        <code class="cmd cmd--lg">npx haul survey</code>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ FOOTER with the road rising from the bottom edge (§76) ============ -->
+<footer class="foot">
+  <div class="container foot__grid">
+    <div class="foot__brand">
+      <a class="brand" href="#top" aria-label="Haul, back to top">
+        <svg class="brand__mark" viewBox="0 0 28 28" aria-hidden="true"><rect x="2" y="7" width="22" height="18" rx="2.5" class="ink-p"/><rect x="11.5" y="3.5" width="6" height="12" rx="1" class="ink-b"/></svg>
+        <span class="brand__word">haul</span>
+      </a>
+      <p>Moves JavaScript to TypeScript, one box at a time. A fictional product.</p>
+      <p class="stamp"><span class="boxsq" aria-hidden="true"></span>This page: 1 box, 0 <code>any</code></p>
+    </div>
+    <nav class="foot__col" aria-label="Product"><p>Product</p><a href="#how">How a move runs</a><a href="#sample-pr">Sample PR</a><a href="#board">Move board</a><a href="#pricing">Pricing</a></nav>
+    <nav class="foot__col" aria-label="Docs"><p>Docs</p><a href="#start">Install the CLI</a><a href="#how">MOVING.md format</a><a href="#how">CI setup</a><a href="#start">Changelog</a></nav>
+    <nav class="foot__col" aria-label="Company"><p>Company</p><a href="#start">About</a><a href="#start">Security</a><a href="mailto:moves@haul.example">Contact</a></nav>
+  </div>
+  <div class="container foot__base"><span>© 2026 Haul</span><span>Printed in two inks: pink for what’s moved, blue for what you press.</span></div>
+  <picture class="foot__road" aria-hidden="true">
+    <source type="image/webp" srcset="img/road-1000.webp 1000w, img/road-1916.webp 1916w" sizes="100vw">
+    <img src="img/road-1916.jpg" srcset="img/road-1000.jpg 1000w, img/road-1916.jpg 1916w" sizes="100vw" width="1916" height="821" alt="" loading="lazy">
+  </picture>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

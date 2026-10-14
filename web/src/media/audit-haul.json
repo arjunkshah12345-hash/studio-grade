@@ -1,0 +1,122 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/haul/index.html",
+ "outDir": "/tmp/gal-haul",
+ "ms": 45315,
+ "counts": {
+  "PASS": 10,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Geist×128",
+   "Geist Mono×95",
+   "Bricolage Grotesque×52"
+  ],
+  "display": [
+   "74px/1/-0.035em w500 \"Move to TypeScript box by bo\"",
+   "74px/1/-0.035em w500 \"box by box.\"",
+   "74px/1/-0.035em w500 \"Start with one box.\""
+  ],
+  "bodySize": "15",
+  "weights": [
+   "400×157",
+   "500×117",
+   "700×1"
+  ],
+  "upperShare": 0,
+  "paper": "rgb(246,243,236)",
+  "accents": [
+   "rgb(50,85,164) bg a.skip"
+  ],
+  "buttons": [
+   "pill 38px \"Start a migration\"",
+   "pill 48px \"Start a migration\"",
+   "pill 48px \"Read a sample PR\n→\"",
+   "pill 48px \"Install the CLI\"",
+   "pill 48px \"Start a migration\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)",
+   "cubic-bezier(.2,.8,.2,1)",
+   "cubic-bezier(0.45,0,0.2,1)"
+  ],
+  "nav": {
+   "h": 68,
+   "links": 6
+  },
+  "pageVh": 10
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "3 families: Geist, Geist Mono, Bricolage Grotesque"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 74px · lh 1 · -0.035em · weight 500 · Bricolage Grotesque)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (3/6 traits: warmOffWhite, hairlineBands, lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "One accent hue (210° (w239) e.g. rgb(50,85,164) bg a.skip)"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 153 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 8 text elements over imagery meet AA (sampled from pixels)"
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: pill"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "2 hero CTA(s)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: linear×412, cubic-bezier(0.2,0.8,0.2,1)×24, cubic-bezier(0.4,0,0.2,1)×7"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 9.1% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 10 viewports (direction 11 norm 7–12)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/gal-haul/desktop-hero.png",
+  "/tmp/gal-haul/slice-01.jpg … (one per viewport)",
+  "/tmp/gal-haul/desktop-full.jpg",
+  "/tmp/gal-haul/mobile-hero.png",
+  "/tmp/gal-haul/mobile-full.jpg",
+  "/tmp/gal-haul/reduced-motion-hero.png"
+ ]
+}

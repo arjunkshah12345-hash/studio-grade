@@ -33,6 +33,11 @@
 !/tests/builds/lantern/
 !/tests/builds/morrow/
 !/tests/builds/darksky/
+!/tests/builds/tidewell/
+!/tests/builds/hush/
+!/tests/builds/nightlight/
+!/tests/builds/switchback/
+!/tests/builds/haul/
 
 # research: our notes only, never third-party screenshots or scraped pages
 !/research/

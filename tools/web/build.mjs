@@ -14,17 +14,11 @@ const SITE = 'https://studio-grade.vercel.app';
 
 /* ------------------------------------------------------------------ projects */
 const PROJECTS = [
-  { slug: 'nocturne', name: 'Nocturne', kind: 'Music festival', brief: 'A three-night festival of electronic and experimental music in Rotterdam’s old port warehouses: 41 artists on three stages, tickets as the one job.', line: 'Each stage owns a colour; the line-up is the image.', accent: '#FF4B1F' },
-  { slug: 'sprout', name: 'Sprout', kind: 'Consumer app', brief: 'A plant-care app for people who keep killing their plants. Photograph a plant and it becomes a character that tells you when it’s thirsty, cold or stuck in the dark.', line: 'Plants with faces, on a pink field, that react to you.', accent: '#FF6FB1' },
-  { slug: 'tally', name: 'Tally', kind: 'Fintech API', brief: 'A payroll API that pays contractors in 90 countries in local currency, with tax forms and classification handled. For engineers and finance leads.', line: 'A cobalt stage, a world in dots, payouts drawing tally marks.', accent: '#1D3CF2' },
-  { slug: 'fieldwork', name: 'Fieldwork', kind: 'Landscape architecture', brief: 'A 22-person Rotterdam studio designing parks, waterfronts and streets that hold rainwater, looking for commissions and recruits. No photographs.', line: 'Cut-paper models that flood as you scroll.', accent: '#1F4B63' },
-  { slug: 'relay', name: 'Relay', kind: 'Developer tool', brief: 'An AI code reviewer that reads every pull request, comments on the line, and learns a team’s conventions. For staff engineers and their managers.', line: 'A real pull-request review is the hero.', accent: '#F2A93B' },
-  { slug: 'halden2', name: 'Halden', kind: 'Hospitality', brief: 'A fourteen-room hotel on a Norwegian fjord with a sauna on the water and a twenty-seat farm kitchen. Open March to November. No photographs.', line: 'A woodcut fjord whose light changes as you scroll.', accent: '#C9733E' },
-  { slug: 'onair', name: 'On Air', kind: 'Podcast studio', brief: 'A four-person Manchester studio that takes a founder from first recording to a launched show: a six-week Pilot or a monthly Season. No clients, quotes or listener numbers to show yet.', line: 'Pricing as cassette J-cards, an ON AIR lamp that lights as you scroll.', accent: '#E8432A' },
-  { slug: 'lantern', name: 'Lantern', kind: 'Research lab', brief: 'A twelve-person nonprofit lab in Edinburgh studying when and why AI models change their answers under pressure. Papers, open datasets and a quarterly drift report. No real papers or funders to show yet.', line: 'A transcript where the model gives up the right answer, marked up in red pencil.', accent: '#B83C1E' },
-  { slug: 'morrow', name: 'Morrow', kind: 'Fragrance house', brief: 'A Copenhagen fragrance house with six scents, each named for an hour of the day, and a discovery set credited against a full bottle. No photographs, reviews or stockists.', line: 'Six still lifes; the light changes with the hour as you read.', accent: '#C9A27A' },
-  { slug: 'darksky', name: 'Leave the Lights', kind: 'Civic campaign', brief: 'A one-page campaign asking a northern city to adopt a dark-sky lighting ordinance: shielded, warm, dimmable street lights. The page is the argument.', line: 'The sky over 69.7°N at 22:00 loses and regains its stars as you scroll.', accent: '#FFB15C' },
-  { slug: 'kestrel2', name: 'Kestrel K-1', kind: 'Industrial hardware', brief: 'An autonomous drone that inspects wind-turbine blades: eleven minutes a blade, defects to 0.2 mm, a report the same day. For wind-farm operations directors.', line: 'An inspection drawn as it happens.', accent: '#F0541E' },
+  { slug: 'tidewell', name: 'Tidewell', kind: 'Café back office', brief: 'Tidewell reads a café’s supplier invoices, keeps count of the stock and drafts the weekly order for the owner to approve. For owners of one to three shops who do the books at night.', line: 'A golden-hour photograph composed around the headline; the product as small, real vignettes on crops of the series.', accent: '#22573F' },
+  { slug: 'hush', name: 'Hush', kind: 'AI scribe for GPs', brief: 'An AI scribe for family doctors: it listens with the patient’s consent, drafts the note in the practice’s format, and nothing is saved until the doctor approves it.', line: 'A signed consult note set on a sepia engraving of the consulting room; every certification visibly a placeholder.', accent: '#7A2E22' },
+  { slug: 'nightlight', name: 'Nightlight', kind: 'Bedtime stories', brief: 'A child picks three things from a toy box and Nightlight writes a gentle story with them, read aloud in a voice a parent records once. Always ends with the child asleep.', line: 'A clay bedroom and a working toy box: pick three, hear how the story starts.', accent: '#2B2F6B' },
+  { slug: 'switchback', name: 'Switchback', kind: 'Hill-day planner', brief: 'Describe the hill day you want in Scotland and Switchback returns a route with timings, the weather window, escape routes and the last safe turn-back point. Planning help, not a guarantee.', line: 'A tear-off route card in a gouache Highland glen, morning sky to sunset ridge.', accent: '#2F5D50' },
+  { slug: 'haul', name: 'Haul', kind: 'TypeScript migration', brief: 'Haul moves a JavaScript codebase to TypeScript one module at a time, runs the tests and opens small reviewed pull requests, so the move happens without a freeze.', line: 'A two-ink risograph moving day, and a tray of real vignettes: box 21, 212 tests, PR #418.', accent: '#3255A4' },
 ];
 
 const WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve'];
@@ -126,7 +120,7 @@ function home() {
       <li class="reel-item"${k >= total ? ' aria-hidden="true"' : ''}><a href="/work/${p.slug}/"${k >= total ? ' tabindex="-1"' : ''}>
         <span class="reel-frame"><img src="/media/${p.slug}/hero.jpg" alt="${k >= total ? '' : esc(p.name)}" width="2880" height="1800" loading="${k < 3 ? 'eager' : 'lazy'}" decoding="async"></span>
         <span class="reel-cap"><b>${esc(p.name)}</b><span>${esc(p.register)} · ${esc(p.dirName)}</span></span></a></li>`).join('');
-  const feat = ['nocturne', 'sprout', 'fieldwork'].map((s) => PROJECTS.find((p) => p.slug === s));
+  const feat = ['tidewell', 'nightlight', 'hush'].map((s) => PROJECTS.find((p) => p.slug === s)).filter(Boolean);
   return layout({
     title: 'Studio Grade: agents that design like studios',
     desc: 'An agent skill for studio-grade web design. Measured from 99 live sites by basement, Exo Ape, Work & Co, AREA 17 and more. Picks a direction, sets a register, and audits its own work.',
@@ -184,9 +178,9 @@ function home() {
     <p class="sec-p" data-reveal>A direction measured from real studio work, a register for how loud to be, five range axes so it doesn’t look like the last site, and a motif to carry through. Then tokens, then sections, then the audit.</p>
     <a class="link" href="/method/">The method <span aria-hidden="true">→</span></a>
   </div>
-  <figure class="spine-card" aria-label="Nocturne’s design spine, as written by the agent before it built the site">
-    <figcaption><span>nocturne/index.html</span><span>Design spine</span></figcaption>
-    <dl>${['DIRECTION', 'REGISTER', 'AXES', 'MOTIF', 'VOICE'].map((k) => `<div data-reveal><dt>${k}</dt><dd>${esc((PROJECTS[0].spine[k] || '').slice(0, 220))}</dd></div>`).join('')}</dl>
+  <figure class="spine-card" aria-label="${esc(PROJECTS[0].name)}’s design spine, as written by the agent before it built the site">
+    <figcaption><span>${PROJECTS[0].slug}/index.html</span><span>Design spine</span></figcaption>
+    <dl>${['DIRECTION', 'REGISTER', 'IMAGES', 'MOTIF', 'VOICE'].filter((k) => PROJECTS[0].spine[k]).map((k) => `<div data-reveal><dt>${k}</dt><dd>${esc((PROJECTS[0].spine[k] || '').replace(/\s+/g, ' ').slice(0, 220))}</dd></div>`).join('')}</dl>
   </figure>
 </section>
 
@@ -196,7 +190,7 @@ function home() {
       <p class="kicker kicker--light">The audit</p>
       <h2 id="au-h" class="sec-h" data-reveal>It grades its own work.</h2>
       <p class="sec-p" data-reveal>Thirty-plus measured rules at 1440 and 390 pixels: type, contrast, colour logic, the template tells, mobile overflow, reduced motion, hero visibility, and the default look. Then it opens a screenshot of every screen and looks.</p>
-      <div class="tabs" role="tablist" aria-label="Audit examples"><button role="tab" aria-selected="true" aria-controls="term" data-run="slop">A template page</button><button role="tab" aria-selected="false" aria-controls="term" data-run="nocturne">Nocturne</button></div>
+      <div class="tabs" role="tablist" aria-label="Audit examples"><button role="tab" aria-selected="true" aria-controls="term" data-run="slop">A template page</button><button role="tab" aria-selected="false" aria-controls="term" data-run="tidewell">Tidewell</button></div>
     </div>
     <div class="term" id="term" role="tabpanel"><div class="term-bar"><i></i><i></i><i></i><span>node scripts/audit.mjs index.html</span></div><pre class="term-out" id="term-out" aria-live="polite"></pre><span class="term-stamp stamp" aria-hidden="true"><span class="stamp-k">Grade</span><span class="stamp-v" id="term-grade">—</span></span></div>
   </div>
@@ -235,7 +229,7 @@ function workIndex() {
     body: `
 <section class="page-head wrap">
   <h1 class="page-h" data-split="words">Work</h1>
-  <p class="page-sub" data-reveal>${Ncap} briefs given to ${N} agents that read only the skill. Different directions, different registers, no templates and no stock imagery. Each passed the skill’s audit at 1440 and 390&nbsp;pixels.</p>
+  <p class="page-sub" data-reveal>${Ncap} product briefs given to ${N} agents that read only the skill. Each one is Bright Product with its own image series, generated with Codex to a written style bible and checked by eye: a photograph, an engraving, clay, gouache and a risograph print. No templates, no stock. Each passed the skill’s audit at 1440 and 390&nbsp;pixels.</p>
   <div class="filters" role="group" aria-label="Filter by register" data-reveal>
     ${['All', ...['Loud', 'Confident', 'Quiet'].filter((r) => PROJECTS.some((p) => p.register === r))].map((f, i) => `<button type="button" class="chip" aria-pressed="${i === 0}" data-filter="${f.toLowerCase()}">${f}<span class="chip-n">${f === 'All' ? total : PROJECTS.filter((p) => p.register === f).length}</span></button>`).join('')}
   </div>

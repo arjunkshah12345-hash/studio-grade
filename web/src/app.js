@@ -59,15 +59,15 @@ if (out) {
       ['w', '! WARN  type.display       700 weight, 1.3 leading, 0em tracking'],
       ['w', '! WARN  copy.hype          supercharge · unlock the · seamless'],
       ['', ''], ['s', '7 fail · 18 warn · 2 pass']] },
-    nocturne: { fail: false, grade: '0 fail · 0 warn', lines: [
-      ['p', '✔ PASS  style.defaultLook  0 of 6 default-look traits'],
-      ['p', '✔ PASS  color.accent       colour-block system, one meaning per hue'],
-      ['p', '✔ PASS  a11y.contrast      242 of 242 text elements meet AA'],
-      ['p', '✔ PASS  hero.firstFrame    hero copy visible from the first frame'],
-      ['p', '✔ PASS  type.display       314px condensed caps, leading 0.86'],
-      ['p', '✔ PASS  mobile.overflow    no overflow at 390px'],
-      ['p', '✔ PASS  motion.ease        one house ease, one in-out'],
-      ['', ''], ['s', '0 fail · 0 warn · 9 pass']] },
+    tidewell: { fail: false, grade: '0 fail · 0 warn', lines: [
+      ['p', '✔ PASS  style.defaultLook   3 of 6 default-look traits'],
+      ['p', '✔ PASS  color.accent        one accent hue, pine green'],
+      ['p', '✔ PASS  a11y.contrast       100 of 100 text elements meet AA'],
+      ['p', '✔ PASS  a11y.contrast.media 10 of 10 over the photo, sampled from pixels'],
+      ['p', '✔ PASS  type.display        77px Fraunces 400, leading 1.02'],
+      ['p', '✔ PASS  mobile.overflow     no overflow at 390px'],
+      ['p', '✔ PASS  motion.ease         one house ease, one for UI'],
+      ['', ''], ['s', '0 fail · 0 warn · 10 pass']] },
   };
   const term = $('#term'), stamp = $('.term-stamp'), grade = $('#term-grade');
   let tm = 0;

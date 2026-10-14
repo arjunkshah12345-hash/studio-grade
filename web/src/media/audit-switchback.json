@@ -1,0 +1,124 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/switchback/index.html",
+ "outDir": "/tmp/gal-switchback",
+ "ms": 47382,
+ "counts": {
+  "PASS": 10,
+  "INFO": 3
+ },
+ "profile": {
+  "families": [
+   "Instrument Sans×179",
+   "Fraunces×30"
+  ],
+  "display": [
+   "79px/1/-0.028em w400 \"Big views. Back before dark.\"",
+   "79px/1/-0.028em w400 \"Where to on Saturday?\"",
+   "69px/1/-0.035em w400 \"£0\""
+  ],
+  "bodySize": "15",
+  "weights": [
+   "400×118",
+   "500×91"
+  ],
+  "upperShare": 0,
+  "paper": "rgb(255,255,255)",
+  "accents": [
+   "rgb(168,74,34) text \"12:00\""
+  ],
+  "buttons": [
+   "pill 38px \"Plan my day\"",
+   "pill 48px \"Plan my day\"",
+   "pill 48px \"Plan my day\"",
+   "pill 48px \"Start Hill for £6\"",
+   "pill 48px \"Plan my day\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)",
+   "cubic-bezier(.2,.8,.2,1)"
+  ],
+  "nav": {
+   "h": 931,
+   "links": 7
+  },
+  "pageVh": 10.3
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "2 families: Instrument Sans, Fraunces"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 79px · lh 1 · -0.028em · weight 400 · Fraunces)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (2/6 traits: hairlineBands, lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "One accent hue (30° (w349) e.g. rgb(168,74,34) text \"12:00\")"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 166 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 12 text elements over imagery meet AA (sampled from pixels)"
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: pill"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "1 hero CTA(s)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.2,0.8,0.2,1)×42, cubic-bezier(0.4,0,0.2,1)×6"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 12.8% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "shape.shadows",
+   "msg": "9 elements have drop shadows. Use rings, fills, or hairlines; keep real shadow for floating product windows."
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 10.3 viewports (direction 11 norm 7–12)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/gal-switchback/desktop-hero.png",
+  "/tmp/gal-switchback/slice-01.jpg … (one per viewport)",
+  "/tmp/gal-switchback/desktop-full.jpg",
+  "/tmp/gal-switchback/mobile-hero.png",
+  "/tmp/gal-switchback/mobile-full.jpg",
+  "/tmp/gal-switchback/reduced-motion-hero.png"
+ ]
+}

@@ -1,0 +1,119 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/tidewell/index.html",
+ "outDir": "/tmp/gal-tidewell",
+ "ms": 45319,
+ "counts": {
+  "PASS": 10,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Instrument Sans×196",
+   "Fraunces×29"
+  ],
+  "display": [
+   "77px/1.02/-0.025em w400 \"The books close before you d\"",
+   "67px/1/-0.03em w400 \"£29\"",
+   "67px/1/-0.03em w400 \"£69\""
+  ],
+  "bodySize": "15",
+  "weights": [
+   "400×163",
+   "500×62"
+  ],
+  "upperShare": 0,
+  "paper": "rgb(255,253,250)",
+  "accents": [
+   "rgb(31,91,69) bg a.btn"
+  ],
+  "buttons": [
+   "pill 38px \"Start free\"",
+   "pill 52px \"Start free for 30 days\"",
+   "pill 52px \"See a week in Tidewell\"",
+   "pill 44px \"Start free for 30 days\"",
+   "pill 44px \"Start free for 30 days\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)",
+   "cubic-bezier(.2,.8,.2,1)"
+  ],
+  "nav": {
+   "h": 876,
+   "links": 8
+  },
+  "pageVh": 7.9
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "2 families: Instrument Sans, Fraunces"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 77px · lh 1.02 · -0.025em · weight 400 · Fraunces)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (3/6 traits: hairlineBands, tinyAccent, lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "One accent hue (150° (w10) e.g. rgb(31,91,69) bg a.btn)"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 100 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 10 text elements over imagery meet AA (sampled from pixels)"
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: pill"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "2 hero CTA(s)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.2,0.8,0.2,1)×31, cubic-bezier(0.4,0,0.2,1)×7"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 0.5% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 7.9 viewports (direction 11 norm 7–12)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/gal-tidewell/desktop-hero.png",
+  "/tmp/gal-tidewell/slice-01.jpg … (one per viewport)",
+  "/tmp/gal-tidewell/desktop-full.jpg",
+  "/tmp/gal-tidewell/mobile-hero.png",
+  "/tmp/gal-tidewell/mobile-full.jpg",
+  "/tmp/gal-tidewell/reduced-motion-hero.png"
+ ]
+}

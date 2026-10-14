@@ -1,0 +1,375 @@
+<!--
+DESIGN SPINE · Tidewell
+DIRECTION   : 11 Bright Product — café owners who do the books at night need software that feels friendly, capable and finished, and the thing it sells (an evening off) is best shown as a photograph.
+REGISTER    : Confident — the one bold device is the full-bleed golden-hour photograph with the headline set in its sky; everything after it is white, calm and small.
+AXES        : ground white #FFFDFA with a warm tray · type genre soft literary serif (Fraunces 400) + friendly grotesk · image medium generated photo series with HTML product vignettes on it · composition photo bookends + product stage on photo crops · motion calm rise
+DEFAULT?    : 1/6 matched (near-black ink, tight tracking) → DIFFERENT FROM DEFAULT BY: ground (white, not warm paper), labels (sentence case, no mono caps), no hairline metadata bands, hero medium (photograph, not a line drawing), accent works on buttons
+MOTIF       : the day rail — a hairline with a sun dot at the time of day. 1 logo mark (the sun on the waterline) · 2 hero chip (Thu 18:10) · 3 step clocks (06:52 / 11:20 / 21:40) · 4 the week axis in "A week in Tidewell" · 5 the live clock in the footer
+TYPE        : display Fraunces 400 (opsz auto, SOFT 50) · text Instrument Sans 400/500 · no mono (numbers are Instrument Sans tabular)
+SCALE       : display 36→78px / 1.02 / −0.025em · h2 32→52px / 1.06 / −0.02em · h3 22→26px · body 17px/1.55 · label 13px sentence case
+PALETTE     : paper #FFFDFA · paper-2 #F4F0E8 (tray) · ink #16221D · ink-2 ink@68% · hairline ink@10% · accent café green #1F5B45 → ONLY primary buttons + the "approved" state (and the eyebrow dot) · flag terracotta #B04E25 → ONLY price-rise and low-stock flags inside vignettes
+GRID        : 12 / 24px · container 1240px · side margin 20→80px · section rhythm 128px, chapter voids 176px
+HERO        : H19 — full-bleed golden-hour photo inset 12px, radius 28; h1 in ink, left, in the clean sky; the owner reading at her table in the lower-right third; a small "order drafted" chip on the wall bottom-left. Mobile: text on paper, then a portrait crop of the owner.
+IMAGERY     : photography (generated series) + product UI rebuilt in HTML on crops of it (techniques §69)
+CONVERSION  : "Start free for 30 days" → nav pill, hero, both price cards, finale email form; secondary "See a week in Tidewell" → #week
+MOTION      : house ease cubic-bezier(.2,.8,.2,1) · UI 180ms · reveal 640ms, 8px rise, 70ms stagger · primitive fade-rise; each vignette plays its one action once on view
+IMAGES      : medium      real-looking editorial photograph, 35mm lens, warm natural grade, soft contrast, gentle film grain
+              light       late-afternoon golden hour from the left (hero); morning light from the left (delivery, counter); blue hour (dusk)
+              palette     warm cream, terracotta, deep green, pale evening sky (sampled: sky #D8DDE7→#F2D9BC, green #1F4A37, terracotta #B4683A, dusk #2058AE)
+              setting     a small independent café on a quiet tree-lined European side street
+              viewpoint   eye level, 35mm
+              type zone   hero top 45% clean sky; delivery and counter left third clean; dusk top 50% clean sky
+              exclude     no text, no signage lettering, no logos, no watermarks, nobody looking at the camera, no laptops
+              shot list   hero 21:9 (owner reading outside, work done) · delivery 4:3 · counter 4:3 · dusk 21:9 (finale bookend)
+NAMING      : omitted — "tide" is a mood, not a system; plain words for plans and steps
+SIGNATURES  : §68 photo composed for the headline · §69 UI vignettes on crops of the photos · §70 ghost wordmark tinted from the dusk sky
+VOICE       : hero "The books close before you do." · section "Invoices in at dawn. Read by the time you open." · CTA "Start free for 30 days" · finale "Stack the chairs. The order's drafted."
+-->
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tidewell — the back office for independent cafés</title>
+<meta name="description" content="Tidewell reads your supplier invoices, keeps count of your stock and margins, and drafts the weekly order for you to approve. From £29 a month per café.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,500,0..100&family=Instrument+Sans:wght@400;500&display=swap">
+<link rel="preload" as="image" href="img/hero-1916.webp" imagesrcset="img/hero-1280.webp 1280w, img/hero-1916.webp 1916w" imagesizes="100vw" media="(min-width: 761px)" fetchpriority="high">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="btn btn--primary skip" href="#main">Skip to content</a>
+
+<header class="hero" id="top">
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="#top" aria-label="Tidewell, home">
+      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="11.5" r="7.25"/><path class="sun" d="M5.36 14.5A7.25 7.25 0 0 0 18.64 14.5Z"/><path d="M1.5 14.5h21"/></svg>
+      <span>Tidewell</span>
+    </a>
+    <div class="nav-pill">
+      <ul class="nav-links">
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#week">A week</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">Questions</a></li>
+      </ul>
+      <a class="btn btn--accent btn--sm nav-cta" href="#start">Start free</a>
+    </div>
+  </nav>
+
+  <div class="hero-copy">
+    <h1 class="t-display hero-title">The books close<br> before you do.</h1>
+    <p class="hero-sub">Tidewell reads your supplier invoices, keeps count of the stock and drafts Thursday’s order. You look it over with a coffee and press approve.</p>
+    <div class="hero-ctas">
+      <a class="btn btn--accent btn--lg" href="#start">Start free for 30 days</a>
+      <a class="btn btn--paper btn--lg" href="#week">See a week in Tidewell</a>
+    </div>
+  </div>
+
+  <div class="hero-media">
+    <picture>
+      <source media="(max-width: 760px)" type="image/webp" srcset="img/hero-portrait-656.webp">
+      <source media="(max-width: 760px)" srcset="img/hero-portrait-656.jpg">
+      <source type="image/webp" srcset="img/hero-1280.webp 1280w, img/hero-1916.webp 1916w" sizes="100vw">
+      <img src="img/hero-1916.jpg" srcset="img/hero-1280.jpg 1280w, img/hero-1916.jpg 1916w" sizes="100vw" width="1916" height="821" fetchpriority="high"
+        alt="A café owner in a linen apron reads a book at an outside table at golden hour, a cup of coffee beside her and hills behind the village.">
+    </picture>
+    <figure class="hero-chip" role="img" aria-label="Notification at Thursday 18:10: Friday's order is drafted, four suppliers, £410.75, ready to review.">
+      <div class="chip-top"><span class="rail" style="--t:.757" aria-hidden="true"></span><span>Thu 18:10</span></div>
+      <p class="chip-title">Friday’s order is drafted</p>
+      <p class="chip-meta"><span>4 suppliers</span><span class="t-num">£410.75</span><span class="chip-cta">Review</span></p>
+    </figure>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 2 · works with -->
+  <section class="works container" aria-labelledby="works-h">
+    <h2 id="works-h" class="works-lead">Works with what’s already behind your counter</h2>
+    <dl class="works-list">
+      <div><dt>Inbox</dt><dd>Gmail · Outlook</dd></div>
+      <div><dt>Till</dt><dd>Square · SumUp · Zettle</dd></div>
+      <div><dt>Accounts</dt><dd>Xero · QuickBooks</dd></div>
+    </dl>
+    <p class="works-note">Placeholder: partner list to be confirmed before launch.</p>
+  </section>
+
+  <!-- 3 · why -->
+  <section class="why container" aria-labelledby="why-h">
+    <p class="eyebrow">Why Tidewell</p>
+    <h2 id="why-h" class="why-text" data-reveal>A café runs on three piles of paper: the invoices in your inbox, the stock in the back and the order you place on Thursday night. <span class="dim">Tidewell reads the first, counts the second and drafts the third, so the hour after close is yours again.</span></h2>
+  </section>
+
+  <!-- 4 · the three steps (§69) -->
+  <section class="how container" id="how" aria-labelledby="how-h">
+    <div class="sec-head">
+      <p class="eyebrow">How it works</p>
+      <h2 id="how-h" class="t-h2">One café day, in three moves.</h2>
+      <p class="sec-sub">Tidewell works through the day in the background. You step in once, on Thursday night, to approve.</p>
+    </div>
+
+    <ol class="steps" data-reveal-group>
+      <li class="step">
+        <div class="step-media">
+          <picture><source type="image/webp" srcset="img/delivery-800.webp"><img src="img/delivery-800.jpg" width="800" height="600" loading="lazy" alt="" class="pos-deliv"></picture>
+          <figure class="vig vig-invoice" role="img" aria-label="Invoice from Hartley Dairy read at 06:53: four lines totalling £109.80, matched to the delivery note, with oat drink flagged as up 6p a litre.">
+            <div class="v-head"><span class="v-avatar">HD</span><span class="v-title">Hartley Dairy<small>Invoice 4471 · 06:53</small></span><span class="v-chip v-chip--ok">Read</span></div>
+            <ul class="v-lines">
+              <li><span>Whole milk 2L</span><span>×18</span><span>£25.56</span></li>
+              <li class="is-flag"><span>Oat drink 1L</span><span>×24</span><span>£44.64</span></li>
+              <li><span>Double cream 1L</span><span>×4</span><span>£15.80</span></li>
+              <li><span>Butter 250g</span><span>×10</span><span>£23.80</span></li>
+            </ul>
+            <div class="v-foot"><span class="v-flag">Oat drink up 6p since 22 Sep</span><span class="t-num v-total">£109.80</span></div>
+          </figure>
+        </div>
+        <div class="step-body">
+          <p class="clock"><span class="rail" style="--t:.286" aria-hidden="true"></span>06:52</p>
+          <h3 class="t-h3">The delivery note gets read</h3>
+          <p>Forward the supplier’s email or photograph the paper note at the door. Every line lands with its price, and price rises are flagged.</p>
+        </div>
+      </li>
+
+      <li class="step">
+        <div class="step-media">
+          <picture><source type="image/webp" srcset="img/counter-800.webp"><img src="img/counter-800.jpg" width="800" height="600" loading="lazy" alt="" class="pos-count"></picture>
+          <figure class="vig vig-stock" role="img" aria-label="Stock at Little Quay at 11:20: espresso beans 3.2 of 6 kilos, oat drink 9 of 20 and flagged low, running out Saturday, croissants 46 of 60, cups 380 of 500.">
+            <div class="v-head"><span class="v-title">Stock · Little Quay<small>From till sales · 11:20</small></span></div>
+            <ul class="v-bars">
+              <li style="--v:.53"><span>Espresso beans</span><span class="t-num">3.2 / 6 kg</span><i></i></li>
+              <li class="is-low" style="--v:.45"><span>Oat drink 1L</span><span class="t-num">9 / 20</span><i></i></li>
+              <li style="--v:.77"><span>Croissants, frozen</span><span class="t-num">46 / 60</span><i></i></li>
+              <li style="--v:.76"><span>Cups 12oz</span><span class="t-num">380 / 500</span><i></i></li>
+            </ul>
+            <div class="v-foot"><span class="v-flag">Oat drink runs out Saturday</span><span class="v-muted">Added to order</span></div>
+          </figure>
+        </div>
+        <div class="step-body">
+          <p class="clock"><span class="rail" style="--t:.472" aria-hidden="true"></span>11:20</p>
+          <h3 class="t-h3">The shelf gets counted</h3>
+          <p>Till sales come off what was delivered, so you know what’s left before you open the walk-in. Anything running short gets a date.</p>
+        </div>
+      </li>
+
+      <li class="step">
+        <div class="step-media">
+          <picture><source type="image/webp" srcset="img/dusk-crop-960.webp"><img src="img/dusk-crop-960.jpg" width="960" height="720" loading="lazy" alt="" class="pos-dusk"></picture>
+          <figure class="vig vig-order" role="img" aria-label="Friday order drafted at 21:40 and awaiting approval: Hartley Dairy £118.20, Marlow Coffee £142.00, Two Rivers Bakery £86.40, Greengage Produce £64.15, total £410.75.">
+            <div class="v-head"><span class="v-title">Friday order<small>Drafted 21:40 · cut-off 22:00</small></span><span class="v-chip v-chip--wait">Awaiting you</span></div>
+            <ul class="v-lines v-lines--order">
+              <li><span>Hartley Dairy</span><span>6 lines</span><span>£118.20</span></li>
+              <li><span>Marlow Coffee</span><span>2 lines</span><span>£142.00</span></li>
+              <li><span>Two Rivers Bakery</span><span>5 lines</span><span>£86.40</span></li>
+              <li><span>Greengage Produce</span><span>7 lines</span><span>£64.15</span></li>
+            </ul>
+            <div class="v-foot"><span class="t-num v-total">£410.75</span><span class="v-btn">Approve order</span></div>
+          </figure>
+        </div>
+        <div class="step-body">
+          <p class="clock"><span class="rail" style="--t:.903" aria-hidden="true"></span>21:40</p>
+          <h3 class="t-h3">The order gets drafted</h3>
+          <p>By Thursday night each supplier’s order is written from what you sell and what’s left. Nothing is sent until you press approve.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 5 · feature rows -->
+  <section class="row container" aria-labelledby="margins-h">
+    <div class="row-text">
+      <p class="eyebrow">Margins</p>
+      <h2 id="margins-h" class="t-h2 row-h">What a flat white really earns. <span class="dim">Costed from this week’s invoices, not last spring’s spreadsheet.</span></h2>
+      <ul class="ticks">
+        <li>Cost per cup, per slice and per bake</li>
+        <li>A note when a supplier price moves a margin</li>
+        <li>Recipes in grams, set up once</li>
+      </ul>
+    </div>
+    <div class="row-media row-media--right">
+      <picture><source type="image/webp" srcset="img/counter-800.webp 800w, img/counter-1200.webp 1200w" sizes="(max-width: 760px) 100vw, 640px"><img src="img/counter-1200.jpg" srcset="img/counter-800.jpg 800w, img/counter-1200.jpg 1200w" sizes="(max-width: 760px) 100vw, 640px" width="1200" height="900" loading="lazy" alt="Croissants and pastries under glass domes on a worn café counter in morning light, a barista at the espresso machine behind."></picture>
+      <figure class="vig vig-margin" role="img" aria-label="Margins this week: flat white £3.40, costs 74p, 78 percent; oat flat white £3.70, costs 96p, 74 percent; almond croissant £3.20, costs £1.31, 59 percent, down 6 points because butter is up 11 percent; banana bread £2.90, costs 62p, 79 percent.">
+        <div class="v-head"><span class="v-title">Margins this week<small>Little Quay · priced from 14 invoices</small></span></div>
+        <table class="v-table">
+          <thead><tr><th>Item</th><th>Price</th><th>Cost</th><th>Margin</th></tr></thead>
+          <tbody>
+            <tr><td>Flat white</td><td>£3.40</td><td>£0.74</td><td>78%</td></tr>
+            <tr><td>Oat flat white</td><td>£3.70</td><td>£0.96</td><td>74%</td></tr>
+            <tr class="is-flag"><td>Almond croissant</td><td>£3.20</td><td>£1.31</td><td>59% <b>−6</b></td></tr>
+            <tr><td>Banana bread</td><td>£2.90</td><td>£0.62</td><td>79%</td></tr>
+          </tbody>
+        </table>
+        <div class="v-foot"><span class="v-flag">Butter up 11% at Hartley Dairy</span></div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="row row--flip container" aria-labelledby="shops-h">
+    <div class="row-text">
+      <p class="eyebrow">Two or three shops</p>
+      <h2 id="shops-h" class="t-h2 row-h">Three shops, one set of books. <span class="dim">See who’s short before you buy more.</span></h2>
+      <ul class="ticks">
+        <li>Stock for each shop, side by side</li>
+        <li>Transfers suggested before the order goes out</li>
+        <li>One order per supplier, split at delivery</li>
+      </ul>
+    </div>
+    <div class="row-media row-media--left">
+      <picture><source type="image/webp" srcset="img/delivery-800.webp 800w, img/delivery-1200.webp 1200w" sizes="(max-width: 760px) 100vw, 640px"><img src="img/delivery-1200.jpg" srcset="img/delivery-800.jpg 800w, img/delivery-1200.jpg 1200w" sizes="(max-width: 760px) 100vw, 640px" width="1200" height="900" loading="lazy" alt="A wooden crate of carrots, artichokes and radishes beside glass bottles of milk and a paper-wrapped loaf on a marble café counter."></picture>
+      <figure class="vig vig-shops" role="img" aria-label="Stock across two shops: Little Quay has 9 oat drink, 3.2 kilos of beans, 46 croissants; Market Row has 26 oat drink, 7.5 kilos of beans, 31 croissants. Suggestion: move 8 oat drink from Market Row to Little Quay before Saturday.">
+        <div class="v-head"><span class="v-title">Stock by shop<small>Thursday 21:38</small></span></div>
+        <table class="v-table v-table--shops">
+          <thead><tr><th></th><th>Little Quay</th><th>Market Row</th></tr></thead>
+          <tbody>
+            <tr class="is-flag"><td>Oat drink 1L</td><td>9</td><td>26</td></tr>
+            <tr><td>Espresso beans</td><td>3.2 kg</td><td>7.5 kg</td></tr>
+            <tr><td>Croissants</td><td>46</td><td>31</td></tr>
+          </tbody>
+        </table>
+        <div class="v-move"><span class="v-move-arrow" aria-hidden="true">→</span><span>Move <b>8 × oat drink</b> from Market Row to Little Quay before Saturday</span></div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 6 · a week (the secondary CTA lands here) -->
+  <section class="week container" id="week" aria-labelledby="week-h">
+    <div class="sec-head sec-head--split">
+      <div>
+        <p class="eyebrow">A week in Tidewell</p>
+        <h2 id="week-h" class="t-h2">Monday to Sunday, <span class="dim">while you ran the café.</span></h2>
+      </div>
+      <p class="sec-sub">A sample week at Little Quay Coffee, a fictional two-shop café. Every line is something Tidewell did on its own, except one.</p>
+    </div>
+
+    <figure class="weekbox" role="img" aria-label="Sample week, 5 to 11 October. Monday: 9 invoices read. Tuesday: oat drink price rise flagged. Wednesday: stock counted from till sales, two items low. Thursday: Friday's order drafted at 21:40 for £410.75, approved by the owner at 21:46. Friday: four deliveries matched, one short by six butter. Saturday: busiest day, croissants sold out at 14:10. Sunday: weekly note sent, margin 71.4 percent. Time the owner spent in Tidewell: 6 minutes.">
+      <div class="wk-axis" aria-hidden="true"><span class="wk-sun" style="--t:.51"></span></div>
+      <ol class="wk-days">
+        <li><p class="wk-d">Mon <b>5</b></p><p class="wk-e"><time>07:04</time>9 invoices read</p><p class="wk-e"><time>07:05</time>Matched to Friday’s deliveries</p></li>
+        <li><p class="wk-d">Tue <b>6</b></p><p class="wk-e is-flag"><time>06:52</time>Oat drink up 6p a litre</p></li>
+        <li><p class="wk-d">Wed <b>7</b></p><p class="wk-e"><time>11:20</time>Stock counted from till sales</p><p class="wk-e is-flag"><time>11:20</time>2 items running low</p></li>
+        <li class="is-you"><p class="wk-d">Thu <b>8</b></p><p class="wk-e"><time>21:40</time>Friday order drafted · £410.75</p><p class="wk-e is-ok"><time>21:46</time>Approved by you</p></li>
+        <li><p class="wk-d">Fri <b>9</b></p><p class="wk-e"><time>07:15</time>4 deliveries matched</p><p class="wk-e is-flag"><time>07:16</time>Short: 6 × butter, credit asked</p></li>
+        <li><p class="wk-d">Sat <b>10</b></p><p class="wk-e"><time>14:10</time>Croissants sold out</p><p class="wk-e"><time>14:11</time>Bake count raised for next Saturday</p></li>
+        <li><p class="wk-d">Sun <b>11</b></p><p class="wk-e"><time>19:00</time>Weekly note sent · margin 71.4%</p></li>
+      </ol>
+      <div class="wk-foot"><span>Time you spent in Tidewell this week</span><span class="wk-mins t-num">6 min</span></div>
+    </figure>
+  </section>
+
+  <!-- 7 · pricing -->
+  <section class="pricing container" id="pricing" aria-labelledby="price-h">
+    <div class="price-head">
+      <p class="eyebrow">Pricing</p>
+      <h2 id="price-h" class="t-h2">Priced per café, <span class="dim">not per person.</span></h2>
+      <p class="sec-sub">Both plans read every invoice, count every shelf and draft every order. Thirty days free, then monthly. Cancel any time.</p>
+    </div>
+    <div class="plans">
+      <article class="plan">
+        <h3 class="plan-name">One shop</h3>
+        <p class="plan-price"><span class="t-num">£29</span><small>a month</small></p>
+        <ul class="ticks ticks--sm">
+          <li>Invoices read from email and photos</li>
+          <li>Stock and margins per item</li>
+          <li>The weekly order, for you to approve</li>
+          <li>Export to your accounts</li>
+        </ul>
+        <a class="btn btn--accent" href="#start">Start free for 30 days</a>
+      </article>
+      <article class="plan">
+        <h3 class="plan-name">Up to three shops</h3>
+        <p class="plan-price"><span class="t-num">£69</span><small>a month</small></p>
+        <ul class="ticks ticks--sm">
+          <li>Everything in one shop, for each shop</li>
+          <li>Stock transfers between shops</li>
+          <li>One order per supplier, split at delivery</li>
+          <li>A login for each shop manager</li>
+        </ul>
+        <a class="btn btn--accent" href="#start">Start free for 30 days</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- 8 · questions -->
+  <section class="faq container" id="faq" aria-labelledby="faq-h">
+    <div class="faq-side">
+      <p class="eyebrow">Questions</p>
+      <h2 id="faq-h" class="t-h2">Asked before the first invoice.</h2>
+      <div class="contact">
+        <p class="contact-title">Ask a person</p>
+        <p class="contact-text">Write in and someone who has done a stock count at eleven at night will reply within a working day.</p>
+        <a class="link contact-mail" href="mailto:hello@tidewell.example">hello@tidewell.example</a>
+      </div>
+    </div>
+    <div class="faq-list">
+      <details open>
+        <summary>Will Tidewell ever place an order without me?</summary>
+        <p>No. Orders are drafted, never sent. Each supplier’s order waits for you to approve it, and you can change any line first.</p>
+      </details>
+      <details>
+        <summary>Do I need a new till?</summary>
+        <p>No. Tidewell reads sales from the till you already use. The list of supported tills is still being confirmed (placeholder).</p>
+      </details>
+      <details>
+        <summary>My supplier only gives paper delivery notes.</summary>
+        <p>Photograph the note at the door. Tidewell reads a photo the same way it reads an emailed invoice, and asks you about anything it can’t make out.</p>
+      </details>
+      <details>
+        <summary>Can my accountant use it?</summary>
+        <p>Invoices and costs go to your accounting software each week, coded and matched to deliveries. Your accountant can also have their own login.</p>
+      </details>
+      <details>
+        <summary>What happens after 30 days?</summary>
+        <p>You choose a plan, or your account pauses. Nothing is charged until you choose, and you can export everything at any time.</p>
+      </details>
+      <details>
+        <summary>My two shops have different menus.</summary>
+        <p>Each shop keeps its own menu, recipes, stock and margins. Orders can still be combined per supplier and split at delivery.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- 9 · finale bookend -->
+  <section class="finale" id="start" aria-labelledby="start-h">
+    <picture>
+      <source media="(max-width: 760px)" type="image/webp" srcset="img/dusk-1280.webp">
+      <source type="image/webp" srcset="img/dusk-1280.webp 1280w, img/dusk-1916.webp 1916w" sizes="100vw">
+      <img src="img/dusk-1916.jpg" srcset="img/dusk-1280.jpg 1280w, img/dusk-1916.jpg 1916w" sizes="100vw" width="1916" height="821" loading="lazy"
+        alt="The same corner café at blue hour, its windows glowing warm, chairs stacked outside on an empty cobbled street.">
+    </picture>
+    <div class="finale-copy">
+      <h2 id="start-h" class="finale-title">Stack the chairs. <span class="nowrap-m">The order’s drafted.</span></h2>
+      <p class="finale-sub">Thirty days free. Setup takes one evening: forward an invoice, connect the till.</p>
+      <form class="signup" action="#start" onsubmit="event.preventDefault();this.classList.add('is-done');this.querySelector('[role=status]').textContent='Thanks. Check your inbox for the setup link.'">
+        <label class="sr-only" for="email">Work email</label>
+        <input id="email" type="email" name="email" placeholder="you@yourcafe.co.uk" autocomplete="email" required>
+        <button class="btn btn--accent" type="submit">Start free for 30 days</button>
+        <p class="signup-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="#top" aria-label="Tidewell, back to top">
+        <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="11.5" r="7.25"/><path class="sun" d="M5.36 14.5A7.25 7.25 0 0 0 18.64 14.5Z"/><path d="M1.5 14.5h21"/></svg>
+        <span>Tidewell</span>
+      </a>
+      <p>The back office for independent cafés.</p>
+      <p class="foot-clock"><span class="rail rail--live" style="--t:.5" aria-hidden="true"></span><span>It’s <time data-clock="Europe/London">21:40</time> in London. <span class="foot-day">If it’s Thursday, your order is waiting.</span></span></p>
+    </div>
+    <nav class="foot-col" aria-label="Product"><p>Product</p><a href="#how">How it works</a><a href="#week">A week in Tidewell</a><a href="#pricing">Pricing</a><a href="#faq">Questions</a></nav>
+    <nav class="foot-col" aria-label="Company"><p>Company</p><a href="#faq">About</a><a href="mailto:hello@tidewell.example">Contact</a><a href="#start">Start free</a></nav>
+    <nav class="foot-col" aria-label="Legal"><p>Legal</p><a href="#top">Privacy</a><a href="#top">Terms</a><a href="#top">Data and suppliers</a></nav>
+  </div>
+  <div class="container foot-base"><span>© 2026 Tidewell (a fictional company)</span><span>Photographs are generated and show no real café.</span></div>
+  <p class="ghost" aria-hidden="true">Tidewell</p>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,452 @@
+<!--
+DESIGN SPINE: Hush (fictional AI scribe for UK general practice)
+
+DIRECTION   : 11 Bright Product. GP partners and practice managers buy software that looks finished and calm; an engraved image series gives Hush a world rooted in medicine's long habit of careful notes.
+REGISTER    : Quiet. The engraving carries the volume: white page, cream plates, one oxblood accent under 5% of pixels.
+AXES        : ground white #FFFEFB with cream plate bands #F3ECDF · type genre book serif display (Newsreader 400) + humanist UI sans (Instrument Sans) · image medium generated steel-engraving series in one oxblood ink + HTML product vignettes · composition product stage (the artifact on a plate), then editorial asymmetric grid · motion feel calm resolve (fade + 8px rise, no blur)
+DEFAULT?    : default-look check 2/6 (near-black ink at 400; one small accent) → DIFFERENT FROM DEFAULT BY: white ground (not off-white paper), sentence-case sans labels (no mono caps), no coordinate/metadata bands, a generated engraving series instead of a thin line-drawing hero
+MOTIF       : the stethoscope bell drawn as a guilloché rosette → logo mark (identity) · approval seal on the hero note (proof) · breathing listening rings in the consent vignette (state) · step markers I–III (index) · the surgery-lamp dot beside the footer clock (status)
+TYPE        : display Newsreader 400 (+ italic 400) · text Instrument Sans 400/500 · labels Instrument Sans 500 sentence case  (2 families)
+SCALE       : display 76px/1.02/−0.02em · h2 52px/1.06/−0.018em · h3 24px serif · body 17px/1.6 · label 13px/500 · UI inside vignettes 12–13px
+PALETTE     : paper #FFFEFB · plate #F3ECDF · ink #221B18 · ink-2 (ink @68%) · ink-3 (ink @62%) · hairline (ink @10%) · accent oxblood #7A2E22 → used ONLY on (1) the primary CTA and (2) consent/approval marks (seal, ticks, the edit mark)
+GRID        : 12 cols / 24px gap · container 1240px · side margin 20–80px · section rhythm 96–144px, 200px+ voids between chapters
+HERO        : §73 the output artifact: split header (h1 left 7 cols; lede + 2 CTAs right, top-aligned), then the engraved consulting room as a guilloché-framed plate with a signed consult note set on its blank wall, the note crossing the plate's bottom edge
+IMAGERY     : generated engraving series (Plates I–V) + product UI vignettes built in HTML on crops of the hero plate (§69)
+CONVERSION  : "Book a practice demo" → nav, hero, pilot, contact card, finale · secondary "Read how consent works" → hero (anchors #consent)
+MOTION      : house ease cubic-bezier(.2,.8,.2,1) · UI 180ms · reveal 600ms · primitive fade + 8px rise, 70ms stagger · each vignette plays its one action once on view · no smooth scroll, no pinning
+IMAGES      : medium      a fine steel engraving in the style of a 19th-century medical book plate, one single ink colour, deep sepia-oxblood (#5A2A22), on warm cream paper (#F3ECDF), fine cross-hatching and stippling, no grey wash, no other colours. Calm, humane, precise.
+              exclude     no text, no captions, no labels, no logos, no watermarks, no hands, no faces in close-up
+              shot list   hero 21:9 consulting room from the doorway, top 40% plain wall for the card · foxglove 4:5 botanical, centred, wide margin · stethoscope 4:3 coiled on an open blank book with a fountain pen, left third empty · surgery 21:9 footer skyline, three Victorian terraced houses, the middle one a surgery with a lamp over the door, cut by the bottom edge, top 45% empty
+              processing  paper normalised to #F3ECDF per image (per-channel gain, no overlays) · crops: hero full, hero-m (mobile), three step crops (window, plant, print), finale (hero re-crop without the note), surgery cut at the roofline + mobile crop · WebP q80 + JPG q82 at two widths
+NAMING      : the medical book → every image is a numbered Plate (I–V) with an italic caption · steps I, II, III · CTA verb "Book" · 404 "This page was never written down."
+SIGNATURES  : §73 output artifact as the hero · §69 vignettes on crops of the hero plate · §76 surgery terrace rising from the bottom edge (system: §72 engraving + guilloché margins)
+VOICE       : hero "Face the patient, not the screen." · section "Medicine has always run on careful notes." · CTA/finale "Two chairs, one conversation."
+PLACEHOLDERS: DSPT, DCB0129, DCB0160 template, Cyber Essentials Plus, ICO registration, UKCA medical-device status, UK hosting region, integration list, pricing. All visibly marked "Placeholder" on the page.
+-->
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hush · The AI scribe for general practice</title>
+<meta name="description" content="Hush listens to the consultation, with the patient's consent, and drafts the note in your practice's format. Nothing is saved until you approve it.">
+<meta name="theme-color" content="#FFFEFB">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='none' stroke='%237A2E22' stroke-width='5'/%3E%3Ccircle cx='32' cy='32' r='9' fill='%237A2E22'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--primary btn--sm" href="#main">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="rosette" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="30.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+      <circle cx="32" cy="32" r="27" fill="none" stroke="currentColor" stroke-width=".6"/>
+      <g fill="none" stroke="currentColor" stroke-width=".55">
+        <ellipse cx="32" cy="32" rx="25" ry="8.5"/>
+        <ellipse cx="32" cy="32" rx="25" ry="8.5" transform="rotate(15 32 32)"/>
+        <ellipse cx="32" cy="32" rx="25" ry="8.5" transform="rotate(30 32 32)"/>
+        <ellipse cx="32" cy="32" rx="25" ry="8.5" transform="rotate(45 32 32)"/>
+        <ellipse cx="32" cy="32" rx="25" ry="8.5" transform="rotate(60 32 32)"/>
+        <ellipse cx="32" cy="32" rx="25" ry="8.5" transform="rotate(75 32 32)"/>
+        <ellipse cx="32" cy="32" rx="25" ry="8.5" transform="rotate(90 32 32)"/>
+        <ellipse cx="32" cy="32" rx="25" ry="8.5" transform="rotate(105 32 32)"/>
+        <ellipse cx="32" cy="32" rx="25" ry="8.5" transform="rotate(120 32 32)"/>
+        <ellipse cx="32" cy="32" rx="25" ry="8.5" transform="rotate(135 32 32)"/>
+        <ellipse cx="32" cy="32" rx="25" ry="8.5" transform="rotate(150 32 32)"/>
+        <ellipse cx="32" cy="32" rx="25" ry="8.5" transform="rotate(165 32 32)"/>
+      </g>
+      <circle cx="32" cy="32" r="7" fill="currentColor"/>
+    </symbol>
+    <symbol id="mark" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="28" fill="none" stroke="currentColor" stroke-width="5"/>
+      <circle cx="32" cy="32" r="17" fill="none" stroke="currentColor" stroke-width="2"/>
+      <circle cx="32" cy="32" r="8" fill="currentColor"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="nav">
+  <div class="container nav__in">
+    <a class="brand" href="#top" aria-label="Hush, home">
+      <svg class="brand__mark" aria-hidden="true"><use href="#mark"/></svg>
+      <span class="brand__name">Hush</span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#how">How it works</a>
+      <a href="#consent">Consent</a>
+      <a href="#data">Patient data</a>
+      <a href="#pilot">Pilot</a>
+      <a href="#faq">Questions</a>
+    </nav>
+    <a class="btn btn--accent btn--sm nav__cta" href="#demo">Book a practice demo</a>
+  </div>
+</header>
+
+<main id="main">
+<!-- ============ HERO ============ -->
+<section class="hero" id="top" aria-labelledby="hero-h">
+  <div class="container hero__head">
+    <div class="hero__title">
+      <p class="kicker"><svg aria-hidden="true"><use href="#rosette"/></svg>The AI scribe for UK general practice</p>
+      <h1 id="hero-h" class="t-display">Face the patient, <span class="tail">not the screen.</span></h1>
+    </div>
+    <div class="hero__side">
+      <p class="lede">Hush listens, with the patient’s consent, and drafts the note in your practice’s format. Nothing is saved until you approve it.</p>
+      <div class="ctas">
+        <a class="btn btn--accent btn--lg" href="#demo">Book a practice demo</a>
+        <a class="btn btn--text" href="#consent">Read how consent works <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="plate-band">
+    <div class="plate-band__rail" aria-hidden="true"></div>
+    <div class="plate">
+      <picture>
+        <source media="(max-width: 760px)" type="image/webp" srcset="img/hero-m-780.webp 780w, img/hero-m-1040.webp 1040w" sizes="100vw">
+        <source media="(max-width: 760px)" srcset="img/hero-m-780.jpg 780w, img/hero-m-1040.jpg 1040w" sizes="100vw">
+        <source type="image/webp" srcset="img/hero-1280.webp 1280w, img/hero-1916.webp 1916w" sizes="(min-width: 1400px) 1240px, 92vw">
+        <img class="plate__img" src="img/hero-1280.jpg" srcset="img/hero-1280.jpg 1280w, img/hero-1916.jpg 1916w" sizes="(min-width: 1400px) 1240px, 92vw" width="1916" height="821" fetchpriority="high" alt="An engraving of a quiet consulting room seen from the doorway: a tall window, a potted plant, a wooden desk and two chairs facing each other.">
+      </picture>
+
+      <figure class="note" role="img" aria-label="Example consultation note for a fictional patient, Pat Example. Approved by Dr R. Ellery at 10:47. Presenting complaint: cough for three weeks. History: dry cough, worse at night, no blood, no weight loss, non-smoker. Examination: chest clear, oxygen saturation 98 percent, temperature 37.1. Impression: post-viral cough. Plan: honey and warm drinks, review in three weeks if not settling. Safety-netting: return sooner if breathless, coughing blood or losing weight. Audio deleted at 10:47.">
+        <div class="note__top">
+          <div>
+            <p class="note__title">Consultation note</p>
+            <p class="note__meta">Riverside Surgery · Standard consult v3 · Face to face, 11 min</p>
+          </div>
+          <div class="seal">
+            <svg aria-hidden="true"><use href="#rosette"/></svg>
+            <div><b>Approved</b><span>Dr R. Ellery · 10:47</span></div>
+          </div>
+        </div>
+        <div class="note__patient">
+          <span class="who">Pat Example</span><span class="fict">fictional</span>
+          <span>Born 01 Jan 1970</span>
+          <span class="t-num">NHS no. 999 000 0001 <i>(test range)</i></span>
+        </div>
+        <div class="note__body">
+          <div class="note__col">
+            <div class="nsec"><p class="nlab">Presenting complaint</p><p>Cough, 3/52.</p></div>
+            <div class="nsec"><p class="nlab">History</p><p>Dry cough since a cold three weeks ago, worse at night. No haemoptysis, no weight loss, no fever now. Sleeping poorly. Non-smoker. No asthma history.</p></div>
+            <div class="nsec hide-s"><p class="nlab">Patient’s concern</p><p>Worried it is “on the chest” before a family wedding.</p></div>
+          </div>
+          <div class="note__col">
+            <div class="nsec"><p class="nlab">Examination</p><p>Well. Chest clear, no wheeze. SpO<sub>2</sub> 98% RA. T 37.1 °C. Throat mildly red.</p></div>
+            <div class="nsec"><p class="nlab">Impression</p><p>Post-viral cough.</p></div>
+            <div class="nsec"><p class="nlab">Plan</p><p>Honey and warm drinks. No antibiotics indicated, explained why. Review in 3/52 if not settling.</p></div>
+            <div class="nsec hide-s"><p class="nlab">Safety-netting</p><p>Return sooner if breathless, coughing blood or losing weight.</p></div>
+          </div>
+        </div>
+        <div class="note__foot">
+          <span>Code · Cough <span class="t-num">(SNOMED 49727002)</span></span>
+          <span class="t-num">1,412 words heard → 96 written</span>
+          <span class="del-audio"><svg aria-hidden="true" viewBox="0 0 12 12"><path d="M2.5 6.2 5 8.5l4.5-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>Audio deleted 10:47</span>
+        </div>
+      </figure>
+    </div>
+    <div class="plate-band__rail" aria-hidden="true"></div>
+  </div>
+  <p class="container plate-cap"><span class="plate-no">Plate I</span> <i>The consulting room, from the door.</i> Example note; the patient and NHS number are fictional.</p>
+</section>
+
+<!-- ============ WORKS WITH ============ -->
+<section class="works container" aria-label="Clinical systems">
+  <div class="works__lead">
+    <p>Writes into the record<br>you already keep.</p>
+    <p class="ph-chip"><span>Placeholder</span> until each integration is confirmed</p>
+  </div>
+  <ul class="works__list">
+    <li>EMIS Web</li>
+    <li>SystmOne</li>
+    <li>Vision</li>
+    <li>Accurx</li>
+  </ul>
+</section>
+
+<!-- ============ WHY ============ -->
+<section class="why container" aria-labelledby="why-h">
+  <figure class="why__plate" data-reveal>
+    <picture>
+      <source type="image/webp" srcset="img/foxglove-720.webp 720w, img/foxglove-1122.webp 1122w" sizes="(min-width: 900px) 340px, 70vw">
+      <img src="img/foxglove-720.jpg" srcset="img/foxglove-720.jpg 720w, img/foxglove-1122.jpg 1122w" sizes="(min-width: 900px) 340px, 70vw" width="1122" height="1402" loading="lazy" alt="A botanical engraving of a foxglove plant, three flowering spikes rising from broad leaves and roots.">
+    </picture>
+    <figcaption><span class="plate-no">Plate II</span> <i>Digitalis purpurea, the foxglove.</i> William Withering published his account of it in 1785, after ten years of careful case notes.</figcaption>
+  </figure>
+  <div class="why__text">
+    <p class="label" data-reveal>Why Hush</p>
+    <h2 id="why-h" class="why__big" data-reveal>Medicine has always run on careful notes. <span class="tail">The trouble is who writes them: the doctor, typing, inside the ten minutes the patient came for. Hush takes the typing and leaves the judgement exactly where it was.</span></h2>
+    <ul class="why__facts" data-reveal-group>
+      <li><b>You stay the author.</b> Every line can be edited, and nothing saves without your approval.</li>
+      <li><b>Consent comes first.</b> Asked out loud, logged with the time, and “no” is always an easy answer.</li>
+      <li><b>The audio doesn’t stay.</b> It’s deleted the moment you approve the note.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS (§69) ============ -->
+<section class="how container" id="how" aria-labelledby="how-h">
+  <div class="sec-head">
+    <h2 id="how-h" class="t-h2">From first word to signed note. <span class="tail">Three steps inside one appointment.</span></h2>
+    <p class="sec-head__aside">Hush runs in a browser tab beside your clinical system. You see it twice: when you start, and when you sign.</p>
+  </div>
+
+  <ol class="steps" data-reveal-group>
+    <!-- I: consent -->
+    <li class="step" id="consent">
+      <div class="step__art">
+        <img class="step__bg" src="img/step-window-640.webp" width="640" height="400" loading="lazy" alt="">
+        <div class="vig vig--consent" role="img" aria-label="Hush asks the doctor to read a consent question aloud. The doctor marks that the patient agreed; consent is logged at 09:02 and listening begins.">
+          <p class="vig__lab">Ask before you start</p>
+          <p class="vig__quote">“I use a note-taking assistant. It listens so I can look at you, then deletes the recording. Is that all right?”</p>
+          <div class="vig__btns">
+            <span class="vbtn vbtn--yes">They agreed</span>
+            <span class="vbtn">They said no</span>
+          </div>
+          <div class="vig__status">
+            <svg class="rings" aria-hidden="true"><use href="#rosette"/></svg>
+            <span>Consent logged 09:02</span>
+            <span class="vig__timer t-num" data-timer>00:00</span>
+          </div>
+        </div>
+      </div>
+      <div class="step__txt">
+        <p class="step__no"><svg aria-hidden="true"><use href="#rosette"/></svg>I</p>
+        <h3 class="t-h3">The patient says yes</h3>
+        <p>Consent is asked out loud and logged before anything is heard. If they say no, you type as you always have.</p>
+      </div>
+    </li>
+    <!-- II: transcript to sections -->
+    <li class="step">
+      <div class="step__art">
+        <img class="step__bg" src="img/step-plant-640.webp" width="640" height="400" loading="lazy" alt="">
+        <div class="vig vig--live" role="img" aria-label="A live transcript: the doctor asks how long the cough has lasted, the patient says three weeks and worse at night, and has no blood. Hush files this under History as: cough 3/52, worse at night, no haemoptysis.">
+          <div class="tx">
+            <p class="tx__l"><b>Dr</b>How long has the cough been going?</p>
+            <p class="tx__l"><b>Pt</b><span><mark>Three weeks</mark>, maybe. It’s <mark>worse at night</mark>.</span></p>
+            <p class="tx__l"><b>Dr</b>Any blood when you cough?</p>
+            <p class="tx__l"><b>Pt</b><span><mark>No, nothing</mark> like that.</span></p>
+          </div>
+          <div class="tx__note">
+            <p class="vig__lab">History</p>
+            <p><span class="fill">Cough 3/52,</span> <span class="fill">worse at night.</span> <span class="fill">No haemoptysis.</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="step__txt">
+        <p class="step__no"><svg aria-hidden="true"><use href="#rosette"/></svg>II</p>
+        <h3 class="t-h3">The talk becomes a note</h3>
+        <p>Hush sets the small talk aside and files what matters under your template’s headings, in your abbreviations.</p>
+      </div>
+    </li>
+    <!-- III: approve -->
+    <li class="step">
+      <div class="step__art">
+        <img class="step__bg" src="img/step-print-640.webp" width="640" height="400" loading="lazy" alt="">
+        <div class="vig vig--sign" role="img" aria-label="The draft plan reads: honey and warm drinks, review in two weeks. The doctor changes two weeks to three, then approves; the note is saved to the record at 10:47.">
+          <p class="vig__lab">Plan · draft</p>
+          <p class="vig__plan">Honey and warm drinks. Review in <del>2/52</del><ins>3/52</ins> if not settling.</p>
+          <p class="vig__edit">1 change by you</p>
+          <div class="vig__btns">
+            <span class="vbtn">Edit</span>
+            <span class="vbtn vbtn--yes vbtn--approve">Approve and save</span>
+          </div>
+          <div class="vig__saved">
+            <svg aria-hidden="true"><use href="#rosette"/></svg>
+            <span><b>Saved to record</b> 10:47 · audio deleted</span>
+          </div>
+        </div>
+      </div>
+      <div class="step__txt">
+        <p class="step__no"><svg aria-hidden="true"><use href="#rosette"/></svg>III</p>
+        <h3 class="t-h3">You sign it, or change it</h3>
+        <p>Every word is yours to edit. Nothing reaches the record until you approve it, and you can always discard the draft.</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- ============ FEATURE ROW: TEMPLATES ============ -->
+<section class="row container" aria-labelledby="fmt-h">
+  <div class="row__txt">
+    <p class="label" data-reveal>For clinicians</p>
+    <h2 id="fmt-h" class="t-h2" data-reveal>Your format, not ours. <span class="tail">Set once by the practice.</span></h2>
+    <ul class="ticks" data-reveal-group>
+      <li>Templates for face to face, telephone, home visits and long-term condition reviews</li>
+      <li>British spelling and the shorthand you already use: 3/52, O/E, NAD, SpO<sub>2</sub></li>
+      <li>Codes are suggested beside the note, never added without you</li>
+      <li>Copy into any clinical system in one click</li>
+    </ul>
+  </div>
+  <figure class="row__art" data-reveal>
+    <picture>
+      <source type="image/webp" srcset="img/stethoscope-960.webp 960w, img/stethoscope-1448.webp 1448w" sizes="(min-width: 900px) 720px, 100vw">
+      <img src="img/stethoscope-960.jpg" srcset="img/stethoscope-960.jpg 960w, img/stethoscope-1448.jpg 1448w" sizes="(min-width: 900px) 720px, 100vw" width="1448" height="1086" loading="lazy" alt="An engraving of a stethoscope coiled on an open blank book, a fountain pen lying beside it.">
+    </picture>
+    <div class="vig vig--tpl" role="img" aria-label="Choosing a note format: Standard consult version 3 is selected; Telephone triage, Asthma review and Home visit are also available. Standard consult headings: presenting complaint, history, examination, impression, plan, safety-netting.">
+      <p class="vig__lab">Note format · Riverside Surgery</p>
+      <ul class="tpl">
+        <li class="on"><i></i>Standard consult <em>v3</em></li>
+        <li><i></i>Telephone triage</li>
+        <li><i></i>Asthma review</li>
+        <li><i></i>Home visit</li>
+      </ul>
+      <p class="tpl__heads"><span>PC</span><span>Hx</span><span>O/E</span><span>Imp</span><span>Plan</span><span>S/N</span></p>
+    </div>
+    <figcaption><span class="plate-no">Plate III</span> <i>Stethoscope and casebook.</i></figcaption>
+  </figure>
+</section>
+
+<!-- ============ DATA (certificate) ============ -->
+<section class="data" id="data" aria-labelledby="data-h">
+  <div class="container data__in">
+    <div class="data__head">
+      <p class="label" data-reveal>For practice managers</p>
+      <h2 id="data-h" class="t-h2" data-reveal>What happens to what is said. <span class="tail">In plain words.</span></h2>
+      <p class="data__note" data-reveal>Hush is a fictional product. Every certification on this page is a <b class="ph-word">placeholder</b> and would need to be true and current before launch.</p>
+
+      <div class="vig vig--log" role="img" aria-label="Today's consent log for Dr Ellery: six consultations; five agreed and were recorded, one declined and was typed by hand." data-reveal>
+        <p class="vig__lab">Consent log · Dr Ellery · Tue 14 Oct</p>
+        <ul class="log t-num">
+          <li><span>08:40</span>Face to face<em class="ok">Agreed</em></li>
+          <li><span>08:52</span>Telephone<em class="ok">Agreed</em></li>
+          <li><span>09:02</span>Face to face<em class="ok">Agreed</em></li>
+          <li><span>09:14</span>Face to face<em class="no">Declined · typed</em></li>
+          <li><span>09:26</span>Home visit<em class="ok">Agreed</em></li>
+          <li><span>09:41</span>Face to face<em class="ok">Agreed</em></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cert" data-reveal>
+      <dl class="spec">
+        <div><dt>Consent</dt><dd>Asked out loud at the start of every consultation and logged with the time. No consent, no listening.</dd></div>
+        <div><dt>Audio</dt><dd>Used to write the note, then deleted the moment you approve it. Never stored after that.</dd></div>
+        <div><dt>Transcript</dt><dd>Kept for 7 days so you can check the note against it, then deleted.</dd></div>
+        <div><dt>Where</dt><dd>Processed in the UK. <span class="ph-chip ph-chip--inline"><span>Placeholder</span> hosting provider and region</span></dd></div>
+        <div><dt>Training</dt><dd>Your consultations are never used to train models.</dd></div>
+        <div><dt>Access</dt><dd>The clinician who held the consultation, and audited practice admins. Nobody at Hush.</dd></div>
+      </dl>
+      <ul class="badges">
+        <li><b>DSPT</b> Standards Met <span class="ph-chip"><span>Placeholder</span></span></li>
+        <li><b>DCB0129</b> clinical safety case <span class="ph-chip"><span>Placeholder</span></span></li>
+        <li><b>DCB0160</b> template for your practice <span class="ph-chip"><span>Placeholder</span></span></li>
+        <li><b>Cyber Essentials Plus</b> <span class="ph-chip"><span>Placeholder</span></span></li>
+        <li><b>ICO</b> registration <span class="ph-chip"><span>Placeholder</span></span></li>
+        <li><b>UKCA</b> medical device status <span class="ph-chip"><span>Placeholder</span></span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PILOT / HONEST PROOF ============ -->
+<section class="pilot container" id="pilot" aria-labelledby="pilot-h">
+  <div class="sec-head">
+    <h2 id="pilot-h" class="t-h2">No testimonials yet. <span class="tail">We’d rather show you a note than a quote.</span></h2>
+    <p class="sec-head__aside">Hush is in early access. Try it the way a careful practice would: small, supervised and easy to stop. <span class="ph-chip ph-chip--inline"><span>Placeholder</span> pilot terms</span></p>
+  </div>
+  <ol class="timeline" data-reveal-group>
+    <li><span class="tl__wk">Week 0</span><h3>Paperwork first</h3><p>DPIA template, DCB0160 template and data-processing agreement, before anything is installed.</p></li>
+    <li><span class="tl__wk">Week 1</span><h3>Two clinicians, real lists</h3><p>Hush on two machines. A consent card for reception, so patients know before they’re called.</p></li>
+    <li><span class="tl__wk">Weeks 2–3</span><h3>Read every note</h3><p>Compare drafts with what you’d have written. We review your edits with you each Friday.</p></li>
+    <li><span class="tl__wk">Week 4</span><h3>Keep it, or don’t</h3><p>Decide with your partners. Ask us to delete everything and it’s gone within 30 days.</p></li>
+  </ol>
+</section>
+
+<!-- ============ FAQ + CONTACT ============ -->
+<section class="faq container" id="faq" aria-labelledby="faq-h">
+  <div class="faq__side">
+    <h2 id="faq-h" class="t-h2">Questions <span class="tail">partners ask first.</span></h2>
+    <div class="contact" id="demo">
+      <svg class="contact__mark" aria-hidden="true"><use href="#rosette"/></svg>
+      <p class="contact__t">Practice demos run Tuesdays and Thursdays, 13:00–14:00. Between surgeries.</p>
+      <p class="contact__s">Thirty minutes with your partners and practice manager. Bring a tricky consultation; we’ll show you the note.</p>
+      <a class="btn btn--accent" href="mailto:practices@hush.example?subject=Practice%20demo">Book a practice demo</a>
+      <p class="contact__mail">or write to <a class="link" href="mailto:practices@hush.example">practices@hush.example</a></p>
+    </div>
+  </div>
+  <div class="qs">
+    <details open>
+      <summary>What if the patient says no?</summary>
+      <p>You press “They said no” and type as you always have. Nothing is heard or recorded, and the log notes the refusal without asking for a reason.</p>
+    </details>
+    <details>
+      <summary>Does Hush make clinical decisions?</summary>
+      <p>No. It writes down what was said and what you examined, under your headings. Suggested codes sit beside the note; only you add them.</p>
+    </details>
+    <details>
+      <summary>Who is responsible for the note?</summary>
+      <p>You are, exactly as now. That’s why nothing reaches the record until you’ve read and approved it.</p>
+    </details>
+    <details>
+      <summary>Does it work for telephone and video consultations?</summary>
+      <p>Yes. Consent is asked at the start of the call, and the note uses your telephone template.</p>
+    </details>
+    <details>
+      <summary>Which clinical systems does it work with?</summary>
+      <p>Any system you can paste into. Direct write-back to EMIS Web and SystmOne is planned. <span class="ph-chip ph-chip--inline"><span>Placeholder</span> integration status</span></p>
+    </details>
+    <details>
+      <summary>What does it cost?</summary>
+      <p>A monthly price per clinician, with no setup fee and no contract for the pilot. <span class="ph-chip ph-chip--inline"><span>Placeholder</span> pricing shared at the demo</span></p>
+    </details>
+  </div>
+</section>
+
+<!-- ============ FINALE (hero re-crop, the room without the note) ============ -->
+<section class="finale container" aria-labelledby="fin-h">
+  <div class="finale__plate">
+    <picture>
+      <source type="image/webp" srcset="img/finale-960.webp 960w, img/finale-1420.webp 1420w" sizes="(min-width: 1400px) 1240px, 92vw">
+      <img src="img/finale-960.jpg" srcset="img/finale-960.jpg 960w, img/finale-1420.jpg 1420w" sizes="(min-width: 1400px) 1240px, 92vw" width="1420" height="700" loading="lazy" alt="The same engraved consulting room, now without the note: two chairs facing each other across the desk.">
+    </picture>
+    <div class="finale__txt">
+      <h2 id="fin-h" class="finale__h">Two chairs, one conversation.</h2>
+      <p>Give the appointment back to the person in the other chair.</p>
+      <a class="btn btn--accent btn--lg" href="#demo">Book a practice demo</a>
+    </div>
+  </div>
+  <p class="plate-cap"><span class="plate-no">Plate IV</span> <i>The same room, after the note has gone.</i></p>
+</section>
+</main>
+
+<!-- ============ FOOTER (§76) ============ -->
+<footer class="foot">
+  <div class="container foot__in">
+    <div class="foot__brand">
+      <a class="brand" href="#top" aria-label="Hush, back to top">
+        <svg class="brand__mark" aria-hidden="true"><use href="#mark"/></svg>
+        <span class="brand__name">Hush</span>
+      </a>
+      <p>The note-taker for general practice. Listens with consent, writes in your format, saves only when you sign.</p>
+    </div>
+    <nav class="foot__cols" aria-label="Footer">
+      <div><p>Product</p><a href="#how">How it works</a><a href="#consent">Consent</a><a href="#data">Patient data</a><a href="#pilot">Pilot</a></div>
+      <div><p>Practices</p><a href="#demo">Book a demo</a><a href="#faq">Questions</a><a href="#data">For practice managers</a></div>
+      <div><p>Safety</p><a href="#data">Clinical safety</a><a href="#data">DPIA template</a><a href="#data">Security</a></div>
+      <div><p>Company</p><a href="mailto:practices@hush.example">Contact</a><a href="#top">Privacy</a><a href="#top">Accessibility</a></div>
+    </nav>
+    <div class="foot__base">
+      <p>© 2026 Hush Health Ltd. A fictional company.</p>
+      <p class="lamp"><svg aria-hidden="true"><use href="#rosette"/></svg><span data-lamp>Riverside, <span class="t-num" data-clock="Europe/London">--:--</span></span></p>
+    </div>
+  </div>
+  <div class="foot__terrace" aria-hidden="true">
+    <picture>
+      <source media="(max-width: 760px)" type="image/webp" srcset="img/surgery-m-800.webp">
+      <source media="(max-width: 760px)" srcset="img/surgery-m-800.jpg">
+      <source type="image/webp" srcset="img/surgery-1280.webp 1280w, img/surgery-1916.webp 1916w" sizes="100vw">
+      <img src="img/surgery-1280.jpg" srcset="img/surgery-1280.jpg 1280w, img/surgery-1916.jpg 1916w" sizes="100vw" width="1916" height="581" loading="lazy" alt="">
+    </picture>
+  </div>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

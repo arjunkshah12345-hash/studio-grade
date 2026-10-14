@@ -1,0 +1,375 @@
+<!--
+DESIGN SPINE · Nightlight (bedtime stories for 3–8s, fictional)
+DIRECTION   : 11 Bright Product — parents need a product that feels finished and safe, and the clay world gives a child something to touch; friendly SaaS clarity with a toy-box heart.
+REGISTER    : Confident — the one bold device is the clay bedroom stage, framed full-width, with the toy box (the working form) crossing its bottom edge. Everything else is white, navy and calm.
+AXES        : ground white #FFFFFF with pastel fields from the image palette · type genre soft storybook serif (Fraunces SOFT 100 at 400) + rounded-terminal sans text (Figtree) · image medium generated clay series (room, six toys, night sky) · composition product stage (form over the image, crossing its edge) · motion feel calm resolve, with springy pops only on the 6 toys
+DEFAULT?    : default-look check 1/6 matched (tight ink at 400) → DIFFERENT FROM DEFAULT BY: white ground not warm paper, no mono labels, no hairline metadata bands, clay image not a line drawing, accent is a glow field not a mark
+MOTIF       : three slots (the "three picks"). 1 hero: three slots on the toy box that the picks drop into (input) · 2 step cards: the picked trio in a vignette (record) · 3 pricing: the free plan drawn as 3 stamped nights on a library card (data) · 4 finale: the toy row again with its three-dot counter (bookend) · 5 favicon/wordmark dot (mark)
+TYPE        : display Fraunces 400 (SOFT 100, opsz auto; italic for story lines) · text Figtree 400/600 · no mono (labels are sentence-case text face)
+SCALE       : display 44→76px / 1.02 / −0.02em · h2 34→52px / 1.06 / −0.018em · h3 24→30px · body 17px / 1.6 · label 14px sentence case 600
+PALETTE     : paper #FFFFFF · paper-2 #F7F4FD (tray) · ink #1E2150 (night navy) · ink-2 ink@72% · ink-3 ink@66% · hairline ink@10% · accent butter #FFE59A → ONLY "on" states (picked toys, chosen length, stamped nights). Pastel fields from the image (lilac #EEE8FC room, peach #FFE6D6 voice, butter #FFF3C9 wind-down, mint #DDF3E7 safety) — each hue owns one meaning. Buttons: night #2B2F6B.
+GRID        : 12 / 24px · container 1240px · margin 20→80px · section rhythm 120–160px; hero frame inset 16px, radius 32px
+HERO        : H20 — question h1 on the clay bedroom's lilac wall; the toy box (six clay toys as aria-pressed buttons, three slots, length choice, "Make tonight's story") sits on the room and crosses the frame edge
+IMAGERY     : generated clay series (imagery.md §8) + product vignettes rebuilt in HTML on crops of the room (§69)
+CONVERSION  : "Make tonight's story" → nav pill, hero toy box submit, finale toy row; "Start free" / "Start Family" on pricing; secondary "Hear a sample" → #sample
+MOTION      : house ease cubic-bezier(.2,.8,.2,1) · UI 200ms · reveal 600ms fade + 8px rise, 70ms stagger · toys pop on --spring-pop (≤128px) · vignettes play their one action once
+IMAGES      : medium      soft claymation 3D render, matte plasticine with visible fingerprints and slightly imperfect edges, soft contact shadows
+              light       gentle studio light from the upper left
+              palette     lilac #C9B8F2 · peach #FFC9A8 · mint #BFE8D2 · butter yellow #FFE59A · deep night blue #2B2F6B
+              mood        cosy, safe, delightful, for children aged 3 to 8 and their parents
+              type zone   hero: top 40% clean flat lilac wall · footer: top 50% clean flat night blue
+              exclude     no text, no letters, no logos, no watermarks, no realistic human faces
+              shot list   hero 16:9 clay bedroom at night (bed, round moon window, glowing night-light, shelf) · objects 1:1 sprite sheet of six (fox, rocket, teapot, sleepy moon, lilac umbrella, green dragon) on white → cut to transparent PNG/WebP · moon 21:9 footer night sky, sleepy crescent right, clay clouds along the bottom edge
+NAMING      : bedtime / lights → tiers Free · Family (kept plain: parents compare prices) · steps end "asleep" · CTA "Make tonight's story" · finale "Lights off in ten minutes" · 404 "This page fell asleep."
+SIGNATURES  : §75 input as a domain object (the toy box) · §62 pricing as an object (library cards with stamped nights) · §76 finale illustration rising from the bottom edge (the clay night sky)
+VOICE       : hero "What should tonight's story be about?" · section "Three picks in. One sleepy story out." · CTA "Make tonight's story"
+-->
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nightlight · Bedtime stories your child chooses, read in your voice</title>
+<meta name="description" content="Your child picks three things from the toy box. Nightlight writes a gentle bedtime story around them, read in your voice. No ads, no chat. Free for 3 stories a week.">
+<meta name="theme-color" content="#B5A2E3">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%232B2F6B'/%3E%3Ccircle cx='9' cy='16' r='3.4' fill='%23FFE59A'/%3E%3Ccircle cx='16' cy='16' r='3.4' fill='%23FFE59A'/%3E%3Ccircle cx='23' cy='16' r='3.4' fill='none' stroke='%23FFE59A' stroke-width='1.6'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600&family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400,100;1,9..144,400,100&display=swap">
+<link rel="preload" as="image" href="img/hero.webp" imagesrcset="img/hero-900.webp 900w, img/hero.webp 1672w" imagesizes="(max-width: 760px) 900px, 100vw" fetchpriority="high">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--primary" href="#main">Skip to content</a>
+
+<header class="hero" id="top">
+  <nav class="nav" aria-label="Main">
+    <a class="wordmark" href="#top" aria-label="Nightlight, home"><span class="wordmark-dot" aria-hidden="true"></span>Nightlight</a>
+    <ul class="nav-links">
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#safety">Safety</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#questions">Questions</a></li>
+    </ul>
+    <a class="btn btn--night btn--sm nav-cta" href="#toybox" data-focus-toybox>Make tonight’s story</a>
+  </nav>
+
+  <div class="hero-copy">
+    <p class="hero-kicker">Bedtime stories for ages 3 to 8</p>
+    <h1 class="t-display">What should tonight’s story be about?</h1>
+    <p class="hero-sub">Your child picks three things from the toy box. Nightlight writes a gentle story around them, read in your voice, that always ends with sleep.</p>
+    <a class="hero-sample" href="#sample"><span class="play-dot" aria-hidden="true"></span>Hear a sample</a>
+  </div>
+
+  <div class="hero-art" aria-hidden="true">
+    <picture>
+      <source type="image/webp" srcset="img/hero-900.webp 900w, img/hero.webp 1672w" sizes="(max-width: 760px) 900px, 100vw">
+      <img src="img/hero.jpg" width="1672" height="941" alt="" fetchpriority="high">
+    </picture>
+  </div>
+
+  <form class="toybox" id="toybox" aria-labelledby="toybox-title" novalidate>
+    <div class="toybox-lid" aria-hidden="true"></div>
+    <div class="toybox-head">
+      <h2 class="toybox-title" id="toybox-title">Pick three things</h2>
+      <p class="counter" aria-hidden="true"><span class="counter-dots"><i></i><i></i><i></i></span><span data-count>0 of 3</span></p>
+    </div>
+    <div class="toys" role="group" aria-labelledby="toybox-title" data-toys></div>
+
+    <div class="toybox-story">
+      <p class="slots" aria-hidden="true"><span class="slots-label">Tonight:</span><span class="slot" data-slot></span><span class="slot" data-slot></span><span class="slot" data-slot></span></p>
+      <p class="first-line" data-first-line><span class="first-line-tag">For example</span><span class="first-line-text" data-typed>“The teapot was far too sleepy to whistle, so the fox and the moon whistled for it.”</span></p>
+    </div>
+
+    <div class="toybox-foot">
+      <fieldset class="lengths">
+        <legend class="sr-only">Story length</legend>
+        <label><input type="radio" name="length" value="5"><span>5 min</span></label>
+        <label><input type="radio" name="length" value="10" checked><span>10 min</span></label>
+        <label><input type="radio" name="length" value="15"><span>15 min</span></label>
+      </fieldset>
+      <p class="length-note" data-length-note>about 1,100 words</p>
+      <button class="btn btn--night btn--lg" type="submit">Make tonight’s story</button>
+    </div>
+    <p class="sr-only" role="status" aria-live="polite" data-live></p>
+  </form>
+</header>
+
+<main id="main">
+
+  <section class="promises" aria-label="Nightlight’s promises to parents">
+    <ul class="container promise-list">
+      <li><span class="tick" aria-hidden="true"></span>No ads, ever</li>
+      <li><span class="tick" aria-hidden="true"></span>No chat with anyone</li>
+      <li><span class="tick" aria-hidden="true"></span>Every story reviewed for ages 3 to 8</li>
+      <li><span class="tick" aria-hidden="true"></span>5, 10 or 15 minutes long</li>
+    </ul>
+  </section>
+
+  <section class="why container" aria-labelledby="why-h">
+    <p class="kicker" data-reveal>Why Nightlight</p>
+    <h2 id="why-h" class="why-text" data-reveal>Bedtime should end in sleep, not in one more episode. <span class="dim">Nightlight tells one story, in a voice your child already knows, that slows down on purpose: softer words, quieter scenes, and a last line where everyone is asleep.</span></h2>
+  </section>
+
+  <section class="how" id="how" aria-labelledby="how-h">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="how-h" class="t-h2" data-reveal>Three picks in. <span class="dim">One sleepy story out.</span></h2>
+        <p class="section-lede" data-reveal>Choosing takes about a minute. Everything after that happens with the lights off.</p>
+      </div>
+      <ol class="steps" data-reveal-group>
+        <li class="step">
+          <div class="step-art step-art--window">
+            <figure class="vig vig-pick" role="img" aria-label="Three toys picked at 7:42 pm: a fox, a teapot and the moon">
+              <p class="vig-top"><span>Picked at 7:42 pm</span><span class="vig-dots"><i></i><i></i><i></i></span></p>
+              <div class="vig-trio">
+                <span><img src="img/toy-fox.webp" alt="" width="365" height="454" loading="lazy"></span>
+                <span><img src="img/toy-teapot.webp" alt="" width="408" height="355" loading="lazy"></span>
+                <span><img src="img/toy-moon.webp" alt="" width="380" height="433" loading="lazy"></span>
+              </div>
+              <p class="vig-foot">Fox · Teapot · Moon</p>
+            </figure>
+          </div>
+          <h3 class="t-h3"><span class="step-n">1</span>They choose the cast</h3>
+          <p>Whatever they pick becomes tonight’s characters. Tapping three toys is the whole interface.</p>
+        </li>
+        <li class="step">
+          <div class="step-art step-art--quilt">
+            <figure class="vig vig-write" role="img" aria-label="Story record: The Fox, the Teapot and the Quiet Hill, 10 minutes, about 1,100 words, ends with everyone asleep, reviewed for ages 3 to 8">
+              <p class="chip-ok"><span aria-hidden="true">✓</span> Reviewed for ages 3–8</p>
+              <p class="vig-title">The Fox, the Teapot and the Quiet Hill</p>
+              <dl class="vig-rows">
+                <div><dt>Length</dt><dd>10 min</dd></div>
+                <div><dt>Words</dt><dd>about 1,100</dd></div>
+                <div><dt>Ending</dt><dd>Everyone asleep</dd></div>
+              </dl>
+            </figure>
+          </div>
+          <h3 class="t-h3"><span class="step-n">2</span>Nightlight writes it softly</h3>
+          <p>A new story each time, at the length you chose, reviewed for 3 to 8-year-olds before it plays.</p>
+        </li>
+        <li class="step">
+          <div class="step-art step-art--lamp">
+            <figure class="vig vig-play" role="img" aria-label="Player reading the story in Dad’s voice, 3 minutes 28 seconds into 10 minutes">
+              <p class="vig-voice"><span class="avatar" aria-hidden="true">D</span><span><b>Read in Dad’s voice</b><small>Slowing down</small></span></p>
+              <div class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+              <div class="bar" aria-hidden="true"><span></span></div>
+              <p class="vig-time"><span>3:28</span><span>10:00</span></p>
+            </figure>
+          </div>
+          <h3 class="t-h3"><span class="step-n">3</span>It’s read in your voice</h3>
+          <p>Press play and dim the lights. The story is read in the voice your child already falls asleep to.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="rows container" aria-label="What makes a Nightlight story">
+    <article class="row">
+      <div class="row-text" data-reveal>
+        <p class="kicker">Your voice</p>
+        <h2 class="t-h2">Your voice, even when you’re away.</h2>
+        <p>Read a short script aloud once, on any evening. From then on, Nightlight reads every story in your voice: on work trips, on late shifts, and on the nights you’re simply too tired to do the voices.</p>
+      </div>
+      <div class="row-media field--peach" data-reveal>
+        <img class="row-toy row-toy--umbrella" src="img/toy-umbrella.webp" alt="" width="405" height="454" loading="lazy">
+        <figure class="vig vig-rec" role="img" aria-label="Voice recording screen, sentence 8 of 12: The owl switched off the lamp and said goodnight to the whole hill.">
+          <p class="vig-top"><span>Recording your voice</span><span>8 of 12</span></p>
+          <div class="rec-progress" aria-hidden="true"><span></span></div>
+          <p class="rec-line">“The owl switched off the lamp and said goodnight to the whole hill.”</p>
+          <div class="rec-foot">
+            <span class="mic" aria-hidden="true"></span>
+            <span class="level" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
+            <span class="rec-hint">Read it the way you would at bedtime</span>
+          </div>
+        </figure>
+      </div>
+    </article>
+
+    <article class="row row--flip">
+      <div class="row-text" data-reveal>
+        <p class="kicker">The shape of a story</p>
+        <h2 class="t-h2">Built to wind down.</h2>
+        <p>The adventure comes first. Then the scenes slow, the sentences get shorter, and the last page always ends with someone drifting off. No cliffhangers, no “what happens next?”</p>
+      </div>
+      <div class="row-media field--butter" data-reveal>
+        <figure class="vig vig-curve" role="img" aria-label="Chart of a 10-minute story: the energy is high for the first four minutes of adventure, slows down between minutes four and eight, and reaches asleep by minute ten.">
+          <p class="vig-top"><span>How a 10-minute story winds down</span></p>
+          <svg viewBox="0 0 440 180" aria-hidden="true" class="curve">
+            <line x1="0" y1="170" x2="440" y2="170" class="axis"/>
+            <line x1="176" y1="8" x2="176" y2="170" class="zone"/>
+            <line x1="352" y1="8" x2="352" y2="170" class="zone"/>
+            <path class="curve-fill" d="M0 40 C 50 18, 90 46, 130 30 S 200 44, 240 86 S 320 150, 352 158 L 440 166 L 440 170 L 0 170 Z"/>
+            <path class="curve-line" pathLength="1" d="M0 40 C 50 18, 90 46, 130 30 S 200 44, 240 86 S 320 150, 352 158 L 440 166"/>
+          </svg>
+          <img class="curve-moon" src="img/toy-moon.webp" alt="" width="380" height="433" loading="lazy">
+          <p class="curve-labels"><span>Adventure</span><span>Slowing down</span><span>Asleep</span></p>
+          <p class="curve-axis"><span>0 min</span><span>4</span><span>8</span><span>10</span></p>
+        </figure>
+      </div>
+    </article>
+  </section>
+
+  <section class="safety" id="safety" aria-labelledby="safety-h">
+    <div class="container safety-inner">
+      <div class="safety-text" data-reveal>
+        <p class="kicker">For parents</p>
+        <h2 id="safety-h" class="t-h2">No ads. No chat. <span class="dim">Nothing your child can wander into.</span></h2>
+        <p>Nightlight is a storyteller, not a feed. This is exactly what it does and doesn’t do, in plain words.</p>
+      </div>
+      <div class="rules-wrap" data-reveal>
+        <img class="rules-dragon" src="img/toy-dragon.webp" alt="" width="391" height="449" loading="lazy">
+        <ul class="rules">
+          <li><b>No ads, anywhere.</b> There are no adverts in the app and none inside the stories, on either plan.</li>
+          <li><b>No chat.</b> Your child can’t message anyone, and nobody can message them. The only thing they choose is three toys.</li>
+          <li><b>Every story is reviewed before it plays.</b> Each one is checked for age-appropriateness for 3 to 8-year-olds: no frightening themes, no unkind words, nothing unsafe to copy. If a story doesn’t pass, it isn’t played.</li>
+          <li><b>It always ends asleep.</b> Stories run 5, 10 or 15 minutes and finish with the main character falling asleep, so there’s no “one more”.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sample container" id="sample" aria-labelledby="sample-h">
+    <div class="sample-head" data-reveal>
+      <p class="kicker">Hear a sample</p>
+      <h2 id="sample-h" class="t-h2">A fox, a teapot and the moon.</h2>
+      <p>A sample story, made from three picks, cut down to its first and last pages.</p>
+      <div class="player-ph">
+        <span class="ph-tag">Placeholder</span>
+        <p class="player-row"><button class="play" type="button" disabled aria-label="Play audio sample (not available yet)"></button><span class="player-bar" aria-hidden="true"></span><span class="t-num player-t">0:00 / 10:00</span></p>
+        <p class="player-note">The recorded audio for this sample isn’t ready yet. The words are below, so you can read it aloud yourself.</p>
+      </div>
+    </div>
+    <article class="page" data-reveal aria-label="Sample story text">
+      <p class="page-title">The Fox, the Teapot and the Quiet Hill</p>
+      <p>Once, when the whole house had gone quiet, a small fox who could never quite sit still found a mint teapot and the moon waiting at the end of the bed.</p>
+      <p>“We’re going up the hill,” said the moon. “Only as far as the last lamp.”</p>
+      <p>So they went: the fox padding softly, the teapot clinking a little with every step, and the moon floating just above, lighting the path in silver.</p>
+      <p class="page-skip" aria-hidden="true">· · ·</p>
+      <p>At the top of the hill the teapot poured three cups of warm milk. The fox drank slowly. The moon yawned, and the stars yawned too.</p>
+      <p>“Is it sleepy time?” asked the fox.</p>
+      <p>“Nearly,” said the moon. “Close your eyes, and I’ll count the stars for you. One… two… three…”</p>
+      <p class="page-end">And by the time the moon reached ten, the fox was fast asleep.</p>
+    </article>
+  </section>
+
+  <section class="pricing" id="pricing" aria-labelledby="pricing-h">
+    <div class="container">
+      <div class="section-head">
+        <h2 id="pricing-h" class="t-h2" data-reveal>Free for three stories a week. <span class="dim">Family for every night.</span></h2>
+        <p class="section-lede" data-reveal>Prices in pounds, billed monthly. Both plans have the same safety rules: no ads and no chat.</p>
+      </div>
+      <div class="cards">
+        <img class="cards-rocket" src="img/toy-rocket.webp" alt="" width="323" height="454" loading="lazy">
+        <article class="lcard lcard--free" aria-labelledby="free-h" data-reveal>
+          <p class="lcard-band"><span>Nightlight library card</span><span class="hole" aria-hidden="true"></span></p>
+          <h3 id="free-h" class="lcard-name">Free</h3>
+          <p class="price t-num"><span class="cur">£</span>0</p>
+          <p class="unit">3 new stories a week</p>
+          <table class="nights" aria-label="A week on the free plan: 3 story nights">
+            <thead><tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr></thead>
+            <tbody><tr><td class="on" aria-label="story"></td><td></td><td class="on" aria-label="story"></td><td></td><td></td><td class="on" aria-label="story"></td><td></td></tr></tbody>
+          </table>
+          <ul class="lcard-list">
+            <li>Three new stories every week</li>
+            <li>Every length: 5, 10 or 15 minutes</li>
+            <li>Read in your recorded voice</li>
+          </ul>
+          <a class="btn btn--ghost-night btn--lg" href="#toybox" data-focus-toybox>Start free</a>
+        </article>
+        <article class="lcard lcard--family" aria-labelledby="family-h" data-reveal style="--i:1">
+          <p class="lcard-band"><span>Nightlight library card</span><span class="hole" aria-hidden="true"></span></p>
+          <h3 id="family-h" class="lcard-name">Family</h3>
+          <p class="price t-num"><span class="cur">£</span>4.99</p>
+          <p class="unit">a month</p>
+          <table class="nights" aria-label="A week on the Family plan: a story every night">
+            <thead><tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th></tr></thead>
+            <tbody><tr><td class="on" aria-label="story"></td><td class="on" aria-label="story"></td><td class="on" aria-label="story"></td><td class="on" aria-label="story"></td><td class="on" aria-label="story"></td><td class="on" aria-label="story"></td><td class="on" aria-label="story"></td></tr></tbody>
+          </table>
+          <ul class="lcard-list">
+            <li>A new story every night</li>
+            <li>Every length: 5, 10 or 15 minutes</li>
+            <li>Read in your recorded voice</li>
+          </ul>
+          <a class="btn btn--night btn--lg" href="#toybox" data-focus-toybox>Start Family</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq container" id="questions" aria-labelledby="faq-h">
+    <div class="faq-side" data-reveal>
+      <h2 id="faq-h" class="t-h2">Questions parents ask first.</h2>
+      <div class="contact">
+        <p class="contact-title">Something we haven’t answered?</p>
+        <p>Write to us and tell us what you’d like to know.</p>
+        <a class="contact-mail" href="mailto:parents@nightlight.app">parents@nightlight.app</a>
+      </div>
+    </div>
+    <div class="faq-list" data-reveal>
+      <details open>
+        <summary>What age is Nightlight for?</summary>
+        <p>Children aged 3 to 8. Stories use simple words and gentle plots, and every one is reviewed for that age range before it plays.</p>
+      </details>
+      <details>
+        <summary>Does my child need to read or type anything?</summary>
+        <p>No. They tap three toys, someone presses play, and the story is read aloud.</p>
+      </details>
+      <details>
+        <summary>How does the voice recording work?</summary>
+        <p>You read a short script aloud once. After that, Nightlight reads every story in that voice.</p>
+      </details>
+      <details>
+        <summary>Can my child talk to the app, or to other people?</summary>
+        <p>No. There is no chat in Nightlight of any kind, with the app or with anyone else.</p>
+      </details>
+      <details>
+        <summary>Are there ads or things to buy?</summary>
+        <p>There are no ads on either plan. The only thing you can pay for is the Family plan, at £4.99 a month.</p>
+      </details>
+      <details>
+        <summary>What’s the difference between Free and Family?</summary>
+        <p>Free gives you three new stories a week. Family gives you a new story every night. Everything else is the same.</p>
+      </details>
+    </div>
+  </section>
+
+</main>
+
+<footer class="night" aria-labelledby="finale-h">
+  <section class="finale container">
+    <h2 id="finale-h" class="finale-h" data-reveal>Lights off in ten minutes.</h2>
+    <p class="finale-sub" data-reveal>Pick three, press play, say goodnight.</p>
+    <form class="minibox" id="minibox" aria-labelledby="minibox-label" novalidate data-reveal>
+      <p class="sr-only" id="minibox-label">Pick three things for tonight’s story</p>
+      <div class="minitoys" role="group" aria-labelledby="minibox-label" data-toys-mini></div>
+      <p class="minibox-count" data-count-mini aria-hidden="true">Pick three</p>
+      <button class="btn btn--glow btn--lg" type="submit">Make tonight’s story</button>
+    </form>
+  </section>
+
+  <div class="foot container">
+    <div class="foot-brand">
+      <a class="wordmark wordmark--light" href="#top"><span class="wordmark-dot" aria-hidden="true"></span>Nightlight</a>
+      <p>Bedtime stories your child chooses, read in your voice.</p>
+      <p class="clock" data-bedtime>It’s bedtime somewhere.</p>
+    </div>
+    <nav class="foot-cols" aria-label="Footer">
+      <div><p class="foot-h">Stories</p><ul><li><a href="#how">How it works</a></li><li><a href="#sample">Hear a sample</a></li><li><a href="#pricing">Pricing</a></li></ul></div>
+      <div><p class="foot-h">Parents</p><ul><li><a href="#safety">Safety</a></li><li><a href="#questions">Questions</a></li><li><a href="mailto:parents@nightlight.app">Email us</a></li></ul></div>
+      <div><p class="foot-h">Legal</p><ul><li><a href="#top">Privacy</a></li><li><a href="#top">Terms</a></li></ul></div>
+    </nav>
+    <p class="foot-legal">© 2026 Nightlight. Made for the last ten minutes of the day.</p>
+  </div>
+
+  <picture class="sky" aria-hidden="true">
+    <source type="image/webp" srcset="img/sky.webp">
+    <img src="img/sky.jpg" alt="" width="1200" height="514" loading="lazy">
+  </picture>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

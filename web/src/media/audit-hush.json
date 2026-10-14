@@ -1,0 +1,120 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/hush/index.html",
+ "outDir": "/tmp/gal-hush",
+ "ms": 45684,
+ "counts": {
+  "PASS": 10,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Instrument Sans×186",
+   "Newsreader×46"
+  ],
+  "display": [
+   "76px/1.02/-0.02em w400 \"Face the patient, not the sc\"",
+   "76px/1.02/-0.02em w400 \"not the screen.\"",
+   "76px/1.02/-0.02em w400 \"Two chairs, one conversation\""
+  ],
+  "bodySize": "14",
+  "weights": [
+   "400×158",
+   "500×38",
+   "600×36"
+  ],
+  "upperShare": 0.09,
+  "paper": "rgb(255,254,251)",
+  "accents": [
+   "rgb(122,46,34) bg a.btn"
+  ],
+  "buttons": [
+   "pill 36px \"Book a practice demo\"",
+   "pill 50px \"Book a practice demo\"",
+   "pill 50px \"Read how consent works\n→\"",
+   "pill 44px \"Book a practice demo\"",
+   "pill 50px \"Book a practice demo\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)",
+   "cubic-bezier(.2,.8,.2,1)"
+  ],
+  "nav": {
+   "h": 73,
+   "links": 7
+  },
+  "pageVh": 8.5
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "2 families: Instrument Sans, Newsreader"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 76px · lh 1.02 · -0.02em · weight 400 · Newsreader)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (3/6 traits: hairlineBands, tinyAccent, lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "One accent hue (0° (w14) e.g. rgb(122,46,34) bg a.btn)"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 145 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 10 text elements over imagery meet AA (sampled from pixels)"
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: pill"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "2 hero CTA(s)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.2,0.8,0.2,1)×51, cubic-bezier(0.4,0,0.2,1)×6"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 0.3% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 8.5 viewports (direction 11 norm 7–12)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/gal-hush/desktop-hero.png",
+  "/tmp/gal-hush/slice-01.jpg … (one per viewport)",
+  "/tmp/gal-hush/desktop-full.jpg",
+  "/tmp/gal-hush/mobile-hero.png",
+  "/tmp/gal-hush/mobile-full.jpg",
+  "/tmp/gal-hush/reduced-motion-hero.png"
+ ]
+}

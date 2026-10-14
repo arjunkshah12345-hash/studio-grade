@@ -1,0 +1,473 @@
+<!--
+DESIGN SPINE · Switchback
+DIRECTION   : 11 Bright Product. A friendly, finished planning tool for hillwalkers and trail runners; the gouache travel-poster series gives it a world, small real UI vignettes show the plan.
+REGISTER    : Confident. One bold device: the prompt drawn as a tear-off route card, sitting in a full-width painted glen that runs from morning sky (hero) to sunset sandstone (footer).
+AXES        : ground white paper bookended by two painted colour fields (sky #B0D6E8 → sandstone #E4C395) · type genre soft literary serif (Fraunces SOFT 100 at 400) over a plain grotesk · image medium gouache travel-poster series · composition product stage over a landscape, then alternating vignette-on-painting rows · motion calm fade-rise; each vignette plays its one action once
+DEFAULT?    : default-look check: 1/6 matched (near-black ink at 400) → DIFFERENT FROM DEFAULT BY: ground (white + painted fields), labels (sentence-case text face, no mono), hero medium (painting, not line art), accent on buttons and the route, no metadata bands
+MOTIF       : the switchback (a zig-zag path climbing a slope): 1 logo mark · 2 the path in the hero painting · 3 the "planning" loader inside the submit button · 4 list markers in feature rows · 5 the day drawn as a climbing route line in the journey map
+TYPE        : display Fraunces 400 (SOFT 100, WONK 0) · text Instrument Sans 400/500 · no mono (numbers use Instrument Sans tabular figures)
+SCALE       : display clamp(44→84px)/1.0/−0.025em · h2 32→52px/1.05/−0.02em · h3 22→26px serif · body 17px/1.55 · label 13px sentence case
+PALETTE     : paper #FFFFFF · paper-2 #F5EFE6 (sandstone tray) · ink #16241F (pine-black) · ink-2 ink@70% · hairline ink@10% · accent pine #2F5D50 → ONLY buttons, the route line, eyebrow dots · caution #A84A22 / mark #E9895C → ONLY the turn-back point · sky #B0D6E8 and sand #E4C395 are sampled from the paintings, used only as the fields that extend them
+GRID        : 12 cols / 24px · container 1240px · side margin 20→80px · section padding 96→144px
+HERO        : H20, prompt as the hero (techniques §75): two-beat serif h1 in the painted sky, a working route-card form with a typed example, one task-verb submit; the glen, its zig-zag path and the tiny walker below
+IMAGERY     : generated gouache series (imagery §8) + product vignettes rebuilt in HTML on crops of it (§69)
+CONVERSION  : "Plan my day" → nav pill, hero submit, prompt starters ("Use prompt"), Free tier, finale route card
+MOTION      : house ease cubic-bezier(.2,.8,.2,1) · UI 160–240ms · reveal 650ms fade + 8px rise, 70ms stagger, no blur · typing placeholder runs once · route line draws once
+IMAGES      : medium      gouache painting in the style of a mid-century national-park travel poster, flat shapes, soft dry-brush texture
+              palette     pine green #2F5D50, heather purple #8A6A9E, sandstone #E7C9A0, sky #BFD9E6, sunset orange #E9895C
+              subject     the Scottish Highlands
+              type zone   hero top 50% clean flat sky · 4:3 shots left third clean sky · footer top 55% flat warm sky
+              exclude     no text, no lettering, no logos, no watermarks, no people's faces
+              shot list   hero 21:9 Highland glen, loch, zig-zag path, tiny hiker · cairn 4:3 on a ridge, afternoon · bothy 4:3 by a stream at dusk, lit window · ridge 21:9 footer silhouettes rising from the bottom edge
+NAMING      : the route card → the form is a route card, the tiers are Free and Hill, CTA "Plan my day"
+SIGNATURES  : §75 the input is the hero (route card) · §64 the day as a journey map (elevation over time + weather window) · §76 the ridge rising from the bottom edge
+VOICE       : hero "Big views. Back before dark." · section "Most bad days on the hill start in the car park." · CTA "Plan my day"
+-->
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Switchback · Plan a hill day in Scotland</title>
+<meta name="description" content="Describe the hill day you want. Switchback plans the route, the timings, the weather window and the last point to turn back. Planning help, not a guarantee.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%232F5D50'/%3E%3Cpath d='M7 25 L24 21 L9 16 L24 11 L13 7' fill='none' stroke='%23E7C9A0' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,400,100,0&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/hero-1916.webp" imagesrcset="img/hero-960.webp 960w, img/hero-1916.webp 1916w" imagesizes="100vw" media="(min-width: 761px)">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<script type="module" src="main.js"></script>
+</head>
+<body>
+<a class="skip btn btn--primary btn--sm" href="#main">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="zig" viewBox="0 0 24 24"><path d="M4 21 L19 17.5 L6 13 L19 8.5 L9 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="hero" id="top">
+  <nav class="nav" aria-label="Main">
+    <a class="brand" href="#top" aria-label="Switchback, home"><svg class="brand-mark" aria-hidden="true"><use href="#zig"/></svg><span>Switchback</span></a>
+    <ul class="nav-links">
+      <li><a href="#day">How it plans</a></li>
+      <li><a href="#safety">Safety</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#faq">Questions</a></li>
+    </ul>
+    <a class="btn btn--primary btn--sm nav-cta" href="#prompt" data-focus-prompt>Plan my day</a>
+  </nav>
+
+  <div class="hero-copy">
+    <h1 class="t-display hero-h1">Big views.<br> Back before dark.</h1>
+    <p class="hero-sub">Describe the hill day you want. Switchback plans the route, the timings, the weather window and the last point to turn back.</p>
+  </div>
+
+  <div class="rc-wrap hero-form">
+    <form class="rc" id="plan" novalidate>
+      <div class="rc-head">
+        <span class="rc-title"><svg aria-hidden="true"><use href="#zig"/></svg>Route card</span>
+        <span class="rc-meta">Say it the way you'd tell a friend</span>
+      </div>
+      <label class="sr-only" for="prompt">Describe your hill day</label>
+      <textarea class="rc-input" id="prompt" name="prompt" rows="3" data-example="Six hours from Fort William, big views, no scrambling, back before dark." placeholder="Six hours from Fort William, big views, no scrambling, back before dark."></textarea>
+      <div class="rc-stub">
+        <ul class="rc-facts" aria-label="Every plan includes">
+          <li>Timings</li><li>Weather window</li><li>Escape routes</li><li class="is-turn">Turn-back point</li>
+        </ul>
+        <button class="btn btn--primary rc-go" type="submit">
+          <span class="rc-go-label">Plan my day</span>
+          <svg class="rc-loader" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M4 21 L19 17.5 L6 13 L19 8.5 L9 4"/></svg>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <div class="result-live" aria-live="polite">
+    <div class="result" id="plan-result" hidden>
+      <div class="res-card" tabindex="-1">
+        <p class="res-flag"><span>Sample plan</span> This page is a preview, so it shows the example route whatever you type.</p>
+        <div class="res-head">
+          <div>
+            <h2 class="res-title">Mullach nan Coirean and Stob Bàn</h2>
+            <p class="res-where">The Mamores from Glen Nevis · Saturday 17 October</p>
+          </div>
+          <dl class="res-stats t-num">
+            <div><dt>Distance</dt><dd>11.5 km</dd></div>
+            <div><dt>Height gain</dt><dd>1,160 m</dd></div>
+            <div><dt>With stops</dt><dd>7 h 10</dd></div>
+            <div><dt>Last light</dt><dd>18:15</dd></div>
+          </dl>
+        </div>
+        <ol class="res-legs t-num">
+          <li><time>08:30</time><span>Leave the lower falls car park, Glen Nevis. Forest track, then the north-east ridge.</span></li>
+          <li><time>11:15</time><span>Mullach nan Coirean, 939 m.</span></li>
+          <li class="is-turn"><time>12:00</time><span><b>Turn-back time.</b> Not on the first summit by now? Go down the way you came.</span></li>
+          <li><time>13:20</time><span>Stob Bàn, 999 m. Off the tops by 14:30, before the wind picks up.</span></li>
+          <li><time>15:40</time><span>Back at the car, down the east ridge and the Coire a' Mhusgain path.</span></li>
+        </ol>
+        <div class="res-foot">
+          <p><b>Escape:</b> before Stob Bàn, the quickest way down is back over Mullach nan Coirean the way you came up.</p>
+          <p class="res-honest">Planning help, not a guarantee. Read the mountain forecast on the morning and carry a map and compass.</p>
+          <a class="link" href="#day">See how the day reads</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <picture class="hero-art">
+    <source media="(max-width: 760px)" srcset="img/hero-m.webp" type="image/webp">
+    <source media="(max-width: 760px)" srcset="img/hero-m.jpg">
+    <source srcset="img/hero-960.webp 960w, img/hero-1916.webp 1916w" sizes="100vw" type="image/webp">
+    <img src="img/hero-1916.jpg" srcset="img/hero-960.jpg 960w, img/hero-1916.jpg 1916w" sizes="100vw" width="1916" height="821" fetchpriority="high" alt="A painted Highland glen: a loch below orange-lit mountains, and a stone path zig-zagging up a heather slope with one walker on it.">
+  </picture>
+</header>
+
+<main id="main">
+
+  <!-- Prompt starters (§75) -->
+  <section class="section starters" aria-labelledby="starters-h">
+    <div class="container">
+      <div class="split-head" data-reveal>
+        <h2 class="t-h2" id="starters-h">Not sure how to put it? <span class="dim">Start from a day like these.</span></h2>
+        <p class="split-note">Each one fills the route card. Change the start, the hours or the hill, then plan.</p>
+      </div>
+      <div class="starter-grid" data-reveal-group>
+        <article class="starter">
+          <div class="starter-art" style="--img:var(--img-hero);--pos:34% 66%;--size:330%" aria-hidden="true"></div>
+          <h3 class="starter-title">A first Munro</h3>
+          <p class="starter-q">“First Munro from Glasgow, on a clear path the whole way, five hours, home for tea.”</p>
+          <button class="starter-use" type="button" data-prompt="First Munro from Glasgow, on a clear path the whole way, five hours, home for tea.">Use prompt <span aria-hidden="true">→</span></button>
+        </article>
+        <article class="starter">
+          <div class="starter-art" style="--img:var(--img-cairn);--pos:70% 34%;--size:240%" aria-hidden="true"></div>
+          <h3 class="starter-title">A ridge, no scrambling</h3>
+          <p class="starter-q">“Two tops on a ridge near Glencoe, airy but no hands-on scrambling, back by 5.”</p>
+          <button class="starter-use" type="button" data-prompt="Two tops on a ridge near Glencoe, airy but no hands-on scrambling, back by 5.">Use prompt <span aria-hidden="true">→</span></button>
+        </article>
+        <article class="starter">
+          <div class="starter-art" style="--img:var(--img-bothy);--pos:78% 54%;--size:250%" aria-hidden="true"></div>
+          <h3 class="starter-title">Out to a bothy</h3>
+          <p class="starter-q">“Walk in to a bothy on Friday after work, out by Saturday lunchtime, rain likely.”</p>
+          <button class="starter-use" type="button" data-prompt="Walk in to a bothy on Friday after work, out by Saturday lunchtime, rain likely.">Use prompt <span aria-hidden="true">→</span></button>
+        </article>
+        <article class="starter">
+          <div class="starter-art" style="--img:var(--img-ridge);--pos:20% 92%;--size:300%" aria-hidden="true"></div>
+          <h3 class="starter-title">Fast and light</h3>
+          <p class="starter-q">“Trail run in the Cairngorms, 25 km, runnable paths, finish before the wind arrives.”</p>
+          <button class="starter-use" type="button" data-prompt="Trail run in the Cairngorms, 25 km, runnable paths, finish before the wind arrives.">Use prompt <span aria-hidden="true">→</span></button>
+        </article>
+      </div>
+      <p class="leaves" data-reveal><span class="leaves-k">Every plan leaves as</span> a GPX file for OS Maps, Garmin, Komoot or Strava <span aria-hidden="true">·</span> a one-page route card to print <span aria-hidden="true">·</span> a link for whoever's at home</p>
+    </div>
+  </section>
+
+  <!-- Why -->
+  <section class="section why" aria-labelledby="why-h">
+    <div class="container grid">
+      <p class="eyebrow why-eye" data-reveal>Why plan it</p>
+      <h2 class="why-text" id="why-h" data-reveal>Most bad days on the hill start in the car park. <span class="dim">Late starts, guidebook timings and a forecast read on the drive. Switchback does the sums before you leave: how long the ground will take you, when the weather turns, and where the last sensible turn-round is.</span></h2>
+    </div>
+  </section>
+
+  <!-- The day as a journey map (§64) -->
+  <section class="section day" id="day" aria-labelledby="day-h">
+    <div class="container">
+      <div class="split-head" data-reveal>
+        <h2 class="t-h2" id="day-h">A planned day, car to car. <span class="dim">Every stop has a time, and one of them is the time to turn round.</span></h2>
+        <p class="split-note">The sample plan from the route card above, drawn as height against the clock, with the weather window underneath.</p>
+      </div>
+
+      <figure class="journey-wrap" data-reveal>
+        <div class="journey">
+          <svg class="journey-svg" viewBox="0 0 1200 440" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <pattern id="wind" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="10" height="10" fill="#F5EFE6"/><line x1="0" y1="0" x2="0" y2="10" stroke="#16241F" stroke-opacity=".13" stroke-width="3"/></pattern>
+            </defs>
+            <rect class="j-window" x="0" y="0" width="763.6" height="400"/>
+            <rect x="763.6" y="0" width="436.4" height="400" fill="url(#wind)"/>
+            <g class="j-grid">
+              <line x1="0" y1="140" x2="1200" y2="140"/><line x1="0" y1="270" x2="1200" y2="270"/>
+            </g>
+            <path class="j-fill" d="M54.5 369 L145.5 322 L236.4 254 L300 202 L354.5 156 L418.2 184 L463.6 163 L509.1 182 L581.8 140 L636.4 187 L709.1 265 L772.7 332 L836.4 369 L836.4 400 L54.5 400 Z"/>
+            <path class="route" pathLength="1" d="M54.5 369 L145.5 322 L236.4 254 L300 202 L354.5 156 L418.2 184 L463.6 163 L509.1 182 L581.8 140 L636.4 187 L709.1 265 L772.7 332 L836.4 369"/>
+            <line class="j-turn" x1="436.4" y1="40" x2="436.4" y2="400"/>
+            <line class="j-dark" x1="1112.7" y1="40" x2="1112.7" y2="400"/>
+            <g class="j-dots">
+              <circle cx="54.5" cy="369" r="7"/><circle cx="354.5" cy="156" r="7"/><circle cx="581.8" cy="140" r="7"/><circle cx="836.4" cy="369" r="7"/>
+            </g>
+            <circle class="j-turn-dot" cx="436.4" cy="175.6" r="8"/>
+          </svg>
+          <ol class="stations t-num">
+            <li style="--x:4.54%;--y:83.86%" class="above"><b>08:30</b> Leave the car<span>Lower falls, Glen Nevis · 120 m</span></li>
+            <li style="--x:29.54%;--y:35.45%" class="above"><b>11:15</b> Mullach nan Coirean<span>939 m · first summit</span></li>
+            <li style="--x:36.37%;--y:39.9%" class="below is-turn"><b>12:00</b> Turn-back time<span>Not up yet? Down the way you came.</span></li>
+            <li style="--x:48.48%;--y:31.82%" class="above"><b>13:20</b> Stob Bàn<span>999 m · off the tops by 14:30</span></li>
+            <li style="--x:69.7%;--y:83.86%" class="above"><b>15:40</b> Back at the car<span>7 h 10 with stops</span></li>
+          </ol>
+          <p class="j-tag j-tag--wind">Gusts 40 mph on the tops from 15:00</p>
+          <p class="j-tag j-tag--dark t-num">Last light 18:15</p>
+        </div>
+        <div class="wx t-num" role="table" aria-label="Wind on the tops by hour, Saturday 17 October">
+          <div class="wx-row" role="row">
+            <span role="rowheader" class="wx-k">Wind on the tops</span>
+            <span role="cell" class="ok"><i>08</i>15</span><span role="cell" class="ok"><i>09</i>15</span><span role="cell" class="ok"><i>10</i>18</span><span role="cell" class="ok"><i>11</i>20</span><span role="cell" class="ok"><i>12</i>22</span><span role="cell" class="ok"><i>13</i>25</span><span role="cell" class="ok"><i>14</i>30</span><span role="cell" class="bad"><i>15</i>40</span><span role="cell" class="bad"><i>16</i>45</span><span role="cell" class="bad"><i>17</i>45</span><span role="cell" class="bad"><i>18</i>40</span>
+          </div>
+        </div>
+        <figcaption class="j-cap">Sample plan. Times use Naismith's rule plus 15% for this walker's pace. Wind in mph, from the summit forecast issued 16:00 on Friday.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Feature rows: vignettes on crops of the paintings (§69) -->
+  <section class="section rows" aria-label="What a plan gives you">
+    <div class="container">
+
+      <article class="row" data-reveal>
+        <div class="row-art">
+          <picture>
+            <source srcset="img/cairn-800.webp 800w, img/cairn-1448.webp 1448w" sizes="(max-width: 760px) 100vw, 58vw" type="image/webp">
+            <img src="img/cairn-1448.jpg" srcset="img/cairn-800.jpg 800w, img/cairn-1448.jpg 1448w" sizes="(max-width: 760px) 100vw, 58vw" width="1448" height="1086" loading="lazy" alt="">
+          </picture>
+          <div class="vig vig--legs t-num" role="img" aria-label="Route card legs: car park to Mullach nan Coirean, 4.2 km and 830 m up, 2 hours 45, arrive 11:15. Turn back if not on top by 12:00. Ridge to Stob Bàn, 2.6 km and 330 m up, arrive 13:20. Descent, 4.7 km, back 15:40.">
+            <div class="vig-head"><b>Route card</b><span>Sat 17 Oct</span></div>
+            <ul class="legs">
+              <li><span class="leg-n">Car park → Mullach nan Coirean</span><span class="leg-d">4.2 km · 830 m up · 2 h 45</span><time>11:15</time></li>
+              <li class="leg-turn"><span class="leg-n">Turn back if not on top by</span><time>12:00</time></li>
+              <li><span class="leg-n">Ridge to Stob Bàn</span><span class="leg-d">2.6 km · 330 m up · 2 h 05</span><time>13:20</time></li>
+              <li><span class="leg-n">Down Coire a' Mhusgain</span><span class="leg-d">4.7 km · 2 h 20</span><time>15:40</time></li>
+            </ul>
+            <div class="vig-foot"><span class="chip">Your pace · Naismith + 15%</span><span>from your last 4 walks</span></div>
+          </div>
+        </div>
+        <div class="row-text">
+          <p class="eyebrow">Timings</p>
+          <h3 class="t-h3 row-h">Timings for your legs, <span class="dim">not the guidebook's.</span></h3>
+          <p>Tell it how your last hill went, or give it a GPX file. Each leg is timed from distance and height gain with Naismith's rule, then adjusted to how you actually walk.</p>
+          <ul class="zig-list">
+            <li><svg aria-hidden="true"><use href="#zig"/></svg>Leg-by-leg times with height gain</li>
+            <li><svg aria-hidden="true"><use href="#zig"/></svg>A turn-back time on every route</li>
+            <li><svg aria-hidden="true"><use href="#zig"/></svg>Paced for the slowest in the group</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="row row--flip" data-reveal>
+        <div class="row-art">
+          <picture>
+            <source srcset="img/bothy-800.webp 800w, img/bothy-1448.webp 1448w" sizes="(max-width: 760px) 100vw, 58vw" type="image/webp">
+            <img src="img/bothy-1448.jpg" srcset="img/bothy-800.jpg 800w, img/bothy-1448.jpg 1448w" sizes="(max-width: 760px) 100vw, 58vw" width="1448" height="1086" loading="lazy" alt="">
+          </picture>
+          <div class="vig vig--wx t-num" role="img" aria-label="Weather window for two days. Saturday: a dry window from 07:00 to 15:00, off the tops by 14:30. Sunday: gusts of 55 mph on the tops all day, pick a low-level walk.">
+            <div class="vig-head"><b>Weather window</b><span>Mamores summits</span></div>
+            <div class="day-strip">
+              <p class="ds-day"><b>Sat 17</b><span class="ok-t">Go · off the tops by 14:30</span></p>
+              <div class="ds-bar"><i class="ds-win" style="--from:0;--to:66.6%"></i></div>
+              <p class="ds-axis"><span>07</span><span>10</span><span>13</span><span>16</span><span>19</span></p>
+            </div>
+            <div class="day-strip day-strip--no">
+              <p class="ds-day"><b>Sun 18</b><span class="no-t">Gusts 55 mph on the tops all day</span></p>
+              <div class="ds-bar"></div>
+              <p class="ds-alt">Try a low-level walk: Steall Falls from the top car park, 2 h.</p>
+            </div>
+            <div class="vig-foot"><span>Forecast issued 16:00 Fri</span><span>Source printed on every plan</span></div>
+          </div>
+        </div>
+        <div class="row-text">
+          <p class="eyebrow">Weather</p>
+          <h3 class="t-h3 row-h">A weather window, <span class="dim">not a forecast dump.</span></h3>
+          <p>Switchback reads the summit forecast for the hours you'll actually be high, and tells you which day works, which hill, and which way round to walk it.</p>
+          <ul class="zig-list">
+            <li><svg aria-hidden="true"><use href="#zig"/></svg>Wind and cloud for the tops, hour by hour</li>
+            <li><svg aria-hidden="true"><use href="#zig"/></svg>A low-level plan B when the tops are out</li>
+            <li><svg aria-hidden="true"><use href="#zig"/></svg>The forecast's source and issue time, always shown</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="row" data-reveal>
+        <div class="row-art row-art--loch">
+          <picture>
+            <source srcset="img/hero-960.webp 960w, img/hero-1916.webp 1916w" sizes="(max-width: 760px) 100vw, 58vw" type="image/webp">
+            <img src="img/hero-1916.jpg" srcset="img/hero-960.jpg 960w, img/hero-1916.jpg 1916w" sizes="(max-width: 760px) 100vw, 58vw" width="1916" height="821" loading="lazy" alt="">
+          </picture>
+          <div class="vig vig--share t-num" role="img" aria-label="A message to Ailsa: Iain is walking Mullach nan Coirean and Stob Bàn on Saturday, back at the car by 15:40. If there is no word by 19:00, call 999 and ask for Police, then Mountain Rescue. Opened by Ailsa at 18:06.">
+            <div class="vig-head"><b>Shared with Ailsa</b><span>Fri 18:02</span></div>
+            <p class="share-msg">Iain's walking <b>Mullach nan Coirean and Stob Bàn</b> on Saturday. Back at the car by <b>15:40</b>.</p>
+            <p class="share-if">No word by <b>19:00</b>? Call 999, ask for Police, then Mountain Rescue.</p>
+            <div class="share-route"><span>Route card · map · car: silver Skoda, lower falls</span></div>
+            <div class="vig-foot"><span class="seen"><i></i>Opened by Ailsa · 18:06</span><span>No app needed</span></div>
+          </div>
+        </div>
+        <div class="row-text">
+          <p class="eyebrow">Leave a copy</p>
+          <h3 class="t-h3 row-h">Someone at home knows the plan. <span class="dim">And when to worry.</span></h3>
+          <p>Every plan makes a route card you can print and a link you can send. It says where you're going, when you'll be back, and what to do if you're not.</p>
+          <ul class="zig-list">
+            <li><svg aria-hidden="true"><use href="#zig"/></svg>Opens in any browser, no account</li>
+            <li><svg aria-hidden="true"><use href="#zig"/></svg>Your car, your route and your back-by time</li>
+            <li><svg aria-hidden="true"><use href="#zig"/></svg>Plain instructions for calling Mountain Rescue</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Safety honesty -->
+  <section class="section safety" id="safety" aria-labelledby="safety-h">
+    <div class="container grid">
+      <div class="safety-lead" data-reveal>
+        <p class="eyebrow">Safety</p>
+        <h2 class="t-h2" id="safety-h">Planning help, <span class="dim">not a guarantee.</span></h2>
+        <p class="safety-intro">A plan made on Friday night can't see Saturday's ground. Switchback does the arithmetic; the judgement on the hill is still yours.</p>
+        <aside class="sos" aria-label="In an emergency">
+          <p class="sos-k">In an emergency</p>
+          <p class="sos-big">Call 999. Ask for Police, then Mountain Rescue.</p>
+          <p>No signal for a call? Register your phone for emergency texts before you go: text <b>register</b> to 999.</p>
+        </aside>
+      </div>
+      <ol class="truths" data-reveal-group>
+        <li><b>It can be wrong.</b> Forecasts change and paths wash out. If what you see disagrees with the plan, believe what you see.</li>
+        <li><b>It doesn't know the ground today.</b> Snow lying, a river in spate, a closed track: none of that reaches a plan in advance.</li>
+        <li><b>Your phone is not your navigation.</b> Carry a paper map and a compass, and know how to use them.</li>
+        <li><b>In winter it flags, it doesn't decide.</b> It marks avalanche-prone ground and links the avalanche report. Whether a slope is safe is your call.</li>
+        <li><b>Turning back is part of the plan.</b> Every route has a turn-back time. Using it is a good day, not a failed one.</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section class="section pricing" id="pricing" aria-labelledby="pricing-h">
+    <div class="container">
+      <div class="split-head" data-reveal>
+        <h2 class="t-h2" id="pricing-h">Free for the odd weekend. <span class="dim">£6&nbsp;a&nbsp;month for the hill&#8209;a&#8209;week people.</span></h2>
+        <p class="split-note">No contract. Cancel from your account page and keep every route card you've made.</p>
+      </div>
+      <div class="tiers" data-reveal-group>
+        <div class="rc-wrap">
+          <div class="tier rc">
+            <div class="rc-head"><span class="rc-title"><svg aria-hidden="true"><use href="#zig"/></svg>Free</span><span class="rc-meta">For the odd weekend</span></div>
+            <div class="tier-body">
+              <div><p class="price t-num">£0</p>
+              <p class="price-unit">3 planned routes a month</p></div>
+              <ul class="tier-list">
+                <li>Timings and a turn-back time</li>
+                <li>The weather window for your day</li>
+                <li>GPX export and a printable route card</li>
+              </ul>
+            </div>
+            <div class="rc-stub"><span class="stub-note">No card needed</span><a class="btn btn--ghost" href="#prompt" data-focus-prompt>Plan my day</a></div>
+          </div>
+        </div>
+        <div class="rc-wrap">
+          <div class="tier rc tier--hill">
+            <div class="rc-head"><span class="rc-title"><svg aria-hidden="true"><use href="#zig"/></svg>Hill</span><span class="rc-meta">For a hill a week</span></div>
+            <div class="tier-body">
+              <div><p class="price t-num">£6 <small>a month</small></p>
+              <p class="price-unit">Unlimited routes</p></div>
+              <ul class="tier-list">
+                <li>Everything in Free</li>
+                <li>Pace learned from your own GPX files</li>
+                <li>Share links for whoever's at home</li>
+                <li>Multi-day and bothy trips</li>
+                <li>Winter flags with the avalanche report linked</li>
+              </ul>
+            </div>
+            <div class="rc-stub"><span class="stub-note">Cancel any time</span><a class="btn btn--primary" href="#prompt" data-focus-prompt>Start Hill for £6</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ beside a contact card -->
+  <section class="section faq" id="faq" aria-labelledby="faq-h">
+    <div class="container grid">
+      <div class="faq-side" data-reveal>
+        <h2 class="t-h2" id="faq-h">Questions <span class="dim">from the car park.</span></h2>
+        <div class="contact">
+          <p class="contact-k">Ask a person</p>
+          <a class="contact-mail" href="mailto:hello@switchback.scot">hello@switchback.scot</a>
+          <p class="contact-note">Route questions go to someone who walks these hills. Usually answered within a day.</p>
+        </div>
+      </div>
+      <div class="faq-list" data-reveal>
+        <details open>
+          <summary>Can I just follow the plan and not think?</summary>
+          <p>No. It's planning help, not a guarantee. It does the timings and reads the forecast so you start the day with good numbers, but conditions on the hill decide, and so do you.</p>
+        </details>
+        <details>
+          <summary>Where does the weather come from?</summary>
+          <p>Public mountain forecasts for the summits you'll be on. Every plan prints the source and the time it was issued, so you can check the full forecast yourself on the morning.</p>
+        </details>
+        <details>
+          <summary>Does it work without signal?</summary>
+          <p>The route card and GPX file do: download them before you leave. Planning a new route needs a connection.</p>
+        </details>
+        <details>
+          <summary>How does it know my pace?</summary>
+          <p>Free plans start from Naismith's rule and the pace you pick. On Hill, give it GPX files from past walks and it adjusts for how you go on steep ground and on the way down.</p>
+        </details>
+        <details>
+          <summary>Will it plan winter days?</summary>
+          <p>Yes, with care. It shortens the day to the daylight, marks avalanche-prone slopes and links the avalanche report for the area. It won't tell you a slope is safe.</p>
+        </details>
+        <details>
+          <summary>What happens after my three free routes?</summary>
+          <p>Your routes stay yours. You can plan again next month, or move to Hill for £6 a month.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Finale bookend (§75) + ridge footer (§76) -->
+<footer class="end">
+  <section class="finale" aria-labelledby="finale-h">
+    <div class="container finale-in">
+      <h2 class="t-display finale-h" id="finale-h" data-reveal>Where to on Saturday?</h2>
+      <div class="rc-wrap finale-form" data-reveal>
+        <form class="rc rc--compact" id="plan-2" novalidate>
+          <label class="sr-only" for="prompt-2">Describe your hill day</label>
+          <textarea class="rc-input" id="prompt-2" name="prompt" rows="2" placeholder="Six hours from Fort William, big views, no scrambling, back before dark."></textarea>
+          <div class="rc-stub">
+            <span class="stub-note">Free for 3 routes a month</span>
+            <button class="btn btn--primary rc-go" type="submit"><span class="rc-go-label">Plan my day</span>
+              <svg class="rc-loader" viewBox="0 0 24 24" aria-hidden="true"><path pathLength="1" d="M4 21 L19 17.5 L6 13 L19 8.5 L9 4"/></svg></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div class="container foot">
+    <div class="foot-brand">
+      <a class="brand" href="#top" aria-label="Switchback, back to top"><svg class="brand-mark" aria-hidden="true"><use href="#zig"/></svg><span>Switchback</span></a>
+      <p>Hill days in Scotland, planned before you leave. Planning help, not a guarantee.</p>
+    </div>
+    <nav class="foot-col" aria-label="Plan">
+      <p class="foot-k">Plan</p>
+      <a href="#prompt" data-focus-prompt>Plan my day</a><a href="#starters-h">Prompt starters</a><a href="#day">How a day reads</a><a href="#pricing">Pricing</a>
+    </nav>
+    <nav class="foot-col" aria-label="Safety">
+      <p class="foot-k">Safety</p>
+      <a href="#safety">What it can't do</a><a href="https://www.emergencysms.net/" rel="noopener">emergencySMS</a><a href="https://www.mountaineering.scot/safety-and-skills" rel="noopener">Mountain safety skills</a>
+    </nav>
+    <nav class="foot-col" aria-label="Company">
+      <p class="foot-k">Switchback</p>
+      <a href="#faq">Questions</a><a href="mailto:hello@switchback.scot">Contact</a><a href="#top">Privacy</a><a href="#top">Terms</a>
+    </nav>
+    <p class="foot-sun t-num"><span id="sunset" data-lat="56.82" data-lon="-5.11">Last light in Fort William: check it before you go</span></p>
+    <p class="foot-legal">© 2026 Switchback · Made for the Scottish hills</p>
+  </div>
+
+  <picture class="ridge" aria-hidden="true">
+    <source srcset="img/ridge-960.webp 960w, img/ridge-1916.webp 1916w" sizes="100vw" type="image/webp">
+    <img src="img/ridge-1916.jpg" srcset="img/ridge-960.jpg 960w, img/ridge-1916.jpg 1916w" sizes="100vw" width="1916" height="621" loading="lazy" alt="">
+  </picture>
+</footer>
+</body>
+</html>

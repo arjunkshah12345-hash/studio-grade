@@ -1,0 +1,315 @@
+<!--
+DESIGN SPINE: Morrow (morrow3)
+DIRECTION   : 5 Quiet Luxury Commerce. A fragrance house sells restraint and one small first purchase; the photographs of one bottle on one shelf are the persuasion.
+REGISTER    : Confident. The bold device: the walls themselves. Each chapter's ground is a wall sampled from the photographs at its hour (noon plaster, dawn blue, dusk amber), and the bottle sits small in a big room. Everything else is quiet.
+AXES        : ground mid-tone plaster (#B0A89F → #7C7369, sampled from the hero wall) alternating with label-cream paper #ECE6DC · type genre light Scandinavian grotesk (Albert Sans 300) with hour numerals as the poster · image medium photography (one generated still-life series) · composition small object, big room + an hour index (the list of six numerals) · motion feel light-up: photographs arrive from grey into their hour's colour; text is still
+DEFAULT?    : 1/6 matched (near-black ink) → DIFFERENT FROM DEFAULT BY: mid-tone ground, no mono labels, no spec bands, photography not line art, no accent marks
+MOTIF       : the blank cream label on every bottle, filled in by the page. (1) hero: the six labels on the shelf carry the six hours and are the links to them; (2) dawn and dusk tiles: one label each, 05:40 and 16:50, the caption of the picture; (3) discovery set: the six vials labelled in order, an inventory; (4) finale: the shelf again, labelled, as the bookend; (5) identity: the logo mark and favicon are the cream label
+TYPE        : display Albert Sans 300 · text Albert Sans 400 (+ italic for the line under each hour) · no mono, no second family
+SCALE       : h1 56/1.02/-0.025em · hour numerals 128/0.9/-0.04em (tabular) · h2 44/1.06/-0.02em · body 15/1.6 · small 13 · label 12 sentence case
+PALETTE     : paper #ECE6DC · plaster #ADA59B · ink #1F1B17 · ink-2 ink@74% (ink@82% on plaster) · hairline ink@12% · accent: none (the cap black fills transactional buttons). Hour lights, one hue per hour, used only as the swatch and hover light of that hour: 05:40 #8A9BAC · 08:15 #C6CCCB · 12:00 #D9D0C2 · 16:50 #EDB878 · 19:30 #C98F7E · 23:10 #2E3445
+GRID        : 12 cols / 24px · container 1280px · side margin 20 → 80px · sections 96–144px, voids up to 224px; zero-gutter full-bleed tiles
+HERO        : H19 variant, photo composed for the headline: the wall continues above the photograph as a sampled gradient; h1, subline and two actions sit on the clean plaster; the six bottles on the shelf below carry their hours on their labels
+IMAGERY     : photography, generated series
+IMAGES      : Medium: real-looking still-life product photography in natural window light, Hammershoi-like Copenhagen interiors: plain plaster walls, a wooden shelf, long window-light shapes on the wall. The SAME bottle every time: a squat rectangular clear glass bottle with a heavy matte black square cap and a small plain cream label with no writing. Palette changes with the hour of day. Exclusions: no text, no writing on the label, no logos, no watermarks, no people.
+              shots: hero 21:9 six bottles on the shelf, top 50% clean wall · dawn 4:5 one bottle, cold blue light · dusk 4:5 one bottle, warm amber light, long shadow · set 4:3 six 2 ml vials in a cream card box, left third clean · finale = re-crop of hero · mobile = shelf crop of hero (scrollable) and box crop of set
+CONVERSION  : Order the discovery set (DKK 240, credited against a 50 ml bottle): nav, hero primary, discovery-set chapter, price ledger, finale. Secondary: Add 50 ml per hour in the index.
+MOTION      : house ease cubic-bezier(.215,.61,.355,1) · UI 240ms · reveal 900ms · primitive light-up (saturate 0, brightness 1.06 → colour) on photographs, labels print in after; card groups fade with 8px; text never moves; native scroll, CSS + a few lines of JS
+NAMING      : the clock. Scents are their minute; the set is "all six hours"; CTA verb "Order"
+SIGNATURES  : techniques §51 lights-up reveal (as light-up on every photograph) · §78 the list is the page (the six-hour index, numerals at 128px, hover lights the row in that hour's colour) · bespoke: the page writes the blank labels
+VOICE       : hero "Wear the hour." · section "One bottle. Only the light changes." · CTA "Order the discovery set"
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Morrow · Six scents named for hours of a Copenhagen day</title>
+<meta name="description" content="Morrow is a Copenhagen fragrance house with six scents named for hours of the day, from 05:40 to 23:10. Try all six in the discovery set for DKK 240, credited against a 50 ml bottle.">
+<meta name="theme-color" content="#ADA59B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%23ADA59B'/%3E%3Crect x='8' y='6' width='16' height='20' fill='%23E4D2B8'/%3E%3Crect x='12' y='15' width='8' height='1.6' fill='%231F1B17'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,300;0,400;1,400&display=swap">
+<link rel="preload" as="image" href="media/hero-1916.webp" imagesrcset="media/hero-960.webp 960w, media/hero-1916.webp 1916w" imagesizes="100vw" media="(min-width: 761px)">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--primary btn--sm" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="Morrow, home"><span class="brand-label" aria-hidden="true"></span><span class="brand-word">Morrow</span></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#hours">The six hours</a>
+      <a href="#set">Discovery set</a>
+      <a href="#prices">Prices and refills</a>
+    </nav>
+    <a class="btn btn--primary btn--sm nav-cta" href="#order">Order the set<span class="nav-cta-price">&nbsp;·&nbsp;DKK&nbsp;240</span></a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 1. Hero: the wall, the shelf, six labels -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero-copy container">
+      <h1 id="hero-title" class="h1">Wear the hour.</h1>
+      <p class="hero-sub">Six scents from Copenhagen, each named for a minute of the day. Try all six for DKK&nbsp;240.</p>
+      <div class="hero-actions">
+        <a class="btn btn--primary" href="#order">Order the discovery set</a>
+        <a class="textlink" href="#hours">See the six hours <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+
+    <div class="hero-stage stage" data-light>
+      <picture>
+        <source media="(min-width: 761px)" type="image/webp" srcset="media/hero-960.webp 960w, media/hero-1916.webp 1916w" sizes="100vw">
+        <source media="(min-width: 761px)" srcset="media/hero-960.jpg 960w, media/hero-1916.jpg 1916w" sizes="100vw">
+        <img class="stage-img" src="media/hero-1916.jpg" width="1916" height="821" alt="Six identical square glass bottles with black caps in a row on a wooden shelf, a slanted window light crossing the plaster wall behind them." fetchpriority="high">
+      </picture>
+      <ul class="labels labels--hero" aria-label="The six hours on the shelf">
+        <li style="--x:21.09%"><a class="lbl" href="#h-0540">05:40</a></li>
+        <li style="--x:32.02%"><a class="lbl" href="#h-0815">08:15</a></li>
+        <li style="--x:43.45%"><a class="lbl" href="#h-1200">12:00</a></li>
+        <li style="--x:54.83%"><a class="lbl" href="#h-1650">16:50</a></li>
+        <li style="--x:66.31%"><a class="lbl" href="#h-1930">19:30</a></li>
+        <li style="--x:77.82%"><a class="lbl" href="#h-2310">23:10</a></li>
+      </ul>
+    </div>
+
+    <!-- mobile: the shelf scrolls sideways -->
+    <div class="shelf" data-light>
+      <div class="shelf-track stage">
+        <picture>
+          <source type="image/webp" srcset="media/shelf-1200.webp 1200w, media/shelf-1916.webp 1916w" sizes="280vw">
+          <img class="stage-img" src="media/shelf-1200.jpg" srcset="media/shelf-1200.jpg 1200w, media/shelf-1916.jpg 1916w" sizes="280vw" width="1916" height="461" alt="Six identical square glass bottles with black caps in a row on a wooden shelf." loading="lazy">
+        </picture>
+        <ul class="labels labels--shelf" aria-label="The six hours on the shelf">
+          <li style="--x:21.09%"><a class="lbl" href="#h-0540">05:40</a></li>
+          <li style="--x:32.02%"><a class="lbl" href="#h-0815">08:15</a></li>
+          <li style="--x:43.45%"><a class="lbl" href="#h-1200">12:00</a></li>
+          <li style="--x:54.83%"><a class="lbl" href="#h-1650">16:50</a></li>
+          <li style="--x:66.31%"><a class="lbl" href="#h-1930">19:30</a></li>
+          <li style="--x:77.82%"><a class="lbl" href="#h-2310">23:10</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="shelf-hint container">Swipe along the shelf <span aria-hidden="true">→</span></p>
+  </section>
+
+  <!-- 2. Statement -->
+  <section class="intro container" aria-labelledby="intro-title">
+    <h2 id="intro-title" class="h2 intro-h">One bottle. <span class="tail">Only the light changes.</span></h2>
+    <div class="intro-body">
+      <p>Morrow is a fragrance house in Copenhagen. Each of its six scents is named for the minute it belongs to, from 05:40 in the morning to 23:10 at night.</p>
+      <p>The bottle is the same square of glass every time, and it is refillable. What is inside follows the day.</p>
+    </div>
+  </section>
+
+  <!-- 3. Two hours, side by side -->
+  <section class="tiles" aria-label="Two of the six hours">
+    <figure class="tile tile--dawn" data-light>
+      <div class="stage">
+        <picture>
+          <source type="image/webp" srcset="media/dawn-720.webp 720w, media/dawn-1122.webp 1122w" sizes="(max-width: 760px) 100vw, 50vw">
+          <img class="stage-img" src="media/dawn-720.jpg" srcset="media/dawn-720.jpg 720w, media/dawn-1122.jpg 1122w" sizes="(max-width: 760px) 100vw, 50vw" width="1122" height="1402" alt="One Morrow bottle on the wooden shelf in cold blue early-morning light, a faint window shape on the wall." loading="lazy">
+        </picture>
+        <span class="lbl lbl--tile" aria-hidden="true">05:40</span>
+      </div>
+      <figcaption class="tile-cap">
+        <span class="tile-hour t-num">05:40</span>
+        <span class="tile-line">Blue light on the wall. Nobody up yet.</span>
+        <a class="tile-link" href="#h-0540">50 ml · DKK 1,450 <span aria-hidden="true">→</span></a>
+      </figcaption>
+    </figure>
+    <figure class="tile tile--dusk" data-light>
+      <div class="stage">
+        <picture>
+          <source type="image/webp" srcset="media/dusk-720.webp 720w, media/dusk-1122.webp 1122w" sizes="(max-width: 760px) 100vw, 50vw">
+          <img class="stage-img" src="media/dusk-720.jpg" srcset="media/dusk-720.jpg 720w, media/dusk-1122.jpg 1122w" sizes="(max-width: 760px) 100vw, 50vw" width="1122" height="1402" alt="The same bottle on the same shelf in warm amber late-afternoon light, its shadow long across the wall." loading="lazy">
+        </picture>
+        <span class="lbl lbl--tile" aria-hidden="true">16:50</span>
+      </div>
+      <figcaption class="tile-cap">
+        <span class="tile-hour t-num">16:50</span>
+        <span class="tile-line">Low sun, long shadows. The day going gold.</span>
+        <a class="tile-link" href="#h-1650">50 ml · DKK 1,450 <span aria-hidden="true">→</span></a>
+      </figcaption>
+    </figure>
+  </section>
+
+  <!-- 4. The six hours: the list is the range -->
+  <section class="hours" id="hours" aria-labelledby="hours-title">
+    <div class="container">
+      <header class="hours-head">
+        <h2 id="hours-title" class="h2">The six hours</h2>
+        <p class="hours-meta">Each 50 ml · DKK 1,450 · refillable</p>
+      </header>
+
+      <ol class="hourlist">
+        <li class="hour" id="h-0540" style="--light:#8A9BAC" data-min="340">
+          <span class="hour-swatch" aria-hidden="true"></span>
+          <h3 class="hour-num t-num">05:40</h3>
+          <p class="hour-line">Blue light on the wall. Nobody up yet.</p>
+          <div class="hour-buy"><span class="hour-price t-num">DKK 1,450</span><a class="btn btn--ghost btn--sm" href="#order" aria-label="Add 05:40, 50 ml, to the order">Add 50 ml</a></div>
+        </li>
+        <li class="hour" id="h-0815" style="--light:#C6CCCB" data-min="495">
+          <span class="hour-swatch" aria-hidden="true"></span>
+          <h3 class="hour-num t-num">08:15</h3>
+          <p class="hour-line">The light turns white. The day has a plan.</p>
+          <div class="hour-buy"><span class="hour-price t-num">DKK 1,450</span><a class="btn btn--ghost btn--sm" href="#order" aria-label="Add 08:15, 50 ml, to the order">Add 50 ml</a></div>
+        </li>
+        <li class="hour" id="h-1200" style="--light:#D9D0C2" data-min="720">
+          <span class="hour-swatch" aria-hidden="true"></span>
+          <h3 class="hour-num t-num">12:00</h3>
+          <p class="hour-line">The sun at its highest. Hardly a shadow.</p>
+          <div class="hour-buy"><span class="hour-price t-num">DKK 1,450</span><a class="btn btn--ghost btn--sm" href="#order" aria-label="Add 12:00, 50 ml, to the order">Add 50 ml</a></div>
+        </li>
+        <li class="hour" id="h-1650" style="--light:#EDB878" data-min="1010">
+          <span class="hour-swatch" aria-hidden="true"></span>
+          <h3 class="hour-num t-num">16:50</h3>
+          <p class="hour-line">Low sun, long shadows. The day going gold.</p>
+          <div class="hour-buy"><span class="hour-price t-num">DKK 1,450</span><a class="btn btn--ghost btn--sm" href="#order" aria-label="Add 16:50, 50 ml, to the order">Add 50 ml</a></div>
+        </li>
+        <li class="hour" id="h-1930" style="--light:#C98F7E" data-min="1170">
+          <span class="hour-swatch" aria-hidden="true"></span>
+          <h3 class="hour-num t-num">19:30</h3>
+          <p class="hour-line">The window goes rose, then grey.</p>
+          <div class="hour-buy"><span class="hour-price t-num">DKK 1,450</span><a class="btn btn--ghost btn--sm" href="#order" aria-label="Add 19:30, 50 ml, to the order">Add 50 ml</a></div>
+        </li>
+        <li class="hour" id="h-2310" style="--light:#2E3445" data-min="1390">
+          <span class="hour-swatch" aria-hidden="true"></span>
+          <h3 class="hour-num t-num">23:10</h3>
+          <p class="hour-line">One lamp left on.</p>
+          <div class="hour-buy"><span class="hour-price t-num">DKK 1,450</span><a class="btn btn--ghost btn--sm" href="#order" aria-label="Add 23:10, 50 ml, to the order">Add 50 ml</a></div>
+        </li>
+      </ol>
+
+      <p class="placeholder-note"><span class="ph-chip">Placeholder</span> The notes of each scent are not written yet. They will sit under each hour, one line each.</p>
+    </div>
+  </section>
+
+  <!-- 5. The discovery set -->
+  <section class="set" id="set" aria-labelledby="set-title">
+    <div class="set-copy">
+      <p class="kicker">The discovery set</p>
+      <h2 id="set-title" class="h2">Six vials. <span class="tail">DKK&nbsp;240.</span></h2>
+      <p class="set-body">Two millilitres of every hour in a plain card box. Wear one a day for six days. When you know your hour, the DKK&nbsp;240 is credited against its 50&nbsp;ml bottle.</p>
+      <dl class="set-facts">
+        <div><dt>In the box</dt><dd>6 × 2 ml, one of each hour</dd></div>
+        <div><dt>Price</dt><dd class="t-num">DKK 240</dd></div>
+        <div><dt>Afterwards</dt><dd>Credited against a 50 ml bottle</dd></div>
+      </dl>
+      <a class="btn btn--primary" href="#order">Order the discovery set</a>
+    </div>
+    <figure class="set-media" data-light>
+      <div class="stage set-stage" role="img" aria-label="Six small glass vials with black caps standing in a cream card box on the wooden shelf, labelled 05:40, 08:15, 12:00, 16:50, 19:30 and 23:10.">
+        <picture>
+          <source media="(max-width: 760px)" type="image/webp" srcset="media/set-m-888.webp">
+          <source media="(max-width: 760px)" srcset="media/set-m-888.jpg">
+          <source type="image/webp" srcset="media/set-960.webp 960w, media/set-1448.webp 1448w" sizes="64vw">
+          <img class="stage-img" src="media/set-960.jpg" srcset="media/set-960.jpg 960w, media/set-1448.jpg 1448w" sizes="64vw" width="1448" height="1086" alt="" loading="lazy">
+        </picture>
+        <ul class="labels labels--vials" aria-hidden="true">
+          <li style="--x:52.35%;--y:59.85%"><span class="lbl">05:40</span></li>
+          <li style="--x:58.70%;--y:60.22%"><span class="lbl">08:15</span></li>
+          <li style="--x:65.19%;--y:60.50%"><span class="lbl">12:00</span></li>
+          <li style="--x:71.89%;--y:60.77%"><span class="lbl">16:50</span></li>
+          <li style="--x:78.80%;--y:60.96%"><span class="lbl">19:30</span></li>
+          <li style="--x:85.91%;--y:61.23%"><span class="lbl">23:10</span></li>
+        </ul>
+      </div>
+    </figure>
+  </section>
+
+  <!-- 6. Prices, refills, and what doesn't exist yet -->
+  <section class="prices container" id="prices" aria-labelledby="prices-title">
+    <div class="prices-head">
+      <h2 id="prices-title" class="h2">Three things to buy. <span class="tail">Start with the smallest.</span></h2>
+    </div>
+    <div class="ledger" role="table" aria-label="Prices">
+      <div class="ledger-row ledger-row--head" role="row">
+        <span role="columnheader">Item</span><span role="columnheader">Size</span><span role="columnheader">Note</span><span role="columnheader" class="r">Price</span>
+      </div>
+      <div class="ledger-row" role="row">
+        <span role="cell" class="item">Discovery set</span><span role="cell">6 × 2 ml</span><span role="cell" class="dim">Credited against a 50 ml bottle</span><span role="cell" class="r t-num">DKK 240</span>
+      </div>
+      <div class="ledger-row" role="row">
+        <span role="cell" class="item">Bottle, any hour</span><span role="cell">50 ml</span><span role="cell" class="dim">Refillable</span><span role="cell" class="r t-num">DKK 1,450</span>
+      </div>
+      <div class="ledger-row" role="row">
+        <span role="cell" class="item">Refill</span><span role="cell">50 ml</span><span role="cell" class="dim">For the bottle you already have</span><span role="cell" class="r"><span class="ph-chip">Placeholder price</span></span>
+      </div>
+    </div>
+
+    <aside class="honest" aria-labelledby="honest-title">
+      <h3 id="honest-title" class="h3">Nobody to quote yet.</h3>
+      <p>Morrow has no reviews, no press and no shops. The discovery set is how you judge it: six hours on your own skin, and the DKK&nbsp;240 counts toward the bottle you choose.</p>
+    </aside>
+  </section>
+
+  <!-- 7. Finale: the shelf again -->
+  <section class="finale" id="order" aria-labelledby="finale-title">
+    <div class="container finale-copy">
+      <h2 id="finale-title" class="h2 finale-h">Start with all six.</h2>
+      <p class="finale-sub">Six vials, DKK 240, credited when you choose your bottle.</p>
+      <div class="finale-actions">
+        <a class="btn btn--primary" href="#order" data-order>Order the discovery set</a>
+        <p class="order-note" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+    <figure class="container finale-media" data-light>
+      <div class="stage finale-stage" role="img" aria-label="The six bottles on the shelf again, labelled 05:40 to 23:10.">
+        <picture>
+          <source type="image/webp" srcset="media/finale-760.webp 760w, media/finale-1360.webp 1360w" sizes="(max-width: 1340px) 100vw, 1280px">
+          <img class="stage-img" src="media/finale-760.jpg" srcset="media/finale-760.jpg 760w, media/finale-1360.jpg 1360w" sizes="(max-width: 1340px) 100vw, 1280px" width="1360" height="472" alt="" loading="lazy">
+        </picture>
+        <ul class="labels labels--finale" aria-hidden="true">
+          <li style="--x:9.12%"><span class="lbl">05:40</span></li>
+          <li style="--x:24.52%"><span class="lbl">08:15</span></li>
+          <li style="--x:40.63%"><span class="lbl">12:00</span></li>
+          <li style="--x:56.65%"><span class="lbl">16:50</span></li>
+          <li style="--x:72.83%"><span class="lbl">19:30</span></li>
+          <li style="--x:89.04%"><span class="lbl">23:10</span></li>
+        </ul>
+      </div>
+    </figure>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="brand" href="#top" aria-label="Morrow, back to top"><span class="brand-label" aria-hidden="true"></span><span class="brand-word">Morrow</span></a>
+      <p class="footer-line">Six scents named for hours of a Copenhagen day.</p>
+      <p class="footer-legal">© 2026 Morrow. A fictional fragrance house, made to test a design skill.</p>
+    </div>
+    <nav class="footer-col" aria-label="Shop">
+      <h2 class="footer-h">Shop</h2>
+      <a href="#set">Discovery set</a>
+      <a href="#hours">The six hours</a>
+      <a href="#prices">Refills</a>
+    </nav>
+    <nav class="footer-col" aria-label="The hours">
+      <h2 class="footer-h">Hours</h2>
+      <a href="#h-0540">05:40</a>
+      <a href="#h-0815">08:15</a>
+      <a href="#h-1200">12:00</a>
+      <a href="#h-1650">16:50</a>
+      <a href="#h-1930">19:30</a>
+      <a href="#h-2310">23:10</a>
+    </nav>
+    <nav class="footer-col" aria-label="Legal">
+      <h2 class="footer-h">Legal</h2>
+      <a href="legal.html#terms">Terms</a>
+      <a href="legal.html#privacy">Privacy</a>
+    </nav>
+  </div>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

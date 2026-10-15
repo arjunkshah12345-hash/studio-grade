@@ -1,0 +1,263 @@
+<!--
+DESIGN SPINE: Fieldwork (fictional)
+DIRECTION   : 4 Editorial Motion. City officials and future colleagues come to see how a landscape studio thinks; the drawings carry the argument and the type stays out of their way.
+REGISTER    : Confident. The bold device is the rendering at full bleed with no frame: the page IS the watercolour paper, so the painting has no edge and the headline sits in its sky.
+AXES        : ground off-white, but sampled from the paintings' own paper (#F5F3EE), not chosen · type genre light literary serif (Newsreader 300, optical size 72) · image medium watercolour perspective renderings (one generated series) · composition editorial asymmetric with one pinned plate · motion feel calm resolve + one scrub (the storm rising into the square)
+DEFAULT?    : default-look check 2/6 (off-white ground, light tight display). No mono labels, no hairline metadata bands, no line-drawing hero, accent is not on marks alone. DIFFERENT FROM DEFAULT BY: image medium (painted renderings), labels (italic serif pencil notes instead of mono caps), hero (full-bleed plate)
+MOTIF       : the architect's pencil note, a leader line drawn from a point in the painting to an italic note. (1) hero: one note pinned to the sunken square · (2) the scrub: notes that change with the weather · (3) what we design: each crop carries its note above it, on the page paper · (4) legal page: the same note pointing at the word "fictional"
+TYPE        : display Newsreader 300 (opsz 72) · text Hanken Grotesk 400/500 · second voice Newsreader italic 400 for notes and kickers (same family). 2 families, no mono.
+SCALE       : hero 104px/.94/-0.032em · h2 56px/1/-0.025em · row titles 64px · body 17px/1.6 · notes 17px italic · small 14px
+PALETTE     : paper #F5F3EE (sampled) · paper-2 #ECE9E1 · ink #1E2622 (green-black from the pencil) · ink-2 ink@74% · hairline ink@10% · accent slate water #2F5470 → ONLY primary buttons and the dots at the end of each pencil leader
+GRID        : 12 cols / 24px gap · container 1312px · margin 64px (20px mobile) · section rhythm 128–208px, deliberately uneven
+HERO        : H19 variant: the painting composed for the headline. h1 + subline in its pale sky, full-bleed plate below with its top feathered into the page, one pencil note on the square
+IMAGERY     : watercolour perspective renderings, generated (see IMAGES); every one labelled as an illustrative concept, never as built work
+CONVERSION  : "Discuss a commission" (mailto placeholder) → nav, hero primary, finale primary, footer. Recruiting: "Send a portfolio" → hero secondary, Join us, footer.
+MOTION      : house ease cubic-bezier(.19,1,.22,1) · UI 200ms · reveal 900ms · primitive: wash-in (grey paper → colour, no movement) on media; leader lines wipe from point to note; one scrubbed storm (wet plate rises over dry with a soft waterline)
+IMAGES      : Medium: an architect's watercolour perspective rendering, loose washes over fine pencil linework, white paper showing through, palette of wet greens, slate blue water, ochre paths and grey stone; small figures as loose silhouettes. Dutch cityscape. Exclusions: no text, no labels, no logos, no watermarks, no faces.
+              shots: hero 21:9 waterfront park in light rain, scene in bottom 55% · dry 4:3 sunken square in summer, left third paper · wet 4:3 same square after a storm, left third paper · street 21:9 footer, green street with rain gardens rising from the bottom edge
+              crops: hero → mobile 680×591 (the square) · hero → parks (terraces) and waterfront (right bank) row crops · dry/wet → mobile crops without the paper third · street → footer + mobile centre crop + streets row crop
+SIGNATURES  : §68 a painting composed for the headline · §44-style scrubbed storm (dry → wet in one pinned plate) · §76 finale street rising from the bottom edge
+VOICE       : "Parks that fill up on purpose." · "The same square, two weathers." · "Send us the wettest corner of your city."
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fieldwork · landscape architecture for rain, Rotterdam</title>
+<meta name="description" content="Fieldwork is a fictional 22-person landscape architecture studio in Rotterdam designing parks, waterfronts and streets that hold rainwater.">
+<meta name="theme-color" content="#F5F3EE">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="media/hero-1916.webp" imagesrcset="media/hero-960.webp 960w, media/hero-1916.webp 1916w" imagesizes="100vw" media="(min-width:761px)">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--primary btn--sm" href="#main">Skip to content</a>
+
+<header class="top container">
+  <a class="wordmark" href="./" aria-label="Fieldwork, home">Fieldwork</a>
+  <nav aria-label="Main">
+    <ul class="nav-links">
+      <li><a href="#square">The square</a></li>
+      <li><a href="#scales">What we design</a></li>
+      <li><a href="#join">Join us</a></li>
+    </ul>
+    <a class="btn btn--accent btn--sm" href="mailto:studio@fieldwork.example?subject=A%20commission">Discuss a commission</a>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- 1 · HERO: the painting composed for the headline -->
+  <section class="hero" aria-labelledby="h1">
+    <div class="hero-copy container">
+      <h1 id="h1" class="hero-title">Parks that fill up on&nbsp;purpose.</h1>
+      <div class="hero-side">
+        <p class="hero-sub">Fieldwork is a landscape architecture studio in Rotterdam. Twenty-two of us design parks, waterfronts and streets that hold the rain instead of rushing it away.</p>
+        <div class="hero-ctas">
+          <a class="btn btn--accent" href="mailto:studio@fieldwork.example?subject=A%20commission">Discuss a commission</a>
+          <a class="text-link" href="#join">Send a portfolio <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <figure class="plate plate--hero">
+      <picture>
+        <source media="(max-width:760px)" srcset="media/hero-m-680.webp" type="image/webp">
+        <source media="(max-width:760px)" srcset="media/hero-m-680.jpg">
+        <source srcset="media/hero-960.webp 960w, media/hero-1916.webp 1916w" sizes="100vw" type="image/webp">
+        <img class="wash" src="media/hero-1916.jpg" srcset="media/hero-960.jpg 960w, media/hero-1916.jpg 1916w" sizes="100vw"
+             width="1916" height="821" fetchpriority="high"
+             alt="Watercolour rendering of a Rotterdam waterfront park in light rain: grass terraces step down to the Maas, and a sunken stone square holds a shallow sheet of rainwater while people with umbrellas walk past.">
+      </picture>
+      <div class="note note--hero" style="--x:49%;--y:86%;--lx:63%;--ly:30%" aria-hidden="true">
+        <svg class="leader" viewBox="0 0 100 100" preserveAspectRatio="none"><line/></svg>
+        <i class="dot"></i>
+        <span class="note-text">the square floods first, and on purpose</span>
+      </div>
+      <figcaption class="sr-only">Illustrative concept, not a built project.</figcaption>
+    </figure>
+  </section>
+
+  <!-- 2 · STATEMENT -->
+  <section class="statement container" aria-labelledby="why">
+    <p class="kicker">Why we do it</p>
+    <h2 id="why" class="t-h2 two-tone">A city sheds its rain in minutes. <span>We design ground that takes it in, holds it for a while, and is still a good place to be.</span></h2>
+    <p class="statement-body">Most streets and squares send every storm straight to the sewer. We draw the opposite: lawns that step down, squares that sink, planting that drinks. The water gets somewhere to go, and the city gets a park out of it.</p>
+  </section>
+
+  <!-- 3 · THE SCRUB: one square, two weathers -->
+  <section id="square" class="storm" aria-labelledby="square-h">
+    <div class="storm-track">
+      <div class="storm-stage">
+        <div class="storm-copy container">
+          <p class="kicker">Concept 01 · a sunken square</p>
+          <h2 id="square-h" class="t-h2">The same square, two weathers.</h2>
+          <ol class="storm-states" aria-label="Weather">
+            <li class="is-on" data-state="0"><b>July.</b> A sunken square to play in. Steps to sit on, trees in leaf, a football against the wall.</li>
+            <li data-state="1"><b>After a storm.</b> The same square takes the water from the streets around it and holds it like a pond, then slowly empties back into a square.</li>
+          </ol>
+          <div class="gauge" aria-hidden="true"><span>dry</span><i><b></b></i><span>storm</span></div>
+          <p class="honest">Both paintings are an illustrative concept, not a built project.</p>
+        </div>
+        <figure class="storm-plates">
+          <picture class="p-dry">
+            <source media="(max-width:760px)" srcset="media/dry-m-780.webp" type="image/webp">
+            <source media="(max-width:760px)" srcset="media/dry-m-780.jpg">
+            <source srcset="media/dry-960.webp 960w, media/dry-1448.webp 1448w" sizes="(max-width:760px) 100vw, 80vw" type="image/webp">
+            <img src="media/dry-1448.jpg" srcset="media/dry-960.jpg 960w, media/dry-1448.jpg 1448w" sizes="(max-width:760px) 100vw, 80vw" width="1448" height="1086" loading="lazy"
+                 alt="Watercolour of the sunken square in summer: dry stone paving, children playing football, people sitting on the steps under trees in full leaf, gabled Dutch houses and a church tower behind.">
+          </picture>
+          <picture class="p-wet">
+            <source media="(max-width:760px)" srcset="media/wet-m-780.webp" type="image/webp">
+            <source media="(max-width:760px)" srcset="media/wet-m-780.jpg">
+            <source srcset="media/wet-960.webp 960w, media/wet-1448.webp 1448w" sizes="(max-width:760px) 100vw, 80vw" type="image/webp">
+            <img src="media/wet-1448.jpg" srcset="media/wet-960.jpg 960w, media/wet-1448.jpg 1448w" sizes="(max-width:760px) 100vw, 80vw" width="1448" height="1086" loading="lazy"
+                 alt="Watercolour of the same square after a storm: it is filled with water like a pond, reflecting the trees, houses and church tower, with wet ochre paving and stone benches at its edge.">
+          </picture>
+          <div class="note note--dry" style="--x:66%;--y:62%;--lx:21%;--ly:88%" aria-hidden="true">
+            <svg class="leader" viewBox="0 0 100 100" preserveAspectRatio="none"><line/></svg>
+            <i class="dot"></i><span class="note-text">a pitch, most of the year</span>
+          </div>
+          <div class="note note--wet" style="--x:47%;--y:45%;--lx:21%;--ly:88%" aria-hidden="true">
+            <svg class="leader" viewBox="0 0 100 100" preserveAspectRatio="none"><line/></svg>
+            <i class="dot"></i><span class="note-text">the steps become the shore</span>
+          </div>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · WHAT WE DESIGN: three scales -->
+  <section id="scales" class="scales container" aria-labelledby="scales-h">
+    <div class="scales-head">
+      <p class="kicker">What we design</p>
+      <h2 id="scales-h" class="t-h2 two-tone">Three kinds of ground. <span>One job for all of them: give the water a place.</span></h2>
+    </div>
+
+    <ol class="rows">
+      <li class="row row--a">
+        <span class="row-n">01</span>
+        <h3 class="row-title">Parks</h3>
+        <p class="row-body">Lawns cut into terraces, so a heavy shower fills the lowest step and the rest of the park stays dry underfoot.</p>
+        <figure class="row-media" data-reveal>
+          <img src="media/parks-720.jpg" srcset="media/parks-720.webp" width="720" height="351" loading="lazy" alt="Detail of the waterfront painting: grass terraces stepping down, edged in grey stone, with wet paths between them.">
+          <div class="note note--row" style="--x:24%;--y:66%;--lx:40%;--ly:-3%" aria-hidden="true">
+            <svg class="leader" viewBox="0 0 100 100" preserveAspectRatio="none"><line/></svg>
+            <i class="dot"></i><span class="note-text">each step holds a little</span>
+          </div>
+        </figure>
+      </li>
+      <li class="row row--b">
+        <span class="row-n">02</span>
+        <h3 class="row-title">Waterfronts</h3>
+        <p class="row-body">Quays with steps and planting down to the river, so a high tide or a heavy shower finds room before it finds the street.</p>
+        <figure class="row-media" data-reveal>
+          <img src="media/waterfront-720.jpg" srcset="media/waterfront-720.webp" width="720" height="371" loading="lazy" alt="Detail of the waterfront painting: a planted promenade along the river with young trees, lamp posts and people under umbrellas.">
+          <div class="note note--row" style="--x:47%;--y:84%;--lx:30%;--ly:-3%" aria-hidden="true">
+            <svg class="leader" viewBox="0 0 100 100" preserveAspectRatio="none"><line/></svg>
+            <i class="dot"></i><span class="note-text">steps down to the water</span>
+          </div>
+        </figure>
+      </li>
+      <li class="row row--c">
+        <span class="row-n">03</span>
+        <h3 class="row-title">Streets</h3>
+        <p class="row-body">Rain gardens and trees in place of kerbside parking, so a street drains into its own planting before it drains anywhere else.</p>
+        <figure class="row-media" data-reveal>
+          <img src="media/streets-720.jpg" srcset="media/streets-720.webp" width="720" height="397" loading="lazy" alt="Detail of the street painting: gabled brick houses behind a row of young trees, with planted rain gardens and a shallow channel in the foreground.">
+          <div class="note note--row" style="--x:30%;--y:82%;--lx:46%;--ly:-3%" aria-hidden="true">
+            <svg class="leader" viewBox="0 0 100 100" preserveAspectRatio="none"><line/></svg>
+            <i class="dot"></i><span class="note-text">a rain garden where the cars were</span>
+          </div>
+        </figure>
+      </li>
+    </ol>
+    <p class="honest honest--wide">Every painting on this page is an illustrative concept made for this site. None of them shows a built project or a client.</p>
+  </section>
+
+  <!-- 5 · HOW A COMMISSION STARTS -->
+  <section class="start container" aria-labelledby="start-h">
+    <div class="start-head">
+      <p class="kicker">For cities and water boards</p>
+      <h2 id="start-h" class="t-h2">How a commission starts.</h2>
+    </div>
+    <ol class="steps" data-reveal-group>
+      <li><span class="step-n">01</span><h3>Send us the place</h3><p>An address, a map, a photo of the puddle that keeps coming back. That is enough to start talking.</p></li>
+      <li><span class="step-n">02</span><h3>We walk it in the rain</h3><p>Where water stands and where it runs tells us more about a site than any plan does.</p></li>
+      <li><span class="step-n">03</span><h3>We paint what it could be</h3><p>A first concept as drawings like these, for both weathers, so everyone can see the dry day and the wet one.</p></li>
+      <li><span class="step-n">04</span><h3>Then the real work</h3><p>Design, engineering and planting with your teams and the people who live there.</p></li>
+    </ol>
+  </section>
+
+  <!-- 6 · JOIN US -->
+  <section id="join" class="join" aria-labelledby="join-h">
+    <div class="join-inner container">
+      <div class="join-copy">
+        <p class="kicker">Join us</p>
+        <h2 id="join-h" class="t-h2 two-tone">We are twenty-two. <span>We would like to be a few more.</span></h2>
+        <p class="join-body">If you design landscapes, draw them, or understand where water goes when it rains, we would like to see your work.</p>
+      </div>
+      <div class="join-card">
+        <p class="join-label">Open roles</p>
+        <p class="placeholder"><span class="chip">Placeholder</span> Roles, levels and start dates will be listed here once published.</p>
+        <a class="btn btn--accent" href="mailto:jobs@fieldwork.example?subject=Portfolio">Send a portfolio</a>
+        <p class="join-mail">or write to <a class="mail" href="mailto:jobs@fieldwork.example">jobs@fieldwork.example</a> <span class="chip">Placeholder</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · FINALE -->
+  <section class="finale container" aria-labelledby="fin-h">
+    <h2 id="fin-h" class="finale-line">Send us the wettest corner of your&nbsp;city.</h2>
+    <div class="finale-side">
+      <p>We work with municipalities, water boards and developers who would rather keep their rain than pipe it away.</p>
+      <a class="btn btn--accent" href="mailto:studio@fieldwork.example?subject=A%20commission">Discuss a commission</a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="foot-grid container">
+    <div class="foot-brand">
+      <p class="wordmark">Fieldwork</p>
+      <p class="foot-legal">© 2026 Fieldwork. A fictional studio.</p>
+    </div>
+    <div class="foot-col">
+      <p class="foot-h">Studio</p>
+      <p>Rotterdam, the Netherlands</p>
+      <p>22 people</p>
+    </div>
+    <div class="foot-col">
+      <p class="foot-h">Work with us</p>
+      <a href="mailto:studio@fieldwork.example?subject=A%20commission">Discuss a commission</a>
+      <a href="mailto:jobs@fieldwork.example?subject=Portfolio">Send a portfolio</a>
+    </div>
+    <div class="foot-col">
+      <p class="foot-h">Contact</p>
+      <a href="mailto:studio@fieldwork.example">studio@fieldwork.example</a>
+      <p class="dimmer">Address to follow</p>
+    </div>
+    <div class="foot-col">
+      <p class="foot-h">Legal</p>
+      <a href="legal.html#terms">Terms</a>
+      <a href="legal.html#privacy">Privacy</a>
+    </div>
+  </div>
+  <div class="foot-art" aria-hidden="true">
+    <picture>
+      <source media="(max-width:760px)" srcset="media/street-m-900.webp" type="image/webp">
+      <source media="(max-width:760px)" srcset="media/street-m-900.jpg">
+      <source srcset="media/street-960.webp 960w, media/street-1916.webp 1916w" sizes="100vw" type="image/webp">
+      <img src="media/street-1916.jpg" srcset="media/street-960.jpg 960w, media/street-1916.jpg 1916w" sizes="100vw" width="1916" height="821" loading="lazy" alt="">
+    </picture>
+  </div>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

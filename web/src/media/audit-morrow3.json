@@ -1,0 +1,121 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/morrow3/index.html",
+ "outDir": "/tmp/gal-morrow3",
+ "ms": 36113,
+ "counts": {
+  "PASS": 10,
+  "INFO": 3
+ },
+ "profile": {
+  "families": [
+   "Albert Sans×106"
+  ],
+  "display": [
+   "123px/0.9/-0.04em w300 \"05:40\"",
+   "123px/0.9/-0.04em w300 \"08:15\"",
+   "123px/0.9/-0.04em w300 \"12:00\""
+  ],
+  "bodySize": "15",
+  "weights": [
+   "400×89",
+   "300×17"
+  ],
+  "upperShare": 0.09,
+  "paper": "rgb(236,230,220)",
+  "accents": [],
+  "buttons": [
+   "square 38px \"Order the set\n · DKK 240\"",
+   "square 48px \"Order the discovery set\"",
+   "square 38px \"Add 50 ml\"",
+   "square 38px \"Add 50 ml\"",
+   "square 38px \"Add 50 ml\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)",
+   "cubic-bezier(.215,.61,.355,1)"
+  ],
+  "nav": {
+   "h": 72,
+   "links": 5
+  },
+  "pageVh": 6.8
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "1 family: Albert Sans"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 123px · lh 0.9 · -0.04em · weight 300 · Albert Sans)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (3/6 traits: warmOffWhite, hairlineBands, lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 93 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 13 text elements over imagery meet AA (sampled from pixels)"
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: square"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "1 hero CTA(s)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.215,0.61,0.355,1)×37, cubic-bezier(0.4,0,0.2,1)×11"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (0/13 paragraphs wait for scroll)"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.accent",
+   "msg": "No accent hue in the page chrome (fully neutral). Fine if that matches your Spine."
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 0% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 6.8 viewports (direction 5 norm 3–9)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/gal-morrow3/desktop-hero.png",
+  "/tmp/gal-morrow3/slice-01.jpg … (one per viewport)",
+  "/tmp/gal-morrow3/desktop-full.jpg",
+  "/tmp/gal-morrow3/mobile-hero.png",
+  "/tmp/gal-morrow3/mobile-full.jpg",
+  "/tmp/gal-morrow3/reduced-motion-hero.png"
+ ]
+}

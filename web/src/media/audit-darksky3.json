@@ -1,0 +1,122 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/darksky3/index.html",
+ "outDir": "/tmp/gal-darksky3",
+ "ms": 41436,
+ "counts": {
+  "PASS": 10,
+  "INFO": 3
+ },
+ "profile": {
+  "families": [
+   "Schibsted Grotesk×52",
+   "Cormorant×25"
+  ],
+  "display": [
+   "63px/1/-0.01em w500 \"Same street. Two lamps.\"",
+   "63px/1/-0.01em w500 \"Two lamps.\"",
+   "63px/1/-0.01em w500 \"That orange isn't weather. I\""
+  ],
+  "bodySize": "13",
+  "weights": [
+   "500×37",
+   "400×29",
+   "600×11"
+  ],
+  "upperShare": 0,
+  "paper": "rgb(12,17,28)",
+  "accents": [],
+  "buttons": [
+   "pill 38px \"Sign the letter\"",
+   "pill 48px \"Sign the letter\n→\"",
+   "pill 48px \"Sign the letter\"",
+   "pill 48px \"Sign the letter\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)",
+   "cubic-bezier(.19,1,.22,1)"
+  ],
+  "nav": {
+   "h": 84,
+   "links": 5
+  },
+  "pageVh": 7.7
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "2 families: Schibsted Grotesk, Cormorant"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 63px · lh 1 · -0.01em · weight 500 · Cormorant)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (1/6 traits: lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 52 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 31 text elements over imagery meet AA (sampled from pixels)"
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: pill"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "1 hero CTA(s)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.19,1,0.22,1)×14, cubic-bezier(0.4,0,0.2,1)×4"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (8/23 paragraphs wait for scroll)"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.accent",
+   "msg": "No accent hue in the page chrome (fully neutral). Fine if that matches your Spine."
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 0% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 7.7 viewports (direction 10 norm 8–55)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/gal-darksky3/desktop-hero.png",
+  "/tmp/gal-darksky3/slice-01.jpg … (one per viewport)",
+  "/tmp/gal-darksky3/desktop-full.jpg",
+  "/tmp/gal-darksky3/mobile-hero.png",
+  "/tmp/gal-darksky3/mobile-full.jpg",
+  "/tmp/gal-darksky3/reduced-motion-hero.png"
+ ]
+}

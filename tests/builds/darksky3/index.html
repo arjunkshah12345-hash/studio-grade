@@ -1,0 +1,266 @@
+<!--
+DESIGN SPINE · Leave the Lights (darksky3)
+DIRECTION   : 10 Immersive. A one-page cause piece with one argument: the same town under two skies. People come to feel the difference before they read the ask, so the before/after photograph pair is the experience, and the letter is the one action.
+REGISTER    : Confident. The one bold device: the full-bleed skyglow photograph that clears to the Milky Way as you scroll (or drag), same town, same viewpoint. Everything around it is disciplined colour blocks and plain type.
+AXES        : ground colour blocks with two meanings (skyglow amber #B5805D = as lit now · night #0C111C = as the letter asks) · type genre light high-contrast serif display (Cormorant 500) over a Norwegian grotesk (Schibsted Grotesk) · image medium photography (generated long-exposure series) · composition before/after poster pairs (one scrubbed stage, one split band of two lamps) · motion feel cinematic scrub (one pinned crossfade) + lights-up on the lamp pair; text still
+DEFAULT?    : default-look check 1/6 matched (near-black ink on the amber blocks) → DIFFERENT FROM DEFAULT BY: ground (colour blocks), labels (sentence-case text face, no mono), hero medium (photograph, not a line drawing), no spec bands
+SET CHECK   : vs nocturne3 (tinted dark · wide grotesk · photography · photo stages + timetable · cinematic) shares photography + scrub only (2/5)
+MOTIF       : light that points down (the shielded lamp's cone). 1 buttons: a pill that casts its glow only downward · 2 lamp-pair clauses: a hood glyph with a downward wedge vs a bare globe with rays · 3 compare slider: the thumb is a lamp hood · 4 favicon and wordmark mark: the hood (a 5th, a light cone over the letter, was cut: without a visible lamp it read as a glow blob)
+TYPE        : display Cormorant 500 (italic 500 for the second beat) · text Schibsted Grotesk 400/500 · no mono (labels are sentence-case Schibsted 500)
+SCALE       : display clamp(3rem→6.5rem)/0.94/-0.012em · h2 clamp(2.25rem→4.25rem)/1.0/-0.01em · lead 22px/1.4 · body 17px/1.6 · label 13px sentence case
+PALETTE     : glow #B5805D (sampled from the hero sky) · glow-ink #1B110B (tiers .88/.8 for a mid-tone ground) · night #0C111C (sampled from the dark sky) · night-ink #EEE8DF (.74/.62) · paper #F2EADD (the letter) · lamp #FFB866 (3000 K light) → used ONLY on the primary CTA on night and the downward light cones
+GRID        : 12 cols / 24px · container 1280 · margin 20→80px · section rhythm s-9 (96–144) with one 300px void before the letter
+HERO        : H7/H19 hybrid inside a pinned stage: the skyglow photograph full-bleed, h1 in dark ink on the clean sky (top 55%), town in the bottom 40%; a compare control bottom-right (drag or scroll) turns the same view into the starry one
+IMAGERY     : photography (generated series; illustrations of a fictional town, captioned as such)
+CONVERSION  : sign the letter → nav pill · hero primary · floating pill after the hero (hidden while the letter is on screen) · the letter form itself. Endpoint is a visible placeholder.
+MOTION      : house ease cubic-bezier(.19,1,.22,1) · UI 160–240ms · reveal 850ms · primitives: scroll-scrubbed crossfade (§5.8), lights-up (§51) on the lamp pair, fade + 8px on the letter card. No loader: the h1 is there on the first frame. Native scroll.
+IMAGES      : medium      real-looking long-exposure nightscape photography, tripod, snow
+              setting     a small northern Norwegian town by a fjord (Brekkøy, fictional), mountains behind; the same town and viewpoint recur
+              light       orange-white skyglow and harsh bright street lights where the sky is lit; Milky Way and stars where it is dark; warm 3000 K pools under shielded lamps
+              palette     skyglow #B07C5A–#D89B6A · night #0C111C · snow white · lamp amber #FFB866
+              viewpoint   elevated, looking over the town to the fjord; lamps at eye level on a snowy street
+              type zone   top 55% clean sky in the hero; town in the bottom 40%
+              exclude     no text, no logos, no watermarks, no people, no aurora (keep the argument about light pollution)
+              shot list   hero 21:9 skyglow town · dark 21:9 same town under a dark sky · lamp 4:5 shielded warm lamp · glare 4:5 unshielded globe lamp
+              crops       hero/dark → desktop 21:9 cover (50% 100%) + mobile 700×581 at 850,240 (same crop for both, so the crossfade holds; less sky so the town shows in the first mobile viewport) · dark → letter backdrop, mobile 4:5 at x=1020 (Milky Way core) · lamp/glare → 4:5 whole
+NAMING      : omit (no brand metaphor beyond the title)
+SIGNATURES  : §5.8 + §56 a scrubbed before → after pair (the argument as one image) · §51 lights-up on the two lamps · §73 the output artifact: the letter itself, with the signature lines as the form
+VOICE       : hero "Leave the lights on. Point them down." · section "That orange isn't weather. It's our street lights, coming back down." · CTA "Sign the letter"
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leave the Lights · A dark-sky lighting letter to Brekkøy Council</title>
+<meta name="description" content="Brekkøy's stars are still there, behind the orange glow. Ask the council for street lights that are shielded, warm and dimmable. A fictional campaign.">
+<meta name="theme-color" content="#0C111C">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230C111C'/%3E%3Cpath d='M7 12h18l-3 4H10z' fill='%23EEE8DF'/%3E%3Cpath d='M11 16h10l4 11H7z' fill='%23FFB866' opacity='.75'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,500;0,600;1,500&family=Schibsted+Grotesk:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/hero-1916.webp" media="(min-width:761px)" fetchpriority="high">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<a class="skip btn btn--primary" href="#main">Skip to content</a>
+
+<header class="nav" data-theme-glow>
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="Leave the Lights, back to top">
+      <svg class="hood" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h18l-2.5 3.5h-13z" fill="currentColor"/><path class="hood-cone" d="M6 11.5h12L22 22H2z"/></svg>
+      <span>Leave the Lights</span>
+    </a>
+    <nav aria-label="Sections">
+      <ul class="nav-links">
+        <li><a href="#skies">The two skies</a></li>
+        <li><a href="#lamps">The lamps</a></li>
+        <li><a href="#skyglow">Skyglow</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--down btn--night btn--sm" href="#letter">Sign the letter</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- 1 · The two skies: hero + pinned compare stage -->
+<section class="skies" id="top" aria-labelledby="h1">
+  <div class="hero-copy">
+    <p class="kicker">A letter to Brekkøy Council</p>
+    <h1 id="h1" class="t-hero">Leave the lights on.<br><em>Point them down.</em></h1>
+    <div class="hero-row">
+    <p class="hero-sub">Brekkøy's stars are still up there, behind the orange. Ask the council for street lights that are shielded, warm and dimmable.</p>
+    <div class="hero-ctas">
+      <a class="btn btn--down btn--night" href="#letter">Sign the letter <span class="arr" aria-hidden="true">→</span></a>
+      <a class="text-link" href="#skies">See the sky change <span aria-hidden="true">↓</span></a>
+    </div>
+    </div>
+  </div>
+
+  <div class="track" id="skies">
+    <div class="stage" data-stage style="--p:0">
+      <picture class="shot shot--now">
+        <source media="(max-width:760px)" srcset="img/hero-m-700.webp" type="image/webp">
+        <source media="(max-width:760px)" srcset="img/hero-m-700.jpg">
+        <source srcset="img/hero-960.webp 960w, img/hero-1916.webp 1916w" sizes="100vw" type="image/webp">
+        <img src="img/hero-1916.jpg" srcset="img/hero-960.jpg 960w, img/hero-1916.jpg 1916w" sizes="100vw" width="1916" height="821" fetchpriority="high"
+             alt="Brekkøy at night as lit now: a snowy fjord town under a flat orange sky with almost no stars, bright white street lights along the shore.">
+      </picture>
+      <picture class="shot shot--dark">
+        <source media="(max-width:760px)" srcset="img/dark-m-700.webp" type="image/webp">
+        <source media="(max-width:760px)" srcset="img/dark-m-700.jpg">
+        <source srcset="img/dark-960.webp 960w, img/dark-1916.webp 1916w" sizes="100vw" type="image/webp">
+        <img src="img/dark-1916.jpg" srcset="img/dark-960.jpg 960w, img/dark-1916.jpg 1916w" sizes="100vw" width="1916" height="821"
+             alt="The same town from the same viewpoint with shielded warm street lights: the sky above is black and full of stars, with the Milky Way arching over the mountains.">
+      </picture>
+
+      <div class="compare" role="group" aria-labelledby="cmp-title">
+        <p class="compare-title" id="cmp-title">Same town, same night</p>
+        <div class="compare-ends" aria-hidden="true"><span>As lit now</span><span>As the letter asks</span></div>
+        <input class="compare-range" type="range" min="0" max="100" value="0" step="1" data-compare
+               aria-label="Compare Brekkøy's sky: 0 is as lit now, 100 is with shielded, warm, dimmable street lights" aria-valuetext="As lit now">
+        <p class="compare-state" data-compare-state aria-live="polite">Unshielded white street lights. The sky glows orange and hides almost every star.</p>
+        <p class="compare-note">Scroll or drag. Illustrations of a fictional town.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · The lamps: a split colour block, now | asked for -->
+<section class="lamps" id="lamps" aria-labelledby="lamps-h">
+  <div class="lamps-head container">
+    <h2 id="lamps-h" class="t-h2">Same street. <span class="tail">Two lamps.</span></h2>
+    <p class="lamps-lede">Nothing else changed between those two pictures. The difference is where the light goes, how blue it is, and whether it burns at full power all night.</p>
+  </div>
+  <div class="split">
+    <article class="half half--now" data-theme-glow aria-labelledby="now-h">
+      <figure class="lamp-shot" data-reveal>
+        <picture>
+          <source srcset="img/glare-640.webp 640w, img/glare-1122.webp 1122w" sizes="(max-width:760px) 100vw, 34vw" type="image/webp">
+          <img src="img/glare-1122.jpg" srcset="img/glare-640.jpg 640w, img/glare-1122.jpg 1122w" sizes="(max-width:760px) 100vw, 34vw" width="1122" height="1402" loading="lazy"
+               alt="An old globe street lamp on a snowy path above the town, glaring white in every direction under a grey, empty sky.">
+        </picture>
+      </figure>
+      <div class="half-copy">
+        <p class="kicker">The lamp we have</p>
+        <h3 class="t-h3" id="now-h">A bare globe</h3>
+        <ul class="clauses">
+          <li><span class="mark mark--globe" aria-hidden="true"></span><div><strong>Light in every direction.</strong> Sideways into bedroom windows, up into the sky, and some of it onto the path.</div></li>
+          <li><span class="mark mark--globe" aria-hidden="true"></span><div><strong>Cold white.</strong> Blue-rich light scatters more in the air, so more of it comes back as glow.</div></li>
+          <li><span class="mark mark--globe" aria-hidden="true"></span><div><strong>Full power until morning.</strong> The same brightness at 03:00 as at rush hour.</div></li>
+        </ul>
+      </div>
+    </article>
+    <article class="half half--asked" aria-labelledby="asked-h">
+      <figure class="lamp-shot" data-reveal>
+        <picture>
+          <source srcset="img/lamp-640.webp 640w, img/lamp-1122.webp 1122w" sizes="(max-width:760px) 100vw, 34vw" type="image/webp">
+          <img src="img/lamp-1122.jpg" srcset="img/lamp-640.jpg 640w, img/lamp-1122.jpg 1122w" sizes="(max-width:760px) 100vw, 34vw" width="1122" height="1402" loading="lazy"
+               alt="A modern shielded street lamp casting a warm pool of light down onto a snowy road, with the Milky Way clear in the dark sky above.">
+        </picture>
+      </figure>
+      <div class="half-copy">
+        <p class="kicker">The lamp we're asking for</p>
+        <h3 class="t-h3" id="asked-h">Shielded, warm, dimmable</h3>
+        <ol class="clauses">
+          <li><span class="mark mark--hood" aria-hidden="true"></span><div><strong>Shielded.</strong> No light above the horizontal. The lamp lights the road, not the clouds.</div></li>
+          <li><span class="mark mark--hood" aria-hidden="true"></span><div><strong>Warm, 3000&nbsp;K or below.</strong> The colour of a kitchen bulb, not a stadium.</div></li>
+          <li><span class="mark mark--hood" aria-hidden="true"></span><div><strong>Dimmable.</strong> Turned down in the small hours, when the streets are empty.</div></li>
+        </ol>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- 3 · Skyglow: the explanation, on the glow -->
+<section class="skyglow" id="skyglow" data-theme-glow aria-labelledby="glow-h">
+  <div class="container skyglow-in">
+    <p class="kicker">Skyglow</p>
+    <h2 id="glow-h" class="t-h2 glow-h">That orange isn't weather. <em>It's our street lights, coming back down.</em></h2>
+    <div class="glow-cols">
+      <p>Light that leaves a lamp sideways or upward doesn't disappear. It hits air molecules, dust and moisture, and part of it scatters back down over the whole town as a glow. On a cloudy night the cloud base lights up as well, like a lampshade over the fjord.</p>
+      <p>Bluer light scatters more strongly than warm light, which is why the letter asks for warm lamps as well as shields. Brekkøy isn't alone: by one global estimate, the Milky Way is now hidden from more than a third of humanity.<a class="fn-ref" href="#fn1" id="fnref1" aria-describedby="fn-label">1</a></p>
+    </div>
+    <p class="fn" id="fn1"><span id="fn-label" class="sr-only">Footnote</span>1. Falchi et al., “The new world atlas of artificial night sky brightness”, <i>Science Advances</i>, 2016. <a href="#fnref1">Back to the text</a></p>
+  </div>
+</section>
+
+<!-- 4 · Limits as proof: what the letter doesn't ask -->
+<section class="limits" aria-labelledby="limits-h">
+  <div class="container limits-in">
+    <h2 id="limits-h" class="t-h2">What we're not asking for.</h2>
+    <ol class="limits-list" data-reveal-group>
+      <li><span class="num t-num">01</span><h3 class="t-h3">Dark streets</h3><p>Pavements stay lit. The light lands where people walk instead of spilling into the sky.</p></li>
+      <li><span class="num t-num">02</span><h3 class="t-h3">Your own lights</h3><p>The letter is about street lights. Porches, shop windows and kitchen lamps are yours.</p></li>
+      <li><span class="num t-num">03</span><h3 class="t-h3">A number we made up</h3><p>No costs, dates or savings appear here. Those are the council's to work out; we're asking it to start.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 5 · The letter: the artifact, on the dark sky -->
+<section class="letter" id="letter" aria-labelledby="letter-h">
+  <picture class="letter-sky" aria-hidden="true">
+    <source media="(max-width:760px)" srcset="img/finale-m-657.webp" type="image/webp">
+    <source media="(max-width:760px)" srcset="img/finale-m-657.jpg">
+    <source srcset="img/dark-960.webp 960w, img/dark-1916.webp 1916w" sizes="100vw" type="image/webp">
+    <img src="img/dark-1916.jpg" srcset="img/dark-960.jpg 960w, img/dark-1916.jpg 1916w" sizes="100vw" width="1916" height="821" alt="" loading="lazy">
+  </picture>
+  <div class="container letter-in">
+    <div class="letter-intro">
+      <h2 id="letter-h" class="t-h2">The sky is still there. <em>Sign for it.</em></h2>
+      <p>One letter, three clauses, every name underneath. It goes to Brekkøy Council when the campaign opens.</p>
+      <p class="chip"><span class="chip-dot" aria-hidden="true"></span>Placeholder: the sending endpoint isn't connected, so signing here sends nothing.</p>
+    </div>
+
+    <div class="sheet-wrap" data-reveal>
+      <form class="sheet" id="sign" action="#" method="post" data-endpoint="PLACEHOLDER_ENDPOINT" novalidate>
+        <p class="sheet-to">To the members of Brekkøy Council,</p>
+        <p>We ask the council to adopt a lighting ordinance so that Brekkøy's street lights are:</p>
+        <ol class="sheet-clauses">
+          <li><strong>Shielded</strong>, sending no light above the horizontal;</li>
+          <li><strong>Warm</strong>, at 3000&nbsp;K or below;</li>
+          <li><strong>Dimmable</strong>, so they can be turned down when the streets are empty.</li>
+        </ol>
+        <p>We are not asking for darker streets. We are asking for light on the ground, and the sky back above it.</p>
+        <p class="sheet-signed">Signed,</p>
+
+        <div class="fields">
+          <div class="field field--wide">
+            <label for="f-name">Your name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="f-area">Neighbourhood <span class="opt">(optional)</span></label>
+            <input id="f-area" name="area" type="text" autocomplete="address-level3">
+          </div>
+          <div class="field">
+            <label for="f-email">Email <span class="opt">(to confirm)</span></label>
+            <input id="f-email" name="email" type="email" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="sheet-foot">
+          <button class="btn btn--down btn--night" type="submit">Sign the letter</button>
+          <p class="sheet-fine">We'll only use your email to confirm the signature.</p>
+        </div>
+        <p class="sheet-status" data-status role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="container foot-in">
+    <div class="foot-brand">
+      <p class="foot-mark">Leave the Lights</p>
+      <p class="foot-line">A campaign for a dark-sky lighting ordinance in Brekkøy.</p>
+      <p class="foot-legal">© 2026 Leave the Lights. A fictional campaign.</p>
+    </div>
+    <nav class="foot-col" aria-label="Campaign">
+      <p class="foot-h">Campaign</p>
+      <ul>
+        <li><a href="#skies">The two skies</a></li>
+        <li><a href="#lamps">The lamps</a></li>
+        <li><a href="#skyglow">Skyglow</a></li>
+        <li><a href="#letter">The letter</a></li>
+      </ul>
+    </nav>
+    <nav class="foot-col" aria-label="Legal">
+      <p class="foot-h">Legal</p>
+      <ul>
+        <li><a href="legal.html#terms">Terms</a></li>
+        <li><a href="legal.html#privacy">Privacy</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+<a class="float-cta btn btn--down btn--lamp" href="#letter" data-float hidden>Sign the letter</a>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

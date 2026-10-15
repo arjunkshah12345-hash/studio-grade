@@ -1,0 +1,125 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/fieldwork3/index.html",
+ "outDir": "/tmp/gal-fieldwork3",
+ "ms": 42349,
+ "counts": {
+  "PASS": 11,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Hanken Grotesk×38",
+   "Newsreader×35"
+  ],
+  "display": [
+   "102px/0.94/-0.032em w300 \"Parks that fill up on purpos\"",
+   "72px/1/-0.03em w300 \"Send us the wettest corner o\"",
+   "68px/1/-0.03em w300 \"Parks\""
+  ],
+  "bodySize": "17",
+  "weights": [
+   "400×46",
+   "300×13",
+   "500×11",
+   "450×3"
+  ],
+  "upperShare": 0,
+  "paper": "rgb(245,243,238)",
+  "accents": [
+   "rgb(47,84,112) bg a.btn"
+  ],
+  "buttons": [
+   "pill 38px \"Discuss a commission\"",
+   "pill 48px \"Discuss a commission\"",
+   "pill 48px \"Send a portfolio\"",
+   "pill 48px \"Discuss a commission\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)",
+   "cubic-bezier(.19,1,.22,1)"
+  ],
+  "nav": {
+   "h": 88,
+   "links": 5
+  },
+  "pageVh": 9.9
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "2 families: Hanken Grotesk, Newsreader"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 102px · lh 0.94 · -0.032em · weight 300 · Newsreader)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (3/6 traits: warmOffWhite, tinyAccent, lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "One accent hue (210° (w6) e.g. rgb(47,84,112) bg a.btn)"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 60 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 15 text elements over imagery meet AA (sampled from pixels)"
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: pill"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "1 hero CTA(s)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.19,1,0.22,1)×25, cubic-bezier(0.34,1.56,0.64,1)×6, cubic-bezier(0.4,0,0.2,1)×5"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (5/23 paragraphs wait for scroll)"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 0.2% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 9.9 viewports (direction 4 norm 12–23)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/gal-fieldwork3/desktop-hero.png",
+  "/tmp/gal-fieldwork3/slice-01.jpg … (one per viewport)",
+  "/tmp/gal-fieldwork3/desktop-full.jpg",
+  "/tmp/gal-fieldwork3/mobile-hero.png",
+  "/tmp/gal-fieldwork3/mobile-full.jpg",
+  "/tmp/gal-fieldwork3/reduced-motion-hero.png"
+ ]
+}

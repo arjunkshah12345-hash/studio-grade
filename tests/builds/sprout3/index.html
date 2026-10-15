@@ -1,0 +1,279 @@
+<!--
+DESIGN SPINE: Sprout (gallery v3 · sprout3)
+DIRECTION   : 11 Bright Product. A consumer app for people who keep killing their plants; it should feel friendly and finished, and the felted photo series gives it a world no competitor has.
+REGISTER    : Confident. The one bold device: the pink wall from the photos as a full-bleed field that bookends the page (hero, finale), with the felt plants talking in notification bubbles on it.
+AXES        : ground colour blocks from the photos (wall pink #E3B9BA hero · sill white #FAF6F1 page · moss #2E4326 cast band · wall pink #F1BDC1 finale) · type genre rounded geometric sans (Gabarito 500) over a plain grotesk (Onest) · image medium needle-felt photo series + cut-outs from a sprite sheet + small HTML notification vignettes · composition photo bookends with a cast row (a shelf of cut-outs) · motion feel calm fade + small spring pops on the bubbles and cut-outs
+DEFAULT?    : default-look check 1/6 matched (warm off-white page) → DIFFERENT FROM DEFAULT BY: photo ground fields, rounded sans not tight grotesk, sentence-case labels (no mono), no hairline metadata bands, felt photography not line drawing, colour as fields with meanings
+MOTIF       : the plant speaks (a notification bubble with the plant's face as its avatar). 1 hero: two plants message you from the sill · 2 how it works: the bubble is the last step of the transformation · 3 needs: one big bubble per need, crossing its photo or pad · 4 cast: tap a plant and it talks · 5 legal page: the fern explains it's pretend
+TYPE        : display Gabarito 500 (600 for the wordmark only) · text Onest 400/500 · labels Onest 500 sentence case. 2 families.
+SCALE       : display 82px/.96/−0.035em · h2 58/1.0/−0.03em · h3 26/1.15 · body 18/1.55 · label 14/1.3
+PALETTE     : wall #E3B9BA · wall-2 #F1BDC1 · paper #FAF6F1 · paper-2 #F1EAE1 · ink #1F2B1B (moss black) · ink-2 ink@76% · hairline ink@10% · moss #34502A → ONLY the primary button and the cast band. Need colours (one meaning each, on chips and pads): thirsty clay #F2D2C0 · cold sage #D7E0C7 · dark-needs-light butter #F6E6A6
+GRID        : 12/24 · container 1240 · side margin 20→80 · section rhythm 96–144, a 200px void before pricing
+HERO        : H19 photo composed for the headline. Centered h1 + subline + 2 pill CTAs on the pink wall; the felted sill rises below, its top feathered into the wall; the fern and the cactus send notification bubbles. Mobile: text on the wall above a square crop of cactus + fern.
+IMAGERY     : generated felt photo series (hero, thirsty, sill) + six cut-outs (characters sheet) + HTML notification vignettes (role="img")
+CONVERSION  : Get Sprout free → nav pill · hero primary · pricing free tag · finale. Secondary "Meet the plants" → cast.
+MOTION      : house ease cubic-bezier(.2,.8,.2,1) · UI 180ms · reveal 650ms, 8px rise, 70ms stagger · bubbles pop with --spring-ui from their tail · cut-outs rise onto the shelf in sequence · text never moves
+IMAGES      : medium needle-felted wool figures photographed in soft daylight, visible fibres and fuzzy edges, tiny bead eyes, gentle expressions; real terracotta pots and a pale painted windowsill
+              palette sage green, moss, terracotta, soft pink #F6C9D4, butter yellow · mood cosy, funny, kind
+              exclude no text, no logos, no watermarks, no human faces
+              shots hero 16:9 (five plants, top 45% pink wall) · thirsty 4:3 (droopy fern + felt watering can, left third clear) · characters 1:1 sprite sheet 3x2 (monstera, cactus, fern, succulent, snake plant, pothos) · sill 21:9 footer (row of plants cut by the bottom edge, top 55% wall)
+              crops hero → desktop 1628 (window frame trimmed) + mobile 760×691 (cactus + fern) · thirsty → chapter 4:3 · sheet → 6 cut-outs + face avatars (CSS crop) · sill → finale 21:9 + mobile 860×571
+NAMING      : the windowsill → tiers "Windowsill" (free, five plants) and "The whole jungle" (£3.99/month) · CTA "Get Sprout free" · 404 "This one wilted."
+SIGNATURES  : §68 photo composed for the headline (with the plants' bubbles on it) · §62 pricing as an object (plant-label stakes) · §76 finale rising from the bottom edge, with a felted (fuzzy) top edge on the band
+VOICE       : "Fewer funerals for the fern." · "It only ever says three things." · "Start with the one that's drooping."
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sprout: plants that tell you what they need</title>
+<meta name="description" content="Photograph a plant and Sprout turns it into a character that tells you when it's thirsty, cold or stuck in the dark. Free for five plants; the whole jungle is £3.99 a month.">
+<meta name="theme-color" content="#E3B9BA">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M16 29V15' stroke='%2334502A' stroke-width='3' stroke-linecap='round'/%3E%3Cpath d='M16 16C16 9 11 5 4 5c0 7 5 11 12 11Z' fill='%2334502A'/%3E%3Cpath d='M16 13c0-6 4-9 11-9 0 6-4 9-11 9Z' fill='%2387A05E'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@500;600&family=Onest:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/hero-1628.webp" imagesrcset="assets/hero-960.webp 960w, assets/hero-1628.webp 1628w" imagesizes="100vw" media="(min-width: 761px)">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--primary" href="#main">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <filter id="felt" x="0" y="-50%" width="100%" height="200%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.9 0.08" numOctaves="2" seed="4" result="n"/>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="16" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<header class="nav" id="top">
+  <div class="nav-in container">
+    <a class="brand" href="#top" aria-label="Sprout, back to top">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 29V15" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M16 16C16 9 11 5 4 5c0 7 5 11 12 11Z" fill="currentColor"/><path d="M16 13c0-6 4-9 11-9 0 6-4 9-11 9Z" fill="#87A05E"/></svg>
+      <span>sprout</span>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#needs">What it says</a>
+      <a href="#cast">The plants</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <a class="btn btn--moss btn--sm" href="#pricing">Get Sprout free</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO: the wall, the sill, two plants talking ============ -->
+<section class="hero" aria-labelledby="h1">
+  <div class="hero-copy container">
+    <h1 id="h1" class="t-display">Fewer funerals<br> for the fern.</h1>
+    <p class="hero-sub">Photograph a plant and Sprout turns it into a character that tells you when it’s thirsty, cold or stuck in the dark.</p>
+    <div class="ctas">
+      <a class="btn btn--moss" href="#pricing">Get Sprout free</a>
+      <a class="btn btn--paper" href="#cast">Meet the plants <span class="arr" aria-hidden="true">→</span></a>
+    </div>
+    <p class="hero-note t-small">Free for your first five plants.</p>
+  </div>
+
+  <div class="hero-art">
+    <picture>
+      <source media="(max-width: 760px)" srcset="assets/hero-m-760.webp" type="image/webp">
+      <source media="(max-width: 760px)" srcset="assets/hero-m-760.jpg">
+      <source srcset="assets/hero-960.webp 960w, assets/hero-1628.webp 1628w" sizes="100vw" type="image/webp">
+      <img src="assets/hero-1628.jpg" srcset="assets/hero-960.jpg 960w, assets/hero-1628.jpg 1628w" sizes="100vw" width="1628" height="941" fetchpriority="high"
+           alt="Five felted wool house plants with tiny faces in terracotta pots on a white windowsill against a pink wall: a smiling monstera, a sleepy cactus, a droopy fern, a succulent and a snake plant.">
+    </picture>
+
+    <div class="bubble bubble--hero b-fern" role="img" aria-label="A notification from Fern: Could I have a drink? My soil’s gone dry.">
+      <span class="av" style="--fx:.53;--fy:.38;--ar:1.348"><img src="assets/plant-fern.webp" alt=""></span>
+      <span class="b-body"><span class="b-head"><b>Fern</b><span class="need need--thirsty">Thirsty</span></span>Could I have a drink? My soil’s gone dry.</span>
+    </div>
+    <div class="bubble bubble--hero bubble--left b-cactus" role="img" aria-label="A notification from Cactus: It’s very dark in this corner. Can’t wake up.">
+      <span class="av" style="--fx:.50;--fy:.33;--ar:1.446"><img src="assets/plant-cactus.webp" alt=""></span>
+      <span class="b-body"><span class="b-head"><b>Cactus</b><span class="need need--dark">Too dark</span></span>It’s very dark in this corner. Can’t wake up.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS: photo → face → message ============ -->
+<section class="how section" id="how" aria-labelledby="how-h">
+  <div class="container how-grid">
+    <div class="how-copy">
+      <p class="kicker">How it works</p>
+      <h2 id="how-h" class="t-h2">Point. Shoot. <span class="dim">Meet your plant.</span></h2>
+      <ol class="steps">
+        <li><span class="n">1</span><div><h3>Take its picture</h3><p>The fern on the kitchen sill, the cactus by the bath. One photo each.</p></div></li>
+        <li><span class="n">2</span><div><h3>It gets a face</h3><p>Sprout turns the photo into a character with a name and a mood.</p></div></li>
+        <li><span class="n">3</span><div><h3>It speaks up</h3><p>When it’s thirsty, cold or stuck in the dark, it tells you. In words.</p></div></li>
+      </ol>
+    </div>
+
+    <figure class="stage" role="img" aria-label="A photo of a felted fern on a windowsill becomes a fern character with a face, which sends a message: Could I have a drink?">
+      <div class="snap" data-reveal>
+        <div class="snap-photo"></div>
+        <span class="vf vf--tl"></span><span class="vf vf--tr"></span><span class="vf vf--bl"></span><span class="vf vf--br"></span>
+        <span class="snap-cap">Kitchen sill · 1 photo</span>
+      </div>
+      <img class="stage-plant" src="assets/plant-fern.webp" width="414" height="558" alt="" data-reveal>
+      <span class="stage-tag" data-reveal>Fern <span class="dimmer">· moody, mostly thirsty</span></span>
+      <div class="bubble bubble--stage" data-pop>
+        <span class="av" style="--fx:.53;--fy:.38;--ar:1.348"><img src="assets/plant-fern.webp" alt=""></span>
+        <span class="b-body"><span class="b-head"><b>Fern</b><span class="t-when">now</span></span>Could I have a drink?</span>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ NEEDS: thirsty, cold, dark ============ -->
+<section class="needs" id="needs" aria-labelledby="needs-h">
+  <div class="container">
+    <h2 id="needs-h" class="t-h2 needs-h">It only ever says three things. <span class="dim">Each one means you can fix it today.</span></h2>
+  </div>
+
+  <article class="need-row">
+    <figure class="need-photo" data-reveal>
+      <picture>
+        <source srcset="assets/thirsty-960.webp 960w, assets/thirsty-1448.webp 1448w" sizes="(max-width:760px) 100vw, 60vw" type="image/webp">
+        <img src="assets/thirsty-960.jpg" srcset="assets/thirsty-960.jpg 960w, assets/thirsty-1448.jpg 1448w" sizes="(max-width:760px) 100vw, 60vw" width="1448" height="1086" loading="lazy"
+             alt="A felted fern with a droopy, worried face slumps over its terracotta pot on a sunny windowsill, next to a small yellow felt watering can.">
+      </picture>
+      <div class="bubble bubble--big" role="img" aria-label="A notification from Fern: Could I have a drink? My soil’s gone dry." data-pop>
+        <span class="av" style="--fx:.53;--fy:.38;--ar:1.348"><img src="assets/plant-fern.webp" alt=""></span>
+        <span class="b-body"><span class="b-head"><b>Fern</b><span class="need need--thirsty">Thirsty</span></span>Could I have a drink? My soil’s gone dry.</span>
+      </div>
+    </figure>
+    <div class="need-copy">
+      <span class="need need--thirsty need--lg">Thirsty</span>
+      <h3 class="t-h3">When the soil’s gone dry</h3>
+      <p>No more poking the soil and guessing from the colour of the leaves. The fern asks for a drink, and you pour one.</p>
+    </div>
+  </article>
+
+  <div class="container pads">
+    <article class="pad pad--cold">
+      <div class="pad-art">
+        <img src="assets/plant-cactus.webp" width="354" height="512" alt="A smiling felted cactus with a yellow flower in a terracotta pot." loading="lazy" data-reveal>
+        <div class="bubble bubble--pad" role="img" aria-label="A notification from Cactus: Brr. That window’s draughty tonight." data-pop>
+          <span class="av" style="--fx:.50;--fy:.33;--ar:1.446"><img src="assets/plant-cactus.webp" alt=""></span>
+          <span class="b-body"><span class="b-head"><b>Cactus</b><span class="need need--cold">Cold</span></span>Brr. That window’s draughty tonight.</span>
+        </div>
+      </div>
+      <h3 class="t-h3">When it’s too cold</h3>
+      <p>Glass gets chilly after dark. Your cactus says so, and you move it a little further from the pane.</p>
+    </article>
+    <article class="pad pad--dark">
+      <div class="pad-art">
+        <img src="assets/plant-monstera.webp" width="398" height="571" alt="A smiling felted monstera with big split leaves in a terracotta pot." loading="lazy" data-reveal>
+        <div class="bubble bubble--pad" role="img" aria-label="A notification from Monstera: Bit gloomy over here. Somewhere brighter?" data-pop>
+          <span class="av" style="--fx:.77;--fy:.42;--ar:1.435"><img src="assets/plant-monstera.webp" alt=""></span>
+          <span class="b-body"><span class="b-head"><b>Monstera</b><span class="need need--dark">Too dark</span></span>Bit gloomy over here. Somewhere brighter?</span>
+        </div>
+      </div>
+      <h3 class="t-h3">When it’s stuck in the dark</h3>
+      <p>Corners look cosy to us and miserable to a monstera. It asks for the light, and you find it a better spot.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ CAST: tap a plant, it talks ============ -->
+<section class="cast" id="cast" aria-labelledby="cast-h">
+  <div class="container cast-head">
+    <h2 id="cast-h" class="t-h2">Everyone on the sill gets a face. <span class="dim">Tap one.</span></h2>
+    <p class="cast-lede">Six of the usual suspects. Yours will look like your own plants, and say what they need.</p>
+  </div>
+  <div class="shelf container">
+    <p class="say" id="say" aria-live="polite"><span class="say-name">Fern</span><span class="say-line">Could I have a drink? My soil’s gone dry.</span></p>
+    <ul class="shelf-row" role="list">
+      <li><button class="plant" type="button" aria-pressed="false" data-name="Monstera" data-line="Bit gloomy over here. Somewhere brighter?"><img src="assets/plant-monstera.webp" width="398" height="571" alt="" loading="lazy"><span>Monstera</span></button></li>
+      <li><button class="plant" type="button" aria-pressed="false" data-name="Cactus" data-line="Brr. That window’s draughty tonight."><img src="assets/plant-cactus.webp" width="354" height="512" alt="" loading="lazy"><span>Cactus</span></button></li>
+      <li><button class="plant" type="button" aria-pressed="true" data-name="Fern" data-line="Could I have a drink? My soil’s gone dry."><img src="assets/plant-fern.webp" width="414" height="558" alt="" loading="lazy"><span>Fern</span></button></li>
+      <li><button class="plant" type="button" aria-pressed="false" data-name="Succulent" data-line="Nothing to report. The sun’s lovely today."><img src="assets/plant-succulent.webp" width="390" height="468" alt="" loading="lazy"><span>Succulent</span></button></li>
+      <li><button class="plant" type="button" aria-pressed="false" data-name="Snake plant" data-line="I’m fine. I’m always fine. Thanks for asking."><img src="assets/plant-snake.webp" width="323" height="547" alt="" loading="lazy"><span>Snake plant</span></button></li>
+      <li><button class="plant" type="button" aria-pressed="false" data-name="Pothos" data-line="Thirsty again. Sorry. Big week."><img src="assets/plant-pothos.webp" width="399" height="513" alt="" loading="lazy"><span>Pothos</span></button></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ PRICING: plant-label stakes ============ -->
+<section class="pricing section" id="pricing" aria-labelledby="price-h">
+  <div class="container price-grid">
+    <div class="price-copy">
+      <p class="kicker">Pricing</p>
+      <h2 id="price-h" class="t-h2">Five plants free. <span class="dim">The whole jungle for £3.99 a month.</span></h2>
+      <div class="truths">
+        <h3 class="truths-h">Before you download</h3>
+        <ol>
+          <li>Sprout is new. There are no reviews or download numbers yet, so you won’t find any stars on this page.</li>
+          <li>It can tell you what a plant needs. It can’t hold the watering can.</li>
+          <li>Sprout is a fictional product, made for a design study. <a class="link" href="legal.html">Read the small print</a>.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="tags" data-reveal-group>
+      <article class="tag tag--free">
+        <span class="tag-hole" aria-hidden="true"></span>
+        <h3 class="tag-name">Windowsill</h3>
+        <p class="tag-price"><span class="t-num">Free</span></p>
+        <p class="tag-what">Up to five plants, each with a face and a voice.</p>
+        <a class="btn btn--moss tag-btn" href="#top">Get Sprout free</a>
+      </article>
+      <article class="tag tag--jungle">
+        <span class="tag-hole" aria-hidden="true"></span>
+        <h3 class="tag-name">The whole jungle</h3>
+        <p class="tag-price"><span class="t-num">£3.99</span><span class="tag-unit">a month</span></p>
+        <p class="tag-what">Every plant you keep, from the sixth one on.</p>
+        <a class="btn btn--line tag-btn" href="#top">Grow the jungle</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINALE: the sill rises from the bottom edge ============ -->
+<section class="finale" aria-labelledby="fin-h">
+  <div class="finale-copy container">
+    <h2 id="fin-h" class="t-display fin-h">Start with the one that’s drooping.</h2>
+    <p class="fin-sub">Free for five plants. £3.99 a month for the rest.</p>
+    <a class="btn btn--moss" href="#top">Get Sprout free</a>
+  </div>
+  <picture class="finale-art">
+    <source media="(max-width: 760px)" srcset="assets/sill-m-780.webp" type="image/webp">
+    <source media="(max-width: 760px)" srcset="assets/sill-m-780.jpg">
+    <source srcset="assets/sill-960.webp 960w, assets/sill-1916.webp 1916w" sizes="100vw" type="image/webp">
+    <img src="assets/sill-1916.jpg" srcset="assets/sill-960.jpg 960w, assets/sill-1916.jpg 1916w" sizes="100vw" width="1916" height="821" loading="lazy" alt="A row of felted house plants with smiling faces in terracotta pots along a pink wall, cut off by the bottom of the frame.">
+  </picture>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="container foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="#top" aria-label="Sprout, back to top">
+        <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 29V15" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M16 16C16 9 11 5 4 5c0 7 5 11 12 11Z" fill="currentColor"/><path d="M16 13c0-6 4-9 11-9 0 6-4 9-11 9Z" fill="#87A05E"/></svg>
+        <span>sprout</span>
+      </a>
+      <p class="t-small dimmer">© 2026 Sprout. A fictional product.</p>
+    </div>
+    <nav class="foot-col" aria-label="Product">
+      <h2 class="foot-h">Sprout</h2>
+      <a href="#how">How it works</a>
+      <a href="#needs">What it says</a>
+      <a href="#cast">The plants</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <nav class="foot-col" aria-label="Legal">
+      <h2 class="foot-h">Legal</h2>
+      <a href="legal.html#terms">Terms</a>
+      <a href="legal.html#privacy">Privacy</a>
+    </nav>
+  </div>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

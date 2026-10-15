@@ -38,6 +38,9 @@
 !/tests/builds/nightlight/
 !/tests/builds/switchback/
 !/tests/builds/haul/
+!/tests/builds/tally3/
+!/tests/builds/sprout3/
+!/tests/builds/nocturne3/
 
 # research: our notes only, never third-party screenshots or scraped pages
 !/research/

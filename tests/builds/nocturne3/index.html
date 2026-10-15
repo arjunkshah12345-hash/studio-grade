@@ -1,0 +1,345 @@
+<!--
+DESIGN SPINE · Nocturne (fictional festival)
+DIRECTION   : 6 Cinematic Place. A festival sold on a place and a night (brick port warehouses, water, cranes); the photographs are the persuasion, tickets are the one job.
+REGISTER    : Confident. The one bold device is the night photograph at full bleed with the ticket masthead crossing its bottom edge; everything else is disciplined night-navy and cream.
+AXES        : ground tinted dark (night navy #0A1622 sampled from the hero sky) that turns to dawn sky #5AA0D7 at the finale · type genre wide/extended grotesk (Archivo at 125% width, light) · image medium photography (generated night series) · composition cinematic place: full-bleed photo stages + a timetable grid · motion feel cinematic: lights-up, media wipes, one scroll-scrubbed image; text still
+DEFAULT?    : default-look check 0/6 (dark ground, extended light grotesk, no mono labels, no metadata bands, photo hero, accent replaced by three stage lights) → DIFFERENT FROM DEFAULT BY: ground, type genre, image medium, labels, hero medium
+MOTIF       : the night as an 8-hour bar, 22:00 → 06:00. (1) nav: a small clock that runs 22:00 → 06:00 as you scroll, so the page is one night; (2) "The night" section: the bar at full width with hour ticks; (3) timetable: every stage is a lane on the same 22–06 axis; (4) tickets: a day ticket carries one bar, the weekend carries three; (5) finale: the page ground turns to dawn at 06:00.
+TYPE        : display Archivo 125% width 300 · text Archivo 100% width 400/500 · no mono (labels are sentence-case text face)   (one family, two widths)
+SCALE       : display 40→76px / 1.0 / −0.025em · stage word 72→176px / .86 / −0.03em uppercase · h2 32→52px / 1.04 / −0.02em · body 17px / 1.55 · label 13px plain
+PALETTE     : paper #0A1622 · paper-2 #101E2C · ink #EEEAE3 · ink-2 ink@72% · ink-3 ink@58% · hairline ink@12% · stage lights: Dock red #E8473A, Silo cyan #5ACFE0, Kade amber #F2A33A → used ONLY as stage markers (dots, lane rules, set rules); CTA is cream on navy, not a hue · dawn #5AA0D7 with ink #0B1E30 (finale only)
+GRID        : 12 / 24px · container 1312px · side margin 20→64px · section rhythm 96–176px, varied
+HERO        : H19-family photo composed for the headline (the clean night sky over the warehouse) + Ace-style booking masthead crossing the photo's bottom edge
+IMAGERY     : photography, one generated series (night → dawn); crops: hero 21:9 → mobile 700×671 crop on the doors; Dock = hero re-crop of the red doorway; Silo 4:3 full-bleed with text in its dark left third; Kade 4:3 bleeding right with text over its clean left third; finale = dawn 21:9, mobile crop on the quay
+CONVERSION  : Buy tickets: nav button · hero masthead (pick a night → price → buy) · ticket section (day / weekend) · finale button
+MOTION      : house ease cubic-bezier(.16,1,.3,1) · UI 160–240ms · reveal 900ms · primitives: lights-up (brightness .1 → 1) on the hero photo, clip wipes on stage photos, a scroll-scrubbed inset → full-bleed on Silo, timetable sets drawing along the time axis; headings and body never move; scroll clock is linear (it represents time)
+IMAGES      : Medium: real-looking night photography, 35mm, high ISO with fine grain, long exposures, haze and coloured stage light (deep red, sodium amber, cold cyan) spilling out of old brick port warehouses in Rotterdam. Wet cobbles, cranes, water. Crowds only as silhouettes or motion blur, never faces. Exclusions: no text, no signs, no logos, no watermarks, no readable faces. Shots: hero 21:9 warehouse end wall, doors open, red haze, top 45% clean sky · silo 4:3 cyan beam over crowd, left third dark · kade 4:3 quayside stage, amber in the harbour, cranes, left third clean · dawn 21:9 harbour at dawn, pale blue, top 50% clean sky
+NAMING      : stages keep their own names (Dock, Silo, Kade); CTA verb "Buy"; the hours are the vocabulary (doors at ten, last track at six)
+SIGNATURES  : §51 lights-up reveal (hero photo) · §44 media card → full-bleed on scroll (Silo) · direction 6 booking-as-masthead (night picker crossing the hero edge)
+VOICE       : hero "The harbour stays up till six." · section "Eight hours, three rooms. Pick a night or take all three." · CTA "Buy Friday · €65" / finale "Stay until the cranes turn blue."
+PLACEHOLDERS: line-up (all 41 names invented, labelled illustrative) · dates · booking fee · age policy · re-entry
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Nocturne · Three nights in Rotterdam's old port</title>
+<meta name="description" content="Nocturne is a fictional three-night festival of electronic and experimental music in Rotterdam's old port warehouses. 41 artists, three stages, 22:00 to 06:00.">
+<meta name="theme-color" content="#0A1622">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,300..600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="media/hero-1915.webp" type="image/webp" media="(min-width:761px)">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--primary" href="#main">Skip to content</a>
+
+<header class="nav" id="top">
+  <div class="nav-in">
+    <a class="wordmark" href="#top" aria-label="Nocturne, back to top">Nocturne</a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#stages">Stages</a>
+      <a href="#timetable">Timetable</a>
+      <a href="#tickets">Tickets</a>
+      <a href="#know">Good to know</a>
+    </nav>
+    <div class="nav-end">
+      <span class="night-clock t-num" aria-hidden="true"><span class="nc-dot"></span><span data-night-clock>22:00</span></span>
+      <a class="btn btn--primary btn--sm" href="#tickets">Buy tickets</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- HERO: the photo is composed for the headline; the masthead crosses its bottom edge -->
+<section class="hero" aria-labelledby="h1">
+  <picture class="hero-media">
+    <source media="(max-width:760px)" srcset="media/hero-m-700.webp" type="image/webp">
+    <source media="(max-width:760px)" srcset="media/hero-m-700.jpg">
+    <source srcset="media/hero-960.webp 960w, media/hero-1915.webp 1915w" sizes="100vw" type="image/webp">
+    <img src="media/hero-1915.jpg" srcset="media/hero-960.jpg 960w, media/hero-1915.jpg 1915w" sizes="100vw" width="1915" height="821"
+      alt="A long brick warehouse on a wet cobbled quay at night, its end doors open and red haze pouring out as people walk in; cranes and harbour lights on the left." fetchpriority="high">
+  </picture>
+  <div class="hero-copy container">
+    <p class="kicker">Rotterdam, the old port warehouses · Friday to Sunday</p>
+    <h1 id="h1" class="hero-h1">The harbour stays up till&nbsp;six.</h1>
+    <p class="hero-sub">Three nights of electronic and experimental music in Rotterdam's old port warehouses. 41&nbsp;artists on three stages, 22:00 to&nbsp;06:00.</p>
+  </div>
+
+  <form class="masthead container" id="masthead" aria-label="Choose a ticket" data-reveal>
+    <div class="mh-cell mh-pick" role="radiogroup" aria-labelledby="mh-night">
+      <span class="mh-label" id="mh-night">Night</span>
+      <div class="seg">
+        <label><input type="radio" name="night" value="fri" checked><span>Friday</span></label>
+        <label><input type="radio" name="night" value="sat"><span>Saturday</span></label>
+        <label><input type="radio" name="night" value="sun"><span>Sunday</span></label>
+        <label><input type="radio" name="night" value="all"><span>All three</span></label>
+      </div>
+    </div>
+    <div class="mh-cell mh-hours">
+      <span class="mh-label">Hours</span>
+      <span class="mh-val t-num">22:00–06:00</span>
+    </div>
+    <div class="mh-cell mh-price">
+      <span class="mh-label" data-mh-kind>Day ticket</span>
+      <span class="mh-val t-num" data-mh-price>€65</span>
+    </div>
+    <button class="mh-buy" type="submit"><span data-mh-cta>Buy Friday</span> <span class="arr" aria-hidden="true">→</span></button>
+    <p class="mh-note" role="status" aria-live="polite"></p>
+  </form>
+  <p class="hero-more container"><a class="link" href="#timetable">See who plays when ↓</a></p>
+</section>
+
+<!-- THE NIGHT: the motif at full width -->
+<section class="night section" aria-labelledby="night-h">
+  <div class="container night-grid">
+    <h2 id="night-h" class="t-h2 night-h">Eight hours, three rooms. <span class="dim">Doors at ten, the last track at six, three nights running.</span></h2>
+    <div class="nightbar" aria-hidden="true" data-reveal>
+      <div class="nb-track"><span style="--hue:var(--dock)"></span><span style="--hue:var(--silo)"></span><span style="--hue:var(--kade)"></span></div>
+      <ol class="nb-hours t-num">
+        <li>22</li><li>23</li><li>00</li><li>01</li><li>02</li><li>03</li><li>04</li><li>05</li><li>06</li>
+      </ol>
+    </div>
+    <dl class="facts" data-reveal-group>
+      <div><dt class="t-num">41</dt><dd>artists across the three nights</dd></div>
+      <div><dt class="t-num">3</dt><dd>stages: Dock, Silo and Kade</dd></div>
+      <div><dt class="t-num">3</dt><dd>nights, Friday to Sunday</dd></div>
+      <div><dt class="t-num">8</dt><dd>hours a night, 22:00 to 06:00</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- STAGES -->
+<section id="stages" class="stages" aria-labelledby="stages-h">
+  <div class="container stages-head">
+    <p class="kicker">The stages</p>
+    <h2 id="stages-h" class="t-h2">Three rooms, three lights. <span class="dim">Red in the hall, cyan in the silo, amber on the water.</span></h2>
+  </div>
+
+  <article class="stage stage--dock container" data-stage="dock" aria-labelledby="dock-h">
+    <figure class="stage-media wipe" data-reveal>
+      <picture>
+        <source srcset="media/dock-600.webp" type="image/webp">
+        <img src="media/dock-600.jpg" width="600" height="591" loading="lazy" alt="The open end doors of a brick warehouse, red light and haze inside, silhouettes walking in.">
+      </picture>
+    </figure>
+    <div class="stage-copy">
+      <p class="stage-tag"><span class="dot"></span>Stage one</p>
+      <h3 id="dock-h" class="stage-word">Dock</h3>
+      <p class="stage-line">The long brick hall at the end of the quay. The doors stay open all night, and the red spills out onto the cobbles.</p>
+    </div>
+  </article>
+
+  <article class="stage stage--silo" data-stage="silo" aria-labelledby="silo-h">
+    <div class="silo-frame">
+      <picture>
+        <source srcset="media/silo-960.webp 960w, media/silo-1448.webp 1448w" sizes="100vw" type="image/webp">
+        <img src="media/silo-1448.jpg" srcset="media/silo-960.jpg 960w, media/silo-1448.jpg 1448w" sizes="100vw" width="1448" height="1086" loading="lazy"
+          alt="A towering concrete silo hall, a single cyan beam cutting through haze over a dense crowd in silhouette.">
+      </picture>
+      <div class="stage-copy container">
+        <p class="stage-tag"><span class="dot"></span>Stage two</p>
+        <h3 id="silo-h" class="stage-word">Silo</h3>
+        <p class="stage-line">A grain-silo hall in bare concrete, taller than it is wide. One beam of cold light, and the haze it cuts through.</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="stage stage--kade" data-stage="kade" aria-labelledby="kade-h">
+    <figure class="stage-media kade-media wipe" data-reveal>
+      <picture>
+        <source srcset="media/kade-960.webp 960w, media/kade-1448.webp 1448w" sizes="(max-width:760px) 100vw, 66vw" type="image/webp">
+        <img src="media/kade-1448.jpg" srcset="media/kade-960.jpg 960w, media/kade-1448.jpg 1448w" sizes="(max-width:760px) 100vw, 66vw" width="1448" height="1086" loading="lazy"
+          alt="An open-air stage on a quay at night, amber light reflected in the harbour, cranes behind and a crowd along the water's edge.">
+      </picture>
+    </figure>
+    <div class="stage-copy">
+      <p class="stage-tag"><span class="dot"></span>Stage three</p>
+      <h3 id="kade-h" class="stage-word">Kade</h3>
+      <p class="stage-line">The open-air stage on the quay edge, with the harbour beside it and the cranes behind. Best at three in the morning.</p>
+    </div>
+  </article>
+</section>
+
+<!-- TIMETABLE (illustrative) -->
+<section id="timetable" class="timetable section" aria-labelledby="tt-h">
+  <div class="container">
+    <div class="tt-head">
+      <h2 id="tt-h" class="t-h2">Who plays when. <span class="dim">Every stage, every hour, every night.</span></h2>
+      <p class="tt-note"><span class="chip">Placeholder</span> The line-up is illustrative: all 41 names are invented for this fictional festival.</p>
+    </div>
+    <div class="tt-tabs" role="tablist" aria-label="Night">
+      <button role="tab" id="tab-fri" aria-controls="tt-fri" aria-selected="true">Friday</button>
+      <button role="tab" id="tab-sat" aria-controls="tt-sat" aria-selected="false" tabindex="-1">Saturday</button>
+      <button role="tab" id="tab-sun" aria-controls="tt-sun" aria-selected="false" tabindex="-1">Sunday</button>
+    </div>
+    <div class="tt" data-tt>
+      <ol class="tt-axis t-num" aria-hidden="true"><li>22:00</li><li>23:00</li><li>00:00</li><li>01:00</li><li>02:00</li><li>03:00</li><li>04:00</li><li>05:00</li><li>06:00</li></ol>
+<div class="tt-night" id="tt-fri" role="tabpanel" aria-labelledby="tab-fri">
+  <div class="tt-lane" data-stage="dock"><h3 class="tt-stage"><span class="dot"></span>Dock</h3><ol class="tt-track">
+    <li class="set" style="--a:0.0000;--w:0.1875"><span class="set-name">Halyard Sound System</span><span class="set-time t-num">22:00–23:30</span></li>
+    <li class="set" style="--a:0.1875;--w:0.1875"><span class="set-name">Vera Kooistra</span><span class="set-time t-num">23:30–01:00</span></li>
+    <li class="set" style="--a:0.3750;--w:0.1875"><span class="set-name">Tide Clerk</span><span class="set-time t-num">01:00–02:30</span></li>
+    <li class="set" style="--a:0.5625;--w:0.1875"><span class="set-name">Odun Bakare</span><span class="set-time t-num">02:30–04:00</span></li>
+    <li class="set" style="--a:0.7500;--w:0.2500"><span class="set-name">Mesh &amp; Rivet</span><span class="set-time t-num">04:00–06:00</span></li>
+  </ol></div>
+  <div class="tt-lane" data-stage="silo"><h3 class="tt-stage"><span class="dot"></span>Silo</h3><ol class="tt-track">
+    <li class="set" style="--a:0.0000;--w:0.2500"><span class="set-name">Lotte Vermaas</span><span class="set-time t-num">22:00–00:00</span></li>
+    <li class="set" style="--a:0.2500;--w:0.2500"><span class="set-name">Saltwork Ensemble</span><span class="set-time t-num">00:00–02:00</span></li>
+    <li class="set" style="--a:0.5000;--w:0.2500"><span class="set-name">Ines Ferragud</span><span class="set-time t-num">02:00–04:00</span></li>
+    <li class="set" style="--a:0.7500;--w:0.2500"><span class="set-name">Brine Choir</span><span class="set-time t-num">04:00–06:00</span></li>
+  </ol></div>
+  <div class="tt-lane" data-stage="kade"><h3 class="tt-stage"><span class="dot"></span>Kade</h3><ol class="tt-track">
+    <li class="set" style="--a:0.0000;--w:0.1250"><span class="set-name">Koenraad Sluis</span><span class="set-time t-num">22:00–23:00</span></li>
+    <li class="set" style="--a:0.1250;--w:0.1875"><span class="set-name">Night Pilot Union</span><span class="set-time t-num">23:00–00:30</span></li>
+    <li class="set" style="--a:0.3125;--w:0.2500"><span class="set-name">Ama Okyere</span><span class="set-time t-num">00:30–02:30</span></li>
+    <li class="set" style="--a:0.5625;--w:0.2500"><span class="set-name">Pallet Theory</span><span class="set-time t-num">02:30–04:30</span></li>
+    <li class="set" style="--a:0.8125;--w:0.1875"><span class="set-name">Yuki Hanabusa</span><span class="set-time t-num">04:30–06:00</span></li>
+  </ol></div>
+</div>
+<div class="tt-night" id="tt-sat" role="tabpanel" aria-labelledby="tab-sat" hidden>
+  <div class="tt-lane" data-stage="dock"><h3 class="tt-stage"><span class="dot"></span>Dock</h3><ol class="tt-track">
+    <li class="set" style="--a:0.0000;--w:0.1875"><span class="set-name">Quayline</span><span class="set-time t-num">22:00–23:30</span></li>
+    <li class="set" style="--a:0.1875;--w:0.1875"><span class="set-name">Dagny Str&oslash;m</span><span class="set-time t-num">23:30–01:00</span></li>
+    <li class="set" style="--a:0.3750;--w:0.1875"><span class="set-name">Ballast Unit</span><span class="set-time t-num">01:00–02:30</span></li>
+    <li class="set" style="--a:0.5625;--w:0.1875"><span class="set-name">Teun &amp; Mirela</span><span class="set-time t-num">02:30–04:00</span></li>
+    <li class="set" style="--a:0.7500;--w:0.2500"><span class="set-name">Hollow Bollard</span><span class="set-time t-num">04:00–06:00</span></li>
+  </ol></div>
+  <div class="tt-lane" data-stage="silo"><h3 class="tt-stage"><span class="dot"></span>Silo</h3><ol class="tt-track">
+    <li class="set" style="--a:0.0000;--w:0.2500"><span class="set-name">Sena Ayd&inodot;n</span><span class="set-time t-num">22:00–00:00</span></li>
+    <li class="set" style="--a:0.2500;--w:0.2500"><span class="set-name">Fog Signal Ensemble</span><span class="set-time t-num">00:00–02:00</span></li>
+    <li class="set" style="--a:0.5000;--w:0.2500"><span class="set-name">Rook Valera</span><span class="set-time t-num">02:00–04:00</span></li>
+    <li class="set" style="--a:0.7500;--w:0.2500"><span class="set-name">Container Psalms</span><span class="set-time t-num">04:00–06:00</span></li>
+  </ol></div>
+  <div class="tt-lane" data-stage="kade"><h3 class="tt-stage"><span class="dot"></span>Kade</h3><ol class="tt-track">
+    <li class="set" style="--a:0.0000;--w:0.1250"><span class="set-name">Femke Doorn</span><span class="set-time t-num">22:00–23:00</span></li>
+    <li class="set" style="--a:0.1250;--w:0.1875"><span class="set-name">Low Tide Mechanics</span><span class="set-time t-num">23:00–00:30</span></li>
+    <li class="set" style="--a:0.3125;--w:0.2500"><span class="set-name">Ilse Brandt</span><span class="set-time t-num">00:30–02:30</span></li>
+    <li class="set" style="--a:0.5625;--w:0.2500"><span class="set-name">Mariam Saadi</span><span class="set-time t-num">02:30–04:30</span></li>
+    <li class="set" style="--a:0.8125;--w:0.1875"><span class="set-name">Slack Water Duo</span><span class="set-time t-num">04:30–06:00</span></li>
+  </ol></div>
+</div>
+<div class="tt-night" id="tt-sun" role="tabpanel" aria-labelledby="tab-sun" hidden>
+  <div class="tt-lane" data-stage="dock"><h3 class="tt-stage"><span class="dot"></span>Dock</h3><ol class="tt-track">
+    <li class="set" style="--a:0.0000;--w:0.2500"><span class="set-name">Joris Leeuwen</span><span class="set-time t-num">22:00–00:00</span></li>
+    <li class="set" style="--a:0.2500;--w:0.1875"><span class="set-name">Sodium Hours</span><span class="set-time t-num">00:00–01:30</span></li>
+    <li class="set" style="--a:0.4375;--w:0.1875"><span class="set-name">Paloma Itzel</span><span class="set-time t-num">01:30–03:00</span></li>
+    <li class="set" style="--a:0.6250;--w:0.1875"><span class="set-name">Mooring Lines</span><span class="set-time t-num">03:00–04:30</span></li>
+    <li class="set" style="--a:0.8125;--w:0.1875"><span class="set-name">Bram Ketel</span><span class="set-time t-num">04:30–06:00</span></li>
+  </ol></div>
+  <div class="tt-lane" data-stage="silo"><h3 class="tt-stage"><span class="dot"></span>Silo</h3><ol class="tt-track">
+    <li class="set" style="--a:0.0000;--w:0.3125"><span class="set-name">Weft &amp; Warp</span><span class="set-time t-num">22:00–00:30</span></li>
+    <li class="set" style="--a:0.3125;--w:0.3125"><span class="set-name">Noor Hamdan</span><span class="set-time t-num">00:30–03:00</span></li>
+    <li class="set" style="--a:0.6250;--w:0.3750"><span class="set-name">Drift Index</span><span class="set-time t-num">03:00–06:00</span></li>
+  </ol></div>
+  <div class="tt-lane" data-stage="kade"><h3 class="tt-stage"><span class="dot"></span>Kade</h3><ol class="tt-track">
+    <li class="set" style="--a:0.0000;--w:0.1875"><span class="set-name">Cas Wierenga</span><span class="set-time t-num">22:00–23:30</span></li>
+    <li class="set" style="--a:0.1875;--w:0.1875"><span class="set-name">Harbour Pilot Choir</span><span class="set-time t-num">23:30–01:00</span></li>
+    <li class="set" style="--a:0.3750;--w:0.2500"><span class="set-name">Lisa Achterberg</span><span class="set-time t-num">01:00–03:00</span></li>
+    <li class="set" style="--a:0.6250;--w:0.1875"><span class="set-name">Last Ferry</span><span class="set-time t-num">03:00–04:30</span></li>
+    <li class="set" style="--a:0.8125;--w:0.1875"><span class="set-name">Ondine Vos</span><span class="set-time t-num">04:30–06:00</span></li>
+  </ol></div>
+</div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKETS -->
+<section id="tickets" class="tickets section" aria-labelledby="tk-h">
+  <div class="container">
+    <h2 id="tk-h" class="t-h2 tk-h">Two tickets. <span class="dim">One night, or all three.</span></h2>
+    <div class="tk-row" data-reveal-group>
+      <article class="ticket" aria-labelledby="tk-day">
+        <div class="tk-top">
+          <h3 id="tk-day" class="tk-name">Day ticket</h3>
+          <p class="tk-price t-num">€65</p>
+        </div>
+        <p class="tk-desc">One night, Friday, Saturday or Sunday. All three stages, doors to close.</p>
+        <div class="tk-bars" aria-hidden="true">
+          <div class="tk-bar"><span>Fri</span><i><b></b><b></b><b></b></i></div>
+        </div>
+        <div class="tk-stub">
+          <span class="t-num">22:00–06:00 · one night</span>
+          <button class="btn btn--primary" type="button" data-buy="fri">Buy a day ticket</button>
+        </div>
+      </article>
+      <article class="ticket ticket--weekend" aria-labelledby="tk-wk">
+        <div class="tk-top">
+          <h3 id="tk-wk" class="tk-name">Weekend</h3>
+          <p class="tk-price t-num">€150</p>
+        </div>
+        <p class="tk-desc">All three nights, all three stages. €45 less than three day tickets.</p>
+        <div class="tk-bars" aria-hidden="true">
+          <div class="tk-bar"><span>Fri</span><i><b></b><b></b><b></b></i></div>
+          <div class="tk-bar"><span>Sat</span><i><b></b><b></b><b></b></i></div>
+          <div class="tk-bar"><span>Sun</span><i><b></b><b></b><b></b></i></div>
+        </div>
+        <div class="tk-stub">
+          <span class="t-num">22:00–06:00 · three nights</span>
+          <button class="btn btn--primary" type="button" data-buy="all">Buy the weekend</button>
+        </div>
+      </article>
+    </div>
+    <p class="tk-status" role="status" aria-live="polite"></p>
+
+    <div class="know" id="know">
+      <h3 class="t-h3">Good to know</h3>
+      <dl class="spec">
+        <div><dt>Doors</dt><dd class="t-num">22:00, Friday, Saturday and Sunday</dd></div>
+        <div><dt>Last track</dt><dd class="t-num">06:00</dd></div>
+        <div><dt>Stages</dt><dd>Dock, Silo and Kade, all on one ticket</dd></div>
+        <div><dt>Where</dt><dd>Rotterdam's old port warehouses</dd></div>
+        <div><dt>Dates</dt><dd><span class="chip">Placeholder</span> To be announced</dd></div>
+        <div><dt>Booking fee</dt><dd><span class="chip">Placeholder</span> To be confirmed</dd></div>
+        <div><dt>Age policy</dt><dd><span class="chip">Placeholder</span> To be confirmed</dd></div>
+        <div><dt>Re-entry</dt><dd><span class="chip">Placeholder</span> To be confirmed</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- FINALE: the ground turns to dawn -->
+<section class="dawn" aria-labelledby="dawn-h">
+  <div class="container dawn-copy">
+    <h2 id="dawn-h" class="dawn-h">Stay until the cranes turn&nbsp;blue.</h2>
+    <p class="dawn-sub">Friday to Sunday, 22:00 to 06:00. A day ticket is €65, the weekend €150.</p>
+    <a class="btn btn--dawn" href="#masthead">Buy tickets</a>
+  </div>
+  <picture class="dawn-media" aria-hidden="true">
+    <source media="(max-width:760px)" srcset="media/dawn-m-760.webp" type="image/webp">
+    <source media="(max-width:760px)" srcset="media/dawn-m-760.jpg">
+    <source srcset="media/dawn-960.webp 960w, media/dawn-1916.webp 1916w" sizes="100vw" type="image/webp">
+    <img src="media/dawn-1916.jpg" srcset="media/dawn-960.jpg 960w, media/dawn-1916.jpg 1916w" sizes="100vw" width="1916" height="821" loading="lazy" alt="">
+  </picture>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="container foot-grid">
+    <div class="foot-brand">
+      <p class="wordmark">Nocturne</p>
+      <p class="foot-legal">© 2026 Nocturne. A fictional festival; no tickets are sold.</p>
+    </div>
+    <nav class="foot-col foot-col--a" aria-label="Festival">
+      <p class="foot-h">Festival</p>
+      <a href="#stages">Stages</a><a href="#timetable">Timetable</a><a href="#tickets">Tickets</a><a href="#know">Good to know</a>
+    </nav>
+    <div class="foot-col foot-col--b">
+      <p class="foot-h">When</p>
+      <p>Friday to Sunday</p><p class="t-num">22:00–06:00</p>
+    </div>
+    <nav class="foot-col foot-col--c" aria-label="Legal">
+      <p class="foot-h">Legal</p>
+      <a href="legal.html#terms">Terms</a><a href="legal.html#privacy">Privacy</a>
+    </nav>
+  </div>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!--
+DESIGN SPINE: On Air (fictional podcast production studio, Manchester)
+
+DIRECTION   : 4 Editorial Motion. A production studio is bought on taste: founders and marketing leads come to see whether these people make things that sound and look finished, so photographs and big type carry the page.
+REGISTER    : Loud. Bold device: colour as the ground. Signal red = on air (hero, pitch, finale), cream = pre-production (pilot, running order, rate card, call), navy = the desk (season). Each hue has one meaning.
+AXES        : ground colour-block system sampled from the photographs (red #E92A16 / cream #F7EEE0 / navy #102A57) · type genre condensed gothic caps (League Gothic) over a characterful grotesk (Familjen Grotesk) · image medium generated studio still-life photography, hard flash on seamless paper · composition banded (full-bleed colour bands, photos bleeding off alternate edges) · motion feel cinematic-light: hard-flash settle on the hero photo, lens-focus on still lifes, lamps switching on
+DEFAULT?    : default-look check 0/6 (no off-white, no tight neo-grotesk display, no mono labels, no metadata hairline bands, no line-drawing hero, colour is a field not a tiny accent) → DIFFERENT FROM DEFAULT BY: ground, type genre, image medium, composition
+MOTIF       : the ON AIR lamp. 1) wordmark: the lamp beside the name, lit on load · 2) section slugs: each running-order slug has a lamp that lights while its segment is on screen · 3) running order: the current week's lamp lights as you read (progress) · 4) buttons: a lamp in the primary CTA warms on hover (affordance) · 5) finale: the photographed studio lamp switches on (the one photo moment) · 6) form success: "Pencilled in", lamp lit
+TYPE        : display League Gothic 400 (caps) · text Familjen Grotesk 400/500 · no mono (timecodes set in League Gothic)
+SCALE       : hero h1 164px/.86/−0.005em · section h2 131px/.86 · statement 49px/1.08/−0.02em · h3 26px · body 17px/1.55 · label 12px caps +0.1em (text face)
+PALETTE     : red #E92A16 (finale #EA3622) · cream #F7EEE0 · navy #102A57 · ink #130605 · on red all small text is full ink (ink-2 fails there), cream type only ≥ 24px · on cream ink-2 = ink @74% · hairline ink @12% · red text #C21D0B on cream only for the lit-lamp jobs
+GRID        : 12 col / 24px gap · fluid, edge-hugging margins 20→48px · section rhythm 128–176px, voids up to 240px between chapters
+HERO        : H7 headline bottom-left over the full-bleed photograph: the microphone sits right on red seamless, the left half of the photo is the type zone (no scrim). Mobile: text on red above a portrait crop of the mic.
+IMAGERY     : photography (generated series, see IMAGES); type poster on the red pitch band
+CONVERSION  : Book a free format call → nav pill, hero, pilot chapter, season chapter, both rate cards, the format call form, finale
+MOTION      : house ease cubic-bezier(.19,1,.22,1) · UI 180ms · reveal 900ms · primitives: blur-to-sharp lens focus on photos, 8px rise for card groups, lamp switch-on (opacity steps). Text never moves.
+IMAGES      : medium      bold studio still-life photography of audio hardware on seamless coloured paper, hard flash with a crisp shadow
+              palette     signal red #E8432A (shipped plates sample #E92A16 / #EA3622), cream (#F7EEE0), deep navy (#102A57)
+              objects     a broadcast microphone, a cassette, headphones, a mixing fader, a coiled cable, an ON AIR lamp (unlit, no lettering)
+              tone        witty, graphic
+              exclude     no text, no letters, no logos, no brand names, no watermarks, no people
+              shot list   hero 16:9 mic on red, left 50% clean · tape 4:3 cassette + headphones on cream, left third clean · desk 4:3 three faders + red cable on navy, left third clean (shown mirrored on desktop) · lamp 21:9 footer row of objects on red along the bottom edge, top 55% clean
+              crops       hero → mobile 4:5 (x1000 y20 672×840) · tape → mobile (x470, 978×1086) · desk → mobile (x560 y40, 888×1046) · lamp → mobile (headphones + lamp, x940 y180 976×641)
+NAMING      : broadcast → the page is a running order (00:00 Cold open … 14:00 Sign-off) · tiers Pilot / Season (from the brief) · steps Week 01–06 · CTA "Book a free format call" · finale "Light the lamp."
+SIGNATURES  : §42 opacity-index running order (the six pilot weeks; the lamp of the current week lights) · §62 pricing as an object (a two-colour broadcast rate card, price as the biggest thing) · §52 live Manchester clock in nav and footer
+VOICE       : hero "You talk. We make it a show." · section "Most company podcasts sound like a meeting nobody stopped recording." · CTA "Book a free format call"
+-->
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>On Air · Podcast production studio, Manchester</title>
+<meta name="description" content="On Air is a four-person podcast production studio in Manchester. A six-week Pilot or a monthly Season, from the first recording to a launched show.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500&family=League+Gothic&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="media/hero-1672.webp" type="image/webp" media="(min-width:761px)">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--primary" href="#main">Skip to content</a>
+
+<header class="nav" data-ground="red">
+  <a class="mark" href="#top" aria-label="On Air, home"><span class="lamp is-lit" aria-hidden="true"></span><span class="mark-word">On Air</span></a>
+  <nav aria-label="Main">
+    <ul class="nav-links">
+      <li><a href="#pilot">The pilot</a></li>
+      <li><a href="#season">The season</a></li>
+      <li><a href="#running-order">Running order</a></li>
+      <li><a href="#rates">Rate card</a></li>
+    </ul>
+  </nav>
+  <a class="btn btn--primary btn--sm nav-cta" href="#call"><span class="lamp" aria-hidden="true"></span>Book a format call</a>
+</header>
+
+<main id="main">
+
+<!-- 00:00 COLD OPEN -->
+<section class="hero" id="top" data-ground="red" aria-labelledby="hero-h">
+  <picture class="hero-photo">
+    <source media="(max-width:760px)" srcset="media/hero-m-672.webp" type="image/webp">
+    <source media="(max-width:760px)" srcset="media/hero-m-672.jpg">
+    <source srcset="media/hero-960.webp 960w, media/hero-1672.webp 1672w" sizes="100vw" type="image/webp">
+    <img src="media/hero-1672.jpg" srcset="media/hero-960.jpg 960w, media/hero-1672.jpg 1672w" sizes="100vw" width="1672" height="941" alt="A silver broadcast microphone on a short stand, lit by a hard flash on red paper, its shadow falling long to the left." fetchpriority="high">
+  </picture>
+  <div class="hero-copy">
+    <p class="slug"><span class="lamp is-lit" aria-hidden="true"></span><span class="tc">00:00</span> Cold open · podcast production, Manchester</p>
+    <h1 class="t-hero" id="hero-h"><span class="ink">You talk.</span> <span class="cream">We make it a show.</span></h1>
+    <p class="hero-sub">A four-person studio that takes founders and companies from the first recording to a launched show.</p>
+    <div class="hero-cta">
+      <a class="btn btn--primary" href="#call"><span class="lamp" aria-hidden="true"></span>Book a free format call</a>
+      <a class="link link--strong" href="#rates">See the rate card</a>
+    </div>
+  </div>
+</section>
+
+<!-- 00:45 THE PITCH -->
+<section class="pitch" data-ground="red" aria-labelledby="pitch-h">
+  <div class="grid pitch-top">
+    <p class="slug pitch-slug"><span class="lamp" aria-hidden="true"></span><span class="tc">00:45</span> The pitch</p>
+    <h2 class="t-statement pitch-h" id="pitch-h">Most company podcasts sound like a meeting nobody stopped recording. <span class="cream">Ours start with a format: who’s talking, who’s listening, and why they’d press play on episode two.</span></h2>
+  </div>
+  <ol class="segments grid" data-reveal-group>
+    <li><span class="seg-n tc">01</span><h3 class="seg-w">Format</h3><p>The idea in one line, the segments, the running time and the host’s job. Written down before anyone records.</p></li>
+    <li><span class="seg-n tc">02</span><h3 class="seg-w">Host</h3><p>Rehearsal and honest notes, so the person at the microphone sounds like themselves on a good day.</p></li>
+    <li><span class="seg-n tc">03</span><h3 class="seg-w">Sound</h3><p>Recorded in our Manchester studio or on location, edited for pace and mixed for earbuds and car speakers.</p></li>
+    <li><span class="seg-n tc">04</span><h3 class="seg-w">Launch</h3><p>Artwork, trailer, show notes and clips, released on the day you pick.</p></li>
+  </ol>
+</section>
+
+<!-- 02:10 THE PILOT -->
+<section class="chapter chapter--pilot" id="pilot" data-ground="cream" aria-labelledby="pilot-h">
+  <figure class="chapter-photo" data-reveal>
+    <picture>
+      <source media="(max-width:760px)" srcset="media/tape-m-900.webp" type="image/webp">
+      <source media="(max-width:760px)" srcset="media/tape-m-900.jpg">
+      <source srcset="media/tape-960.webp 960w, media/tape-1448.webp 1448w" sizes="(max-width:760px) 100vw, 62vw" type="image/webp">
+      <img src="media/tape-1448.jpg" srcset="media/tape-960.jpg 960w, media/tape-1448.jpg 1448w" sizes="(max-width:760px) 100vw, 62vw" width="1448" height="1086" loading="lazy" alt="A red cassette tape and a pair of navy headphones on cream paper under a hard flash.">
+    </picture>
+  </figure>
+  <div class="chapter-copy">
+    <p class="slug"><span class="lamp" aria-hidden="true"></span><span class="tc">02:10</span> The pilot</p>
+    <h2 class="t-h2" id="pilot-h">The pilot</h2>
+    <p class="chapter-meta"><span>Six weeks</span><span>from <b class="t-num">£4,800</b></span></p>
+    <p class="t-lead">Six weeks from a blank page to a launched show. We write the format, rehearse the host, record, edit, package and put it live.</p>
+    <p class="chapter-note">For a founder or a company starting from nothing, or from a few recordings that never went anywhere.</p>
+    <a class="link link--strong" href="#running-order">Read the six weeks</a>
+  </div>
+</section>
+
+<!-- 04:30 RUNNING ORDER -->
+<section class="ro" id="running-order" data-ground="cream" aria-labelledby="ro-h">
+  <div class="grid ro-grid">
+    <div class="ro-head">
+      <p class="slug"><span class="lamp" aria-hidden="true"></span><span class="tc">04:30</span> Running order</p>
+      <h2 class="t-h2" id="ro-h">Six weeks, start to launch.</h2>
+      <p class="ro-intro">The pilot runs to a running order, like any show. You know what happens each week, and what we need from you.</p>
+    </div>
+    <ol class="ro-list" id="ro" data-spy="#ro">
+      <li data-spy-panel="w1" data-spy-item="w1"><span class="lamp" aria-hidden="true"></span><span class="ro-wk tc">Week 01</span><div><h3>Format</h3><p>We find the show: the one-line idea, who it’s for, the segments and the running time. You sign off a written format.</p></div></li>
+      <li data-spy-panel="w2" data-spy-item="w2"><span class="lamp" aria-hidden="true"></span><span class="ro-wk tc">Week 02</span><div><h3>Rehearsal</h3><p>A practice recording with the host, then notes on pace, warmth and the habits to drop. Nobody else hears this one.</p></div></li>
+      <li data-spy-panel="w3" data-spy-item="w3"><span class="lamp" aria-hidden="true"></span><span class="ro-wk tc">Week 03</span><div><h3>Recording</h3><p>The first episodes, in our Manchester studio or on location with portable kit. Guests get a one-page brief beforehand.</p></div></li>
+      <li data-spy-panel="w4" data-spy-item="w4"><span class="lamp" aria-hidden="true"></span><span class="ro-wk tc">Week 04</span><div><h3>Edit and mix</h3><p>We cut for pace, clean up the room and mix for earbuds. You hear every cut before it’s final.</p></div></li>
+      <li data-spy-panel="w5" data-spy-item="w5"><span class="lamp" aria-hidden="true"></span><span class="ro-wk tc">Week 05</span><div><h3>Packaging</h3><p>Artwork, a trailer, show notes and short clips for social, all written in the show’s voice.</p></div></li>
+      <li data-spy-panel="w6" data-spy-item="w6"><span class="lamp" aria-hidden="true"></span><span class="ro-wk tc">Week 06</span><div><h3>Launch</h3><p>The show goes live on the podcast apps on the day you choose, with a plan for what happens after episode one.</p></div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 07:00 THE SEASON -->
+<section class="chapter chapter--season" id="season" data-ground="navy" aria-labelledby="season-h">
+  <figure class="chapter-photo" data-reveal>
+    <picture>
+      <source media="(max-width:760px)" srcset="media/desk-m-860.webp" type="image/webp">
+      <source media="(max-width:760px)" srcset="media/desk-m-860.jpg">
+      <source srcset="media/desk-960.webp 960w, media/desk-1448.webp 1448w" sizes="(max-width:760px) 100vw, 62vw" type="image/webp">
+      <img src="media/desk-1448.jpg" srcset="media/desk-960.jpg 960w, media/desk-1448.jpg 1448w" sizes="(max-width:760px) 100vw, 62vw" width="1448" height="1086" loading="lazy" alt="Three mixing faders with cream caps and a coiled red jack cable on deep navy paper under a hard flash.">
+    </picture>
+  </figure>
+  <div class="chapter-copy">
+    <p class="slug"><span class="lamp" aria-hidden="true"></span><span class="tc">07:00</span> The season</p>
+    <h2 class="t-h2" id="season-h">The season</h2>
+    <p class="chapter-meta"><span>Monthly retainer</span><span>from <b class="t-num">£2,200</b> a month</span></p>
+    <p class="t-lead">Once the show is live, we keep it on air. Guests booked, episodes recorded, edited, mixed and released, every month.</p>
+    <ul class="ticks">
+      <li>Guest booking and briefing</li>
+      <li>Recording days, studio or on location</li>
+      <li>Edit, mix and release for every episode</li>
+      <li>Clips and show notes for each one</li>
+      <li>A monthly look at what’s working</li>
+    </ul>
+    <a class="btn btn--cream" href="#call"><span class="lamp" aria-hidden="true"></span>Book a free format call</a>
+  </div>
+</section>
+
+<!-- 09:15 RATE CARD -->
+<section class="rates" id="rates" data-ground="cream" aria-labelledby="rates-h">
+  <div class="grid rates-head">
+    <p class="slug"><span class="lamp" aria-hidden="true"></span><span class="tc">09:15</span> Rate card</p>
+    <h2 class="t-h2" id="rates-h">Two ways on air.</h2>
+    <p class="rates-note">Prices are starting points in pounds, before VAT. The format call is where we work out yours.</p>
+  </div>
+  <div class="rate-cards" data-reveal-group>
+    <article class="rate" data-ground="red" aria-labelledby="r1">
+      <header class="rate-top"><h3 class="rate-name" id="r1">Pilot</h3><span class="rate-tag">Six weeks · one-off</span></header>
+      <p class="rate-price"><span class="rate-from">from</span><b class="t-num">£4,800</b></p>
+      <ul class="rate-list">
+        <li>Written format and running order</li>
+        <li>Host rehearsal with notes</li>
+        <li>Recording, edit and mix</li>
+        <li>Artwork, trailer, show notes and clips</li>
+        <li>Launch on the podcast apps</li>
+      </ul>
+      <a class="btn btn--primary" href="#call"><span class="lamp" aria-hidden="true"></span>Book a free format call</a>
+    </article>
+    <article class="rate" data-ground="navy" aria-labelledby="r2">
+      <header class="rate-top"><h3 class="rate-name" id="r2">Season</h3><span class="rate-tag">Monthly retainer</span></header>
+      <p class="rate-price"><span class="rate-from">from</span><b class="t-num">£2,200</b><span class="rate-unit">a month</span></p>
+      <ul class="rate-list">
+        <li>Guest booking and briefing</li>
+        <li>Recording days, studio or on location</li>
+        <li>Edit, mix and release, every episode</li>
+        <li>Clips and show notes for each one</li>
+        <li>A monthly look at what’s working</li>
+      </ul>
+      <a class="btn btn--cream" href="#call"><span class="lamp" aria-hidden="true"></span>Book a free format call</a>
+    </article>
+  </div>
+</section>
+
+<!-- 11:00 ON AIR SOON (proof slots) -->
+<section class="proof" data-ground="cream" aria-labelledby="proof-h">
+  <div class="grid">
+    <div class="proof-head">
+      <p class="slug"><span class="lamp" aria-hidden="true"></span><span class="tc">11:00</span> On air soon</p>
+      <h2 class="t-h3 proof-h" id="proof-h">Our first client shows go here.</h2>
+      <p>On Air is new, so there are no client shows, quotes or listener numbers to show yet. These slots stay empty until there are.</p>
+    </div>
+    <ul class="proof-tiles" data-reveal-group>
+      <li class="ph" aria-label="Placeholder for client show artwork"><span class="chip">Placeholder</span><span>Client show artwork, 3000 × 3000</span></li>
+      <li class="ph" aria-label="Placeholder for client show artwork"><span class="chip">Placeholder</span><span>Client show artwork, 3000 × 3000</span></li>
+      <li class="ph" aria-label="Placeholder for a client quote"><span class="chip">Placeholder</span><span>A line from a client host, with their name and show, added only with permission</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- 12:30 FORMAT CALL -->
+<section class="call" id="call" data-ground="cream" aria-labelledby="call-h">
+  <div class="grid call-grid">
+    <div class="call-main">
+      <p class="slug"><span class="lamp" aria-hidden="true"></span><span class="tc">12:30</span> Format call</p>
+      <h2 class="t-h2" id="call-h">The format call</h2>
+      <p class="t-lead">Free, with the producer who’d make your show. Bring the idea, or just the reason you want a podcast. Leave with a format you could pitch to your team.</p>
+      <form class="form" id="call-form" novalidate>
+        <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field field--wide"><label for="f-show">The show in a sentence <span class="opt">(optional)</span></label><input id="f-show" name="show" placeholder="A founder talks to the people who build our product"></div>
+        <button class="btn btn--primary" type="submit"><span class="lamp" aria-hidden="true"></span>Book a free format call</button>
+        <p class="form-msg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+    <div class="faq">
+      <h3 class="faq-h">Before the call</h3>
+      <details><summary>Do we need any equipment?</summary><p>No. We bring the microphones to you, or you come to the studio. You need a quiet room and something to say.</p></details>
+      <details><summary>Who owns the show?</summary><p>You do: the name, the feed, the audio files and the artwork.</p></details>
+      <details><summary>Does the founder have to host?</summary><p>No. Some shows work better with a colleague or a guest host. We’ll work out who on the call.</p></details>
+      <details><summary>What happens after the six weeks?</summary><p>Either you run the show yourselves from our format, or it moves onto a Season and we keep it on air.</p></details>
+      <details><summary>Is On Air a real studio?</summary><p>No. On Air is fictional, made for a design gallery. The prices and process are examples, and the form sends nothing.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 14:00 SIGN-OFF -->
+<section class="finale" data-ground="red2" aria-labelledby="fin-h">
+  <div class="finale-copy">
+    <p class="slug"><span class="lamp is-lit" aria-hidden="true"></span><span class="tc">14:00</span> Sign-off</p>
+    <h2 class="t-word" id="fin-h">Light the lamp.</h2>
+    <p class="finale-sub">The format call is the first take. If there’s a show in it, we’ll tell you how we’d make it. If there isn’t, we’ll say so.</p>
+    <a class="btn btn--primary" href="#call"><span class="lamp" aria-hidden="true"></span>Book a free format call</a>
+  </div>
+</section>
+</main>
+
+<footer class="foot" data-ground="red2">
+  <div class="grid foot-grid">
+    <div class="foot-brand">
+      <a class="mark" href="#top" aria-label="On Air, back to top"><span class="lamp is-lit" aria-hidden="true"></span><span class="mark-word">On Air</span></a>
+      <p class="foot-legal">© 2026 On Air, a fictional studio.</p>
+    </div>
+    <nav class="foot-col" aria-label="Studio"><h2>Studio</h2><ul><li><a href="#pilot">The pilot</a></li><li><a href="#season">The season</a></li><li><a href="#running-order">Running order</a></li><li><a href="#rates">Rate card</a></li></ul></nav>
+    <div class="foot-col"><h2>Contact</h2><ul><li><a href="#call">Book a format call</a></li><li>Manchester, UK</li><li class="t-num">Local time <time data-clock="Europe/London">--:--</time></li></ul></div>
+    <nav class="foot-col" aria-label="Legal"><h2>Legal</h2><ul><li><a href="legal.html#terms">Terms</a></li><li><a href="legal.html#privacy">Privacy</a></li></ul></nav>
+  </div>
+  <figure class="foot-art" aria-hidden="true">
+    <picture>
+      <source media="(max-width:760px)" srcset="media/lamp-m-976.webp" type="image/webp">
+      <source media="(max-width:760px)" srcset="media/lamp-m-976.jpg">
+      <source srcset="media/lamp-960.webp 960w, media/lamp-1916.webp 1916w" sizes="100vw" type="image/webp">
+      <img src="media/lamp-1916.jpg" srcset="media/lamp-960.jpg 960w, media/lamp-1916.jpg 1916w" sizes="100vw" width="1916" height="821" loading="lazy" alt="">
+    </picture>
+    <span class="foot-glow"></span>
+  </figure>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

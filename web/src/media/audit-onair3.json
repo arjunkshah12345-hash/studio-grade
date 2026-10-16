@@ -1,0 +1,129 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/onair3/index.html",
+ "outDir": "/tmp/gal-onair3",
+ "ms": 47377,
+ "counts": {
+  "PASS": 11,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Familjen Grotesk×99",
+   "League Gothic×39"
+  ],
+  "display": [
+   "203px/0.84/-0.005em w400 \"LIGHT THE LAMP.\"",
+   "164px/0.86/-0.005em w400 \"YOU TALK.\"",
+   "164px/0.86/-0.005em w400 \"WE MAKE IT A SHOW.\""
+  ],
+  "bodySize": "17",
+  "weights": [
+   "400×86",
+   "500×52"
+  ],
+  "upperShare": 0.31,
+  "paper": "rgb(247,238,224)",
+  "accents": [
+   "rgb(233,42,22) bg section.hero",
+   "rgb(16,42,87) bg section.chapter"
+  ],
+  "buttons": [
+   "pill 40px \"Book a format call\"",
+   "pill 52px \"Book a free format call\"",
+   "pill 52px \"Book a free format call\"",
+   "pill 52px \"Book a free format call\"",
+   "pill 52px \"Book a free format call\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)",
+   "cubic-bezier(.19,1,.22,1)"
+  ],
+  "nav": {
+   "h": 84,
+   "links": 6
+  },
+  "pageVh": 10.1
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "2 families: Familjen Grotesk, League Gothic"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 203px · lh 0.84 · -0.005em · weight 400 · League Gothic)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (3/6 traits: warmOffWhite, hairlineBands, lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "Colour-block system: 2 hues used as full-bleed fields. Loud register is fine if each hue has one meaning (range.md §1).",
+   "examples": [
+    "0° (w997) e.g. rgb(233,42,22) bg section.hero",
+    "210° (w387) e.g. rgb(16,42,87) bg section.chapter"
+   ]
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 115 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 32 text elements over imagery meet AA (sampled from pixels)"
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: pill"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "1 hero CTA(s)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.19,1,0.22,1)×61, cubic-bezier(0.4,0,0.2,1)×8"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (7/31 paragraphs wait for scroll)"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 52.9% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 10.1 viewports (direction 4 norm 12–23)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/gal-onair3/desktop-hero.png",
+  "/tmp/gal-onair3/slice-01.jpg … (one per viewport)",
+  "/tmp/gal-onair3/desktop-full.jpg",
+  "/tmp/gal-onair3/mobile-hero.png",
+  "/tmp/gal-onair3/mobile-full.jpg",
+  "/tmp/gal-onair3/reduced-motion-hero.png"
+ ]
+}

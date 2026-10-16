@@ -38,6 +38,9 @@
 !/tests/builds/nightlight/
 !/tests/builds/switchback/
 !/tests/builds/haul/
+!/tests/builds/kestrel3/
+!/tests/builds/onair3/
+!/tests/builds/lantern3/
 !/tests/builds/halden3/
 !/tests/builds/morrow3/
 !/tests/builds/fieldwork3/

@@ -1,0 +1,323 @@
+<!--
+DESIGN SPINE · Kestrel K-1
+DIRECTION   : 8 Deep-Tech Spec. Wind-farm operations directors buy hardware on evidence, so the page opens on the real object at work (the drone at the blade) and dresses it in inspection-grade information design.
+REGISTER    : Confident. The one bold device is the full-bleed overcast hero photograph with a live tracking box on the drone; everything after it is calm, cool and ruled.
+AXES        : ground cool overcast grey #E4E8EE sampled from the hero sky, a steel-sea band #1B2833 sampled from the water, and a clear-sky finale #9EBBD7 sampled from the footer shot · type genre DIN-style engineering grotesk (Barlow 500 display, Barlow Condensed caps for plate labels; no mono) · image medium photography (generated North Sea series) with inspection annotation drawn on it · composition viewfinder (full-bleed photographs annotated like a live inspection feed, alternating with spec-sheet rows) · motion feel instrumental (tracking brackets lock on, flight path draws, defect boxes land one by one, calculator readout)
+DEFAULT?    : 2/6 matched (near-black ink at 500 with tight tracking; hairline spec rows) → DIFFERENT FROM DEFAULT BY: ground (cool sky grey, not warm paper), labels (condensed sign-plate caps, not mono), hero medium (photograph, not a line drawing), accent (annotation orange on the photos, never on UI chrome)
+MOTIF       : the inspection box (four corner brackets + a caption chip). 1 logo mark (a bracketed target) · 2 hero: box locked on the drone, live UTC chip · 3 step 02: defect boxes D-01…D-04 on the eroded leading edge · 4 blade-hours: the box picks out the drone in the farm · 5 primary buttons grow brackets on hover
+TYPE        : display Barlow 500 · text Barlow 400/500 · labels Barlow Condensed 500 caps +0.1em (one superfamily, two widths)
+SCALE       : display 44→84px / .94 / −0.035em · spec numerals 72→150px / .86 / −0.04em, weight 300 · h2 32→52px / 1.02 / −0.025em · body 17px/1.55 · label 12px caps +0.1em
+PALETTE     : paper #E4E8EE · paper-2 #D8DEE8 · surface #F4F6F9 · ink #141E28 · ink-2 ink@74% · hairline ink@12% · sea #1B2833 (dark band) · sky #9EBBD7 (finale) · accent signal orange #FF5A1F → ONLY annotation marks drawn on photographs (tracking and defect boxes, flight path)
+GRID        : 12 / 24px · container 1280px · side margin 20→80px · section rhythm 128px, one 100svh full-bleed farm band
+HERO        : H7 variant. Full-bleed 21:9 photograph (cover, stage computed in container units so the overlay stays on the drone); h1 + subline + 2 CTAs top-left in the clean sky; the tracking box locks on the drone at the blade
+IMAGERY     : photography (generated series, 4 shots) + inspection annotation + one HTML report replica on a crop of the farm sea
+CONVERSION  : "Book a fleet trial" → nav, hero, blade-hours calculator (prefills the turbine count), trial form, finale
+MOTION      : house ease cubic-bezier(.19,1,.22,1) · UI 160ms · reveal 800ms · primitive: bracket lock-on (scale 1.5 → 1), path draw, group fade; text never moves
+IMAGES      : Medium: real-looking aerial and industrial photography of offshore wind turbines in the North Sea, cold clear light, steel-grey water, white turbines, a small dark grey quadcopter drone. Precise, quiet, engineering. Exclusions: no text, no logos, no markings, no watermarks, no people's faces.
+              shot list   hero 21:9 (turbine + drone right 45%, left 50% clean sky) · blade 4:3 (leading-edge erosion, drone shadow, left third clean) · farm 4:3 (rows into haze, left third clean sea) · sea 21:9 footer (bases along the bottom, top 55% clean sky)
+              crops       hero → mobile 800×821 (x 900) and step 01 panel · blade → step 02 + report thumbnails · farm → full-bleed band, mobile 888×1026, report art layer · sea → footer, mobile 1000×641
+              sampled     sky #D8DEEA→#B0BAC9 · sea #3E5667 · clear sky #9EBBD7→#AFC9DF
+NAMING      : omitted: "kestrel" (a hovering hawk) is the name, the copy just says fly, find, file
+SIGNATURES  : §34 annotation boxes as ornament (the motif) · §42 opacity-index step list beside the media · §44 media card → full-bleed on scroll (farm band)
+VOICE       : hero "Eleven minutes a blade." · section "Flown, found, filed." · CTA "Book a fleet trial" · finale "See every blade this season."
+PLACEHOLDERS: no customers, logos, fleet numbers, prices or measured defect sizes exist. The sample report marks site, turbine and sizes as visible placeholders.
+-->
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kestrel K-1 — autonomous blade inspection for wind farms</title>
+<meta name="description" content="Kestrel K-1 is an autonomous drone that inspects wind-turbine blades: eleven minutes a blade, defects down to 0.2 mm, and the report the same day. A fictional product.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500&family=Barlow+Condensed:wght@500&display=swap">
+<link rel="preload" as="image" href="img/hero-1916.webp" imagesrcset="img/hero-960.webp 960w, img/hero-1916.webp 1916w" imagesizes="100vw" media="(min-width: 761px)" fetchpriority="high">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<script type="module" src="app.js"></script>
+</head>
+<body>
+<a class="skip btn btn--primary" href="#main">Skip to content</a>
+
+<nav class="nav" aria-label="Main">
+  <div class="nav__in container">
+    <a class="brand" href="#top" aria-label="Kestrel K-1, home">
+      <svg class="brand__mark" viewBox="0 0 20 20" aria-hidden="true"><path d="M1 6V1h5M14 1h5v5M19 14v5h-5M6 19H1v-5"/><circle cx="10" cy="10" r="2.2"/></svg>
+      <span class="brand__name">Kestrel</span><span class="brand__model">K-1</span>
+    </a>
+    <ul class="nav__links">
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#report">Sample report</a></li>
+      <li><a href="#hours">Blade hours</a></li>
+    </ul>
+    <a class="btn btn--primary btn--sm brk" href="#trial">Book a fleet trial</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="stage hero__stage">
+    <picture>
+      <source media="(max-width: 760px)" srcset="img/hero-m-800.webp" type="image/webp" width="800" height="821">
+      <source media="(max-width: 760px)" srcset="img/hero-m-800.jpg" width="800" height="821">
+      <source srcset="img/hero-960.webp 960w, img/hero-1916.webp 1916w" sizes="100vw" type="image/webp">
+      <img src="img/hero-1916.jpg" srcset="img/hero-960.jpg 960w, img/hero-1916.jpg 1916w" sizes="100vw" width="1916" height="821" fetchpriority="high"
+        alt="A small dark grey quadcopter hovering a few metres from the downward blade of a white offshore wind turbine, under an overcast sky above grey sea.">
+    </picture>
+    <div class="track hero__track" aria-hidden="true">
+      <span class="track__c"></span><span class="track__c"></span><span class="track__c"></span><span class="track__c"></span>
+      <span class="track__chip">K-1 · leading edge · <span data-clock="UTC">--:--</span> UTC</span>
+    </div>
+  </div>
+
+  <div class="hero__copy container">
+    <h1 class="t-display hero__h1">Eleven minutes a&nbsp;blade.</h1>
+    <p class="hero__sub">Kestrel K-1 is an autonomous drone for wind-turbine blades. It finds defects down to 0.2&nbsp;mm and files the report the same&nbsp;day.</p>
+    <div class="hero__ctas">
+      <a class="btn btn--primary brk" href="#trial">Book a fleet trial <span class="arr" aria-hidden="true">→</span></a>
+      <a class="tlink" href="#report">See a sample report</a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Spec rows on the sea band -->
+  <section class="spec" aria-labelledby="spec-h">
+    <div class="container">
+      <div class="spec__head">
+        <p class="t-label spec__kicker">K-1 · blade inspection</p>
+        <h2 id="spec-h" class="t-h2 spec__h2">Three numbers to plan around. <span class="dim">The rest of the page shows how K-1 gets them.</span></h2>
+      </div>
+      <dl class="spec__rows" data-reveal-group>
+        <div class="spec__row">
+          <dt class="t-label">Flight time, per blade</dt>
+          <dd class="spec__fig t-num">11<span class="spec__unit">min</span></dd>
+          <dd class="spec__txt">Root to tip with no pilot on the sticks. K-1 flies the blade by itself.</dd>
+        </div>
+        <div class="spec__row">
+          <dt class="t-label">Smallest defect reported</dt>
+          <dd class="spec__fig t-num">0.2<span class="spec__unit">mm</span></dd>
+          <dd class="spec__txt">Erosion and pitting on the leading edge, found while they are still small.</dd>
+        </div>
+        <div class="spec__row">
+          <dt class="t-label">Report delivered</dt>
+          <dd class="spec__fig spec__fig--word">Same day</dd>
+          <dd class="spec__txt">The blade is flown and the report is filed on the same day.</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- How: opacity-index steps beside annotated media -->
+  <section class="how" id="how" aria-labelledby="how-h">
+    <div class="container how__grid">
+      <div class="how__side">
+        <h2 id="how-h" class="t-h2 how__h2">Flown, found, filed. <span class="dim">One blade, start to finish.</span></h2>
+        <ol class="steps" id="steps">
+          <li class="step" data-spy-item="fly">
+            <span class="t-label step__n">01</span>
+            <span class="step__t">Fly the blade</span>
+            <span class="step__d">K-1 flies the full length of the blade on its own, root to tip, in eleven minutes.</span>
+          </li>
+          <li class="step" data-spy-item="find">
+            <span class="t-label step__n">02</span>
+            <span class="step__t">Find the defects</span>
+            <span class="step__d">Every defect from 0.2&nbsp;mm up is boxed, labelled and placed on the blade.</span>
+          </li>
+          <li class="step" data-spy-item="file">
+            <span class="t-label step__n">03</span>
+            <span class="step__t">File the report</span>
+            <span class="step__d">The report is filed the same day, ready for the repair plan.</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="how__media" data-spy="#steps">
+        <!-- 01 fly -->
+        <figure class="panel" data-spy-panel="fly">
+          <div class="panel__img panel__img--fly" data-reveal style="--reveal-filter:blur(8px);--reveal-transform:none">
+            <picture>
+              <source srcset="img/hero-m-800.webp" type="image/webp">
+              <img src="img/hero-m-800.jpg" width="800" height="821" loading="lazy"
+                alt="Close view of the turbine's downward blade with the drone hovering beside its leading edge.">
+            </picture>
+            <svg class="flight" viewBox="0 0 800 821" aria-hidden="true">
+              <path class="flight__path" pathLength="1" d="M402 205 C 372 300, 330 400, 300 470 S 270 690, 262 768"/>
+              <circle class="flight__end" cx="402" cy="205" r="5"/>
+              <circle class="flight__end" cx="262" cy="768" r="5"/>
+            </svg>
+            <span class="tag tag--root t-label" aria-hidden="true">Root</span>
+            <span class="tag tag--tip t-label" aria-hidden="true">Tip</span>
+            <div class="track panel__track" aria-hidden="true">
+              <span class="track__c"></span><span class="track__c"></span><span class="track__c"></span><span class="track__c"></span>
+            </div>
+          </div>
+          <figcaption class="panel__cap"><span class="t-label">01 · Fly</span> The flight path runs down the leading edge, root to tip. Eleven minutes a blade.</figcaption>
+        </figure>
+
+        <!-- 02 find -->
+        <figure class="panel" data-spy-panel="find">
+          <div class="panel__img panel__img--find" data-reveal style="--reveal-filter:blur(8px);--reveal-transform:none">
+            <picture>
+              <source srcset="img/blade-960.webp 960w, img/blade-1448.webp 1448w" sizes="(max-width: 760px) 100vw, 58vw" type="image/webp">
+              <img src="img/blade-1448.jpg" srcset="img/blade-960.jpg 960w, img/blade-1448.jpg 1448w" sizes="(max-width: 760px) 100vw, 58vw" width="1448" height="1086" loading="lazy"
+                alt="Extreme close-up of a turbine blade's leading edge, pitted and eroded, with the drone's shadow falling across it and the sea beyond.">
+            </picture>
+            <ul class="defects" data-reveal-group aria-hidden="true">
+              <li class="defect" style="--x:59.4;--y:3.7;--w:7.6;--h:10.1"><span class="defect__chip">D-01 · Erosion</span></li>
+              <li class="defect" style="--x:65.6;--y:27.6;--w:7;--h:15.7"><span class="defect__chip">D-02 · Erosion</span></li>
+              <li class="defect" style="--x:62.2;--y:58.9;--w:8.3;--h:11"><span class="defect__chip">D-03 · Pitting</span></li>
+              <li class="defect" style="--x:73.2;--y:81;--w:9.7;--h:14.7"><span class="defect__chip">D-04 · Pitting</span></li>
+            </ul>
+          </div>
+          <figcaption class="panel__cap"><span class="t-label">02 · Find</span> Each defect gets a box, an ID and a type. Boxes here are drawn for illustration.</figcaption>
+        </figure>
+
+        <!-- 03 file -->
+        <figure class="panel" data-spy-panel="file" id="report">
+          <div class="panel__img panel__img--file" data-reveal style="--reveal-filter:blur(8px);--reveal-transform:none">
+            <div class="sheet" role="img" aria-label="Sample Kestrel K-1 blade inspection report, marked as a sample layout. It lists site, turbine and blade, the flight date and the filing date, which are the same day, and four findings: D-01 and D-02 erosion and D-03 and D-04 pitting on the leading edge, each with a photo crop. Sizes are placeholders.">
+              <div class="sheet__top">
+                <span class="sheet__brand"><svg viewBox="0 0 20 20"><path d="M1 6V1h5M14 1h5v5M19 14v5h-5M6 19H1v-5"/><circle cx="10" cy="10" r="2.2"/></svg> Blade inspection report</span>
+                <span class="sheet__stamp">Sample layout</span>
+              </div>
+              <dl class="sheet__meta">
+                <div><dt>Site</dt><dd><span class="ph-chip">Your wind farm</span></dd></div>
+                <div><dt>Turbine</dt><dd><span class="ph-chip">ID</span></dd></div>
+                <div><dt>Blade</dt><dd>B</dd></div>
+                <div><dt>Flown</dt><dd class="t-num" data-today>Today</dd></div>
+                <div><dt>Filed</dt><dd class="t-num"><span data-today>Today</span> <span class="sheet__ok">Same day</span></dd></div>
+                <div><dt>Flight</dt><dd class="t-num">11 min</dd></div>
+              </dl>
+              <table class="sheet__t">
+                <thead><tr><th>ID</th><th>Photo</th><th>Type</th><th>Where</th><th>Size</th></tr></thead>
+                <tbody>
+                  <tr><td>D-01</td><td><span class="thumb" style="--bx:62%;--by:6%"></span></td><td>Erosion</td><td>Leading edge</td><td><span class="ph-chip">— mm</span></td></tr>
+                  <tr><td>D-02</td><td><span class="thumb" style="--bx:70%;--by:34%"></span></td><td>Erosion</td><td>Leading edge</td><td><span class="ph-chip">— mm</span></td></tr>
+                  <tr><td>D-03</td><td><span class="thumb" style="--bx:65%;--by:64%"></span></td><td>Pitting</td><td>Leading edge</td><td><span class="ph-chip">— mm</span></td></tr>
+                  <tr><td>D-04</td><td><span class="thumb" style="--bx:78%;--by:88%"></span></td><td>Pitting</td><td>Leading edge</td><td><span class="ph-chip">— mm</span></td></tr>
+                </tbody>
+              </table>
+              <p class="sheet__foot">Smallest reportable defect 0.2 mm. Sizes are placeholders in this sample.</p>
+            </div>
+          </div>
+          <figcaption class="panel__cap"><span class="t-label">03 · File</span> The report for the blade, filed the day it was flown. Site, turbine and sizes are placeholders.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blade hours: farm photo grows to full bleed, calculator on the clean sea -->
+  <section class="hours" id="hours" aria-labelledby="hours-h">
+    <div class="hours__frame">
+      <div class="stage hours__stage">
+        <picture>
+          <source media="(max-width: 760px)" srcset="img/farm-m-888.webp" type="image/webp">
+          <source media="(max-width: 760px)" srcset="img/farm-m-888.jpg">
+          <source srcset="img/farm-960.webp 960w, img/farm-1448.webp 1448w" sizes="100vw" type="image/webp">
+          <img src="img/farm-1448.jpg" srcset="img/farm-960.jpg 960w, img/farm-1448.jpg 1448w" sizes="100vw" width="1448" height="1086" loading="lazy"
+            alt="Rows of offshore wind turbines receding into haze over grey sea, seen from high above, with the drone flying between them.">
+        </picture>
+        <div class="track hours__track" aria-hidden="true">
+          <span class="track__c"></span><span class="track__c"></span><span class="track__c"></span><span class="track__c"></span>
+          <span class="track__chip">K-1 · next turbine</span>
+        </div>
+      </div>
+
+      <div class="calc" data-reveal>
+        <p class="t-label calc__k">Blade hours</p>
+        <h2 id="hours-h" class="t-h2 calc__h">Your farm, in flight&nbsp;time.</h2>
+        <form class="calc__f" id="calc" aria-describedby="calc-note" onsubmit="return false">
+          <div class="field">
+            <label for="turbines" class="t-label">Turbines</label>
+            <div class="stepper">
+              <button type="button" data-step="-1" aria-label="One fewer turbine">−</button>
+              <input id="turbines" type="number" inputmode="numeric" min="1" max="999" value="1">
+              <button type="button" data-step="1" aria-label="One more turbine">+</button>
+            </div>
+          </div>
+          <fieldset class="field">
+            <legend class="t-label">Blades per turbine</legend>
+            <div class="seg">
+              <label><input type="radio" name="blades" value="2"><span>2</span></label>
+              <label><input type="radio" name="blades" value="3" checked><span>3</span></label>
+            </div>
+          </fieldset>
+        </form>
+        <p class="calc__out" aria-live="polite"><span class="calc__big t-num" id="calc-big">33 min</span><span class="calc__sub" id="calc-sub">of blade flight for 3 blades</span></p>
+        <p class="calc__note" id="calc-note">Blade time only, at eleven minutes a blade. Transit between turbines, launches and weather are not counted.</p>
+        <a class="btn btn--primary brk" id="calc-cta" href="#trial">Book a fleet trial <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trial form -->
+  <section class="trial" id="trial" aria-labelledby="trial-h">
+    <div class="container trial__grid">
+      <div class="trial__copy">
+        <h2 id="trial-h" class="t-h2 trial__h">Book a fleet trial. <span class="dim">Tell us which turbines to fly first.</span></h2>
+        <dl class="trial__list">
+          <div><dt class="t-label">You get</dt><dd>A report for every blade flown, on the day it is flown.</dd></div>
+          <div><dt class="t-label">Down to</dt><dd>Defects from 0.2&nbsp;mm, each boxed and labelled.</dd></div>
+          <div><dt class="t-label">Per blade</dt><dd>Eleven minutes of flight.</dd></div>
+        </dl>
+      </div>
+      <form class="form" id="trial-form" novalidate>
+        <div class="form__row">
+          <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required></div>
+          <div class="field"><label for="f-email">Work email</label><input id="f-email" name="email" type="email" autocomplete="email" required></div>
+        </div>
+        <div class="field"><label for="f-farm">Wind farm</label><input id="f-farm" name="farm" autocomplete="organization" placeholder="Name or location"></div>
+        <div class="form__row">
+          <div class="field"><label for="f-turbines">Turbines in the trial</label><input id="f-turbines" name="turbines" type="number" inputmode="numeric" min="1" max="999" value="1"></div>
+          <fieldset class="field">
+            <legend>Site</legend>
+            <div class="seg seg--light">
+              <label><input type="radio" name="site" value="offshore" checked><span>Offshore</span></label>
+              <label><input type="radio" name="site" value="onshore"><span>Onshore</span></label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="field"><label for="f-notes">Anything we should know <span class="opt">(optional)</span></label><textarea id="f-notes" name="notes" rows="3"></textarea></div>
+        <div class="form__end">
+          <button class="btn btn--primary brk" type="submit">Request a trial <span class="arr" aria-hidden="true">→</span></button>
+          <p class="form__msg" id="form-msg" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="end" aria-labelledby="end-h">
+  <div class="container end__finale">
+    <h2 id="end-h" class="t-display end__h">See every blade this&nbsp;season.</h2>
+    <a class="btn btn--primary brk" href="#trial">Book a fleet trial <span class="arr" aria-hidden="true">→</span></a>
+  </div>
+  <div class="container foot">
+    <div class="foot__brand">
+      <a class="brand" href="#top" aria-label="Kestrel K-1, back to top">
+        <svg class="brand__mark" viewBox="0 0 20 20" aria-hidden="true"><path d="M1 6V1h5M14 1h5v5M19 14v5h-5M6 19H1v-5"/><circle cx="10" cy="10" r="2.2"/></svg>
+        <span class="brand__name">Kestrel</span><span class="brand__model">K-1</span>
+      </a>
+      <p class="foot__legal">© 2026 Kestrel. A fictional product.</p>
+    </div>
+    <nav class="foot__cols" aria-label="Footer">
+      <div><p class="t-label">Product</p><ul><li><a href="#how">How it works</a></li><li><a href="#report">Sample report</a></li><li><a href="#hours">Blade hours</a></li></ul></div>
+      <div><p class="t-label">Trial</p><ul><li><a href="#trial">Book a fleet trial</a></li></ul></div>
+      <div><p class="t-label">Legal</p><ul><li><a href="legal.html#terms">Terms</a></li><li><a href="legal.html#privacy">Privacy</a></li></ul></div>
+    </nav>
+  </div>
+  <div class="end__art" aria-hidden="true">
+    <picture>
+      <source media="(max-width: 760px)" srcset="img/sea-m-1000.webp" type="image/webp">
+      <source media="(max-width: 760px)" srcset="img/sea-m-1000.jpg">
+      <source srcset="img/sea-960.webp 960w, img/sea-1915.webp 1915w" sizes="100vw" type="image/webp">
+      <img src="img/sea-1915.jpg" srcset="img/sea-960.jpg 960w, img/sea-1915.jpg 1915w" sizes="100vw" width="1915" height="821" loading="lazy" alt="">
+    </picture>
+  </div>
+</footer>
+</body>
+</html>

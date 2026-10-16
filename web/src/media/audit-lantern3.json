@@ -1,0 +1,123 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/lantern3/index.html",
+ "outDir": "/tmp/gal-lantern3",
+ "ms": 40812,
+ "counts": {
+  "PASS": 11,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Public Sans×115",
+   "Young Serif×38"
+  ],
+  "display": [
+   "80px/1/-0.02em w400 \"Answers bend. We study why.\"",
+   "80px/1/-0.02em w400 \"We study why.\"",
+   "80px/1/-0.02em w400 \"Read the report. Then push b\""
+  ],
+  "bodySize": "17",
+  "weights": [
+   "400×99",
+   "500×54"
+  ],
+  "upperShare": 0,
+  "paper": "rgb(243,237,225)",
+  "accents": [
+   "rgb(227,155,45) bg a.btn"
+  ],
+  "buttons": [
+   "square 38px \"Read the report\"",
+   "square 52px \"Read the latest report\n→\"",
+   "square 52px \"Read the latest report\n→\"",
+   "square 52px \"Join the reading group\"",
+   "square 52px \"Read the latest report\n→\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)"
+  ],
+  "nav": {
+   "h": 76,
+   "links": 12
+  },
+  "pageVh": 7.1
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "2 families: Public Sans, Young Serif"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 80px · lh 1 · -0.02em · weight 400 · Young Serif)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (3/6 traits: warmOffWhite, hairlineBands, lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "One accent hue (30° (w134) e.g. rgb(227,155,45) bg a.btn)"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 130 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 23 text elements over imagery meet AA (sampled from pixels)"
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: square"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "1 hero CTA(s)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.4,0,0.2,1)×25, cubic-bezier(0.16,1,0.3,1)×23"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (2/14 paragraphs wait for scroll)"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 7.3% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 7.1 viewports (direction 7 norm 7–12)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/gal-lantern3/desktop-hero.png",
+  "/tmp/gal-lantern3/slice-01.jpg … (one per viewport)",
+  "/tmp/gal-lantern3/desktop-full.jpg",
+  "/tmp/gal-lantern3/mobile-hero.png",
+  "/tmp/gal-lantern3/mobile-full.jpg",
+  "/tmp/gal-lantern3/reduced-motion-hero.png"
+ ]
+}

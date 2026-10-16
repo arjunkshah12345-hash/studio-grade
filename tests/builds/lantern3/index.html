@@ -1,0 +1,320 @@
+<!--
+DESIGN SPINE · Lantern (fictional)
+DIRECTION   : 7 Institutional. A nonprofit lab that publishes: readers come to read a report and join a group, so serif carries meaning, sans carries utility, and accessibility is visible.
+REGISTER    : Confident. The bold device is the linocut series printed at full bleed, plus one ink-black "night" band where the report sits under the lantern's light, closed by an amber finale field. Everything else stays disciplined.
+AXES        : ground colour blocks (cream paper #F3EDE1 + ink-black night band #1B1A17 + amber finale field #E39B2D, deckled edges) · type genre sturdy old-style display serif (Young Serif 400) with a civic sans (Public Sans) · image medium two-colour linocut series · composition banded, prints bleeding off the right edge · motion feel lights-up (prints sit unlit in grey ink, then the amber comes on)
+DEFAULT?    : default-look check 2/6 matched (ink at 400, a cream ground) → DIFFERENT FROM DEFAULT BY: no mono labels (sentence-case sans labels), no hairline metadata bands, linocut prints instead of a line drawing, amber as a printed field and the action colour rather than a tiny mark, an ink-black band.
+MOTIF       : the lit window, a small amber rectangle from the rooftop print. (1) wordmark glyph, (2) section-label marker, (3) twelve windows = the twelve people of the lab, (4) the lit row marker in the library list, (5) the footer roofs' lit windows and the Edinburgh-time line.
+TYPE        : display Young Serif 400 · text/UI Public Sans 400/500 · no mono
+SCALE       : display clamp(44→92px)/1.0/-0.02em · h2 clamp(34→54px)/1.04/-0.015em · lede 22–26px Young Serif · body 17px/1.6 · label 13px sentence case 500
+PALETTE     : paper #F3EDE1 · ink #1B1A17 · ink-2 ink@68% · hairline ink@12% · night #1B1A17 with cream ink · accent amber #E39B2D → the primary-action fill (ink text on it), the lit-window marks, and one full-bleed amber finale field (the lantern's light)
+GRID        : 12 cols / 24px · container 1280px · side margin 80px (20px mobile) · section rhythm 96–144px, deckled night and amber bands break the rhythm
+HERO        : H19-style print composed for the headline: the 21:9 lantern linocut at full bleed, h1 + subline + 2 CTAs on its clean left 55%. Mobile: text on paper above a 5:4 crop of the lantern.
+IMAGERY     : the generated linocut series (below), re-cropped: hero → report cover (lantern crop 1300,0,616,821); steps → the three pressures; pages → reading group; roofs → footer.
+CONVERSION  : "Read the latest report" → header, hero, report band, finale. Secondary "Join the reading group" → hero link, reading-group form, finale link.
+MOTION      : house ease cubic-bezier(.16,1,.3,1) · UI 150–240ms · reveal 850ms · primitive lights-up (grayscale → colour, 1.4s) on prints; card groups fade + 8px; text never moves.
+IMAGES      : medium      a two-colour linocut print, deep ink-black (#1B1A17) and one warm amber (#E39B2D), carved lines and gouge marks visible, slight ink texture, on cream paper (#F3EDE1)
+              setting     Edinburgh, lanterns, books, old stone
+              exclude     no text, no letters, no logos, no watermarks, no faces
+              shot list   hero 21:9 (lantern on a stone ledge, rooftops beyond; lantern right 40%, left 55% clean paper) · pages 4:3 (open notebook and pen in lantern light; left third clean) · steps 4:3 (steep Edinburgh close lit by one lantern; left third clean) · roofs 21:9 footer (rooftops and chimneys along the bottom edge, a few amber windows; top 55% clean)
+              processing  images.py paper → white per plate (target compensated: corners hold art), shown with mix-blend-mode:multiply on the #F3EDE1 ground so the grey "unlit" state has no visible plate edge, export --flat at 1×/2×, mobile crops: hero 900,0,1016,821 · pages 480,0,968,1086 · steps 540,0,908,1086 · roofs 380,330,1150,492
+NAMING      : omitted (the lantern is the light; no tier system to name)
+SIGNATURES  : §51 lights-up reveal on every print · §22 prose-as-navigation lede (About) · §76 finale roofs rising from the bottom edge (plus deckled night-band edges)
+VOICE       : hero "Answers bend. We study why." · section "Pressure comes in steps. Each one is a test." · CTA/finale "Read the report. Then push back."
+PLACEHOLDERS: report issue/date/findings, every library title, reading-group date and place, team names, funders, contact address. All marked on the page.
+-->
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lantern · When and why AI models change their answers</title>
+<meta name="description" content="Lantern is a twelve-person nonprofit lab in Edinburgh (fictional) studying sycophancy, persuasion and drift in AI models. Papers, open datasets and a quarterly drift report.">
+<meta name="theme-color" content="#F3EDE1">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500&family=Young+Serif&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/img/hero-1916.webp" imagesrcset="assets/img/hero-960.webp 960w, assets/img/hero-1916.webp 1916w" imagesizes="100vw" media="(min-width: 761px)">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--primary" href="#main">Skip to content</a>
+
+<header class="site-head" id="top">
+  <div class="container head-row">
+    <a class="wordmark" href="#top" aria-label="Lantern, home"><span class="win" aria-hidden="true"></span>Lantern</a>
+    <nav class="nav" aria-label="Main">
+      <ul>
+        <li><a href="#pressure">Research</a></li>
+        <li><a href="#report">Drift report</a></li>
+        <li><a href="#library">Papers &amp; data</a></li>
+        <li><a href="#group">Reading group</a></li>
+        <li><a href="#lab">About</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--accent btn--sm head-cta" href="#report">Read the report</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+  </div>
+  <div class="menu" id="menu" hidden>
+    <ul class="container">
+      <li><a href="#pressure">Research</a></li>
+      <li><a href="#report">Drift report</a></li>
+      <li><a href="#library">Papers &amp; data</a></li>
+      <li><a href="#group">Reading group</a></li>
+      <li><a href="#lab">About</a></li>
+    </ul>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO: the print composed for the headline -->
+  <section class="hero" aria-labelledby="h1">
+    <figure class="hero-art lightup" aria-hidden="true">
+      <picture>
+        <source media="(max-width: 760px)" type="image/webp" srcset="assets/img/hero-m-780.webp">
+        <source media="(max-width: 760px)" srcset="assets/img/hero-m-780.jpg">
+        <source type="image/webp" srcset="assets/img/hero-960.webp 960w, assets/img/hero-1916.webp 1916w" sizes="100vw">
+        <img src="assets/img/hero-1916.jpg" srcset="assets/img/hero-960.jpg 960w, assets/img/hero-1916.jpg 1916w" sizes="100vw" width="1916" height="821" alt="" fetchpriority="high">
+      </picture>
+    </figure>
+    <div class="container hero-copy">
+      <h1 id="h1" class="t-display">Answers bend. <span class="tail">We study why.</span></h1>
+      <p class="hero-sub">A twelve-person nonprofit lab in Edinburgh, testing when and why AI models change their answers under pressure. We publish what we find in the open.</p>
+      <div class="hero-ctas">
+        <a class="btn btn--accent btn--lg" href="#report">Read the latest report <span class="arr" aria-hidden="true">→</span></a>
+        <a class="link link--strong" href="#group">Join the reading group</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE THREE PRESSURES -->
+  <section class="pressure section" id="pressure" aria-labelledby="pressure-h">
+    <div class="container pressure-grid">
+      <div class="pressure-copy">
+        <p class="label"><span class="win" aria-hidden="true"></span>What we study</p>
+        <h2 id="pressure-h" class="t-h2">Pressure comes in steps. <span class="tail">Each one is a test.</span></h2>
+        <ol class="stairs">
+          <li style="--step:0">
+            <span class="num" aria-hidden="true">i.</span>
+            <div>
+              <h3 class="t-h3">Sycophancy</h3>
+              <p>Agreeing because the person seems to want agreement, not because they are right.</p>
+              <p class="push"><span class="push-k">The push</span> “Are you sure? I really think it’s B.”</p>
+            </div>
+          </li>
+          <li style="--step:1">
+            <span class="num" aria-hidden="true">ii.</span>
+            <div>
+              <h3 class="t-h3">Persuasion</h3>
+              <p>Changing an answer because an argument sounds convincing, whether or not it holds.</p>
+              <p class="push"><span class="push-k">The push</span> “Here are five reasons you’re wrong.”</p>
+            </div>
+          </li>
+          <li style="--step:2">
+            <span class="num" aria-hidden="true">iii.</span>
+            <div>
+              <h3 class="t-h3">Drift</h3>
+              <p>A slow shift: over a long conversation, or from one month to the next.</p>
+              <p class="push"><span class="push-k">The push</span> “That isn’t what you said last time.”</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+      <figure class="pressure-art lightup" aria-hidden="true">
+        <picture>
+          <source media="(max-width: 760px)" type="image/webp" srcset="assets/img/steps-m-760.webp">
+          <source media="(max-width: 760px)" srcset="assets/img/steps-m-760.jpg">
+          <source type="image/webp" srcset="assets/img/steps-724.webp 724w, assets/img/steps-1448.webp 1448w" sizes="(max-width: 760px) 100vw, 56vw">
+          <img src="assets/img/steps-1448.jpg" srcset="assets/img/steps-724.jpg 724w, assets/img/steps-1448.jpg 1448w" sizes="(max-width: 760px) 100vw, 56vw" width="1448" height="1086" alt="" loading="lazy">
+        </picture>
+      </figure>
+    </div>
+  </section>
+
+  <!-- THE NIGHT BAND: the drift report -->
+  <section class="night" id="report" data-theme="dark" aria-labelledby="report-h">
+    <div class="container night-grid">
+      <div class="night-copy">
+        <p class="label"><span class="win" aria-hidden="true"></span>The drift report · quarterly</p>
+        <h2 id="report-h" class="t-h2">Every quarter, <span class="tail">we write down what moved.</span></h2>
+        <p class="night-lede">Four times a year we publish which answers held, which ones bent, and what kind of pressure did it. Each issue comes with its data.</p>
+        <dl class="facts">
+          <div><dt>Covers</dt><dd>Sycophancy, persuasion, drift</dd></div>
+          <div><dt>Published</dt><dd>Quarterly, free to read</dd></div>
+          <div><dt>Latest issue</dt><dd><span class="chip">Placeholder</span> Issue number and date to come</dd></div>
+        </dl>
+        <div class="night-ctas">
+          <a class="btn btn--accent btn--lg" href="#report-cover">Read the latest report <span class="arr" aria-hidden="true">→</span></a>
+          <a class="link link--strong" href="#library">Earlier issues</a>
+        </div>
+      </div>
+
+      <div class="cover-stack" data-reveal>
+        <div class="cover cover--behind" aria-hidden="true"></div>
+        <article class="cover" id="report-cover" aria-label="Sample cover of the drift report. Placeholder: no issue has been published.">
+          <header class="cover-head">
+            <span class="cover-brand"><span class="win" aria-hidden="true"></span>Lantern</span>
+            <span class="chip chip--ink">Placeholder issue</span>
+          </header>
+          <figure class="cover-art lightup" aria-hidden="true">
+            <picture>
+              <source type="image/webp" srcset="assets/img/cover-616.webp">
+              <img src="assets/img/cover-616.jpg" width="616" height="821" alt="">
+            </picture>
+          </figure>
+          <h3 class="cover-title">The drift report</h3>
+          <p class="cover-meta">Issue <span class="ph-ink">[no.]</span> · <span class="ph-ink">[quarter, year]</span></p>
+          <ol class="cover-toc">
+            <li><span>Sycophancy</span><span class="ph-ink">[findings]</span></li>
+            <li><span>Persuasion</span><span class="ph-ink">[findings]</span></li>
+            <li><span>Drift</span><span class="ph-ink">[findings]</span></li>
+            <li><span>Open data</span><span class="ph-ink">[dataset link]</span></li>
+          </ol>
+          <p class="cover-note">Sample cover. No issue exists yet, so every finding here is a placeholder.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIBRARY: papers and open data -->
+  <section class="library section" id="library" aria-labelledby="library-h">
+    <div class="container">
+      <div class="library-head">
+        <div>
+          <p class="label"><span class="win" aria-hidden="true"></span>Papers &amp; open data</p>
+          <h2 id="library-h" class="t-h2">One shelf. <span class="tail">Papers, datasets and every past report.</span></h2>
+        </div>
+        <div class="filters" role="group" aria-label="Filter the library">
+          <button type="button" class="filter" aria-pressed="true" data-filter="all">All <span class="count">(6)</span></button>
+          <button type="button" class="filter" aria-pressed="false" data-filter="paper">Papers <span class="count">(2)</span></button>
+          <button type="button" class="filter" aria-pressed="false" data-filter="dataset">Datasets <span class="count">(2)</span></button>
+          <button type="button" class="filter" aria-pressed="false" data-filter="report">Reports <span class="count">(2)</span></button>
+        </div>
+      </div>
+
+      <p class="library-note"><span class="chip">Placeholder</span> Nothing has been published yet. These rows show how the shelf will read.</p>
+
+      <table class="shelf">
+        <caption class="sr-only">Library of papers, datasets and reports (placeholder entries)</caption>
+        <thead>
+          <tr><th scope="col">Type</th><th scope="col">Title</th><th scope="col">Topic</th><th scope="col" class="r">Format</th></tr>
+        </thead>
+        <tbody>
+          <tr data-type="report"><td>Drift report</td><td class="ttl">[Latest issue title]</td><td>Drift</td><td class="r">Report + data</td></tr>
+          <tr data-type="paper"><td>Paper</td><td class="ttl">[Paper title on agreeing under social pressure]</td><td>Sycophancy</td><td class="r">PDF</td></tr>
+          <tr data-type="dataset"><td>Dataset</td><td class="ttl">[Dataset of pushback prompts and replies]</td><td>Sycophancy</td><td class="r">Open data</td></tr>
+          <tr data-type="paper"><td>Paper</td><td class="ttl">[Paper title on which arguments move a model]</td><td>Persuasion</td><td class="r">PDF</td></tr>
+          <tr data-type="dataset"><td>Dataset</td><td class="ttl">[Dataset of repeated questions over time]</td><td>Drift</td><td class="r">Open data</td></tr>
+          <tr data-type="report"><td>Drift report</td><td class="ttl">[Earlier issue title]</td><td>Drift</td><td class="r">Report + data</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- READING GROUP -->
+  <section class="group section" id="group" aria-labelledby="group-h">
+    <div class="container group-grid">
+      <figure class="group-art lightup" aria-hidden="true">
+        <picture>
+          <source media="(max-width: 760px)" type="image/webp" srcset="assets/img/pages-m-760.webp">
+          <source media="(max-width: 760px)" srcset="assets/img/pages-m-760.jpg">
+          <source type="image/webp" srcset="assets/img/pages-724.webp 724w, assets/img/pages-1448.webp 1448w" sizes="(max-width: 760px) 100vw, 62vw">
+          <img src="assets/img/pages-1448.jpg" srcset="assets/img/pages-724.jpg 724w, assets/img/pages-1448.jpg 1448w" sizes="(max-width: 760px) 100vw, 62vw" width="1448" height="1086" alt="" loading="lazy">
+        </picture>
+      </figure>
+      <div class="group-copy">
+        <p class="label"><span class="win" aria-hidden="true"></span>Reading group · monthly</p>
+        <h2 id="group-h" class="t-h2">Read with us, <span class="tail">once a month.</span></h2>
+        <p class="group-lede">Once a month we read something together and talk it through. Bring your questions, and a pen.</p>
+        <dl class="facts facts--light">
+          <div><dt>Next session</dt><dd><span class="chip">Placeholder</span> Date to come</dd></div>
+          <div><dt>Where</dt><dd><span class="chip">Placeholder</span> Place to come</dd></div>
+        </dl>
+        <form class="signup" id="signup" data-reveal novalidate>
+          <label for="email" class="signup-label">Your email</label>
+          <div class="signup-row">
+            <input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.org" required>
+            <button class="btn btn--primary btn--lg" type="submit">Join the reading group</button>
+          </div>
+          <p class="signup-msg" id="signup-msg" aria-live="polite">One email a month: the date, the place and the reading.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE LAB: prose as navigation -->
+  <section class="lab section" id="lab" aria-labelledby="lab-h">
+    <div class="container lab-grid">
+      <div class="lab-side">
+        <p class="label"><span class="win" aria-hidden="true"></span>The lab</p>
+        <h2 id="lab-h" class="t-h2">Twelve people, <span class="tail">one old city.</span></h2>
+        <figure class="windows" role="img" aria-label="Twelve lit windows, one for each person in the lab">
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span><span></span>
+        </figure>
+        <p class="windows-cap">One window per person. <span class="chip">Placeholder</span> Names to come.</p>
+      </div>
+      <div class="lab-main">
+        <p class="prose-nav">Lantern is a nonprofit lab of twelve people in Edinburgh. We study <a href="#pressure">sycophancy</a>, <a href="#pressure">persuasion</a> and <a href="#pressure">drift</a>, publish <a href="#library">papers</a> and <a href="#library">open datasets</a>, and put out a <a href="#report">quarterly drift report</a>. Once a month, we <a href="#group">read together</a>.</p>
+        <dl class="facts facts--light facts--wide">
+          <div><dt>Status</dt><dd>Nonprofit</dd></div>
+          <div><dt>Funders</dt><dd><span class="chip">Placeholder</span> No funders listed yet</dd></div>
+          <div><dt>Contact</dt><dd><span class="chip">Placeholder</span> Address to come</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINALE -->
+  <section class="finale" data-theme="amber" aria-labelledby="finale-h">
+    <div class="container finale-row">
+      <h2 id="finale-h" class="t-display finale-h">Read the report. <span class="tail">Then push back.</span></h2>
+      <div class="finale-ctas">
+        <a class="btn btn--primary btn--lg" href="#report">Read the latest report <span class="arr" aria-hidden="true">→</span></a>
+        <a class="link link--strong" href="#group">Join the reading group</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="container foot-grid">
+    <div class="foot-brand">
+      <a class="wordmark" href="#top"><span class="win" aria-hidden="true"></span>Lantern</a>
+      <p>A nonprofit research lab in Edinburgh.</p>
+      <p class="foot-time"><span class="win" aria-hidden="true"></span>It’s <time data-clock="Europe/London">--:--</time> in Edinburgh.</p>
+      <p class="foot-legal">© 2026 Lantern. A fictional lab, made for a design study.</p>
+    </div>
+    <nav class="foot-col" aria-label="Research">
+      <h3>Research</h3>
+      <ul><li><a href="#pressure">Sycophancy</a></li><li><a href="#pressure">Persuasion</a></li><li><a href="#pressure">Drift</a></li></ul>
+    </nav>
+    <nav class="foot-col" aria-label="Publications">
+      <h3>Publications</h3>
+      <ul><li><a href="#report">Drift report</a></li><li><a href="#library">Papers</a></li><li><a href="#library">Open data</a></li></ul>
+    </nav>
+    <nav class="foot-col" aria-label="The lab">
+      <h3>The lab</h3>
+      <ul><li><a href="#group">Reading group</a></li><li><a href="#lab">About</a></li></ul>
+    </nav>
+    <nav class="foot-col" aria-label="Legal">
+      <h3>Legal</h3>
+      <ul><li><a href="legal.html#terms">Terms</a></li><li><a href="legal.html#privacy">Privacy</a></li></ul>
+    </nav>
+  </div>
+  <figure class="foot-art lightup" aria-hidden="true">
+    <picture>
+      <source media="(max-width: 760px)" type="image/webp" srcset="assets/img/roofs-m-780.webp">
+      <source media="(max-width: 760px)" srcset="assets/img/roofs-m-780.jpg">
+      <source type="image/webp" srcset="assets/img/roofs-960.webp 960w, assets/img/roofs-1914.webp 1914w" sizes="100vw">
+      <img src="assets/img/roofs-1914.jpg" srcset="assets/img/roofs-960.jpg 960w, assets/img/roofs-1914.jpg 1914w" sizes="100vw" width="1914" height="822" alt="" loading="lazy">
+    </picture>
+  </figure>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

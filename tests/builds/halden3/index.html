@@ -1,0 +1,268 @@
+<!--
+DESIGN SPINE · Halden (halden3)
+DIRECTION   : 6 Cinematic Place. Halden sells a place and a ritual to people who travel for quiet; the fjord photographs carry the page and booking sits in the hero, zero scrolls away.
+REGISTER    : Confident. One bold device: the hero photograph whose overcast sky IS the page ground (the mist runs out of the photo into every section), with the booking masthead crossing its bottom edge. Everything else stays quiet.
+AXES        : ground cool mist grey sampled from the hero sky #DAE0E8, plus one tar-black timber band #141719 · type genre wide/extended grotesk (Mona Sans, stretch 125%, weight 300) · image medium Nordic film photography (one generated series) · composition full-bleed cinema with type set in each photo's clean zone, asymmetric bleeds between · motion feel "mist lift": media resolves from pale, soft and desaturated to sharp; one scroll-driven opening (the kitchen card goes full bleed)
+DEFAULT?    : default-look check 2/6 matched (light tight ink; one small accent) → DIFFERENT FROM DEFAULT BY: ground (cool sampled mist, not warm paper), labels (wide caps in the text face, no mono), no coordinate or spec bands, hero medium (a photograph, not a line drawing)
+MOTIF       : the mist, 5 uses: 1 ground: the hero sky feathers into the page colour · 2 reveal primitive: every photo lifts out of mist as it enters · 3 data: the closed months (Dec–Feb) sit in mist on the season strip · 4 UI state: closed months in the booking calendar are misted out, with a plain note · 5 finale: the shore rises out of the mist under the footer
+TYPE        : display Mona Sans 300 @ stretch 125% · text Mona Sans 400/500 @ 100% · labels Mona Sans 500 @ 125%, caps (one family; width does the work weight would)
+SCALE       : h1 72/1.0/−0.03em · stat 112/.9/−0.04em · h2 52/1.04/−0.025em · h3 22/1.2 · body 17/1.55 · small 14 · label 11/+0.14em caps
+PALETTE     : paper #DAE0E8 (mist) · paper-2 #CDD4DD · surface #EEF1F4 · ink #15181A (tar) · ink-2 ink@80% · ink-3 ink@70% (the mist is darker than paper, so the tiers sit higher) · hairline ink@14% · band #141719 with frost #E2E7EC · accent lichen #8E8F35 → used ONLY on the "open now" dot and the chosen nights in the calendar
+GRID        : 12 / 16px · container 1360 · side margin 40px (20px at 390) · section rhythm varied: tight stat band → 160px dark band → full-bleed kitchen → split → strip
+HERO        : H19 logic (photo composed for the headline) on a booking masthead: one-line h1 across the photo's overcast sky, subline + live season status; the sauna sits in the lower-right third; the masthead (Arrive / Leave / Rooms / Check dates) crosses the photo's bottom edge
+IMAGERY     : photography. hero 21:9 → mobile 700×821 portrait crop, → sauna detail 856×461 · kitchen 4:3 → mobile 1000×1086 · room 4:3 → mobile 1068×1086 · shore 21:9 footer → mobile 900×621
+CONVERSION  : "Check dates" → hero masthead form · nav button · Sleep chapter button · finale form. Custom calendar: past dates off, Dec–Feb misted; the result line gives a "from" price = nights × rooms × NOK 2,400 and says plainly that nothing can be booked
+MOTION      : house ease cubic-bezier(.16,1,.3,1) · UI 200ms · media reveal 1100ms mist lift (blur 10px, brightness 1.14, saturate .5 → none) · hero photo lifts on load over 1.8s · card groups fade + 8px rise, 80ms stagger · text never moves · native scroll
+IMAGES      : medium real-looking Nordic editorial film photography, Portra-like but cool · light soft overcast or low northern light · palette muted greens, slate water, tarred black timber, birch, mist · mood quiet and spacious · exclude no text, no signs, no logos, no watermarks, no faces towards the camera · shots: hero 21:9 (black timber sauna on stilts at the fjord's edge, steam, ladder into the water; top 45% clean sky) · kitchen 4:3 (long farm table set for dinner, candles, fjord windows at dusk; left third quiet wall) · room 4:3 (linen bed, birch chair, big fjord window, morning; left third clean wall) · shore 21:9 footer (boulders and birches along the bottom edge; top 55% mist and still water)
+NAMING      : the day at Halden → chapters Heat & cold · Dinner · Sleep (the h1, in order); CTA "Check dates"
+SIGNATURES  : §44 media card → full bleed (the kitchen opens as you scroll) · booking-as-masthead with a misted closed-season calendar (direction 6) · §52 live clock (local time at Halden, in the nav)
+VOICE       : hero "Heat, cold, dinner, sleep." · section "A sauna on the water. The ladder goes straight down into the fjord." · CTA "Check dates" / finale "Pick your nights. The fjord isn't going anywhere."
+PLACEHOLDERS: address, email, dinner times and menu, room types. Each is marked "Placeholder" on the page. Halden is fictional; legal.html says so.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Halden · A fourteen-room hotel on a Norwegian fjord</title>
+<meta name="description" content="Fourteen rooms on a Norwegian fjord, with a wood-fired sauna on the water and a farm kitchen that seats twenty. Open March to November. Rooms from NOK 2,400 a night.">
+<meta name="theme-color" content="#DAE0E8">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='3' fill='%23DAE0E8'/%3E%3Cpath d='M6 13.5V8.6L12 4l6 4.6v4.9z' fill='%2315181A'/%3E%3Cpath d='M3 16h18M7 19h10M10 21.6h4' stroke='%2315181A' stroke-width='1.4'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,200..900&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="media/hero-1916.webp" media="(min-width:761px)" fetchpriority="high">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--primary btn--sm" href="#main">Skip to content</a>
+
+<header class="nav" id="top">
+  <a class="brand" href="#top" aria-label="Halden, back to the top">
+    <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 13.5V8.6L12 4l6 4.6v4.9z" fill="currentColor"/><path d="M3 16h18M7 19h10M10 21.6h4" stroke="currentColor" stroke-width="1.4"/></svg>
+    <span>Halden</span>
+  </a>
+  <nav class="nav-links" aria-label="Sections">
+    <a href="#heat">Sauna</a>
+    <a href="#dinner">Kitchen</a>
+    <a href="#sleep">Rooms</a>
+    <a href="#season">Season</a>
+  </nav>
+  <p class="nav-time"><span class="t-label">At Halden</span> <time data-clock="Europe/Oslo">--:--</time></p>
+  <a class="btn btn--primary btn--sm" href="#book" data-book>Check dates</a>
+</header>
+
+<main id="main">
+
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="container hero-copy">
+      <p class="t-label hero-kicker">A hotel on a Norwegian fjord</p>
+      <h1 class="t-display hero-h" id="hero-h">Heat, cold, dinner, sleep.</h1>
+      <div class="hero-sub">
+        <p class="t-lead">Fourteen rooms, a wood-fired sauna on the water and a farm kitchen that seats twenty.</p>
+        <p class="status"><span class="dot" aria-hidden="true"></span><span data-status>Open March to November</span></p>
+      </div>
+    </div>
+
+    <figure class="hero-photo">
+      <picture>
+        <source media="(max-width:760px)" srcset="media/hero-m-700.webp" type="image/webp">
+        <source media="(max-width:760px)" srcset="media/hero-m-700.jpg">
+        <source srcset="media/hero-960.webp 960w, media/hero-1916.webp 1916w" sizes="100vw" type="image/webp">
+        <img src="media/hero-1916.jpg" srcset="media/hero-960.jpg 960w, media/hero-1916.jpg 1916w" sizes="100vw" width="1916" height="821" fetchpriority="high"
+             alt="A small black timber sauna on stilts at the edge of a still fjord, smoke rising from its chimney, with low cloud over green mountains behind">
+      </picture>
+    </figure>
+
+    <form class="book book--hero" data-booking aria-label="Check dates" novalidate>
+      <div class="book-row">
+        <button type="button" class="cell" data-field="in" aria-haspopup="dialog"><span class="t-label">Arrive</span><span class="cell-v" data-v="in">Add date</span></button>
+        <button type="button" class="cell" data-field="out" aria-haspopup="dialog"><span class="t-label">Leave</span><span class="cell-v" data-v="out">Add date</span></button>
+        <label class="cell cell--rooms"><span class="t-label">Rooms</span>
+          <select name="rooms" class="cell-v">
+            <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option>
+            <option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option>
+          </select>
+        </label>
+        <button class="btn btn--primary book-go" type="submit">Check dates <span class="arr" aria-hidden="true">→</span></button>
+      </div>
+      <p class="book-out t-small" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section class="facts container" aria-label="Halden in numbers">
+    <dl class="facts-list" data-reveal-group>
+      <div class="fact"><dt>rooms</dt><dd>14</dd></div>
+      <div class="fact"><dt>wood-fired sauna, on the water</dt><dd>1</dd></div>
+      <div class="fact"><dt>seats in the farm kitchen</dt><dd>20</dd></div>
+      <div class="fact"><dt>kroner a night is where rooms start</dt><dd>2,400</dd></div>
+    </dl>
+  </section>
+
+  <section class="heat band" id="heat" data-theme="dark" aria-labelledby="heat-h">
+    <div class="container grid heat-grid">
+      <div class="heat-copy">
+        <p class="t-label chapter">01 <span aria-hidden="true">·</span> Heat &amp; cold</p>
+        <h2 class="t-h2" id="heat-h">A sauna on the water. <span class="tail">The ladder goes straight down into the fjord.</span></h2>
+        <p class="heat-lede">It is small, wood-fired and close enough to the fjord that hot and cold are a few rungs apart.</p>
+      </div>
+      <figure class="heat-photo mist" data-reveal>
+        <picture>
+          <source srcset="media/sauna-856.webp" type="image/webp">
+          <img src="media/sauna-856.jpg" width="856" height="461" loading="lazy"
+               alt="The black timber sauna up close: a deck and wooden ladder over the water, smoke from the chimney, birches on the rocks behind">
+        </picture>
+      </figure>
+      <ol class="ritual" data-reveal-group aria-label="How the sauna goes">
+        <li><span class="t-label">01</span><h3 class="t-h3">Heat</h3><p>Sit by the stove until you have had enough.</p></li>
+        <li><span class="t-label">02</span><h3 class="t-h3">Cold</h3><p>Down the ladder and into the fjord. Breathe out slowly.</p></li>
+        <li><span class="t-label">03</span><h3 class="t-h3">Air</h3><p>Back up to the deck. Stand in the mist for a minute.</p></li>
+        <li><span class="t-label">04</span><h3 class="t-h3">Again</h3><p>Back inside, and round as many times as you like.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="dinner" id="dinner" aria-labelledby="dinner-h">
+    <div class="dinner-frame">
+      <figure class="dinner-photo mist" data-reveal>
+        <picture>
+          <source media="(max-width:760px)" srcset="media/kitchen-m-1000.webp" type="image/webp">
+          <source media="(max-width:760px)" srcset="media/kitchen-m-1000.jpg">
+          <source srcset="media/kitchen-960.webp 960w, media/kitchen-1448.webp 1448w" sizes="100vw" type="image/webp">
+          <img src="media/kitchen-1448.jpg" srcset="media/kitchen-960.jpg 960w, media/kitchen-1448.jpg 1448w" sizes="100vw" width="1448" height="1086" loading="lazy"
+               alt="A long wooden table set for dinner in a timber room, candles lit, bowls of potatoes and fish, and big windows onto the fjord at dusk">
+        </picture>
+      </figure>
+      <div class="dinner-copy" data-theme="dark">
+        <p class="t-label chapter">02 <span aria-hidden="true">·</span> Dinner</p>
+        <h2 class="t-h2" id="dinner-h">One long table, twenty seats. <span class="tail">The fjord goes dark in the windows.</span></h2>
+        <p>Dinner is in the farm kitchen. Sit where you like and stay as long as the candles last.</p>
+        <p class="ph-chip"><span>Placeholder</span> Dinner times and menu to come</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sleep" id="sleep" aria-labelledby="sleep-h">
+    <div class="container grid sleep-grid">
+      <div class="sleep-copy">
+        <p class="t-label chapter">03 <span aria-hidden="true">·</span> Sleep</p>
+        <h2 class="t-h2" id="sleep-h">Fourteen rooms. Linen, birch and a window full of fjord.</h2>
+      </div>
+      <div class="sleep-detail">
+        <p>Wake to whatever the weather is doing on the water, then go and look at it from the sauna.</p>
+        <p class="price"><span class="t-label">Rooms from</span> <span class="price-n">NOK 2,400</span> <span class="price-u">a night</span></p>
+        <a class="btn btn--primary" href="#book" data-book>Check dates <span class="arr" aria-hidden="true">→</span></a>
+        <p class="ph-chip"><span>Placeholder</span> Room types and layouts to come</p>
+      </div>
+      <figure class="sleep-photo mist" data-reveal>
+        <picture>
+          <source media="(max-width:760px)" srcset="media/room-m-1068.webp" type="image/webp">
+          <source media="(max-width:760px)" srcset="media/room-m-1068.jpg">
+          <source srcset="media/room-960.webp 960w, media/room-1448.webp 1448w" sizes="(max-width:760px) 100vw, 66vw" type="image/webp">
+          <img src="media/room-1448.jpg" srcset="media/room-960.jpg 960w, media/room-1448.jpg 1448w" sizes="(max-width:760px) 100vw, 66vw" width="1448" height="1086" loading="lazy"
+               alt="A quiet room with a linen bed, a birch chair with a blanket over it, and a big window onto the fjord and low cloud">
+        </picture>
+      </figure>
+    </div>
+  </section>
+
+  <section class="season container" id="season" aria-labelledby="season-h">
+    <div class="season-head">
+      <p class="t-label chapter">Season</p>
+      <h2 class="t-h2" id="season-h">Open March to November. <span class="tail">Closed through the dark months.</span></h2>
+      <p class="season-note">Any night in the season can be booked, one room or all fourteen. From December to February the house is shut.</p>
+    </div>
+    <ol class="months" aria-label="The season, month by month">
+      <li class="m is-closed"><span class="m-name">Jan</span><span class="m-state">Closed</span></li>
+      <li class="m is-closed"><span class="m-name">Feb</span><span class="m-state">Closed</span></li>
+      <li class="m"><span class="m-name">Mar</span><span class="m-state">Open</span></li>
+      <li class="m"><span class="m-name">Apr</span><span class="m-state">Open</span></li>
+      <li class="m"><span class="m-name">May</span><span class="m-state">Open</span></li>
+      <li class="m"><span class="m-name">Jun</span><span class="m-state">Open</span></li>
+      <li class="m"><span class="m-name">Jul</span><span class="m-state">Open</span></li>
+      <li class="m"><span class="m-name">Aug</span><span class="m-state">Open</span></li>
+      <li class="m"><span class="m-name">Sep</span><span class="m-state">Open</span></li>
+      <li class="m"><span class="m-name">Oct</span><span class="m-state">Open</span></li>
+      <li class="m"><span class="m-name">Nov</span><span class="m-state">Open</span></li>
+      <li class="m is-closed"><span class="m-name">Dec</span><span class="m-state">Closed</span></li>
+    </ol>
+  </section>
+
+  <section class="finale" id="book" aria-labelledby="finale-h">
+    <div class="container">
+      <h2 class="t-display finale-h" id="finale-h">Pick your nights. <span class="tail">The fjord isn’t going anywhere.</span></h2>
+      <form class="book book--finale" data-booking aria-label="Check dates" novalidate>
+        <div class="book-row">
+          <button type="button" class="cell" data-field="in" aria-haspopup="dialog"><span class="t-label">Arrive</span><span class="cell-v" data-v="in">Add date</span></button>
+          <button type="button" class="cell" data-field="out" aria-haspopup="dialog"><span class="t-label">Leave</span><span class="cell-v" data-v="out">Add date</span></button>
+          <label class="cell cell--rooms"><span class="t-label">Rooms</span>
+            <select name="rooms" class="cell-v">
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option>
+              <option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option>
+            </select>
+          </label>
+          <button class="btn btn--primary book-go" type="submit">Check dates <span class="arr" aria-hidden="true">→</span></button>
+        </div>
+        <p class="book-out t-small" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="container foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="#top" aria-label="Halden, back to the top">
+        <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 13.5V8.6L12 4l6 4.6v4.9z" fill="currentColor"/><path d="M3 16h18M7 19h10M10 21.6h4" stroke="currentColor" stroke-width="1.4"/></svg>
+        <span>Halden</span>
+      </a>
+      <p class="t-small foot-legal">© 2026 Halden. A fictional hotel, made as a design study.<br>The photographs are generated images of a place that does not exist.</p>
+    </div>
+    <div class="foot-col">
+      <h2 class="t-label">Stay</h2>
+      <ul>
+        <li><a href="#heat">Sauna</a></li>
+        <li><a href="#dinner">Kitchen</a></li>
+        <li><a href="#sleep">Rooms</a></li>
+        <li><a href="#season">Season</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h2 class="t-label">Visit</h2>
+      <ul>
+        <li><a href="#book" data-book>Check dates</a></li>
+        <li>Address <span class="ph-chip ph-chip--sm"><span>Placeholder</span></span></li>
+        <li>Email <span class="ph-chip ph-chip--sm"><span>Placeholder</span></span></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h2 class="t-label">Legal</h2>
+      <ul>
+        <li><a href="legal.html#terms">Terms</a></li>
+        <li><a href="legal.html#privacy">Privacy</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h2 class="t-label">Season</h2>
+      <ul>
+        <li><span data-status>Open March to November</span></li>
+        <li>Local time <time data-clock="Europe/Oslo">--:--</time></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-art" aria-hidden="true">
+    <picture>
+      <source media="(max-width:760px)" srcset="media/shore-m-900.webp" type="image/webp">
+      <source media="(max-width:760px)" srcset="media/shore-m-900.jpg">
+      <source srcset="media/shore-960.webp 960w, media/shore-1916.webp 1916w" sizes="100vw" type="image/webp">
+      <img src="media/shore-1916.jpg" srcset="media/shore-960.jpg 960w, media/shore-1916.jpg 1916w" sizes="100vw" width="1916" height="821" loading="lazy" alt="">
+    </picture>
+  </div>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

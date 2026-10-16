@@ -70,6 +70,13 @@ Polished visuals don't excuse broken copy, and these slip through because nobody
 - **Clever footer colophons** ("Printed in two inks: pink for what's moved…", "This page: 1 box, 0 any"). Real readers called them AI and didn't understand them. Footers say plain things, and include Terms and Privacy.
 Read the page once, aloud, top to bottom, before you call it done.
 
+## Portfolio and studio sites read "vibe coded" when the build performs
+
+A studio's own site rejected by its owner as "very vibe coded" stacked the devices: grease-pencil circles, an auto-advancing index with a pause button, mono spec labels ("1440 × 900 ▸ 01A"), a proof-sheet section, paper cards on a near-black page with an orange CTA, and 16 screens of chrome around the work.
+- **For portfolios the work is the design.** Show big screenshots with few words, generous space and one typeface used well. Leave out spec labels and machine-looking metadata, and use no more than one signature device.
+- **Write for buyers, not developers:** "checked on desktop and phone before launch", not "audited at 1440 and 390px"; no internal jargon (Spine, image series, tokens).
+- **Don't lead with the tooling.** Clients buy the outcome. Never claim a process that isn't true either: no "hand-drawn", "shot by us", invented team sizes or clients.
+
 ## Self-review prompts (ask before shipping)
 
 1. Cover the logo. Could this be any other company's site? If yes, the motif and voice are too weak.

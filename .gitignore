@@ -27,6 +27,7 @@
 !/tests/builds/tally/
 !/tests/builds/fieldwork/
 !/tests/builds/relay/
+!/tests/builds/relay3/
 !/tests/builds/halden2/
 !/tests/builds/kestrel2/
 !/tests/builds/onair/

@@ -24,7 +24,7 @@ const PROJECTS = [
   { slug: 'sprout3', name: 'Sprout', kind: 'Consumer app', brief: 'A plant-care app for people who keep killing their plants. Photograph a plant and it becomes a character that tells you when it’s thirsty, cold or stuck in the dark.', line: 'Needle-felted plants on a pink wall, each speaking up in a notification bubble.', accent: '#2F4A2C' },
   { slug: 'tally3', name: 'Tally', kind: 'Fintech API', brief: 'A payroll API that pays contractors in 90 countries in local currency, with tax forms and classification handled. For engineers and finance leads.', line: 'Frosted-glass coins arcing off a glass globe; a live payout card and a coin-per-contractor price slider.', accent: '#1D3CF2' },
   { slug: 'fieldwork3', name: 'Fieldwork', kind: 'Landscape architecture', brief: 'A 22-person Rotterdam studio designing parks, waterfronts and streets that hold rainwater, looking for commissions and recruits.', line: 'Architects’ watercolours: one square in two weathers, with pencil notes.', accent: '#2C4F6B' },
-  { slug: 'relay', name: 'Relay', kind: 'Developer tool', brief: 'An AI code reviewer that reads every pull request, comments on the line, and learns a team’s conventions. For staff engineers and their managers.', line: 'A real pull-request review is the hero.', accent: '#F2A93B' },
+  { slug: 'relay3', name: 'Relay', kind: 'Developer tool', brief: 'An AI code reviewer that reads every pull request, comments on the line, and learns a team’s conventions. For staff engineers and their managers.', line: 'Watch-movement macro photography: the review lands on the line like a jewel in its bearing.', accent: '#C9A063' },
   { slug: 'halden3', name: 'Halden', kind: 'Hospitality', brief: 'A fourteen-room hotel on a Norwegian fjord with a sauna on the water and a twenty-seat farm kitchen. Open March to November.', line: 'Nordic film photography; a booking bar on the fjord and a season calendar with the winter in mist.', accent: '#1B1E22' },
   { slug: 'onair3', name: 'On Air', kind: 'Podcast studio', brief: 'A four-person Manchester studio that takes a founder from first recording to a launched show: a six-week Pilot or a monthly Season.', line: 'Hard-flash studio still lifes on signal red; the page runs like a show’s running order.', accent: '#E8432A' },
   { slug: 'lantern3', name: 'Lantern', kind: 'Research lab', brief: 'A twelve-person nonprofit lab in Edinburgh studying when and why AI models change their answers under pressure. Papers, open datasets and a quarterly drift report.', line: 'Two-colour linocuts of Edinburgh lit by one lantern; every paper slot honestly empty.', accent: '#E39B2D' },
@@ -56,9 +56,9 @@ for (const p of PROJECTS) {
   p.register = (p.spine.REGISTER || '').match(/Quiet|Confident|Loud/i)?.[0] || '';
   p.register = p.register ? p.register[0].toUpperCase() + p.register.slice(1).toLowerCase() : '';
   if (!p.register) p.register = { relay: 'Confident' }[p.slug] || 'Confident';   // Relay predates the REGISTER line
-  p.direction = (p.spine.DIRECTION || '').split(/[.—–:(]/)[0].replace(/^\s*\d+\s*/, (d) => d).trim();   // drop '(studio / service variant)'-style asides
+  p.direction = (p.spine.DIRECTION || '').split(/[.—–:(,]/)[0].replace(/^\s*\d+\s*/, (d) => d).trim();   // drop '(studio / service variant)'-style asides
   p.dirNo = (p.spine.DIRECTION || '').match(/^\s*(\d+)/)?.[1]?.padStart(2, '0') || '';
-  p.dirName = (p.spine.DIRECTION || '').replace(/^\s*\d+\s*/, '').split(/[.—–(]/)[0].trim();
+  p.dirName = (p.spine.DIRECTION || '').replace(/^\s*\d+\s*/, '').split(/[.—–(,]/)[0].trim();
   p.palette = [...new Set(((p.spine.PALETTE || '') + ' ' + (p.spine.AXES || '')).match(/#[0-9A-Fa-f]{6}\b/g) || [])].slice(0, 6);
   try { const a = JSON.parse(read(path.join(SRC, 'media', `audit-${p.slug}.json`))); p.audit = a.counts; p.defaultLook = (a.findings.find((f) => f.rule === 'style.defaultLook')?.msg.match(/(\d)\/6/) || [])[1]; } catch { p.audit = null; }
   try { p.meta = JSON.parse(read(path.join(SRC, 'media', p.slug, 'meta.json'))); } catch { p.meta = { slices: 0, vh: '' }; }
@@ -241,7 +241,7 @@ function workIndex() {
     body: `
 <section class="page-head wrap">
   <h1 class="page-h" data-split="words">Work</h1>
-  <p class="page-sub" data-reveal>${Ncap} briefs given to ${N} agents that read only the skill, across nine of its eleven directions. Every build but one has its own image series, generated with Codex to a written style bible: photographs, engravings, clay, gouache, risograph, felt, glass, watercolour, linocut. All of it is concept work for fictional brands, reviewed by eye and passed by the skill’s audit at 1440 and 390&nbsp;pixels.</p>
+  <p class="page-sub" data-reveal>${Ncap} briefs given to ${N} agents that read only the skill, across nine of its eleven directions. Every build has its own image series, generated with Codex to a written style bible: photographs, engravings, clay, gouache, risograph, felt, glass, watercolour, linocut. All of it is concept work for fictional brands, reviewed by eye and passed by the skill’s audit at 1440 and 390&nbsp;pixels.</p>
   <div class="filters" role="group" aria-label="Filter by register" data-reveal>
     ${['All', ...['Loud', 'Confident', 'Quiet'].filter((r) => PROJECTS.some((p) => p.register === r))].map((f, i) => `<button type="button" class="chip" aria-pressed="${i === 0}" data-filter="${f.toLowerCase()}">${f}<span class="chip-n">${f === 'All' ? total : PROJECTS.filter((p) => p.register === f).length}</span></button>`).join('')}
   </div>

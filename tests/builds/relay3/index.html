@@ -1,0 +1,322 @@
+<!--
+DESIGN SPINE · Relay (fictional)
+DIRECTION   : 11 Bright Product, played on the series' own graphite. Staff engineers and EMs want to see the product do its one thing (a comment on the exact line), and one art-directed image system gives a code tool a world that isn't another dark dashboard.
+REGISTER    : Confident. The bold device: one macro photograph of a watch movement at full bleed, composed for the headline, with the product window crossing its bottom edge.
+AXES        : ground tinted dark (graphite #1E1C1B sampled from the photographs) · type genre contemporary book serif display (Newsreader 400) + grotesk text · image medium macro photography (generated series) + product UI rebuilt in HTML · composition photo stage with UI vignettes crossing image edges · motion feel rack focus: photographs resolve from blur to sharp like a macro lens pulling focus; vignettes play their one action
+DEFAULT?    : 1/6 (near-black ink at 400 only; no off-white, no mono label layer, no metadata bands, no line drawing, accent is a fill) → DIFFERENT FROM DEFAULT BY: ground, hero medium, label voice, metadata layer
+MOTIF       : the jewel bearing (a brass ring holding a ruby). 1 logo mark in the nav and footer (20px) · 2 the gutter marker on the exact line in the review window (ruby jewel, 10px) · 3 Relay's avatar in every comment · 4 the list marker beside each learned convention · 5 favicon
+TYPE        : display Newsreader 400 (opsz) · text Geist 400/500 · mono Geist Mono 400 (code, file paths and PR numbers inside product UI only)
+SCALE       : display clamp(44px → 76px)/1.02/−0.02em · h2 clamp(32px → 50px)/1.06/−0.015em · h3 24px serif · body 16px/1.6 +0.005em · small 13px · labels 13px sentence case (no uppercase labels)
+PALETTE     : paper #1E1C1B · surface #262422 · ink #EDE8E0 · ink-2 ink @72% · ink-3 ink @58% · hairline ink @10% · accent brass #C9A46A → ONLY the primary button fill and the selection/focus ring · ruby #C23452 → ONLY the jewel (motif), never text
+GRID        : 12 / 24px · container 1280px · side margin 20 → 80px · section rhythm 96–144px, a 200px void before pricing
+HERO        : H19 photo composed for the headline: movement in the right 45%, h1 + lede + 2 CTAs on the clean graphite left; the review window crosses the photo's bottom edge
+IMAGERY     : macro photography (4 generated shots) + product UI in HTML (a PR diff with one line comment, three vignettes)
+CONVERSION  : "Install on GitHub" → nav (persistent), hero primary, both pricing cards, finale
+MOTION      : house ease cubic-bezier(.2,.8,.2,1) · UI 160ms · reveal 650ms fade + 8px · media: rack focus blur(14px) → 0 over 1.3s · vignettes play once on view · text never moves
+IMAGES      : medium      real-looking macro photography of a fine mechanical watch movement and watchmaker's tools: brass and steel gears, jewels, screws, tweezers, a loupe
+              surface     a matte black or deep graphite surface
+              light       one warm key light from the upper left, deep shadows, razor-thin depth of field, precise and quiet
+              palette     graphite, steel, warm brass, one ruby-red jewel accent
+              type zone   hero: left 50% clean graphite · loupe, detail: left third clean · tools: top 55% clean
+              exclude     no text, no numbers, no dial markings, no logos, no watermarks, no hands or people
+              shot list   hero 21:9 (open movement, right 45%) · loupe 4:3 · detail 4:3 (meshing teeth, one ruby) · tools 21:9 footer (row along the bottom edge)
+              crops       hero → desktop cover at 88% x · mobile 1056×821 crop of the movement · step 3 card (gears) · loupe → step 1 card + persona plate · detail → step 2 card + finale band · tools → footer (mobile 960×521 crop)
+NAMING      : none (the metaphor lives in the images and the jewel, not in renamed tiers)
+SIGNATURES  : §68 photo composed for the headline · §69 UI vignettes on crops of the series, one crossing the photo's edge · §76 finale image rising from the bottom edge under a plain footer
+VOICE       : hero "Every pull request, read to the line." · section "Resolve it once. Relay reviews the next pull request with it." · CTA "Install on GitHub"
+PLACEHOLDERS: no customer logos, quotes or metrics exist; the proof slot is a visible Placeholder card, listed in the FAQ.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relay · An AI code reviewer that reads to the line</title>
+<meta name="description" content="Relay reads every pull request, comments on the exact line, and learns your team's conventions from resolved review threads. Free for open source. A fictional product.">
+<meta name="theme-color" content="#1E1C1B">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E1C1B'/%3E%3Ccircle cx='16' cy='16' r='9' fill='none' stroke='%23C9A46A' stroke-width='3'/%3E%3Ccircle cx='16' cy='16' r='4.5' fill='%23C23452'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Geist+Mono:wght@400&family=Newsreader:opsz,wght@6..72,400&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="media/hero-1916.webp" media="(min-width:761px)" fetchpriority="high">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--primary btn--sm" href="#main">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="jewel" viewBox="0 0 20 20">
+      <circle cx="10" cy="10" r="7.6" fill="none" stroke="#C9A46A" stroke-width="2.4"/>
+      <circle cx="10" cy="10" r="3.9" fill="#C23452"/>
+      <circle cx="8.8" cy="8.7" r="1.1" fill="#F4B9C4" opacity=".85"/>
+    </symbol>
+  </defs>
+</svg>
+
+<nav class="nav" aria-label="Main">
+  <div class="container nav-in">
+    <a class="brand" href="#top" aria-label="Relay, home"><svg class="brand-mark" aria-hidden="true"><use href="#jewel"/></svg><span>Relay</span></a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#questions">Questions</a>
+    </div>
+    <a class="btn btn--brass btn--sm" href="#install">Install on GitHub</a>
+  </div>
+</nav>
+
+<main id="main">
+  <header class="hero" id="top">
+    <picture class="hero-photo">
+      <source media="(max-width:760px)" srcset="media/hero-m-780.webp 780w, media/hero-m-1056.webp 1056w" sizes="100vw" type="image/webp">
+      <source media="(max-width:760px)" srcset="media/hero-m-780.jpg 780w, media/hero-m-1056.jpg 1056w" sizes="100vw">
+      <source srcset="media/hero-960.webp 960w, media/hero-1916.webp 1916w" sizes="100vw" type="image/webp">
+      <img src="media/hero-1916.jpg" srcset="media/hero-960.jpg 960w, media/hero-1916.jpg 1916w" sizes="100vw" width="1916" height="821" fetchpriority="high"
+        alt="An open mechanical watch movement on dark graphite: brass and steel gears, screws and a ruby jewel in sharp focus.">
+    </picture>
+    <div class="container hero-copy">
+      <p class="kicker">An AI code reviewer for GitHub</p>
+      <h1 class="t-display">Every pull request, read&nbsp;to&nbsp;the&nbsp;line.</h1>
+      <p class="t-lead lede">Relay reads every pull request, comments on the exact line, and learns your team's conventions from the review threads you resolve.</p>
+      <div class="ctas">
+        <a class="btn btn--brass" href="#install">Install on GitHub <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn btn--quiet" href="#review">Read a sample review</a>
+      </div>
+      <p class="terms">Free for open source. Team is USD 24 per developer a month.</p>
+    </div>
+  </header>
+
+  <section class="review" id="review" aria-labelledby="review-h">
+    <div class="container review-grid">
+      <figure class="pr window" data-play role="img"
+        aria-label="A sample pull request in GitHub. On line 41 of src/webhooks/deliver.ts, Relay comments: this retries every 4xx, including 410 Gone and 401; this repo logs and drops permanent failures instead of retrying, as settled in thread #3980. It suggests checking isRetryable(res.status).">
+        <div class="pr-head">
+          <span class="pr-repo">orbit / billing-api</span>
+          <span class="pr-title">Retry failed webhook deliveries with backoff <span class="pr-num">#4127</span></span>
+          <span class="pr-tabs"><span>Conversation</span><span class="on">Files changed <b>6</b></span><span>Checks</span></span>
+        </div>
+        <div class="pr-file"><span>src/webhooks/deliver.ts</span><span class="pr-delta"><i>+38</i> <s>−9</s></span></div>
+        <div class="diff">
+          <div class="ln"><b>36</b><code>  for (let attempt = 0; attempt &lt; MAX_ATTEMPTS; attempt++) {</code></div>
+          <div class="ln"><b>37</b><code>    const res = await send(endpoint, signed(payload));</code></div>
+          <div class="ln"><b>38</b><code>    if (res.ok) return markDelivered(delivery.id);</code></div>
+          <div class="ln add"><b>39</b><code>+   log.warn('webhook.failed', { status: res.status, attempt });</code></div>
+          <div class="ln add hit"><b>40</b><code>+   if (res.status &gt;= 400) {</code></div>
+          <div class="ln add hit"><b>41</b><svg class="gem" aria-hidden="true"><use href="#jewel"/></svg><code>+     await sleep(backoff(attempt));</code></div>
+          <div class="ln add"><b>42</b><code>+     continue;</code></div>
+          <div class="ln add"><b>43</b><code>+   }</code></div>
+        </div>
+        <div class="cmt">
+          <div class="cmt-who"><svg class="av" aria-hidden="true"><use href="#jewel"/></svg><b>Relay</b><span>commented on lines 40–41</span></div>
+          <p>This retries every 4xx, including <code>410 Gone</code> and <code>401</code>. In this repo, permanent failures are logged and dropped, not retried.</p>
+          <div class="sugg">
+            <div class="ln del"><code>-   if (res.status &gt;= 400) {</code></div>
+            <div class="ln add"><code>+   if (isRetryable(res.status)) {</code></div>
+          </div>
+          <p class="cite"><span class="chip">Learned from #3980</span> resolved by @mara.okafor</p>
+        </div>
+      </figure>
+
+      <div class="review-copy">
+        <h2 class="t-h2" id="review-h">It comments where the problem is. <span class="dim">Then shows where it learned to.</span></h2>
+        <ul class="facts">
+          <li>Installs on GitHub. Reviews arrive in the pull request, not in another tab.</li>
+          <li>One comment on the line, with the reason, instead of a summary at the top.</li>
+          <li>Every convention it applies traces back to a thread your team resolved.</li>
+        </ul>
+        <p class="sample-note">A sample review. The repository, people and thread numbers are fictional.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="how section" id="how" aria-labelledby="how-h">
+    <div class="container">
+      <div class="how-head">
+        <h2 class="t-h2" id="how-h">Three things, on every pull request. <span class="dim">In the order a careful reviewer does them.</span></h2>
+      </div>
+      <ol class="steps" data-reveal-group>
+        <li class="step">
+          <div class="step-media">
+            <img src="media/loupe-720.jpg" srcset="media/loupe-720.webp 720w, media/loupe-1448.webp 1448w" sizes="(max-width:760px) 92vw, 400px" width="720" height="540" loading="lazy" alt="A watchmaker's loupe beside a single tiny gear on a dark work mat." style="object-position:78% 60%">
+            <div class="vig vig-queue" data-play role="img" aria-label="A queue of three pull requests: #4127 being read now, #4126 and #4124 reviewed.">
+              <div class="q"><span class="q-n">#4127</span><span class="q-t">Retry failed webhook deliveries</span><span class="q-s reading">Reading</span></div>
+              <div class="q"><span class="q-n">#4126</span><span class="q-t">Bump eslint to 9.12</span><span class="q-s">Reviewed</span></div>
+              <div class="q"><span class="q-n">#4124</span><span class="q-t">Split invoice totals by tax rate</span><span class="q-s">Reviewed</span></div>
+            </div>
+          </div>
+          <div class="step-text">
+            <h3 class="t-h3">It reads the whole diff</h3>
+            <p>Every pull request, not a sample of them. The one-line dependency bump gets read too.</p>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step-media">
+            <img src="media/detail-720.jpg" srcset="media/detail-720.webp 720w, media/detail-1448.webp 1448w" sizes="(max-width:760px) 92vw, 400px" width="720" height="540" loading="lazy" alt="Extreme macro of brass gear teeth meshing beside a single ruby jewel." style="object-position:80% 30%">
+            <div class="vig vig-line" data-play role="img" aria-label="Lines 40 to 42 of a diff, with Relay's marker on line 41 and a short comment: retries 410 Gone; this repo drops permanent failures.">
+              <div class="ln"><b>40</b><code>if (res.status &gt;= 400) {</code></div>
+              <div class="ln hit"><b>41</b><svg class="gem" aria-hidden="true"><use href="#jewel"/></svg><code>  await sleep(backoff(n));</code></div>
+              <div class="ln"><b>42</b><code>  continue;</code></div>
+              <p class="vig-cmt">Retries <code>410 Gone</code>. This repo drops permanent failures.</p>
+            </div>
+          </div>
+          <div class="step-text">
+            <h3 class="t-h3">It comments on the exact line</h3>
+            <p>Not a wall of notes at the top of the pull request. The line, and the reason it matters here.</p>
+          </div>
+        </li>
+        <li class="step">
+          <div class="step-media">
+            <img src="media/hero-960.jpg" srcset="media/hero-960.webp 960w, media/hero-1916.webp 1916w" sizes="(max-width:760px) 180vw, 900px" width="960" height="411" loading="lazy" alt="Brass and steel gears meshing inside an open watch movement." style="object-position:72% 40%">
+            <div class="vig vig-thread" data-play role="img" aria-label="A review thread: @mara.okafor writes 'We don't retry permanent failures. Log it and drop it.' The thread is resolved, and Relay records the convention.">
+              <p class="t-msg"><b>@mara.okafor</b> We don't retry permanent failures. Log it and drop it.</p>
+              <p class="t-res">Thread resolved</p>
+              <p class="t-learn"><svg class="gem" aria-hidden="true"><use href="#jewel"/></svg>Convention: retry only 408, 429 and 5xx</p>
+            </div>
+          </div>
+          <div class="step-text">
+            <h3 class="t-h3">It learns from resolved threads</h3>
+            <p>Resolve a thread once. Relay reviews the next pull request with what your team decided.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="people section" aria-labelledby="people-h">
+    <div class="container people-grid">
+      <div class="people-copy">
+        <h2 class="t-h2" id="people-h">For the people who review the most.</h2>
+        <div class="role">
+          <h3 class="t-h3">Staff engineers</h3>
+          <p>Stop leaving the same comment on pull request after pull request. Settle it once in a thread, and Relay carries it into every review that follows.</p>
+        </div>
+        <div class="role">
+          <h3 class="t-h3">Engineering managers</h3>
+          <p>Review standards stop living in two people's heads. They come from threads your engineers resolved, and they're applied on every pull request.</p>
+        </div>
+      </div>
+      <div class="plate">
+        <img class="plate-img" src="media/loupe-1448.jpg" srcset="media/loupe-720.webp 720w, media/loupe-1448.webp 1448w" sizes="(max-width:760px) 100vw, 60vw" width="1448" height="1086" loading="lazy" alt="A watchmaker's loupe resting beside a single tiny gear on a dark work mat, lit warmly from the upper left.">
+        <figure class="rules window" data-play role="img" aria-label="Conventions Relay has learned in orbit/billing-api: permanent failures are logged, not retried, from #3980; money is integer cents, never floats, from #3712; new endpoints need an idempotency key, from #3655.">
+          <p class="rules-h">Conventions · <span>orbit/billing-api</span></p>
+          <ul>
+            <li><svg class="gem" aria-hidden="true"><use href="#jewel"/></svg><span>Permanent failures are logged, not retried</span><em>#3980</em></li>
+            <li><svg class="gem" aria-hidden="true"><use href="#jewel"/></svg><span>Money is integer cents, never floats</span><em>#3712</em></li>
+            <li><svg class="gem" aria-hidden="true"><use href="#jewel"/></svg><span>New endpoints need an idempotency key</span><em>#3655</em></li>
+          </ul>
+          <p class="rules-f">Each one links to the thread it came from.</p>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing section" id="pricing" aria-labelledby="pricing-h">
+    <div class="container pricing-grid">
+      <div class="pricing-head">
+        <h2 class="t-h2" id="pricing-h">Two plans.<br> <span class="dim">One of them is free.</span></h2>
+        <p class="dim">Open-source projects never pay. Teams pay per developer, by the month.</p>
+      </div>
+      <div class="plans" id="install" data-reveal-group>
+        <article class="plan">
+          <h3 class="t-h3">Open source</h3>
+          <p class="price"><span class="amt t-num">$0</span><span class="per">free for open-source projects</span></p>
+          <a class="btn btn--line" href="#install">Install on GitHub</a>
+        </article>
+        <article class="plan plan--team">
+          <h3 class="t-h3">Team</h3>
+          <p class="price"><span class="amt t-num">$24</span><span class="per">USD per developer, per month</span></p>
+          <a class="btn btn--brass" href="#install">Install on GitHub <span class="arr" aria-hidden="true">→</span></a>
+        </article>
+        <p class="both"><b>Both plans:</b> every pull request read, comments on the exact line, conventions learned from your resolved threads.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq section" id="questions" aria-labelledby="faq-h">
+    <div class="container faq-grid">
+      <div class="faq-side">
+        <h2 class="t-h2" id="faq-h">Questions</h2>
+        <aside class="proof" aria-label="Proof placeholder">
+          <span class="ph-chip">Placeholder</span>
+          <p>Relay has no customer logos, quotes or metrics yet, so this page shows none. Real early-access quotes go here, named and dated, once they exist.</p>
+        </aside>
+      </div>
+      <div class="qa">
+        <details open>
+          <summary>Where does Relay leave its comments?</summary>
+          <p>In the pull request, on the exact line it's talking about, the way a person reviewing in GitHub would.</p>
+        </details>
+        <details>
+          <summary>Where do the conventions come from?</summary>
+          <p>From review threads your team has resolved. Relay learns how a discussion ended and applies that to later pull requests.</p>
+        </details>
+        <details>
+          <summary>Does it review every pull request?</summary>
+          <p>Yes. Relay reads every pull request, not a sample.</p>
+        </details>
+        <details>
+          <summary>What does it cost?</summary>
+          <p>Nothing for open source. The Team plan is USD 24 per developer per month.</p>
+        </details>
+        <details>
+          <summary>Who is it for?</summary>
+          <p>Staff engineers, who do much of a team's reviewing, and the engineering managers responsible for how review works.</p>
+        </details>
+        <details>
+          <summary>Is Relay a real product?</summary>
+          <p>No. Relay is fictional, made to show a design. The sample repository, people and thread numbers are invented for the product illustrations, and the proof slot is marked as a placeholder.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="finale" aria-labelledby="finale-h">
+    <div class="container">
+      <div class="finale-band">
+        <img src="media/detail-1448.jpg" srcset="media/detail-720.webp 720w, media/detail-1448.webp 1448w" sizes="(max-width:760px) 100vw, 1280px" width="1448" height="1086" loading="lazy" alt="" data-media>
+        <div class="finale-copy">
+          <h2 class="t-display" id="finale-h">Resolve it once. <span class="dim">Relay remembers.</span></h2>
+          <a class="btn btn--brass" href="#install">Install on GitHub <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="container foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="#top" aria-label="Relay, back to top"><svg class="brand-mark" aria-hidden="true"><use href="#jewel"/></svg><span>Relay</span></a>
+      <p class="dim">© 2026 Relay. A fictional product.</p>
+    </div>
+    <div class="foot-col">
+      <p class="foot-h">Product</p>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#questions">Questions</a>
+    </div>
+    <div class="foot-col">
+      <p class="foot-h">Get started</p>
+      <a href="#install">Install on GitHub</a>
+      <a href="#pricing">Free for open source</a>
+    </div>
+    <div class="foot-col">
+      <p class="foot-h">Legal</p>
+      <a href="legal.html#terms">Terms</a>
+      <a href="legal.html#privacy">Privacy</a>
+    </div>
+  </div>
+  <picture class="foot-art" aria-hidden="true">
+    <source media="(max-width:760px)" srcset="media/tools-m-960.webp" type="image/webp">
+    <source media="(max-width:760px)" srcset="media/tools-m-960.jpg">
+    <source srcset="media/tools-960.webp 960w, media/tools-1916.webp 1916w" sizes="100vw" type="image/webp">
+    <img src="media/tools-1916.jpg" width="1916" height="821" loading="lazy" alt="">
+  </picture>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

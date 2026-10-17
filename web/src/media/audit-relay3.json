@@ -1,0 +1,619 @@
+{
+ "url": "http://127.0.0.1:62649/",
+ "outDir": "/tmp/relay3-audit",
+ "ms": 43684,
+ "counts": {
+  "WARN": 1,
+  "PASS": 11,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Geist×66",
+   "Geist Mono×38",
+   "Newsreader×23"
+  ],
+  "display": [
+   "76px/1.02/-0.02em w400 \"Resolve it once. Relay remem\"",
+   "76px/1.02/-0.02em w400 \"Relay remembers.\"",
+   "72px/1.02/-0.02em w400 \"Every pull request, read to \""
+  ],
+  "bodySize": "13",
+  "weights": [
+   "400×117",
+   "500×10"
+  ],
+  "upperShare": 0,
+  "paper": "rgb(30,28,27)",
+  "accents": [
+   "rgb(201,164,106) bg a.btn"
+  ],
+  "buttons": [
+   "pill 36px \"Install on GitHub\"",
+   "pill 48px \"Install on GitHub\n→\"",
+   "pill 48px \"Read a sample review\"",
+   "pill 48px \"Install on GitHub\"",
+   "pill 48px \"Install on GitHub\n→\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)",
+   "cubic-bezier(.2,.8,.2,1)"
+  ],
+  "nav": {
+   "h": 864,
+   "links": 2
+  },
+  "pageVh": 6.6
+ },
+ "findings": [
+  {
+   "level": "WARN",
+   "rule": "layout.rhythm",
+   "msg": "Section heights are nearly uniform (CV 0.16). Vary density: tight band, big void, full-bleed, narrow column."
+  },
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "3 families: Geist, Geist Mono, Newsreader"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 76px · lh 1.02 · -0.02em · weight 400 · Newsreader)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (3/6 traits: hairlineBands, tinyAccent, lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "One accent hue (30° (w7) e.g. rgb(201,164,106) bg a.btn)"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 52 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 21 text elements over imagery meet AA (sampled from pixels)"
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: pill"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "2 hero CTA(s)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.2,0.8,0.2,1)×26, cubic-bezier(0.4,0,0.2,1)×7, cubic-bezier(0.34,1.56,0.64,1)×6"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (8/21 paragraphs wait for scroll)"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 0.4% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 6.6 viewports (direction 11 norm 7–12)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/relay3-audit/desktop-hero.png",
+  "/tmp/relay3-audit/slice-01.jpg … (one per viewport)",
+  "/tmp/relay3-audit/desktop-full.jpg",
+  "/tmp/relay3-audit/mobile-hero.png",
+  "/tmp/relay3-audit/mobile-full.jpg",
+  "/tmp/relay3-audit/reduced-motion-hero.png"
+ ],
+ "raw": {
+  "desktop": {
+   "title": "Relay · An AI code reviewer that reads to the line",
+   "lang": "en",
+   "metaDesc": true,
+   "pageVh": 6.6,
+   "families": [
+    [
+     "Geist",
+     66
+    ],
+    [
+     "Geist Mono",
+     38
+    ],
+    [
+     "Newsreader",
+     23
+    ]
+   ],
+   "loadedFonts": [
+    "Geist",
+    "Geist Mono",
+    "Newsreader"
+   ],
+   "largest": [
+    {
+     "tag": "h2",
+     "text": "Resolve it once. Relay remembers.",
+     "family": "Newsreader",
+     "size": 76,
+     "weight": 400,
+     "lh": 1.02,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 4762.984375,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Relay remembers.",
+     "family": "Newsreader",
+     "size": 76,
+     "weight": 400,
+     "lh": 1.02,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 4840.5,
+     "condensed": false
+    },
+    {
+     "tag": "h1",
+     "text": "Every pull request, read to the line.",
+     "family": "Newsreader",
+     "size": 72,
+     "weight": 400,
+     "lh": 1.02,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 202.796875,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "$0",
+     "family": "Newsreader",
+     "size": 64,
+     "weight": 400,
+     "lh": 1,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 3257.9375,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "$24",
+     "family": "Newsreader",
+     "size": 64,
+     "weight": 400,
+     "lh": 1,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 3257.9375,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Three things, on every pull request. In the order a careful reviewer does them.",
+     "family": "Newsreader",
+     "size": 49.6,
+     "weight": 400,
+     "lh": 1.06,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 1380.140625,
+     "condensed": false
+    }
+   ],
+   "h1": [
+    {
+     "tag": "h1",
+     "text": "Every pull request, read to the line.",
+     "family": "Newsreader",
+     "size": 72,
+     "weight": 400,
+     "lh": 1.02,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 202.796875,
+     "condensed": false
+    }
+   ],
+   "h1Count": 1,
+   "display": [
+    {
+     "tag": "h1",
+     "text": "Every pull request, read to the line.",
+     "family": "Newsreader",
+     "size": 72,
+     "weight": 400,
+     "lh": 1.02,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 202.796875,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Three things, on every pull request. In the order a careful reviewer does them.",
+     "family": "Newsreader",
+     "size": 49.6,
+     "weight": 400,
+     "lh": 1.06,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 1380.140625,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "In the order a careful reviewer does them.",
+     "family": "Newsreader",
+     "size": 49.6,
+     "weight": 400,
+     "lh": 1.06,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 1381.140625,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "For the people who review the most.",
+     "family": "Newsreader",
+     "size": 49.6,
+     "weight": 400,
+     "lh": 1.06,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 2324.96875,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Two plans. One of them is free.",
+     "family": "Newsreader",
+     "size": 49.6,
+     "weight": 400,
+     "lh": 1.06,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 3178.34375,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "One of them is free.",
+     "family": "Newsreader",
+     "size": 49.6,
+     "weight": 400,
+     "lh": 1.06,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 3231.90625,
+     "condensed": true
+    },
+    {
+     "tag": "span",
+     "text": "$0",
+     "family": "Newsreader",
+     "size": 64,
+     "weight": 400,
+     "lh": 1,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 3257.9375,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "$24",
+     "family": "Newsreader",
+     "size": 64,
+     "weight": 400,
+     "lh": 1,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 3257.9375,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Questions",
+     "family": "Newsreader",
+     "size": 49.6,
+     "weight": 400,
+     "lh": 1.06,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 3760.28125,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Resolve it once. Relay remembers.",
+     "family": "Newsreader",
+     "size": 76,
+     "weight": 400,
+     "lh": 1.02,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 4762.984375,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Relay remembers.",
+     "family": "Newsreader",
+     "size": 76,
+     "weight": 400,
+     "lh": 1.02,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 4840.5,
+     "condensed": false
+    }
+   ],
+   "bodySize": "13",
+   "tinyText": 0,
+   "labelsTight": [],
+   "labelCount": 0,
+   "upperShare": 0,
+   "bigCapsSentences": [],
+   "weights": [
+    [
+     "400",
+     117
+    ],
+    [
+     "500",
+     10
+    ]
+   ],
+   "textShadowBig": 0,
+   "textStroke": 0,
+   "stuckReveal": [],
+   "gradientText": [],
+   "longMeasure": [],
+   "paper": [
+    30,
+    28,
+    27,
+    1
+   ],
+   "pureBW": {
+    "blackOnWhite": 0,
+    "whiteOnBlack": 0
+   },
+   "artHues": [
+    "30°×8",
+    "0°×3"
+   ],
+   "accentHues": [
+    {
+     "hue": 30,
+     "weight": 7,
+     "example": "rgb(201,164,106) bg a.btn"
+    }
+   ],
+   "chromaCoverage": 0.4,
+   "fieldHues": [],
+   "gradients": [],
+   "glows": 0,
+   "buttonCamps": [
+    [
+     "pill",
+     5
+    ]
+   ],
+   "buttons": [
+    {
+     "text": "Install on GitHub",
+     "camp": "pill",
+     "h": 36,
+     "top": 3036,
+     "nav": true
+    },
+    {
+     "text": "Install on GitHub\n→",
+     "camp": "pill",
+     "h": 48,
+     "top": 499,
+     "nav": false
+    },
+    {
+     "text": "Read a sample review",
+     "camp": "pill",
+     "h": 48,
+     "top": 499,
+     "nav": false
+    },
+    {
+     "text": "Install on GitHub",
+     "camp": "pill",
+     "h": 48,
+     "top": 3375,
+     "nav": false
+    },
+    {
+     "text": "Install on GitHub\n→",
+     "camp": "pill",
+     "h": 48,
+     "top": 3375,
+     "nav": false
+    },
+    {
+     "text": "Install on GitHub\n→",
+     "camp": "pill",
+     "h": 48,
+     "top": 5028,
+     "nav": false
+    }
+   ],
+   "bigRadiusCards": 0,
+   "dropShadows": 0,
+   "heroCtas": [
+    "Install on GitHub\n→",
+    "Read a sample review"
+   ],
+   "h1Words": 7,
+   "h1Lines": 2,
+   "h1Centered": false,
+   "badgeAboveH1": [],
+   "h2Count": 6,
+   "h2CenteredShare": 0,
+   "iconGrids": [],
+   "sectionCV": 0.16,
+   "emoji": [],
+   "exclaim": [],
+   "banned": [],
+   "lorem": false,
+   "dupIds": [],
+   "hiddenShown": [],
+   "motion": {
+    "usedEases": [
+     [
+      "cubic-bezier(0.2,0.8,0.2,1)",
+      26
+     ],
+     [
+      "cubic-bezier(0.4,0,0.2,1)",
+      7
+     ],
+     [
+      "cubic-bezier(0.34,1.56,0.64,1)",
+      6
+     ]
+    ],
+    "transitions": 29,
+    "keyframes": 2,
+    "beziers": [
+     [
+      "cubic-bezier(.16,1,.3,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.76,0,.24,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.4,0,.2,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.34,1.56,.64,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.2,.8,.2,1)",
+      1
+     ]
+    ],
+    "reducedMotion": true,
+    "defaultEases": 17,
+    "lenis": false,
+    "revealEls": 6
+   },
+   "autoplayVideos": 0,
+   "pauseControl": false,
+   "imgNoAlt": 0,
+   "unnamedControls": 0,
+   "skipLink": true,
+   "hiddenText": [],
+   "defaultLook": {
+    "sig": {
+     "warmOffWhite": false,
+     "monoUpperLabels": false,
+     "hairlineBands": true,
+     "lineDrawingHero": false,
+     "tinyAccent": true,
+     "lightDisplay": true
+    },
+    "score": 3,
+    "monoUpperShare": 0,
+    "hairlines": 14
+   },
+   "nav": {
+    "h": 864,
+    "links": 2
+   },
+   "copyDupes": [],
+   "titleCase": [],
+   "textOverlap": [],
+   "textMotion": {
+    "paras": 21,
+    "hidden": 8,
+    "h1Split": false
+   },
+   "firstFrame": {
+    "h1Hidden": false,
+    "hidden": []
+   },
+   "contrast": {
+    "checked": 52,
+    "low": 0,
+    "lowBody": 0,
+    "examples": []
+   },
+   "perf": null,
+   "mediaContrast": {
+    "checked": 21,
+    "low": []
+   },
+   "consoleErrors": []
+  },
+  "mobile": {
+   "overflow": 0,
+   "offenders": [],
+   "small": [],
+   "smallCount": 0,
+   "h1Size": 43.3,
+   "tinyBody": 0,
+   "tinyEx": []
+  },
+  "reducedMotion": {
+   "firstViewport": 12,
+   "hidden": []
+  }
+ }
+}

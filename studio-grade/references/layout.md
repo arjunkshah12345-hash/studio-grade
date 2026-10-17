@@ -78,7 +78,9 @@ Use these instead of "three cards in a row".
 19. **Founder letter** (Daylight, Lightfield): an 18–21px serif or sans at a ~520–560px measure, with a signature scan.
 20. **Domain-object cards** (convt): 3–4 category cards where each visual is a *miniature of the object* (a photo, a tiny video player with scrubber, a waveform, a stack of pages), with the title left, a count right, and mono chips. This is the legitimate alternative to icon cards.
 21. **Architecture tree** (convt): a root node chip ("convt picks the engine") with 1px accent branch lines and dot terminals fanning out to 3–4 cards. Each card has a mono transformation line (`clip.mov → clip.mp4`), a title, a description, a hairline, and a mono spec list.
-22. **Finale CTA**: one confident line at 56–96px (or a 16vw condensed ask), one sentence, 1–2 buttons, then the mega footer.
+22. **Comparison against the alternatives** (Kargul): rows such as Investment, Time to start, Who does the work, Ownership and Risk, against 2–3 columns: the studio, an in-house hire, freelancers or templates. The studio's column is raised as a white card with a 24–32px radius, and its logo goes in the header cell. Other cells are grey text on the page ground, with hairline rows. It answers "why not just hire someone?" before the call. Every cell has to be true; leave out numbers you can't source.
+23. **Case card with inset media** (Kargul): a dark slab holding cards with a 24px radius. Media sits left in an inset panel (two stacked UI shots), text sits right. The first sentence carries the timeline ("designed and built from scratch in 8 weeks"), then the scope, then one real outcome. Scope chips go below, and a full-width pill "See case study" closes the card.
+24. **Finale CTA**: one confident line at 56–96px (or a 16vw condensed ask), one sentence, 1–2 buttons, then the mega footer.
 
 ## 6. Composition moves that read as "designed"
 
@@ -131,3 +133,22 @@ Measured on eight studio homepages (Designjoy, Ramotion, Basement, Clay, Halo La
 - **The FAQ handles objections, not trivia:** who owns the work, how many rounds of changes, how soon you can start, what happens if it isn't right, how to pay.
 - **Give the close a low-commitment ask:** "Book a 15-minute intro call" next to the form, with the email address as plain text. Keep the form to 4–5 fields; a budget select that echoes the package names qualifies the lead. If availability is real, state it ("Booking projects from March"). Scarcity that isn't true is a lie.
 - **The studio's own design stays quiet.** It uses one typeface family, few devices and lots of space, so the work is the loudest thing on the page (see anti-slop: "Portfolio and studio sites read vibe coded").
+
+**A worked example that sells hard without shouting: Kargul (kargul.studio, measured).** It uses one family (Geist), an #EFEFEF ground, #232323 ink and no accent, apart from a green dot on the availability pill. Buttons and chips are pills; panels have 24–38px radii. The page is chaptered by **dark slabs with 32px rounded corners** (services, case studies, footer) that alternate with the light ground, with no section borders. The order is:
+1. An announcement bar with a free, low-commitment offer ("Get your product/website audited. For Free →").
+2. A nav with "See our work" and a "Start a project" pill.
+3. A centered hero with an availability pill ("Accepting 3 more projects for Q4 2026"), the h1 at 52–72px, one sentence and two buttons.
+4. A logo wall with a "50+ More" pill.
+5. Services: five cards, each with an isometric line drawing and its tool chips.
+6. A stat band.
+7. Project spotlights (pattern 23).
+8. How we compare (pattern 22).
+9. Named testimonials with photos.
+10. The team as matching illustrated portraits.
+11. The tech stack.
+12. A risk-reversal offer: "Start with a trial week".
+13. A centered FAQ of objections.
+14. A close with two buttons over a fine grid.
+15. A dark footer slab with a giant outline wordmark.
+
+On mobile, the hero buttons stack full-width at about 56px tall. Take the funnel moves (availability, a lead magnet, the comparison, risk reversal). The studio's own skin stays monochrome so the work carries the color.

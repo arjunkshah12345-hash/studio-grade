@@ -116,3 +116,18 @@ Rules: 3–7 visible items. Everything else goes in a drawer or mega panel. The 
 
 
 **Measure on the heading itself:** set `max-width` in `em` on the h2 (of its own size), not on a wrapper. A wrapper's `max-width:15em` at body size squeezed an h2 into a 3-word column.
+
+## 9. Studio, agency and service sites that convert
+
+Measured on eight studio homepages (Designjoy, Ramotion, Basement, Clay, Halo Lab, Locomotive, Metalab, Pentagram). The design studios win awards with the work. The ones that also sell, Designjoy above all, add a short funnel around it.
+
+- **Length:** a homepage is 7–12 viewports (median about 8). Pentagram's 28 is an archive, not a funnel. Metalab's single screen only works when the client list does the selling.
+- **One action, repeated with the same label:** a contact button sits top-right on every screen at every studio ("Let's talk", "Contact", "Get in touch"). Repeat the primary action 3–5 times down the page: in the hero, after the work, on each package, and at the close. Designjoy pairs it with a softer second action ("Book a call" / "See pricing").
+- **The h1 says what and for whom,** in plain words: "Product & brand design agency" plus one line naming the buyer ("We help marketing & product executives…"). Clever slogans read well only once a studio is famous.
+- **Work comes first and big.** It is visible in the first scroll, at full or two-thirds width. Each piece shows the client, a one-line description and, where it's true, one outcome ("redesign helped Puzzle grow 15% MoM"). Studios list it as tiles or as a giant type list with a hover preview; no carousels.
+- **Proof, in order of strength:** named outcomes, then named testimonials (with name, role and photo), then a monochrome logo wall, then awards. A new studio with none of these labels concept work honestly as concepts. It leans on a founder note (a name, a face, what they have actually shipped), fixed prices and clear terms instead. Never invent logos, quotes, counts or a team.
+- **Put the prices on the page** if the offer is productized. Use 2–3 packages, each with what's included, a timeline and its own button. That button pre-selects the package in the form. Prices filter out mismatched leads before the call; "Pause or cancel anytime" and "half to book, half at launch" style terms remove the last objection.
+- **Process is 3–4 steps, one line each,** placed between the work and the prices. It answers "what happens after I click?".
+- **The FAQ handles objections, not trivia:** who owns the work, how many rounds of changes, how soon you can start, what happens if it isn't right, how to pay.
+- **Give the close a low-commitment ask:** "Book a 15-minute intro call" next to the form, with the email address as plain text. Keep the form to 4–5 fields; a budget select that echoes the package names qualifies the lead. If availability is real, state it ("Booking projects from March"). Scarcity that isn't true is a lie.
+- **The studio's own design stays quiet.** It uses one typeface family, few devices and lots of space, so the work is the loudest thing on the page (see anti-slop: "Portfolio and studio sites read vibe coded").

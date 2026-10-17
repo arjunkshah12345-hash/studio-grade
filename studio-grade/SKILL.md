@@ -192,7 +192,7 @@ The full list, with the replacement for each item, is in `references/anti-slop.m
 | `references/range.md` | **Always**: register (quiet/confident/loud), the five range axes, the default-look check, loud recipes |
 | `references/typography.md` | Choosing fonts (with free substitutes for premium faces), tracking tables, pairing rules |
 | `references/color.md` | Building the palette; 20+ measured palettes with hex values; dark mode; accent discipline |
-| `references/layout.md` | Grids, margins, hero archetypes, section-pattern library, page rhythm, mobile |
+| `references/layout.md` | Grids, margins, hero archetypes, section-pattern library, page rhythm, mobile, studio and service sites that convert (§9) |
 | `references/motion.md` | Eases, durations, springs, reveal primitives, loaders, smooth-scroll policy, reduced motion |
 | `references/components.md` | Buttons, nav forms, eyebrows, cards, logo walls, testimonials, stats, forms, footers |
 | `references/techniques.md` | 79 signature techniques with copy-paste code (rails, ticker, letter-roll, aperture…) |

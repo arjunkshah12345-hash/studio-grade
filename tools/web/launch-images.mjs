@@ -15,7 +15,7 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replac
 // the audit runs shown on the site (real output, abridged), read straight from app.js
 const app = fs.readFileSync(path.join(ROOT, 'web/src/app.js'), 'utf8');
 const RUNS = Function(`return ${app.slice(app.indexOf('const RUNS = ') + 13, app.indexOf('};', app.indexOf('const RUNS = ')) + 1)}`)();
-const BUILDS = [['nocturne', 'Nocturne', 'Music festival'], ['sprout', 'Sprout', 'Consumer app'], ['tally', 'Tally', 'Fintech API'], ['fieldwork', 'Fieldwork', 'Landscape architecture'], ['relay', 'Relay', 'Developer tool'], ['halden2', 'Halden', 'Hospitality'], ['kestrel2', 'Kestrel K-1', 'Industrial hardware']];
+const BUILDS = [['tidewell', 'Tidewell', 'Café back office'], ['hush', 'Hush', 'AI scribe for GPs'], ['nightlight', 'Nightlight', 'Bedtime stories'], ['haul', 'Haul', 'TypeScript migration'], ['nocturne3', 'Nocturne', 'Music festival'], ['tally3', 'Tally', 'Fintech API'], ['morrow3', 'Morrow', 'Fragrance house'], ['kestrel3', 'Kestrel K-1', 'Industrial hardware'], ['onair3', 'On Air', 'Podcast studio'], ['darksky3', 'Leave the Lights', 'Civic campaign'], ['halden3', 'Halden', 'Hospitality']];
 
 const page = (w, h, css, body) => `<!doctype html><html><head><meta charset="utf-8">
 <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:wdth,wght@75..125,300..800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -26,17 +26,17 @@ const mark = (c = '#fff') => `<span style="display:inline-flex;align-items:cente
 const term = (r, title, w) => `<div class="t ${r.fail ? 'f' : 'p'}"><div class="tb"><i></i><i></i><i></i><span class="mono">${esc(title)}</span></div><pre class="mono">${r.lines.map(([k, s]) => `<span class="l-${k || 'x'}">${esc(s)}</span>`).join('\n')}</pre><span class="st mono"><small>GRADE</small>${esc(r.grade)}</span></div>`;
 
 const IMAGES = {
-  // the seven builds: what the skill makes, on its own blue
+  // the gallery: what the skill makes, on its own blue
   gallery: [1600, 900, `body{background:#2B2BF2;color:#F2F2FF;padding:64px 72px}
     .top{display:flex;justify-content:space-between;align-items:center}.top .mono{font-size:16px;color:#C9CAFF}
-    h1{font-size:76px;line-height:.95;margin:34px 0 36px}
-    .g{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}.g figure{margin:0}
+    h1{font-size:76px;line-height:.95;margin:40px 0 56px}
+    .g{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px 14px}.g figure{margin:0}
     .g img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:6px;display:block}
-    .g figcaption{display:flex;justify-content:space-between;margin-top:9px;font:600 15px/1 'Mona Sans';color:#fff}.g figcaption span{font-weight:400;color:#C9CAFF}
+    .g figcaption{display:grid;gap:5px;margin-top:9px;font:600 15px/1.1 'Mona Sans';color:#fff}.g figcaption span{font-weight:400;font-size:13px;color:#C9CAFF}
     .g .cta{display:grid;align-content:end;gap:10px;padding:18px;border-radius:6px;background:#0B0B10;aspect-ratio:16/10}
     .cta .mono{font-size:13px;line-height:1.5;color:#C9CAFF}.cta b{font:620 26px/1 'Mona Sans';font-stretch:116%;letter-spacing:-.03em;color:#fff}`,
     `<div class="top">${mark()}<span class="mono">every one passed its own audit</span></div>
-    <h1 class="d">Seven briefs. Seven agents.<br>One skill.</h1>
+    <h1 class="d">Sixteen briefs. Sixteen agents.<br>One skill.</h1>
     <div class="g">${BUILDS.map(([s, n, k]) => `<figure><img src="/media/${s}/hero.jpg"><figcaption>${esc(n)}<span>${esc(k)}</span></figcaption></figure>`).join('')}
     <div class="cta"><b>Install it</b><span class="mono">npx skills add<br>arjunkshah12345-hash/studio-grade</span></div></div>`],
 
@@ -54,7 +54,7 @@ const IMAGES = {
     .st small{display:block;font-size:11px;letter-spacing:.14em;margin-bottom:2px}.f .st{color:#FF8371}.p .st{color:#8FE3A8}`,
     `<div class="top">${mark()}<span class="mono">node scripts/audit.mjs · 1440 + 390px</span></div>
     <h1 class="d">It grades its own work. <span>Before you see it.</span></h1>
-    <div class="two">${term(RUNS.slop, 'audit.mjs  template-page/index.html')}${term(RUNS.nocturne, 'audit.mjs  nocturne/index.html')}</div>`],
+    <div class="two">${term(RUNS.slop, 'audit.mjs  template-page/index.html')}${term(RUNS.tidewell, 'audit.mjs  tidewell/index.html')}</div>`],
 };
 
 const b = await chromium.launch({ channel: 'chrome' });

@@ -6,7 +6,7 @@
 
 **[▶ Watch the launch film](https://studio-grade.vercel.app/#film)** (35s), or [download the MP4](https://github.com/arjunkshah12345-hash/studio-grade/releases/latest).
 
-![Seven briefs, seven agents, one skill: the seven sites built with Studio Grade](.github/media/gallery.jpg)
+![Sixteen briefs, sixteen agents, one skill: sites built with Studio Grade](.github/media/gallery.jpg)
 
 An agent skill for studio-grade web design. It was measured from 99 live sites built by about 40 studios and in-house teams: basement.studio, Exo Ape, Work & Co, AREA 17, Locomotive, Lusion, Malvah and others. Your agent picks a direction, sets how loud to be, builds from measured tokens, and audits its own work before you see it.
 
@@ -16,7 +16,7 @@ npx skills add arjunkshah12345-hash/studio-grade
 
 This works with Claude Code, Cursor, Codex, Windsurf, Gemini, Copilot and the other agents that support [skills.sh](https://skills.sh). The self-audit needs Playwright in the project you're building: `npm i -D playwright && npx playwright install chromium`.
 
-**Site and work:** [studio-grade.vercel.app](https://studio-grade.vercel.app). It has seven sites built by agents that read only this skill, each with its Design Spine, palette, every screen and its audit result.
+**Site and work:** [studio-grade.vercel.app](https://studio-grade.vercel.app). It has sixteen sites built by agents that read only this skill, each with its Design Spine, palette, every screen and its audit result.
 
 ## How it works
 
@@ -40,7 +40,7 @@ Each rule exists because a real build needed it. One build's headings stayed blu
 | Path | What it is |
 |---|---|
 | `studio-grade/` | **The skill**: SKILL.md, 12 references, assets (tokens.css, motion.js), scripts/audit.mjs. This is the only folder that gets installed. |
-| `tests/builds/` | The seven showcase sites, built by agents that read only the skill. |
+| `tests/builds/` | The gallery sites, built by agents that read only the skill (most with a generated image series). |
 | `tests/feedback/` | Each test builder's notes on the skill. They drove the fixes. |
 | `research/` | Per-cluster notes and the aggregate of the 99-site teardown. |
 | `web/src/`, `tools/web/` | The website, built with the skill. `shoot.mjs` captures the work, and `build.mjs` writes `web/dist/`. |

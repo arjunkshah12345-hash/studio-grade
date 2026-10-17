@@ -161,14 +161,16 @@ const CONTRAST_PASS = () => {
     let anim = false; for (let e = el; e && e.nodeType === 1; e = e.parentElement) if (busy.has(e)) { anim = true; break; }
     if (anim) continue;
     const op = C.cumOpacity(el); if (op < 0.05) continue;                // not revealed yet / clone: re-check later
+    if (C.decorative(el) || el.closest('select,option')) { C.checked.add(el); continue; }
+    // sample point outside the viewport: what's painted there is unknown (it may be a photo), so re-check on a later
+    // pass rather than scoring against the DOM ancestor's background
+    const sb = C.stackBg(el); if (sb === null) continue;
     C.checked.add(el);
-    if (C.decorative(el) || el.closest('select,option')) continue;
-    const sb = C.stackBg(el);
     if (sb === 'media') {                                                 // text over imagery: queue it for pixel sampling after the pass
       if (!el.closest('[aria-hidden="true"]') && (C.media ||= []).length < 60) { const s2 = getComputedStyle(el); el.setAttribute('data-sg-m', String(C.media.length)); const r0 = el.getBoundingClientRect(); const under = document.elementsFromPoint(r0.left + Math.min(r0.width / 2, 20), r0.top + r0.height / 2).find((e) => e !== el && !el.contains(e) && (/^(IMG|VIDEO|CANVAS|PICTURE|IFRAME|svg)$/i.test(e.tagName) || getComputedStyle(e).backgroundImage !== 'none')); const kind = under && !/^(IMG|VIDEO|CANVAS|PICTURE|IFRAME)$/.test(under.tagName) && !/url\(/.test(getComputedStyle(under).backgroundImage) ? 'pattern' : 'image'; C.media.push({ kind, fg: C.toRGBA(s2.color), op, size: parseFloat(s2.fontSize), bold: +s2.fontWeight >= 700, text: C.ownText(el).slice(0, 36) }); }
       continue;
     }
-    const bg = sb || C.effBg(el); if (!bg) continue;
+    const bg = sb;
     const s = getComputedStyle(el); const fg0 = C.toRGBA(s.color);
     const fg = C.over([fg0[0], fg0[1], fg0[2], fg0[3] * op], bg);
     const ratio = C.contrast(fg, bg); const size = parseFloat(s.fontSize); const bold = +s.fontWeight >= 700;
@@ -271,7 +273,23 @@ const COLLECT = () => {
   out.dropShadows = all.filter((el) => { const s = st(el); if (s.boxShadow === 'none' || !C.vis(el) || el.closest('[role="img"]') || /^(A|BUTTON|INPUT|SELECT)$/.test(el.tagName) || el.getBoundingClientRect().height < 64) return false; return s.boxShadow.split(/,(?![^(]*\))/).some((sh) => { if (/inset/.test(sh)) return false; const n = sh.replace(/(rgba?|oklch|lab|color)\([^)]+\)/g, '').match(/-?[\d.]+px/g) || []; return parseFloat(n[2] || 0) >= 8 && parseFloat(n[1] || 0) > 0; }); }).length;
   // ---- hero / layout
   const header = document.querySelector('header') || document.querySelector('nav');
-  out.heroCtas = btnLike.filter((el) => { const r = el.getBoundingClientRect(); return r.top + scrollY < vh && !inNav(el); }).map((el) => el.innerText.trim().slice(0, 30));
+  {
+    const inHero = (el) => el.getBoundingClientRect().top + scrollY < vh && !inNav(el);
+    const label = (el) => ((el.innerText || el.value || el.getAttribute('aria-label') || '').trim().replace(/\s+/g, ' ').slice(0, 30));
+    const heroBtns = btnLike.filter(inHero);
+    // a form's submit button in the hero (booking, signup) is a CTA even when it is square or unfilled
+    const submits = [...document.querySelectorAll('form button:not([type="button"]):not([type="reset"]), form input[type="submit"], form input[type="image"]')].filter((el) => !heroBtns.includes(el) && C.vis(el) && C.cumOpacity(el) > 0.05 && el.getBoundingClientRect().height >= 20 && inHero(el));
+    const ctas = [...heroBtns, ...submits];
+    const kind = (el) => { const s = st(el); return C.toRGBA(s.backgroundColor)[3] > 0.05 ? 'solid' : parseFloat(s.borderTopWidth) > 0 || /0px 0px 0px 1(\.5)?px/.test(s.boxShadow) ? 'ghost' : 'text'; };
+    // text-link secondaries ("See the menu →") sitting in the same small group as a CTA, or ending in an arrow
+    const near = (a) => { let p = a.parentElement; for (let i = 0; i < 3 && p && p !== document.body; i++, p = p.parentElement) { if (p.getBoundingClientRect().height > 160) break; if (ctas.some((c) => p.contains(c))) return true; } return false; };
+    const textLinks = [...document.querySelectorAll('a[href]')].filter((a) => { if (ctas.includes(a) || btnLike.includes(a) || !C.vis(a) || C.cumOpacity(a) < 0.05 || !inHero(a) || C.intentionallyHidden(a)) return false; const t = label(a); if (t.length < 2 || t.length > 40) return false; if (a.closest('figcaption,small,blockquote,dd,footer,nav,[role="img"]')) return false; const run = a.closest('p,li'); if (run && run.innerText.trim().length > t.length + 20) return false; return near(a) || /[→↗›»]\s*$/.test(t); });
+    out.heroCtas = ctas.map(label);
+    const tally2 = {}; for (const el of ctas) { const k = kind(el); tally2[k] = (tally2[k] || 0) + 1; }
+    const parts = ['solid', 'ghost', 'text'].filter((k) => tally2[k]).map((k) => `${tally2[k]} ${k === 'text' ? 'text button' : k}`);
+    if (textLinks.length) parts.push(`${textLinks.length} text link${textLinks.length > 1 ? 's' : ''}`);
+    out.heroMix = parts.join(' + '); out.heroTextLinks = textLinks.map(label);
+  }
   const h1 = h1s[0];
   if (h1) {
     const hr = h1.getBoundingClientRect();
@@ -298,7 +316,7 @@ const COLLECT = () => {
   if (secs.length >= 5) { const m = secs.reduce((a, b) => a + b) / secs.length; const sd = Math.sqrt(secs.reduce((a, b) => a + (b - m) ** 2, 0) / secs.length); out.sectionCV = +(sd / m).toFixed(2); }
   // ---- copy
   const pict = /\p{Extended_Pictographic}/u;
-  out.emoji = [...document.querySelectorAll('h1,h2,h3,h4,button,a,[class*="btn" i],[class*="badge" i],label')].filter(C.vis).map((e) => e.innerText.trim()).filter((t) => pict.test(t.replace(/[©®™↗→←↑↓↳⌄›»✓✕×◆●○⊕+]/g, ''))).slice(0, 6);
+  out.emoji = [...document.querySelectorAll('h1,h2,h3,h4,button,a,[class*="btn" i],[class*="badge" i],label')].filter(C.vis).map((e) => e.innerText.trim()).filter((t) => pict.test(t.replace(/[←-⇿⟰-⟿⤀-⥿](?!️)/g, '').replace(/[©®™⌄›»✓✕×◆●○⊕+]/g, '')))   // typographic arrows (↩ ↪ ↗ ↳ …) are glyphs, not emoji, unless forced to emoji style with VS16.slice(0, 6);
   out.exclaim = [...document.querySelectorAll('h1,h2')].map((e) => e.innerText.trim()).filter((t) => /!/.test(t));
   const BANNED = ['supercharge', 'unleash', 'unlock the', 'unlock your', 'revolutioniz', 'elevate your', 'empower', 'seamless', 'next-gen', 'next generation of', 'cutting-edge', 'cutting edge', 'game-changer', 'game changer', 'state-of-the-art', 'best-in-class', 'world-class', 'harness the', 'leverage', 'synergy', 'look no further', 'fast-paced', 'to the next level', 'transform your', 'take your', 'ai-powered', 'lorem ipsum', 'feature one', 'feature 1'];
   const copy = [...document.querySelectorAll('h1,h2,h3,p,a,button,li')].filter(C.vis).filter((e) => !e.closest('del,s,[data-counterexample]')).map((e) => e.innerText.toLowerCase());   // struck-out "we don't write" examples aren't copy
@@ -364,8 +382,46 @@ const MOBILE = () => {
   const C = window.__cs; const vw = 390;            // configured width; mobile emulation can widen innerWidth to fit overflow
   const doc = document.documentElement;
   const overflow = Math.max(doc.scrollWidth, document.body.scrollWidth, innerWidth) - vw;
-  const offenders = overflow > 1 ? [...document.querySelectorAll('body *')].filter((el) => { const r = el.getBoundingClientRect(); if (r.right <= vw + 1 || r.width < 2) return false; for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) { const o = getComputedStyle(p).overflowX; if (o === 'hidden' || o === 'clip' || o === 'auto' || o === 'scroll') return false; } return true; }).slice(0, 4).map((el) => `${el.tagName.toLowerCase()}${el.className && typeof el.className === 'string' ? '.' + el.className.split(' ')[0] : ''} → right edge ${Math.round(el.getBoundingClientRect().right)}px`) : [];
-  const small = [...document.querySelectorAll('a,button,input,select,[role="button"]')].filter((el) => { if (!C.vis(el) || C.decorative(el) || el.tabIndex < 0) return false; const r = el.getBoundingClientRect(); const inline = getComputedStyle(el).display === 'inline' && el.closest('p,li'); const lab = el.closest('label'); if (lab && lab.getBoundingClientRect().height >= 40) return false; return !inline && (r.height < 24 || r.width < 24); }).map((el) => (el.innerText || el.getAttribute('aria-label') || el.tagName).trim().slice(0, 24));
+  const nm = (el) => `${el.tagName.toLowerCase()}${el.className && typeof el.className === 'string' && el.className.trim() ? '.' + el.className.trim().split(/\s+/)[0] : ''}`;
+  const clipsX = (p) => { const o = getComputedStyle(p).overflowX; return o === 'hidden' || o === 'clip' || o === 'auto' || o === 'scroll'; };
+  const clipped = (el) => { for (let p = el.parentElement; p && p !== document.body && p !== doc; p = p.parentElement) if (clipsX(p)) return true; return false; };
+  let offenders = [];
+  if (overflow > 1) {
+    const iw = innerWidth; const ranked = [];
+    for (const el of document.querySelectorAll('body *')) {
+      if (el.closest('svg') && el.tagName.toLowerCase() !== 'svg') continue;
+      const s = getComputedStyle(el); const r = el.getBoundingClientRect();
+      // the element itself (getBoundingClientRect already includes transforms such as a reveal's scale(1.03))
+      if (r.width >= 2 && r.right > vw + 1 && !clipped(el)) {
+        const pr = el.parentElement.getBoundingClientRect();
+        const tf = s.transform !== 'none' ? ` (transform ${s.transform.replace(/\s/g, '')})` : '';
+        // a fixed/full-width box that merely stretches to the widened viewport is a symptom, not the cause
+        const stretched = !tf && Math.abs(r.left) < 1 && Math.abs(r.right - iw) < 1.5;
+        const sticksOut = r.right > pr.right + 0.5 || !!tf;
+        ranked.push({ score: stretched ? 0 : sticksOut ? 2 : 1, txt: `${nm(el)} → right edge ${Math.round(r.right)}px${tf}` });
+      }
+      // ::before / ::after are invisible to querySelectorAll: estimate their box from the computed inset and size
+      if (!el.getClientRects().length) continue;   // display:none host: no pseudo boxes
+      for (const pse of ['::before', '::after']) {
+        const ps = getComputedStyle(el, pse); if (!ps.content || ps.content === 'none' || ps.display === 'none') continue;
+        if (clipsX(el) || clipped(el)) continue;
+        const px = (v) => (/^-?[\d.]+px$/.test(v) ? parseFloat(v) : null);
+        let right = null;
+        if (ps.position === 'absolute' || ps.position === 'fixed') {
+          let cb = null; if (ps.position === 'absolute') for (let p = el; p && p !== doc; p = p.parentElement) { const q = getComputedStyle(p); if (q.position !== 'static' || q.transform !== 'none') { cb = p; break; } }
+          const cr = cb ? cb.getBoundingClientRect() : { left: 0, right: vw };
+          const L = px(ps.left), R = px(ps.right), W = px(ps.width);
+          if (L != null && W != null) right = cr.left + L + W; else if (R != null) right = cr.right - R;
+        } else { const W = px(ps.width); if (W != null) right = r.left + W; }
+        if (right != null && ps.transform !== 'none') { const m = ps.transform.match(/^matrix\(([^,]+)/); if (m && +m[1] > 1 && px(ps.width) != null) right += px(ps.width) * (+m[1] - 1) / 2; }
+        if (right != null && right > vw + 1) ranked.push({ score: 3, txt: `${nm(el)}${pse} → right edge ≈${Math.round(right)}px (left ${ps.left}, right ${ps.right}, width ${ps.width})` });
+      }
+    }
+    ranked.sort((a, b) => b.score - a.score);
+    offenders = ranked.filter((x) => x.score > 0).slice(0, 4).map((x) => x.txt);
+    if (!offenders.length) offenders = [`something under body is ${Math.max(doc.scrollWidth, document.body.scrollWidth, iw)}px wide but no single element sticks out${ranked.length ? ' (only full-width boxes stretched by it, e.g. ' + ranked[0].txt + ')' : ''}: look for a pseudo-element, negative margin, 100vw box or transform`];
+  }
+  const small = [...document.querySelectorAll('a,button,input,select,[role="button"]')].filter((el) => { if (!C.vis(el) || C.decorative(el) || el.tabIndex < 0) return false; const r = el.getBoundingClientRect(); const inline = getComputedStyle(el).display === 'inline' && el.closest('p,li'); const lab = el.closest('label'); if (lab && lab.getBoundingClientRect().height >= 40) return false; return !inline && (r.height < 24 || r.width < 24); }).map((el) => { const r = el.getBoundingClientRect(); const t = (el.innerText || el.getAttribute('aria-label') || el.getAttribute('placeholder') || '').trim().replace(/\s+/g, ' ').slice(0, 24); return `${el.tagName}${el.className && typeof el.className === 'string' && el.className.trim() ? '.' + el.className.trim().split(/\s+/)[0] : ''} ${Math.round(r.width)}×${Math.round(r.height)}${t ? ` "${t}"` : ''}`; });
   const h1 = document.querySelector('h1');
   const h1Size = h1 ? parseFloat(getComputedStyle(h1).fontSize) : null;
   const tinyEls = [...document.querySelectorAll('p,li')].filter((el) => C.vis(el) && !el.closest('footer,[role="img"]') && el.innerText.trim().length > 60 && parseFloat(getComputedStyle(el).fontSize) < 13);
@@ -384,6 +440,15 @@ async function scrollThrough(page, { contrast = false } = {}) {
   }
   await page.waitForTimeout(900);
   if (contrast) await page.evaluate(CONTRAST_PASS).catch(() => {});
+  if (contrast) {   // text whose sample point never landed in the viewport: scroll each into view and sample it there
+    const n = await page.evaluate(() => { const C = window.__cs; let k = 0; for (const el of C.cands || []) { if (k >= 24) break; if (C.checked.has(el) || !C.vis(el) || C.intentionallyHidden(el) || C.cumOpacity(el) < 0.05) continue; el.setAttribute('data-sg-left', String(k++)); } return k; }).catch(() => 0);
+    for (let i = 0; i < n; i++) {
+      await page.evaluate((i) => document.querySelector(`[data-sg-left="${i}"]`)?.scrollIntoView({ block: 'center', inline: 'nearest', behavior: 'instant' }), i).catch(() => {});
+      await page.waitForTimeout(QUICK ? 120 : 250);
+      await page.evaluate(CONTRAST_PASS).catch(() => {});
+    }
+    if (n) await page.evaluate(() => document.querySelectorAll('[data-sg-left]').forEach((e) => e.removeAttribute('data-sg-left'))).catch(() => {});
+  }
 }
 
 const t0 = Date.now();
@@ -471,9 +536,21 @@ try {
     // text hidden because its *card* is revealing (a card group fading in) is fine: count only text hidden on its own or as a text block
     const cardish = (el) => el.matches('article, li, figure, [role="img"], [class*="card"], [class*="plan"], [class*="tile"]') && !!el.querySelector('img, picture, svg, canvas, video, [class*="price"], h3, h4');
     const hider = (el) => { for (let e = el; e && e.nodeType === 1 && e !== document.body; e = e.parentElement) if (+getComputedStyle(e).opacity < 0.15) return e; return null; };
-    const hidden = ps.filter((el) => { const h = op(el) < 0.15 ? hider(el) : null; return h && !(h !== el && cardish(h)); }).length;
+    // opacity 0 by design: aria-hidden copies, or a state stacked absolutely over a visible sibling in the same box (crossfades)
+    const crossfaded = (el, h) => {
+      if (el.closest('[aria-hidden="true"]')) return true;
+      if (!h) return false;
+      for (let e = el; e && e.parentElement && !e.matches('body,main,section,article'); e = e.parentElement) {   // stay inside the block
+        if (getComputedStyle(e).position !== 'absolute') continue;
+        const r = e.getBoundingClientRect();
+        if ([...e.parentElement.children].some((x) => { if (x === e || +getComputedStyle(x).opacity < 0.5) return false; const xr = x.getBoundingClientRect(); return xr.width > 0 && Math.abs(xr.left - r.left) < 8 && Math.abs(xr.top - r.top) < 8 && Math.abs(xr.width - r.width) < Math.max(16, r.width * 0.1); })) return true;
+      }
+      return false;
+    };
+    const ps2 = ps.filter((el) => !crossfaded(el, op(el) < 0.15 ? hider(el) : null));
+    const hidden = ps2.filter((el) => { const h = op(el) < 0.15 ? hider(el) : null; return h && !(h !== el && cardish(h)); }).length;
     const h1 = document.querySelector('h1'); const words = h1 ? (h1.innerText || '').trim().split(/\s+/).length : 0;
-    return { paras: ps.length, hidden, h1Split: !!h1 && h1.querySelectorAll('span,div').length >= Math.max(3, words * 0.8) };
+    return { paras: ps2.length, hidden, h1Split: !!h1 && h1.querySelectorAll('span,div').length >= Math.max(3, words * 0.8) };
   }).catch(() => null);
   { const H = await page.evaluate(() => document.documentElement.scrollHeight); const n = Math.min(12, Math.ceil(H / 900));
     const at = (i) => (Math.ceil(H / 900) <= 12 ? i * 900 : Math.round(i * (H - 900) / (n - 1)));   // long pages: evenly spaced, always incl. the end
@@ -543,7 +620,12 @@ try {
   await mp.waitForTimeout(700);
   step('mobile measure'); M = await mp.evaluate(MOBILE);
   await mp.evaluate(() => window.scrollTo(0, 0)); await mp.waitForTimeout(400);
-  step('mobile full shot'); await mp.screenshot({ path: path.join(OUT, 'mobile-full.jpg'), fullPage: true, type: 'jpeg', quality: 65 }).catch(() => {});
+  step('mobile full shot');
+  {   // clamp to the document: the emulated full-page capture can run past the footer and end in a black band
+    const docH = await mp.evaluate(() => document.documentElement.scrollHeight).catch(() => 0);
+    const shot = { path: path.join(OUT, 'mobile-full.jpg'), fullPage: true, type: 'jpeg', quality: 65 };
+    await mp.screenshot(docH > 0 ? { ...shot, clip: { x: 0, y: 0, width: 390, height: docH } } : shot).catch(() => mp.screenshot(shot)).catch(() => {});
+  }
   await mctx.close();
 } catch (e) { add('WARN', 'load', 'Mobile pass failed: ' + String(e).slice(0, 200)); }
 try {
@@ -666,9 +748,11 @@ if (D.dropShadows > 6) add(DIRECTION === 11 ? 'INFO' : 'WARN', 'shape.shadows', 
 
 // layout / hero
 if (D.heroCtas) {
-  if (D.heroCtas.length > 3) add('FAIL', 'hero.ctas', `${D.heroCtas.length} CTAs in the first viewport (max 2)`, D.heroCtas);
-  else if (D.heroCtas.length === 3) add('WARN', 'hero.ctas', '3 CTAs in the first viewport (max 2: primary + ghost/text)', D.heroCtas);
-  else add('PASS', 'hero.ctas', `${D.heroCtas.length} hero CTA(s)`);
+  const mix = D.heroMix ? `: ${D.heroMix}` : '';
+  const all = [...D.heroCtas, ...(D.heroTextLinks || []).map((t) => `${t} (text link)`)];
+  if (D.heroCtas.length > 3) add('FAIL', 'hero.ctas', `${D.heroCtas.length} CTAs in the first viewport (max 2)${mix}`, all);
+  else if (D.heroCtas.length === 3) add('WARN', 'hero.ctas', `3 CTAs in the first viewport (max 2: primary + ghost/text)${mix}`, all);
+  else add('PASS', 'hero.ctas', `${D.heroCtas.length} hero CTA(s)${D.heroMix ? ` · seen: ${D.heroMix}` : ''}`);
 }
 if (D.badgeAboveH1?.length) add('WARN', 'hero.badge', 'Pill badge directly above the h1 (template tell). Use a real changelog link or a live proof chip, or drop it.', D.badgeAboveH1);
 if (D.h1Centered && D.h2CenteredShare > 0.7 && D.h2Count >= 4) add('WARN', 'layout.centered', `Centered-everything: centered hero and ${Math.round(D.h2CenteredShare * 100)}% of section headings centered. Break symmetry after the hero.`);
@@ -677,7 +761,8 @@ if (D.iconGrids?.length) add('WARN', 'layout.iconCards', 'Icon + title + text ca
 if (D.sectionCV != null && D.sectionCV < 0.18) add('WARN', 'layout.rhythm', `Section heights are nearly uniform (CV ${D.sectionCV}). Vary density: tight band, big void, full-bleed, narrow column.`);
 if (D.pageVh) {
   const L = LENGTH[DIRECTION];
-  if (L) add(D.pageVh < L[0] * 0.75 || D.pageVh > L[1] * 1.3 ? 'WARN' : 'INFO', 'layout.length', `Page length ${D.pageVh} viewports (direction ${DIRECTION} norm ${L[0]}–${L[1]})`);
+  if (L && D.pageVh < L[0]) add('INFO', 'layout.length', `Page length ${D.pageVh} viewports: shorter than the direction's norm (${L[0]}–${L[1]}); fine when the brief is short. Judge by content, don't pad.`);
+  else if (L) add(D.pageVh > L[1] * 1.3 ? 'WARN' : 'INFO', 'layout.length', `Page length ${D.pageVh} viewports (direction ${DIRECTION} norm ${L[0]}–${L[1]})`);
   else add('INFO', 'layout.length', `Page length ${D.pageVh} viewports (SaaS 9–10 · luxury 3–9 · editorial/award 12–23; pass --direction for a direction-specific check)`);
 }
 
@@ -693,10 +778,12 @@ if (!D.lang) add('WARN', 'a11y.lang', 'Missing <html lang>');
 // motion
 if (D.motion) {
   const m = D.motion;
-  const used = (m.usedEases || []).filter(([e]) => e !== 'ease' || true);
-  const custom = used.filter(([e]) => /cubic-bezier/.test(e));
-  if (used.length && !custom.length) add('WARN', 'motion.ease', `Elements transition only with default eases (${used.map(([e, n]) => `${e}×${n}`).join(', ')}). Define a house ease, e.g. cubic-bezier(.16,1,.3,1).`);
-  else if (custom.length) add(custom.length > 3 ? 'WARN' : 'PASS', 'motion.ease', `Eases in use: ${used.map(([e, n]) => `${e}×${n}`).join(', ')}${custom.length > 3 ? '. Many curves; standardise on one house ease + one in-out.' : ''}`);
+  const used = (m.usedEases || []).filter(([e]) => e !== 'linear');   // linear is right for scroll-linked and clock motion: never counts against the house ease
+  const custom = used.filter(([e]) => /cubic-bezier|linear\(/.test(e));
+  const lin = (m.usedEases || []).filter(([e]) => e === 'linear').map(([e, n]) => `, ${e}×${n}`).join('');
+  if (!used.length && lin) add('PASS', 'motion.ease', `Only linear transitions (scroll-linked or clock motion)`);
+  else if (used.length && !custom.length) add('WARN', 'motion.ease', `Elements transition only with default eases (${used.map(([e, n]) => `${e}×${n}`).join(', ')}). Define a house ease, e.g. cubic-bezier(.16,1,.3,1).`);
+  else if (custom.length) add(custom.length > 3 ? 'WARN' : 'PASS', 'motion.ease', `Eases in use: ${used.map(([e, n]) => `${e}×${n}`).join(', ')}${lin}${custom.length > 3 ? '. Many curves; standardise on one house ease + one in-out.' : ''}`);
   if ((m.transitions > 0 || m.keyframes > 0 || m.revealEls > 0) && !m.reducedMotion) add('WARN', 'motion.reduced', 'Animations present but no prefers-reduced-motion handling found');
   if (m.lenis) add('INFO', 'motion.smoothScroll', 'Smooth scroll (Lenis) detected. Appropriate only for editorial, place, deep-tech, and immersive directions.');
 }

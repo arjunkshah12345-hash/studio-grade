@@ -1,0 +1,14 @@
+# On Air v3 (onair3): feedback on studio-grade
+
+Build: Direction 4 Editorial Motion, Loud. Colour-block grounds sampled from the photos (red on air / cream prep / navy desk), League Gothic caps + Familjen Grotesk, generated still-life series. Final audit: 0 FAIL, 0 WARN, 11 PASS.
+
+1. **Direction table gap.** A studio *service* with a photo series fits neither 11 (product, vignettes) nor 9 (illustrated world) cleanly. Direction 4 lists "production studios" but its recipe is white + light grotesk; the "Not only white" paragraph saved it. Say in SKILL.md's chooser: "service studios with a photo series → 4 at Confident/Loud, banded composition".
+2. **Saturated red is a contrast trap.** On #E92A16 only a near-black ink passes (4.56:1); ink at 88% fails (4.1:1) and cream is large-text only (3.7:1). range.md §4's "88/80% tiers" advice is wrong for bright reds; add "on a saturated red/orange, every small text is full ink; hierarchy by size only".
+3. **§68 nav capsule rule held:** nav links over the hero photo measured 4.39:1 until set in a solid cream capsule. Worth repeating in layout.md §7 for any photo hero, not just direction 11.
+4. **Same-paper photos still show a rectangle.** Ground sampled to the exact paper hex, yet the photo's flash falloff/vignette drew a visible edge. `images.py paper` made it worse (corner median picks up the vignette: navy mapped 1.6× too bright). Fix: sample paper from the documented clean zone (e.g. `--zone left-third`), not corners; and say "feather every edge ≥ 30% on the clean side" in imagery.md §8.
+5. **Feather masks wash objects near the frame edge** (a 16% top fade greyed the headphone band). Note: feather only the edges the subject doesn't touch.
+6. **Audit overflow false lead.** `mobile.overflow` reported 27px with no element listed; the culprit was a `::after` halo (inset −55%). Include pseudo-elements and transformed-but-hidden reveal states (scale(1.03) caused the first 8px) in the culprit list.
+7. **Audit clock contrast** flagged a live clock on the photo; good catch. But `layout.length` INFO (10.1 vs 12–23 for direction 4) feels miscalibrated for a studio sales page with one conversion; consider a per-register or "service" norm.
+8. **Default-look check vs audit disagree:** my Spine counted 0/6; the audit counted 3/6 (warmOffWhite from cream bands, hairlineBands, lightDisplay for a 400-weight condensed face). Condensed caps at 400 aren't "light display"; exempt condensed families.
+9. **Motion §0 worked well:** text still, photos lens-focus (blur-to-sharp), lamp switch-on as the one photo moment. A ready snippet for "make a light in a photo switch on" (multiply core + screen halo) would help; it took two passes to stop reading as an orange ball.
+10. Brief proof rule was easy to honour: a small "On air soon" band with three hatch placeholders read as candour, not a hole.

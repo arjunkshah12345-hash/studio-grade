@@ -36,6 +36,8 @@
 
 ## Cards
 
+- Card groups (`data-reveal-group`) are for cards, tiles and media. A list of text rows is not a card group: text stays still (motion.md §0), and the audit counts revealing paragraphs.
+
 - **Prefer no card.** Image + text on the page background (commerce, editorial). When you do need a card:
   - Radius 8–12px (dev tools), 0–4px (editorial, luxury), 16–28px (Apple, Dia, playful only).
   - Fill = paper ± 2–4% L (`#F4F2F0` on white, `#F5F3F1` on `#FDFCFC`), **or** a hairline ring `box-shadow:0 0 0 1px var(--hairline)`, or an ElevenLabs inset ring `inset 0 0 0 .5px rgba(0,0,0,.075)`. **Not** a drop shadow.
@@ -80,6 +82,9 @@ Use a sidebar of 220–240px, 13px UI text, an 8% hairline, one focal pane at fu
 ## Forms
 
 - **Native date inputs** render "mm/dd/yyyy" with a browser icon, which breaks a premium booking strip. Style the field (`::-webkit-calendar-picker-indicator{opacity:.6}`, `color-scheme` to match), show a formatted value ("Fri 16 Oct") in a label layer above it, and keep the native input for the picker and accessibility. Make the whole cell (label + input, ≥ 56px) the tap target.
+- **Booking calendar** (hotels, venues; native inputs are banned on premium strips): a range picker with past dates disabled. The closed season is shown in the motif (misted months) with a plain note. On mobile it opens as a bottom sheet with a close button. A result line states the "from" price and says plainly that nothing is booked yet.
+- **Radio groups inside masthead cells:** `fieldset`/`legend` draws the legend on the border. Use a `div role="radiogroup" aria-labelledby` instead.
+- **`flex:1` inputs** in a row that becomes a column on mobile collapse to about 20px. Set `flex:1 1 auto; width:100%` at the breakpoint.
 - **Diagrams with small text at 390px:** crop the SVG `viewBox` to the readable region on mobile (or swap to a mobile-specific drawing) rather than scaling 9px labels down to 4px.
 
 - **Fused email capsule** (Mercury, Ramp): one rounded container with the input on the left and the primary button **inside** the right end (4px inset). Radius 12 or 999.
@@ -93,6 +98,8 @@ See layout.md §7 for forms. Details:
 - Link hover: a color shift to full ink from 60% ink, or a letter-roll.
 - Active section: a 2px underline segment (Totême: a partial underline under 40% of the word).
 - Mega menus: hairline-ruled columns with 13px links, an optional featured card.
+- The wordmark link is a tap target too. Give it `padding-block` so it's ≥ 24px tall; an inline-flex 20px logo fails `mobile.targets`.
+- Nav over a photo hero sits in a solid capsule (§68): links straight on a photo measured 4.39:1.
 - Announcement bar (36–57px, 12–14px): a real announcement with a link ("Introducing Mercury Books…", "Sierra Summit 2026 Recap"), or **operational info** (Obama's ticket band). Make it dismissible.
 
 ## Footers

@@ -115,7 +115,7 @@ One tactile object or one cinematic image fills the first viewport; type is smal
 **The big number (Ramp, Stripe GDP ticker, Ayocin)**
 One live or precise number at 120–200px as the hero subject, with the claim beside it in body type.
 
-**Mid-tone grounds** (chipboard, taupe, olive-khaki, L ≈ 0.2–0.45): the 74 / 62% ink tiers fall below AA here. Compress them to **~88 / 80%** of a near-black ink (or flip to a near-white ink if L < 0.25), and build hierarchy from **size, weight and a second face** (an italic serif) rather than opacity. Check every tier against the actual ground.
+**Mid-tone grounds** (chipboard, taupe, olive-khaki, L ≈ 0.2–0.45): the 74 / 62% ink tiers fall below AA here. Compress them to **~88 / 80%** of a near-black ink (or flip to a near-white ink if L < 0.25), and build hierarchy from **size, weight and a second face** (an italic serif) rather than opacity. Check every tier against the actual ground. **Saturated reds and oranges** (#E92A16) are a harder trap: only a near-black ink passes there (4.56:1). An 88% tier fails (4.1:1), and cream is large-text only (3.7:1). On such a field, every small text is full ink, and hierarchy comes from size alone.
 
 ## 5. Loud done right: worked recipes
 

@@ -1,0 +1,11 @@
+# lantern3: skill feedback
+
+- images.py `paper` estimates the paper from the four corners. On these plates (and on any bible that puts the subject right or bottom) two or more corners are ink or stone, so it picked #E8DECC and overshot the cream to #FAF5EC. Add `--sample x,y,w,h` (or use the brightest mode of the whole frame) and print a warning when the four corners disagree.
+- Lights-up (§51) on a generated plate shows the plate's rectangle: grayscale (and especially `contrast(.94)`) turns the cream paper grey beside a cream page. The fix was `paper --to white` + `mix-blend-mode:multiply` on the figure, with grayscale only. Put that recipe in §51 and imagery.md §8: "a plate that changes filter must be on white paper and multiplied".
+- Even multiplied, residual paper grain (248–252) shows a faint edge next to flat paper. A left-edge `mask-image` fade over the clean zone fixed it. Worth one line next to "feather the edge ≤ 1%" (that advice is about deckles, not clean type zones).
+- Bug the audit flagged correctly but vaguely: `flex:1` on an input inside a row that turns into a column on mobile collapses it to ~20px. The message only said "INPUT". Print the measured size ("INPUT 336×18") so the cause is obvious.
+- style.defaultLook counted my Spine 2/6 but measured 4/6 (tinyAccent, hairlineBands). An amber finale field and dropping rules from the definition lists brought it to 3/6. The audit was right: the Spine check is easy to fool yourself on. Tell agents to trust the measured count.
+- Grid gotcha: two items whose column spans overlap (1/span 6 and 6/span 7) auto-place into two rows, so the image dropped below the text. layout.md could say "set grid-row:1 on overlapping split items".
+- Direction 7 had no recipe for an image series. Institutional + a linocut series worked: serif for meaning, sans for utility, and prints as full-bleed fields. A short "with a generated series" branch (as morrow3 asked for direction 5) would help.
+- The sticky image beside a tall stepped list (layout.md §5.2 sticky rule) worked well; the stepped indent (§74 idea reused as stairs) read as the image's stairway without extra art.
+- No other FAILs. Placeholder chips (dashed) kept the report cover, library rows and funders honest without looking unfinished.

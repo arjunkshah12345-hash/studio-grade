@@ -128,7 +128,9 @@ The statement in ink and the elaboration in ink at 55–65%, at the **same size,
 ## 9. Micro-typography checklist
 
 - `text-wrap: balance` on headings and `text-wrap: pretty` on paragraphs. Never leave a one-word widow in a hero.
-- `font-variant-numeric: tabular-nums` for any number that changes (counters, prices in tables, timers).
+- `font-variant-numeric: tabular-nums` for any number that changes (counters, prices in tables, timers). **Check the zero under `tnum`:** some faces (Mona Sans) switch to a slashed zero, so prices read "2,4ØØ". Use proportional figures for display numerals, and switch faces or add `font-feature-settings:"zero" 0` where the face allows it.
+- `text-wrap:balance` re-breaks a heading that has manual `<br>`s into three lines. tokens.css turns it off for `h1:has(br)`; do the same for any custom heading class.
+- The `font:` shorthand resets `font-stretch`. With a width-axis face (Archivo 125%, Mona Sans wide), set `--display-stretch` / `--label-stretch` in tokens.css; the bundles re-apply them. Any of your own rules that uses the shorthand needs a `font-stretch` after it.
 - `font-feature-settings: "case"` on uppercase labels so punctuation centers.
 - Real typographic characters: em dashes (—), en dashes for ranges (10–5), curly quotes, the ellipsis (…), × for multiplication, the arrows → ↗ ↳.
 - Use `hanging-punctuation: first` on large quotes, or pull the opening quote into the margin manually.

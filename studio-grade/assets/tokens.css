@@ -27,6 +27,7 @@
   --font-serif:   var(--font-display);   /* .t-lead / .serif-i use this: point it at a real serif only if your system has one */
   --font-num:     var(--font-mono);      /* the numbers voice (prices, timecodes, counters): a pixel/LED face in Loud builds (techniques.md §66), else mono */
   --font-mono:    var(--font-display);   /* mono labels are a dev/SaaS/deep-tech device (typography.md §5); point at a mono face only then */
+  /* --display-stretch / --label-stretch: set (e.g. 125%) for a width-axis face. The `font:` shorthand resets font-stretch, so the bundles re-apply these. */
 
   /* ---------- Type scale (fluid; 390px → 1440px) ---------- */
   --word:     clamp(4.5rem, 1rem + 13vw, 16rem);        /* 1–3 word monument: 9–18vw */
@@ -117,10 +118,11 @@ html{-webkit-text-size-adjust:100%;text-size-adjust:100%;color-scheme:light}
 body{margin:0;background:var(--paper);color:var(--ink);font:400 var(--body)/1.55 var(--font-text);
   -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility}
 [data-theme="dark"] body,body[data-theme="dark"]{letter-spacing:.01em}  /* crisper on dark (Raycast) */
-img,video,svg,canvas{display:block;max-width:100%}
+img,video,svg,canvas,picture{display:block;max-width:100%}
 img,video{height:auto}
 h1,h2,h3,h4,p,figure,blockquote{margin:0}
 h1,h2,h3{text-wrap:balance}
+h1:has(br),h2:has(br){text-wrap:wrap}   /* manual breaks already set the lines; balance would add a third */
 p,li,figcaption{text-wrap:pretty}
 a{color:inherit;text-decoration-thickness:1px;text-underline-offset:.18em}
 button,input,select,textarea{font:inherit;color:inherit}
@@ -129,15 +131,15 @@ button,input,select,textarea{font:inherit;color:inherit}
 :focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:2px}
 
 /* ---------- Text-style bundles (use only these) ---------- */
-.t-word   {font:var(--word-wt) var(--word)/var(--word-lh) var(--font-display);letter-spacing:var(--word-ls)}
-.t-display{font:var(--display-wt) var(--display)/var(--display-lh) var(--font-display);letter-spacing:var(--display-ls)}
-.t-h2     {font:var(--h2-wt) var(--h2)/var(--h2-lh) var(--font-display);letter-spacing:var(--h2-ls)}
-.t-h3     {font:var(--h3-wt) var(--h3)/var(--h3-lh) var(--font-display);letter-spacing:var(--h3-ls)}
+.t-word   {font:var(--word-wt) var(--word)/var(--word-lh) var(--font-display);font-stretch:var(--display-stretch,normal);letter-spacing:var(--word-ls)}
+.t-display{font:var(--display-wt) var(--display)/var(--display-lh) var(--font-display);font-stretch:var(--display-stretch,normal);letter-spacing:var(--display-ls)}
+.t-h2     {font:var(--h2-wt) var(--h2)/var(--h2-lh) var(--font-display);font-stretch:var(--display-stretch,normal);letter-spacing:var(--h2-ls)}
+.t-h3     {font:var(--h3-wt) var(--h3)/var(--h3-lh) var(--font-display);font-stretch:var(--display-stretch,normal);letter-spacing:var(--h3-ls)}
 .t-lead   {font:400 var(--lead)/1.42 var(--font-serif);letter-spacing:-.008em}
 .t-body   {font:400 var(--body)/1.55 var(--font-text)}
 .t-ui     {font:450 var(--ui)/1.4 var(--font-text);letter-spacing:-.006em}
 .t-small  {font:400 var(--small)/1.45 var(--font-text)}
-.t-label  {font:500 var(--label)/1.2 var(--font-mono);letter-spacing:var(--label-ls);text-transform:uppercase;font-feature-settings:"case"}
+.t-label  {font:500 var(--label)/1.2 var(--font-mono);font-stretch:var(--label-stretch,normal);letter-spacing:var(--label-ls);text-transform:uppercase;font-feature-settings:"case"}
 .t-label--plain{font:500 var(--small)/1.3 var(--font-text);letter-spacing:-.003em;text-transform:none}   /* sentence-case label for directions that don't use mono caps */
 .t-num    {font-variant-numeric:tabular-nums lining-nums}
 .dim      {color:var(--ink-2)}

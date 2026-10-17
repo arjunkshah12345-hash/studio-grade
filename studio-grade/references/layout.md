@@ -114,6 +114,8 @@ Rules: 3–7 visible items. Everything else goes in a drawer or mega panel. The 
 - **Recompose, don't shrink.** Product UI is cropped to its most legible region rather than swapped for a phone mock (Linear). Illustrations collapse into a row (Family). The wordmark rotates from vertical to horizontal (JW Anderson). Hero imagery gets a portrait crop.
 - Margins are 16–24px. Logo grids go to 2–3 columns. Sticky CTAs persist (Ramp ticker, Mintlify "Ask assistant" pill).
 - Hide custom cursors and heavy WebGL on touch; swap in a poster or video.
+- **Tablet (760–1100px) is the mobile composition, wider:** a 21:9 hero has no room beside the copy there, so put it in-flow under the text with the mobile crop instead of making a third crop.
+- **Overlapping split items** (`grid-column:1/span 6` and `6/span 7`) auto-place into two rows. Set `grid-row:1` on both.
 - Test for horizontal overflow; giant display type is the usual culprit, so use `clamp()` with a vw term and `overflow-wrap:anywhere` on long words.
 
 

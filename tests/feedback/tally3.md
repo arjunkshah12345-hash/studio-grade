@@ -1,0 +1,14 @@
+# Tally 3 (direction 11 · Confident cobalt band · H19 on a flat field · §68/§69/§76): skill feedback
+Final audit: 0 fail · 0 warn · 11 pass · defaultLook 1/6 · 6.2 viewports
+
+1. range.md §4 "colour band" + "product crosses the band edge" was the whole hero; it worked first time once I measured it. Add the arithmetic: crossing = card height × ~0.55 (`margin-top:-118px` on a 210px card), or the card just sits on the edge and reads as a header (my first pass).
+2. H19 on a flat-ground render (not a photo): anchor the image `bottom:0; right:0; width:max(100%,1180px)` and let the band grow; `cover` crops the clean zone away at 1440×900 and drags the coin arc under the headline. Worth a line in §68 for 21:9 renders with a clean left half.
+3. Below ~1100px the 21:9 hero has no room beside the copy; putting it in-flow under the text (same crop as mobile) was cleaner than a third crop. Say "tablet = mobile composition, wider" in layout.md §8.
+4. a11y.contrast.media caught a 13px #CBD5FF price line at 4.2:1 over the floor reflections, which pixel-sampling on flat cobalt would never predict. Good catch; the rule should hint "secondary tint over render reflections: use the primary on-band ink".
+5. color.glow fired on my product-window shadow tinted cobalt (rgb(10 30 160/.35)). Fair, but direction 11's own `--shadow-card` and the §69 vignettes invite tinted shadows; state "shadows are ink-tinted, never hue-tinted" in the direction 11 tokens.
+6. "Invent no numbers" vs §69's "real content in vignettes": an example API call needs an amount. I labelled the card "Example" plus a caption and a "What this page doesn't show" list. Direction 11 should say this explicitly: illustrative values in product replicas are OK when marked; FX rates, timings and volumes are claims and stay out.
+7. The motif carrying data again beat decoration: the pricing slider draws one frosted CSS coin per paid contractor (USD 12 each). Second build where this happened; promote "a motif that counts" to SKILL.md law 4.
+8. images.py: `export --crop` for three 560×400 step tops from the 1916px hero was fast. Missing: a `sample` command printing corner/zone hex values (I needed them for the band grounds; hero #1A3FF8 vs arc #1E3AF9 differ, so each band uses its own).
+9. images.py `paper` uses the median of 4 corners; on the footer arc (coins in both bottom corners) that median would be a coin, not the ground. Allow `--zone x,y,w,h`.
+10. Mobile pricing: a 4:3 still life with the subject in one half needs an in-file zoom (`width:130%` + negative margins). `export --crop` for a mobile file would be cleaner; mention it next to the hero mobile crop rule.
+11. The audit's page length INFO (6.2 vs 7–12) is fine to ignore for a one-product API page; direction 11 could note "short and dense is allowed when the brief has 4 facts".

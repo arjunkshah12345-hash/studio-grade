@@ -554,3 +554,59 @@ End on the name at full width, cut out of the page so a **live texture shows thr
   font:600 clamp(6rem,2rem + 18vw,22rem)/.8 var(--font-display);letter-spacing:-.05em;text-align:center}
 ```
 Keep the texture slow (one full cycle ≥ 20s) and pause it offscreen and under reduced motion (the audit's `perf.offscreen` checks the first). Spell-check the wordmark (§70).
+
+## K. Moves on a generated photo series (gallery v3 builds)
+
+### 80. Scrubbed crossfade of an aligned pair (Leave the Lights, Fieldwork)
+When the bible can produce **two shots from the same viewpoint** (lights on / lights off, before / after, dry / flooded), that pair is the strongest asset a brief can have. Use one sticky stage with both images stacked; scroll drives the top image's opacity, and a range input mirrors the scroll (and drives it, so keyboard users get the same control). The scrub can *be* the intro: no loader is needed.
+```html
+<section class="pair" aria-label="The same valley, before and after">
+  <div class="pair-stage">
+    <img src="now-1916.jpg" alt="The valley tonight, under skyglow" width="1916" height="821">
+    <img class="pair-b" src="dark-1916.jpg" alt="The same valley with the lights off" width="1916" height="821">
+    <input class="pair-range" type="range" min="0" max="100" value="0" aria-label="Lights off">
+  </div>
+</section>
+```
+```css
+.pair{height:220vh}                                     /* the track: ~1.2 extra screens of scrub */
+.pair-stage{position:sticky;top:0;height:100svh;overflow:hidden}
+.pair-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pair-b{opacity:var(--p,0)}
+@media (prefers-reduced-motion:reduce){.pair{height:auto}.pair-stage{position:relative;aspect-ratio:21/9;height:auto}}
+```
+```js
+const sec = document.querySelector('.pair'), range = sec.querySelector('.pair-range');
+const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const set = p => { sec.style.setProperty('--p', p); range.value = Math.round(p * 100); };
+if (!still) addEventListener('scroll', () => {
+  const r = sec.getBoundingClientRect(), run = r.height - innerHeight;
+  set(Math.min(1, Math.max(0, -r.top / run)));
+}, { passive: true });
+range.addEventListener('input', () => {
+  const p = range.value / 100;
+  if (still) return set(p);                             // reduced motion: the slider is the only control
+  const r = sec.getBoundingClientRect();
+  scrollTo({ top: scrollY + r.top + p * (r.height - innerHeight) });
+});
+```
+Use `images.py export --crop` with **the same region from both files** for the mobile stage, or the crossfade jumps. A rising `mask-image` edge (a waterline, a dawn line) instead of plain opacity is the editorial variant. Full-page mobile screenshots show the pinned track as an empty band; that's a capture artefact, not a bug.
+
+### 81. Overlays locked to a cover photo (Kestrel)
+Annotation boxes, flight paths and labels drawn *on* a full-bleed `object-fit:cover` photo drift off their subject at every other viewport, because cover crops differently. Replace the `img` with a **stage** sized exactly as cover would size it. Place overlays in percentages of the source image, and they stay on the drone at 1440, 1024 and 390.
+```css
+.shot{position:relative;overflow:hidden;container-type:size;height:100svh}
+.stage{--r:2.333;--px:.5;--py:.5;                       /* source aspect; same focus as object-position */
+  --w:max(100cqw,100cqh * var(--r));
+  position:absolute;width:var(--w);aspect-ratio:var(--r);
+  left:calc((100cqw - var(--w)) * var(--px));top:calc((100cqh - var(--w) / var(--r)) * var(--py))}
+.stage img{width:100%;height:100%;display:block}
+.mark{position:absolute;left:41.5%;top:38%;width:6%;aspect-ratio:1;border:1.5px solid var(--accent)}
+```
+Measure the % boxes from the source file once (open it at 1:1 and read pixel positions, then divide by its size). On mobile use a separate crop with its own stage and `--r`. An inspection or vision product wants sizes in the boxes: show placeholder values as dashed chips ("— mm") and stamp the artifact "Sample layout" (§73). Never invent readings.
+
+### 82. Fill the blank in the photo with live type (Morrow)
+Have the bible **reserve a flat blank zone on the object** ("a blank cream label, no text"). Then write on it in HTML: the hour, the product name, the visitor's city. Put it on a §81 stage, size it with `cqw`, and give it `mix-blend-mode:multiply` so it takes the paper's grain and light. If the object is tilted, rotate the text to match. Because the type is real, it can change (the time, a selected variant), and it can repeat as the motif in captions, links and the finale. It reads as photographed, not pasted. Find the label's box by sampling its corners: `images.py sample SRC --zone …` confirms the blank's colour, so the ink can be a darker tint of it.
+
+### 83. A motif that counts (Tally, Kestrel, Sprout)
+The strongest motif moments in the v3 gallery carried data. Each time the motif appeared, it showed how many of something there were: the pricing slider draws one frosted coin per paid contractor (a USD 12 fee each), a plant's notification bubbles stack per missed watering, and a calculator multiplies one fact from the brief (11 minutes per blade) by the visitor's own number. This is honest proof with **no invented figures**: the numbers come from the brief and the visitor's input. Build it with a fixed pool of motif elements toggled by index (`el.hidden = i >= n`) so layout never jumps, and announce the total in an `aria-live="polite"` line.

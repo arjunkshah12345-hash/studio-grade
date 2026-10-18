@@ -28,6 +28,9 @@
 !/tests/builds/fieldwork/
 !/tests/builds/relay/
 !/tests/builds/relay3/
+!/tests/builds/loam/
+!/tests/builds/antropi/
+!/tests/builds/lowlight/
 !/tests/builds/halden2/
 !/tests/builds/kestrel2/
 !/tests/builds/onair/

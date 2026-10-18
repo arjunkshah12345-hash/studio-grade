@@ -1,0 +1,388 @@
+<!--
+DESIGN SPINE · Loam (fictional front-box cargo e-bike)
+DIRECTION   : 11 Bright Product — a physical product with a buy path and a generated photo series; families should feel the bike is friendly, finished and real, not an award-site mood piece (5 would cap the hero at 31px and hide the numbers parents compare).
+REGISTER    : Confident — the one bold device is the hero: the sunlit brick wall at full scale, an inset photo panel with the headline set in cream on the brick. Everything after is white, sentence case, calm.
+AXES        : ground white + fields sampled from the photos (brick hero, sage band for the motor, sky finale) · type genre characterful Scandinavian grotesk (Familjen Grotesk 500, one family) · image medium photography (3-shot generated series + crops) · composition product stage → asymmetric bleed splits → banded fields · motion feel calm, the product moves (box fills, range counts, cover goes up)
+DEFAULT?    : 0/6 (white not off-white, no mono labels, no metadata bands, photo not line drawing, sage accent is a field + buttons) → DIFFERENT FROM DEFAULT BY: ground, labels, hero medium
+MOTIF       : the birch box in side profile (a sloped-top trapezoid with a cut front corner) → 1 logo mark · 2 separators in the promise strip · 3 the fill diagram in "What fits" (scale: large) · 4 the counting glyphs: one box per weekly shop that fits (§83) · 5 the rain-cover diagram's base
+TYPE        : display Familjen Grotesk 500 · text Familjen Grotesk 400 · labels Familjen Grotesk 500 sentence case (no mono)
+SCALE       : display 84px/0.98/-0.035em · h2 52px/1.04/-0.025em · h3 24px · body 17px/1.55 · label 13px sentence case
+PALETTE     : paper #FFFFFF · paper-2 birch #F6EEE2 · ink #1C2420 · ink-2 ink@72% · hairline ink@10% · accent sage #3D5A46 → ONLY primary buttons + the sage motor band (frame colour, darkened for AA) · cream #FFF7EC text on brick
+GRID        : 12/24 · container 1280 · margin 80→20 · section rhythm 128px, voids up to 200px
+HERO        : H6 photo card (inset 16px, radius 28) with corner-anchored UI: h1 top-left on the brick, 2 CTAs under it, price chip bottom-left on the stone plinth; mobile = brick portrait card + separate bike crop
+IMAGERY     : photography: hero.png (hero, motor crop, door crop, wall crop), box.png (box chapter, rain-cover crop), ride.png (finale, mobile portrait, step crop). Missing "detail" and "rain" shots covered by: motor crop + locked overlay + big numerals + range calculator; folded-cover crop + a drawn cover diagram with a toggle.
+CONVERSION  : Book a test ride → nav pill, hero, price cards ×2, step band, finale form. Secondary "See what fits in the box" → hero only.
+MOTION      : house ease cubic-bezier(.2,.8,.2,1) · UI 200ms · reveal 600ms (fade + 8px, card groups 70ms stagger) · media: scale 1.04→1 · text never moves
+IMAGES      : Medium: bright, real-looking lifestyle and product photography, soft morning daylight, gentle shadows, true colour, 35mm, a Dutch or Danish canal city. The bike is a long front-box cargo e-bike with a sage-green frame and a pale birch-plywood box, no brand marks. Palette: sage, birch, terracotta brick, cream, clear sky blue. People only from behind or far away, never readable faces. Exclusions: no text, no logos, no brand marks, no watermarks, no readable faces.
+              shot list: hero 21:9 (made) · box 4:3 (made) · ride 21:9 (made) · detail 4:3 (NOT made → typographic/diagram) · rain 4:3 (NOT made → crop + diagram)
+              crop table: hero → 1916 full · brick portrait (mobile hero) · bike strip (mobile) · motor 736×461 · step "door" · step "wall"; box → full · cover crop; ride → full · mobile portrait · step "ride"
+SIGNATURES  : §83 a motif that counts (box fill + shops that fit; trips per charge) · §81 overlay locked to a cover photo (motor ring) · §69 vignettes on crops of the series (test-ride steps)
+VOICE       : "Room for two, or the week's shop." · "Built around the box." · "Try it on your own street."
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Loam · The front-box cargo e-bike for city families</title>
+<meta name="description" content="Loam is a front-box cargo e-bike for families in European cities. Two child seats and a rain cover included. EUR 3,900, or EUR 89 a month. Free 45-minute test ride at your door. A fictional product.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="media/hero-1916.webp" media="(min-width: 761px)" fetchpriority="high">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 120'%3E%3Cpath d='M10 34 190 8v104H44L10 78Z' fill='%23D8AC86' stroke='%233D5A46' stroke-width='10' stroke-linejoin='round'/%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip btn btn--primary" href="#main">Skip to content</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="boxmark" viewBox="0 0 200 120"><path d="M10 34 190 8v104H44L10 78Z"/></symbol>
+  </defs>
+</svg>
+
+<header class="nav" id="top">
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="Loam, home">
+      <svg class="brand-mark" viewBox="0 0 200 120" aria-hidden="true"><use href="#boxmark"/></svg>
+      <span>loam</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#box">The box</a></li>
+        <li><a href="#motor">Motor and range</a></li>
+        <li><a href="#price">Price</a></li>
+        <li><a href="#ride">Test ride</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--sage btn--sm" href="#book">Book a test ride</a>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- 1 · HERO -->
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="hero-card">
+      <picture class="hero-img">
+        <source media="(max-width: 760px)" srcset="media/hero-brick-560.webp" type="image/webp">
+        <source srcset="media/hero-960.webp 960w, media/hero-1916.webp 1916w" sizes="100vw" type="image/webp">
+        <img src="media/hero-1916.jpg" width="1916" height="821" fetchpriority="high"
+             alt="A cargo bike with a sage-green frame and an empty birch box, parked side-on against a sunlit brick wall beside a canal">
+      </picture>
+      <div class="hero-copy">
+        <h1 id="hero-h" class="t-display">Room for two, or the week’s shop.</h1>
+        <p class="hero-sub">Loam is a front-box cargo e-bike for city families. Two child seats and a rain cover come in the box.</p>
+        <div class="hero-ctas">
+          <a class="btn btn--cream" href="#book">Book a test ride</a>
+          <a class="hero-link" href="#fits">See what fits in the box <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <p class="hero-price"><span class="t-num">EUR 3,900</span><span class="sep" aria-hidden="true"></span><span>or <span class="t-num">EUR 89</span> a month</span></p>
+    </div>
+    <picture class="hero-bike">
+      <source srcset="media/hero-bike-800.webp 800w, media/hero-bike-1356.webp 1356w" sizes="100vw" type="image/webp">
+      <img src="media/hero-bike-800.jpg" width="1356" height="621" alt="" loading="lazy">
+    </picture>
+  </section>
+
+  <!-- 2 · PROMISE STRIP -->
+  <section class="promise" aria-label="What comes with Loam">
+    <ul class="container promise-list">
+      <li>Two child seats, included</li>
+      <li>Rain cover, included</li>
+      <li>Free 45-minute test ride at your door</li>
+    </ul>
+  </section>
+
+  <!-- 3 · THE BOX -->
+  <section class="chapter box-chapter" id="box" aria-labelledby="box-h">
+    <div class="container split">
+      <div class="split-copy">
+        <p class="kicker">The box</p>
+        <h2 id="box-h" class="t-h2">Built around the box. <span class="dim">Birch plywood, two seats with harnesses, and room in front of them for bags.</span></h2>
+        <ul class="ticks">
+          <li>Carries two children, or 80&nbsp;kg of shopping</li>
+          <li>Two child seats with harnesses, included</li>
+          <li>The rain cover folds into the box</li>
+        </ul>
+      </div>
+      <figure class="split-media" data-reveal>
+        <div class="media-frame">
+          <picture>
+            <source srcset="media/box-720.webp 720w, media/box-1448.webp 1448w" sizes="(max-width: 760px) 100vw, 60vw" type="image/webp">
+            <img src="media/box-1448.jpg" width="1448" height="1086" loading="lazy"
+                 alt="Looking down into the birch box: two child seats with harnesses, a net bag of oranges, a baguette and a folded green rain cover">
+          </picture>
+        </div>
+        <div class="vig vig--pack" role="img" aria-label="Example: what is in the box in this photo — two child seats, oranges, a baguette and the rain cover">
+          <p class="vig-head"><span>In this photo</span><span class="chip">Example</span></p>
+          <ol>
+            <li><span>Child seats</span><b>2 of 2</b></li>
+            <li><span>Net of oranges</span><b>front left</b></li>
+            <li><span>Baguette</span><b>front</b></li>
+            <li><span>Rain cover, folded</span><b>front right</b></li>
+          </ol>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 3b · WHAT FITS (signature: the motif that counts) -->
+  <section class="fits" id="fits" aria-labelledby="fits-h">
+    <div class="container">
+      <div class="fits-tray">
+        <div class="fits-ctl">
+          <p class="kicker">What fits in the box</p>
+          <h2 id="fits-h" class="t-h3">Two children, or 80&nbsp;kg of shopping. Try your own load.</h2>
+          <div class="seg" role="radiogroup" aria-label="Load">
+            <button type="button" role="radio" aria-checked="true" data-mode="kids">Two children</button>
+            <button type="button" role="radio" aria-checked="false" data-mode="shop">Shopping</button>
+          </div>
+          <div class="fits-kids" data-panel="kids">
+            <p class="fits-note">Both child seats come with the bike, with harnesses. Put one or both to use.</p>
+            <div class="seat-pick" role="group" aria-label="Children riding">
+              <button type="button" aria-pressed="true" data-seat="0">Left seat</button>
+              <button type="button" aria-pressed="true" data-seat="1">Right seat</button>
+            </div>
+          </div>
+          <div class="fits-shop" data-panel="shop" hidden>
+            <label class="range-label" for="shop-kg">Your weekly shop <output id="shop-out" class="t-num">12 kg</output></label>
+            <input id="shop-kg" type="range" min="4" max="80" step="1" value="12">
+            <p class="fits-note">Weigh your usual shop, or guess. The box takes up to 80&nbsp;kg.</p>
+          </div>
+          <p class="fits-read" aria-live="polite" id="fits-read">Two children, in two seats.</p>
+        </div>
+        <div class="fits-stage" aria-hidden="true">
+          <svg class="fits-svg" viewBox="0 -44 236 164" preserveAspectRatio="xMidYMid meet">
+            <defs><clipPath id="boxclip"><path d="M10 34 190 8v104H44L10 78Z"/></clipPath></defs>
+            <g class="seatbacks"><rect x="74" y="-8" width="34" height="60" rx="10"/><rect x="132" y="-16" width="34" height="60" rx="10"/></g>
+            <g class="kid" data-kid="0"><rect x="76" y="2" width="30" height="40" rx="13"/><circle cx="91" cy="-10" r="11"/></g>
+            <g class="kid" data-kid="1"><rect x="134" y="-6" width="30" height="40" rx="13"/><circle cx="149" cy="-18" r="11"/></g>
+            <path class="fits-wall" d="M10 34 190 8v104H44L10 78Z"/>
+            <g clip-path="url(#boxclip)">
+              <rect class="fits-level" x="0" y="0" width="200" height="120"/>
+              <g class="fits-lines"><line x1="0" y1="86" x2="200" y2="86"/><line x1="0" y1="60" x2="200" y2="60"/><line x1="0" y1="34" x2="200" y2="34"/></g>
+            </g>
+            <path class="fits-edge" d="M10 34 190 8v104H44L10 78Z"/>
+            <g class="fits-scale"><text x="198" y="89">20 kg</text><text x="198" y="63">40 kg</text><text x="198" y="37">60 kg</text><text x="198" y="11">80 kg</text></g>
+          </svg>
+          <div class="fits-count">
+            <p class="fits-count-label" id="count-label">Shops like yours per load</p>
+            <div class="glyphs" id="glyphs"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · MOTOR AND RANGE (sage band) -->
+  <section class="motor" id="motor" aria-labelledby="motor-h">
+    <div class="container motor-grid">
+      <div class="motor-copy">
+        <p class="kicker">Motor and range</p>
+        <h2 id="motor-h" class="t-h2">A mid-drive, low in the frame. <span class="dim">It pushes at the cranks, so the help arrives with your own pedal stroke.</span></h2>
+        <dl class="bignums">
+          <div><dt>Mid-drive motor</dt><dd class="t-num">250<small> W</small></dd></div>
+          <div><dt>Assist on one battery</dt><dd class="t-num"><small>about </small>70<small> km</small></dd></div>
+        </dl>
+      </div>
+      <figure class="motor-shot" data-reveal>
+        <div class="motor-stage">
+          <picture>
+            <source srcset="media/motor-736.webp" type="image/webp">
+            <img src="media/motor-736.jpg" width="736" height="461" loading="lazy" alt="The rear half of the bike: the mid-drive motor at the cranks, the chain, the rear wheel and the canal behind">
+          </picture>
+          <span class="ring" aria-hidden="true"></span>
+          <span class="ring-tag">250 W mid-drive</span>
+        </div>
+        <figcaption>The motor sits at the cranks, between the box and the rear wheel.</figcaption>
+      </figure>
+      <div class="trip" aria-labelledby="trip-h">
+        <h3 id="trip-h" class="t-h3">How many of your trips is 70&nbsp;km?</h3>
+        <label class="range-label" for="trip-km">Your usual round trip <output id="trip-out" class="t-num">8 km</output></label>
+        <input id="trip-km" type="range" min="2" max="35" step="1" value="8">
+        <div class="trip-row" id="trip-row" aria-hidden="true"></div>
+        <p class="trip-read" id="trip-read" aria-live="polite">About 8 round trips on one charge.</p>
+        <p class="trip-note">An estimate from the 70&nbsp;km figure. Hills, wind, cold, load and the assist level you choose all change it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · RAIN COVER -->
+  <section class="chapter rain" aria-labelledby="rain-h">
+    <div class="container">
+      <div class="rain-head">
+        <p class="kicker">Rain cover</p>
+        <h2 id="rain-h" class="t-h2">Rainy school run, covered. <span class="dim">The rain cover comes with the bike and rolls into a corner of the box.</span></h2>
+      </div>
+      <div class="rain-pair" data-reveal-group>
+        <figure class="rain-photo">
+          <picture>
+            <source srcset="media/cover-520.webp" type="image/webp">
+            <img src="media/cover-520.jpg" width="520" height="360" loading="lazy" alt="The sage rain cover, rolled and strapped, in the front corner of the birch box beside a baguette">
+          </picture>
+          <figcaption>Rolled up, it rides in the front corner.</figcaption>
+        </figure>
+        <figure class="rain-diagram" data-cover="down">
+          <svg viewBox="0 0 360 224" role="img" aria-labelledby="cover-desc">
+            <title id="cover-desc">Side-view drawing of the front of the bike: the box with two children, and the rain cover that goes up over them</title>
+            <g class="drops" aria-hidden="true">
+              <line x1="70" y1="14" x2="64" y2="30"/><line x1="122" y1="6" x2="116" y2="22"/><line x1="176" y1="16" x2="170" y2="32"/><line x1="232" y1="6" x2="226" y2="22"/><line x1="290" y1="14" x2="284" y2="30"/><line x1="336" y1="30" x2="330" y2="46"/><line x1="40" y1="44" x2="34" y2="60"/>
+            </g>
+            <line class="ground" x1="12" y1="207" x2="348" y2="207"/>
+            <circle class="wheel" cx="52" cy="177" r="30"/><circle class="hub" cx="52" cy="177" r="3.5"/>
+            <path class="frame" d="M52 177 L80 100 L68 94"/>
+            <g class="seatbacks"><rect x="188" y="76" width="38" height="60" rx="11"/><rect x="252" y="68" width="38" height="60" rx="11"/></g>
+            <g class="dia-kids"><rect x="191" y="86" width="32" height="40" rx="14"/><circle cx="207" cy="74" r="12"/><rect x="255" y="78" width="32" height="40" rx="14"/><circle cx="271" cy="66" r="12"/></g>
+            <path class="canopy-fill" d="M96 121 C 100 52, 170 30, 232 32 C 292 34, 322 58, 321 99 Z"/>
+            <path class="canopy" d="M96 121 C 100 52, 170 30, 232 32 C 292 34, 322 58, 321 99"/>
+            <path class="dia-box" d="M96.5 120.9 321.5 98.8V187.2H139L96.5 158.3Z"/>
+            <rect class="roll" x="110" y="105" width="42" height="14" rx="7"/>
+          </svg>
+          <figcaption>
+            <span class="cover-state" aria-live="polite">Cover rolled up</span>
+            <button type="button" class="btn btn--line btn--sm" aria-pressed="false" id="cover-btn">Put the cover up</button>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · PRICE -->
+  <section class="chapter price" id="price" aria-labelledby="price-h">
+    <div class="container price-grid">
+      <div class="price-copy">
+        <p class="kicker">Price</p>
+        <h2 id="price-h" class="t-h2">One price, everything in the box.</h2>
+        <p class="lede">The bike, the birch box, two child seats and the rain cover. Ride one first: the test ride is free and comes to you.</p>
+      </div>
+      <div class="tags" data-reveal-group>
+        <article class="tag">
+          <p class="tag-name">Buy it</p>
+          <p class="tag-price t-num">EUR 3,900</p>
+          <p class="tag-note">Paid once.</p>
+          <a class="btn btn--sage" href="#book">Book a test ride</a>
+        </article>
+        <article class="tag tag--alt">
+          <p class="tag-name">Pay monthly</p>
+          <p class="tag-price t-num">EUR 89<small> / month</small></p>
+          <p class="tag-note">Over 48 months. <span class="ph-chip">Placeholder: lender, APR and credit terms to be confirmed</span></p>
+          <a class="btn btn--sage" href="#book">Book a test ride</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · TEST RIDE STEPS -->
+  <section class="chapter steps" id="ride" aria-labelledby="steps-h">
+    <div class="container">
+      <div class="steps-head">
+        <h2 id="steps-h" class="t-h2">A test ride comes to you. <span class="dim">Free, 45 minutes, from your own front door.</span></h2>
+      </div>
+      <ol class="step-row" data-reveal-group>
+        <li class="step">
+          <div class="step-art" style="--img:url(media/step-wall-760.webp)">
+            <div class="vig vig--cal" role="img" aria-label="Example: a calendar with a morning slot picked">
+              <p class="vig-head"><span>Pick a time</span><span class="chip">Example</span></p>
+              <div class="cal-days"><span>Mon</span><span>Tue</span><span class="on">Wed</span><span>Thu</span><span>Fri</span></div>
+              <div class="cal-slots"><span>09:00</span><span class="on">10:00</span><span>11:00</span></div>
+            </div>
+          </div>
+          <div class="step-t"><span class="t-num" aria-hidden="true">1</span><h3>Pick a time that suits you</h3></div>
+        </li>
+        <li class="step">
+          <div class="step-art" style="--img:url(media/step-door-760.webp)">
+            <div class="vig vig--door" role="img" aria-label="Example: a message saying the test bike is on its way to your street">
+              <p class="vig-head"><span>Test bike</span><span class="chip">Example</span></p>
+              <p class="vig-line"><span class="dot"></span> On its way to your door</p>
+              <div class="vig-bar"><span></span></div>
+            </div>
+          </div>
+          <div class="step-t"><span class="t-num" aria-hidden="true">2</span><h3>We bring a bike to your door</h3></div>
+        </li>
+        <li class="step">
+          <div class="step-art" style="--img:url(media/step-ride-760.webp)">
+            <div class="vig vig--timer" role="img" aria-label="A 45-minute test ride timer">
+              <p class="vig-head"><span>Your ride</span><span class="chip chip--free">Free</span></p>
+              <p class="timer t-num" id="timer">45:00</p>
+            </div>
+          </div>
+          <div class="step-t"><span class="t-num" aria-hidden="true">3</span><h3>Ride it for 45 minutes</h3></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 8 · FINALE -->
+  <section class="finale" id="book" aria-labelledby="book-h">
+    <div class="finale-card">
+      <picture class="finale-img">
+        <source media="(max-width: 760px)" srcset="media/ride-m-520.webp" type="image/webp">
+        <source srcset="media/ride-960.webp 960w, media/ride-1916.webp 1916w" sizes="100vw" type="image/webp">
+        <img src="media/ride-1916.jpg" width="1916" height="821" loading="lazy"
+             alt="Seen from behind, a parent rides the cargo bike along a canal towpath with two small children in the box; gabled houses and trees line the water">
+      </picture>
+      <div class="finale-copy">
+        <h2 id="book-h" class="t-display">Try it on your own street.</h2>
+        <p class="finale-sub">A bike comes to your door for a free 45-minute test ride.</p>
+      </div>
+      <form class="book" id="book-form" novalidate>
+        <p class="book-head">Book a test ride</p>
+        <label for="pc">Postcode</label>
+        <input id="pc" name="pc" autocomplete="postal-code" placeholder="e.g. 1015 AB" required>
+        <fieldset>
+          <legend>Day</legend>
+          <div class="book-days" id="book-days"></div>
+        </fieldset>
+        <fieldset>
+          <legend>Time <span class="legend-note">example slots</span></legend>
+          <div class="book-slots">
+            <label><input type="radio" name="slot" value="09:00" checked><span>09:00</span></label>
+            <label><input type="radio" name="slot" value="13:00"><span>13:00</span></label>
+            <label><input type="radio" name="slot" value="17:00"><span>17:00</span></label>
+          </div>
+        </fieldset>
+        <button class="btn btn--sage book-go" type="submit">Book a test ride</button>
+        <p class="book-msg" id="book-msg" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="container foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="#top" aria-label="Loam, back to top">
+        <svg class="brand-mark" viewBox="0 0 200 120" aria-hidden="true"><use href="#boxmark"/></svg>
+        <span>loam</span>
+      </a>
+      <p class="foot-legal">© 2026 Loam. A fictional product, made as a design study.</p>
+    </div>
+    <nav class="foot-col" aria-label="The bike">
+      <p class="foot-h">The bike</p>
+      <a href="#box">The box</a>
+      <a href="#fits">What fits</a>
+      <a href="#motor">Motor and range</a>
+      <a href="#price">Price</a>
+    </nav>
+    <nav class="foot-col" aria-label="Test ride">
+      <p class="foot-h">Test ride</p>
+      <a href="#book">Book a test ride</a>
+      <a href="#ride">How it works</a>
+    </nav>
+    <nav class="foot-col" aria-label="Legal">
+      <p class="foot-h">Legal</p>
+      <a href="legal.html#terms">Terms</a>
+      <a href="legal.html#privacy">Privacy</a>
+    </nav>
+  </div>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

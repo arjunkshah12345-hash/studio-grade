@@ -1,0 +1,337 @@
+<!--
+DESIGN SPINE · Lowlight
+DIRECTION   : 6 Cinematic Place. A cosy game is sold on a place you want to be in (one island, one lighthouse, one winter), and the one job behaves like booking: "Wishlist on Steam" is never more than zero scrolls away. Borrowed from 9 Playful System: a small playable toy (the beam) instead of feature cards.
+REGISTER    : Confident. The one bold device is the dusk key art at full width with the monumental logotype in its sky, lit up on load (the lamp first, then the island). Everything after is disciplined night-blue chapters.
+AXES        : ground tinted dark (night sea #0A2540, sampled from the storm's sky; hero ground is the key art's own sky row #1B4268 → #04355C) that clears to dawn peach #F0D0B5 at the finale · type genre warm old-style display serif (Young Serif 400) over a friendly sans (Figtree) · image medium painterly stylised 3D game art (generated series of five) · composition cinematic chapters: one 21:9 plate per act, bleed splits between, the toy crossing the storm plate's edge · motion feel lights-up (the scene resolves from dark around a lit lamp), media blur-in, the toy plays
+DEFAULT?    : default-look check 1/6 (near-black-on-paper no; mono labels no; hairline metadata bands no; line-drawing hero no; tiny accent no, the amber is the beam and the button) → DIFFERENT FROM DEFAULT BY: ground, type genre, image medium, labels, hero medium
+MOTIF       : the beam (an amber wedge from a lamp): 1 logomark in the nav (lamp + wedge) · 2 the real beam in the hero, which switches on (lights-up) · 3 list markers and chapter numerals (a tiny wedge) · 4 the toy, where the beam is the mechanic and counts the boats it has reached (§83) · 5 the Wishlist button's hover sweep
+TYPE        : display Young Serif 400 · text Figtree 400/500/600 · logbook Kalam 400 (one job: the keeper's handwritten log cards). 3 families, each with one job.
+SCALE       : word 76→208px/0.9/−0.025em · h2 34→56px/1.04/−0.015em · h3 26px · body 17px/1.6 · label 13px sentence case (Figtree 600)
+PALETTE     : night #0A2540 · band #0F2F4F · ink cream #F7ECDA · ink-2 (cream @74%) · hairline (cream @12%) · accent lamp amber #F4B556 → used ONLY on the Wishlist buttons and the beam motif · dawn #F0D0B5 with ink #0A2540 (finale and footer)
+GRID        : 12/24px · container 1280 · side margin 20→80px · section rhythm 96–144px, 220px void before the storm
+HERO        : H5 variant (monumental word over subject) built as Halden's photo hero: the 21:9 key art anchored to the bottom, its top masked into the sampled sky, "Lowlight" at 208px in the clean sky top-left, the beam pointing at it
+IMAGERY     : generated painterly game-art series (hero dusk, keeper's room, storm, lamp, dawn) + one SVG sea chart for the toy
+CONVERSION  : "Wishlist on Steam": fixed nav (every screen, mobile included) · hero · beside the toy result · details · finale. Secondary "Watch the trailer" → the trailer placeholder
+MOTION      : house ease cubic-bezier(.16,1,.3,1) · UI 150–240ms · reveal 850ms · primitive lights-up (hero), blur-in (media), group rise (log cards); text is still
+IMAGES      : medium      painterly stylised 3D game art, like a polished cosy indie game: soft rounded forms, hand-painted textures, warm lantern light against deep blue-green night and sea, gentle fog
+              setting     a small white lighthouse with a red band on a tiny rocky island in a northern sea
+              recurring   the same white lighthouse with a red band; the keeper only as a small stylised figure from behind
+              palette     night #113B62 / #0A2540, sea #06253F, lamp amber #F4B556, dawn #FDCF99, lighthouse red
+              light       warm lantern light against blue-green night; one dawn plate where the page clears up
+              type zone   hero: left two thirds and top 45% clean sky · dawn: top 50% clean pale sky
+              exclude     no text, no UI, no logos, no watermarks, no realistic people
+              shot list   hero 21:9 (dusk, beam just on, two boats) · room 4:3 · storm 21:9 · lamp 4:3 · dawn 21:9
+              crops       hero → mobile 1035×821 around the lighthouse and beam · storm → mobile 1350×821 boat + beam · dawn → mobile 1150×821 boats + harbour · storm blurred → trailer placeholder poster
+NAMING      : the keeper's world → chapters are the three verbs (Trim the lamp · Read the weather · Turn the beam) · CTA stays Steam's own verb
+SIGNATURES  : §51 lights-up reveal (hero) · §83 a motif that counts (the beam toy counts boats reached) · §15 monumental word over the subject
+VOICE       : hero "Keep a small island's lighthouse through one northern winter." · section "Read the weather. The glass falls before the wind does." · CTA "Keep a light on till spring."
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lowlight · A cosy lighthouse game · Wishlist on Steam</title>
+<meta name="description" content="Lowlight is a cosy story-and-puzzle game about keeping a lighthouse on a small northern island for one winter. PC and Mac on Steam, spring 2027.">
+<meta name="theme-color" content="#0A2540">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230A2540'/%3E%3Cpath d='M10 16 30 9v14z' fill='%23F4B556' opacity='.6'/%3E%3Ccircle cx='10' cy='16' r='4' fill='%23F4B556'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Kalam:wght@400&family=Young+Serif&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="media/hero-1915.webp" media="(min-width:761px)">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+<a class="skip btn btn--accent btn--sm" href="#main">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="Lowlight, back to top">
+      <svg class="mark" viewBox="0 0 40 20" aria-hidden="true"><path d="M9 10 40 2v16z" fill="currentColor" opacity=".45"/><circle cx="9" cy="10" r="5" fill="currentColor"/></svg>
+      <span>Lowlight</span>
+    </a>
+    <nav class="nav-links" aria-label="Sections">
+      <a href="#island">The island</a>
+      <a href="#play">How it plays</a>
+      <a href="#trailer">Trailer</a>
+      <a href="#details">Details</a>
+    </nav>
+    <a class="btn btn--accent btn--sm nav-cta" href="https://store.steampowered.com/search/?term=Lowlight" rel="noopener">Wishlist<span class="hide-s">&nbsp;on Steam</span></a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- HERO: the key art, lit up -->
+<section class="hero" id="top" aria-labelledby="h1">
+  <div class="container hero-copy">
+    <p class="kicker">A cosy story-and-puzzle game</p>
+    <h1 class="t-word" id="h1">Lowlight</h1>
+    <p class="hero-sub">Keep a small island’s lighthouse through one northern winter. Trim the lamp, read the weather, turn the beam and bring the boats home.</p>
+    <div class="ctas">
+      <a class="btn btn--accent btn--lg" href="https://store.steampowered.com/search/?term=Lowlight" rel="noopener">Wishlist on Steam</a>
+      <a class="play-link" href="#trailer"><span class="play-dot" aria-hidden="true"></span>Watch the trailer</a>
+    </div>
+    <p class="hero-meta t-num">Spring 2027 <i aria-hidden="true">·</i> PC and Mac <i aria-hidden="true">·</i> About 8 to 10 hours</p>
+  </div>
+  <div class="hero-art">
+    <picture>
+      <source media="(max-width:760px)" srcset="media/hero-m-900.webp" type="image/webp">
+      <source media="(max-width:760px)" srcset="media/hero-m-900.jpg">
+      <source srcset="media/hero-960.webp 960w, media/hero-1915.webp 1915w" sizes="100vw" type="image/webp">
+      <img src="media/hero-1915.jpg" srcset="media/hero-960.jpg 960w, media/hero-1915.jpg 1915w" sizes="100vw" width="1915" height="821" fetchpriority="high"
+        alt="Dusk over a calm northern sea. On a tiny rocky island to the right, a white lighthouse with a red band has just switched on its beam; two small fishing boats sit far out on the water.">
+    </picture>
+    <div class="night" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- INTRO + TRAILER -->
+<section class="intro section" id="island" aria-labelledby="intro-h">
+  <div class="container grid intro-grid">
+    <h2 class="t-h2 intro-h" id="intro-h">A small light in a big sea. <span class="dim">Yours to keep all winter.</span></h2>
+    <div class="intro-body">
+      <p>Lowlight is a cosy story-and-puzzle game about the keeper of a lighthouse on a small northern island.</p>
+      <p>The work is simple and it matters: keep the lamp lit, watch the sky, and when a storm comes in, work out how to light the fishing boats a way home.</p>
+    </div>
+    <figure class="trailer-frame" id="trailer" data-reveal>
+      <div class="trailer-poster" aria-hidden="true"></div>
+      <div class="trailer-ph">
+        <span class="ph-chip">Placeholder</span>
+        <span class="play-ring" aria-hidden="true"></span>
+        <p class="trailer-line">The trailer will play here once it’s finished.</p>
+      </div>
+      <figcaption class="t-label--plain">Trailer · not released yet</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- CHAPTERS: the three verbs -->
+<section class="chapters" id="play" aria-label="How it plays">
+
+  <article class="chapter chapter--a" aria-labelledby="c1-h">
+    <div class="grid container">
+      <figure class="chapter-img" data-reveal>
+        <picture>
+          <source srcset="media/lamp-800.webp 800w, media/lamp-1448.webp 1448w" sizes="(max-width:760px) 100vw, 58vw" type="image/webp">
+          <img src="media/lamp-1448.jpg" srcset="media/lamp-800.jpg 800w, media/lamp-1448.jpg 1448w" sizes="(max-width:760px) 100vw, 58vw" width="1448" height="1086" loading="lazy"
+            alt="Inside the lantern room at the top of the tower, the keeper, a small figure in a red knitted hat seen from behind, polishes the great glowing lens with a cloth. Through the windows, a stormy sea and wooded islands.">
+        </picture>
+      </figure>
+      <div class="log log--a" data-reveal aria-label="From the keeper’s log">
+        <p class="log-h">Keeper’s log</p>
+        <p class="log-line">Wick trimmed.</p>
+        <p class="log-line">Glass polished, both sides.</p>
+        <p class="log-line">Lit at dusk.</p>
+      </div>
+      <div class="chapter-copy">
+        <p class="num"><span class="wedge" aria-hidden="true"></span>I · The lamp</p>
+        <h2 class="t-h2" id="c1-h">Trim the lamp. <span class="dim">The whole island depends on it.</span></h2>
+        <p>Before dark the wick wants trimming and the great glass wants a polish. It’s small, steady work, done by hand at the top of the tower.</p>
+        <ul class="ticks">
+          <li>Trim the wick</li>
+          <li>Polish the lens</li>
+          <li>Light up at dusk</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <article class="chapter chapter--b" aria-labelledby="c2-h">
+    <div class="grid container">
+      <div class="chapter-copy">
+        <p class="num"><span class="wedge" aria-hidden="true"></span>II · The weather</p>
+        <h2 class="t-h2" id="c2-h">Read the weather. <span class="dim">The glass falls before the wind does.</span></h2>
+        <p>The barometer on the desk, the colour of the sky, the logbook from the night before. Read them right and you’ll know what’s coming in before it arrives.</p>
+        <ul class="ticks">
+          <li>Barometer and logbook</li>
+          <li>Wind, cloud and sea</li>
+          <li>A warm stove between watches</li>
+        </ul>
+      </div>
+      <figure class="chapter-img" data-reveal>
+        <picture>
+          <source srcset="media/room-800.webp 800w, media/room-1448.webp 1448w" sizes="(max-width:760px) 100vw, 58vw" type="image/webp">
+          <img src="media/room-1448.jpg" srcset="media/room-800.jpg 800w, media/room-1448.jpg 1448w" sizes="(max-width:760px) 100vw, 58vw" width="1448" height="1086" loading="lazy"
+            alt="The keeper’s room inside the lighthouse: a wood stove with a kettle, a desk with an open logbook, a brass barometer and an oil lamp, and an arched window onto a moonlit, rocky night sea.">
+        </picture>
+      </figure>
+      <div class="log log--b" data-reveal aria-label="From the keeper’s log">
+        <p class="log-h">Keeper’s log</p>
+        <p class="log-line">Glass falling since noon.</p>
+        <p class="log-line">Wind backing north.</p>
+        <p class="log-line">Two boats still out.</p>
+      </div>
+    </div>
+  </article>
+
+  <article class="storm" aria-labelledby="c3-h">
+    <div class="container storm-head">
+      <p class="num"><span class="wedge" aria-hidden="true"></span>III · The beam</p>
+      <h2 class="t-h2" id="c3-h">Every storm is a puzzle. <span class="dim">The beam is how you solve it.</span></h2>
+    </div>
+    <figure class="storm-art" data-reveal>
+      <picture>
+        <source media="(max-width:760px)" srcset="media/storm-m-900.webp" type="image/webp">
+        <source media="(max-width:760px)" srcset="media/storm-m-900.jpg">
+        <source srcset="media/storm-960.webp 960w, media/storm-1916.webp 1916w" sizes="100vw" type="image/webp">
+        <img src="media/storm-1916.jpg" srcset="media/storm-960.jpg 960w, media/storm-1916.jpg 1916w" sizes="100vw" width="1916" height="821" loading="lazy"
+          alt="A storm at night: huge painted waves, a small fishing boat with one lantern and a figure in a yellow coat, and the lighthouse beam cutting through the rain toward it from the island.">
+      </picture>
+    </figure>
+
+    <div class="container grid toy-grid">
+      <div class="toy-copy">
+        <h3 class="t-h3">Turn the beam</h3>
+        <p>Three boats are out past the rocks. Swing the light across the water until each one has seen it. Drag on the chart, or use the slider.</p>
+        <p class="toy-count" aria-live="polite"><b class="t-num" id="toy-n">0</b> of 3 boats have seen the light</p>
+        <div class="toy-done" id="toy-done" hidden>
+          <p>All three are turning for home. In the game, every storm is its own puzzle.</p>
+          <div class="toy-actions">
+            <a class="btn btn--accent" href="https://store.steampowered.com/search/?term=Lowlight" rel="noopener">Wishlist on Steam</a>
+            <button class="btn btn--ghost" type="button" id="toy-reset">Another storm</button>
+          </div>
+        </div>
+        <p class="toy-note t-small">A sketch of the idea on the keeper’s chart, not a screenshot of the game.</p>
+      </div>
+
+      <div class="toy" data-reveal>
+        <svg class="chart" id="chart" viewBox="0 0 720 460" preserveAspectRatio="xMidYMax slice" role="img" aria-label="A sea chart: the lighthouse island at the bottom, rocks scattered across the water, three fishing boats out at sea, and the lighthouse beam you can turn toward them.">
+          <defs>
+            <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse"><path d="M60 0H0v60" fill="none" stroke="#F7ECDA" stroke-opacity=".06"/></pattern>
+            <clipPath id="sea"><rect width="720" height="460" rx="0"/></clipPath>
+          </defs>
+          <g clip-path="url(#sea)">
+            <rect width="720" height="460" fill="#0E3456"/>
+            <rect width="720" height="460" fill="url(#grid)"/>
+            <!-- soundings rings around rocks -->
+            <g fill="none" stroke="#F7ECDA" stroke-opacity=".12">
+              <ellipse cx="232" cy="252" rx="46" ry="30"/><ellipse cx="232" cy="252" rx="70" ry="48" stroke-dasharray="3 6"/>
+              <ellipse cx="472" cy="214" rx="40" ry="26"/><ellipse cx="472" cy="214" rx="62" ry="42" stroke-dasharray="3 6"/>
+              <ellipse cx="300" cy="122" rx="34" ry="22"/>
+              <ellipse cx="575" cy="330" rx="44" ry="28"/><ellipse cx="575" cy="330" rx="68" ry="44" stroke-dasharray="3 6"/>
+              <ellipse cx="110" cy="360" rx="38" ry="24"/>
+            </g>
+            <g fill="#2B4A66">
+              <path d="M214 258c4-14 18-20 30-15s18 13 12 21-30 10-42-6z"/>
+              <path d="M458 220c2-11 14-17 25-13s14 12 8 18-28 7-33-5z"/>
+              <path d="M290 126c3-8 13-11 20-7s8 9 3 13-24 3-23-6z"/>
+              <path d="M556 336c5-12 22-16 33-10s10 14 2 19-36 4-35-9z"/>
+              <path d="M98 364c3-9 15-12 23-8s9 10 3 14-27 4-26-6z"/>
+            </g>
+            <!-- harbour routes, drawn when a boat sees the light -->
+            <g class="routes" fill="none" stroke="#F4B556" stroke-width="2" stroke-dasharray="2 7" stroke-linecap="round">
+              <path class="route" data-b="0" d="M128 196C180 300 260 380 336 412"/>
+              <path class="route" data-b="1" d="M398 92C420 220 404 330 372 404"/>
+              <path class="route" data-b="2" d="M604 160C600 260 480 360 388 410"/>
+            </g>
+            <!-- the beam -->
+            <g id="beam" transform="rotate(-20 360 390)">
+              <path d="M360 390 271 -160 449 -160z" fill="#F4B556" fill-opacity=".16"/>
+              <path d="M360 390 321 -160 399 -160z" fill="#F4B556" fill-opacity=".2"/>
+            </g>
+            <!-- boats -->
+            <g class="boat" data-a="-48.8" data-i="0" transform="translate(120 190) rotate(-20) scale(1.4)">
+              <circle class="halo" r="20"/><path class="hull" d="M-13 2h26l-5 7h-16z"/><rect class="cabin" x="-4" y="-7" width="9" height="9" rx="1.5"/><circle class="lantern" cx="9" cy="-4" r="3.2"/>
+            </g>
+            <g class="boat" data-a="6.2" data-i="1" transform="translate(395 84) rotate(8) scale(1.4)">
+              <circle class="halo" r="20"/><path class="hull" d="M-13 2h26l-5 7h-16z"/><rect class="cabin" x="-4" y="-7" width="9" height="9" rx="1.5"/><circle class="lantern" cx="9" cy="-4" r="3.2"/>
+            </g>
+            <g class="boat" data-a="45" data-i="2" transform="translate(610 152) rotate(-6) scale(1.4)">
+              <circle class="halo" r="20"/><path class="hull" d="M-13 2h26l-5 7h-16z"/><rect class="cabin" x="-4" y="-7" width="9" height="9" rx="1.5"/><circle class="lantern" cx="9" cy="-4" r="3.2"/>
+            </g>
+            <!-- the island and the lighthouse -->
+            <path d="M296 440c6-26 34-40 64-40s58 12 66 40z" fill="#3A5A52"/>
+            <path d="M318 440c4-14 22-24 42-24s40 10 44 24z" fill="#4F7366"/>
+            <rect x="353" y="388" width="14" height="30" rx="2" fill="#F7ECDA"/>
+            <rect x="353" y="400" width="14" height="7" fill="#C4513A"/>
+            <circle cx="360" cy="390" r="15" fill="#F4B556" fill-opacity=".22"/>
+            <circle cx="360" cy="390" r="5.5" fill="#F4B556"/>
+            <!-- compass -->
+            <g transform="translate(640 54)" fill="none" stroke="#F7ECDA" stroke-opacity=".4">
+              <circle r="18"/><path d="M0-24V24M-24 0H24" stroke-opacity=".2"/><path d="M0-16 4 0 0 4-4 0z" fill="#F7ECDA" fill-opacity=".6" stroke="none"/>
+            </g>
+            <text x="640" y="24" text-anchor="middle" fill="#F7ECDA" fill-opacity=".55" font-size="11" font-family="Figtree, sans-serif" font-weight="600">N</text>
+          </g>
+        </svg>
+        <div class="toy-bar">
+          <label for="bearing">Beam bearing</label>
+          <input id="bearing" type="range" min="-75" max="75" step="1" value="-20" aria-valuetext="340 degrees">
+          <output class="t-num" for="bearing" id="bearing-out">340°</output>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- DETAILS -->
+<section class="details section" id="details" aria-labelledby="d-h">
+  <div class="container grid">
+    <div class="details-ask">
+      <h2 class="t-h2" id="d-h">Out in spring 2027. <span class="dim">On Steam, for PC and Mac.</span></h2>
+      <p>Wishlisting is free. Steam lets you know when the game comes out.</p>
+      <a class="btn btn--accent btn--lg" href="https://store.steampowered.com/search/?term=Lowlight" rel="noopener">Wishlist on Steam</a>
+    </div>
+    <dl class="facts">
+      <div><dt>Genre</dt><dd>Cosy story and puzzle</dd></div>
+      <div><dt>Setting</dt><dd>A lighthouse on a small northern island, for one winter</dd></div>
+      <div><dt>Length</dt><dd>About 8 to 10 hours</dd></div>
+      <div><dt>Platforms</dt><dd>PC and Mac</dd></div>
+      <div><dt>Store</dt><dd>Steam</dd></div>
+      <div><dt>Release</dt><dd>Spring 2027</dd></div>
+      <div><dt>Made by</dt><dd>A three-person studio</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- FINALE: dawn -->
+<section class="dawn" aria-labelledby="f-h">
+  <div class="container dawn-copy">
+    <h2 class="t-h2 dawn-h" id="f-h">Keep a light on till spring.</h2>
+    <p>The storm passes. The boats come home. Lowlight arrives on Steam in spring 2027.</p>
+    <a class="btn btn--night btn--lg" href="https://store.steampowered.com/search/?term=Lowlight" rel="noopener">Wishlist on Steam</a>
+  </div>
+  <figure class="dawn-art" data-reveal>
+    <picture>
+      <source media="(max-width:760px)" srcset="media/dawn-m-900.webp" type="image/webp">
+      <source media="(max-width:760px)" srcset="media/dawn-m-900.jpg">
+      <source srcset="media/dawn-960.webp 960w, media/dawn-1916.webp 1916w" sizes="100vw" type="image/webp">
+      <img src="media/dawn-1916.jpg" srcset="media/dawn-960.jpg 960w, media/dawn-1916.jpg 1916w" sizes="100vw" width="1916" height="821" loading="lazy"
+        alt="The island at dawn after the storm: a pale gold sky, a calm sea, and fishing boats coming back into a tiny harbour below the lighthouse.">
+    </picture>
+  </figure>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="container foot-grid">
+    <div class="foot-brand">
+      <p class="foot-name">Lowlight</p>
+      <p>A cosy story-and-puzzle game. PC and Mac on Steam, spring 2027.</p>
+      <p class="foot-legal">© 2026 Lowlight. A fictional game.</p>
+    </div>
+    <nav class="foot-col" aria-label="The game">
+      <p class="foot-h">The game</p>
+      <a href="#island">The island</a>
+      <a href="#play">How it plays</a>
+      <a href="#trailer">Trailer</a>
+      <a href="#details">Details</a>
+    </nav>
+    <nav class="foot-col" aria-label="Steam">
+      <p class="foot-h">Steam</p>
+      <a href="https://store.steampowered.com/search/?term=Lowlight" rel="noopener">Wishlist on Steam</a>
+    </nav>
+    <nav class="foot-col" aria-label="Legal">
+      <p class="foot-h">Legal</p>
+      <a href="legal.html#terms">Terms</a>
+      <a href="legal.html#privacy">Privacy</a>
+    </nav>
+  </div>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

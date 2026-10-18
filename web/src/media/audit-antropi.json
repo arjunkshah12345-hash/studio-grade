@@ -1,0 +1,123 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/antropi/",
+ "outDir": "/tmp/antropi-aud",
+ "ms": 41084,
+ "counts": {
+  "PASS": 11,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Archivo×149"
+  ],
+  "display": [
+   "80px/0.95/-0.04em w500 \"One arm. Every machine. All \"",
+   "80px/0.95/-0.04em w500 \"Keep every spindle cutting.\"",
+   "63px/0.9/-0.035em w500 \"95%\""
+  ],
+  "bodySize": "17",
+  "weights": [
+   "500×53",
+   "600×53",
+   "400×35",
+   "450×8"
+  ],
+  "upperShare": 0.26,
+  "paper": "rgb(232,235,237)",
+  "accents": [
+   "rgb(242,163,58) bg a.btn"
+  ],
+  "buttons": [
+   "square 36px \"Request a demo\"",
+   "square 48px \"Request a demo\n→\"",
+   "square 48px \"Request a demo\n→\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)",
+   "cubic-bezier(.19,1,.22,1)"
+  ],
+  "nav": {
+   "h": 56,
+   "links": 5
+  },
+  "pageVh": 9.8
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "1 family: Archivo"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 80px · lh 0.95 · -0.04em · weight 500 · Archivo)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (3/6 traits: hairlineBands, tinyAccent, lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "One accent hue (30° (w7) e.g. rgb(242,163,58) bg a.btn)"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 123 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 3 text elements over imagery meet AA (sampled from pixels)"
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: square"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "1 hero CTA(s) · seen: 1 solid + 1 text link"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.19,1,0.22,1)×425, cubic-bezier(0.4,0,0.2,1)×7"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (1/17 paragraphs wait for scroll)"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 0.3% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 9.8 viewports: shorter than the direction's norm (10–16); fine when the brief is short. Judge by content, don't pad."
+  }
+ ],
+ "screenshots": [
+  "/tmp/antropi-aud/desktop-hero.png",
+  "/tmp/antropi-aud/slice-01.jpg … (one per viewport)",
+  "/tmp/antropi-aud/desktop-full.jpg",
+  "/tmp/antropi-aud/mobile-hero.png",
+  "/tmp/antropi-aud/mobile-full.jpg",
+  "/tmp/antropi-aud/reduced-motion-hero.png"
+ ]
+}

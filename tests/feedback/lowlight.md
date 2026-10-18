@@ -1,0 +1,13 @@
+# Lowlight (gallery v4) · skill feedback
+
+1. Direction choice for games is unclear. SKILL.md lists games under 9 Playful System, but a cosy, atmospheric game with painterly key art fits 6 Cinematic Place far better (one place, one conversion that behaves like booking). Add a line to the table: "games: 6 when the key art is a place, 9 when it's a cast".
+2. Direction 10 says "don't use for anything where users convert", yet game launches are the classic immersive brief. Say how to get immersive feel with a persistent primary CTA (lights-up hero + fixed nav CTA worked here).
+3. Halden's "photo hero that works first time" recipe (21:9 anchored bottom, top masked into the sampled sky row) worked first try again. Promote it from a direction-6 bullet to a layout.md hero archetype; it's reusable for any 21:9 plate with a clean sky.
+4. §51 lights-up needs the lamp on screen: a radial "night" overlay with a hole at the light source, faded out over ~2s, is a 6-line recipe worth adding (lock the hole's % to the image box, not to a cover crop).
+5. Audit bug: a11y.contrast.media records a fixed nav's text colour in one scroll state, then scrollIntoView (a no-op for fixed elements) screenshots it in another. A nav that changes theme over a light finale failed at 1.06:1. Sample colour and pixels in the same state, or skip position:fixed elements.
+6. Audit: a gradient ground on the hero section makes every nav link "text over a pattern". Moving the sampled sky row to ::before silenced it. Either document this or treat low-chroma, image-sampled rows as solid.
+7. color.gradient WARNs on sampled image-row grounds (imagery.md §8 tells you to use them). Recognise a gradient whose stops match the adjacent image edge, or say in the WARN text that it's expected.
+8. tokens.css .skip relies on position:absolute, but any later `.btn{position:relative}` (needed for the hover sweep) puts it in flow and pushes the page down 38px. Make it `.skip{position:absolute!important}` or use a separate class.
+9. A playable toy (the beam counting boats, §83) was the best "features" substitute for a game: no invented claims, motion goes to the product. Add "a toy version of the core verb, labelled as a sketch" as a section pattern for games.
+10. Trailer placeholder guidance is missing: imagery.md §5 covers photo slots only. A blurred, dimmed crop of the series plus hatch, a "Placeholder" chip and one plain line read honest and still finished.
+11. `preserveAspectRatio="xMidYMax slice"` + `getScreenCTM().inverse()` let one SVG chart serve desktop and a 4:3 mobile crop with correct drag mapping; worth a line in §81.

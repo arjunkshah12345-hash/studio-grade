@@ -1,0 +1,133 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/lowlight/",
+ "outDir": "/tmp/ll-aud",
+ "ms": 35456,
+ "counts": {
+  "WARN": 1,
+  "PASS": 11,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Figtree×62",
+   "Young Serif×17",
+   "Kalam×6"
+  ],
+  "display": [
+   "208px/0.9/-0.025em w400 \"Lowlight\"",
+   "94px/0.98/-0.025em w400 \"Keep a light on till spring.\"",
+   "55px/1.06/-0.015em w400 \"A small light in a big sea. \""
+  ],
+  "bodySize": "17",
+  "weights": [
+   "400×41",
+   "600×25",
+   "500×19"
+  ],
+  "upperShare": 0,
+  "paper": "rgb(10,37,64)",
+  "accents": [
+   "rgb(15,47,79) bg figure.trailer-frame"
+  ],
+  "buttons": [
+   "pill 38px \"Wishlist\n on Steam\"",
+   "pill 54px \"Wishlist on Steam\"",
+   "pill 54px \"Wishlist on Steam\"",
+   "pill 54px \"Wishlist on Steam\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)"
+  ],
+  "nav": {
+   "h": 68,
+   "links": 6
+  },
+  "pageVh": 7.4
+ },
+ "findings": [
+  {
+   "level": "WARN",
+   "rule": "color.gradient",
+   "msg": "1 large chromatic gradient(s). Gradients should be functional or art-directed.",
+   "examples": [
+    "section.dawn · 95% of a viewport · 1 hue(s)"
+   ]
+  },
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "3 families: Figtree, Young Serif, Kalam"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 208px · lh 0.9 · -0.025em · weight 400 · Young Serif)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (2/6 traits: hairlineBands, lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "One accent hue (210° (w193) e.g. rgb(15,47,79) bg figure.trailer-frame)"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 77 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 8 text elements over imagery meet AA (sampled from pixels)"
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: pill"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "1 hero CTA(s) · seen: 1 solid + 1 text link"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.4,0,0.2,1)×16, cubic-bezier(0.16,1,0.3,1)×15"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (1/9 paragraphs wait for scroll)"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 9.9% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 7.4 viewports: shorter than the direction's norm (12–27); fine when the brief is short. Judge by content, don't pad."
+  }
+ ],
+ "screenshots": [
+  "/tmp/ll-aud/desktop-hero.png",
+  "/tmp/ll-aud/slice-01.jpg … (one per viewport)",
+  "/tmp/ll-aud/desktop-full.jpg",
+  "/tmp/ll-aud/mobile-hero.png",
+  "/tmp/ll-aud/mobile-full.jpg",
+  "/tmp/ll-aud/reduced-motion-hero.png"
+ ]
+}

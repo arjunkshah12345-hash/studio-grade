@@ -1,0 +1,369 @@
+<!--
+DESIGN SPINE · Antropi Robotics (unofficial redesign concept)
+DIRECTION   : 8 Deep-Tech Spec. Buyers of aerospace parts and factory owners trust a shop they can see: open on the real floor at night, dress it in instrument-grade information, no orb, no slogans.
+REGISTER    : Confident. The one bold device is the night hall at full width, its dark ceiling becoming the page; everything after it is a disciplined concrete-grey spec sheet.
+AXES        : ground tinted dark (night #0A0F11, sampled from the ceiling) then cool concrete grey #E8EBED, finale on sampled skylight #D2DCE6 · type genre one grotesk with a width axis (Archivo 500 for display, Archivo 75% width caps as machine sign-plates) · image medium industrial photography (generated series) with annotation locked to it · composition photo stage + sticky scroll-spy spec chapters · motion feel instrumental (lamps light up and count, lights-up hero)
+DEFAULT?    : default-look check 2/6 matched (near-black ink at 500; one small accent) → DIFFERENT FROM DEFAULT BY: ground (night + cool concrete, not warm paper), labels (condensed sans sign-plates, not mono), hero medium (photo, not line drawing), spec bands carry only the brief's facts
+MOTIF       : the amber machine status lamp, a small lit square. 1) annotation markers locked to the arm and rail on the hero photo; 2) lamp rows that COUNT Antropi's figures (19 of 20 lit = 95%, 24 of 24 hours, 1 of 10 for 90% less labor, 1 vs 10); 3) the week grid in the calculator, one lamp per hour of the week; 4) status dots in the software and sensor vignettes; 5) the wordmark's dot
+TYPE        : display Archivo 500 (wdth 100) · text Archivo 400 · labels Archivo 600 at wdth 75, caps +.1em (one family, width axis does the second voice)
+SCALE       : display 80/0.95/-0.04em · h2 52/1.02/-0.03em · h3 26/1.15 · body 17/1.55 · label 12 caps +.1em
+PALETTE     : paper #E8EBED · paper-2 #DCE1E5 · surface #F3F5F6 · ink #111519 · ink-2 ink@74% · hairline ink@10% · night #0A0F11 / night ink #E6EAEC · accent amber #F2A33A → used ONLY on (1) status lamps, (2) the primary "Request a demo" button
+GRID        : 12/24px · container 1280 · margin 20→80px · sections 96–144px, a 200px+ void before the dark band
+HERO        : photo composed for the headline (H19 variant, Deep-Tech): night hall anchored at the bottom, ceiling feathered into the night ground; h1 + subline + 2 CTAs top-left on the ceiling; arm and rail annotated on the photo; Antropi's figures strip crosses the photo's bottom edge
+IMAGERY     : photography series, one bible; HTML vignettes (queue, spindle health) laid on crops of it
+CONVERSION  : Request a demo → nav (always), hero, finale form (concept: sends nothing, points to antropi.world/request-demo), footer
+MOTION      : house ease cubic-bezier(.19,1,.22,1) · UI 150–240ms · reveal 850ms · primitives lights-up (hero photo), media fade+12px, lamps light in sequence; text never moves
+IMAGES      : medium crisp real-looking industrial photography, high detail, 35mm and macro · setting a modern bright CNC machining hall, grey concrete floor, white enclosed CNC machines, brushed aluminium, a single overhead gantry robot arm · light cool clean daylight from skylights (hero at night, lights on) · palette concrete grey, white enamel, brushed aluminium, one signal accent of safety amber from machine status lights · people rarely, only from behind or far away · exclude no text, no readable screens, no logos, no brand marks, no watermarks, no readable faces · shot list hero 21:9 night hall, top 40% ceiling · part 4:3 macro bracket on fixture plate · arm 4:3 gripper placing a block into a vise · cart 21:9 autonomous cart in the aisle, top 40% clean · spindle 4:3 end mill cutting aluminium
+              crops hero → full 21:9 desktop, right-half crop (arm) on mobile · aisle → hero centre crop under the queue vignette · cart → 4:3 crop at chapter 02, full 21:9 at finale, centre crop on mobile · spindle → crop that drops the off-bible orange robot · part → lower 5:3 crop (drops the background robot)
+NAMING      : none (the brand has no metaphor to name things after; plain shop words)
+SIGNATURES  : §81 overlays locked to the photo (hero arm + rail, chapter boxes) · §83 a motif that counts (lamp rows for the figures, a 168-lamp week grid driven by the visitor's own hours) · §42 scroll-spy chapter list
+VOICE       : hero "One arm. Every machine. All night." · section "A spindle only earns while it cuts." · CTA "Request a demo" / finale "Keep every spindle cutting."
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Antropi Robotics · Autonomous CNC factories (redesign concept)</title>
+<meta name="description" content="An unofficial redesign concept of the Antropi Robotics homepage: autonomous CNC factories where one gantry-mounted arm serves every machine, day and night.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="preload" as="image" href="img/hero-1916.webp" imagesrcset="img/hero-m-800.webp 800w, img/hero-960.webp 960w, img/hero-1916.webp 1916w" imagesizes="100vw" fetchpriority="high">
+</head>
+<body>
+<a class="skip btn btn--primary" href="#main">Skip to content</a>
+
+<header class="nav" data-theme="dark">
+  <a class="brand" href="#top" aria-label="Antropi Robotics, home"><i class="lamp on" aria-hidden="true"></i><span>Antropi</span></a>
+  <nav aria-label="Main">
+    <ul>
+      <li><a href="#how">How it runs</a></li>
+      <li><a href="#why">Why Antropi</a></li>
+      <li><a href="https://www.antropi.world/careers">Careers<span class="ext" aria-hidden="true"> ↗</span></a></li>
+    </ul>
+  </nav>
+  <a class="btn btn--accent btn--sm" href="#demo">Request a demo</a>
+</header>
+
+<main id="main">
+<!-- ============ HERO ============ -->
+<section class="hero" id="top" data-theme="dark" aria-labelledby="hero-h">
+  <div class="container hero-copy">
+    <p class="t-label hero-kicker">Autonomous CNC factories <span aria-hidden="true">·</span> San Francisco</p>
+    <h1 class="t-display" id="hero-h">One arm. Every machine.<br> All&nbsp;night.</h1>
+    <p class="hero-sub">Antropi builds autonomous CNC factories. A gantry arm loads every machine on its rail, carts move the stock, and aerospace-grade parts come off day and night.</p>
+    <div class="hero-cta">
+      <a class="btn btn--accent" href="#demo">Request a demo <span class="arr" aria-hidden="true">→</span></a>
+      <a class="textlink" href="#why">Why Antropi</a>
+    </div>
+  </div>
+
+  <figure class="hero-shot">
+    <picture>
+      <source media="(max-width: 760px)" srcset="img/hero-m-800.webp" type="image/webp">
+      <source media="(max-width: 760px)" srcset="img/hero-m-800.jpg">
+      <source srcset="img/hero-960.webp 960w, img/hero-1916.webp 1916w" sizes="100vw" type="image/webp">
+      <img src="img/hero-1916.jpg" srcset="img/hero-960.jpg 960w, img/hero-1916.jpg 1916w" sizes="100vw" width="1916" height="821" fetchpriority="high"
+        alt="A CNC machining hall at night with nobody in it: rows of white enclosed machines, and an overhead gantry arm reaching into one machine.">
+    </picture>
+    <div class="marks" aria-hidden="true">
+      <span class="box box--arm"></span>
+      <span class="tag tag--arm"><i class="lamp on"></i>Gantry-mounted arm</span>
+      <span class="pin pin--rail"></span>
+      <span class="tag tag--rail"><i class="lamp on"></i>One rail, many machines</span>
+    </div>
+    <figcaption class="sr-only">Illustrative image of an autonomous machining hall.</figcaption>
+  </figure>
+</section>
+
+<!-- ============ FIGURES STRIP ============ -->
+<section class="figs-wrap" aria-labelledby="figs-h">
+  <div class="container">
+    <h2 class="sr-only" id="figs-h">Antropi's stated figures</h2>
+    <ul class="figs" data-lamps>
+      <li>
+        <p class="fig-n t-num">95<span>%</span></p>
+        <p class="fig-l">Machine utilization</p>
+        <div class="lamprow" style="--n:20" aria-hidden="true" data-lit="19"></div>
+        <p class="fig-k t-label">19 hours in every 20</p>
+      </li>
+      <li>
+        <p class="fig-n t-num">24/7</p>
+        <p class="fig-l">Continuous operation</p>
+        <div class="lamprow" style="--n:24" aria-hidden="true" data-lit="24"></div>
+        <p class="fig-k t-label">Every hour of the day</p>
+      </li>
+      <li>
+        <p class="fig-n t-num">90<span>%</span></p>
+        <p class="fig-l">Less labor required</p>
+        <div class="lamprow" style="--n:10" aria-hidden="true" data-lit="1"></div>
+        <p class="fig-k t-label">One in ten labor hours left</p>
+      </li>
+      <li>
+        <p class="fig-n t-num">10<span>×</span></p>
+        <p class="fig-l">Faster</p>
+        <div class="lamprow lamprow--two" aria-hidden="true">
+          <div class="lamprow" style="--n:10" data-lit="1"></div>
+          <div class="lamprow" style="--n:10" data-lit="10"></div>
+        </div>
+        <p class="fig-k t-label">Ten where there was one</p>
+      </li>
+    </ul>
+    <p class="figs-src">Figures as stated by Antropi Robotics on antropi.world. This concept page doesn't add any of its own.</p>
+  </div>
+</section>
+
+<!-- ============ STATEMENT ============ -->
+<section class="statement container" id="how" aria-labelledby="how-h">
+  <h2 class="t-h2" id="how-h">A spindle only earns while it cuts. <span class="dim">Everything else on the floor should keep it cutting.</span></h2>
+  <p class="statement-p">A machine waits four ways: for someone to load it, for material, for a plan and for a repair. Antropi puts one system on each wait.</p>
+</section>
+
+<!-- ============ CHAPTERS (scroll-spy) ============ -->
+<section class="chapters container" aria-label="How the factory runs" data-spy="#chlist">
+  <aside class="ch-aside">
+    <ol class="ch-list" id="chlist">
+      <li><a href="#ch-load" data-spy-item="load"><span class="t-label">01</span>Loading<small>The gantry arm</small></a></li>
+      <li><a href="#ch-move" data-spy-item="move"><span class="t-label">02</span>Material<small>Autonomous vehicles</small></a></li>
+      <li><a href="#ch-plan" data-spy-item="plan"><span class="t-label">03</span>Planning<small>Scheduling software</small></a></li>
+      <li><a href="#ch-keep" data-spy-item="keep"><span class="t-label">04</span>Upkeep<small>Machine-health sensors</small></a></li>
+    </ol>
+  </aside>
+
+  <div class="ch-panels">
+    <article class="ch" id="ch-load" data-spy-panel="load">
+      <p class="t-label ch-k"><i class="lamp on" aria-hidden="true"></i>01 · Loading</p>
+      <h3 class="t-h3">One arm on a rail. <span class="dim">Every machine beneath it.</span></h3>
+      <figure class="ch-media" data-reveal>
+        <picture>
+          <source srcset="img/arm-760.webp 760w, img/arm-1448.webp 1448w" sizes="(max-width: 760px) 100vw, 760px" type="image/webp">
+          <img src="img/arm-1448.jpg" srcset="img/arm-760.jpg 760w, img/arm-1448.jpg 1448w" sizes="(max-width: 760px) 100vw, 760px" width="1448" height="1086" loading="lazy"
+            alt="The gantry arm's gripper lowering a raw aluminium block into a CNC vise through the open machine door.">
+        </picture>
+        <span class="box" style="--x:41.5%;--y:45%;--w:22%;--h:20%" aria-hidden="true"><span class="tag tag--in"><i class="lamp on"></i>Raw block, found by vision</span></span>
+      </figure>
+      <p class="ch-p">A single robotic arm, mounted on an overhead gantry, serves several CNC machines. It picks raw stock, places it in the vise and takes the finished part out, using built-in foundational AI vision models. Nobody writes a pick program by hand.</p>
+      <dl class="spec">
+        <div><dt>Mount</dt><dd>Overhead gantry</dd></div>
+        <div><dt>Serves</dt><dd>Multiple CNC machines</dd></div>
+        <div><dt>Programming</dt><dd>None by hand: built-in vision models</dd></div>
+      </dl>
+    </article>
+
+    <article class="ch" id="ch-move" data-spy-panel="move">
+      <p class="t-label ch-k"><i class="lamp on" aria-hidden="true"></i>02 · Material</p>
+      <h3 class="t-h3">Stock arrives before the machine asks.</h3>
+      <figure class="ch-media" data-reveal>
+        <picture>
+          <source srcset="img/cart-crop-760.webp 760w, img/cart-crop-1095.webp 1095w" sizes="(max-width: 760px) 100vw, 760px" type="image/webp">
+          <img src="img/cart-crop-1095.jpg" srcset="img/cart-crop-760.jpg 760w, img/cart-crop-1095.jpg 1095w" sizes="(max-width: 760px) 100vw, 760px" width="1095" height="821" loading="lazy"
+            alt="A low autonomous cart carrying a tray of machined aluminium parts down the aisle between CNC machines.">
+        </picture>
+        <span class="box" style="--x:9%;--y:63%;--w:45%;--h:31%" aria-hidden="true"><span class="tag tag--in"><i class="lamp on"></i>Finished parts, outbound</span></span>
+      </figure>
+      <p class="ch-p">Autonomous vehicles carry raw material to the machines and finished parts away from them, so no machine stands idle waiting for a pallet or a person with a cart.</p>
+      <dl class="spec">
+        <div><dt>Carries</dt><dd>Raw material in, finished parts out</dd></div>
+        <div><dt>Job</dt><dd>Machines never wait for stock</dd></div>
+      </dl>
+    </article>
+
+    <article class="ch" id="ch-plan" data-spy-panel="plan">
+      <p class="t-label ch-k"><i class="lamp on" aria-hidden="true"></i>03 · Planning</p>
+      <h3 class="t-h3">The schedule writes itself, <span class="dim">and says where it will jam.</span></h3>
+      <figure class="ch-media ch-media--ui" data-reveal>
+        <picture>
+          <source srcset="img/aisle-766.webp" type="image/webp">
+          <img src="img/aisle-766.jpg" width="766" height="575" loading="lazy" alt="">
+        </picture>
+        <div class="vig" role="img" aria-label="Example scheduling screen: a bracket cutting on machine A, a housing next on machine B, a manifold on machine C flagged as a predicted bottleneck, and a fixture swap assigned to the day operator.">
+          <div class="vig-h"><span>Tonight's queue</span><span class="chip">Example</span></div>
+          <ul class="vig-rows">
+            <li><i class="lamp on"></i><b>Bracket</b><span>Machine A</span><em>Cutting</em></li>
+            <li><i class="lamp"></i><b>Housing</b><span>Machine B</span><em>Next</em></li>
+            <li class="flag"><i class="lamp on"></i><b>Manifold</b><span>Machine C</span><em>Bottleneck predicted</em></li>
+          </ul>
+          <div class="vig-task"><span class="t-label">Operator task</span><p>Swap the fixture plate on machine C before the manifold starts.</p><span class="chip chip--ok">Assigned · day operator</span></div>
+        </div>
+      </figure>
+      <p class="ch-p">Software schedules the tasks, assigns and tracks work for operators, and predicts production bottlenecks before they hold up a part.</p>
+      <dl class="spec">
+        <div><dt>Schedules</dt><dd>Every task on the floor</dd></div>
+        <div><dt>Operators</dt><dd>Work assigned and tracked</dd></div>
+        <div><dt>Ahead of time</dt><dd>Bottlenecks predicted</dd></div>
+      </dl>
+    </article>
+
+    <article class="ch" id="ch-keep" data-spy-panel="keep">
+      <p class="t-label ch-k"><i class="lamp on" aria-hidden="true"></i>04 · Upkeep</p>
+      <h3 class="t-h3">Maintenance before the failure, <span class="dim">not after it.</span></h3>
+      <figure class="ch-media ch-media--ui" data-reveal>
+        <picture>
+          <source srcset="img/spindle-760.webp 760w, img/spindle-1014.webp 1014w" sizes="(max-width: 760px) 100vw, 760px" type="image/webp">
+          <img src="img/spindle-1014.jpg" srcset="img/spindle-760.jpg 760w, img/spindle-1014.jpg 1014w" sizes="(max-width: 760px) 100vw, 760px" width="1014" height="760" loading="lazy"
+            alt="Close-up of a CNC end mill cutting aluminium, with chips flying.">
+        </picture>
+        <div class="vig vig--right" role="img" aria-label="Example machine-health card for machine A: vibration normal, temperature normal, bearing wear trending up, maintenance booked before failure.">
+          <div class="vig-h"><span>Machine A · health</span><span class="chip">Example</span></div>
+          <ul class="vig-rows vig-rows--kv">
+            <li><i class="lamp"></i><b>Vibration</b><em>Normal</em></li>
+            <li><i class="lamp"></i><b>Temperature</b><em>Normal</em></li>
+            <li class="flag"><i class="lamp on"></i><b>Bearing wear</b><em>Trending up</em></li>
+          </ul>
+          <div class="vig-task"><span class="chip chip--ok">Maintenance booked before failure</span></div>
+        </div>
+      </figure>
+      <p class="ch-p">IoT sensors watch the health of each machine and schedule maintenance before something fails, so a stopped spindle is planned, not a surprise at three in the morning.</p>
+      <dl class="spec">
+        <div><dt>Watches</dt><dd>Machine health, continuously</dd></div>
+        <div><dt>Books</dt><dd>Maintenance before failure</dd></div>
+      </dl>
+    </article>
+  </div>
+</section>
+
+<!-- ============ NONSTOP / HUMAN IN THE LOOP ============ -->
+<section class="nonstop" data-theme="dark" aria-labelledby="ns-h">
+  <figure class="ns-media" data-reveal>
+    <picture>
+      <source srcset="img/part-960.webp 960w, img/part-1448.webp 1448w" sizes="(max-width: 760px) 100vw, 60vw" type="image/webp">
+      <img src="img/part-1448.jpg" srcset="img/part-960.jpg 960w, img/part-1448.jpg 1448w" sizes="(max-width: 760px) 100vw, 60vw" width="1448" height="869" loading="lazy"
+        alt="A freshly machined aluminium aerospace bracket with precise pockets and holes, coolant droplets on it, resting on a steel fixture plate.">
+    </picture>
+  </figure>
+  <div class="ns-copy">
+    <h2 class="t-h2" id="ns-h">Nonstop. <span class="dim">Not unattended.</span></h2>
+    <div class="ns-cols">
+      <div>
+        <p class="t-label ns-k"><i class="lamp on" aria-hidden="true"></i>Day and night</p>
+        <p>The factory is built for nonstop manufacturing of aerospace-grade components. The parts keep coming off after the lights in the office go out.</p>
+      </div>
+      <div>
+        <p class="t-label ns-k"><i class="lamp" aria-hidden="true"></i>A person in the loop</p>
+        <p>Safety is human-in-the-loop. When something rare happens that the system shouldn't decide alone, a person steps in through remote oversight.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY: THE WEEK GRID ============ -->
+<section class="why container" id="why" aria-labelledby="why-h">
+  <div class="why-head">
+    <p class="t-label why-k">Why Antropi</p>
+    <h2 class="t-h2" id="why-h">Count the hours your machines cut.</h2>
+    <p class="why-p">A week has 168 hours. Antropi states 95% machine utilization. Put in your own number and compare, one lamp per hour.</p>
+  </div>
+
+  <aside class="limits" aria-label="What these figures don't say">
+    <p class="t-label">What these figures don't say</p>
+    <ol>
+      <li>Which parts, alloys and tolerances they were measured on.</li>
+      <li>How long a cell takes to install on an existing floor.</li>
+      <li>What it costs. Ask all three in the demo.</li>
+    </ol>
+  </aside>
+
+  <form class="calc" id="calc" aria-label="Spindle hours calculator">
+    <div class="calc-in">
+      <label for="hrs">Hours each machine cuts in a week now</label>
+      <div class="calc-row"><input id="hrs" type="range" min="0" max="168" step="1" value="40"><output for="hrs" id="hrs-o" class="t-num">40</output></div>
+      <p class="calc-hint" id="hrs-hint">40 hours is one eight-hour shift, five days.</p>
+    </div>
+    <div class="calc-in calc-in--n">
+      <label for="mach">Machines</label>
+      <div class="stepper"><button type="button" data-step="-1" aria-label="One machine fewer">−</button><input id="mach" type="number" min="1" max="200" value="4" inputmode="numeric"><button type="button" data-step="1" aria-label="One machine more">+</button></div>
+    </div>
+  </form>
+
+  <div class="weeks">
+    <figure class="week">
+      <figcaption><span class="t-label">Your week</span><b class="t-num" id="you-n">40 h</b></figcaption>
+      <div class="grid168" id="g-you" aria-hidden="true"></div>
+    </figure>
+    <figure class="week week--a">
+      <figcaption><span class="t-label">At Antropi's stated 95%</span><b class="t-num">≈ 160 h</b></figcaption>
+      <div class="grid168" id="g-a" aria-hidden="true"></div>
+    </figure>
+  </div>
+  <p class="calc-out" id="calc-out" aria-live="polite"></p>
+
+  <p class="limits-note">Arithmetic on Antropi's published utilization figure: 95% of 168 hours is about 160. It isn't a quote or a promise.</p>
+</section>
+
+<!-- ============ FINALE + DEMO ============ -->
+<section class="finale" id="demo" aria-labelledby="fin-h">
+  <div class="container fin-grid">
+    <div class="fin-copy">
+      <h2 class="t-display fin-h" id="fin-h">Keep every spindle cutting.</h2>
+      <p class="fin-p">Tell us what you machine and how many machines you run. We'll show you the cell, the arm and the schedule on your kind of part.</p>
+    </div>
+    <form class="demo" id="demo-form" novalidate>
+      <div class="f2">
+        <div class="field"><label for="f-name">Name</label><input id="f-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="f-mail">Work email</label><input id="f-mail" name="email" type="email" autocomplete="email" required></div>
+      </div>
+      <div class="field"><label for="f-co">Company</label><input id="f-co" name="company" autocomplete="organization"></div>
+      <div class="field"><label for="f-what">What do you machine?</label><input id="f-what" name="what" placeholder="e.g. aluminium brackets on five vertical mills"></div>
+      <button class="btn btn--accent demo-btn" type="submit">Request a demo <span class="arr" aria-hidden="true">→</span></button>
+      <p class="demo-note" id="demo-note" aria-live="polite">This is a concept page, so the form sends nothing. Real requests go to <a href="https://www.antropi.world/request-demo">antropi.world/request-demo</a>.</p>
+    </form>
+  </div>
+  <figure class="fin-shot" aria-hidden="true">
+    <picture>
+      <source media="(max-width: 760px)" srcset="img/cart-m-800.webp" type="image/webp">
+      <source media="(max-width: 760px)" srcset="img/cart-m-800.jpg">
+      <source srcset="img/cart-960.webp 960w, img/cart-1916.webp 1916w" sizes="100vw" type="image/webp">
+      <img src="img/cart-1916.jpg" srcset="img/cart-960.jpg 960w, img/cart-1916.jpg 1916w" sizes="100vw" width="1916" height="821" loading="lazy" alt="">
+    </picture>
+  </figure>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot">
+  <div class="container foot-grid">
+    <div class="foot-brand">
+      <a class="brand brand--ink" href="#top"><i class="lamp on" aria-hidden="true"></i><span>Antropi</span></a>
+      <p>© 2026 · Unofficial redesign concept.<br>Not affiliated with Antropi Robotics.</p>
+    </div>
+    <div class="foot-col">
+      <p class="t-label">Antropi</p>
+      <ul>
+        <li><a href="https://www.antropi.world/why-antropi">Why Antropi</a></li>
+        <li><a href="https://www.antropi.world/careers">Careers</a></li>
+        <li><a href="https://www.antropi.world/request-demo">Request a demo</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <p class="t-label">On this page</p>
+      <ul>
+        <li><a href="#how">How it runs</a></li>
+        <li><a href="#why">Hours calculator</a></li>
+        <li><a href="#demo">Demo request</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <p class="t-label">Where</p>
+      <ul>
+        <li>San Francisco</li>
+        <li>Y Combinator, Fall 2026</li>
+        <li>Local time <span class="t-num" data-clock="America/Los_Angeles">--:--</span></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <p class="t-label">Legal</p>
+      <ul>
+        <li><a href="legal.html#terms">Terms</a></li>
+        <li><a href="legal.html#privacy">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

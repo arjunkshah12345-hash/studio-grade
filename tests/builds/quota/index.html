@@ -1,0 +1,437 @@
+<!--
+DESIGN SPINE · Quota (fictional)
+DIRECTION   : 11 Bright Product. AI-startup founders who bill per use want a billing tool that feels finished and friendly, and they trust numbers more than adjectives, so the page is bright, numbers-led and built from the product's own objects (meters, rate cards, invoices).
+REGISTER    : Confident. One bold device at scale: the odometer meter, a row of 150px rolling drums on a sun-yellow field in the hero, live and pausable.
+AXES        : ground white #FFFFFF with colour-field plates (one hue per metered unit) · type genre wide/extended grotesk (Mona Sans 500 at 112% width) · image medium data as art: odometer drums and big numerals, with HTML product vignettes on colour plates (no photos, no generated images) · composition big-number poster hero, then a meter "cabinet" index and an equation row (meter × rate card = invoice) · motion feel instrumental (drums roll, bars fill, totals recompute)
+DEFAULT?    : default-look check 1/6 (display weight 500) → DIFFERENT FROM DEFAULT BY: white not warm paper, no mono caps labels (sentence-case text labels), no hairline metadata bands, a meter object not a line drawing, colour logic of four unit hues instead of one tiny accent
+MOTIF       : the meter drum (a digit window on a rolling strip). Uses: logo mark (two windows, icon) · hero odometer (subject, 150px) · four small meters in the cabinet (index, 56px) · the pricing slider's readout + a ruler of graduations, one tick per USD 10,000 (counting, §83) · finale meter reset to zero (bookend)
+TYPE        : display Mona Sans 500 wdth 112 · text Mona Sans 400/500 wdth 100 · code IBM Plex Mono 400 (API calls and event lines only)  (2 families)
+SCALE       : display 80px/0.98/-0.035em · h2 52px/1.04/-0.03em · body 17px/1.55 · ui 14px · label 13px sentence case
+PALETTE     : paper #FFFFFF · tray #F3F3EF · ink #16181D · ink-2 ink@68% · ink-3 ink@60% · hairline ink@10% · unit hues, one meaning each, used ONLY as plates and data marks: tokens sun #FFD447 · requests mint #8EDDB4 · seats sky #A9C8FF · GPU-seconds coral #FFAA8C · buttons ink (no extra accent)
+GRID        : 12/24 · container 1280 · margin 80 → 20 · sections 128px, a 200px void before pricing and the finale
+HERO        : split header (h1 left, lede and two CTAs top-aligned right) over a full-width sun-yellow meter stage: example token odometer ticking as example API events arrive, the running invoice total beside it, an event line below; the stage bleeds under the fold.
+IMAGERY     : product UI rebuilt in HTML + big numerals as the image; colour plates with faint meter graduations are the art layer.
+CONVERSION  : "Start billing" in nav, hero, pricing, finale · "See the API" in hero (→ #api) and finale
+MOTION      : house ease cubic-bezier(.2,.8,.2,1) · UI 150–240ms · reveal 600ms fade + 8px rise on media and card groups · drums roll 700ms. Text never animates.
+IMAGES      : none: colour plates, drums and product vignettes instead
+NAMING      : meter → reading → rate card → invoice. CTA verb "Start". 404 n/a.
+SIGNATURES  : §12 live ticking stat (as the hero odometer) · §56 transformation pair (as the equation: meter × rate card = invoice) · §83 a motif that counts (pricing ruler, one graduation per USD 10,000)
+VOICE       : "Bill per token. Keep 99.5%." · "If your API counts it, Quota can bill it." · "Start the meter."
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quota · Usage-based billing for AI companies</title>
+<meta name="description" content="Quota (a fictional product) meters tokens, requests, seats and GPU-seconds from your API, prices them from a rate card, handles prepaid credits and spend limits, and sends invoices through Stripe. Free up to USD 10,000 a month of billed usage, then 0.5%.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Mona+Sans:wdth,wght@75..125,300..700&display=swap">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--primary btn--sm" href="#main">Skip to content</a>
+
+<header class="nav" id="top">
+  <div class="container nav-in">
+    <a class="brand" href="#top" aria-label="Quota, home">
+      <svg class="brand-mark" viewBox="0 0 30 22" aria-hidden="true"><rect x="1" y="1" width="13" height="20" rx="3.5" fill="#fff" stroke="currentColor" stroke-width="1.6"/><rect x="16" y="1" width="13" height="20" rx="3.5" fill="currentColor"/><text x="7.5" y="15.4" text-anchor="middle" font-size="11" font-weight="600" fill="currentColor" font-family="Mona Sans, sans-serif">0</text><text x="22.5" y="15.4" text-anchor="middle" font-size="11" font-weight="600" fill="#FFD447" font-family="Mona Sans, sans-serif">1</text></svg>
+      <span class="brand-word">Quota</span>
+    </a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="#meters">Meters</a></li>
+        <li><a href="#rate-cards">Rate cards</a></li>
+        <li><a href="#credits">Credits</a></li>
+        <li><a href="#api">API</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--primary btn--sm nav-cta" href="#start">Start billing</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" aria-labelledby="h1">
+  <div class="container hero-head">
+    <h1 id="h1" class="t-display hero-h1">Bill per token.<br><span class="dim">Keep 99.5%.</span></h1>
+    <div class="hero-side">
+      <p class="t-lead hero-lede">Quota meters tokens, requests, seats and <span class="nw">GPU-seconds</span> from your API, prices them from a rate card and sends the invoice through Stripe.</p>
+      <div class="hero-ctas">
+        <a class="btn btn--primary" href="#start">Start billing <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn btn--ghost" href="#api">See the API</a>
+      </div>
+      <p class="t-small dimmer hero-note">Free up to USD 10,000 a month of billed usage, then 0.5%.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="stage stage--sun" data-reveal>
+      <figure class="stage-fig" role="img" aria-label="Example meter: a token odometer for an example customer reading 48,213,906 tokens this month, priced at an example rate of USD 2.50 per million tokens, so USD 120.53 so far. Example API events add tokens as they arrive.">
+        <div class="stage-top">
+          <span class="chip chip--ink">Example data</span>
+          <span class="stage-meta">Meter <b>tokens</b> · model <b>voice-large</b> · customer <b>Acme Labs</b> · Oct 1 – today</span>
+        </div>
+        <div class="stage-mid">
+          <div class="meter meter--xl" data-meter="48213906" id="hero-meter">48,213,906</div>
+          <div class="stage-sum">
+            <p class="sum-line"><span class="sum-k">Rate</span><span class="sum-v">USD 2.50 <small>per 1M tokens</small></span></p>
+            <p class="sum-line sum-line--big"><span class="sum-k">On the invoice so far</span><span class="sum-v" id="hero-total">USD 120.53</span></p>
+          </div>
+        </div>
+        <ol class="events" id="hero-events" aria-hidden="true">
+          <li><time>14:02:09</time><code>POST /v1/events</code><span>tokens <b>+1,204</b></span><span class="ev-c">cus_8812</span></li>
+          <li><time>14:02:08</time><code>POST /v1/events</code><span>tokens <b>+386</b></span><span class="ev-c">cus_8812</span></li>
+          <li><time>14:02:06</time><code>POST /v1/events</code><span>tokens <b>+2,951</b></span><span class="ev-c">cus_8812</span></li>
+        </ol>
+        <div class="ruler" aria-hidden="true"></div>
+      </figure>
+      <button class="stage-pause" type="button" aria-pressed="false" aria-label="Pause the example meter" id="hero-pause"><span class="pz-i" aria-hidden="true"></span><span class="pz-t">Pause</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FLOW STRIP ============ -->
+<section class="flow" aria-label="How usage becomes an invoice">
+  <div class="container">
+    <ol class="flow-l">
+      <li><a href="#meters"><span class="flow-dots" aria-hidden="true"><i class="dot dot--tok"></i><i class="dot dot--req"></i><i class="dot dot--seat"></i><i class="dot dot--gpu"></i></span>Events from your API</a></li>
+      <li><a href="#rate-cards">Priced by a rate card</a></li>
+      <li><a href="#credits">Checked against credits and limits</a></li>
+      <li><a href="#rate-cards">Invoiced through Stripe</a></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ METERS: the cabinet ============ -->
+<section class="section meters" id="meters" aria-labelledby="meters-h">
+  <div class="container grid">
+    <div class="meters-intro">
+      <p class="t-label--plain eyebrow">Meters</p>
+      <h2 id="meters-h" class="t-h2">If your API counts it, <span class="dim">Quota can bill it.</span></h2>
+      <p class="t-body dim meters-p">Four kinds of meter, each fed by an event from your API. One customer can run all four at once, on one invoice.</p>
+    </div>
+    <ul class="cabinet" data-reveal-group>
+      <li class="cab cab--tok">
+        <div class="meter meter--m" data-meter="1204" data-pad="5" role="img" aria-label="Example reading: 1,204 tokens">1,204</div>
+        <div class="cab-txt"><h3 class="t-h3">Tokens</h3><p class="t-small dim">Input and output, per model.</p></div>
+        <code class="cab-ev">{"meter":"tokens","model":"voice-large","in":880,"out":324}</code>
+      </li>
+      <li class="cab cab--req">
+        <div class="meter meter--m" data-meter="312" data-pad="5" role="img" aria-label="Example reading: 312 requests">312</div>
+        <div class="cab-txt"><h3 class="t-h3">Requests</h3><p class="t-small dim">Per call, per endpoint.</p></div>
+        <code class="cab-ev">{"meter":"requests","endpoint":"/v1/transcribe"}</code>
+      </li>
+      <li class="cab cab--seat">
+        <div class="meter meter--m" data-meter="14" data-pad="5" role="img" aria-label="Example reading: 14 seats">14</div>
+        <div class="cab-txt"><h3 class="t-h3">Seats</h3><p class="t-small dim">Active members, per customer.</p></div>
+        <code class="cab-ev">{"meter":"seats","customer":"cus_8812","active":14}</code>
+      </li>
+      <li class="cab cab--gpu">
+        <div class="meter meter--m" data-meter="864" data-dec="1" data-pad="5" role="img" aria-label="Example reading: 86.4 GPU-seconds">86.4</div>
+        <div class="cab-txt"><h3 class="t-h3">GPU-seconds</h3><p class="t-small dim">Straight from your job runner.</p></div>
+        <code class="cab-ev">{"meter":"gpu_seconds","gpu":"h100","qty":86.4}</code>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ EQUATION: meter × rate card = invoice ============ -->
+<section class="section eq" id="rate-cards" aria-labelledby="eq-h">
+  <div class="container">
+    <div class="eq-head">
+      <h2 id="eq-h" class="t-h2">Meter × rate card = invoice. <span class="dim">Every month, to the cent.</span></h2>
+      <div class="eq-side">
+        <p class="t-body dim">Price each model and each plan in a rate card. Quota multiplies the month's readings by it and sends the invoice through Stripe.</p>
+        <div class="seg" role="group" aria-label="Rate card plan for the example">
+          <button type="button" class="seg-b" data-plan="starter" aria-pressed="false">Starter plan</button>
+          <button type="button" class="seg-b" data-plan="scale" aria-pressed="true">Scale plan</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="eq-row" data-reveal-group>
+      <figure class="eq-card" role="img" aria-label="Example meter readings for Acme Labs in October: 48,213,906 tokens, 1,920,446 requests, 14 seats and 31,250.4 GPU-seconds.">
+        <figcaption class="eq-cap"><span>Meter</span><span class="dimmer">Acme Labs · October</span></figcaption>
+        <ul class="eq-list">
+          <li><i class="dot dot--tok"></i><span>Tokens</span><b class="t-num">48,213,906</b></li>
+          <li><i class="dot dot--req"></i><span>Requests</span><b class="t-num">1,920,446</b></li>
+          <li><i class="dot dot--seat"></i><span>Seats</span><b class="t-num">14</b></li>
+          <li><i class="dot dot--gpu"></i><span>GPU-seconds</span><b class="t-num">31,250.4</b></li>
+        </ul>
+        <p class="eq-foot">Example data</p>
+      </figure>
+
+      <span class="eq-op" aria-hidden="true">×</span>
+
+      <figure class="eq-card" role="img" aria-label="Example rate card. The selected plan sets a price per million tokens, per thousand requests, per seat and per GPU-second." id="ratecard">
+        <figcaption class="eq-cap"><span>Rate card</span><span class="dimmer" data-plan-name>Scale · v14</span></figcaption>
+        <ul class="eq-list">
+          <li><i class="dot dot--tok"></i><span>voice-large</span><b class="t-num" data-rate="tok">USD 2.50 <small>/ 1M</small></b></li>
+          <li><i class="dot dot--req"></i><span>Requests</span><b class="t-num" data-rate="req">USD 0.04 <small>/ 1k</small></b></li>
+          <li><i class="dot dot--seat"></i><span>Seats</span><b class="t-num" data-rate="seat">USD 20.00 <small>/ seat</small></b></li>
+          <li><i class="dot dot--gpu"></i><span>GPU-seconds</span><b class="t-num" data-rate="gpu">USD 0.0011 <small>/ s</small></b></li>
+        </ul>
+        <p class="eq-foot">Example prices</p>
+      </figure>
+
+      <span class="eq-op" aria-hidden="true">=</span>
+
+      <figure class="eq-card eq-card--inv" role="img" aria-label="Example invoice for Acme Labs, recomputed for the selected plan, then sent through Stripe." id="eq-invoice">
+        <figcaption class="eq-cap"><span>Invoice</span><span class="dimmer">INV-0412 · Nov 1</span></figcaption>
+        <ul class="eq-list eq-list--inv">
+          <li><i class="dot dot--tok"></i><span>Tokens</span><b class="t-num" data-line="tok">USD 120.53</b></li>
+          <li><i class="dot dot--req"></i><span>Requests</span><b class="t-num" data-line="req">USD 76.82</b></li>
+          <li><i class="dot dot--seat"></i><span>Seats</span><b class="t-num" data-line="seat">USD 280.00</b></li>
+          <li><i class="dot dot--gpu"></i><span>GPU-seconds</span><b class="t-num" data-line="gpu">USD 34.38</b></li>
+        </ul>
+        <div class="inv-total"><span>Total due</span><b class="t-num" data-line="total">USD 511.73</b></div>
+        <ol class="inv-steps">
+          <li class="is-done">Finalised</li><li class="is-done">Sent through Stripe</li><li>Paid</li>
+        </ol>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CREDITS + LIMITS ============ -->
+<section class="section credits" id="credits" aria-labelledby="cr-h">
+  <div class="container grid credits-grid">
+    <div class="plate plate--coral credits-plate" data-reveal>
+      <figure class="cr-fig" role="img" aria-label="Example: a customer's prepaid credit balance of USD 1,312.40 left of USD 2,000.00, with three recent draws, and a monthly spend limit of USD 500.00 with USD 412.75 used.">
+        <div class="card cr-bal">
+          <p class="ui-cap"><span>Prepaid credits</span><span class="dimmer">cus_8812 · example</span></p>
+          <p class="cr-big t-num">USD 1,312.40</p>
+          <p class="ui-sub">left of USD 2,000.00</p>
+          <div class="bar" style="--v:.656"><i></i></div>
+          <ul class="draws">
+            <li><span>Oct 19</span><span>voice-large tokens</span><b class="t-num">−USD 18.20</b></li>
+            <li><span>Oct 18</span><span>GPU-seconds</span><b class="t-num">−USD 41.06</b></li>
+            <li><span>Oct 18</span><span>voice-large tokens</span><b class="t-num">−USD 22.75</b></li>
+          </ul>
+        </div>
+        <div class="card cr-lim">
+          <p class="ui-cap"><span>Spend limit</span><span class="dimmer">monthly</span></p>
+          <div class="lim-row"><p class="lim-big t-num">USD 412.75</p><p class="ui-sub">of USD 500.00</p></div>
+          <div class="bar bar--lim" style="--v:.8255"><i></i><span class="lim-mark" aria-hidden="true"></span></div>
+          <p class="ui-sub lim-note">83% used · resets Nov 1</p>
+        </div>
+      </figure>
+    </div>
+    <div class="credits-txt">
+      <p class="t-label--plain eyebrow">Credits and limits</p>
+      <h2 id="cr-h" class="t-h2">Prepaid credits. <span class="dim">Limits that hold.</span></h2>
+      <p class="t-body dim">Sell credits up front and draw them down as usage lands. Give each customer a spend limit, so a runaway loop never turns into a surprise invoice.</p>
+      <ul class="ticks">
+        <li>Credits drawn down by the same meters that bill</li>
+        <li>A spend limit per customer</li>
+        <li>Credits and usage on one invoice</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EMBEDDED DASHBOARD ============ -->
+<section class="section dash" id="dashboard" aria-labelledby="dash-h">
+  <div class="container">
+    <div class="dash-head">
+      <p class="t-label--plain eyebrow">Customer dashboard</p>
+      <h2 id="dash-h" class="t-h2">Your customers watch <span class="dim">the same meter.</span></h2>
+      <p class="t-body dim dash-p">Embed a live usage dashboard in your own app. Customers see what they've used, what it costs and how much credit is left, before the invoice arrives.</p>
+    </div>
+    <div class="plate plate--mint dash-plate" data-reveal>
+      <figure class="win" role="img" aria-label="Example: an example customer app's settings page with Quota's usage dashboard embedded, showing October usage as daily stacked bars by meter, USD 311.73 so far, and credit and limit status.">
+        <div class="win-bar"><i></i><i></i><i></i><span class="win-url">app.acmelabs.example/settings/usage</span></div>
+        <div class="win-body">
+          <aside class="win-side">
+            <p class="ws-brand">Acme Labs</p>
+            <ul><li>Projects</li><li>API keys</li><li>Members</li><li class="on">Usage</li><li>Billing</li></ul>
+          </aside>
+          <div class="win-main">
+            <div class="embed">
+              <span class="embed-tag">Quota embed</span>
+              <div class="em-top">
+                <div><p class="em-k">October so far</p><p class="em-big t-num">USD 311.73</p></div>
+                <div><p class="em-k">Credits left</p><p class="em-mid t-num">USD 1,312.40</p></div>
+                <div><p class="em-k">Spend limit</p><p class="em-mid t-num">83% of USD 500</p></div>
+              </div>
+              <div class="chart" id="chart"></div>
+              <ul class="legend"><li><i class="dot dot--tok"></i>Tokens</li><li><i class="dot dot--req"></i>Requests</li><li><i class="dot dot--seat"></i>Seats</li><li><i class="dot dot--gpu"></i>GPU-seconds</li><li class="lg-ex">Example data</li></ul>
+            </div>
+          </div>
+        </div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ API ============ -->
+<section class="section api" id="api" aria-labelledby="api-h">
+  <div class="container grid api-grid">
+    <div class="api-txt">
+      <p class="t-label--plain eyebrow">The API</p>
+      <h2 id="api-h" class="t-h2">One call <span class="dim">per event.</span></h2>
+      <p class="t-body dim">Send usage from your API as it happens. Meters, rate cards, credits, limits and invoices take it from there.</p>
+      <p class="t-small dimmer api-note">The endpoint and keys shown are illustrative.</p>
+    </div>
+    <div class="plate plate--sky api-plate" data-reveal>
+      <div class="code">
+        <div class="code-top">
+          <div class="tabs" role="tablist" aria-label="Language">
+            <button role="tab" id="tab-curl" aria-controls="pane-curl" aria-selected="true" class="tab">curl</button>
+            <button role="tab" id="tab-node" aria-controls="pane-node" aria-selected="false" class="tab" tabindex="-1">Node</button>
+            <button role="tab" id="tab-py" aria-controls="pane-py" aria-selected="false" class="tab" tabindex="-1">Python</button>
+          </div>
+          <button type="button" class="copy" id="copy">Copy</button>
+        </div>
+<pre class="pane" role="tabpanel" id="pane-curl" aria-labelledby="tab-curl" tabindex="0"><code>curl https://api.quota.example/v1/events \
+  -H <span class="s">"Authorization: Bearer qk_test_…"</span> \
+  -d customer=<span class="s">cus_8812</span> \
+  -d meter=<span class="s">tokens</span> \
+  -d model=<span class="s">voice-large</span> \
+  -d quantity=<span class="n">1204</span></code></pre>
+<pre class="pane" role="tabpanel" id="pane-node" aria-labelledby="tab-node" tabindex="0" hidden><code><span class="k">await</span> quota.events.create({
+  customer: <span class="s">"cus_8812"</span>,
+  meter: <span class="s">"tokens"</span>,
+  model: <span class="s">"voice-large"</span>,
+  quantity: <span class="n">1204</span>,
+});</code></pre>
+<pre class="pane" role="tabpanel" id="pane-py" aria-labelledby="tab-py" tabindex="0" hidden><code>quota.events.create(
+    customer=<span class="s">"cus_8812"</span>,
+    meter=<span class="s">"tokens"</span>,
+    model=<span class="s">"voice-large"</span>,
+    quantity=<span class="n">1204</span>,
+)</code></pre>
+        <div class="resp" aria-label="Example response">
+<pre><code><span class="c">// 200 OK · example response</span>
+{ <span class="s">"meter"</span>: <span class="s">"tokens"</span>, <span class="s">"reading"</span>: <span class="n">48213906</span>, <span class="s">"invoice_draft"</span>: <span class="s">"USD 120.53"</span> }</code></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="section pricing" id="pricing" aria-labelledby="pr-h">
+  <div class="container">
+    <div class="tray pr-tray">
+      <div class="pr-txt">
+        <p class="t-label--plain eyebrow">Pricing</p>
+        <h2 id="pr-h" class="t-h2">Free to USD 10,000 a month. <span class="dim">Then 0.5%.</span></h2>
+        <p class="t-body dim">You pay nothing until your billed usage passes USD 10,000 in a month. After that, Quota takes 0.5% of billed usage. No seats, no platform fee.</p>
+        <div class="pr-figs" aria-hidden="true">
+          <p class="pr-n">10,000<small>USD free each month</small></p>
+          <p class="pr-n">0.5%<small>of billed usage after that</small></p>
+        </div>
+      </div>
+
+      <div class="calc card" id="start">
+        <label class="calc-l" for="usage">Your billed usage this month <span class="dimmer">(drag to try)</span></label>
+        <div class="calc-read">
+          <span class="calc-cur">USD</span>
+          <div class="meter meter--l" id="calc-meter" data-meter="240000" data-pad="7" aria-hidden="true">240,000</div>
+        </div>
+        <input type="range" id="usage" min="0" max="1000000" step="5000" value="240000" aria-valuetext="USD 240,000">
+        <div class="grad" id="grad" aria-hidden="true"></div>
+        <p class="grad-key t-small dimmer"><span><i class="gk gk--free"></i>First USD 10,000, free</span><span><i class="gk gk--paid"></i>Each further USD 10,000 costs USD 50</span></p>
+
+        <div class="qinv" aria-live="polite" id="qinv">
+          <p class="qinv-h"><span>Quota's invoice to you</span><span class="chip">Example</span></p>
+          <dl>
+            <div><dt>Billed usage</dt><dd class="t-num" data-q="usage">USD 240,000.00</dd></div>
+            <div><dt>Included free</dt><dd class="t-num" data-q="free">−USD 10,000.00</dd></div>
+            <div><dt>0.5% of the rest</dt><dd class="t-num" data-q="base">USD 230,000.00</dd></div>
+            <div class="qinv-tot"><dt>Quota fee</dt><dd class="t-num" data-q="fee">USD 1,150.00</dd></div>
+          </dl>
+          <p class="qinv-keep t-small">You keep <b class="t-num" data-q="keep">USD 238,850.00</b> · effective rate <b class="t-num" data-q="rate">0.48%</b></p>
+        </div>
+        <a class="btn btn--primary calc-cta" href="#start">Start billing <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section faq" id="faq" aria-labelledby="faq-h">
+  <div class="container grid faq-grid">
+    <div class="faq-l">
+      <h2 id="faq-h" class="t-h2">Before you <span class="dim">plug it in.</span></h2>
+      <div class="card contact">
+        <p class="t-h3">Talk it through</p>
+        <p class="t-small dim">Have a pricing model that doesn't fit four meters? Write to us before you build around it.</p>
+        <p class="contact-mail"><span class="ph-chip">Placeholder</span> hello@quota.example</p>
+      </div>
+    </div>
+    <div class="faq-list">
+      <details open>
+        <summary>What counts as billed usage?</summary>
+        <p>The usage charges on the invoices Quota sends for you in a month. The first USD 10,000 of it is free; the 0.5% applies to the rest.</p>
+      </details>
+      <details>
+        <summary>Does Quota replace Stripe?</summary>
+        <p>No. Invoices go out through Stripe. Quota does the work before them: metering, rate cards, credits and spend limits.</p>
+      </details>
+      <details>
+        <summary>What can I meter?</summary>
+        <p>Tokens, requests, seats and GPU-seconds, sent as events from your API. Each model and plan gets its own price in a rate card.</p>
+      </details>
+      <details>
+        <summary>Can my customers see their own usage?</summary>
+        <p>Yes. Embed the live usage dashboard in your app, and they see the same meter you bill from.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINALE ============ -->
+<section class="finale" aria-labelledby="fin-h">
+  <div class="container">
+    <div class="stage stage--sun fin-stage">
+      <h2 id="fin-h" class="t-display fin-h">Start the meter.</h2>
+      <div class="meter meter--xl fin-meter" id="fin-meter" data-meter="0" data-pad="8" role="img" aria-label="A meter at zero, ticking to its first token">00,000,000</div>
+      <div class="fin-row">
+        <p class="t-body fin-p">Free until your billed usage passes USD 10,000 a month.</p>
+        <div class="hero-ctas">
+          <a class="btn btn--primary" href="#start">Start billing <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn btn--ghost btn--onsun" href="#api">See the API</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="container foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="#top" aria-label="Quota, back to top">
+        <svg class="brand-mark" viewBox="0 0 30 22" aria-hidden="true"><rect x="1" y="1" width="13" height="20" rx="3.5" fill="#fff" stroke="currentColor" stroke-width="1.6"/><rect x="16" y="1" width="13" height="20" rx="3.5" fill="currentColor"/><text x="7.5" y="15.4" text-anchor="middle" font-size="11" font-weight="600" fill="currentColor" font-family="Mona Sans, sans-serif">0</text><text x="22.5" y="15.4" text-anchor="middle" font-size="11" font-weight="600" fill="#FFD447" font-family="Mona Sans, sans-serif">1</text></svg>
+        <span class="brand-word">Quota</span>
+      </a>
+      <p class="t-small dim">Usage-based billing for AI companies.</p>
+      <p class="t-small dimmer">© 2026 Quota. A fictional product.</p>
+    </div>
+    <nav class="foot-col" aria-label="Product">
+      <p class="foot-h">Product</p>
+      <ul><li><a href="#meters">Meters</a></li><li><a href="#rate-cards">Rate cards</a></li><li><a href="#credits">Credits and limits</a></li><li><a href="#dashboard">Customer dashboard</a></li></ul>
+    </nav>
+    <nav class="foot-col" aria-label="Developers">
+      <p class="foot-h">Developers</p>
+      <ul><li><a href="#api">The API</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">Questions</a></li></ul>
+    </nav>
+    <nav class="foot-col" aria-label="Legal">
+      <p class="foot-h">Legal</p>
+      <ul><li><a href="legal.html#terms">Terms</a></li><li><a href="legal.html#privacy">Privacy</a></li></ul>
+    </nav>
+  </div>
+</footer>
+
+<script type="module" src="quota.js"></script>
+</body>
+</html>

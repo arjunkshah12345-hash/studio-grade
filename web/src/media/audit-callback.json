@@ -1,0 +1,643 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/callback/",
+ "outDir": "/tmp/callback-aud",
+ "ms": 45913,
+ "counts": {
+  "PASS": 11,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Libre Franklin×139"
+  ],
+  "display": [
+   "96px/0.9/-0.05em w500 \"$ 149 a month\"",
+   "76px/1/-0.035em w500 \"Hands full. Phone answered.\"",
+   "46px/1.06/-0.026em w500 \"The phone always rings when \""
+  ],
+  "bodySize": "14",
+  "weights": [
+   "500×75",
+   "400×63",
+   "700×1"
+  ],
+  "upperShare": 0,
+  "paper": "rgb(248,243,236)",
+  "accents": [
+   "rgb(194,65,12) bg a.btn"
+  ],
+  "buttons": [
+   "pill 38px \"Start your free trial\"",
+   "pill 52px \"Start your free trial\"",
+   "pill 52px \"Hear a sample call\"",
+   "pill 52px \"Start your free trial\"",
+   "pill 52px \"Start your free trial\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)",
+   "cubic-bezier(.2,.8,.2,1)"
+  ],
+  "nav": {
+   "h": 900,
+   "links": 8
+  },
+  "pageVh": 8.4
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "1 family: Libre Franklin"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 96px · lh 0.9 · -0.05em · weight 500 · Libre Franklin)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (3/6 traits: warmOffWhite, tinyAccent, lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "One accent hue (30° (w17) e.g. rgb(194,65,12) bg a.btn)"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 103 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 9 text elements over imagery meet AA (sampled from pixels)"
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: pill"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "2 hero CTA(s) · seen: 2 solid"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.4,0,0.2,1)×91, cubic-bezier(0.2,0.8,0.2,1)×13"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (10/34 paragraphs wait for scroll)"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 0.7% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 8.4 viewports (direction 11 norm 7–12)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/callback-aud/desktop-hero.png",
+  "/tmp/callback-aud/slice-01.jpg … (one per viewport)",
+  "/tmp/callback-aud/desktop-full.jpg",
+  "/tmp/callback-aud/mobile-hero.png",
+  "/tmp/callback-aud/mobile-full.jpg",
+  "/tmp/callback-aud/reduced-motion-hero.png"
+ ],
+ "raw": {
+  "desktop": {
+   "title": "Callback · The phone answered while your hands are full",
+   "lang": "en",
+   "metaDesc": true,
+   "pageVh": 8.4,
+   "families": [
+    [
+     "Libre Franklin",
+     139
+    ]
+   ],
+   "loadedFonts": [
+    "Libre Franklin"
+   ],
+   "largest": [
+    {
+     "tag": "p",
+     "text": "$ 149 a month",
+     "family": "Libre Franklin",
+     "size": 96,
+     "weight": 500,
+     "lh": 0.9,
+     "ls": -0.05,
+     "upper": false,
+     "clipText": false,
+     "top": 5262.578125,
+     "condensed": false
+    },
+    {
+     "tag": "h1",
+     "text": "Hands full. Phone answered.",
+     "family": "Libre Franklin",
+     "size": 76,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.035,
+     "upper": false,
+     "clipText": false,
+     "top": 219,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "The phone always rings when you’re elbow-deep. Callback picks up, so the job doe",
+     "family": "Libre Franklin",
+     "size": 46,
+     "weight": 500,
+     "lh": 1.06,
+     "ls": -0.026,
+     "upper": false,
+     "clipText": false,
+     "top": 1040.75,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Callback picks up, so the job doesn’t go to whoever answers next.",
+     "family": "Libre Franklin",
+     "size": 46,
+     "weight": 500,
+     "lh": 1.06,
+     "ls": -0.026,
+     "upper": false,
+     "clipText": false,
+     "top": 1085.5,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "One call, start to finish.",
+     "family": "Libre Franklin",
+     "size": 46,
+     "weight": 500,
+     "lh": 1.06,
+     "ls": -0.026,
+     "upper": false,
+     "clipText": false,
+     "top": 1544.640625,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Burst pipe at 2 a.m.? It rings you, not a calendar.",
+     "family": "Libre Franklin",
+     "size": 46,
+     "weight": 500,
+     "lh": 1.06,
+     "ls": -0.026,
+     "upper": false,
+     "clipText": false,
+     "top": 2983.734375,
+     "condensed": false
+    }
+   ],
+   "h1": [
+    {
+     "tag": "h1",
+     "text": "Hands full. Phone answered.",
+     "family": "Libre Franklin",
+     "size": 76,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.035,
+     "upper": false,
+     "clipText": false,
+     "top": 219,
+     "condensed": false
+    }
+   ],
+   "h1Count": 1,
+   "display": [
+    {
+     "tag": "h1",
+     "text": "Hands full. Phone answered.",
+     "family": "Libre Franklin",
+     "size": 76,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.035,
+     "upper": false,
+     "clipText": false,
+     "top": 219,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "The phone always rings when you’re elbow-deep. Callback picks up, so the job doe",
+     "family": "Libre Franklin",
+     "size": 46,
+     "weight": 500,
+     "lh": 1.06,
+     "ls": -0.026,
+     "upper": false,
+     "clipText": false,
+     "top": 1040.75,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Callback picks up, so the job doesn’t go to whoever answers next.",
+     "family": "Libre Franklin",
+     "size": 46,
+     "weight": 500,
+     "lh": 1.06,
+     "ls": -0.026,
+     "upper": false,
+     "clipText": false,
+     "top": 1085.5,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "One call, start to finish.",
+     "family": "Libre Franklin",
+     "size": 46,
+     "weight": 500,
+     "lh": 1.06,
+     "ls": -0.026,
+     "upper": false,
+     "clipText": false,
+     "top": 1544.640625,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Burst pipe at 2 a.m.? It rings you, not a calendar.",
+     "family": "Libre Franklin",
+     "size": 46,
+     "weight": 500,
+     "lh": 1.06,
+     "ls": -0.026,
+     "upper": false,
+     "clipText": false,
+     "top": 2983.734375,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "It rings you, not a calendar.",
+     "family": "Libre Franklin",
+     "size": 46,
+     "weight": 500,
+     "lh": 1.06,
+     "ls": -0.026,
+     "upper": false,
+     "clipText": false,
+     "top": 3028.484375,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Hear a sample call.",
+     "family": "Libre Franklin",
+     "size": 46,
+     "weight": 500,
+     "lh": 1.06,
+     "ls": -0.026,
+     "upper": false,
+     "clipText": false,
+     "top": 4126.65625,
+     "condensed": true
+    },
+    {
+     "tag": "h2",
+     "text": "Up and running in about 15 minutes.",
+     "family": "Libre Franklin",
+     "size": 46,
+     "weight": 500,
+     "lh": 1.06,
+     "ls": -0.026,
+     "upper": false,
+     "clipText": false,
+     "top": 4658.4375,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "One plan. You only pay more in a busy month.",
+     "family": "Libre Franklin",
+     "size": 46,
+     "weight": 500,
+     "lh": 1.06,
+     "ls": -0.026,
+     "upper": false,
+     "clipText": false,
+     "top": 5208.21875,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "You only pay more in a busy month.",
+     "family": "Libre Franklin",
+     "size": 46,
+     "weight": 500,
+     "lh": 1.06,
+     "ls": -0.026,
+     "upper": false,
+     "clipText": false,
+     "top": 5204.21875,
+     "condensed": false
+    },
+    {
+     "tag": "p",
+     "text": "$ 149 a month",
+     "family": "Libre Franklin",
+     "size": 96,
+     "weight": 500,
+     "lh": 0.9,
+     "ls": -0.05,
+     "upper": false,
+     "clipText": false,
+     "top": 5262.578125,
+     "condensed": false
+    },
+    {
+     "tag": "b",
+     "text": "$185",
+     "family": "Libre Franklin",
+     "size": 46,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 5564.953125,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Fair questions.",
+     "family": "Libre Franklin",
+     "size": 46,
+     "weight": 500,
+     "lh": 1.06,
+     "ls": -0.026,
+     "upper": false,
+     "clipText": false,
+     "top": 5967.703125,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Stay under the sink. We’ve got the phone.",
+     "family": "Libre Franklin",
+     "size": 46,
+     "weight": 500,
+     "lh": 1.06,
+     "ls": -0.026,
+     "upper": false,
+     "clipText": false,
+     "top": 6671.125,
+     "condensed": false
+    }
+   ],
+   "bodySize": "14",
+   "tinyText": 0,
+   "labelsTight": [],
+   "labelCount": 0,
+   "upperShare": 0,
+   "bigCapsSentences": [],
+   "weights": [
+    [
+     "500",
+     75
+    ],
+    [
+     "400",
+     63
+    ],
+    [
+     "700",
+     1
+    ]
+   ],
+   "textShadowBig": 0,
+   "textStroke": 0,
+   "stuckReveal": [],
+   "gradientText": [],
+   "longMeasure": [],
+   "paper": [
+    248,
+    243,
+    236,
+    1
+   ],
+   "pureBW": {
+    "blackOnWhite": 0,
+    "whiteOnBlack": 0
+   },
+   "artHues": [
+    "30°×6",
+    "150°×1"
+   ],
+   "accentHues": [
+    {
+     "hue": 30,
+     "weight": 17,
+     "example": "rgb(194,65,12) bg a.btn"
+    }
+   ],
+   "chromaCoverage": 0.7,
+   "fieldHues": [],
+   "gradients": [],
+   "glows": 0,
+   "buttonCamps": [
+    [
+     "pill",
+     5
+    ]
+   ],
+   "buttons": [
+    {
+     "text": "Start your free trial",
+     "camp": "pill",
+     "h": 38,
+     "top": 29,
+     "nav": true
+    },
+    {
+     "text": "Start your free trial",
+     "camp": "pill",
+     "h": 52,
+     "top": 514,
+     "nav": false
+    },
+    {
+     "text": "Hear a sample call",
+     "camp": "pill",
+     "h": 52,
+     "top": 514,
+     "nav": false
+    },
+    {
+     "text": "Start your free trial",
+     "camp": "pill",
+     "h": 52,
+     "top": 5643,
+     "nav": false
+    },
+    {
+     "text": "Start your free trial",
+     "camp": "pill",
+     "h": 52,
+     "top": 6351,
+     "nav": false
+    },
+    {
+     "text": "Start your free trial",
+     "camp": "pill",
+     "h": 52,
+     "top": 6801,
+     "nav": false
+    }
+   ],
+   "bigRadiusCards": 2,
+   "dropShadows": 5,
+   "heroCtas": [
+    "Start your free trial",
+    "Hear a sample call"
+   ],
+   "heroMix": "2 solid",
+   "heroTextLinks": [],
+   "h1Words": 4,
+   "h1Lines": 2,
+   "h1Centered": false,
+   "badgeAboveH1": [],
+   "h2Count": 8,
+   "h2CenteredShare": 0,
+   "iconGrids": [],
+   "sectionCV": 0.28,
+   "emoji": [],
+   "exclaim": [],
+   "banned": [],
+   "lorem": false,
+   "dupIds": [],
+   "hiddenShown": [],
+   "motion": {
+    "usedEases": [
+     [
+      "cubic-bezier(0.4,0,0.2,1)",
+      91
+     ],
+     [
+      "cubic-bezier(0.2,0.8,0.2,1)",
+      13
+     ]
+    ],
+    "transitions": 28,
+    "keyframes": 4,
+    "beziers": [
+     [
+      "cubic-bezier(.16,1,.3,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.76,0,.24,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.4,0,.2,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.34,1.56,.64,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.2,.8,.2,1)",
+      1
+     ]
+    ],
+    "reducedMotion": true,
+    "defaultEases": 18,
+    "lenis": false,
+    "revealEls": 6
+   },
+   "autoplayVideos": 0,
+   "pauseControl": true,
+   "imgNoAlt": 0,
+   "unnamedControls": 0,
+   "skipLink": true,
+   "hiddenText": [],
+   "defaultLook": {
+    "sig": {
+     "warmOffWhite": true,
+     "monoUpperLabels": false,
+     "hairlineBands": false,
+     "lineDrawingHero": false,
+     "tinyAccent": true,
+     "lightDisplay": true
+    },
+    "score": 3,
+    "monoUpperShare": 0,
+    "hairlines": 10
+   },
+   "nav": {
+    "h": 900,
+    "links": 8
+   },
+   "copyDupes": [],
+   "titleCase": [],
+   "textOverlap": [],
+   "textMotion": {
+    "paras": 34,
+    "hidden": 10,
+    "h1Split": false
+   },
+   "firstFrame": {
+    "h1Hidden": false,
+    "hidden": []
+   },
+   "contrast": {
+    "checked": 103,
+    "low": 0,
+    "lowBody": 0,
+    "examples": []
+   },
+   "perf": null,
+   "mediaContrast": {
+    "checked": 9,
+    "low": []
+   },
+   "consoleErrors": []
+  },
+  "mobile": {
+   "overflow": 0,
+   "offenders": [],
+   "small": [],
+   "smallCount": 0,
+   "h1Size": 41.6,
+   "tinyBody": 0,
+   "tinyEx": []
+  },
+  "reducedMotion": {
+   "firstViewport": 11,
+   "hidden": []
+  }
+ }
+}

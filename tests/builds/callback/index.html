@@ -1,0 +1,333 @@
+<!--
+DESIGN SPINE · Callback
+DIRECTION   : 11 Bright Product — small trade-business owners buy from pages that look finished and talk plainly; a warm documentary photo series of their own work gives it a world, small real UI shows the product.
+REGISTER    : Confident — one bold device: a workwear-navy night band (sampled from the van door) where the emergency call happens; everything else is warm and calm.
+AXES        : ground warm cream #F8F3EC sampled from the lit cabinet door, a cabinet-tan tray #EDE2D3, and one navy field #131B29 · type genre American gothic grotesk (Libre Franklin 500, one family, van-lettering plain) · image medium generated 35mm documentary photo series with HTML vignettes on it · composition photo composed for the headline, then a product stage on a photo with vignettes crossing its edge, then banded night/day · motion feel calm: media and vignettes play their one action, the ring motif pulses twice
+DEFAULT?    : default-look check 2/6 (warm off-white ground, near-black ink) → DIFFERENT FROM DEFAULT BY: no mono labels, no hairline metadata bands, photo not line drawing, accent spent on action + emergency, navy band
+MOTIF       : the ring — a dot with two arcs (ring, ring). 1) wordmark mark 2) two ripples off the face-down phone in the hero, then "Answered" 3) "Ring 1 · Ring 2 · Answered" in the call vignette header 4) orange outgoing ripples on the emergency call 5) pricing: one dot per 10 calls, filled = included, open ring = extra
+TYPE        : display Libre Franklin 500 · text Libre Franklin 400 · labels Libre Franklin 500 sentence case (no mono)
+SCALE       : display 76px/1.0/-0.035em · h2 46px/1.06/-0.026em · h3 22px · body 17px/1.55 · label 13px
+PALETTE     : paper #F8F3EC · ink #171E2C (workwear navy-black) · ink-2 ink@74% · hairline ink@10% · tray #EDE2D3 · night #131B29 · accent safety orange #C2410C → used ONLY on the primary action and emergency states
+GRID        : 12/24 · container 1280 · side margin 20→80px · section rhythm 96–144px with a 200px+ void before the night band
+HERO        : H19 photo composed for the headline — plumber's gloved hands under a sink on the right, the lit cabinet door on the left carries the h1 in ink; the face-down phone rings twice and is answered
+IMAGERY     : photo series (hero, van, boiler) + product UI vignettes in HTML (call transcript, calendar slot, owner's text, emergency escalation, sample-call player)
+CONVERSION  : "Start your free trial" → nav, hero, after the call story, pricing card, trial card beside FAQ, finale. Secondary "Hear a sample call" → hero, sample section (audio is a visible placeholder)
+MOTION      : house ease cubic-bezier(.2,.8,.2,1) · UI 160–240ms · reveal 600ms fade + 8px rise · primitive: media and card groups only; text is still
+IMAGES      : medium      warm, real-looking documentary photography of trade work, 35mm, natural light, true colour, shallow depth of field: vans, tools, kitchens and boiler cupboards, a phone face-down or in a pocket while hands are busy
+              palette     worn navy workwear, warm wood, copper pipe, one signal colour of safety orange
+              people      only from behind, cropped at the shoulders, or hands only; never readable faces
+              exclude     no text, no readable screens, no logos, no brand marks, no watermarks, no readable faces
+              shot list   hero 21:9 plumber's gloved hands under a kitchen sink tightening a copper fitting, phone screen-down on the floor by the toolbag, warm window light, LEFT 40% clean cabinet door and wall · van 4:3 open side door of a navy work van at dusk, racked tools and copper pipe, coffee cup on the step, right third clean and dark · boiler 4:3 heating engineer's hand holding a torch to an open boiler cupboard at night, warm light on copper, left third clean and dark
+              crops       hero → desktop cover (focus 25% x) + mobile 4:5 (x 930, w 657) · van → 16:9 panel under the call story + 1:1 mobile · boiler → 4:3 night band, vignette on its dark left third · finale → hero re-crop (bookend)
+NAMING      : none (plain trade voice; the brand name is the verb)
+SIGNATURES  : §68 photo composed for the headline · §69 UI vignettes on crops of the photo (crossing the panel edge) · §83 a motif that counts (pricing dots)
+VOICE       : "Hands full. Phone answered." · "Burst pipe at 2 a.m.? It rings you, not a calendar." · "Stay under the sink. We've got the phone."
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Callback · The phone answered while your hands are full</title>
+<meta name="description" content="Callback is an AI voice agent that answers the phone for plumbers, electricians and heating engineers, day and night. It books the job, texts you a summary and calls your on-call person for emergencies. A fictional product.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="media/hero-1440.webp" imagesrcset="media/hero-960.webp 960w, media/hero-1440.webp 1440w, media/hero-1916.webp 1916w" imagesizes="(max-width:760px) 0px, 140vw" media="(min-width:761px)">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--primary" href="#main">Skip to content</a>
+
+<header class="hero" id="top">
+  <nav class="nav container" aria-label="Main">
+    <a class="brand" href="#top" aria-label="Callback home">
+      <svg class="mark" viewBox="0 0 28 28" aria-hidden="true"><circle class="m-dot" cx="14" cy="14" r="4.2"/><circle class="m-r1" cx="14" cy="14" r="8.4"/><circle class="m-r2" cx="14" cy="14" r="12.4"/></svg>
+      <span>Callback</span>
+    </a>
+    <div class="nav-pill">
+      <a href="#how">How it works</a>
+      <a href="#night">After hours</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">Questions</a>
+      <a class="btn btn--accent btn--sm" href="#trial">Start your free trial</a>
+    </div>
+  </nav>
+
+  <div class="hero-shot" aria-hidden="true">
+    <div class="stage">
+      <picture>
+        <source media="(max-width:760px)" srcset="media/hero-m-657.webp" type="image/webp">
+        <source media="(max-width:760px)" srcset="media/hero-m-657.jpg">
+        <source srcset="media/hero-960.webp 960w, media/hero-1440.webp 1440w, media/hero-1916.webp 1916w" sizes="140vw" type="image/webp">
+        <img src="media/hero-1440.jpg" srcset="media/hero-960.jpg 960w, media/hero-1440.jpg 1440w, media/hero-1916.jpg 1916w" sizes="140vw" width="1916" height="821" alt="" fetchpriority="high">
+      </picture>
+      <div class="ring-spot">
+        <span class="ripple"></span><span class="ripple ripple--2"></span>
+        <span class="answered"><i></i>Answered on the second ring</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-copy container">
+    <h1 class="t-display">Hands full.<br>Phone answered.</h1>
+    <p class="hero-sub">Callback is an AI receptionist for plumbers, electricians and heating engineers. It picks up in under two rings, books the job and texts you the details.</p>
+    <div class="hero-cta">
+      <a class="btn btn--accent btn--lg" href="#trial">Start your free trial</a>
+      <a class="btn btn--paper btn--lg" href="#sample"><svg class="play" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z"/></svg>Hear a sample call</a>
+    </div>
+    <p class="hero-note">14 days free · then $149 a month · set up in about 15 minutes</p>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="why container" aria-labelledby="why-h">
+    <h2 id="why-h" class="t-h2 why-h">The phone always rings when you’re elbow-deep. <span class="dim">Callback picks up, so the job doesn’t go to whoever answers next.</span></h2>
+    <ul class="promise" role="list">
+      <li><b>Under two rings</b><span>Day and night, weekends too.</span></li>
+      <li><b>Sounds like a receptionist</b><span>And says it’s an AI assistant if anyone asks.</span></li>
+      <li><b>Emergencies go to a person</b><span>A burst pipe or no heating rings your on-call phone straight away.</span></li>
+      <li><b>Keep your number</b><span>Forward your line. About 15 minutes to set up.</span></li>
+    </ul>
+  </section>
+
+  <section class="story" id="how" aria-labelledby="how-h">
+    <div class="container story-head">
+      <h2 id="how-h" class="t-h2">One call, start to finish.</h2>
+      <p class="story-lede">Here’s a weekday morning while you’re on another job. Nothing for you to do until you want to read the text.</p>
+    </div>
+
+    <div class="container panel-wrap">
+      <figure class="panel">
+        <picture class="panel-photo">
+          <source media="(max-width:760px)" srcset="media/van-m-800.webp" type="image/webp">
+          <source media="(max-width:760px)" srcset="media/van-m-800.jpg">
+          <source srcset="media/van-960.webp 960w, media/van-1448.webp 1448w" sizes="(max-width:1280px) 100vw, 1280px" type="image/webp">
+          <img src="media/van-1448.jpg" srcset="media/van-960.jpg 960w, media/van-1448.jpg 1448w" sizes="(max-width:1280px) 100vw, 1280px" width="1448" height="815" loading="lazy" alt="The open side door of a navy work van at dusk, tools and copper pipe racked inside, a coffee cup on the step.">
+        </picture>
+        <figcaption class="sr-only">An example call, shown as the transcript, the booked calendar slot and the text sent to the owner.</figcaption>
+      </figure>
+
+      <ol class="steps" role="list" data-reveal-group>
+        <li class="step">
+          <div class="vig vig--call" role="img" aria-label="Example call transcript. Answered on the second ring. Callback: Morning, Marsh Plumbing, how can I help? Caller: There’s water dripping under my kitchen sink. Callback: I can get someone out to you. What’s the address? Caller: 14 Alder Road.">
+            <div class="vig-top">
+              <span class="rings"><svg viewBox="0 0 28 28" aria-hidden="true"><circle class="m-dot" cx="14" cy="14" r="4.6"/><circle class="m-r1" cx="14" cy="14" r="8.6"/><circle class="m-r2" cx="14" cy="14" r="12.4"/></svg>Ring 1 · Ring 2 · <b>Answered</b></span>
+              <span class="tag">Example</span>
+            </div>
+            <ul class="lines" data-play="lines">
+              <li class="ai"><em>Callback</em>Morning, Marsh Plumbing. How can I help?</li>
+              <li class="them"><em>Caller</em>There’s water dripping under my kitchen sink.</li>
+              <li class="ai"><em>Callback</em>I can get someone out to you. What’s the address?</li>
+              <li class="them"><em>Caller</em>14 Alder Road.<span class="caret"></span></li>
+            </ul>
+          </div>
+          <div class="step-copy">
+            <span class="n">1</span>
+            <h3 class="t-h3">It picks up</h3>
+            <p>In under two rings, any hour. It asks what the job is and where, the way your receptionist would.</p>
+          </div>
+        </li>
+
+        <li class="step">
+          <div class="vig vig--cal" role="img" aria-label="Example calendar for Thursday. Boiler service 8:00 to 9:30 already booked. New: 10:00 to 11:00, leak under kitchen sink, 14 Alder Road, booked by Callback.">
+            <div class="vig-top"><b>Thursday</b><span class="tag">Example</span></div>
+            <div class="cal" data-play="slot">
+              <div class="hours"><span>8:00</span><span>9:00</span><span>10:00</span><span>11:00</span><span>12:00</span></div>
+              <div class="col">
+                <div class="ev ev--old"><b>Boiler service</b><span>8:00–9:30 · 3 Mill Lane</span></div>
+                <div class="ev ev--new"><b>Leak under kitchen sink</b><span>10:00–11:00 · 14 Alder Road</span><i>Booked by Callback</i></div>
+              </div>
+            </div>
+          </div>
+          <div class="step-copy">
+            <span class="n">2</span>
+            <h3 class="t-h3">It books the job</h3>
+            <p>Straight into your calendar, in a gap you actually have. No call-backs, no voicemail to dig through tonight.</p>
+          </div>
+        </li>
+
+        <li class="step">
+          <div class="vig vig--sms" role="img" aria-label="Example text to the owner from Callback: New job booked for Thursday at 10:00. Leak under kitchen sink at 14 Alder Road. Caller Dana, phone (312) 555-0142. Water dripping from the cabinet since this morning, not spreading.">
+            <div class="vig-top"><span class="from"><span class="av"><svg viewBox="0 0 28 28" aria-hidden="true"><circle class="m-dot" cx="14" cy="14" r="4.6"/><circle class="m-r1" cx="14" cy="14" r="8.6"/><circle class="m-r2" cx="14" cy="14" r="12.4"/></svg></span>Callback</span><span class="tag">Example</span></div>
+            <p class="bubble" data-play="sms"><b>New job booked · Thu 10:00</b>Leak under kitchen sink, 14 Alder Road. Caller: Dana, (312) 555-0142. Dripping since this morning, not spreading.</p>
+            <p class="sms-meta">Delivered · 7:44 am</p>
+          </div>
+          <div class="step-copy">
+            <span class="n">3</span>
+            <h3 class="t-h3">It texts you</h3>
+            <p>A short summary lands on your phone. Read it when your gloves are off.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="night" id="night" data-theme="dark" aria-labelledby="night-h">
+    <div class="container night-grid">
+      <div class="night-copy">
+        <p class="kicker">After hours</p>
+        <h2 id="night-h" class="t-h2">Burst pipe at 2&nbsp;a.m.? <span class="dim">It rings you, not a calendar.</span></h2>
+        <p class="night-body">Callback listens for emergencies like a burst pipe or no heating. It doesn’t offer those callers a slot next week. It calls your on-call person straight away and passes on the details.</p>
+        <div class="vig vig--later" role="img" aria-label="Example: a non-urgent call at 9:20 pm about a dripping outside tap, booked for Friday at 8:00.">
+          <div class="vig-top"><b>Not urgent? Booked for the morning.</b><span class="tag tag--dark">Example</span></div>
+          <p><span class="t">9:20 pm</span> Dripping outside tap <span class="arrow">→</span> <b>Fri 8:00</b></p>
+        </div>
+      </div>
+
+      <figure class="night-shot">
+        <picture>
+          <source srcset="media/boiler-960.webp 960w, media/boiler-1448.webp 1448w" sizes="(max-width:760px) 100vw, 60vw" type="image/webp">
+          <img src="media/boiler-1448.jpg" srcset="media/boiler-960.jpg 960w, media/boiler-1448.jpg 1448w" sizes="(max-width:760px) 100vw, 60vw" width="1448" height="1086" loading="lazy" alt="A heating engineer's hand shining a torch into an open boiler cupboard at night, warm light on the copper pipework.">
+        </picture>
+        <div class="vig vig--sos" role="img" aria-label="Example emergency call at 11:10 pm. Caller: The heating’s gone off and it’s freezing in here. Callback marks it as an emergency, no heating, and is calling the on-call engineer now. Caller’s details are sent by text.">
+          <div class="vig-top"><span class="sos">Emergency · no heating</span><span class="tag">Example</span></div>
+          <p class="quote"><em>Caller · 11:10 pm</em>“The heating’s gone off and it’s freezing in here.”</p>
+          <div class="dial" data-play="dial">
+            <span class="dial-ring"><span class="ripple"></span><span class="ripple ripple--2"></span><i></i></span>
+            <span><b>Calling on-call now</b><small>Caller’s details sent by text</small></span>
+          </div>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sample container" id="sample" aria-labelledby="sample-h">
+    <div class="sample-copy">
+      <h2 id="sample-h" class="t-h2">Hear a sample call.</h2>
+      <p>An electrician’s line, mid-afternoon. Listen for the moment the caller asks if it’s a real person: Callback tells them it’s an AI assistant, then carries on booking.</p>
+      <p class="ph-note"><span class="ph-chip">Placeholder</span> The recording isn’t in yet. The transcript below is what it will say.</p>
+    </div>
+    <div class="player-wrap">
+      <div class="player">
+        <button class="play-btn" type="button" aria-disabled="true" aria-label="Play sample call (recording not added yet)" disabled><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3 1.8v8.4L10 6z"/></svg></button>
+        <div class="player-main">
+          <p class="player-title">Sample call · breaker keeps tripping</p>
+          <div class="wave" aria-hidden="true"></div>
+          <p class="player-meta"><span>Audio placeholder</span><span>0:00 / --:--</span></p>
+        </div>
+      </div>
+      <details class="script" open>
+        <summary>Read the call</summary>
+        <ol role="list">
+          <li><em>Callback</em>Good afternoon, Kerr Electrical. How can I help?</li>
+          <li><em>Caller</em>The breaker for my kitchen keeps tripping. Every time the kettle goes on.</li>
+          <li><em>Callback</em>That sounds frustrating. Is anything sparking, or is there a burning smell?</li>
+          <li><em>Caller</em>No, nothing like that. Hang on, am I talking to a real person?</li>
+          <li><em>Callback</em>No, I’m an AI assistant answering for Kerr Electrical. I can book an electrician to come and look. What’s the address?</li>
+          <li><em>Caller</em>22 Fern Street.</li>
+          <li><em>Callback</em>Thanks. I’ve got Monday at 2 p.m. Shall I put you in?</li>
+        </ol>
+        <p class="script-note">Example business and caller. Not a real call.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="setup" aria-labelledby="setup-h">
+    <div class="container setup-grid">
+      <h2 id="setup-h" class="t-h2">Up and running in about 15 minutes.</h2>
+      <ol class="setup-steps" role="list" data-reveal-group>
+        <li><span class="n">1</span><h3 class="t-h3">Connect your calendar</h3><p>So it knows when you’re free and where to put the job.</p></li>
+        <li><span class="n">2</span><h3 class="t-h3">Add who’s on call</h3><p>The number it rings straight away when there’s an emergency.</p></li>
+        <li><span class="n">3</span><h3 class="t-h3">Forward your number</h3><p>Your customers keep calling the number they already have.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="pricing container" id="pricing" aria-labelledby="price-h">
+    <div class="price-copy">
+      <h2 id="price-h" class="t-h2">One plan. <span class="dim">You only pay more in a busy month.</span></h2>
+      <p>$149 a month covers up to 300 calls. After that it’s $0.60 a call. Try it free for 14 days first.</p>
+    </div>
+    <div class="price-card">
+      <div class="price-top">
+        <p class="price"><span class="cur">$</span>149<span class="per">a month</span></p>
+        <ul class="incl" role="list">
+          <li>Up to 300 calls included</li>
+          <li>Then $0.60 a call</li>
+          <li>Answers day and night</li>
+          <li>14-day free trial</li>
+        </ul>
+      </div>
+      <div class="calc">
+        <label for="calls" class="calc-label">How many calls in a busy month? <output id="calls-out" for="calls">360</output></label>
+        <input id="calls" type="range" min="0" max="800" step="10" value="360">
+        <div class="dots" aria-hidden="true"></div>
+        <p class="dots-key" aria-hidden="true"><span><i class="k-in"></i>10 calls included</span><span><i class="k-ex"></i>10 calls at $0.60</span></p>
+        <p class="calc-out" aria-live="polite"><b id="total">$185</b> <span id="breakdown">$149 plus 60 extra calls at $0.60</span></p>
+      </div>
+      <a class="btn btn--accent btn--lg btn--block" href="#trial">Start your free trial</a>
+    </div>
+  </section>
+
+  <section class="faq container" id="faq" aria-labelledby="faq-h">
+    <div class="faq-list">
+      <h2 id="faq-h" class="t-h2">Fair questions.</h2>
+      <details><summary>Will callers know they’re talking to an AI?</summary><p>It sounds like a receptionist. If a caller asks, it tells them plainly that it’s an AI assistant answering for your business.</p></details>
+      <details><summary>What counts as an emergency?</summary><p>Jobs like a burst pipe or no heating. For those it doesn’t book a slot: it calls your on-call person straight away and passes on the caller’s details.</p></details>
+      <details><summary>Do I need a new phone number?</summary><p>No. You forward the number you already have to Callback. Setting it up takes about 15 minutes.</p></details>
+      <details><summary>When does it answer?</summary><p>Day and night, in under two rings, including evenings and weekends.</p></details>
+      <details><summary>What if I go over 300 calls in a month?</summary><p>Every call after the 300th that month is $0.60. There’s no second plan to move up to.</p></details>
+      <details><summary>Can I try it before I pay?</summary><p>Yes. The first 14 days are free.</p></details>
+    </div>
+    <aside class="trial" id="trial" aria-labelledby="trial-h">
+      <h3 id="trial-h" class="t-h3">Try it on your own line for 14 days.</h3>
+      <p>Forward your number tonight and see what tomorrow’s texts look like.</p>
+      <form class="trial-form" novalidate>
+        <label for="email">Work email</label>
+        <input id="email" name="email" type="email" autocomplete="email" placeholder="you@yourbusiness.com" required>
+        <button class="btn btn--accent btn--lg btn--block" type="submit">Start your free trial</button>
+        <p class="form-msg" role="status" aria-live="polite"></p>
+      </form>
+    </aside>
+  </section>
+
+  <section class="finale" aria-labelledby="fin-h">
+    <div class="finale-card">
+      <picture class="finale-photo" aria-hidden="true">
+        <source srcset="media/finale-960.webp 960w, media/finale-1500.webp 1500w" sizes="(max-width:1440px) 100vw, 1440px" type="image/webp">
+        <img src="media/finale-1500.jpg" srcset="media/finale-960.jpg 960w, media/finale-1500.jpg 1500w" sizes="(max-width:1440px) 100vw, 1440px" width="1500" height="591" loading="lazy" alt="">
+      </picture>
+      <div class="ring-spot fin-ring" aria-hidden="true"><span class="ripple"></span><span class="ripple ripple--2"></span></div>
+      <div class="finale-copy">
+        <h2 id="fin-h" class="t-h2 fin-h">Stay under the sink.<br>We’ve got the phone.</h2>
+        <a class="btn btn--accent btn--lg" href="#trial">Start your free trial</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer container">
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="#top" aria-label="Callback, back to top">
+        <svg class="mark" viewBox="0 0 28 28" aria-hidden="true"><circle class="m-dot" cx="14" cy="14" r="4.2"/><circle class="m-r1" cx="14" cy="14" r="8.4"/><circle class="m-r2" cx="14" cy="14" r="12.4"/></svg>
+        <span>Callback</span>
+      </a>
+      <p class="legal-line">© 2026 Callback. A fictional product.</p>
+    </div>
+    <div class="foot-col">
+      <p class="foot-h">Product</p>
+      <a href="#how">How it works</a><a href="#night">After hours</a><a href="#sample">Sample call</a><a href="#pricing">Pricing</a>
+    </div>
+    <div class="foot-col">
+      <p class="foot-h">Help</p>
+      <a href="#faq">Questions</a><a href="#trial">Free trial</a>
+    </div>
+    <div class="foot-col">
+      <p class="foot-h">Legal</p>
+      <a href="legal.html#terms">Terms</a><a href="legal.html#privacy">Privacy</a>
+    </div>
+    <div class="foot-col foot-now">
+      <p class="foot-h">Right now</p>
+      <p>It’s <span data-local-time>--:--</span> where you are. Callback would pick up.</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

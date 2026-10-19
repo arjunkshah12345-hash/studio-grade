@@ -1,0 +1,709 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/branchline/",
+ "outDir": "/tmp/branchline-aud",
+ "ms": 39212,
+ "counts": {
+  "WARN": 1,
+  "PASS": 10,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Geist×71",
+   "Martian Mono×50"
+  ],
+  "display": [
+   "66px/1.04/-0.05em w380 \"A database per pull request.\"",
+   "66px/1.04/-0.05em w380 \"Open a pull request. The dat\"",
+   "66px/1.04/-0.05em w380 \"The database comes with it.\""
+  ],
+  "bodySize": "16",
+  "weights": [
+   "400×84",
+   "500×20",
+   "380×17"
+  ],
+  "upperShare": 0.01,
+  "paper": "rgb(10,12,11)",
+  "accents": [
+   "rgb(255,176,32) bg a.btn"
+  ],
+  "buttons": [
+   "soft 34px \"Start free\"",
+   "soft 46px \"Start free\n→\"",
+   "soft 46px \"Read the docs\"",
+   "soft 28px \"GitHub\"",
+   "soft 46px \"Start free\n→\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)"
+  ],
+  "nav": {
+   "h": 64,
+   "links": 7
+  },
+  "pageVh": 6.9
+ },
+ "findings": [
+  {
+   "level": "WARN",
+   "rule": "layout.rhythm",
+   "msg": "Section heights are nearly uniform (CV 0.15). Vary density: tight band, big void, full-bleed, narrow column."
+  },
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "2 families: Geist, Martian Mono"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 66px · lh 1.04 · -0.05em · weight 380 · Martian Mono)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (3/6 traits: hairlineBands, tinyAccent, lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "One accent hue (30° (w7) e.g. rgb(255,176,32) bg a.btn)"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 117 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: soft"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "2 hero CTA(s) · seen: 1 solid + 1 ghost"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.4,0,0.2,1)×56, cubic-bezier(0.16,1,0.3,1)×13, cubic-bezier(0.76,0,0.24,1)×1"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (4/20 paragraphs wait for scroll)"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 0.3% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 6.9 viewports: shorter than the direction's norm (8–11); fine when the brief is short. Judge by content, don't pad."
+  }
+ ],
+ "screenshots": [
+  "/tmp/branchline-aud/desktop-hero.png",
+  "/tmp/branchline-aud/slice-01.jpg … (one per viewport)",
+  "/tmp/branchline-aud/desktop-full.jpg",
+  "/tmp/branchline-aud/mobile-hero.png",
+  "/tmp/branchline-aud/mobile-full.jpg",
+  "/tmp/branchline-aud/reduced-motion-hero.png"
+ ],
+ "raw": {
+  "desktop": {
+   "title": "Branchline · A Postgres branch for every pull request",
+   "lang": "en",
+   "metaDesc": true,
+   "pageVh": 6.9,
+   "families": [
+    [
+     "Geist",
+     71
+    ],
+    [
+     "Martian Mono",
+     50
+    ]
+   ],
+   "loadedFonts": [
+    "Geist",
+    "Martian Mono"
+   ],
+   "largest": [
+    {
+     "tag": "h1",
+     "text": "A database per pull request.",
+     "family": "Martian Mono",
+     "size": 65.76,
+     "weight": 380,
+     "lh": 1.04,
+     "ls": -0.05,
+     "upper": false,
+     "clipText": false,
+     "top": 230.390625,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Open a pull request. The database comes with it.",
+     "family": "Martian Mono",
+     "size": 65.76,
+     "weight": 380,
+     "lh": 1.04,
+     "ls": -0.05,
+     "upper": false,
+     "clipText": false,
+     "top": 5484.6875,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "The database comes with it.",
+     "family": "Martian Mono",
+     "size": 65.76,
+     "weight": 380,
+     "lh": 1.04,
+     "ls": -0.05,
+     "upper": false,
+     "clipText": false,
+     "top": 5547.078125,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "One trunk. A branch for every pull request.",
+     "family": "Martian Mono",
+     "size": 41.52,
+     "weight": 380,
+     "lh": 1.1,
+     "ls": -0.04,
+     "upper": false,
+     "clipText": false,
+     "top": 1122.234375,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "A branch for every pull request.",
+     "family": "Martian Mono",
+     "size": 41.52,
+     "weight": 380,
+     "lh": 1.1,
+     "ls": -0.04,
+     "upper": false,
+     "clipText": false,
+     "top": 1119.234375,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Production rows. Nobody’s personal details.",
+     "family": "Martian Mono",
+     "size": 41.52,
+     "weight": 380,
+     "lh": 1.1,
+     "ls": -0.04,
+     "upper": false,
+     "clipText": false,
+     "top": 1880.640625,
+     "condensed": false
+    }
+   ],
+   "h1": [
+    {
+     "tag": "h1",
+     "text": "A database per pull request.",
+     "family": "Martian Mono",
+     "size": 65.76,
+     "weight": 380,
+     "lh": 1.04,
+     "ls": -0.05,
+     "upper": false,
+     "clipText": false,
+     "top": 230.390625,
+     "condensed": false
+    }
+   ],
+   "h1Count": 1,
+   "display": [
+    {
+     "tag": "h1",
+     "text": "A database per pull request.",
+     "family": "Martian Mono",
+     "size": 65.76,
+     "weight": 380,
+     "lh": 1.04,
+     "ls": -0.05,
+     "upper": false,
+     "clipText": false,
+     "top": 230.390625,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "One trunk. A branch for every pull request.",
+     "family": "Martian Mono",
+     "size": 41.52,
+     "weight": 380,
+     "lh": 1.1,
+     "ls": -0.04,
+     "upper": false,
+     "clipText": false,
+     "top": 1122.234375,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "A branch for every pull request.",
+     "family": "Martian Mono",
+     "size": 41.52,
+     "weight": 380,
+     "lh": 1.1,
+     "ls": -0.04,
+     "upper": false,
+     "clipText": false,
+     "top": 1119.234375,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Production rows. Nobody’s personal details.",
+     "family": "Martian Mono",
+     "size": 41.52,
+     "weight": 380,
+     "lh": 1.1,
+     "ls": -0.04,
+     "upper": false,
+     "clipText": false,
+     "top": 1880.640625,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Nobody’s personal details.",
+     "family": "Martian Mono",
+     "size": 41.52,
+     "weight": 380,
+     "lh": 1.1,
+     "ls": -0.04,
+     "upper": false,
+     "clipText": false,
+     "top": 1877.640625,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Read the schema change before you merge it.",
+     "family": "Martian Mono",
+     "size": 41.52,
+     "weight": 380,
+     "lh": 1.1,
+     "ls": -0.04,
+     "upper": false,
+     "clipText": false,
+     "top": 2826.625,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "before you merge it.",
+     "family": "Martian Mono",
+     "size": 41.52,
+     "weight": 380,
+     "lh": 1.1,
+     "ls": -0.04,
+     "upper": false,
+     "clipText": false,
+     "top": 2869.28125,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "It lives as long as the pull request.",
+     "family": "Martian Mono",
+     "size": 41.52,
+     "weight": 380,
+     "lh": 1.1,
+     "ls": -0.04,
+     "upper": false,
+     "clipText": false,
+     "top": 3911.640625,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "the pull request.",
+     "family": "Martian Mono",
+     "size": 41.52,
+     "weight": 380,
+     "lh": 1.1,
+     "ls": -0.04,
+     "upper": false,
+     "clipText": false,
+     "top": 3954.296875,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "pull request",
+     "family": "Martian Mono",
+     "size": 41.52,
+     "weight": 380,
+     "lh": 1.1,
+     "ls": -0.04,
+     "upper": false,
+     "clipText": false,
+     "top": 3954.296875,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Free to start. Storage when it grows.",
+     "family": "Martian Mono",
+     "size": 41.52,
+     "weight": 380,
+     "lh": 1.1,
+     "ls": -0.04,
+     "upper": false,
+     "clipText": false,
+     "top": 4546.078125,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Storage when it grows.",
+     "family": "Martian Mono",
+     "size": 41.52,
+     "weight": 380,
+     "lh": 1.1,
+     "ls": -0.04,
+     "upper": false,
+     "clipText": false,
+     "top": 4588.734375,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Free",
+     "family": "Martian Mono",
+     "size": 40,
+     "weight": 380,
+     "lh": 1,
+     "ls": -0.04,
+     "upper": false,
+     "clipText": false,
+     "top": 4729.390625,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "$25",
+     "family": "Martian Mono",
+     "size": 40,
+     "weight": 380,
+     "lh": 1,
+     "ls": -0.04,
+     "upper": false,
+     "clipText": false,
+     "top": 4729.390625,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "$99",
+     "family": "Martian Mono",
+     "size": 40,
+     "weight": 380,
+     "lh": 1,
+     "ls": -0.04,
+     "upper": false,
+     "clipText": false,
+     "top": 4729.390625,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Open a pull request. The database comes with it.",
+     "family": "Martian Mono",
+     "size": 65.76,
+     "weight": 380,
+     "lh": 1.04,
+     "ls": -0.05,
+     "upper": false,
+     "clipText": false,
+     "top": 5484.6875,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "The database comes with it.",
+     "family": "Martian Mono",
+     "size": 65.76,
+     "weight": 380,
+     "lh": 1.04,
+     "ls": -0.05,
+     "upper": false,
+     "clipText": false,
+     "top": 5547.078125,
+     "condensed": false
+    }
+   ],
+   "bodySize": "16",
+   "tinyText": 0,
+   "labelsTight": [],
+   "labelCount": 0,
+   "upperShare": 0.01,
+   "bigCapsSentences": [],
+   "weights": [
+    [
+     "400",
+     84
+    ],
+    [
+     "500",
+     20
+    ],
+    [
+     "380",
+     17
+    ]
+   ],
+   "textShadowBig": 0,
+   "textStroke": 0,
+   "stuckReveal": [],
+   "gradientText": [],
+   "longMeasure": [],
+   "paper": [
+    10,
+    12,
+    11,
+    1
+   ],
+   "pureBW": {
+    "blackOnWhite": 0,
+    "whiteOnBlack": 0
+   },
+   "artHues": [
+    "30°×36",
+    "150°×1"
+   ],
+   "accentHues": [
+    {
+     "hue": 30,
+     "weight": 7,
+     "example": "rgb(255,176,32) bg a.btn"
+    }
+   ],
+   "chromaCoverage": 0.3,
+   "fieldHues": [],
+   "gradients": [],
+   "glows": 0,
+   "buttonCamps": [
+    [
+     "soft",
+     8
+    ]
+   ],
+   "buttons": [
+    {
+     "text": "Start free",
+     "camp": "soft",
+     "h": 34,
+     "top": 5365,
+     "nav": true
+    },
+    {
+     "text": "Start free\n→",
+     "camp": "soft",
+     "h": 46,
+     "top": 507,
+     "nav": false
+    },
+    {
+     "text": "Read the docs",
+     "camp": "soft",
+     "h": 46,
+     "top": 507,
+     "nav": false
+    },
+    {
+     "text": "GitHub",
+     "camp": "soft",
+     "h": 28,
+     "top": 3972,
+     "nav": false
+    },
+    {
+     "text": "Start free\n→",
+     "camp": "soft",
+     "h": 46,
+     "top": 5075,
+     "nav": false
+    },
+    {
+     "text": "Choose Pro",
+     "camp": "soft",
+     "h": 46,
+     "top": 5075,
+     "nav": false
+    },
+    {
+     "text": "Choose Team",
+     "camp": "soft",
+     "h": 46,
+     "top": 5075,
+     "nav": false
+    },
+    {
+     "text": "Start free\n→",
+     "camp": "soft",
+     "h": 46,
+     "top": 5754,
+     "nav": false
+    },
+    {
+     "text": "Read the docs",
+     "camp": "soft",
+     "h": 46,
+     "top": 5754,
+     "nav": false
+    }
+   ],
+   "bigRadiusCards": 0,
+   "dropShadows": 1,
+   "heroCtas": [
+    "Start free →",
+    "Read the docs"
+   ],
+   "heroMix": "1 solid + 1 ghost",
+   "heroTextLinks": [],
+   "h1Words": 5,
+   "h1Lines": 2,
+   "h1Centered": false,
+   "badgeAboveH1": [],
+   "h2Count": 6,
+   "h2CenteredShare": 0,
+   "iconGrids": [],
+   "sectionCV": 0.15,
+   "emoji": [],
+   "exclaim": [],
+   "banned": [],
+   "lorem": false,
+   "dupIds": [],
+   "hiddenShown": [],
+   "motion": {
+    "usedEases": [
+     [
+      "cubic-bezier(0.4,0,0.2,1)",
+      56
+     ],
+     [
+      "cubic-bezier(0.16,1,0.3,1)",
+      13
+     ],
+     [
+      "cubic-bezier(0.76,0,0.24,1)",
+      1
+     ]
+    ],
+    "transitions": 26,
+    "keyframes": 4,
+    "beziers": [
+     [
+      "cubic-bezier(.16,1,.3,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.76,0,.24,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.4,0,.2,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.34,1.56,.64,1)",
+      1
+     ]
+    ],
+    "reducedMotion": true,
+    "defaultEases": 17,
+    "lenis": false,
+    "revealEls": 8
+   },
+   "autoplayVideos": 0,
+   "pauseControl": false,
+   "imgNoAlt": 0,
+   "unnamedControls": 0,
+   "skipLink": true,
+   "hiddenText": [],
+   "defaultLook": {
+    "sig": {
+     "warmOffWhite": false,
+     "monoUpperLabels": false,
+     "hairlineBands": true,
+     "lineDrawingHero": false,
+     "tinyAccent": true,
+     "lightDisplay": true
+    },
+    "score": 3,
+    "monoUpperShare": 0,
+    "hairlines": 18
+   },
+   "nav": {
+    "h": 64,
+    "links": 7
+   },
+   "copyDupes": [],
+   "titleCase": [],
+   "textOverlap": [],
+   "textMotion": {
+    "paras": 20,
+    "hidden": 4,
+    "h1Split": false
+   },
+   "firstFrame": {
+    "h1Hidden": false,
+    "hidden": []
+   },
+   "contrast": {
+    "checked": 117,
+    "low": 0,
+    "lowBody": 0,
+    "examples": []
+   },
+   "perf": null,
+   "mediaContrast": {
+    "checked": 0,
+    "low": []
+   },
+   "consoleErrors": []
+  },
+  "mobile": {
+   "overflow": 0,
+   "offenders": [],
+   "small": [],
+   "smallCount": 0,
+   "h1Size": 37.44,
+   "tinyBody": 0,
+   "tinyEx": []
+  },
+  "reducedMotion": {
+   "firstViewport": 13,
+   "hidden": []
+  }
+ }
+}

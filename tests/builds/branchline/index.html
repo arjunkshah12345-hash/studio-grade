@@ -1,0 +1,376 @@
+<!--
+DESIGN SPINE · Branchline (fictional)
+DIRECTION   : 1 Engineered Dark. Backend and platform engineers judge a database tool by the thing itself, so the page is the product (PR, branch tree, schema diff, psql) on a tinted near-black.
+REGISTER    : Confident. One bold device at scale: the branch map, a rail-diagram mainline that runs through the hero and recurs as the page's structure.
+AXES        : ground tinted dark (#0A0C0B, green-graphite) · type genre monospace display (Martian Mono 380 at 75% width, -0.045em) over a plain grotesk · image medium product UI rebuilt in HTML on a dot-grid stage + rail-map diagrams · composition diagram-led (one branch map threads the page: hero strip → chapter stations → lifecycle line → pricing slots) · motion feel instrumental (timers, a branch drawing itself, typed psql, a counter filling)
+DEFAULT?    : 2/6 (mono labels, one small accent) → DIFFERENT FROM DEFAULT BY: dark ground, mono display instead of tight grotesk, product UI + rail map instead of a line drawing, no metadata bands
+MOTIF       : the branch line (a 45° spur off a mainline ending in a station ring). Uses: logo mark (icon) · hero branch map under the PR (ornament, big) · chapter stations on a left rail (divider) · console branch tree (data) · lifecycle line, PR opened → branch deleted (diagram) · Hobby's 10 branch slots (counting, §83)
+TYPE        : display Martian Mono 380 wdth 75 · text Geist 400/500 · labels + code Martian Mono 400 (2 families)
+SCALE       : display 68px/1.02/-0.045em · h2 42px/1.08/-0.035em · body 16px/1.6 · ui 13px · label 11px caps +0.06em
+PALETTE     : paper #0A0C0B · ink #ECEEE9 · ink-2 70% · ink-3 54% · hairline 8% · accent #FFB020 (signal amber) → ONLY branch lines/stations and the primary "Start free" button. Diff green/red live inside UI replicas only.
+GRID        : 12/24 · container 1280 · margin 80 → 20 · sections 128px with a 200px+ void before the finale
+HERO        : H2 (left text + UI bleeding off the right edge). h1 "A database per pull request." left; a PR window with the Branchline comment on a dot-grid stage bleeding right; the mainline crosses the whole hero under both, and pr-482's branch draws itself into a station as the comment's timer reaches "Ready".
+IMAGERY     : product UI rebuilt in HTML (PR, console branch tree, masked rows pair, schema diff, psql) + rail-map SVG. No photos, no generated images.
+CONVERSION  : "Start free" in nav, hero, Hobby plan, finale · secondary "Read the docs" in hero and finale
+MOTION      : house ease cubic-bezier(.16,1,.3,1) · UI 150–240ms · reveal 850ms · primitives: stroke draw, timer count, typed command, value scramble. Text never animates.
+IMAGES      : none: product UI and the branch map instead
+NAMING      : mainline = production · branch = one per PR · station = a branch's state. CTA verb "Start". 404 line n/a.
+SIGNATURES  : §59 architecture tree (as the branch map/tree) · §56 transformation pair (production row → masked branch row) · §83 a motif that counts (10 branch slots + storage calculator)
+VOICE       : "A database per pull request." · "One trunk. A branch for every pull request." · "Open a pull request. The database comes with it."
+-->
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Branchline · A Postgres branch for every pull request</title>
+<meta name="description" content="Branchline (a fictional product) gives every pull request its own copy-on-write Postgres branch, seeded from production with personal data masked, and deletes it when the PR merges.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=Martian+Mono:wdth,wght@75..112.5,300..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--ghost btn--sm" href="#main">Skip to content</a>
+
+<header class="nav" data-nav>
+  <div class="container nav-in">
+    <a class="brand" href="#top" aria-label="Branchline home">
+      <svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 18.5H22" class="m-main"/><path d="M6 18.5l6-6h4.5" class="m-br"/><circle cx="18.5" cy="12.5" r="2.6" class="m-st"/></svg>
+      <span>Branchline</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#branches">Branches</a>
+      <a href="#masking">Masking</a>
+      <a href="#diff">Schema diffs</a>
+      <a href="#pricing">Pricing</a>
+      <a href="legal.html#docs">Docs</a>
+    </nav>
+    <a class="btn btn--accent btn--sm" href="#start">Start free</a>
+  </div>
+</header>
+
+<main id="main">
+<!-- ============================== HERO -->
+<section class="hero" id="top" aria-labelledby="h1">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="t-label kicker">Serverless Postgres · GitHub and GitLab</p>
+      <h1 id="h1" class="t-display">A database per pull&nbsp;request.</h1>
+      <p class="hero-sub">Every PR gets its own copy-on-write Postgres branch in about a second: seeded from production, personal data masked, deleted on merge.</p>
+      <div class="ctas">
+        <a class="btn btn--accent" href="#start">Start free <span class="arr" aria-hidden="true">→</span></a>
+        <a class="btn btn--ghost" href="legal.html#docs">Read the docs</a>
+      </div>
+      <p class="t-small dimmer hero-note">Hobby is free: 1 project, 10 branches.</p>
+    </div>
+
+    <figure class="stage" role="img" aria-label="A GitHub pull request, #482 Add currency to invoices, with a Branchline comment: database branch pr-482 is ready, seeded from production with personal data masked, two columns and one index added. Below it, a branch map shows pr-482 branching off the production mainline." data-hero>
+      <div class="stage-art" aria-hidden="true"></div>
+      <div class="win pr" inert>
+        <div class="pr-top">
+          <span class="crumb"><span class="dim">kiln</span> / <b>api</b></span>
+          <span class="pr-tabs-top"><span>Code</span><span>Issues</span><span class="on">Pull requests <i>6</i></span><span>Actions</span></span>
+        </div>
+        <div class="pr-head">
+          <div class="pr-title">Add currency to invoices <span class="dim">#482</span></div>
+          <div class="pr-meta"><span class="chip-open"><svg viewBox="0 0 16 16"><circle cx="5" cy="4" r="1.6"/><circle cx="5" cy="12" r="1.6"/><circle cx="11" cy="8" r="1.6"/><path d="M5 5.6v4.8M9.4 8H5"/></svg>Open</span><span><b>dana-r</b> wants to merge 3 commits into <code>main</code> from <code>invoices-currency</code></span></div>
+          <div class="pr-tabs"><span class="on">Conversation</span><span>Commits <i>3</i></span><span>Checks <i>4</i></span><span>Files changed <i>5</i></span></div>
+        </div>
+        <div class="pr-body">
+          <div class="bot">
+            <div class="bot-av"><svg viewBox="0 0 24 24"><path d="M2 18.5H22" class="m-main"/><path d="M6 18.5l6-6h4.5" class="m-br"/><circle cx="18.5" cy="12.5" r="2.6" class="m-st"/></svg></div>
+            <div class="bot-card">
+              <div class="bot-head"><b>branchline</b> <span class="tag">bot</span> <span class="dim">commented just now</span><span class="bh-check" data-hero-check><span class="ck ck--done"></span><span data-hero-checktxt>Check passed</span></span></div>
+              <div class="bot-main">
+                <div class="bot-title">Database branch for this pull request</div>
+                <dl class="spec">
+                  <dt>Branch</dt><dd><code>pr-482</code> <span class="status" data-hero-status><span class="st-dot"></span><span data-hero-label>Ready</span> <span class="t-num dim" data-hero-timer>1.0 s</span></span></dd>
+                  <dt>Parent</dt><dd><code>main</code> <span class="dim">production</span></dd>
+                  <dt>Data</dt><dd>Seeded from production <span class="dim">· personal data masked</span></dd>
+                  <dt>Schema</dt><dd data-hero-late>+2 columns, +1 index <span class="lnk">View diff</span></dd>
+                  <dt>Lifetime</dt><dd>Deleted when this pull request merges</dd>
+                </dl>
+                <div class="conn"><code>postgres://app:<span class="dim">••••••</span>@pr-482.kiln.branchline.dev/app</code><span class="copy">Copy</span></div>
+                <div class="bot-actions"><span class="b-pri">Open branch ↗</span><span class="b-sec">Compare with main</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <svg class="map" viewBox="0 0 1000 150" preserveAspectRatio="xMinYMin meet" aria-hidden="true">
+        <!-- merged and deleted -->
+        <path class="br br--gone" d="M40 112 l30 -30 h96 l30 30"/>
+        <text class="mt dimx" x="70" y="70">pr-477 · merged, deleted</text>
+        <!-- the live branch -->
+        <path class="br br--live" d="M250 112 l30 -30 h64" pathLength="1" data-hero-path/>
+        <path class="br-link" d="M356 70 V36"/>
+        <circle class="st st--live" cx="356" cy="82" r="6.5" data-hero-ring/>
+        <text class="mt" x="374" y="86">pr-482</text>
+        <!-- others -->
+        <path class="br" d="M520 112 l30 -30 h90"/>
+        <circle class="st" cx="652" cy="82" r="6"/>
+        <text class="mt dimx" x="668" y="86">pr-479</text>
+        <path class="br" d="M760 112 l30 -30 h90"/>
+        <circle class="st" cx="892" cy="82" r="6"/>
+        <text class="mt dimx" x="908" y="86">pr-481</text>
+      </svg>
+    </figure>
+  </div>
+  <div class="mainline" aria-hidden="true"><span class="t-label">main · production</span></div>
+</section>
+
+<!-- ============================== 01 BRANCHES -->
+<section class="chapter ch-branches" id="branches" aria-labelledby="h-branches">
+  <div class="container ch-grid">
+    <div class="ch-text">
+      <p class="station t-label"><span class="ring" aria-hidden="true"></span>01 · Branches</p>
+      <h2 id="h-branches" class="t-h2">One trunk. <span class="dim">A branch for every pull request.</span></h2>
+      <p class="body">Production stays the trunk. When a pull request opens, Branchline cuts a copy-on-write branch of it in about a second, so the change runs against data shaped like the real thing instead of a fixture file.</p>
+      <ul class="plus">
+        <li>Created when the pull request opens</li>
+        <li>Linked in the pull request, beside your checks</li>
+        <li>Deleted when the pull request merges</li>
+      </ul>
+    </div>
+    <figure class="ch-media console-wrap" role="img" aria-label="The Branchline console for project kiln/api: a branch tree with main as production and branches pr-479 to pr-483, one per pull request; pr-477 is merged and deleted. The Hobby plan shows 5 of 10 branches in use." data-reveal data-tree>
+      <div class="win console" inert>
+        <aside class="c-side">
+          <div class="c-proj"><svg viewBox="0 0 24 24"><path d="M2 18.5H22" class="m-main"/><path d="M6 18.5l6-6h4.5" class="m-br"/><circle cx="18.5" cy="12.5" r="2.6" class="m-st"/></svg><b>kiln/api</b><span class="dim">⌄</span></div>
+          <nav class="c-nav">
+            <span>Overview</span><span class="on">Branches</span><span>Schema</span><span>Masking rules</span><span>Connections</span><span>Usage</span><span>Settings</span>
+          </nav>
+          <div class="c-plan">
+            <div class="c-plan-h"><span>Hobby</span><span class="t-num"><b data-tree-count>4</b> of 10 branches</span></div>
+            <div class="slots" data-tree-slots><i class="f"></i><i class="f"></i><i class="f"></i><i class="f"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+        </aside>
+        <div class="c-main">
+          <div class="c-head">
+            <div><div class="c-title">Branches</div><div class="dim c-sub">One per open pull request · <code>kiln/api</code> on GitHub</div></div>
+            <span class="c-filter">Open PRs ⌄</span>
+          </div>
+          <div class="tree">
+            <div class="tr tr--h"><span></span><span>Branch</span><span>Pull request</span><span>Status</span><span>Created</span><span class="r">Written</span></div>
+            <div class="tr tr--main"><span class="g"><i class="g-dot g-dot--main"></i></span><span><code>main</code></span><span class="dim">production</span><span><span class="pill pill--prot">Protected</span></span><span class="dim">—</span><span class="r t-num">48.2 GB</span></div>
+            <div class="tr tr--new" data-tree-new><span class="g"><i class="g-l"></i><i class="g-dot"></i></span><span><code>pr-483</code></span><span class="trunc"><span class="dim">#483</span> Add refunds table</span><span><span class="pill pill--wait" data-tree-status>Creating</span></span><span class="dim">now</span><span class="r t-num dim" data-tree-size>0 MB</span></div>
+            <div class="tr"><span class="g"><i class="g-l"></i><i class="g-dot"></i></span><span><code>pr-482</code></span><span class="trunc"><span class="dim">#482</span> Add currency to invoices</span><span><span class="pill">Ready</span></span><span class="dim">2 min ago</span><span class="r t-num">14 MB</span></div>
+            <div class="tr"><span class="g"><i class="g-l"></i><i class="g-dot"></i></span><span><code>pr-481</code></span><span class="trunc"><span class="dim">#481</span> Drop legacy coupons table</span><span><span class="pill">Ready</span></span><span class="dim">1 h ago</span><span class="r t-num">3 MB</span></div>
+            <div class="tr"><span class="g"><i class="g-l"></i><i class="g-dot"></i></span><span><code>pr-480</code></span><span class="trunc"><span class="dim">#480</span> Index events by created_at</span><span><span class="pill">Ready</span></span><span class="dim">3 h ago</span><span class="r t-num">220 MB</span></div>
+            <div class="tr"><span class="g"><i class="g-l"></i><i class="g-dot"></i></span><span><code>pr-479</code></span><span class="trunc"><span class="dim">#479</span> Backfill customer time zones</span><span><span class="pill">Ready</span></span><span class="dim">yesterday</span><span class="r t-num">1.1 GB</span></div>
+            <div class="tr tr--gone"><span class="g"><i class="g-l g-l--end"></i><i class="g-dot g-dot--x"></i></span><span><code>pr-477</code></span><span class="trunc"><span class="dim">#477</span> Rename plan_id to price_id</span><span><span class="pill pill--gone">Merged · deleted</span></span><span class="dim">2 days ago</span><span class="r t-num dim">—</span></div>
+          </div>
+          <div class="c-foot dim"><span>Written = data changed on the branch since it was cut. Unchanged pages are shared with <code>main</code>.</span></div>
+        </div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================== 02 MASKING -->
+<section class="chapter ch-mask" id="masking" aria-labelledby="h-mask">
+  <div class="container">
+    <div class="mask-head">
+      <p class="station t-label"><span class="ring" aria-hidden="true"></span>02 · Seed data</p>
+      <h2 id="h-mask" class="t-h2">Production rows. <span class="dim">Nobody&rsquo;s personal details.</span></h2>
+      <p class="body">Each branch is seeded from production with personal data masked. Rows keep their ids, plans and dates, so joins and edge cases behave the way they do in production, without the names and addresses in them.</p>
+    </div>
+    <figure class="pair" role="img" aria-label="The same three rows of the users table, first on main in production with real-looking emails, names and phone numbers, then on branch pr-482 where those three columns are masked and the id, plan and signup date are unchanged." data-pair>
+      <div class="win tbl" inert data-reveal>
+        <div class="tbl-h"><span class="tbl-src"><i class="g-dot g-dot--main"></i><code>main</code><span class="dim">· production</span></span><code class="dim">public.users</code></div>
+        <div class="tbl-grid">
+          <span class="th">id</span><span class="th">email</span><span class="th">full_name</span><span class="th">phone</span><span class="th">plan</span><span class="th">signed_up</span>
+          <span class="t-num">1042</span><span>ana.lopez@example.com</span><span>Ana López</span><span class="t-num">+44 7700 900461</span><span>pro</span><span class="t-num">2024-03-11</span>
+          <span class="t-num">1043</span><span>j.okafor@example.org</span><span>James Okafor</span><span class="t-num">+1 202 555 0147</span><span>hobby</span><span class="t-num">2024-03-11</span>
+          <span class="t-num">1051</span><span>mei@example.net</span><span>Mei Tanaka</span><span class="t-num">+81 3 5550 0192</span><span>team</span><span class="t-num">2024-04-02</span>
+        </div>
+      </div>
+      <div class="pair-node" aria-hidden="true"><svg preserveAspectRatio="none" viewBox="0 0 100 100"><path d="M0 0V60L24 100H100" class="m-br" vector-effect="non-scaling-stroke"/></svg><span class="t-label">Masked on the way in</span></div>
+      <div class="win tbl tbl--branch" inert data-reveal style="--i:1">
+        <div class="tbl-h"><span class="tbl-src"><i class="g-dot"></i><code>pr-482</code><span class="dim">· branch</span></span><code class="dim">public.users</code></div>
+        <div class="tbl-grid">
+          <span class="th">id</span><span class="th">email</span><span class="th">full_name</span><span class="th">phone</span><span class="th">plan</span><span class="th">signed_up</span>
+          <span class="t-num">1042</span><span class="mk" data-mask="user1042@masked.invalid">ana.lopez@example.com</span><span class="mk" data-mask="Masked 1042">Ana López</span><span class="mk t-num" data-mask="+00 0000 001042">+44 7700 900461</span><span>pro</span><span class="t-num">2024-03-11</span>
+          <span class="t-num">1043</span><span class="mk" data-mask="user1043@masked.invalid">j.okafor@example.org</span><span class="mk" data-mask="Masked 1043">James Okafor</span><span class="mk t-num" data-mask="+00 0000 001043">+1 202 555 0147</span><span>hobby</span><span class="t-num">2024-03-11</span>
+          <span class="t-num">1051</span><span class="mk" data-mask="user1051@masked.invalid">mei@example.net</span><span class="mk" data-mask="Masked 1051">Mei Tanaka</span><span class="mk t-num" data-mask="+00 0000 001051">+81 3 5550 0192</span><span>team</span><span class="t-num">2024-04-02</span>
+        </div>
+      </div>
+    </figure>
+    <p class="t-small dimmer pair-note">Example rows. Values are illustrative; the masking format shown is a placeholder.</p>
+  </div>
+</section>
+
+<!-- ============================== 03 SCHEMA DIFF -->
+<section class="chapter ch-diff" id="diff" aria-labelledby="h-diff">
+  <div class="container diff-grid">
+    <div class="diff-media" data-reveal>
+      <div class="win diff">
+        <div class="d-head">
+          <div class="d-title"><span class="dim">Schema diff</span> <code>main</code> <span class="dim">←</span> <code class="acc">pr-482</code></div>
+          <div class="seg" role="tablist" aria-label="Diff view">
+            <button type="button" role="tab" aria-selected="true" aria-controls="d-schema" id="t-schema" data-tab>Schema</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="d-sql" id="t-sql" data-tab tabindex="-1">SQL</button>
+          </div>
+        </div>
+        <div class="d-cols">
+          <div class="d-files" aria-hidden="true">
+            <div class="d-sum t-label">3 changes</div>
+            <div class="d-file on"><code>invoices</code><span><b class="add">+2</b></span></div>
+            <div class="d-file"><code>customers</code><span><b class="add">+1</b></span></div>
+            <div class="d-file dimf"><code>events</code><span class="dim">no change</span></div>
+            <div class="d-file dimf"><code>users</code><span class="dim">no change</span></div>
+          </div>
+          <div class="d-pane" id="d-schema" role="tabpanel" aria-labelledby="t-schema" tabindex="0">
+            <ol class="code" aria-label="Schema diff for table invoices and customers">
+<li class="hd"><span class="ln"></span><span>table <b>public.invoices</b></span></li>
+<li><span class="ln">1</span><span>  id             bigint       not null</span></li>
+<li><span class="ln">2</span><span>  customer_id    bigint       not null  → customers.id</span></li>
+<li><span class="ln">3</span><span>  amount_cents   bigint       not null</span></li>
+<li class="add"><span class="ln">4</span><span>+ currency       char(3)      not null  default 'USD'</span></li>
+<li><span class="ln">5</span><span>  issued_at      timestamptz  not null</span></li>
+<li class="add"><span class="ln">6</span><span>+ index invoices_currency_idx (currency)</span></li>
+<li class="gap"><span class="ln"></span><span></span></li>
+<li class="hd"><span class="ln"></span><span>table <b>public.customers</b></span></li>
+<li><span class="ln">1</span><span>  id             bigint       not null</span></li>
+<li><span class="ln">2</span><span>  email          text         not null  masked</span></li>
+<li class="add"><span class="ln">3</span><span>+ default_currency char(3)    null</span></li>
+            </ol>
+          </div>
+          <div class="d-pane" id="d-sql" role="tabpanel" aria-labelledby="t-sql" tabindex="0" hidden>
+            <ol class="code" aria-label="SQL for the schema change">
+<li class="cm"><span class="ln">1</span><span>-- pr-482 compared with main</span></li>
+<li class="add"><span class="ln">2</span><span>ALTER TABLE invoices</span></li>
+<li class="add"><span class="ln">3</span><span>  ADD COLUMN currency char(3) NOT NULL DEFAULT 'USD';</span></li>
+<li class="add"><span class="ln">4</span><span>CREATE INDEX invoices_currency_idx</span></li>
+<li class="add"><span class="ln">5</span><span>  ON invoices (currency);</span></li>
+<li class="add"><span class="ln">6</span><span>ALTER TABLE customers</span></li>
+<li class="add"><span class="ln">7</span><span>  ADD COLUMN default_currency char(3);</span></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="term-wrap" data-reveal>
+      <div class="win term" role="img" aria-label="A terminal: psql connected to branch pr-482 describes the invoices table and selects three users whose emails are masked.">
+        <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>psql · pr-482</span></div>
+        <pre class="term-body" aria-hidden="true" data-term><span class="tl" data-cmd>$ psql postgres://app@pr-482.kiln.branchline.dev/app</span>
+<span class="tl" data-cmd>app=&gt; \d invoices</span>
+<span class="tl o">   Column     │    Type     │ Nullable │ Default</span>
+<span class="tl o">──────────────┼─────────────┼──────────┼─────────</span>
+<span class="tl o"> id           │ bigint      │ not null │</span>
+<span class="tl o"> amount_cents │ bigint      │ not null │</span>
+<span class="tl o hl"> currency     │ character(3)│ not null │ 'USD'</span>
+<span class="tl" data-cmd>app=&gt; select email from users limit 2;</span>
+<span class="tl o"> user1042@masked.invalid</span>
+<span class="tl o"> user1043@masked.invalid</span>
+<span class="tl caret" data-cmd>app=&gt; </span></pre>
+      </div>
+    </div>
+    <div class="diff-text">
+      <p class="station t-label"><span class="ring" aria-hidden="true"></span>03 · Schema diff</p>
+      <h2 id="h-diff" class="t-h2">Read the schema change <span class="dim">before you merge it.</span></h2>
+      <p class="body">Branchline compares a branch&rsquo;s schema with the branch it came from and shows the difference before merge: added columns, new indexes, dropped tables. Reviewers see what the migration does to the database, not only what it does to the code.</p>
+      <ul class="plus">
+        <li>Diffs between any two branches</li>
+        <li>Shown before the pull request merges</li>
+        <li>Connect with <code>psql</code> to check it yourself</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== 04 LIFECYCLE -->
+<section class="chapter ch-life" id="lifecycle" aria-labelledby="h-life">
+  <div class="container">
+    <div class="life-head">
+      <div>
+        <p class="station t-label"><span class="ring" aria-hidden="true"></span>04 · Lifecycle</p>
+        <h2 id="h-life" class="t-h2">It lives as long as <span class="dim">the <span data-host-noun>pull request</span>.</span></h2>
+      </div>
+      <div class="host">
+        <p class="t-small dim">Works with</p>
+        <div class="seg" role="radiogroup" aria-label="Git host">
+          <button type="button" role="radio" aria-checked="true" data-host="github">GitHub</button>
+          <button type="button" role="radio" aria-checked="false" data-host="gitlab" tabindex="-1">GitLab</button>
+        </div>
+      </div>
+    </div>
+    <div class="life" data-life>
+      <svg class="life-map" viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true">
+        <path class="lm-main" d="M0 96H1200"/>
+        <path class="lm-br" d="M48 96 L108 36 H967 L1027 96" pathLength="1"/>
+      </svg>
+      <ol class="stops">
+        <li><span class="stop-ring" aria-hidden="true"></span><span class="t-label">Opened</span><p><span class="cap" data-host-noun-cap>Pull request</span> opened against <code>main</code>.</p></li>
+        <li><span class="stop-ring" aria-hidden="true"></span><span class="t-label">About 1 s</span><p>A copy-on-write branch is cut from production.</p></li>
+        <li><span class="stop-ring" aria-hidden="true"></span><span class="t-label">Seeded</span><p>Personal data is masked on the way in.</p></li>
+        <li><span class="stop-ring" aria-hidden="true"></span><span class="t-label">Linked</span><p>The branch shows up as a link in the <span data-host-noun>pull request</span>.</p></li>
+        <li><span class="stop-ring" aria-hidden="true"></span><span class="t-label">Diffed</span><p>The schema diff is shown before merge.</p></li>
+        <li class="stop-end"><span class="stop-ring" aria-hidden="true"></span><span class="t-label">Merged</span><p>The branch is deleted. Nothing to clean up.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== PRICING -->
+<section class="chapter ch-price" id="pricing" aria-labelledby="h-price">
+  <div class="container">
+    <div class="price-head">
+      <h2 id="h-price" class="t-h2">Free to start. <span class="dim">Storage when it grows.</span></h2>
+      <p class="t-small dim">Prices in US dollars.</p>
+    </div>
+    <div class="plans" data-reveal-group>
+      <article class="plan plan--hobby" id="start">
+        <header><h3 class="t-h3">Hobby</h3><p class="price"><span class="t-num">Free</span></p></header>
+        <div class="slots slots--big" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <ul class="ticks"><li>1 project</li><li>10 branches, one per open pull request</li><li>GitHub and GitLab</li></ul>
+        <a class="btn btn--accent plan-cta" href="#start">Start free <span class="arr" aria-hidden="true">→</span></a>
+      </article>
+      <article class="plan">
+        <header><h3 class="t-h3">Pro</h3><p class="price"><span class="t-num">$25</span><span class="unit">a month + storage</span></p></header>
+        <div class="calc">
+          <label for="gb" class="calc-l"><span>Storage</span><output for="gb" class="t-num" data-gb-out>50 GB</output></label>
+          <input id="gb" type="range" min="0" max="500" step="10" value="50" data-gb>
+          <p class="calc-r" aria-live="polite"><span class="dim">$25 + <span class="t-num" data-gb-n>50</span> GB × $0.30 =</span> <b class="t-num" data-gb-total>$40.00</b> <span class="dim">a month</span></p>
+        </div>
+        <ul class="ticks"><li>Storage at $0.30 per GB-month</li><li class="ph-line"><span class="ph-chip">Placeholder</span> Project and branch limits to be confirmed</li></ul>
+        <a class="btn btn--ghost plan-cta" href="#start">Choose Pro</a>
+      </article>
+      <article class="plan">
+        <header><h3 class="t-h3">Team</h3><p class="price"><span class="t-num">$99</span><span class="unit">a month</span></p></header>
+        <ul class="ticks ticks--team"><li>Single sign-on (SSO)</li><li>Audit logs</li><li class="ph-line"><span class="ph-chip">Placeholder</span> Storage and limits to be confirmed</li></ul>
+        <a class="btn btn--ghost plan-cta" href="#start">Choose Team</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FINALE -->
+<section class="finale" aria-labelledby="h-fin">
+  <div class="container fin-in">
+    <h2 id="h-fin" class="t-display fin-h">Open a pull request. <span class="dim">The database comes with it.</span></h2>
+    <div class="ctas">
+      <a class="btn btn--accent" href="#start">Start free <span class="arr" aria-hidden="true">→</span></a>
+      <a class="btn btn--ghost" href="legal.html#docs">Read the docs</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="container foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="#top" aria-label="Branchline home"><svg class="mark" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 18.5H22" class="m-main"/><path d="M6 18.5l6-6h4.5" class="m-br"/><circle cx="18.5" cy="12.5" r="2.6" class="m-st"/></svg><span>Branchline</span></a>
+      <p class="t-small dimmer">© 2026 Branchline. A fictional product, shown as design work.</p>
+    </div>
+    <nav class="foot-col" aria-label="Product"><p class="t-label dimmer">Product</p><a href="#branches">Branches</a><a href="#masking">Masking</a><a href="#diff">Schema diffs</a><a href="#pricing">Pricing</a></nav>
+    <nav class="foot-col" aria-label="Developers"><p class="t-label dimmer">Developers</p><a href="legal.html#docs">Docs</a><a href="#lifecycle">GitHub</a><a href="#lifecycle">GitLab</a></nav>
+    <nav class="foot-col" aria-label="Legal"><p class="t-label dimmer">Legal</p><a href="legal.html#terms">Terms</a><a href="legal.html#privacy">Privacy</a></nav>
+  </div>
+</footer>
+
+<script type="module" src="branchline.js"></script>
+</body>
+</html>

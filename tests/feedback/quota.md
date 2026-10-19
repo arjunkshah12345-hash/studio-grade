@@ -1,0 +1,10 @@
+# Quota (gallery v5) · skill feedback
+
+1. Conflict: directions.md §11 and imagery.md say "No image tool? Pick another direction rather than shipping this one bare", but this brief is direction 11 with images NONE. Add an image-free variant of 11: colour plates (one hue per product concept) + big numerals + vignettes as the image system. It worked here; the rule should name it instead of forbidding it.
+2. imagery.md has no "image-free directions" section, although the brief points to one. Write it: plates sampled from a data palette, type as image, one domain object (odometer drums) as the hero subject.
+3. color.accent counts a plate as a "field" only at ≥35% of a viewport. Four unit-coloured plates, each with one meaning, FAILED as "sprinkled" until two were stretched to min-height 640px. Either document the 35% threshold in range.md, or treat large rounded plates with one meaning each as fields.
+4. Mona Sans tabular figures use a slashed zero; `.t-num` in tokens.css turned every price into "USD 28Ø.ØØ". Add to typography.md: check the face's tnum zero before using tokens.css `.t-num`, and fall back to lining-nums (drums or grid cells give the fixed width).
+5. layout.rhythm ignores sections under 200px, so adding a tight band (a 130px flow strip) can't fix the WARN. Either count tight bands or tell agents the fix is to vary the tall sections.
+6. §12 live ticker as the hero: add a note that an auto-updating hero needs a pause control (WCAG 2.2.2) and must stop when off screen or the tab is hidden. The audit's pauseControl only looks at video.
+7. Useful: §83 "a motif that counts" turned into a pricing ruler (one graduation per USD 10,000, the first one free). Honest, made only from the brief's two numbers, and the strongest pricing moment so far.
+8. Bash gotcha worth a line in SKILL.md: a global text replace across index.html also edited the meta description and put markup inside an attribute. The text leaked above the nav, the audit stayed green, and only the hero screenshot showed it.

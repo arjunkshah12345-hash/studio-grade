@@ -1,0 +1,771 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/quota/",
+ "outDir": "/tmp/quota-aud",
+ "ms": 44937,
+ "counts": {
+  "WARN": 1,
+  "PASS": 11,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Mona Sans×204",
+   "IBM Plex Mono×18"
+  ],
+  "display": [
+   "88px/0.98/-0.035em w500 \"Start the meter.\"",
+   "80px/0.98/-0.035em w500 \"Bill per token. Keep 99.5%.\"",
+   "80px/0.98/-0.035em w500 \"Keep 99.5%.\""
+  ],
+  "bodySize": "17",
+  "weights": [
+   "400×106",
+   "500×104",
+   "600×12"
+  ],
+  "upperShare": 0.09,
+  "paper": "rgb(255,255,255)",
+  "accents": [
+   "rgb(255,212,71) bg div.stage",
+   "rgb(142,221,180) bg div.plate",
+   "rgb(255,170,140) bg div.plate",
+   "rgb(169,200,255) bg div.plate"
+  ],
+  "buttons": [
+   "pill 38px \"Start billing\"",
+   "pill 48px \"Start billing\n→\"",
+   "pill 48px \"See the API\"",
+   "pill 34px \"Copy\"",
+   "pill 48px \"Start billing\n→\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)",
+   "cubic-bezier(.2,.8,.2,1)"
+  ],
+  "nav": {
+   "h": 68,
+   "links": 7
+  },
+  "pageVh": 9.5
+ },
+ "findings": [
+  {
+   "level": "WARN",
+   "rule": "layout.rhythm",
+   "msg": "Section heights are nearly uniform (CV 0.16). Vary density: tight band, big void, full-bleed, narrow column."
+  },
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "2 families: Mona Sans, IBM Plex Mono"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 88px · lh 0.98 · -0.035em · weight 500 · Mona Sans)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (2/6 traits: hairlineBands, lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "Colour-block system: 4 hues used as full-bleed fields. Loud register is fine if each hue has one meaning (range.md §1).",
+   "examples": [
+    "60° (w249) e.g. rgb(255,212,71) bg div.stage",
+    "150° (w133) e.g. rgb(142,221,180) bg div.plate",
+    "30° (w94) e.g. rgb(255,170,140) bg div.plate",
+    "210° (w94) e.g. rgb(169,200,255) bg div.plate"
+   ]
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 111 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 1 text elements over imagery meet AA (sampled from pixels)"
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: pill"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "2 hero CTA(s) · seen: 1 solid + 1 ghost"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.2,0.8,0.2,1)×198, cubic-bezier(0.4,0,0.2,1)×7"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (4/17 paragraphs wait for scroll)"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 23.2% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 9.5 viewports (direction 11 norm 7–12)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/quota-aud/desktop-hero.png",
+  "/tmp/quota-aud/slice-01.jpg … (one per viewport)",
+  "/tmp/quota-aud/desktop-full.jpg",
+  "/tmp/quota-aud/mobile-hero.png",
+  "/tmp/quota-aud/mobile-full.jpg",
+  "/tmp/quota-aud/reduced-motion-hero.png"
+ ],
+ "raw": {
+  "desktop": {
+   "title": "Quota · Usage-based billing for AI companies",
+   "lang": "en",
+   "metaDesc": true,
+   "pageVh": 9.5,
+   "families": [
+    [
+     "Mona Sans",
+     204
+    ],
+    [
+     "IBM Plex Mono",
+     18
+    ]
+   ],
+   "loadedFonts": [
+    "IBM Plex Mono",
+    "Mona Sans"
+   ],
+   "largest": [
+    {
+     "tag": "h2",
+     "text": "Start the meter.",
+     "family": "Mona Sans",
+     "size": 88,
+     "weight": 500,
+     "lh": 0.98,
+     "ls": -0.035,
+     "upper": false,
+     "clipText": false,
+     "top": 7649.5625,
+     "condensed": false
+    },
+    {
+     "tag": "h1",
+     "text": "Bill per token. Keep 99.5%.",
+     "family": "Mona Sans",
+     "size": 80,
+     "weight": 500,
+     "lh": 0.98,
+     "ls": -0.035,
+     "upper": false,
+     "clipText": false,
+     "top": 156,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Keep 99.5%.",
+     "family": "Mona Sans",
+     "size": 80,
+     "weight": 500,
+     "lh": 0.98,
+     "ls": -0.035,
+     "upper": false,
+     "clipText": false,
+     "top": 216.390625,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "If your API counts it, Quota can bill it.",
+     "family": "Mona Sans",
+     "size": 50.88,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 1647.453125,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Quota can bill it.",
+     "family": "Mona Sans",
+     "size": 50.88,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 1690.359375,
+     "condensed": true
+    },
+    {
+     "tag": "h2",
+     "text": "Meter × rate card = invoice. Every month, to the cent.",
+     "family": "Mona Sans",
+     "size": 50.88,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 2083.578125,
+     "condensed": false
+    }
+   ],
+   "h1": [
+    {
+     "tag": "h1",
+     "text": "Bill per token. Keep 99.5%.",
+     "family": "Mona Sans",
+     "size": 80,
+     "weight": 500,
+     "lh": 0.98,
+     "ls": -0.035,
+     "upper": false,
+     "clipText": false,
+     "top": 156,
+     "condensed": false
+    }
+   ],
+   "h1Count": 1,
+   "display": [
+    {
+     "tag": "h1",
+     "text": "Bill per token. Keep 99.5%.",
+     "family": "Mona Sans",
+     "size": 80,
+     "weight": 500,
+     "lh": 0.98,
+     "ls": -0.035,
+     "upper": false,
+     "clipText": false,
+     "top": 156,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Keep 99.5%.",
+     "family": "Mona Sans",
+     "size": 80,
+     "weight": 500,
+     "lh": 0.98,
+     "ls": -0.035,
+     "upper": false,
+     "clipText": false,
+     "top": 216.390625,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "If your API counts it, Quota can bill it.",
+     "family": "Mona Sans",
+     "size": 50.88,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 1647.453125,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Quota can bill it.",
+     "family": "Mona Sans",
+     "size": 50.88,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 1690.359375,
+     "condensed": true
+    },
+    {
+     "tag": "h2",
+     "text": "Meter × rate card = invoice. Every month, to the cent.",
+     "family": "Mona Sans",
+     "size": 50.88,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 2083.578125,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Every month, to the cent.",
+     "family": "Mona Sans",
+     "size": 50.88,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 2126.484375,
+     "condensed": true
+    },
+    {
+     "tag": "p",
+     "text": "USD 1,312.40",
+     "family": "Mona Sans",
+     "size": 42,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 3145.796875,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Prepaid credits. Limits that hold.",
+     "family": "Mona Sans",
+     "size": 50.88,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 3159.921875,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Limits that hold.",
+     "family": "Mona Sans",
+     "size": 50.88,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 3202.828125,
+     "condensed": true
+    },
+    {
+     "tag": "h2",
+     "text": "Your customers watch the same meter.",
+     "family": "Mona Sans",
+     "size": 50.88,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 3965.40625,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "the same meter.",
+     "family": "Mona Sans",
+     "size": 50.88,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 4008.3125,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "One call per event.",
+     "family": "Mona Sans",
+     "size": 50.88,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 5110.03125,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "per event.",
+     "family": "Mona Sans",
+     "size": 50.88,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 5152.9375,
+     "condensed": true
+    },
+    {
+     "tag": "h2",
+     "text": "Free to USD 10,000 a month. Then 0.5%.",
+     "family": "Mona Sans",
+     "size": 50.88,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 5981.5,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Then 0.5%.",
+     "family": "Mona Sans",
+     "size": 50.88,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 6024.40625,
+     "condensed": false
+    },
+    {
+     "tag": "p",
+     "text": "10,000 USD free each month",
+     "family": "Mona Sans",
+     "size": 126.4,
+     "weight": 500,
+     "lh": 0.86,
+     "ls": -0.05,
+     "upper": false,
+     "clipText": false,
+     "top": 6254.34375,
+     "condensed": false
+    },
+    {
+     "tag": "p",
+     "text": "0.5% of billed usage after that",
+     "family": "Mona Sans",
+     "size": 126.4,
+     "weight": 500,
+     "lh": 0.86,
+     "ls": -0.05,
+     "upper": false,
+     "clipText": false,
+     "top": 6417.84375,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Before you plug it in.",
+     "family": "Mona Sans",
+     "size": 50.88,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 6896.265625,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "plug it in.",
+     "family": "Mona Sans",
+     "size": 50.88,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 6886.265625,
+     "condensed": true
+    },
+    {
+     "tag": "h2",
+     "text": "Start the meter.",
+     "family": "Mona Sans",
+     "size": 88,
+     "weight": 500,
+     "lh": 0.98,
+     "ls": -0.035,
+     "upper": false,
+     "clipText": false,
+     "top": 7649.5625,
+     "condensed": false
+    }
+   ],
+   "bodySize": "17",
+   "tinyText": 0,
+   "labelsTight": [],
+   "labelCount": 0,
+   "upperShare": 0.09,
+   "bigCapsSentences": [],
+   "weights": [
+    [
+     "400",
+     106
+    ],
+    [
+     "500",
+     104
+    ],
+    [
+     "600",
+     12
+    ]
+   ],
+   "textShadowBig": 0,
+   "textStroke": 0,
+   "stuckReveal": [],
+   "gradientText": [],
+   "longMeasure": [],
+   "paper": [
+    255,
+    255,
+    255,
+    1
+   ],
+   "pureBW": {
+    "blackOnWhite": 0,
+    "whiteOnBlack": 0
+   },
+   "artHues": [
+    "60°×25",
+    "30°×24",
+    "150°×24",
+    "210°×23"
+   ],
+   "accentHues": [
+    {
+     "hue": 60,
+     "weight": 249,
+     "example": "rgb(255,212,71) bg div.stage"
+    },
+    {
+     "hue": 150,
+     "weight": 133,
+     "example": "rgb(142,221,180) bg div.plate"
+    },
+    {
+     "hue": 30,
+     "weight": 94,
+     "example": "rgb(255,170,140) bg div.plate"
+    },
+    {
+     "hue": 210,
+     "weight": 94,
+     "example": "rgb(169,200,255) bg div.plate"
+    }
+   ],
+   "chromaCoverage": 23.2,
+   "fieldHues": [
+    30,
+    60,
+    150,
+    210
+   ],
+   "gradients": [],
+   "glows": 0,
+   "buttonCamps": [
+    [
+     "pill",
+     6
+    ]
+   ],
+   "buttons": [
+    {
+     "text": "Start billing",
+     "camp": "pill",
+     "h": 38,
+     "top": 7671,
+     "nav": true
+    },
+    {
+     "text": "Start billing\n→",
+     "camp": "pill",
+     "h": 48,
+     "top": 277,
+     "nav": false
+    },
+    {
+     "text": "See the API",
+     "camp": "pill",
+     "h": 48,
+     "top": 277,
+     "nav": false
+    },
+    {
+     "text": "Copy",
+     "camp": "pill",
+     "h": 34,
+     "top": 5027,
+     "nav": false
+    },
+    {
+     "text": "Start billing\n→",
+     "camp": "pill",
+     "h": 48,
+     "top": 6519,
+     "nav": false
+    },
+    {
+     "text": "Start billing\n→",
+     "camp": "pill",
+     "h": 48,
+     "top": 7983,
+     "nav": false
+    },
+    {
+     "text": "See the API",
+     "camp": "pill",
+     "h": 48,
+     "top": 7983,
+     "nav": false
+    }
+   ],
+   "bigRadiusCards": 7,
+   "dropShadows": 3,
+   "heroCtas": [
+    "Start billing →",
+    "See the API"
+   ],
+   "heroMix": "1 solid + 1 ghost",
+   "heroTextLinks": [],
+   "h1Words": 5,
+   "h1Lines": 2,
+   "h1Centered": false,
+   "badgeAboveH1": [],
+   "h2Count": 8,
+   "h2CenteredShare": 0,
+   "iconGrids": [],
+   "sectionCV": 0.16,
+   "emoji": [],
+   "exclaim": [],
+   "banned": [],
+   "lorem": false,
+   "dupIds": [],
+   "hiddenShown": [],
+   "motion": {
+    "usedEases": [
+     [
+      "cubic-bezier(0.2,0.8,0.2,1)",
+      198
+     ],
+     [
+      "cubic-bezier(0.4,0,0.2,1)",
+      7
+     ]
+    ],
+    "transitions": 21,
+    "keyframes": 2,
+    "beziers": [
+     [
+      "cubic-bezier(.16,1,.3,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.76,0,.24,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.4,0,.2,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.34,1.56,.64,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.2,.8,.2,1)",
+      1
+     ]
+    ],
+    "reducedMotion": true,
+    "defaultEases": 16,
+    "lenis": false,
+    "revealEls": 13
+   },
+   "autoplayVideos": 0,
+   "pauseControl": true,
+   "imgNoAlt": 0,
+   "unnamedControls": 0,
+   "skipLink": true,
+   "hiddenText": [],
+   "defaultLook": {
+    "sig": {
+     "warmOffWhite": false,
+     "monoUpperLabels": false,
+     "hairlineBands": true,
+     "lineDrawingHero": false,
+     "tinyAccent": false,
+     "lightDisplay": true
+    },
+    "score": 2,
+    "monoUpperShare": 0,
+    "hairlines": 18
+   },
+   "nav": {
+    "h": 68,
+    "links": 7
+   },
+   "copyDupes": [],
+   "titleCase": [],
+   "textOverlap": [],
+   "textMotion": {
+    "paras": 17,
+    "hidden": 4,
+    "h1Split": false
+   },
+   "firstFrame": {
+    "h1Hidden": false,
+    "hidden": []
+   },
+   "contrast": {
+    "checked": 111,
+    "low": 0,
+    "lowBody": 0,
+    "examples": []
+   },
+   "perf": null,
+   "mediaContrast": {
+    "checked": 1,
+    "low": []
+   },
+   "consoleErrors": []
+  },
+  "mobile": {
+   "overflow": 0,
+   "offenders": [],
+   "small": [],
+   "smallCount": 0,
+   "h1Size": 45.64,
+   "tinyBody": 0,
+   "tinyEx": []
+  },
+  "reducedMotion": {
+   "firstViewport": 14,
+   "hidden": []
+  }
+ }
+}

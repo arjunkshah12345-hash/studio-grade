@@ -31,6 +31,9 @@
 !/tests/builds/loam/
 !/tests/builds/antropi/
 !/tests/builds/lowlight/
+!/tests/builds/branchline/
+!/tests/builds/quota/
+!/tests/builds/callback/
 !/tests/builds/halden2/
 !/tests/builds/kestrel2/
 !/tests/builds/onair/

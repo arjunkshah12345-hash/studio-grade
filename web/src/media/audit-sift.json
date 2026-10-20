@@ -1,0 +1,803 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/sift/",
+ "outDir": "/tmp/sift-aud",
+ "ms": 42855,
+ "counts": {
+  "PASS": 12,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Funnel Sans×96",
+   "Funnel Display×23"
+  ],
+  "display": [
+   "66px/1/-0.03em w500 \"Pour in this week's tickets.\"",
+   "50px/1.04/-0.025em w500 \"Seventeen tickets about one \"",
+   "50px/1.04/-0.025em w500 \"Your tracker should hear abo\""
+  ],
+  "bodySize": "13",
+  "weights": [
+   "500×68",
+   "400×51"
+  ],
+  "upperShare": 0,
+  "paper": "rgb(246,244,239)",
+  "accents": [
+   "rgb(245,200,90) bg article.chap",
+   "rgb(147,190,226) bg article.chap"
+  ],
+  "buttons": [
+   "pill 38px \"Connect your helpdesk\"",
+   "pill 48px \"Connect your helpdesk\"",
+   "pill 48px \"Connect your helpdesk\"",
+   "pill 48px \"Connect your helpdesk\"",
+   "pill 48px \"Ask for a quote\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)",
+   "cubic-bezier(.2,.8,.2,1)"
+  ],
+  "nav": {
+   "h": 64,
+   "links": 6
+  },
+  "pageVh": 9.6
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "2 families: Funnel Sans, Funnel Display"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 66px · lh 1 · -0.03em · weight 500 · Funnel Display)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (2/6 traits: warmOffWhite, lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "Colour-block system: 2 hues used as full-bleed fields. Loud register is fine if each hue has one meaning (range.md §1).",
+   "examples": [
+    "30° (w169) e.g. rgb(245,200,90) bg article.chap",
+    "210° (w169) e.g. rgb(147,190,226) bg article.chap"
+   ]
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 131 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 1 text elements over imagery meet AA (sampled from pixels)"
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: pill"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "1 hero CTA(s) · seen: 1 solid"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.2,0.8,0.2,1)×76, cubic-bezier(0.4,0,0.2,1)×8"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (9/21 paragraphs wait for scroll)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.heroSequence",
+   "msg": "Hero load sequence: h1 sharp at 1200ms, hero settled at 1800ms"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 13.6% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 9.6 viewports (direction 11 norm 7–12)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/sift-aud/desktop-hero.png",
+  "/tmp/sift-aud/slice-01.jpg … (one per viewport)",
+  "/tmp/sift-aud/desktop-full.jpg",
+  "/tmp/sift-aud/mobile-hero.png",
+  "/tmp/sift-aud/mobile-full.jpg",
+  "/tmp/sift-aud/reduced-motion-hero.png"
+ ],
+ "raw": {
+  "desktop": {
+   "title": "Sift: one tracker issue per real support problem",
+   "lang": "en",
+   "metaDesc": true,
+   "pageVh": 9.6,
+   "families": [
+    [
+     "Funnel Sans",
+     96
+    ],
+    [
+     "Funnel Display",
+     23
+    ]
+   ],
+   "loadedFonts": [
+    "Funnel Display",
+    "Funnel Sans"
+   ],
+   "largest": [
+    {
+     "tag": "h2",
+     "text": "Pour in this week's tickets.",
+     "family": "Funnel Display",
+     "size": 66,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 7688.71875,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Seventeen tickets about one bug are still one bug. Your tracker should hear abou",
+     "family": "Funnel Display",
+     "size": 49.76,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 1084.21875,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Your tracker should hear about it once, with every customer attached.",
+     "family": "Funnel Display",
+     "size": 49.76,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 1129.96875,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "One issue per real problem. In the tracker you already use.",
+     "family": "Funnel Display",
+     "size": 49.76,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 3801.75,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "In the tracker you already use.",
+     "family": "Funnel Display",
+     "size": 49.76,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 3899.25,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Two connections. About ten minutes.",
+     "family": "Funnel Display",
+     "size": 49.76,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 4590.65625,
+     "condensed": false
+    }
+   ],
+   "h1": [
+    {
+     "tag": "h1",
+     "text": "Every ticket in. One issue per problem out. Every ticket in. One issue per probl",
+     "family": "Funnel Display",
+     "size": 66,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 120,
+     "condensed": false
+    }
+   ],
+   "h1Count": 1,
+   "display": [
+    {
+     "tag": "span",
+     "text": "Every",
+     "family": "Funnel Display",
+     "size": 66,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 120,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "ticket",
+     "family": "Funnel Display",
+     "size": 66,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 120,
+     "condensed": true
+    },
+    {
+     "tag": "span",
+     "text": "in.",
+     "family": "Funnel Display",
+     "size": 66,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 120,
+     "condensed": true
+    },
+    {
+     "tag": "span",
+     "text": "One",
+     "family": "Funnel Display",
+     "size": 66,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 186,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "issue",
+     "family": "Funnel Display",
+     "size": 66,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 186,
+     "condensed": true
+    },
+    {
+     "tag": "span",
+     "text": "per",
+     "family": "Funnel Display",
+     "size": 66,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 186,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "problem",
+     "family": "Funnel Display",
+     "size": 66,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 186,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "out.",
+     "family": "Funnel Display",
+     "size": 66,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 186,
+     "condensed": true
+    },
+    {
+     "tag": "h2",
+     "text": "Seventeen tickets about one bug are still one bug. Your tracker should hear abou",
+     "family": "Funnel Display",
+     "size": 49.76,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 1084.21875,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Your tracker should hear about it once, with every customer attached.",
+     "family": "Funnel Display",
+     "size": 49.76,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 1129.96875,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "One issue per real problem. In the tracker you already use.",
+     "family": "Funnel Display",
+     "size": 49.76,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 3801.75,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "In the tracker you already use.",
+     "family": "Funnel Display",
+     "size": 49.76,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 3899.25,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Two connections. About ten minutes.",
+     "family": "Funnel Display",
+     "size": 49.76,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 4590.65625,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "About ten minutes.",
+     "family": "Funnel Display",
+     "size": 49.76,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 4636.40625,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "An example week, sifted. One slip per ticket.",
+     "family": "Funnel Display",
+     "size": 49.76,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 5349.96875,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "One slip per ticket.",
+     "family": "Funnel Display",
+     "size": 49.76,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 5395.71875,
+     "condensed": true
+    },
+    {
+     "tag": "span",
+     "text": "212",
+     "family": "Funnel Display",
+     "size": 48.96,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 5557.46875,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Priced by the pile. Tickets read a month.",
+     "family": "Funnel Display",
+     "size": 49.76,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 6388.71875,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Tickets read a month.",
+     "family": "Funnel Display",
+     "size": 49.76,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 6434.46875,
+     "condensed": true
+    },
+    {
+     "tag": "p",
+     "text": "USD 0",
+     "family": "Funnel Display",
+     "size": 49.76,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 6637.015625,
+     "condensed": false
+    },
+    {
+     "tag": "p",
+     "text": "USD 79 a month",
+     "family": "Funnel Display",
+     "size": 49.76,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 6637.015625,
+     "condensed": false
+    },
+    {
+     "tag": "p",
+     "text": "By quote",
+     "family": "Funnel Display",
+     "size": 49.76,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 6637.015625,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Questions from support leads",
+     "family": "Funnel Display",
+     "size": 49.76,
+     "weight": 500,
+     "lh": 1.04,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 7120.71875,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Pour in this week's tickets.",
+     "family": "Funnel Display",
+     "size": 66,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.03,
+     "upper": false,
+     "clipText": false,
+     "top": 7688.71875,
+     "condensed": false
+    }
+   ],
+   "bodySize": "13",
+   "tinyText": 0,
+   "labelsTight": [],
+   "labelCount": 0,
+   "upperShare": 0,
+   "bigCapsSentences": [],
+   "weights": [
+    [
+     "500",
+     68
+    ],
+    [
+     "400",
+     51
+    ]
+   ],
+   "textShadowBig": 0,
+   "textStroke": 0,
+   "stuckReveal": [],
+   "gradientText": [],
+   "longMeasure": [],
+   "paper": [
+    246,
+    244,
+    239,
+    1
+   ],
+   "pureBW": {
+    "blackOnWhite": 0,
+    "whiteOnBlack": 0
+   },
+   "artHues": [
+    "30°×8",
+    "210°×1"
+   ],
+   "accentHues": [
+    {
+     "hue": 30,
+     "weight": 169,
+     "example": "rgb(245,200,90) bg article.chap"
+    },
+    {
+     "hue": 210,
+     "weight": 169,
+     "example": "rgb(147,190,226) bg article.chap"
+    }
+   ],
+   "chromaCoverage": 13.6,
+   "fieldHues": [
+    30,
+    210
+   ],
+   "gradients": [],
+   "glows": 0,
+   "buttonCamps": [
+    [
+     "pill",
+     5
+    ]
+   ],
+   "buttons": [
+    {
+     "text": "Connect your helpdesk",
+     "camp": "pill",
+     "h": 38,
+     "top": 7709,
+     "nav": true
+    },
+    {
+     "text": "Connect your helpdesk",
+     "camp": "pill",
+     "h": 48,
+     "top": 279,
+     "nav": false
+    },
+    {
+     "text": "Connect your helpdesk",
+     "camp": "pill",
+     "h": 48,
+     "top": 6761,
+     "nav": false
+    },
+    {
+     "text": "Connect your helpdesk",
+     "camp": "pill",
+     "h": 48,
+     "top": 6761,
+     "nav": false
+    },
+    {
+     "text": "Ask for a quote",
+     "camp": "pill",
+     "h": 48,
+     "top": 6761,
+     "nav": false
+    },
+    {
+     "text": "Connect your helpdesk",
+     "camp": "pill",
+     "h": 48,
+     "top": 8004,
+     "nav": false
+    },
+    {
+     "text": "Connect your helpdesk",
+     "camp": "pill",
+     "h": 38,
+     "top": 8602,
+     "nav": true
+    }
+   ],
+   "bigRadiusCards": 5,
+   "dropShadows": 1,
+   "heroCtas": [
+    "Connect your helpdesk"
+   ],
+   "heroMix": "1 solid",
+   "heroTextLinks": [],
+   "h1Words": 8,
+   "h1Lines": 2,
+   "h1Centered": false,
+   "badgeAboveH1": [],
+   "h2Count": 10,
+   "h2CenteredShare": 0,
+   "iconGrids": [],
+   "sectionCV": 0.78,
+   "emoji": [],
+   "exclaim": [],
+   "banned": [],
+   "lorem": false,
+   "dupIds": [],
+   "hiddenShown": [],
+   "motion": {
+    "usedEases": [
+     [
+      "cubic-bezier(0.2,0.8,0.2,1)",
+      76
+     ],
+     [
+      "cubic-bezier(0.4,0,0.2,1)",
+      8
+     ]
+    ],
+    "transitions": 23,
+    "keyframes": 1,
+    "beziers": [
+     [
+      "cubic-bezier(.16,1,.3,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.76,0,.24,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.4,0,.2,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.34,1.56,.64,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.2,.8,.2,1)",
+      1
+     ]
+    ],
+    "reducedMotion": true,
+    "defaultEases": 12,
+    "lenis": false,
+    "revealEls": 12
+   },
+   "autoplayVideos": 0,
+   "pauseControl": false,
+   "imgNoAlt": 0,
+   "unnamedControls": 0,
+   "skipLink": true,
+   "hiddenText": [],
+   "defaultLook": {
+    "sig": {
+     "warmOffWhite": true,
+     "monoUpperLabels": false,
+     "hairlineBands": false,
+     "lineDrawingHero": false,
+     "tinyAccent": false,
+     "lightDisplay": true
+    },
+    "score": 2,
+    "monoUpperShare": 0,
+    "hairlines": 13
+   },
+   "nav": {
+    "h": 64,
+    "links": 6
+   },
+   "copyDupes": [],
+   "titleCase": [],
+   "textOverlap": [],
+   "textMotion": {
+    "paras": 21,
+    "hidden": 9,
+    "seq": {
+     "h1": 1200,
+     "end": 1800,
+     "holdsH1": true
+    },
+    "h1Split": false
+   },
+   "firstFrame": {
+    "h1Hidden": false,
+    "hidden": []
+   },
+   "contrast": {
+    "checked": 131,
+    "low": 0,
+    "lowBody": 0,
+    "examples": []
+   },
+   "perf": null,
+   "mediaContrast": {
+    "checked": 1,
+    "low": []
+   },
+   "consoleErrors": []
+  },
+  "mobile": {
+   "overflow": 0,
+   "offenders": [],
+   "small": [],
+   "smallCount": 0,
+   "h1Size": 40,
+   "tinyBody": 0,
+   "tinyEx": []
+  },
+  "reducedMotion": {
+   "firstViewport": 11,
+   "hidden": []
+  }
+ }
+}

@@ -293,7 +293,7 @@ const COLLECT = () => {
   const h1 = h1s[0];
   if (h1) {
     const hr = h1.getBoundingClientRect();
-    out.h1Words = h1.innerText.trim().split(/\s+/).length;
+    { const sr = h1.querySelector('.sr-only'); out.h1Words = (sr ? sr.textContent : h1.innerText).trim().split(/\s+/).length; }   // split headings keep one real text copy in .sr-only
     out.h1Lines = Math.round(hr.height / (parseFloat(st(h1).lineHeight) || parseFloat(st(h1).fontSize) * 1.1));
     out.h1Centered = Math.abs(hr.left + hr.width / 2 - vw / 2) < 24 && st(h1).textAlign === 'center';
     out.badgeAboveH1 = [...document.querySelectorAll('a,span,div,p')].filter((el) => { if (!C.vis(el) || el.contains(h1) || el.closest('nav,header > div:first-child,[role="navigation"]')) return false; const r = el.getBoundingClientRect(); const s = st(el); return r.bottom <= hr.top + 4 && hr.top - r.bottom < 90 && r.height < 40 && r.height > 16 && parseFloat(s.borderTopLeftRadius) >= r.height / 2 - 1 && (C.toRGBA(s.backgroundColor)[3] > 0.05 || parseFloat(s.borderTopWidth) > 0) && r.width < 420; }).map((el) => el.innerText.trim().slice(0, 40)).slice(0, 2);
@@ -357,7 +357,7 @@ const COLLECT = () => {
   out.nav = header ? { h: Math.round(header.getBoundingClientRect().height), links: header.querySelectorAll('a').length } : null;
   // copy integrity: repeated headings or paragraphs (a pasted section) and Title Case headings
   {
-    const real = (el) => C.vis(el) && !el.closest('[aria-hidden="true"],nav,footer,header,[role="marquee"],.marquee') && !C.intentionallyHidden(el);
+    const real = (el) => C.vis(el) && !el.closest('[aria-hidden="true"],nav,footer,header,[role="marquee"],.marquee,[role="img"]') && !C.intentionallyHidden(el);   // product replicas may repeat one example item on purpose
     const norm = (t) => t.replace(/\s+/g, ' ').trim().toLowerCase();
     const seen = new Map();
     for (const el of document.querySelectorAll('h1,h2,h3,p')) {
@@ -460,11 +460,17 @@ const TEXT_OVERLAP = () => {
   const bar = (el) => { for (let p = el; p && p !== document.body; p = p.parentElement) { const s = getComputedStyle(p); if ((s.position === 'fixed' || s.position === 'sticky') && p.getBoundingClientRect().height < 200) return true; } return false; };
   // rotated text has an axis-aligned box far bigger than its glyphs, so boxes overlap where letters don't
   const rotated = (el) => { for (let p = el; p && p !== document.body; p = p.parentElement) { const m = getComputedStyle(p).transform.match(/^matrix\(([^,]+),\s*([^,]+)/); if (m && Math.abs(+m[2]) > 0.01) return true; } return false; };
+  // text fully under a later opaque sticky panel (stacked chapters, techniques §85) is hidden, not overlapping
+  const opaqueBg = (e) => { const m = getComputedStyle(e).backgroundColor.match(/[\d.]+/g); return !!m && (m.length < 4 || +m[3] >= 0.95); };
+  const covered = (el, r) => { const top = document.elementFromPoint(Math.min(vw - 1, Math.max(0, (r.left + r.right) / 2)), Math.min(vh - 1, Math.max(0, (r.top + r.bottom) / 2)));
+    if (!top || el.contains(top) || top.contains(el)) return false;
+    for (let p = top; p && p !== document.body; p = p.parentElement) { if (p.contains(el)) return false; if (getComputedStyle(p).position === 'sticky' && opaqueBg(p)) return true; }
+    return false; };
   const blockOf = (el) => el.closest('h1,h2,h3,h4,h5,h6,p,li,dt,dd,figcaption,blockquote,a,button,label,td,th') || el;
   const els = [...document.querySelectorAll('body *')].filter((el) => {
     if (el.closest('svg,script,style,noscript,.sr-only') || !C.ownText(el) || C.ownText(el).length < 2) return false;
     const r = el.getBoundingClientRect(); if (r.width < 4 || r.height < 6 || r.bottom < 0 || r.top > vh || r.right < 0 || r.left > vw) return false;
-    if (C.cumOpacity(el) < 0.4 || C.intentionallyHidden(el) || bar(el) || rotated(el)) return false;
+    if (C.cumOpacity(el) < 0.4 || C.intentionallyHidden(el) || bar(el) || rotated(el) || covered(el, r)) return false;
     return true;
   }).slice(0, 600).map((el) => {
     // per-line fragments (a wrapped link is two boxes, not one), clipped by overflow:hidden/auto ancestors

@@ -212,8 +212,7 @@ def cmd_cutout(a):
 def cmd_export(a):
     im = Image.open(a.src)
     if a.crop:
-        x, y, w, h = (int(v) for v in a.crop.split(','))
-        im = im.crop((x, y, x + w, y + h))
+        im = im.crop(zone_box(im, a.crop))   # px, or fractions when every value is <= 1
     alpha = im.mode in ('RGBA', 'LA') or 'transparency' in im.info
     im = im.convert('RGBA' if alpha else 'RGB')
     os.makedirs(a.out, exist_ok=True)

@@ -1,0 +1,397 @@
+<!--
+DESIGN SPINE: Sift
+DIRECTION   : 11 Bright Product: heads of support and engineering leads want a friendly, finished tool page that shows the real artefacts (tickets, a grouped problem, a draft issue), not an award piece
+REGISTER    : Confident: one bold device, the toy sifting machine, whose four part colours become four stacked chapter panels; everything else quiet on paper
+AXES        : ground off-white #F6F4EF (the series' sweep) + colour blocks from the machine · type genre characterful grotesk (Funnel Display 500) · image medium tactile object photo series + product UI vignettes · composition the machine's left-to-right flow as the page (hopper → sieve → a person's yes → tray), stacked colour chapters · motion feel calm resolve, one hero load sequence
+DEFAULT?    : default-look check: 2/6 matched (off-white ground, near-black ink at 500) → DIFFERENT FROM DEFAULT BY: no mono labels, no hairline metadata bands, photo object not a line drawing, colour fields instead of a tiny accent
+MOTIF       : the paper slip (one slip = one ticket): 1 hero machine (slips in the hopper) · 2 station chips on the machine and slip markers on every example ticket · 3 the example week, where each slip is counted, one per ticket · 4 pricing tiers drawn as slip stacks of rising height · 5 the logo, three stacked slips
+TYPE        : display Funnel Display 500 · text Funnel Sans 400/500 · no mono (ticket ids are tabular Funnel Sans)
+SCALE       : display clamp(40→70px)/1.0/-0.03em · h2 32→50px/1.04/-0.025em · body 17px/1.55 · label 13px sentence case
+PALETTE     : paper #F6F4EF · surface #FFFFFF · ink #1E1B22 · ink-2 ink@70% · hairline ink@10% · accent plum #5E2D50 → ONLY the primary buttons and the "customers affected" figures (plum is the human's yes) · chapter fields sampled from the machine: hopper yellow #F5C85A, sieve blue #93BEE2, plum #DDBFD0, tray mint #A9D9BE, each meaning one station
+GRID        : 12/24 · container 1280 · margin 20→80 · rhythm 96–144, voids 160+
+HERO        : H22 variant, reversed: split header (h1 left, lede + the from → to picker right), then the machine at full container width below it with three station chips pinned to its parts (§81 stage), so the sentence reads first and the machine diagrams it left to right
+IMAGERY     : the generated toy-machine series + product UI rebuilt in HTML (a pile of example tickets, a grouped problem, a draft issue, the opened tracker issue)
+CONVERSION  : "Connect your helpdesk" → nav pill, hero picker, sticky dock (§86), Free and Team pricing, finale picker. Secondary "See an example week" → hero, finale
+MOTION      : house ease cubic-bezier(.2,.8,.2,1) · UI 160–240ms · reveal 600ms fade + 8px · hero load sequence §5.10 (h1 words → lede → picker → station chips left to right) · each vignette plays its one action once
+IMAGES      : medium      a playful, tactile toy-block world: painted wood and soft clay toy pieces, rounded edges, matte finish, slight hand-made imperfection, photographed on a seamless warm off-white (#F6F4EF) sweep with soft daylight from the upper left and a gentle floor shadow
+              palette     tomato red, butter yellow, sky blue, mint green and one plum, all slightly chalky; no neon, no metal, no gloss
+              exclude     no text, no letters or numbers, no logos, no brand marks, no screens, no people, no hands, no watermarks
+              shot list   hero 21:9 the sifting machine (hopper → sieve on a red frame with clay springs → tray of three stacks) · sieve 4:3 close-up, clean right third · tray 4:3 close-up, clean left third
+              crops       hero → hero-m (machine only, 2.2:1) for ≤760px · sieve → chapter 2 inset · tray → chapter 4 inset · finale reuses the hero, cropped to the hopper and sieve
+NAMING      : sifting → stations: the hopper (in), the sieve (grouped), the yes (a person), the tray (out) · CTA "Connect your helpdesk" · 404 "Nothing in the hopper here."
+SIGNATURES  : §84 the job as a toy machine (hero, station chips) · §85 stacked colour chapters, one per machine part · §86 the from → to picker as the sticky dock
+VOICE       : "Every ticket in. One issue per problem out." · "Seventeen tickets, one bug. It says so once." · "Pour in this week's tickets."
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sift: one tracker issue per real support problem</title>
+<meta name="description" content="Sift reads every support ticket, groups the ones about the same problem, and drafts one tracker issue for each. A person confirms it before it opens. A fictional product.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@500&family=Funnel+Sans:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/hero-1916.webp" media="(min-width:761px)" fetchpriority="high">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='6' y='20' width='20' height='6' rx='2.5' fill='%2399CEB0'/%3E%3Crect x='8' y='13' width='16' height='6' rx='2.5' fill='%23A46E88'/%3E%3Crect x='10' y='6' width='12' height='6' rx='2.5' fill='%23F5C85A'/%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip btn btn--primary btn--sm" href="#main">Skip to content</a>
+
+<header class="nav" data-nav>
+  <div class="container nav-in">
+    <a class="brand" href="#top" aria-label="Sift, home">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="20" width="20" height="6" rx="2.5" fill="#99CEB0"/><rect x="8" y="13" width="16" height="6" rx="2.5" fill="#A46E88"/><rect x="10" y="6" width="12" height="6" rx="2.5" fill="#F5C85A"/></svg>
+      <span>Sift</span>
+    </a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="#how">How it sifts</a></li>
+        <li><a href="#week">Example week</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">Questions</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--primary btn--sm nav-cta" href="#start">Connect your helpdesk</a>
+  </div>
+</header>
+
+<main id="main">
+<!-- ============ HERO ============ -->
+<section class="hero" id="top" data-seq-root>
+  <div class="container hero-head">
+    <div class="hero-main">
+      <h1 class="t-display hero-h1" data-seq="words">Every ticket in. <span class="tail">One issue per problem out.</span></h1>
+      <p class="lede" data-seq>Sift reads every support ticket, groups the ones about the same problem, and drafts a single issue for it. Nothing opens until a person says yes.</p>
+    </div>
+    <div class="hero-side" data-seq>
+      <form class="pick" id="pick-hero" data-pick aria-label="Connect your helpdesk">
+        <label class="slot slot--in">
+          <span class="slot-k">From</span>
+          <select name="from" data-field="from" aria-label="Your helpdesk">
+            <option>Zendesk</option><option>Intercom</option><option>Help Scout</option><option>A support email</option>
+          </select>
+        </label>
+        <span class="pick-arr" aria-hidden="true">→</span>
+        <label class="slot slot--out">
+          <span class="slot-k">Into</span>
+          <select name="to" data-field="to" aria-label="Your tracker">
+            <option>Linear</option><option>GitHub Issues</option><option>Jira</option>
+          </select>
+        </label>
+        <button class="btn btn--primary pick-go" type="submit">Connect your helpdesk</button>
+      </form>
+      <p class="pick-note t-small" aria-live="polite" data-pick-note>About 10 minutes to set up. <a class="link" href="#week">See an example week</a></p>
+    </div>
+  </div>
+
+  <figure class="machine container" aria-label="A toy sifting machine: paper slips pour from a yellow hopper into a blue sieve, and leave as three neat stacks on a wooden tray">
+    <picture>
+      <source media="(max-width:760px)" srcset="img/hero-m-800.webp 800w, img/hero-m-1476.webp 1476w" sizes="100vw" type="image/webp">
+      <source srcset="img/hero-960.webp 960w, img/hero-1916.webp 1916w" sizes="(min-width:1440px) 1280px, 92vw" type="image/webp">
+      <img src="img/hero-1916.jpg" width="1916" height="821" alt="" fetchpriority="high">
+    </picture>
+    <ol class="stations">
+      <li class="st st--in" data-seq><span class="slip" aria-hidden="true"></span><b>Hopper</b> every ticket</li>
+      <li class="st st--sieve" data-seq><span class="slip" aria-hidden="true"></span><b>Sieve</b> grouped by problem</li>
+      <li class="st st--out" data-seq><span class="slip" aria-hidden="true"></span><b>Tray</b> one issue each, after a yes</li>
+    </ol>
+  </figure>
+</section>
+
+<!-- ============ WHY ============ -->
+<section class="why container" aria-labelledby="why-h">
+  <h2 class="t-h2 why-h" id="why-h" data-reveal>Seventeen tickets about one bug are still one bug. <span class="tail">Your tracker should hear about it once, with every customer attached.</span></h2>
+</section>
+
+<!-- ============ CHAPTERS (§85) ============ -->
+<section class="stack container" id="how" aria-label="How Sift works, station by station">
+
+  <article class="chap" style="--c:var(--yellow);--d:var(--yellow-d);--n:0" data-example="in">
+    <div class="chap-text">
+      <p class="chip">1 · The hopper</p>
+      <h2 class="t-h2">Every ticket goes in. <span class="then">Nobody gets a reply from it.</span></h2>
+      <p class="chap-body">Sift reads what lands in Zendesk, Intercom, Help Scout or a plain support email address. It never answers a customer and never closes a ticket. Your team keeps the conversation.</p>
+      <ul class="chap-list">
+        <li>Zendesk</li><li>Intercom</li><li>Help Scout</li><li>Support email</li>
+      </ul>
+    </div>
+    <div class="inset" data-vignette="pile">
+      <div class="pile" role="img" aria-label="Example data: six incoming support tickets. Three of them, numbers 4821, 4823 and 4825, are about CSV export never finishing; two are about Google sign-in looping; one asks how to add a teammate.">
+        <p class="eg">Example tickets, Monday morning</p>
+        <div class="tk" style="--r:-1.2deg;--x:0px"><span class="tk-slip s-a"></span><span class="tk-id">#4821</span><span class="tk-s">Export to CSV just spins forever</span><span class="tk-m">Zendesk · 9:02</span></div>
+        <div class="tk" style="--r:.8deg;--x:18px"><span class="tk-slip s-b"></span><span class="tk-id">#4822</span><span class="tk-s">Google sign-in sends me back to the login page</span><span class="tk-m">Intercom · 9:05</span></div>
+        <div class="tk" style="--r:-.4deg;--x:6px"><span class="tk-slip s-a"></span><span class="tk-id">#4823</span><span class="tk-s">CSV download never finishes for our workspace</span><span class="tk-m">Email · 9:11</span></div>
+        <div class="tk" style="--r:1.4deg;--x:26px"><span class="tk-slip s-c"></span><span class="tk-id">#4824</span><span class="tk-s">How do I add a teammate?</span><span class="tk-m">Help Scout · 9:14</span></div>
+        <div class="tk" style="--r:-1deg;--x:10px"><span class="tk-slip s-a"></span><span class="tk-id">#4825</span><span class="tk-s">Export stuck at 0% since Friday</span><span class="tk-m">Zendesk · 9:20</span></div>
+        <div class="tk" style="--r:.6deg;--x:22px"><span class="tk-slip s-b"></span><span class="tk-id">#4826</span><span class="tk-s">Login with Google loops, any fix?</span><span class="tk-m">Intercom · 9:26</span></div>
+      </div>
+    </div>
+  </article>
+
+  <article class="chap" style="--c:var(--blue);--d:var(--blue-d);--n:1" data-example="sieve">
+    <div class="chap-text">
+      <p class="chip">2 · The sieve</p>
+      <h2 class="t-h2">Same problem, one pile. <span class="then">Counted by customer.</span></h2>
+      <p class="chap-body">Tickets that describe the same fault fall into one group, however differently they're worded. Each group carries how many customers it touches and a link to every ticket in it.</p>
+    </div>
+    <div class="inset inset--photo" data-vignette="group">
+      <img class="inset-img" src="img/sieve-1448.webp" srcset="img/sieve-720.webp 720w, img/sieve-1448.webp 1448w" sizes="(min-width:1100px) 680px, 92vw" width="1448" height="1086" alt="Close-up of the blue wooden sieve, tilted, with paper slips falling through its round holes" loading="lazy">
+      <div class="card group" role="img" aria-label="Example data: one grouped problem, CSV export never finishes: 17 tickets from 14 customers, first seen Monday 9:02, latest Thursday 16:40.">
+        <div class="card-top"><span class="pill pill--blue">Grouped problem</span><span class="eg">Example</span></div>
+        <p class="group-t">CSV export never finishes</p>
+        <div class="group-n">
+          <div><span class="big t-num" data-count="14">14</span><span class="k">customers affected</span></div>
+          <div><span class="big big--ink t-num" data-count="17">17</span><span class="k">tickets</span></div>
+        </div>
+        <ul class="group-l">
+          <li><span class="tk-slip s-a"></span><span class="t-num">#4821</span> Export to CSV just spins forever</li>
+          <li><span class="tk-slip s-a"></span><span class="t-num">#4823</span> CSV download never finishes…</li>
+          <li><span class="tk-slip s-a"></span><span class="t-num">#4825</span> Export stuck at 0% since Friday</li>
+          <li class="more">and 14 more · first Mon 9:02 · latest Thu 16:40</li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <article class="chap" style="--c:var(--plum);--d:var(--plum-d);--n:2" data-example="yes">
+    <div class="chap-text">
+      <p class="chip">3 · The yes</p>
+      <h2 class="t-h2">A person reads the draft. <span class="then">Then it opens.</span></h2>
+      <p class="chap-body">Sift writes the issue and waits. Someone on your team checks the title, the count and the linked tickets, edits if they like, and confirms. No yes, no issue.</p>
+    </div>
+    <div class="inset" data-vignette="draft">
+      <div class="card draft" role="img" aria-label="Example data: a draft issue for Linear titled CSV export never finishes on large workspaces, citing 17 tickets from 14 customers, waiting for a person to confirm it. In the example, a teammate named Maya confirms it.">
+        <div class="card-top"><span class="pill pill--wait" data-state>Draft · waiting for a yes</span><span class="eg">Example</span></div>
+        <p class="draft-to t-small">New issue in <b data-tracker-name>Linear</b> · Web team</p>
+        <p class="draft-t">CSV export never finishes on large workspaces</p>
+        <div class="draft-b">
+          <p><b class="acc t-num">14 customers</b> reported this in <b class="t-num">17 tickets</b> between Monday 9:02 and Thursday 16:40.</p>
+          <p>What they describe: the export starts, stays at 0% and never produces a file. Every report mentions a large workspace.</p>
+          <p class="draft-links t-small">Tickets: <u>#4821</u> <u>#4823</u> <u>#4825</u> and 14 more</p>
+        </div>
+        <div class="draft-act">
+          <span class="fake-btn fake-btn--yes" data-yes>Open issue</span>
+          <span class="fake-btn">Edit</span>
+          <span class="fake-btn fake-btn--q">Not a problem</span>
+          <span class="who" data-who>Maya is reviewing</span>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="chap" style="--c:var(--mint);--d:var(--mint-d);--n:3" data-example="out">
+    <div class="chap-text">
+      <p class="chip">4 · The tray</p>
+      <h2 class="t-h2">One issue per real problem. <span class="then">In the tracker you already use.</span></h2>
+      <p class="chap-body">The issue lands in Linear, GitHub Issues or Jira with the number of customers affected and links back to their tickets, so whoever picks it up can read the reports first-hand.</p>
+      <div class="seg" role="group" aria-label="Show the issue as it would appear in">
+        <button type="button" aria-pressed="true" data-tracker="linear">Linear</button>
+        <button type="button" aria-pressed="false" data-tracker="github">GitHub Issues</button>
+        <button type="button" aria-pressed="false" data-tracker="jira">Jira</button>
+      </div>
+    </div>
+    <div class="inset inset--photo inset--left" data-vignette="issue">
+      <img class="inset-img" src="img/tray-1448.webp" srcset="img/tray-720.webp 720w, img/tray-1448.webp 1448w" sizes="(min-width:1100px) 680px, 92vw" width="1448" height="1086" alt="Close-up of the wooden tray at the end of the machine, holding three neat stacks of mint, plum and red clay cards" loading="lazy">
+      <div class="card issue" data-issue="linear" role="img" aria-label="Example data: the opened tracker issue, CSV export never finishes on large workspaces, labelled from support, 14 customers affected, with links to 17 tickets. Opened by Sift, confirmed by Maya.">
+        <div class="card-top"><span class="issue-id t-num" data-issue-id>WEB-312</span><span class="eg">Example</span></div>
+        <p class="issue-t">CSV export never finishes on large workspaces</p>
+        <div class="issue-meta">
+          <span class="pill pill--mint" data-issue-state>Todo</span>
+          <span class="pill pill--line">From support</span>
+          <span class="pill pill--acc t-num">14 customers affected</span>
+        </div>
+        <ul class="issue-tix t-small">
+          <li><span class="t-num">#4821</span> Zendesk</li><li><span class="t-num">#4823</span> Email</li><li><span class="t-num">#4825</span> Zendesk</li><li>+14 tickets</li>
+        </ul>
+        <p class="issue-by t-small">Opened by Sift · confirmed by Maya</p>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ============ SETUP + LIMITS ============ -->
+<section class="setup container" aria-labelledby="setup-h">
+  <div class="setup-l">
+    <h2 class="t-h2" id="setup-h" data-reveal>Two connections. <span class="tail">About ten minutes.</span></h2>
+    <ol class="steps" data-reveal-group>
+      <li><span class="n t-num">1</span><div><b>Connect the helpdesk.</b> Zendesk, Intercom, Help Scout, or forward a support email address.</div></li>
+      <li><span class="n t-num">2</span><div><b>Connect the tracker.</b> Linear, GitHub Issues or Jira, and pick where new issues go.</div></li>
+      <li><span class="n t-num">3</span><div><b>Read the first draft.</b> Confirm it, edit it, or say it isn't a problem.</div></li>
+    </ol>
+  </div>
+  <aside class="never" aria-labelledby="never-h" data-reveal>
+    <h3 class="t-h3" id="never-h">Three things Sift never does</h3>
+    <ul>
+      <li><span class="x" aria-hidden="true">×</span>Replies to a customer</li>
+      <li><span class="x" aria-hidden="true">×</span>Closes a ticket</li>
+      <li><span class="x" aria-hidden="true">×</span>Opens an issue nobody confirmed</li>
+    </ul>
+  </aside>
+</section>
+
+<!-- ============ EXAMPLE WEEK (§83 motif that counts) ============ -->
+<section class="week" id="week" aria-labelledby="week-h">
+  <div class="container">
+    <div class="week-head">
+      <p class="eg eg--lg">Example data · not a real company</p>
+      <h2 class="t-h2" id="week-h">An example week, sifted. <span class="tail">One slip per ticket.</span></h2>
+    </div>
+    <div class="week-board" data-reveal>
+      <div class="week-sum">
+        <div><span class="big t-num">212</span><span class="k">tickets in</span></div>
+        <div><span class="big t-num">4</span><span class="k">problems found</span></div>
+        <div><span class="big t-num">3</span><span class="k">issues opened after a yes</span></div>
+        <div><span class="big t-num">1</span><span class="k">draft still waiting</span></div>
+      </div>
+      <ol class="rows">
+        <li class="row" style="--k:17">
+          <p class="row-t">CSV export never finishes</p>
+          <div class="slips" data-slips="17" aria-hidden="true"></div>
+          <p class="row-n t-num"><b class="acc">14</b> customers · 17 tickets</p>
+          <span class="pill pill--mint">Opened · WEB-312</span>
+        </li>
+        <li class="row" style="--k:11">
+          <p class="row-t">Google sign-in loops back to the login page</p>
+          <div class="slips" data-slips="11" aria-hidden="true"></div>
+          <p class="row-n t-num"><b class="acc">9</b> customers · 11 tickets</p>
+          <span class="pill pill--mint">Opened · WEB-313</span>
+        </li>
+        <li class="row" style="--k:6">
+          <p class="row-t">Invoice PDF is missing the VAT number</p>
+          <div class="slips" data-slips="6" aria-hidden="true"></div>
+          <p class="row-n t-num"><b class="acc">6</b> customers · 6 tickets</p>
+          <span class="pill pill--mint">Opened · BILL-88</span>
+        </li>
+        <li class="row" style="--k:4">
+          <p class="row-t">Teammate invite email never arrives</p>
+          <div class="slips" data-slips="4" aria-hidden="true"></div>
+          <p class="row-n t-num"><b class="acc">3</b> customers · 4 tickets</p>
+          <span class="pill pill--wait">Draft · waiting</span>
+        </li>
+      </ol>
+      <p class="week-foot t-small">The other 174 tickets weren't part of a shared problem. Sift leaves them as they are: no replies, nothing closed.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="pricing container" id="pricing" aria-labelledby="price-h">
+  <h2 class="t-h2 price-h" id="price-h" data-reveal>Priced by the pile. <span class="tail">Tickets read a month.</span></h2>
+  <div class="tiers" data-reveal-group>
+    <div class="tier">
+      <h3 class="t-h3">Free</h3>
+      <p class="price t-num">USD 0</p>
+      <p class="tier-k">Up to 500 tickets a month</p>
+      <a class="btn btn--ghost" href="#start">Connect your helpdesk</a>
+    </div>
+    <div class="tier tier--on">
+      <h3 class="t-h3">Team</h3>
+      <p class="price t-num">USD 79 <span>a month</span></p>
+      <p class="tier-k">Up to 10,000 tickets a month</p>
+      <a class="btn btn--primary" href="#start">Connect your helpdesk</a>
+    </div>
+    <div class="tier">
+      <h3 class="t-h3">Scale</h3>
+      <p class="price">By quote</p>
+      <p class="tier-k">For more than 10,000 tickets a month</p>
+      <a class="btn btn--ghost" href="#start">Ask for a quote</a>
+    </div>
+  </div>
+  <p class="price-note t-small">Every plan reads from your helpdesk and opens issues only after a person confirms them.</p>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq container" id="faq" aria-labelledby="faq-h">
+  <h2 class="t-h2" id="faq-h" data-reveal>Questions from support leads</h2>
+  <div class="faq-l">
+    <details><summary>Does Sift ever reply to a customer?</summary><p>No. It reads tickets and never answers them. Every reply still comes from your team, in your helpdesk.</p></details>
+    <details><summary>Will it close tickets once an issue is open?</summary><p>No. Sift never closes tickets. The issue links back to them, and what happens to each ticket stays your team's call.</p></details>
+    <details><summary>Who decides what becomes an issue?</summary><p>A person on your team. Sift drafts each new issue with its count and linked tickets, and nothing reaches the tracker until someone confirms it.</p></details>
+    <details><summary>Which tools does it connect?</summary><p>In: Zendesk, Intercom, Help Scout, or a support email address. Out: Linear, GitHub Issues or Jira. These are other companies' products; no partnership is implied.</p></details>
+    <details><summary>How long does setup take?</summary><p>About ten minutes: connect the helpdesk, connect the tracker, and read the first draft.</p></details>
+  </div>
+</section>
+
+<!-- ============ FINALE ============ -->
+<section class="finale" id="start" aria-labelledby="fin-h">
+  <div class="container fin-in">
+    <div class="fin-text">
+      <h2 class="t-display fin-h" id="fin-h">Pour in this week's tickets.</h2>
+      <p class="lede">Pick the helpdesk and the tracker. The first draft issue waits for your yes.</p>
+      <form class="pick pick--fin" id="pick-fin" data-pick aria-label="Connect your helpdesk">
+        <label class="slot slot--in">
+          <span class="slot-k">From</span>
+          <select name="from" data-field="from" aria-label="Your helpdesk">
+            <option>Zendesk</option><option>Intercom</option><option>Help Scout</option><option>A support email</option>
+          </select>
+        </label>
+        <span class="pick-arr" aria-hidden="true">→</span>
+        <label class="slot slot--out">
+          <span class="slot-k">Into</span>
+          <select name="to" data-field="to" aria-label="Your tracker">
+            <option>Linear</option><option>GitHub Issues</option><option>Jira</option>
+          </select>
+        </label>
+        <button class="btn btn--primary pick-go" type="submit">Connect your helpdesk</button>
+      </form>
+      <p class="pick-note t-small" aria-live="polite" data-pick-note>Free up to 500 tickets a month. <a class="link" href="#week">See an example week</a></p>
+    </div>
+    <div class="fin-art" aria-hidden="true">
+      <picture>
+        <source media="(max-width:760px)" srcset="img/hero-m-800.webp 800w, img/hero-m-1476.webp 1476w" sizes="100vw" type="image/webp">
+        <source srcset="img/hero-960.webp 960w, img/hero-1916.webp 1916w" sizes="(min-width:1100px) 760px, 100vw" type="image/webp">
+        <img src="img/hero-960.jpg" width="1916" height="821" alt="" loading="lazy">
+      </picture>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============ DOCK (§86) ============ -->
+<form class="dock is-away" data-dock data-pick aria-label="Connect your helpdesk (shortcut)">
+  <label class="dock-slot slot--in"><span class="slip" aria-hidden="true"></span><span class="sr-only">Your helpdesk</span>
+    <select name="from" data-field="from"><option>Zendesk</option><option>Intercom</option><option>Help Scout</option><option>A support email</option></select>
+  </label>
+  <span class="pick-arr" aria-hidden="true">→</span>
+  <label class="dock-slot dock-slot--to slot--out"><span class="slip" aria-hidden="true"></span><span class="sr-only">Your tracker</span>
+    <select name="to" data-field="to"><option>Linear</option><option>GitHub Issues</option><option>Jira</option></select>
+  </label>
+  <button class="btn btn--primary btn--sm" type="submit">Connect your helpdesk</button>
+</form>
+
+<footer class="foot">
+  <div class="container foot-in">
+    <div class="foot-brand">
+      <a class="brand" href="#top" aria-label="Sift, back to top">
+        <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="6" y="20" width="20" height="6" rx="2.5" fill="#99CEB0"/><rect x="8" y="13" width="16" height="6" rx="2.5" fill="#A46E88"/><rect x="10" y="6" width="12" height="6" rx="2.5" fill="#F5C85A"/></svg>
+        <span>Sift</span>
+      </a>
+      <p class="t-small dim">One tracker issue per real support problem.</p>
+      <p class="t-small dim">© 2026 Sift. A fictional product.</p>
+    </div>
+    <div class="foot-col">
+      <p class="foot-k">Product</p>
+      <ul><li><a href="#how">How it sifts</a></li><li><a href="#week">Example week</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">Questions</a></li></ul>
+    </div>
+    <div class="foot-col">
+      <p class="foot-k">Reads from</p>
+      <ul><li>Zendesk</li><li>Intercom</li><li>Help Scout</li><li>A support email</li></ul>
+    </div>
+    <div class="foot-col">
+      <p class="foot-k">Opens issues in</p>
+      <ul><li>Linear</li><li>GitHub Issues</li><li>Jira</li></ul>
+    </div>
+    <div class="foot-col">
+      <p class="foot-k">Legal</p>
+      <ul><li><a href="legal.html#terms">Terms</a></li><li><a href="legal.html#privacy">Privacy</a></li></ul>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="site.js"></script>
+</body>
+</html>

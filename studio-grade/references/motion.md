@@ -171,6 +171,11 @@ The h1 is fully sharp by about 1.2s for a 6-word headline (the word stagger is c
 ```
 `heroSequence()` (assets/motion.js) splits the h1 with `splitWords`, sets each delay in document order, and writes the total to `data-seq-end` on the root. The audit reads it (`motion.heroSequence`) and warns if the h1 finishes after 1.2s or the hero after 2s. `autoInit()` runs it too. Tune the hidden state with `--seq-blur`, `--seq-y` (and `--seq-rise` for `rise`), never with a more specific selector.
 
+- **The budget starts when the script runs**, not at navigation: `is-in` waits for the module and two frames, so on a real page the device lands ~200–300ms after `data-seq-end`. Add `<link rel="modulepreload" href="motion.js">` in the head and keep the module small.
+- **`rise` owns `transform`.** A device centred with `translate:-50%` must use the `translate` *property*, not `transform:translate()`, or the rise overwrites the centring.
+- **To judge it, capture from navigation:** `page.goto(url, { waitUntil: 'commit' })`, then screenshots at ~100, 600, 1200 and 2500ms, logging each element's computed opacity beside the shot. Waiting for `data-seq-end` first makes every frame look finished.
+- Pairs best with techniques §87: the `rise` reads as the screen coming up from behind the scene's foreground (Bulwark, gallery v6).
+
 ## 6. Loaders and intros: policy
 
 | Direction | Preloader? | Hero intro |

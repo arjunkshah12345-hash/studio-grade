@@ -1,0 +1,395 @@
+<!--
+DESIGN SPINE · Bulwark (fictional)
+DIRECTION   : 1 Engineered Dark. Platform and security leads trust a tool they can read, so the product itself (a YAML policy, a blocked call, a Slack approval, the signed log) does the persuading, set at a hotel front desk at night.
+REGISTER    : Confident. The bold device is the key cabinet photographed at full width, with the product window rising from behind the front desk. Everything after it is disciplined dark, plus four colour chapters.
+AXES        : ground tinted dark walnut #100603 (sampled from the hero's shadow) · type genre didone (Bodoni Moda 400, roman + italic) over a plain grotesk (Geist) · image medium generated still-life photo series + product UI rebuilt in HTML · composition device in the scene (three planes), then stacked colour chapters, then a worked-example ledger · motion feel the hero load sequence, then still (one live "waiting" shimmer)
+DEFAULT?    : 1/6 matched (one accent on marks) → DIFFERENT FROM DEFAULT BY: dark ground, didone display, no mono-caps metadata layer, photo + UI instead of a line drawing. Set check (gallery v5): shares ground with Branchline, image medium with Callback, nothing with Quota.
+MOTIF       : the brass key tag with a room number. 1 hero: dashed ghost tags on the three empty hooks (keys that are out) · 2 device: the same numbers head its rows · 3 chapter index tags (01–04) · 4 pricing: one hook per agent (1 · 25 · by quote) · 5 the wordmark's mark and favicon
+TYPE        : display Bodoni Moda 400 (+ italic 400) · text Geist 400/500 · mono Geist Mono 400 (product UI, code, room numbers only)
+SCALE       : display 78px/1.0/-0.02em · h2 54px/1.04/-0.015em · h3 26px · body 16px · ui 14px · label 13px sentence case (no tracked caps)
+PALETTE     : paper #100603 · paper-2 #1A0D07 · ink #EFE4CF (cool cream) · ink-2 ink@74% · ink-3 ink@60% · hairline ink@10% · accent brass #C9A25B → ONLY the primary button and the "ask a person" state · chapter fields: cream #EAE0CB (doorway), oxblood #5A1A1C (blocked), brass #B9914C (ask), walnut #24130B (ledger)
+GRID        : 12 / 24px · container 1280 · margin 20→80 · section rhythm 96–144, 200+ voids around the chapters
+HERO        : H23 device in the scene. Split header on the walnut ground (h1 left, lede + 2 CTAs right); below, the 21:9 cabinet on a stage; three dashed ghost tags mark the empty hooks; a cream "front desk" window rises from behind the desk, which is a foreground plane cut from the same photo
+IMAGERY     : photo series (hero cabinet, single key, guest ledger) each paired with HTML product UI (front desk, YAML policy, demo form written into the ledger)
+CONVERSION  : Book a demo → nav, hero, Team tier, finale form · Read a policy → hero, policy section
+MOTION      : house ease cubic-bezier(.16,1,.3,1) · UI 150–240ms · reveal 850ms · hero load sequence (heroSequence, motion.md §5.10): h1 word by word, lede, CTAs, device rises 56px from behind the desk, ghost tags last; media blur-in below the fold; nothing else
+IMAGES      : medium      quiet, precise still-life and interior photography in the style of a fine hotel at night: a wall cabinet of numbered brass room keys on hooks, heavy key tags, a front desk bell, a ledger, polished wood and brass under warm low light, deep shadow
+              palette     oxblood, brass, walnut, near-black, one cool cream
+              people      none
+              exclude     no text other than plain room numbers on key tags, no logos, no brand marks, no watermarks, no faces
+              shot list   hero 21:9 key cabinet at night, three hooks empty, left 40% clean walnut shadow · key 4:3 single brass key with a leather tag on a dark walnut desk, empty dark left · ledger 4:3 open guest ledger beside a brass bell and fountain pen, lines blank
+              crops       hero → desktop stage 1916 + desk foreground plane (0,676,1000,145) + mobile 4:5 (1000,0,657,821) · key → policy stage · ledger → finale (blank page carries the visitor's name in live type, §82)
+NAMING      : tools are rooms · a policy is a key · the approver is the front desk · the log is the ledger · CTA "Book a demo" (kept plain) · finale "Sign the book"
+SIGNATURES  : §87 device in the scene (desk plane) · §85 stacked colour chapters (one colour per thing that happens to a call) · §90 methodology as proof (a labelled worked trace, the reading order, before/with, empty compliance slots)
+VOICE       : "Give each agent a key, not the building." · "Not on the key, not through the door." · "Sign the book. We'll cut the first keys together."
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bulwark · A permission layer for AI agents</title>
+<meta name="description" content="Bulwark sits between your agents and the tools they call, checks every call against a YAML policy, asks a named person about risky ones, and signs every call into a searchable log. A fictional product.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23100603'/%3E%3Cpath d='M11 5h10l3 3v16l-3 3H11l-3-3V8z' fill='%23C9A25B'/%3E%3Ccircle cx='16' cy='10' r='2' fill='%23100603'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Geist:wght@400;500&family=Geist+Mono:wght@400;500&display=swap">
+<link rel="preload" as="image" href="img/hero-1916.webp" type="image/webp" fetchpriority="high" media="(min-width:1024px)">
+<link rel="preload" as="image" href="img/hero-m-657.webp" type="image/webp" fetchpriority="high" media="(max-width:1023px)">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--accent" href="#main">Skip to content</a>
+
+<header class="nav" data-nav>
+  <div class="nav-in container">
+    <a class="brand" href="#top" aria-label="Bulwark, home">
+      <svg class="tag-mark" viewBox="0 0 14 24" aria-hidden="true"><path d="M3 0h8l3 3v18l-3 3H3l-3-3V3z" fill="currentColor"/><circle cx="7" cy="5" r="1.6" fill="var(--paper)"/></svg>
+      <span>Bulwark</span>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#policy">Read a policy</a>
+      <a href="#method">How it decides</a>
+      <a href="#pricing">Pricing</a>
+    </nav>
+    <a class="btn btn--accent btn--sm" href="#demo">Book a demo</a>
+  </div>
+</header>
+
+<main id="main">
+<!-- ============================== HERO (§87 + motion.md §5.10) -->
+<section class="hero" id="top" data-seq-root aria-labelledby="h1">
+  <div class="hero-head container">
+    <h1 id="h1" class="t-display" data-seq="words">Give each agent a key, <em>not the building.</em></h1>
+    <div class="hero-side">
+      <p class="lede" data-seq>Bulwark checks every tool call against a policy you write in YAML, blocks the rest, asks a named person about risky ones, and signs the log.</p>
+      <div class="act" data-seq>
+        <a class="btn btn--accent" href="#demo">Book a demo</a>
+        <a class="btn btn--ghost" href="#policy">Read a policy <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="scene">
+    <div class="stage">
+      <picture>
+        <source media="(max-width:1023px)" srcset="img/hero-m-657.webp" type="image/webp">
+        <source media="(max-width:1023px)" srcset="img/hero-m-657.jpg">
+        <source srcset="img/hero-960.webp 960w, img/hero-1916.webp 1916w" sizes="100vw" type="image/webp">
+        <img class="back" src="img/hero-1916.jpg" srcset="img/hero-960.jpg 960w, img/hero-1916.jpg 1916w" sizes="100vw" width="1916" height="821" fetchpriority="high"
+             alt="A hotel key cabinet at night: rows of brass room keys on numbered hooks, three hooks empty, a brass bell and a leather ledger on the desk in front.">
+      </picture>
+
+      <figure class="device" data-seq="rise" role="img" aria-label="Example front desk view: three keys are out. support-agent read an order and digest-agent sent an email, both allowed; billing-agent asked to refund USD 1,240 and is waiting for Dana to approve in Slack.">
+        <div class="bezel">
+          <div class="screen">
+            <div class="d-head"><span>Front desk</span><span class="d-sub">3 keys out</span><span class="chip-ex">Example</span></div>
+            <div class="d-row d-row--ask"><span class="room">306</span><span class="who"><b>billing-agent</b><i>payments.refund · USD 1,240</i></span><span class="st st--ask"><span class="shimmer" data-live>Asking @dana</span> <time>#approvals</time></span></div>
+            <div class="d-row"><span class="room">104</span><span class="who"><b>support-agent</b><i>orders.read</i></span><span class="st st--ok">Allowed <time>13:58</time></span></div>
+            <div class="d-row"><span class="room">203</span><span class="who"><b>digest-agent</b><i>email.send</i></span><span class="st st--ok">Allowed <time>14:01</time></span></div>
+          </div>
+        </div>
+      </figure>
+      <img class="front" src="img/desk-1000.webp" width="1000" height="145" alt="" aria-hidden="true">
+
+      <div class="ghosts" data-seq aria-hidden="true">
+        <svg class="ghost" style="--x:68.5;--y:9.6;--mx:47.6" viewBox="0 0 46 100"><path d="M8 1h30l7 7v84l-7 7H8l-7-7V8z"/><text x="23" y="58">104</text></svg>
+        <svg class="ghost" style="--x:63.3;--y:31.6;--mx:32.4" viewBox="0 0 46 100"><path d="M8 1h30l7 7v84l-7 7H8l-7-7V8z"/><text x="23" y="58">203</text></svg>
+        <svg class="ghost ghost--ask" style="--x:79;--y:52.9;--mx:78.1" viewBox="0 0 46 100"><path d="M8 1h30l7 7v84l-7 7H8l-7-7V8z"/><text x="23" y="58">306</text></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FACTS STRIP -->
+<section class="facts" aria-label="Where it runs">
+  <ul class="container facts-list">
+    <li><b>Any agent framework</b><span>Through an MCP proxy or an SDK</span></li>
+    <li><b>Your tools, unchanged</b><span>Databases, email, payments, shell, internal APIs</span></li>
+    <li><b>Self-hosted or cloud</b><span>Run it yourself, or let us run it</span></li>
+    <li><b>Free for one agent</b><span>Team is USD 400 a month for up to 25</span></li>
+  </ul>
+</section>
+
+<!-- ============================== POLICY (Read a policy) -->
+<section class="policy section" id="policy" aria-labelledby="policy-h">
+  <div class="container policy-head">
+    <p class="kicker">Read a policy</p>
+    <h2 id="policy-h" class="t-h2">A policy is a key. <span class="dim">It opens the rooms written on it, and no others.</span></h2>
+  </div>
+  <div class="policy-stage">
+    <figure class="key-photo" data-reveal>
+      <picture>
+        <source srcset="img/key-960.webp 960w, img/key-1448.webp 1448w" sizes="(min-width:1024px) 62vw, 100vw" type="image/webp">
+        <img src="img/key-1448.jpg" srcset="img/key-960.jpg 960w, img/key-1448.jpg 1448w" sizes="(min-width:1024px) 62vw, 100vw" width="1448" height="1086" loading="lazy"
+             alt="A heavy brass key on a leather tag numbered 204, lying on a dark walnut desk in warm side light.">
+      </picture>
+    </figure>
+    <figure class="yaml bezel" role="img" aria-label="Example policy file for billing-agent: allow orders.read; allow email.send to customer addresses; allow refunds up to 200 US dollars; ask Dana in the approvals channel for larger refunds; deny shell and database writes. Anything not listed is blocked.">
+      <div class="screen screen--code">
+        <div class="code-head"><span>policies/billing-agent.yaml</span><span class="chip-ex">Example</span></div>
+<pre><code><span class="ln">1</span><span class="k">agent</span>: billing-agent
+<span class="ln">2</span>
+<span class="ln">3</span><span class="k">allow</span>:
+<span class="ln">4</span>  - <span class="k">tool</span>: orders.read
+<span class="ln">5</span>  - <span class="k">tool</span>: email.send
+<span class="ln">6</span>    <span class="k">where</span>: { <span class="k">to</span>: <span class="s">"*@customers.example.com"</span> }
+<span class="ln">7</span>  - <span class="k">tool</span>: payments.refund
+<span class="ln">8</span>    <span class="k">where</span>: { <span class="k">amount_usd</span>: <span class="s">"&lt;= 200"</span> }
+<span class="ln">9</span>
+<span class="ln">10</span><span class="k">ask</span>:
+<span class="ln">11</span>  - <span class="k">tool</span>: payments.refund
+<span class="ln">12</span>    <span class="k">where</span>: { <span class="k">amount_usd</span>: <span class="s">"&gt; 200"</span> }
+<span class="ln">13</span>    <span class="k">approver</span>: <span class="s">"@dana"</span>
+<span class="ln">14</span>    <span class="k">channel</span>: <span class="s">"#approvals"</span>
+<span class="ln">15</span>
+<span class="ln">16</span><span class="k">deny</span>:
+<span class="ln">17</span>  - <span class="k">tool</span>: shell.*
+<span class="ln">18</span>  - <span class="k">tool</span>: db.write
+<span class="ln">19</span><span class="c"># anything not listed above is blocked</span></code></pre>
+      </div>
+    </figure>
+  </div>
+  <ol class="container policy-notes" data-reveal-group>
+    <li><span class="n">allow</span><p>Calls that match go straight to the tool. Narrow them with <code>where</code>: an address, an amount, a table.</p></li>
+    <li><span class="n n--ask">ask</span><p>Calls that match wait. The person you name gets a message in Slack, and the call goes through only if they say yes.</p></li>
+    <li><span class="n">everything else</span><p>Blocked. A key opens the rooms written on it; a tool you forgot to list stays locked.</p></li>
+  </ol>
+</section>
+
+<!-- ============================== HOW: stacked colour chapters (§85) -->
+<section class="how" id="how" aria-labelledby="how-h">
+  <div class="container how-head">
+    <p class="kicker">How it works</p>
+    <h2 id="how-h" class="t-h2">Every call stops at the desk. <span class="dim">Most go straight through.</span></h2>
+  </div>
+
+  <div class="stack container">
+    <!-- 1 · doorway -->
+    <article class="chap chap--cream" style="--n:0" aria-labelledby="c1">
+      <div class="chap-text">
+        <span class="tagno">01</span>
+        <h3 id="c1" class="chap-h">In the doorway. <span class="then">Between your agents and every tool they call.</span></h3>
+        <p>Bulwark runs as an MCP proxy, or inside your code through an SDK, so it works with any agent framework. Host it yourself or use our cloud.</p>
+      </div>
+      <div class="inset">
+        <figure class="ui-path" role="img" aria-label="Example: three agents connect to Bulwark, which sits in front of five tools: a Postgres database, email, payments, a shell and an internal API.">
+          <ul class="p-col"><li>support-agent</li><li>billing-agent</li><li>digest-agent</li></ul>
+          <div class="p-mid"><span class="p-line" aria-hidden="true"></span><div class="p-node"><svg viewBox="0 0 14 24" aria-hidden="true"><path d="M3 0h8l3 3v18l-3 3H3l-3-3V3z" fill="currentColor"/><circle cx="7" cy="5" r="1.6" fill="#EAE0CB"/></svg>Bulwark<small>MCP proxy · SDK</small></div><span class="p-line" aria-hidden="true"></span></div>
+          <ul class="p-col p-col--tools"><li>postgres · orders</li><li>email</li><li>payments</li><li>shell</li><li>internal API · crm</li></ul>
+          <span class="chip-ex chip-ex--corner">Example</span>
+        </figure>
+      </div>
+    </article>
+
+    <!-- 2 · blocked -->
+    <article class="chap chap--ox" style="--n:1" aria-labelledby="c2">
+      <div class="chap-text">
+        <span class="tagno">02</span>
+        <h3 id="c2" class="chap-h">Not on the key, not through the door. <span class="then">The agent gets a refusal it can read.</span></h3>
+        <p>A call the policy doesn't allow never reaches the tool. The agent hears why, in plain words, and the attempt goes in the log like any other call.</p>
+      </div>
+      <div class="inset">
+        <figure class="ui-term" role="img" aria-label="Example: billing-agent calls db.write to delete rows from orders; Bulwark returns blocked, because billing-agent.yaml denies db.write on line 18.">
+          <div class="t-head"><span>billing-agent · tool call</span><span class="chip-ex">Example</span></div>
+<pre><span class="dimc">→</span> tools/call <b>db.write</b>
+  { "table": "orders", "op": "delete", "where": "created_at &lt; 2025-01-01" }
+
+<span class="dimc">←</span> <span class="red">blocked</span> by policies/billing-agent.yaml
+  line 18 · deny: db.write
+  "billing-agent can't write to the database.
+   Ask a person who can."</pre>
+          <div class="t-foot"><span class="dot dot--red"></span>Logged · 14:07:09 · signed</div>
+        </figure>
+      </div>
+    </article>
+
+    <!-- 3 · ask -->
+    <article class="chap chap--brass" style="--n:2" aria-labelledby="c3">
+      <div class="chap-text">
+        <span class="tagno">03</span>
+        <h3 id="c3" class="chap-h">Risky calls ring the desk. <span class="then">A named person answers, in Slack.</span></h3>
+        <p>Lines under <code>ask</code> pause the call and message the approver you chose. The agent waits. Their answer, and their name, go in the log with the call.</p>
+      </div>
+      <div class="inset">
+        <figure class="ui-slack" role="img" aria-label="Example Slack message in #approvals from the Bulwark app: billing-agent wants to refund USD 1,240 on order 4471; the policy asks Dana for refunds over 200 dollars; Approve and Decline buttons.">
+          <div class="s-chan"># approvals<span class="chip-ex">Example</span></div>
+          <div class="s-msg">
+            <span class="s-av" aria-hidden="true"><svg viewBox="0 0 14 24"><path d="M3 0h8l3 3v18l-3 3H3l-3-3V3z" fill="currentColor"/><circle cx="7" cy="5" r="1.6" fill="#fff"/></svg></span>
+            <div>
+              <p class="s-name">Bulwark <span class="s-app">APP</span> <time>14:02</time></p>
+              <p><b>@dana</b>, billing-agent wants to call <code>payments.refund</code>.</p>
+              <dl class="s-fields"><div><dt>Order</dt><dd>4471</dd></div><div><dt>Amount</dt><dd>USD 1,240</dd></div><div><dt>Rule</dt><dd>billing-agent.yaml · line 12 · ask when amount_usd &gt; 200</dd></div></dl>
+              <div class="s-btns"><span class="s-btn s-btn--go">Approve</span><span class="s-btn">Decline</span></div>
+            </div>
+          </div>
+        </figure>
+      </div>
+    </article>
+
+    <!-- 4 · ledger -->
+    <article class="chap chap--walnut" style="--n:3" aria-labelledby="c4">
+      <div class="chap-text">
+        <span class="tagno">04</span>
+        <h3 id="c4" class="chap-h">Every call goes in the ledger. <span class="then">Signed, and searchable afterwards.</span></h3>
+        <p>Allowed, blocked or asked: each call is written with the policy line that decided it, so "what did the agent do?" has one answer.</p>
+      </div>
+      <div class="inset">
+        <figure class="ui-log" role="img" aria-label="Example log search for billing-agent after 14:00, showing four signed entries: a blocked email, an approved refund, a blocked database write and an allowed order read.">
+          <div class="l-search"><span class="l-q">agent:billing-agent after:14:00</span><span class="chip-ex">Example</span></div>
+          <table>
+            <thead><tr><th>Time</th><th>Call</th><th>Decided by</th><th>Result</th><th>Signature</th></tr></thead>
+            <tbody>
+              <tr><td>14:01:12</td><td>email.send</td><td>no line</td><td><span class="v v--no">Blocked</span></td><td>4e1c…a09f</td></tr>
+              <tr><td>14:02:20</td><td>payments.refund</td><td>line 12</td><td><span class="v v--ask">Approved · Dana</span></td><td>9f3a…c21e</td></tr>
+              <tr><td>14:07:09</td><td>db.write</td><td>line 18</td><td><span class="v v--no">Blocked</span></td><td>27bd…6e40</td></tr>
+              <tr><td>14:09:44</td><td>orders.read</td><td>line 4</td><td><span class="v v--ok">Allowed</span></td><td>c83f…1b7d</td></tr>
+            </tbody>
+          </table>
+        </figure>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================== METHOD (§90) -->
+<section class="method section" id="method" aria-labelledby="method-h">
+  <div class="container">
+    <div class="method-head">
+      <p class="kicker">How it decides</p>
+      <h2 id="method-h" class="t-h2">One agent, one afternoon. <span class="dim">Six calls, and the line that decided each.</span></h2>
+      <p class="note"><span class="chip-ex">Example</span> Bulwark is a fictional product, so this trace is illustrative: it runs the policy above, not a customer's agent.</p>
+    </div>
+
+    <div class="method-grid">
+      <div class="trace" role="region" aria-label="Example trace" tabindex="0">
+        <table>
+          <thead><tr><th scope="col">Time</th><th scope="col">The call</th><th scope="col">Line that matched</th><th scope="col">Result</th></tr></thead>
+          <tbody>
+            <tr><td>13:58:04</td><td><code>orders.read</code> order 4471</td><td>4 · allow</td><td><span class="v v--ok">Allowed</span></td></tr>
+            <tr><td>14:00:37</td><td><code>email.send</code> to j.ruiz@customers.example.com</td><td>5–6 · allow, address matches</td><td><span class="v v--ok">Allowed</span></td></tr>
+            <tr><td>14:01:12</td><td><code>email.send</code> to ops@vendor.example.net</td><td>none · address doesn't match</td><td><span class="v v--no">Blocked</span></td></tr>
+            <tr><td>14:02:20</td><td><code>payments.refund</code> USD 1,240</td><td>11–14 · ask @dana</td><td><span class="v v--ask">Approved by Dana, 14:03</span></td></tr>
+            <tr><td>14:05:51</td><td><code>payments.refund</code> USD 60</td><td>7–8 · allow, under 200</td><td><span class="v v--ok">Allowed</span></td></tr>
+            <tr><td>14:07:09</td><td><code>db.write</code> delete from orders</td><td>18 · deny</td><td><span class="v v--no">Blocked</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="order">
+        <h3 class="t-h3">How the example reads</h3>
+        <ol>
+          <li><span><b>Deny lines first.</b> A match stops the call there.</span></li>
+          <li><span><b>Then ask lines.</b> A match pauses the call for the named approver.</span></li>
+          <li><span><b>Then allow lines.</b> A match lets the call through.</span></li>
+          <li><span><b>Nothing matched?</b> Blocked. The key has no line for that room.</span></li>
+        </ol>
+        <p class="dimmer">Every step, including the approver's answer, is signed into the log.</p>
+      </div>
+    </div>
+
+    <div class="method-low">
+      <div class="before">
+        <h3 class="t-h3">Before, and with Bulwark</h3>
+        <table>
+          <thead><tr><th scope="col"><span class="sr-only">Question</span></th><th scope="col">An agent with your API keys</th><th scope="col">The same agent behind Bulwark</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">What it can reach</th><td>Everything the keys can</td><td>The tools in its policy</td></tr>
+            <tr><th scope="row">A risky action</th><td>Happens; you find out later</td><td>Waits for a named person</td></tr>
+            <tr><th scope="row">Afterwards</th><td>Scattered app logs</td><td>One signed, searchable log</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="notyet">
+        <h3 class="t-h3">What we can't show you yet</h3>
+        <p class="dim">No customers to quote, no audits to cite. These slots stay empty until they're real.</p>
+        <ul>
+          <li><span>Security audit report</span><span class="ph-chip">Placeholder</span></li>
+          <li><span>Compliance certification</span><span class="ph-chip">Placeholder</span></li>
+          <li><span>Customer reference</span><span class="ph-chip">Placeholder</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== PRICING -->
+<section class="pricing section" id="pricing" aria-labelledby="pricing-h">
+  <div class="container">
+    <div class="pricing-head">
+      <p class="kicker">Pricing</p>
+      <h2 id="pricing-h" class="t-h2">Priced by the key. <span class="dim">One hook per agent.</span></h2>
+    </div>
+    <div class="tiers">
+      <article class="tier">
+        <h3 class="tier-name">Free</h3>
+        <p class="price t-num">USD 0</p>
+        <p class="tier-what">One agent.</p>
+        <div class="hooks" role="img" aria-label="One hook"><i class="on"></i></div>
+        <a class="btn btn--ghost" href="#demo">Book a demo</a>
+      </article>
+      <article class="tier tier--team">
+        <h3 class="tier-name">Team</h3>
+        <p class="price t-num">USD 400 <small>a month</small></p>
+        <p class="tier-what">Up to 25 agents.</p>
+        <div class="hooks" role="img" aria-label="Twenty-five hooks"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+        <a class="btn btn--accent" href="#demo">Book a demo</a>
+      </article>
+      <article class="tier">
+        <h3 class="tier-name">Enterprise</h3>
+        <p class="price">By quote</p>
+        <p class="tier-what">Priced with you.</p>
+        <div class="hooks hooks--open" role="img" aria-label="Hooks to agree together"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <a class="btn btn--ghost" href="#demo">Ask for a quote</a>
+      </article>
+    </div>
+    <p class="pricing-foot dimmer">Every plan runs self-hosted or in our cloud.</p>
+  </div>
+</section>
+
+<!-- ============================== FINALE: sign the book -->
+<section class="finale" id="demo" aria-labelledby="demo-h">
+  <div class="finale-grid">
+    <div class="finale-text container-l">
+      <h2 id="demo-h" class="t-h2">Sign the book. <span class="dim">We'll cut the first keys together.</span></h2>
+      <form class="book" data-book novalidate>
+        <div class="f-pair"><div class="f"><label for="f-name">Your name</label><input id="f-name" name="name" autocomplete="name" required data-ink></div>
+        <div class="f"><label for="f-mail">Work email</label><input id="f-mail" name="email" type="email" autocomplete="email" required></div></div>
+        <div class="f"><label for="f-n">Agents in production</label>
+          <select id="f-n" name="agents"><option>One</option><option selected>2 to 25</option><option>More than 25</option><option>None yet</option></select></div>
+        <div class="f"><label for="f-never">One thing they must never do <span class="dimmer">(optional)</span></label><input id="f-never" name="never" placeholder="Refund more than USD 200 without asking"></div>
+        <button class="btn btn--accent" type="submit">Book a demo</button>
+        <p class="book-ok" role="status" aria-live="polite" hidden></p>
+      </form>
+    </div>
+    <figure class="ledger-photo" data-reveal>
+      <picture>
+        <source media="(max-width:1023px)" srcset="img/ledger-m-1180.webp" type="image/webp">
+        <source srcset="img/ledger-960.webp 960w, img/ledger-1448.webp 1448w" sizes="(min-width:1024px) 58vw, 100vw" type="image/webp">
+        <img src="img/ledger-1448.jpg" srcset="img/ledger-960.jpg 960w, img/ledger-1448.jpg 1448w" sizes="(min-width:1024px) 58vw, 100vw" width="1448" height="1086" loading="lazy"
+             alt="An open guest ledger with blank ruled pages on a dark front desk, beside a brass service bell and a fountain pen, under a warm lamp.">
+      </picture>
+      <span class="ink" data-ink-out aria-hidden="true"></span>
+    </figure>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="container foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="#top"><svg class="tag-mark" viewBox="0 0 14 24" aria-hidden="true"><path d="M3 0h8l3 3v18l-3 3H3l-3-3V3z" fill="currentColor"/><circle cx="7" cy="5" r="1.6" fill="var(--paper)"/></svg><span>Bulwark</span></a>
+      <p class="dimmer">© <span data-year>2026</span> Bulwark. A fictional product.</p>
+    </div>
+    <div class="foot-col"><h4>Product</h4><a href="#how">How it works</a><a href="#policy">Read a policy</a><a href="#method">How it decides</a><a href="#pricing">Pricing</a></div>
+    <div class="foot-col"><h4>Company</h4><a href="#demo">Book a demo</a><a href="mailto:hello@bulwark.example">hello@bulwark.example</a></div>
+    <div class="foot-col"><h4>Legal</h4><a href="legal.html#terms">Terms</a><a href="legal.html#privacy">Privacy</a></div>
+  </div>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

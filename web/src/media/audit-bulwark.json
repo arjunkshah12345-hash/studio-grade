@@ -1,0 +1,776 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/bulwark/",
+ "outDir": "/tmp/bulwark-aud",
+ "ms": 44846,
+ "counts": {
+  "PASS": 11,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Geist×125",
+   "Geist Mono×76",
+   "Bodoni Moda×23"
+  ],
+  "display": [
+   "54px/1.04/-0.015em w400 \"A policy is a key. It opens \"",
+   "54px/1.04/-0.015em w400 \"It opens the rooms written o\"",
+   "54px/1.04/-0.015em w400 \"Every call stops at the desk\""
+  ],
+  "bodySize": "16",
+  "weights": [
+   "400×162",
+   "500×62"
+  ],
+  "upperShare": 0,
+  "paper": "rgb(16,6,3)",
+  "accents": [
+   "rgb(201,162,91) bg a.skip",
+   "rgb(90,26,28) bg article.chap"
+  ],
+  "buttons": [
+   "square 36px \"Book a demo\"",
+   "square 46px \"Book a demo\"",
+   "square 46px \"Read a policy\n→\"",
+   "square 46px \"Book a demo\"",
+   "square 46px \"Book a demo\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)"
+  ],
+  "nav": {
+   "h": 64,
+   "links": 6
+  },
+  "pageVh": 10.6
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "3 families: Geist, Geist Mono, Bodoni Moda"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 54px · lh 1.04 · -0.015em · weight 400 · Bodoni Moda)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (1/6 traits: lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "Colour-block system: 2 hues used as full-bleed fields. Loud register is fine if each hue has one meaning (range.md §1).",
+   "examples": [
+    "30° (w181) e.g. rgb(201,162,91) bg a.skip",
+    "0° (w169) e.g. rgb(90,26,28) bg article.chap"
+   ]
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 147 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: square"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "2 hero CTA(s) · seen: 1 solid + 1 ghost"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.16,1,0.3,1)×27, cubic-bezier(0.4,0,0.2,1)×17"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (6/19 paragraphs wait for scroll)"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.heroSequence",
+   "msg": "Hero load sequence: h1 sharp at 1200ms, hero settled at 1890ms"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 12.5% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 10.6 viewports (direction 1 norm 8–11)"
+  }
+ ],
+ "screenshots": [
+  "/tmp/bulwark-aud/desktop-hero.png",
+  "/tmp/bulwark-aud/slice-01.jpg … (one per viewport)",
+  "/tmp/bulwark-aud/desktop-full.jpg",
+  "/tmp/bulwark-aud/mobile-hero.png",
+  "/tmp/bulwark-aud/mobile-full.jpg",
+  "/tmp/bulwark-aud/reduced-motion-hero.png"
+ ],
+ "raw": {
+  "desktop": {
+   "title": "Bulwark · A permission layer for AI agents",
+   "lang": "en",
+   "metaDesc": true,
+   "pageVh": 10.6,
+   "families": [
+    [
+     "Geist",
+     125
+    ],
+    [
+     "Geist Mono",
+     76
+    ],
+    [
+     "Bodoni Moda",
+     23
+    ]
+   ],
+   "loadedFonts": [
+    "Bodoni Moda",
+    "Geist",
+    "Geist Mono"
+   ],
+   "largest": [
+    {
+     "tag": "h2",
+     "text": "A policy is a key. It opens the rooms written on it, and no others.",
+     "family": "Bodoni Moda",
+     "size": 53.76,
+     "weight": 400,
+     "lh": 1.04,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 1243.59375,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "It opens the rooms written on it, and no others.",
+     "family": "Bodoni Moda",
+     "size": 53.76,
+     "weight": 400,
+     "lh": 1.04,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 1229.59375,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Every call stops at the desk. Most go straight through.",
+     "family": "Bodoni Moda",
+     "size": 53.76,
+     "weight": 400,
+     "lh": 1.04,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 2672.828125,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Most go straight through.",
+     "family": "Bodoni Moda",
+     "size": 53.76,
+     "weight": 400,
+     "lh": 1.04,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 2714.734375,
+     "condensed": true
+    },
+    {
+     "tag": "h2",
+     "text": "One agent, one afternoon. Six calls, and the line that decided each.",
+     "family": "Bodoni Moda",
+     "size": 53.76,
+     "weight": 400,
+     "lh": 1.04,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 6200.71875,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Six calls, and the line that decided each.",
+     "family": "Bodoni Moda",
+     "size": 53.76,
+     "weight": 400,
+     "lh": 1.04,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 6186.71875,
+     "condensed": false
+    }
+   ],
+   "h1": [
+    {
+     "tag": "h1",
+     "text": "Give each agent a key, not the building. Give each agent a key, not the building",
+     "family": "Bodoni Moda",
+     "size": 78,
+     "weight": 400,
+     "lh": 1,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 127,
+     "condensed": false
+    }
+   ],
+   "h1Count": 1,
+   "display": [
+    {
+     "tag": "span",
+     "text": "Give",
+     "family": "Bodoni Moda",
+     "size": 78,
+     "weight": 400,
+     "lh": 1,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 127,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "each",
+     "family": "Bodoni Moda",
+     "size": 78,
+     "weight": 400,
+     "lh": 1,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 127,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "agent",
+     "family": "Bodoni Moda",
+     "size": 78,
+     "weight": 400,
+     "lh": 1,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 127,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "key,",
+     "family": "Bodoni Moda",
+     "size": 78,
+     "weight": 400,
+     "lh": 1,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 205,
+     "condensed": true
+    },
+    {
+     "tag": "span",
+     "text": "not",
+     "family": "Bodoni Moda",
+     "size": 78,
+     "weight": 400,
+     "lh": 1,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 205,
+     "condensed": true
+    },
+    {
+     "tag": "span",
+     "text": "the",
+     "family": "Bodoni Moda",
+     "size": 78,
+     "weight": 400,
+     "lh": 1,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 205,
+     "condensed": true
+    },
+    {
+     "tag": "span",
+     "text": "building.",
+     "family": "Bodoni Moda",
+     "size": 78,
+     "weight": 400,
+     "lh": 1,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 205,
+     "condensed": true
+    },
+    {
+     "tag": "h2",
+     "text": "A policy is a key. It opens the rooms written on it, and no others.",
+     "family": "Bodoni Moda",
+     "size": 53.76,
+     "weight": 400,
+     "lh": 1.04,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 1243.59375,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "It opens the rooms written on it, and no others.",
+     "family": "Bodoni Moda",
+     "size": 53.76,
+     "weight": 400,
+     "lh": 1.04,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 1229.59375,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Every call stops at the desk. Most go straight through.",
+     "family": "Bodoni Moda",
+     "size": 53.76,
+     "weight": 400,
+     "lh": 1.04,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 2672.828125,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Most go straight through.",
+     "family": "Bodoni Moda",
+     "size": 53.76,
+     "weight": 400,
+     "lh": 1.04,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 2714.734375,
+     "condensed": true
+    },
+    {
+     "tag": "h3",
+     "text": "Every call goes in the ledger. Signed, and searchable afterwards.",
+     "family": "Bodoni Moda",
+     "size": 44,
+     "weight": 400,
+     "lh": 1.06,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 5418.1875,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Signed, and searchable afterwards.",
+     "family": "Bodoni Moda",
+     "size": 44,
+     "weight": 400,
+     "lh": 1.06,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 5453.8125,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "One agent, one afternoon. Six calls, and the line that decided each.",
+     "family": "Bodoni Moda",
+     "size": 53.76,
+     "weight": 400,
+     "lh": 1.04,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 6200.71875,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Six calls, and the line that decided each.",
+     "family": "Bodoni Moda",
+     "size": 53.76,
+     "weight": 400,
+     "lh": 1.04,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 6186.71875,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Priced by the key. One hook per agent.",
+     "family": "Bodoni Moda",
+     "size": 53.76,
+     "weight": 400,
+     "lh": 1.04,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 7606,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "One hook per agent.",
+     "family": "Bodoni Moda",
+     "size": 53.76,
+     "weight": 400,
+     "lh": 1.04,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 7592,
+     "condensed": true
+    },
+    {
+     "tag": "p",
+     "text": "USD 0",
+     "family": "Bodoni Moda",
+     "size": 51.52,
+     "weight": 400,
+     "lh": 1,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 7820.90625,
+     "condensed": false
+    },
+    {
+     "tag": "p",
+     "text": "USD 400 a month",
+     "family": "Bodoni Moda",
+     "size": 51.52,
+     "weight": 400,
+     "lh": 1,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 7820.90625,
+     "condensed": false
+    },
+    {
+     "tag": "p",
+     "text": "By quote",
+     "family": "Bodoni Moda",
+     "size": 51.52,
+     "weight": 400,
+     "lh": 1,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 7820.90625,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Sign the book. We'll cut the first keys together.",
+     "family": "Bodoni Moda",
+     "size": 53.76,
+     "weight": 400,
+     "lh": 1.04,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 8500.34375,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "We'll cut the first keys together.",
+     "family": "Bodoni Moda",
+     "size": 53.76,
+     "weight": 400,
+     "lh": 1.04,
+     "ls": -0.015,
+     "upper": false,
+     "clipText": false,
+     "top": 8542.25,
+     "condensed": false
+    }
+   ],
+   "bodySize": "16",
+   "tinyText": 0,
+   "labelsTight": [],
+   "labelCount": 0,
+   "upperShare": 0,
+   "bigCapsSentences": [],
+   "weights": [
+    [
+     "400",
+     162
+    ],
+    [
+     "500",
+     62
+    ]
+   ],
+   "textShadowBig": 0,
+   "textStroke": 0,
+   "stuckReveal": [],
+   "gradientText": [],
+   "longMeasure": [],
+   "paper": [
+    16,
+    6,
+    3,
+    1
+   ],
+   "pureBW": {
+    "blackOnWhite": 0,
+    "whiteOnBlack": 0
+   },
+   "artHues": [
+    "30°×52",
+    "0°×23",
+    "60°×5",
+    "120°×1"
+   ],
+   "accentHues": [
+    {
+     "hue": 30,
+     "weight": 181,
+     "example": "rgb(201,162,91) bg a.skip"
+    },
+    {
+     "hue": 0,
+     "weight": 169,
+     "example": "rgb(90,26,28) bg article.chap"
+    }
+   ],
+   "chromaCoverage": 12.5,
+   "fieldHues": [
+    0,
+    30
+   ],
+   "gradients": [],
+   "glows": 0,
+   "buttonCamps": [
+    [
+     "square",
+     6
+    ]
+   ],
+   "buttons": [
+    {
+     "text": "Book a demo",
+     "camp": "square",
+     "h": 36,
+     "top": 8679,
+     "nav": true
+    },
+    {
+     "text": "Book a demo",
+     "camp": "square",
+     "h": 46,
+     "top": 231,
+     "nav": false
+    },
+    {
+     "text": "Read a policy\n→",
+     "camp": "square",
+     "h": 46,
+     "top": 231,
+     "nav": false
+    },
+    {
+     "text": "Book a demo",
+     "camp": "square",
+     "h": 46,
+     "top": 8015,
+     "nav": false
+    },
+    {
+     "text": "Book a demo",
+     "camp": "square",
+     "h": 46,
+     "top": 8015,
+     "nav": false
+    },
+    {
+     "text": "Ask for a quote",
+     "camp": "square",
+     "h": 46,
+     "top": 8015,
+     "nav": false
+    },
+    {
+     "text": "Book a demo",
+     "camp": "square",
+     "h": 46,
+     "top": 9029,
+     "nav": false
+    }
+   ],
+   "bigRadiusCards": 0,
+   "dropShadows": 0,
+   "heroCtas": [
+    "Book a demo",
+    "Read a policy →"
+   ],
+   "heroMix": "1 solid + 1 ghost",
+   "heroTextLinks": [],
+   "h1Words": 8,
+   "h1Lines": 2,
+   "h1Centered": false,
+   "badgeAboveH1": [],
+   "h2Count": 5,
+   "h2CenteredShare": 0,
+   "iconGrids": [],
+   "sectionCV": 0.58,
+   "emoji": [],
+   "exclaim": [],
+   "banned": [],
+   "lorem": false,
+   "dupIds": [],
+   "hiddenShown": [],
+   "motion": {
+    "usedEases": [
+     [
+      "cubic-bezier(0.16,1,0.3,1)",
+      27
+     ],
+     [
+      "cubic-bezier(0.4,0,0.2,1)",
+      17
+     ]
+    ],
+    "transitions": 18,
+    "keyframes": 2,
+    "beziers": [
+     [
+      "cubic-bezier(.16,1,.3,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.76,0,.24,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.4,0,.2,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.34,1.56,.64,1)",
+      1
+     ]
+    ],
+    "reducedMotion": true,
+    "defaultEases": 12,
+    "lenis": false,
+    "revealEls": 5
+   },
+   "autoplayVideos": 0,
+   "pauseControl": false,
+   "imgNoAlt": 0,
+   "unnamedControls": 0,
+   "skipLink": true,
+   "hiddenText": [],
+   "defaultLook": {
+    "sig": {
+     "warmOffWhite": false,
+     "monoUpperLabels": false,
+     "hairlineBands": false,
+     "lineDrawingHero": false,
+     "tinyAccent": false,
+     "lightDisplay": true
+    },
+    "score": 1,
+    "monoUpperShare": 0,
+    "hairlines": 9
+   },
+   "nav": {
+    "h": 64,
+    "links": 6
+   },
+   "copyDupes": [],
+   "titleCase": [],
+   "textOverlap": [],
+   "textMotion": {
+    "paras": 19,
+    "hidden": 6,
+    "seq": {
+     "h1": 1200,
+     "end": 1890,
+     "holdsH1": true
+    },
+    "h1Split": false
+   },
+   "firstFrame": {
+    "h1Hidden": false,
+    "hidden": []
+   },
+   "contrast": {
+    "checked": 147,
+    "low": 0,
+    "lowBody": 0,
+    "examples": []
+   },
+   "perf": null,
+   "mediaContrast": {
+    "checked": 0,
+    "low": []
+   },
+   "consoleErrors": []
+  },
+  "mobile": {
+   "overflow": 0,
+   "offenders": [],
+   "small": [],
+   "smallCount": 0,
+   "h1Size": 40,
+   "tinyBody": 0,
+   "tinyEx": []
+  },
+  "reducedMotion": {
+   "firstViewport": 10,
+   "hidden": []
+  }
+ }
+}

@@ -55,7 +55,7 @@ How to choose:
 
 ### Step 1b: Find the idea (the X-factor)
 
-The measurements make a page correct; they don't make it memorable. Before the Spine, follow **`references/xfactor.md`**: write the product's mechanism in one sentence (X1), generate five concepts through five different lenses (X2), score them and keep the boldest one that still passes the five-second test (X3), then commit to it in five places: the hero, one thing to play with, the language, a detail for a second look, and the ending (X4). Break exactly one default on purpose and say which (X5). In an A/B test on the same brief (gallery, Waypoint A vs B), the build that did this step was the one people would remember; the one that didn't was correct and forgettable. Skip it only for a redesign that must stay on-brand, or when the user asks for a plain page.
+The measurements make a page correct; what makes it memorable is **one surprising picture and one sharp line**, with everything around them plain. Follow **`references/xfactor.md`**: write the mechanism in one sentence (X1), write five *pictures* as shots (X2), and keep the one that passes the reference-row test (X3: would it sit next to Tidewell, Callback, Sift and the user's screenshots; is it photographed, rendered or real UI rather than drawn; does it survive with every themed texture and pun removed). The idea lives in the hero picture and the h1, plus one honest product moment (X4); every other section is a normal page with plain names. **Never dress the page as the metaphor** (paper, folds, stamped labels, book-cover pricing, metaphor words in the nav): a reviewer called exactly that "straight AI slop" (xfactor.md, "What a rejected X-factor looks like").
 
 ### Step 2: Write the Design Spine before any code
 
@@ -79,11 +79,10 @@ IMAGES      : the style bible if you generate images (medium · palette hexes ·
 NAMING      : <the brand metaphor> → tiers · steps · CTA verb · 404 line   (techniques.md §63; omit if the brand has no metaphor)
 SIGNATURES  : 2–3 named moves from references/techniques.md (no more; system rules §63/§66/§67 don't count)
 VOICE       : 3 sample lines (hero, section, CTA) in the brand's voice
-IDEA        : the site is ___ / so the hero is ___ / and the visitor gets to ___  (xfactor.md X3 scores)
-PLAY        : the one interaction that runs the product's mechanism in miniature
-SECOND LOOK : the detail a visitor finds
-ENDING      : how the idea pays off in the finale
-BROKEN RULE : the one default broken on purpose, and why the idea needs it
+IDEA        : the hero picture written as a shot / h1 "<line>"  · reference-row test 5/5 (xfactor.md X3)
+PRODUCT     : the honest product moment in or just below the first screen
+ECHO        : optional: the one other place the idea appears, or "none"
+PLAY        : optional: the one honest interaction, or "none"
 ```
 
 ### Step 3: Tokens first
@@ -199,7 +198,7 @@ The full list, with the replacement for each item, is in `references/anti-slop.m
 |---|---|
 | `references/directions.md` | **Always**, for the chosen direction: tokens, fonts, hero, section anatomy, motion, signatures |
 | `references/range.md` | **Always**: register (quiet/confident/loud), the five range axes, the default-look check, loud recipes |
-| `references/xfactor.md` | **Always** (Step 1b): the creative idea: five lenses, scoring, the idea in five places, one broken rule, guardrails |
+| `references/xfactor.md` | **Always** (Step 1b): the creative idea as one picture and one line, the reference-row test, the costume ban list |
 | `references/typography.md` | Choosing fonts (with free substitutes for premium faces), tracking tables, pairing rules |
 | `references/color.md` | Building the palette; 20+ measured palettes with hex values; dark mode; accent discipline |
 | `references/layout.md` | Grids, margins, hero archetypes, section-pattern library, page rhythm, mobile, studio and service sites that convert (§9) |

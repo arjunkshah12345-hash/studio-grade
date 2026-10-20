@@ -357,6 +357,17 @@ const COLLECT = () => {
     const sig = { warmOffWhite: lightWarm, monoUpperLabels: monoUpper >= 0.1, hairlineBands: hairlines >= 14, lineDrawingHero: lineHero, tinyAccent, lightDisplay: lightWeights };
     out.defaultLook = { sig, score: Object.values(sig).filter(Boolean).length, monoUpperShare: +monoUpper.toFixed(2), hairlines };
   }
+  // drawn hero: the first viewport's picture is an SVG the builder drew (every rejected gallery hero had 25+ shapes; every kept one had 0)
+  {
+    let best = { shapes: 0, area: 0 };
+    for (const sv of document.querySelectorAll('svg')) {
+      if (sv.parentElement.closest('svg')) continue; const r = sv.getBoundingClientRect(); const top = r.top + scrollY, bot = r.bottom + scrollY; if (top > vh) continue;   // page coordinates: the audit samples after scrolling
+      const area = Math.max(0, Math.min(bot, vh) - Math.max(top, 0)) * Math.max(0, Math.min(r.right, vw) - Math.max(r.left, 0)) / (vw * vh);
+      const shapes = sv.querySelectorAll('path,line,polyline,polygon,circle,rect,ellipse,text').length;
+      if (area > 0.15 && shapes > best.shapes) best = { shapes, area: +area.toFixed(2) };
+    }
+    out.drawnHero = best;
+  }
   // nav
   out.nav = header ? { h: Math.round(header.getBoundingClientRect().height), links: header.querySelectorAll('a').length } : null;
   // copy integrity: repeated headings or paragraphs (a pasted section) and Title Case headings
@@ -701,6 +712,11 @@ if (D.gradientText?.length) add('WARN', 'color.gradientText', 'Gradient-filled h
 if (D.longMeasure?.length) add('WARN', 'type.measure', `${D.longMeasure.length} paragraph(s) wider than ~90 characters (aim 45–75ch)`, D.longMeasure);
 
 // range: default look
+if (D.drawnHero) {
+  const { shapes, area } = D.drawnHero;
+  if (shapes >= 25) add('FAIL', 'imagery.drawnHero', `The hero's picture is an SVG drawing (${shapes} shapes over ${Math.round(area * 100)}% of the first viewport). Builder-drawn maps, diagrams and scenes read as clip art: every gallery hero rejected by a reviewer had one. Use a photograph, a rendered object, or the real product UI; keep SVG for icons, small labels and charts inside UI (imagery.md §0).`);
+  else add('PASS', 'imagery.drawnHero', shapes ? `Hero SVG is small or simple (${shapes} shapes)` : 'No drawn SVG picture in the hero');
+}
 if (D.defaultLook) {
   const { sig, score } = D.defaultLook; const hit = Object.entries(sig).filter(([, v]) => v).map(([k]) => k);
   if (score >= 4) add('WARN', 'style.defaultLook', `Matches ${score}/6 traits of the skill's default look (${hit.join(', ')}). Unless the brief demands it, change at least 2 axes (ground, type genre, image medium, composition, motion). See references/range.md §3.`);

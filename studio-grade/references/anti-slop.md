@@ -77,6 +77,15 @@ A studio's own site rejected by its owner as "very vibe coded" stacked the devic
 - **Write for buyers, not developers:** "checked on desktop and phone before launch", not "audited at 1440 and 390px"; no internal jargon (Spine, image series, tokens).
 - **Don't lead with the tooling.** Clients buy the outcome. Never claim a process that isn't true either: no "hand-drawn", "shot by us", invented team sizes or clients.
 
+## Theme cosplay and drawn pictures (the newest tell; rejected on sight)
+
+Models answer "be creative" by dressing the whole page as the metaphor. Two Waypoint builds (an onboarding tool, "a map of your codebase") were both rejected, one as "straight AI slop":
+- **The page in costume:** parchment and fold creases, paper cards with drop shadows on a dark felt ground, a storybook serif with italic captions, pricing as cloth book covers.
+- **A builder-drawn hero:** SVG islands, blobs, dashed borders, contour rings and pins; or a flat generated illustration in five saturated colours. Every gallery hero a reviewer rejected was an SVG drawing with 25+ shapes; every one they kept was a photograph, a render or real UI. The audit now fails `imagery.drawnHero`.
+- **Puns in the furniture:** "Ask the map", "Gazetteer", "Three sheets", "Key to the map". Nav, eyebrows, plans and buttons use plain words.
+
+**Fix:** keep the idea to the hero picture (photographed or rendered, xfactor.md X2) and the h1; build the rest as a plain, excellent product page.
+
 ## Self-review prompts (ask before shipping)
 
 1. Cover the logo. Could this be any other company's site? If yes, the motif and voice are too weak.
@@ -86,3 +95,5 @@ A studio's own site rejected by its owner as "very vibe coded" stacked the devic
 5. What is the image in each section? Is it the subject, or decoration?
 6. What is the one bespoke detail in a boring place?
 7. Does it work with `prefers-reduced-motion`, at 390px, and with the keyboard?
+8. Strip every texture, themed label and pun. Is the page still good? If it falls apart, the idea was a costume.
+9. Did you draw the main picture yourself in SVG? Replace it with a photograph, a render or the real UI.

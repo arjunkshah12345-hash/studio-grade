@@ -2,6 +2,8 @@
 
 Across all 98 sites: **zero stock photography, zero generic 3D blobs, zero illustration packs** in top-tier work. (A generated series art-directed to the brand, §8, is not stock: it's made for this page, to a written brief.) The visual is always *the subject itself* or an ornament that is true to the domain. That is the hardest thing for an agent to do and the most important.
 
+**Rule 0: don't draw the main picture yourself.** Builder-drawn SVG scenes, maps, islands and diagrams read as clip art at hero scale, however careful the drawing (every reviewer-rejected gallery hero was one; the audit fails `imagery.drawnHero` at 25+ shapes). SVG is for icons, small labels over a photo, and charts inside product UI. The same goes for flat generated "illustrations" with several saturated hues: generate photographs or physical renders instead (§8).
+
 ## Decision ladder
 
 1. Does the product have a UI? → **Rebuild it in HTML** (§1). Every tier-1 SaaS site does this.

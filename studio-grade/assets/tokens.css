@@ -195,6 +195,20 @@ button,input,select,textarea{font:inherit;color:inherit}
   transition-delay:calc(var(--i, 0) * var(--stagger))}
 .js [data-reveal].is-in{opacity:1;filter:var(--rest-filter,none);transform:none}   /* an element that needs a filter at rest (drop-shadow on a masked card) sets --rest-filter, or puts data-reveal on a wrapper */
 
+/* ---------- Hero load sequence (motion.md §5.10; pairs with heroSequence() in motion.js) ----------
+   Scene first; the h1 word by word (blur → sharp); then lede, CTA, and a [data-seq="rise"] product object.
+   Hidden only under .js; a CSS fail-safe shows everything at 2.5s if the script never runs.
+   Tune with --seq-blur / --seq-y / --seq-rise, never with a more specific selector. */
+.js [data-seq-root] [data-seq]{opacity:0;filter:blur(var(--seq-blur,6px));transform:translateY(var(--seq-y,8px));
+  transition:opacity .6s var(--ease),filter .6s var(--ease),transform .6s var(--ease);transition-delay:var(--seq-d,0ms);
+  animation:seq-failsafe 0s 2.5s forwards}
+.js [data-seq-root] [data-seq="words"]{opacity:1;filter:none;transform:none;animation:none}           /* the block stays; its words move */
+.js [data-seq-root] [data-seq="words"]:not([data-split-done]){opacity:0;animation:seq-failsafe 0s 2.5s forwards}   /* no flash before the split */
+.js [data-seq-root] [data-seq="w"]{--seq-blur:8px;--seq-y:6px}
+.js [data-seq-root] [data-seq="rise"]{--seq-blur:0px;transform:translateY(var(--seq-rise,56px));transition-duration:.9s}
+.js [data-seq-root].is-in [data-seq]{opacity:1;filter:none;transform:none;animation:none}
+@keyframes seq-failsafe{to{opacity:1;filter:none;transform:none}}
+
 /* ---------- Utilities ---------- */
 .sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .skip{position:absolute;left:var(--margin);top:-100px;z-index:999}
@@ -207,5 +221,5 @@ button,input,select,textarea{font:inherit;color:inherit}
 /* ---------- Reduced motion (non-negotiable) ---------- */
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;transition-delay:0ms!important;scroll-behavior:auto!important}
-  .js [data-reveal]{opacity:1;filter:none;transform:none}
+  .js [data-reveal],.js [data-seq-root] [data-seq]{opacity:1;filter:none;transform:none}
 }

@@ -20,9 +20,9 @@ Probe: load each site, read the hero heading at ~100ms and again at 4s, then cou
 | First screen visibly changes between 0.35s and 3.2s | 40 of 104 | most first screens are simply *there* |
 
 **Rules that follow:**
-- **Text is still by default.** The h1, sublines and body copy are present from the first frame. Animate the hero heading only if the direction calls for it (Loud, editorial, immersive), and then only the heading. Never split body text or reveal paragraphs line by line.
+- **Text is still by default.** The h1, sublines and body copy are present from the first frame. Animate the hero heading only if the direction calls for it (Loud, editorial, immersive), or as the **hero load sequence** (§5.10: scene first, h1 word by word, lede, CTA, product rises; readable by ~1.4s), and then only in the hero. Never split body text or reveal paragraphs line by line.
 - **Motion goes to the things that aren't text:** images and video (clip or scale reveals, ≤ 0.8s), card groups (one fade and 8–12px rise per group, staggered 60–90ms), the product (UI vignettes playing their one action, live data), and interaction (hover, press, the cursor).
-- **When text does reveal, it fades:** opacity only, or opacity plus ≤ 8px, at 0.3–0.5s, with no blur on reading text. Blur-to-sharp (§5.1) is for media and the hero object.
+- **When text does reveal, it fades:** opacity only, or opacity plus ≤ 8px, at 0.3–0.5s, with no blur on reading text. Blur-to-sharp (§5.1) is for media and the hero object. The one exception is the hero h1 inside the §5.10 sequence, where each word resolves from ≤ 8px blur in ≤ 0.6s.
 - **The engine is JavaScript, used lightly:** GSAP (or the native Web Animations API) for timelines and scroll-linked moments, springs for UI. A page with no reveals at all is fine, and often better for the Quiet register.
 
 ## 1. Easing tokens (frequency across 98 sites)
@@ -142,6 +142,34 @@ Splitting an h1 into letter spans inflates word counts for screen readers and au
 ```html
 <h1 class="spread"><span class="sr-only">Nocturne</span><span class="letters" aria-hidden="true"><i>N</i><i>O</i>…</span></h1>
 ```
+
+### 5.10 The hero load sequence (Rahul Luthra's reel, 2026; the sanctioned way to animate a hero h1)
+Four unrelated heroes in one reel (a docs tool, a wallet app, an AI dating coach, an AI resources tool) shared one choreography, and it's the reason a load-in headline can feel premium rather than slow:
+
+| Step | What | Timing |
+|---|---|---|
+| 0 | The **scene** (photo, illustration, gradient, mesh) and the nav are complete on the first frame | 0ms |
+| 1 | The **h1 resolves word by word**: opacity 0→1, blur 8px→0, rise 6px→0 | starts 120ms; 60–80ms per word; each word 600ms |
+| 2 | The **lede** fades as one block (never word by word) | +120ms after the last word starts |
+| 3 | The **CTA row** (and the proof pill) fades as one group | +120ms |
+| 4 | The **product object** (window, phone, device) rises 40–64px from below or from behind a foreground plane (techniques §87) | +150ms; 900ms, the house `--ease` |
+
+The h1 is fully sharp by about 1.2s for a 6-word headline (the word stagger is capped so the h1 finishes by ~1.1s whatever its length), and the whole hero settles by ~1.6s. Rules:
+- **One hero per site.** Never on section headings, never on scroll, never on body copy.
+- **The scene can't wait.** If the background image arrives late, the sequence plays over an empty colour and reads as broken: preload the hero image (`fetchpriority="high"`) and keep it out of the sequence.
+- **It fails safe.** If the script never runs, CSS shows everything at 2.5s; with reduced motion, everything is simply there.
+- **It doesn't replay.** Nothing loops or blurs out.
+
+```html
+<section class="hero" data-seq-root>
+  <h1 data-seq="words">World-class docs for everything you ship.</h1>
+  <p class="lede" data-seq>Drop Markdown into a folder and ship a docs site.</p>
+  <div class="act" data-seq><a class="btn" href="#start">Start free</a></div>
+  <figure class="device" data-seq="rise">…</figure>
+</section>
+<script type="module">import { heroSequence } from './motion.js'; heroSequence();</script>
+```
+`heroSequence()` (assets/motion.js) splits the h1 with `splitWords`, sets each delay in document order, and writes the total to `data-seq-end` on the root. The audit reads it (`motion.heroSequence`) and warns if the h1 finishes after 1.2s or the hero after 2s. `autoInit()` runs it too. Tune the hidden state with `--seq-blur`, `--seq-y` (and `--seq-rise` for `rise`), never with a more specific selector.
 
 ## 6. Loaders and intros: policy
 

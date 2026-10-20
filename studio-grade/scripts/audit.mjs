@@ -550,7 +550,9 @@ try {
     const ps2 = ps.filter((el) => !crossfaded(el, op(el) < 0.15 ? hider(el) : null));
     const hidden = ps2.filter((el) => { const h = op(el) < 0.15 ? hider(el) : null; return h && !(h !== el && cardish(h)); }).length;
     const h1 = document.querySelector('h1'); const words = h1 ? (h1.innerText || '').trim().split(/\s+/).length : 0;
-    return { paras: ps2.length, hidden, h1Split: !!h1 && h1.querySelectorAll('span,div').length >= Math.max(3, words * 0.8) };
+    const sr = document.querySelector('[data-seq-root]');   // the hero load sequence (motion.md §5.10) writes its timings here
+    const seq = sr ? { h1: +sr.dataset.seqH1 || 0, end: +sr.dataset.seqEnd || 0, holdsH1: !!(h1 && sr.contains(h1)) } : null;
+    return { paras: ps2.length, hidden, seq, h1Split: !!h1 && h1.querySelectorAll('span,div').length >= Math.max(3, words * 0.8) };
   }).catch(() => null);
   { const H = await page.evaluate(() => document.documentElement.scrollHeight); const n = Math.min(12, Math.ceil(H / 900));
     const at = (i) => (Math.ceil(H / 900) <= 12 ? i * 900 : Math.round(i * (H - 900) / (n - 1)));   // long pages: evenly spaced, always incl. the end
@@ -799,7 +801,14 @@ if (D.textMotion?.paras >= 5) {
   if (share > 0.6) add('WARN', 'motion.text', `${Math.round(share * 100)}% of below-the-fold paragraphs start hidden, waiting for a scroll reveal. On top sites it's 25%, and 4 in 5 leave body copy in place. Reveal media and card groups instead, and let text sit (motion.md §0).`, [`${D.textMotion.hidden}/${D.textMotion.paras} paragraphs`]);
   else add('PASS', 'motion.text', `Body copy mostly present without a reveal (${D.textMotion.hidden}/${D.textMotion.paras} paragraphs wait for scroll)`);
 }
-if (D.textMotion?.h1Split) add(REGISTER === 'loud' || [4, 10].includes(DIRECTION) ? 'INFO' : 'WARN', 'motion.splitHeading', 'The hero heading is split into word/character spans for an animation. Only 1 in 5 top sites does this; outside Loud, editorial (4) and immersive (10) pages, show the heading on the first frame (motion.md §0).');
+{ const q = D.textMotion?.seq;
+  if (q) {
+    if (!q.end) add('WARN', 'motion.heroSequence', 'There is a [data-seq-root] but heroSequence() never ran (no data-seq-end): the hero shows only through the 2.5s CSS fail-safe. Import and call it, or use autoInit() (motion.md §5.10).');
+    else if (q.h1 > 1200 || q.end > 2000) add('WARN', 'motion.heroSequence', `The hero load sequence is slow: the h1 is sharp at ${q.h1}ms and the hero settles at ${q.end}ms. Keep them within 1200ms and 2000ms: fewer [data-seq] blocks, or a shorter h1 (motion.md §5.10).`);
+    else add('PASS', 'motion.heroSequence', `Hero load sequence: h1 sharp at ${q.h1}ms, hero settled at ${q.end}ms`);
+  }
+}
+if (D.textMotion?.h1Split && !D.textMotion?.seq?.holdsH1) add(REGISTER === 'loud' || [4, 10].includes(DIRECTION) ? 'INFO' : 'WARN', 'motion.splitHeading', 'The hero heading is split into word/character spans for an animation. Only 1 in 5 top sites does this; outside Loud, editorial (4) and immersive (10) pages, show the heading on the first frame (motion.md §0).');
 if (D.perf) {
   if (D.perf.offscreen.length) add('WARN', 'perf.offscreen', 'A canvas keeps drawing while it is off screen. Pause render loops with an IntersectionObserver and when the tab is hidden (motion.md §5.8, directions.md §10).', D.perf.offscreen);
   else add('PASS', 'perf.offscreen', `${D.perf.canvases} canvas(es); none draws while off screen`);

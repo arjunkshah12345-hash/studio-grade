@@ -1,8 +1,8 @@
-# Signature techniques: 79 moves with code
+# Signature techniques: 93 moves with code
 
 Choose **2–3 per site**, and make sure they serve the motif. **System rules don't count toward the 2–3:** §63 (naming), §66 (type voices) and §67 ("Read the film") shape the whole build rather than one moment, so they sit alongside your signatures. A page that uses ten of these is a demo reel, not a design. Each entry names its origin so you can match it to a direction.
 
-Index: **A. Structure & framing** 1–11 · **B. Type moves** 12–30 · **C. Product & proof** 31–37 · **D. Interaction & motion** 38–55 · **E. Small-product moves** 56–60 · **F. Studio and personal-site moves** 61–67 (visual signatures: 61, 62, 64, 65; system rules: 63, 66, 67) · **G. Photo-led product moves** 68–70 · **H. Editorial marks** 71 · **I. AI-product and illustration-system moves** 72–77 · **J. Directory and index moves** 78–79
+Index: **A. Structure & framing** 1–11 · **B. Type moves** 12–30 · **C. Product & proof** 31–37 · **D. Interaction & motion** 38–55 · **E. Small-product moves** 56–60 · **F. Studio and personal-site moves** 61–67 (visual signatures: 61, 62, 64, 65; system rules: 63, 66, 67) · **G. Photo-led product moves** 68–70 · **H. Editorial marks** 71 · **I. AI-product and illustration-system moves** 72–77 · **J. Directory and index moves** 78–79 · **K. Moves on a generated photo series** 80–83 · **L. Product-site moves (Ignaru, Bidframe, MenuFit, Bevel, Okara; a hero reel)** 84–93 (§93 is a motion rule, so it doesn't count toward the 2–3)
 
 ---
 
@@ -610,3 +610,80 @@ Have the bible **reserve a flat blank zone on the object** ("a blank cream label
 
 ### 83. A motif that counts (Tally, Kestrel, Sprout)
 The strongest motif moments in the v3 gallery carried data. Each time the motif appeared, it showed how many of something there were: the pricing slider draws one frosted coin per paid contractor (a USD 12 fee each), a plant's notification bubbles stack per missed watering, and a calculator multiplies one fact from the brief (11 minutes per blade) by the visitor's own number. This is honest proof with **no invented figures**: the numbers come from the brief and the visitor's input. Build it with a fixed pool of motif elements toggled by index (`el.hidden = i >= n`) so layout never jumps, and announce the total in an `aria-live="polite"` line.
+
+---
+
+## L. Product-site moves from Jawad Jalal's work and Rahul Luthra's hero reel (measured 2026-10-19)
+
+### 84. The job as a toy machine (Ignaru)
+Write the product's sentence as input → mechanism → output ("leads in, emails out"), then draw it as one **physical contraption** a child could build: a hopper, a conveyor of round tokens, a press with gears, envelopes fanning out. Clay or painted-wood toy blocks, 3–4 saturated colours, on the page's near-white with a soft floor shadow. Put it **above** a split header (§77's header without the tray), centred, at 55–70% of the container width. If it moves, it's a short looping video or a CSS loop of one part (a lever, a gear), never the headline. The bible line: *"a toy-block machine that turns <input> into <output>; no text, no logos, plain background"*. Ask for the same machine from the side or zoomed in, so chapters can reuse it. Check the logo test on it too: if the machine reads as a generic factory, the metaphor is too vague, so name the input and output objects exactly.
+
+### 85. Stacked colour chapters (Ignaru)
+Each feature is a saturated, rounded panel that slides up and stacks over the previous one. One colour per chapter, with one meaning each (the Quota build used one colour per metered unit).
+```css
+.stack{position:relative}
+.chap{position:sticky;top:calc(var(--nav-h) + 16px + var(--n) * 14px);  /* each lands 14px lower: the edges of earlier panels show */
+  min-height:min(78svh,720px);border-radius:28px;padding:56px;background:var(--c);
+  display:grid;grid-template-columns:5fr 7fr;gap:40px;margin-bottom:12vh}
+.chap h2 .then{color:color-mix(in oklab,var(--c),#000 55%)}            /* two-tone h2: second clause in a dark shade of the panel */
+.chap .inset{background:color-mix(in oklab,var(--c),#fff 35%);border-radius:18px;padding:28px} /* the UI card sits on a lighter inner panel */
+@media (max-width:760px){.chap{position:relative;top:auto;grid-template-columns:1fr;padding:28px;margin-bottom:16px}}
+```
+Each chapter gets a mono eyebrow chip (SIGNALS, REACH), a two-tone h2, ≤ 3 lines of body and **one** real product card with specific example data. Check the dark shade passes 4.5:1 on its panel; yellow and green panels need `#000 60%` or more. Four to six chapters at most. Don't stack on mobile: plain cards read better at 390px. `motion.stuckReveal` and the contrast pass both work on sticky stacks, but look at each slice: a later panel must fully cover the earlier one's text.
+
+### 86. The product's input as the sticky CTA (Ignaru prompt bar, Okara URL field, Dhuros terminal pill)
+If the product starts from one input (a sentence, a URL, a command), make that input the CTA. The hero shows it at full size, and a **floating bar** at the bottom centre carries it down the page. Its example text changes per chapter, to that chapter's job.
+```html
+<form class="dock" data-dock aria-label="Try it">
+  <label class="sr-only" for="ask">Describe the calls you want</label>
+  <input id="ask" value="Book 10 calls a month with UK fintech founders who just raised">
+  <button class="btn">Start free</button>
+</form>
+```
+```css
+.dock{position:fixed;left:50%;bottom:20px;translate:-50% 0;width:min(640px,calc(100% - 32px));z-index:40;
+  display:flex;gap:8px;padding:8px;border-radius:999px;background:var(--paper);box-shadow:0 0 0 1px var(--hairline),0 12px 32px -12px rgb(0 0 0 / .25);
+  transition:translate .4s var(--ease),opacity .3s}
+.dock.is-away{translate:-50% 140%;opacity:0}   /* hidden over the hero (which has its own) and the finale */
+```
+Swap the value from each chapter's `data-example` with an IntersectionObserver, and never while the field has focus. A terminal command works the same way (`$ npx blume init` plus a copy button) for developer tools. It's still a link to sign-up if the product can't run on the page; say so honestly ("Start free with this example"). It hides near the footer and never covers a form field on mobile (at 390px it becomes a full-width bar under 64px).
+
+### 87. The device in the scene (Bidframe, Dhuros)
+The product window or tablet **rises out of** the hero image instead of floating on top of it. Use three planes: the background (sky, forest, mist) → the device → a foreground cut-out (hills and a tree, ferns, mist) that hides the device's lower third.
+```html
+<section class="scene">
+  <img class="back" src="forest-1916.webp" alt="">
+  <div class="device" data-seq="rise">…product UI…</div>
+  <img class="front" src="forest-front-cut.webp" alt="">   <!-- the same photo's foreground, cut out (images.py cutout) -->
+</section>
+```
+```css
+.scene{position:relative;isolation:isolate;min-height:100svh;overflow:hidden}
+.scene>*{position:absolute}.back{inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.device{left:50%;translate:-50% 0;bottom:-14%;width:min(1040px,86%);z-index:1}
+.front{left:0;right:0;bottom:0;width:100%;z-index:2;pointer-events:none}
+```
+Ask the bible for a foreground that separates cleanly (a hill line, a row of ferns, a bank of mist), then cut it out from the *same* file so the planes line up. Or use an SVG hill drawn over a generated sky. The device keeps a dark bezel in one brand colour, and later sections reuse the same bezel on plain paper, so the scene's object becomes the page's frame. Put the planes on a §81 stage if anything must line up with the photo.
+
+### 88. The noun made literal (wallets, MenuFit)
+Find the noun in the product's sentence and render it as the object: "all your wallets" becomes four leather wallets, each stamped with a chain's mark and joined by thin network lines. "Every restaurant" becomes a wall of round restaurant badges behind the phone. It's §75 (the input as a domain object) applied to the *subject*. For a fictional or unreleased product, **invent the marks** (no real third-party logos unless they're real integrations or real coverage). Dim the field to about 35–50% so the h1 and the device stay first. One object type, repeated, beats a collage.
+
+### 89. The answer breaks out of the device (MenuFit, Improtu)
+The result card is wider than the phone or window it comes from, overlapping the frame by 10–16% on one or both sides, with the page's one shadow. It says "this is what you get" faster than a screen does.
+```css
+.phone{position:relative;width:300px}
+.phone .out{position:absolute;left:-14%;right:-14%;top:38%;border-radius:20px;background:#fff;box-shadow:0 24px 48px -20px rgb(0 0 0 / .35)}
+```
+Only one breakout per page, and it must never cover the h1 (Improtu's card sits on the headline's descenders: leave that). On mobile, keep the overlap within the viewport (≤ 8%) or `mobile.overflow` fails.
+
+### 90. Methodology as proof (Bidframe)
+With no customers, prove the claim by showing **how you checked it**, honestly. Use one worked example, labelled ("one live public-sector cleaning tender, 15 pages, 101 lines extracted"), then how each figure was counted ("counted only when the requirement, answer key and source clause agreed"). Add a "Before, and with" table of qualitative rows (time, the risk, trust) and a section on **when it isn't sure**, with the product's own confidence states (Can't answer this · Low confidence · Fairly sure). Never invent the example's numbers: take them from the brief, or mark them "Example" and keep them illustrative. It pairs with §83 (the counted claim drawn as the motif) and with copy.md's honesty rules.
+
+### 91. A fine-art style as the brand's voice (ChadwickAI)
+A classical medium (an oil painting, an engraving, a fresco) **duotoned into the brand's two colours** (navy shadows, orange lights), with the product (a phone) holding a portrait painted in the same style. The gap between the classical image and the app *is* the joke and the positioning, which suits consumer apps with a wink. It's §72 (an illustration style that is the metaphor) with a twist: the style is borrowed from art history, so the bible names the period and the duotone exactly (*"Renaissance oil painting, crowd before a lit stage, duotone #10264F shadows / #E07A2E lights, no text"*). One centred serif h1, one store badge, the phone rising from the bottom edge.
+
+### 92. Studio dock and "shipped into" proof (Bevel)
+For studio and portfolio sites: a **bottom dock** nav (5–6 icon+label items and one filled CTA, a rounded bar 16–24px from the bottom edge) frees the top of the page for the work; a framed work viewer captions every piece with its title and artist; proof is two rows of small icon chips, "the games the work shipped into" and "the studios we shipped work into". A halftone contour texture (dots following wavy bands, 6–10% ink) makes a dark ground feel made rather than flat. Not for product sites: their nav belongs at the top.
+
+### 93. The hero load sequence (Rahul Luthra's reel: Dhuros, ChadwickAI, Improtu, a wallet app)
+The scene is complete on the first frame. Then the h1 resolves **word by word from blur to sharp**, then the lede, then the CTA, then the product rises in from below. Everything is readable by ~1.4s. This is the one sanctioned way to animate a hero headline outside Loud pages: motion.md §5.10 and `heroSequence()` in assets/motion.js. Use it on one hero per site, never on section headings or body copy.

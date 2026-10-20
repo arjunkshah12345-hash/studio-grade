@@ -260,7 +260,7 @@ Contents: 1 Engineered Dark · 2 Ledger Light · 3 Warm Paper · 4 Editorial Mot
 ## 11. Bright Product
 
 **When:** AI tools, SaaS and consumer apps that want to feel friendly, capable and finished rather than editorial or "award-site". This is the look of most product launches in 2025–26, done properly. The page is bright, the product shows up as small real UI, and **one generated image system** gives it a world.
-**Exemplars (user-supplied screenshots, unmeasured):** Fornax (a photo composed for the headline), Answerr (engraving as the brand metaphor), Mugic (the input as a pastel synth), Wandor (painterly landmark collage), BugScout (split header and staggered tray), Ignura (an illustrated world at full volume, direction 9's loud cousin).
+**Exemplars (user-supplied screenshots, unmeasured):** Fornax (a photo composed for the headline), Answerr (engraving as the brand metaphor), Mugic (the input as a pastel synth), Wandor (painterly landmark collage), BugScout (split header and staggered tray), Ignura (an illustrated world at full volume, direction 9's loud cousin). **Measured live, 2026-10-19:** Ignaru (a toy machine above a split header, stacked colour chapters, the prompt as a sticky CTA), Bidframe (a device rising out of a fern-forest photo; methodology as proof), MenuFit (the restaurant inventory as the field; the answer breaking out of the phone).
 
 ```css
 :root{

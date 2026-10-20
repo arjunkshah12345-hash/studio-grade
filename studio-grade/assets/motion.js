@@ -14,6 +14,8 @@
      data-clock="America/New_York"  live HH:MM clock
      data-scramble               decode-scramble mono label when revealed
      data-spy="#list"            on a container of [data-spy-panel] sections; toggles .is-active on #list [data-spy-item]
+     data-seq-root               the hero load sequence (motion.md §5.10): children [data-seq="words"] (the h1),
+                                 [data-seq] (lede, CTA row: one block each) and [data-seq="rise"] (the product), in document order
 */
 
 export const reduced = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -60,6 +62,31 @@ export function splitWords(el, { reveal: addReveal = true, startIndex = 0 } = {}
   el.prepend(sr);
   el.dataset.splitDone = '1';
   return [...el.querySelectorAll('.w')];
+}
+
+/* ---------------------------------------------------------------- hero load sequence (motion.md §5.10) */
+// Scene first, then the h1 word by word (blur → sharp), then each [data-seq] block, then [data-seq="rise"].
+// The h1 is sharp by ~1.2s whatever its length; data-seq-h1 / data-seq-end (ms) are written for the audit.
+export function heroSequence(root = document.querySelector('[data-seq-root]'), { start = 120, word = 70, lastWordBy = 480, gap = 120, riseGap = 150 } = {}) {
+  if (!root || root.dataset.seqEnd) return;
+  let t = start, end = 0, h1 = 0;
+  for (const el of [...root.querySelectorAll('[data-seq]')]) {
+    const kind = el.dataset.seq;
+    if (kind === 'words') {
+      const words = splitWords(el, { reveal: false });
+      const step = words.length > 1 ? Math.min(word, lastWordBy / (words.length - 1)) : 0;
+      words.forEach((w, i) => { w.dataset.seq = 'w'; w.style.setProperty('--seq-d', `${Math.round(t + i * step)}ms`); });
+      h1 = Math.round(t + (words.length - 1) * step + 600); end = Math.max(end, h1);
+      t += (words.length - 1) * step + gap;
+    } else {
+      if (kind === 'rise') t += riseGap - gap;
+      el.style.setProperty('--seq-d', `${Math.round(t)}ms`);
+      end = Math.max(end, t + (kind === 'rise' ? 900 : 600)); t += gap;
+    }
+  }
+  root.dataset.seqH1 = h1; root.dataset.seqEnd = Math.round(end);
+  if (reduced) { root.classList.add('is-in'); return; }
+  requestAnimationFrame(() => requestAnimationFrame(() => root.classList.add('is-in')));   // two frames: the hidden state paints first
 }
 
 /* ---------------------------------------------------------------- scroll word fill (Atlas / Exo Ape) */
@@ -191,6 +218,7 @@ export function scrollSpy(container, list = document.querySelector(container.dat
 export function autoInit(root = document) {
   document.documentElement.classList.remove('no-js');
   document.documentElement.classList.add('js');
+  root.querySelectorAll('[data-seq-root]').forEach((el) => heroSequence(el));
   root.querySelectorAll('[data-split="words"]').forEach((el) => {
     splitWords(el); el.removeAttribute('data-reveal');           // the words reveal, not the block
   });

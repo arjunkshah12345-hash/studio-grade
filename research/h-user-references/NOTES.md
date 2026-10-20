@@ -166,3 +166,54 @@ Fornax, Answerr, Mugic, Wandor, BugScout and, louder, Ignura: a bright page, one
 - **Voice:** "picked by hand and kept short on purpose", "Free galleries only. No paywall, no sign-up.", "Vote for the ones you use and the order updates on your next visit. One vote per directory." Honest form states: "is in the review queue" / "is already on the list".
 - Motion: UI at .15–.2s with four eases; GSAP + SplitText for the intro, Lenis for scrolling.
 - **Take:** the whole page as one ranked list (techniques §78), the wordmark window (§79), and the restraint (two families, two colours). **Leave:** nothing notable. Check the grey's contrast at 12px before copying it (it's about 5:1 on that paper, which passes).
+
+---
+
+## Jawad Jalal's other live work (measured 2026-10-19, `sites/<slug>/`)
+
+Supplied as "look at more of his work too". Five of the six projects linked from jawadjalal.com measured; weldroblox.com (a waitlist) timed out.
+
+### ignaru.com: "Growth engine in a box" (Next.js; Bright Product, Confident). 17.3 viewports.
+- **Hero = the metaphor as a toy machine:** a clay/wood toy contraption (a yellow hopper → blue conveyor of round leads → an orange press with pink gears → envelopes fanning out) on near-white `rgb(247 248 250)`. It is a looping video (5 on the page): the lever drops and the gears turn, while the h1 and lede are still from the first frame (intro frames at 350/900/1800 ms are identical apart from the machine).
+- **Split header under the object:** "Growth engine / in a box" bottom-left at ~94px Geist 500; lede right with **inline icon tokens** after key verbs ("Iggy finds your buyers 🔍, writes to them in your voice and lines up the calls 📅"); a black "Start free" with a paper-plane glyph + a text "Book a demo →"; "Works inside the agent you already pay for" + three tiny logos.
+- **Connector strip as proof:** "Works inside the tools you use", one row of logo + one-line job ("Gmail · Sends from your inbox, after a yes"). Integrations are honest proof when there are no customers.
+- **Stacked colour chapters:** one 5,181px `sticky` block (6 sticky elements) where each feature is a saturated rounded panel (yellow Signals, blue Search, purple Research, orange Reach, pink Replies, green Pipeline) that slides up over the last. Each: a mono eyebrow chip, a **two-tone h2** (first clause ink, second clause a darker shade of the panel hue: "Catch companies / *the week they're ready*"), a short paragraph, and a white product card on an inner panel one step lighter.
+- **The product's input as the sticky CTA:** a floating prompt bar at the bottom centre ("Book 10 calls a month with UK fintech founders who just raised") with an "Ask first" toggle and "Start free". Its example sentence changes per chapter ("Win back deals we lost this year", "Reply to every demo request within 5 minutes").
+- **Canvas UI:** the workflow as a node canvas (Find → Reach → Gate → Respond → Act) with an Activity side panel; every card has real, specific example data and "Example run" is labelled.
+- **Pricing:** "Pay for the work Iggy does", priced in *actions* and *credits*; three cards each topped with a small illustrated doodle; a separate "Bespoke setup $999 one-time" card with a lilac UI collage. The hero repeats as the finale.
+- Type: Geist (819 nodes) + Geist Mono (67); 12–14px dominates the UI; 7–10px radii. Eases: six different cubic-beziers.
+- **Take:** §84 toy machine, §85 stacked colour chapters, §86 input as the sticky CTA, the connector strip. **Leave:** six eases; the 17-viewport length (the chapters are long because each holds a full app replica).
+
+### menufit.com: "The #1 App For Eating Out Healthy" (dark, app download). 8.6 viewports.
+- **The inventory as the field:** the hero background is a wall of real restaurant logos in circles on `rgb(26 26 26)`, dimmed, with a phone in the centre. The result card ("Protein Hammer · 625 cal · Order Now") is **wider than the phone and breaks out of its frame**: the answer leaves the app.
+- One family (Onest 400–800); one blue `rgb(77 170 255)` for the key words in every heading ("Eating", "Guilt-Free", "22.3 Million+"); store badges top-right instead of a nav.
+- **Take:** §88 the inventory/domain objects as the field, the card that breaks out of the device (§89). **Leave:** Title Case headings, "#1 App" claims, dense 14px paragraphs at 4–6 lines, real third-party logos (only for a real product with real coverage).
+
+### okara.ai: "Meet Okara, the AI CMO" (Next.js; SaaS standard). 11.5 viewports.
+- Pixel-art mascot as the logo and section icons; a faint pixel-checker texture in card corners; the hero CTA is a **URL field** ("Enter your website → Start Free"); a row of agent icons; two rows of customer chips ("Docquity · customer story").
+- **Step 1 Research → Step 2 Execution → Step 3 Publish** joined by a thin vertical arrow line, each with a product moment.
+- **"What CMO replaces vs. what it costs":** a ledger of roles and their monthly cost against one plan price ($14,000+ vs from $129/mo).
+- **Take:** the URL-field hero CTA (§86), the cost-replacement ledger (only with brief-backed numbers). **Leave:** DM Sans + Sora + JetBrains Mono at 9–12px for most text, the generic card grid of agents.
+
+### bevel.team: "the all-in-one threedee studio" (Next.js + Lenis; dark studio). 1.1 viewports (an app-like single screen).
+- Dark warm ground `rgb(14 13 11)` under a **halftone topographic texture** (wavy contour bands made of dots); lowercase voice ("our clients have **11,000,000,000+** visits. yours could be next.") with the number in teal `rgb(63 224 197)`; inline icon tokens in the lede ("from ✎ concept to ⌖ in-game, ⤳ rigged, ◎ animated, with ✧ vfx").
+- A **bottom dock nav** (work · services · studio · clients · book a call · send a message), an **arrow-tag CTA** (the button's right end is a chevron), a framed work viewer with a caption and credit ("cathedral demon scene · m-qasim"), and a custom "scroll" cursor label over the viewer.
+- "the games the work shipped into" / "the studios we shipped work into": proof as two rows of small icon chips.
+- Satoshi + Chillax; springy eases (`cubic-bezier(.34,1.3,.5,1)` ×24).
+- **Take:** for studio/portfolio sites only: the dock nav, the halftone contour ground, proof as "shipped into" chips (§92). **Leave:** the 1.1-viewport app-shell for a marketing page.
+
+### bidframe.org: "Never lose a bid to a deal-breaker you missed" (Next.js; warm paper + photo). 13.3 viewports.
+- **Device in the scene:** a misty fern-forest photograph; centred Fraunces h1 with one red word ("deal-breaker"); the product is a **forest-green tablet that rises out of the ferns**, its lower half behind the foreground mist. Later sections reuse the same dark-bezel device on plain paper, each with a centred serif title + a tiny leaf/check glyph above it.
+- **Honesty as the proof system:** "It tells you when it is not sure" (confidence states: Can't answer this / Low confidence / Fairly sure), "Answers, with receipts", "Before, and with Bidframe" (Time · The deal-breaker · Trust), and **"How we measured this"**: one worked example, labelled before scoring, each counted claim tied to the record. A dark forest band with a paper-cut pine horizon: "Measured on a real tender · 15 pages · 101 lines extracted".
+- Chillax (104) + IBM Plex Mono (88) + Fraunces (17); `rgb(246 242 233)` paper, forest `rgb(44 86 64)`, red `rgb(180 45 36)`; one ease `cubic-bezier(.22,1,.36,1)` ×51.
+- **Take:** §87 device in the scene, §90 methodology as proof. **Leave:** the mono UI labels at 10–11px on tinted panels (check contrast).
+
+## Rahul Luthra's hero reel (X post, 2026-10-19, `video-rahulluthra/`)
+
+"haven't posted any web design stuff in a while so here ya go": a 36s, 1772×1200 video of four hero sections in a 2×2 grid, each looping its intro. Frames at 1 and 4 fps in `frames/`, `quad/`; per-hero strips `strip-tl|tr|bl|br.jpg`.
+- **Dhuros (docs tool):** a saturated cobalt sky over stippled, pointillist green hills with one tree; a light serif h1 ("World-class docs / for everything you ship.") with a "Latest update, v1.4.3" pill and a **terminal pill as the CTA** (`$ npx blume init` + copy). The docs window **rises from behind the hills**: three planes (sky → product → foreground hill and tree).
+- **Wallets (crypto):** a split hero: near-black maroon text column ("All your wallets. / One secure place.", a "$24M+ Stored in assets" pill with a red dot, an outlined red primary) against a column of fluted red-orange gradient bars holding **four leather wallets with chain marks, joined by thin network lines**: the noun made literal.
+- **ChadwickAI (AI dating coach):** a classical oil painting (a crowd before a theatre stage, columns) **duotoned navy and orange**; a centred serif h1, an App Store badge, and a phone rising from the bottom edge holding a portrait painted in the same style.
+- **Improtu.ai:** dark teal radial glow over a wireframe mesh globe; a two-tone h1 (white, then grey); overlapping UI cards (a 21.5% stat card over a search-snippet card) breaking over the headline's lower edge; a white pill CTA.
+- **The shared choreography (the reason it's useful):** the scene is complete on the first frame; then the h1 resolves **word by word from blur to sharp** (≈60–90ms per word, ~8px blur, a few px of rise), then the lede as one block, then the CTA, then the product object **rises in from below** (≈0.8–1s). Everything is readable by about 1.2–1.6s. It's 19% of measured top sites, so it stays a device: motion.md §5.10, `heroSequence()`.
+- **Leave:** the Improtu card covering the h1's descenders; the whole hero blurring out (that's the video loop, not a page behaviour).

@@ -29,6 +29,7 @@ Section heads are **two-tone sentences**: a statement + elaboration ("A new spec
 - **Laconic luxury** (Totême, Aman): place names as headlines ("Amanvari, Mexico"), two-word captions ("The New Shearling"), "Discover more".
 - **Founder, lowercase** (jawadjalal): "i'm jawad, a designer and founder in london (yc soon). i started making things for money at thirteen and never really stopped." Lowercase reads personal only on a personal site; never on a company page. Key nouns carry the weight (as inline chips), and the rest sits in ink-2.
 - **Launch-studio wit** (ignura): "You built the thing." · "Then comes the bit you can't prompt…" · "Launch day slips: the ~~14th~~, the ~~28th~~, 'soon'." Specific, self-aware, written by someone who has shipped. Strikethrough-and-rewrite is the joke format, so use it once per page in body copy (marks inside a figure, where correction is the motif, don't count).
+- **Honest tool voice** (bidframe): "Never lose a bid to a deal-breaker you missed." · "The one that loses you the bid, first" · "It tells you when it is not sure." · "Answers, with receipts" · "How we measured this". It names the user's real fear, then promises less than it could and shows how it checked. With no customers to quote, this is the voice to reach for (techniques.md §90).
 - **Wry tech** (Serve, Bennett & Clive): "Why move a 2-pound burrito in a 2-ton car?" · "THOUGHTFUL. PRECISE. THE OPPOSITE OF CHAOTIC."
 
 Write 3 sample lines in the Design Spine before building. If a line could appear on a competitor's site unchanged, rewrite it.

@@ -1,0 +1,11 @@
+# waypoint-a: skill feedback (direction 11, Confident; orienteering-map series, magenta course motif)
+
+- What worked: the bible asked for countable features ("exactly six separated yellow clearings"), and the image came back with six. A pixel blob-finder (threshold the ISOM yellow) gave exact % centres for the §81 labels in one pass. Worth adding to imagery §8 / images.py as `images.py blobs SRC --color #F5BB3C`.
+- Bug that cost the most time: tokens.css `svg{max-width:100%}` capped my oversized §81 course SVG (width 207%, for the mobile crop), so the course vanished on mobile and nothing errored. §71 mentions `max-width:none` for marks; say it in §81 too, because every overlay SVG wider than its stage needs it.
+- Mobile crops of a stage: one SVG in source-pixel viewBox, widened to (src/crop)% and shifted by −crop.x/crop.w, reuses every coordinate. That's simpler than a second viewBox or JS; worth a line in §81.
+- The audit's `hero.badge` fired on a small "Example map" tag placed top-right on the stage, nowhere near the h1. The fix was to move it bottom-left. The heuristic seems to treat any pill in the hero as "above the h1"; checking actual vertical adjacency would cut false positives.
+- `style.defaultLook` flagged #FAFAF6 as warm off-white (R−B ≥ 3), so a 2-level hex nudge changed the verdict. Fine as a nudge, but the trait reads like a threshold game; maybe report the measured warmth instead.
+- First audit run hit another gallery build on the default port (a "Branchline" title). The title check caught it. Suggest the skill tell agents to `lsof` a port before serving.
+- images.py `paper` warned about corner disagreement on a busy map; `--zone` over clean white forest fixed it. Good warning.
+- Direction 11 "ground comes from the images" + `paper --to <page hex>` made full-bleed plates seamless on the page; no feathering needed. A legibility feather behind hero copy over contours was still useful (a paper-coloured radial at 92%); the skill could say when a soft scrim is acceptable on line-art plates.
+- Missing guidance: hero overlays (course, labels) and a card that crosses the plate edge compete for the same lower band. A note to budget the bottom ~15% of a hero plate for the crossing card would have saved two iterations.

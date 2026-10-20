@@ -1,0 +1,390 @@
+<!--
+DESIGN SPINE: Waypoint (waypoint-a)
+DIRECTION   : 11 Bright Product. An AI tool EMs and staff engineers must trust on sight; the product reads as small real vignettes (a Slack answer, a service map, a week plan) on one generated image system (a printed orienteering map).
+REGISTER    : Confident. One bold device: the full-bleed printed orienteering map as the hero stage, a live magenta course overprinted on it, the Slack answer crossing its bottom edge.
+AXES        : ground white map paper #FAFAF6 · type genre signage grotesk (Overpass, Highway Gothic lineage) + Overpass Mono for paths · image medium generated ISOM orienteering map + HTML vignettes · composition product stage on a map, then asymmetric vignette rows · motion feel "course drawing"
+DEFAULT?    : 2/6 matched (near-black ink at 500; a small accent) → DIFFERENT FROM DEFAULT BY: image medium, label layer (sentence case, no mono caps), no metadata bands, full-colour map hero
+MOTIF       : magenta course overprint (start triangle → numbered control circles → finish double circle). 1 hero wayfinding · 2 citation ring in the code peek · 3 the first week as a course · 4 pricing counter, one control per engineer · 5 finale finish + 404
+TYPE        : display Overpass 500 · text Overpass 400 · mono Overpass Mono 400/500 (paths, line numbers, prices)
+SCALE       : display 72/1.0/−0.025em · h2 48/1.05/−0.02em · h3 24/1.2 · lead 21/1.45 · body 17/1.55 · ui 14 · label 13 sentence case
+PALETTE     : paper #FAFAF6 · paper-2 #F1F1EA · surface #FFF · ink #1A1C19 · ink-2 74% · ink-3 62% · hairline 10% · accent #B4006E → ONLY course marks + primary button. Map colours only inside the plates and the one legend (yellow documented · green thin docs · blue data stores · brown dependency depth)
+GRID        : 12/24 · container 1240 · margin 64 → 20 · section 128, voids 200
+HERO        : H19 adapted: map plate composed for the headline; h1 + lede + CTAs in the white-forest zone; §81 stage labels + course; Slack card crossing the bottom edge
+IMAGERY     : generated orienteering series (hero, week, finale) + HTML vignettes on top
+CONVERSION  : "Map your repo" in nav, hero, first week, Free + Team cards, finale · "See a first week" in hero + finale → #first-week
+MOTION      : ease cubic-bezier(.16,1,.3,1) · UI 180ms · reveal 600ms fade + 8px · §5.10 hero sequence, then the course draws · week course draws once on entry (linear) · no smooth scroll, no pinning
+IMAGES      : bible = ISOM orienteering map, flat print on #FAFAF6, ISOM palette, no text/numbers/legend/north lines/magenta/logos/watermarks · shots hero 21:9, week 3:2, finale 21:9 · crops: hero → hero-right (mobile hero + map chapter), week → chapter A zoom + first week, finale → finale + finale-m
+NAMING      : orienteering → the first week is "the course", tasks are "controls", start/finish; CTA verb "Map"; 404 "You've left the course."
+SIGNATURES  : §81 overlays locked to the plate · §64 process as a journey map (the first week) · §83 a motif that counts (pricing slider) · system: §93 hero sequence, §63 naming
+VOICE       : "Day one, with a map." · "Every answer already exists." · "Map your repo" · "Give the next hire a map."
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Waypoint: a guide to your codebase for every new engineer</title>
+<meta name="description" content="Waypoint reads your repo, your docs and the last year of pull requests, then answers new hires in Slack with links to the exact lines. It only reads.">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;500;600&family=Overpass+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="modulepreload" href="motion.js">
+<link rel="preload" as="image" href="img/hero-1920.webp" imagesrcset="img/hero-1280.webp 1280w, img/hero-1920.webp 1920w, img/hero-2688.webp 2688w" imagesizes="100vw" media="(min-width: 901px)">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--primary" href="#main">Skip to content</a>
+
+<header class="nav" data-nav>
+  <div class="nav-in">
+    <a class="wordmark" href="#top" aria-label="Waypoint, home">Waypoint<svg class="wm-ring" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.2"/></svg></a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="#answers">How it answers</a></li>
+        <li><a href="#map">The map</a></li>
+        <li><a href="#first-week">First week</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--accent btn--sm" href="#start">Map your repo</a>
+  </div>
+</header>
+
+<main id="main">
+<!-- 1. HERO -->
+<section class="hero" id="top" data-seq-root aria-labelledby="h1">
+  <div class="hero-copy">
+    <h1 id="h1" class="t-display" data-seq="words">Day one, with a map.</h1>
+    <p class="lede" data-seq>Waypoint reads your repo, your docs and the last year of pull requests, then answers new hires in Slack with links to the exact lines.</p>
+    <div class="act" data-seq>
+      <div class="act-row">
+        <a class="btn btn--accent" href="#start">Map your repo</a>
+        <a class="btn btn--text" href="#first-week">See a first week <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+      <p class="setup t-small">About 5 minutes to install. First map in about 20 for a <span class="nw">mid-sized</span> repo.</p>
+    </div>
+  </div>
+
+  <div class="hero-shot">
+    <div class="stage stage--hero" role="img" aria-label="Example orienteering-style map of a repository's services. A magenta course runs from the start, through billing-api, and finishes at refunds-worker, where the answer lives.">
+      <picture>
+        <source media="(max-width: 900px)" srcset="img/hero-right-700.webp 700w, img/hero-right-1300.webp 1300w" sizes="100vw" type="image/webp">
+        <source media="(max-width: 900px)" srcset="img/hero-right-700.jpg 700w, img/hero-right-1300.jpg 1300w" sizes="100vw">
+        <source srcset="img/hero-1280.webp 1280w, img/hero-1920.webp 1920w, img/hero-2688.webp 2688w" sizes="100vw" type="image/webp">
+        <img src="img/hero-1920.jpg" srcset="img/hero-1280.jpg 1280w, img/hero-1920.jpg 1920w, img/hero-2688.jpg 2688w" sizes="100vw" width="2688" height="1152" alt="" fetchpriority="high">
+      </picture>
+      <svg class="course course--hero" viewBox="0 0 2688 1152" data-vb-desk="0 0 2688 1152" data-vb-mob="1290 0 1300 1152" aria-hidden="true">
+        <polygon class="c-mark c-start" points="1229,941 1197,1057 1113,972" pathLength="1"/>
+        <line class="c-leg" x1="1216" y1="955" x2="1306" y2="865" pathLength="1"/>
+        <circle class="c-mark" cx="1406" cy="767" r="140" pathLength="1"/>
+        <line class="c-leg" x1="1545" y1="782" x2="1734" y2="802" pathLength="1"/>
+        <circle class="c-mark" cx="1898" cy="819" r="165" pathLength="1"/>
+        <circle class="c-mark" cx="1898" cy="819" r="132" pathLength="1"/>
+        <text class="c-num" x="1530" y="660">1</text>
+      </svg>
+      <span class="pin" style="--x:.523;--y:.666;--mx:.0885"><b>billing-api</b><i>@dana.k</i></span>
+      <span class="pin" style="--x:.706;--y:.711;--mx:.4672"><b>refunds-worker</b><i>@ravi.s</i></span>
+      <span class="pin pin--water" style="--x:.72;--y:.484;--mx:.4963"><b>ledger-db</b><i>data store</i></span>
+      <span class="stage-tag t-small">Example map · larchmont/platform</span>
+    </div>
+
+    <figure class="slack slack--hero" data-seq="rise" role="img" aria-label="Example Slack thread. Mei, a new hire on day two, asks where refunds get calculated. Waypoint answers: in refunds-worker, src/calc/partial.ts lines 88 to 91, explains that rounding in checkout-web is display only since pull request 4127, and names the owner, ravi.s on Payments.">
+      <div class="sl-head"><span class="sl-chan"># eng-onboarding</span><span class="ex">Example</span></div>
+      <div class="sl-msg">
+        <span class="av av--p" aria-hidden="true">M</span>
+        <div><p class="sl-who">Mei Lin <span>new hire, day 2 · 10:14</span></p>
+        <p>Where do refunds actually get calculated? I see rounding in two places.</p></div>
+      </div>
+      <div class="sl-msg">
+        <span class="av av--wp" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.5"/></svg></span>
+        <div><p class="sl-who">Waypoint <span class="app">App</span> <span>10:14</span></p>
+        <p>In <code>refunds-worker</code>. Lines 88–91 of <code>src/calc/partial.ts</code> do the maths; the rounding in <code>checkout-web</code> is display only since #4127. Owner: <b>@ravi.s</b>, Payments.</p>
+        <p class="cites"><span class="cite">partial.ts#L88-91</span><span class="cite">PR #4127</span></p></div>
+      </div>
+    </figure>
+  </div>
+
+  <!-- 2. WORKS WITH -->
+  <div class="works">
+    <p class="t-label--plain dim">Works with</p>
+    <p class="works-list">GitHub <span>or</span> GitLab<span>, and</span> Slack <span>or</span> Microsoft Teams<span>.</span></p>
+    <p class="works-note">It only reads. It never pushes code or merges anything.</p>
+  </div>
+</section>
+
+<!-- 3. WHY -->
+<section class="why container" aria-label="Why Waypoint">
+  <p class="t-h2 why-line" data-reveal>Every answer already exists. <span class="tail">It’s in a pull request from March, or in the head of the one person who wrote it.</span></p>
+</section>
+
+<!-- 4. CHAPTER A: ANSWERS -->
+<section class="chap chap--a" id="answers" aria-labelledby="answers-h">
+  <div class="chap-text">
+    <p class="t-label--plain dim">How it answers</p>
+    <h2 id="answers-h" class="t-h2">Asks in Slack. <span class="tail">Answers with line numbers.</span></h2>
+    <p class="body">Each answer cites the file, the lines and the pull request that explains them, so a new hire can check it, not just trust it.</p>
+    <ul class="facts">
+      <li><b>Cites the file and the lines.</b> Links open at the exact range in GitHub or GitLab.</li>
+      <li><b>Links the pull request.</b> The reason behind the code, from the last year of reviews.</li>
+      <li><b>Names the owner.</b> Taken from the living map, so the next question goes to the right person.</li>
+    </ul>
+  </div>
+  <div class="chap-media chap-media--a" data-reveal>
+    <div class="plate plate--a" aria-hidden="true"></div>
+    <figure class="thread" role="img" aria-label="Example thread in Slack or Microsoft Teams. The answer cites partial.ts lines 88 to 91, shown in a code preview where line 88 is ringed with a magenta control circle.">
+      <div class="th-head">
+        <span class="th-chan" data-chrome-label># eng-onboarding</span>
+        <div class="seg" role="group" aria-label="Chat app">
+          <button type="button" aria-pressed="true" data-chrome="slack" data-label="# eng-onboarding">Slack</button>
+          <button type="button" aria-pressed="false" data-chrome="teams" data-label="Engineering › Onboarding">Teams</button>
+        </div>
+      </div>
+      <div class="sl-msg">
+        <span class="av av--p" aria-hidden="true">M</span>
+        <div><p class="sl-who">Mei Lin <span>10:14</span></p><p>Where do refunds actually get calculated?</p></div>
+      </div>
+      <div class="sl-msg" data-stream>
+        <span class="av av--wp" aria-hidden="true"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="6.5"/></svg></span>
+        <div class="stream-body">
+          <p class="sl-who">Waypoint <span class="app">App</span> <span>10:14</span></p>
+          <p class="reading t-small">Reading refunds-worker…</p>
+          <div class="answer">
+            <p>In <code>refunds-worker</code>, lines 88–91. Rounding happens once, in minor units, since #4127.</p>
+            <div class="code">
+              <div class="code-file"><span>refunds-worker/src/calc/partial.ts</span><span>L88–91</span></div>
+<pre><span class="ln">86</span>export function partialRefund(order, items) {
+<span class="ln">87</span>  const paid = order.totals.paidMinor;
+<span class="hl"><span class="ln ln--ring">88</span>  const share = items.reduce((s, i) =&gt; s + i.amountMinor, 0);</span>
+<span class="hl"><span class="ln">89</span>  // round once, in minor units (#4127)</span>
+<span class="hl"><span class="ln">90</span>  const refund = Math.min(paid, roundHalfEven(share));</span>
+<span class="hl"><span class="ln">91</span>  return { refundMinor: refund, currency: order.currency };</span>
+<span class="ln">92</span>}</pre>
+            </div>
+            <p class="cites"><span class="cite">PR #4127 · Move refund rounding server-side</span><span class="cite">Owner @ravi.s</span></p>
+          </div>
+        </div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- 5. CHAPTER B: THE MAP -->
+<section class="chap chap--b" id="map" aria-labelledby="map-h">
+  <div class="chap-media chap-media--b" data-reveal>
+    <div class="stage stage--map" role="img" aria-label="Example living map of eight services with owners. Documented services sit on open yellow ground, thinly documented ones in green thicket, and the ledger database is water.">
+      <picture>
+        <source srcset="img/hero-right-700.webp 700w, img/hero-right-1300.webp 1300w" sizes="(max-width: 900px) 100vw, 50vw" type="image/webp">
+        <img src="img/hero-right-1300.jpg" srcset="img/hero-right-700.jpg 700w, img/hero-right-1300.jpg 1300w" sizes="(max-width: 900px) 100vw, 50vw" width="1300" height="1152" alt="" loading="lazy">
+      </picture>
+      <span class="pin pin--l" style="--x:.104;--y:.294"><b>auth-gateway</b><i>@lena.o</i></span>
+      <span class="pin" style="--x:.465;--y:.162"><b>checkout-web</b><i>@tomas.r</i></span>
+      <span class="pin pin--r" style="--x:.870;--y:.219"><b>search-indexer</b><i>@kofi.a</i></span>
+      <span class="pin pin--r" style="--x:.922;--y:.477"><b>notifications</b><i>@jun.p</i></span>
+      <span class="pin is-on" style="--x:.467;--y:.711"><b>refunds-worker</b><i>@ravi.s</i></span>
+      <span class="pin pin--l" style="--x:.090;--y:.666"><b>billing-api</b><i>@dana.k</i></span>
+      <span class="pin pin--thicket" style="--x:.170;--y:.49"><b>pdf-renderer</b><i>ask @dana.k</i></span>
+      <span class="pin pin--thicket" style="--x:.682;--y:.303"><b>legacy-cron</b><i>ask @kofi.a</i></span>
+      <span class="pin pin--water" style="--x:.496;--y:.484"><b>ledger-db</b><i>data store</i></span>
+    </div>
+    <aside class="svc" aria-label="Example service card">
+      <p class="svc-top"><b>refunds-worker</b><span class="ex">Example</span></p>
+      <dl>
+        <div><dt>Owner</dt><dd>@ravi.s · Payments</dd></div>
+        <div><dt>Ground</dt><dd><span class="sw sw--open" aria-hidden="true"></span>Documented, owner active</dd></div>
+        <div><dt>Reads from</dt><dd>billing-api</dd></div>
+        <div><dt>Writes to</dt><dd>ledger-db</dd></div>
+        <div><dt>Last change</dt><dd>#4127 · Move refund rounding server-side</dd></div>
+      </dl>
+    </aside>
+  </div>
+  <div class="chap-text">
+    <p class="t-label--plain dim">The map</p>
+    <h2 id="map-h" class="t-h2">A map that keeps up. <span class="tail">Every service, and who owns it.</span></h2>
+    <p class="body">Waypoint keeps a living map of your services and their owners, so “who do I ask?” has an answer too. It reads like the maps orienteers carry: the colour tells you how hard the going is.</p>
+    <ul class="legend" aria-label="Map legend">
+      <li><span class="sw sw--open" aria-hidden="true"></span><b>Open ground</b> documented, owner active</li>
+      <li><span class="sw sw--thicket" aria-hidden="true"></span><b>Thicket</b> thin docs, ask the owner</li>
+      <li><span class="sw sw--water" aria-hidden="true"></span><b>Water</b> data stores</li>
+      <li><span class="sw sw--contour" aria-hidden="true"></span><b>Contours</b> how deep the dependencies go</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 6. FIRST WEEK -->
+<section class="week container" id="first-week" aria-labelledby="week-h">
+  <div class="week-head">
+    <p class="t-label--plain dim">First week</p>
+    <h2 id="week-h" class="t-h2">A first week of small, real tasks. <span class="tail">Five controls, start to finish.</span></h2>
+    <p class="body">Waypoint writes each new hire a course through your code. Every control touches real files and names who to ask.</p>
+  </div>
+
+  <div class="week-plate" data-course>
+    <div class="stage stage--week" role="img" aria-label="Example first-week course drawn on a map: a start triangle on Monday, five numbered controls for the five tasks, and a finish double circle on Friday.">
+      <picture>
+        <source srcset="img/week-960.webp 960w, img/week-1536.webp 1536w" sizes="(max-width: 900px) 100vw, 1240px" type="image/webp">
+        <img src="img/week-1536.jpg" srcset="img/week-960.jpg 960w, img/week-1536.jpg 1536w" sizes="(max-width: 900px) 100vw, 1240px" width="1536" height="1024" alt="" loading="lazy">
+      </picture>
+      <svg class="course course--week" viewBox="0 0 1536 1024" aria-hidden="true">
+        <polygon class="c-mark c-start" points="178,771 143,859 84,785" pathLength="1" style="--d:0"/>
+        <line class="c-leg" x1="166" y1="780" x2="230" y2="729" pathLength="1" style="--d:1"/>
+        <circle class="c-mark" cx="266" cy="700" r="46" pathLength="1" data-ctl="1" style="--d:2"/>
+        <line class="c-leg" x1="307" y1="679" x2="420" y2="621" pathLength="1" style="--d:3"/>
+        <circle class="c-mark" cx="461" cy="600" r="46" pathLength="1" data-ctl="2" style="--d:4"/>
+        <line class="c-leg" x1="503" y1="581" x2="661" y2="512" pathLength="1" style="--d:5"/>
+        <circle class="c-mark" cx="703" cy="493" r="46" pathLength="1" data-ctl="3" style="--d:6"/>
+        <line class="c-leg" x1="747" y1="479" x2="941" y2="419" pathLength="1" style="--d:7"/>
+        <circle class="c-mark" cx="985" cy="405" r="46" pathLength="1" data-ctl="4" style="--d:8"/>
+        <line class="c-leg" x1="1024" y1="381" x2="1121" y2="324" pathLength="1" style="--d:9"/>
+        <circle class="c-mark" cx="1160" cy="300" r="46" pathLength="1" data-ctl="5" style="--d:10"/>
+        <line class="c-leg" x1="1195" y1="270" x2="1330" y2="153" pathLength="1" style="--d:11"/>
+        <circle class="c-mark" cx="1375" cy="115" r="58" pathLength="1" style="--d:12"/>
+        <circle class="c-mark" cx="1375" cy="115" r="44" pathLength="1" style="--d:12"/>
+        <g class="c-nums" style="--d:12">
+          <text class="c-num" x="300" y="760">1</text>
+          <text class="c-num" x="440" y="680">2</text>
+          <text class="c-num" x="740" y="580">3</text>
+          <text class="c-num" x="1010" y="490">4</text>
+          <text class="c-num" x="1100" y="250">5</text>
+        </g>
+      </svg>
+      <span class="day day--start" style="--x:.10;--y:.90">Start · Monday</span>
+      <span class="day day--finish" style="--x:.80;--y:.05">Finish · Friday</span>
+      <span class="stage-tag t-small">Example course · backend hire</span>
+    </div>
+  </div>
+
+  <div class="sheet-wrap">
+    <table class="sheet">
+      <caption class="sr-only">Example first-week plan: five controls, each with a day, a task, where it lives and who to ask</caption>
+      <thead><tr><th scope="col">Control</th><th scope="col">Day</th><th scope="col">Task</th><th scope="col">Where</th><th scope="col">Ask</th></tr></thead>
+      <tbody>
+        <tr data-row="1"><td><span class="ctl">1</span></td><td>Mon</td><td>Fix the flaky partial-refund test</td><td><code>refunds-worker/<wbr>src/calc/<wbr>partial.spec.ts</code></td><td>@ravi.s</td></tr>
+        <tr data-row="2"><td><span class="ctl">2</span></td><td>Tue</td><td>Add the currency column to the invoice CSV export</td><td><code>billing-api/<wbr>src/export/<wbr>invoices.ts</code></td><td>@dana.k</td></tr>
+        <tr data-row="3"><td><span class="ctl">3</span></td><td>Wed</td><td>Read PR #3881 on idempotent ledger writes, then ask its author one question</td><td><code>ledger-db/migrations/</code></td><td>@dana.k</td></tr>
+        <tr data-row="4"><td><span class="ctl">4</span></td><td>Thu</td><td>Trace one checkout request end to end and add the trace to the docs</td><td><code>checkout-web → billing-api</code></td><td>@tomas.r</td></tr>
+        <tr data-row="5"><td><span class="ctl">5</span></td><td>Fri</td><td>Ship a copy fix in the refund email</td><td><code>notifications/<wbr>templates/<wbr>refund.mjml</code></td><td>@jun.p</td></tr>
+      </tbody>
+    </table>
+    <div class="week-cta">
+      <a class="btn btn--accent" href="#start">Map your repo</a>
+      <p class="t-small dim">Each course is written from your own repo. This one is an example.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 7. TRUST + SETUP -->
+<section class="trust" aria-labelledby="trust-h">
+  <div class="container trust-in">
+    <div class="trust-text">
+      <h2 id="trust-h" class="t-h2">It reads. <span class="tail">It never writes.</span></h2>
+      <p class="body">Waypoint needs read access and nothing more. On Enterprise, run it on your own infrastructure.</p>
+    </div>
+    <div class="perm" role="table" aria-label="What Waypoint can and cannot do">
+      <div class="perm-col" role="rowgroup">
+        <p class="perm-h" role="row"><span role="columnheader">Reads</span></p>
+        <p role="row"><span role="cell"><span class="yes" aria-hidden="true">✓</span>Your repository</span></p>
+        <p role="row"><span role="cell"><span class="yes" aria-hidden="true">✓</span>Your docs</span></p>
+        <p role="row"><span role="cell"><span class="yes" aria-hidden="true">✓</span>The last year of pull requests</span></p>
+      </div>
+      <div class="perm-col" role="rowgroup">
+        <p class="perm-h" role="row"><span role="columnheader">Never</span></p>
+        <p role="row"><span role="cell"><span class="no" aria-hidden="true">×</span>Pushes code</span></p>
+        <p role="row"><span role="cell"><span class="no" aria-hidden="true">×</span>Merges anything</span></p>
+      </div>
+    </div>
+    <ol class="steps" id="start" aria-label="Setup">
+      <li><span class="st-n">1</span><b>Install the app</b><span>GitHub or GitLab</span></li>
+      <li><span class="st-n">2</span><b>Pick the repos</b><span>About 5 minutes, all in</span></li>
+      <li><span class="st-n">3</span><b>Get the first map</b><span>About 20 minutes for a mid-sized repo</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 8. PRICING -->
+<section class="pricing container" id="pricing" aria-labelledby="pricing-h">
+  <h2 id="pricing-h" class="t-h2">Pricing. <span class="tail">Free for small repos.</span></h2>
+  <div class="tiers">
+    <article class="tier">
+      <h3 class="t-h3">Free</h3>
+      <p class="price"><span class="num">USD 0</span></p>
+      <p class="tier-note">For repos under 50,000 lines.</p>
+      <ul><li>Answers in Slack or Teams</li><li>The living map</li><li>First-week courses</li></ul>
+      <a class="btn btn--ghost" href="#start">Map your repo</a>
+    </article>
+    <article class="tier tier--team">
+      <h3 class="t-h3">Team</h3>
+      <p class="price"><span class="num">USD 20</span><span class="unit">per engineer, per month</span></p>
+      <div class="counter">
+        <label for="eng" class="t-small">Engineers on the team</label>
+        <input id="eng" type="range" min="1" max="40" value="12" step="1">
+        <div class="dots" aria-hidden="true" data-dots></div>
+        <p class="total" aria-live="polite" data-total><span class="num">12</span> engineers × USD 20 = <b class="num">USD 240</b> a month</p>
+      </div>
+      <a class="btn btn--accent" href="#start">Map your repo</a>
+    </article>
+    <article class="tier">
+      <h3 class="t-h3">Enterprise</h3>
+      <p class="price"><span class="num">By quote</span></p>
+      <p class="tier-note">Everything in Team, with self-hosting.</p>
+      <ul><li>Run it on your own infrastructure</li><li>Still read-only</li></ul>
+      <a class="btn btn--ghost" href="mailto:hello@waypoint.example">Ask for a quote</a>
+    </article>
+  </div>
+</section>
+
+<!-- 9. FAQ -->
+<section class="faq container" aria-labelledby="faq-h">
+  <h2 id="faq-h" class="t-h2">Questions engineering managers ask</h2>
+  <div class="faq-list">
+    <details><summary>Does it write or push code?</summary><p>No. Waypoint only reads. It never pushes code or merges anything.</p></details>
+    <details><summary>What does it read?</summary><p>The repositories you pick, your docs and the last year of pull requests.</p></details>
+    <details><summary>How long until the first map?</summary><p>Installing the GitHub or GitLab app and picking repos takes about 5 minutes. The first map is ready in about 20 minutes for a mid-sized repo.</p></details>
+    <details><summary>Does it work with GitLab and Microsoft Teams?</summary><p>Yes. It works with GitHub or GitLab, and answers in Slack or Microsoft Teams.</p></details>
+    <details><summary>Can we run it ourselves?</summary><p>Yes, on Enterprise, which is priced by quote and includes self-hosting.</p></details>
+    <details><summary>How does a new hire check an answer?</summary><p>Every answer links to the exact lines it is based on, so the code is one click away.</p></details>
+  </div>
+</section>
+
+<!-- 10. FINALE -->
+<section class="finale container" aria-labelledby="fin-h">
+  <div class="fin-plate">
+    <picture>
+      <source media="(max-width: 900px)" srcset="img/finale-m-800.webp" type="image/webp">
+      <source media="(max-width: 900px)" srcset="img/finale-m-800.jpg">
+      <source srcset="img/finale-960.webp 960w, img/finale-1916.webp 1916w" sizes="(max-width: 1368px) 100vw, 1240px" type="image/webp">
+      <img src="img/finale-1916.jpg" srcset="img/finale-960.jpg 960w, img/finale-1916.jpg 1916w" sizes="(max-width: 1368px) 100vw, 1240px" width="1916" height="821" alt="" loading="lazy">
+    </picture>
+    <svg class="course course--fin" viewBox="0 0 1916 821" data-vb-desk="0 0 1916 821" data-vb-mob="860 0 1056 821" aria-hidden="true">
+      <circle class="c-mark" cx="1299" cy="567" r="118" pathLength="1"/>
+      <circle class="c-mark" cx="1299" cy="567" r="92" pathLength="1"/>
+    </svg>
+    <div class="fin-copy">
+      <h2 id="fin-h" class="t-display fin-h">Give the next hire a map.</h2>
+      <div class="act-row">
+        <a class="btn btn--accent" href="#start">Map your repo</a>
+        <a class="btn btn--text" href="#first-week">See a first week <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- 11. FOOTER -->
+<footer class="foot">
+  <div class="container foot-in">
+    <div class="foot-brand">
+      <a class="wordmark" href="#top" aria-label="Waypoint, back to top">Waypoint<svg class="wm-ring" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.2"/></svg></a>
+      <p class="t-small dim">© 2026 Waypoint. A fictional product.</p>
+    </div>
+    <nav class="foot-col" aria-label="Product"><p class="foot-h">Product</p><a href="#answers">How it answers</a><a href="#map">The map</a><a href="#first-week">First week</a><a href="#pricing">Pricing</a></nav>
+    <div class="foot-col"><p class="foot-h">Works with</p><span>GitHub</span><span>GitLab</span><span>Slack</span><span>Microsoft Teams</span></div>
+    <nav class="foot-col" aria-label="Company"><p class="foot-h">Company</p><a href="#trust-h">Security</a><a href="mailto:hello@waypoint.example">Contact</a></nav>
+    <nav class="foot-col" aria-label="Legal"><p class="foot-h">Legal</p><a href="legal.html#terms">Terms</a><a href="legal.html#privacy">Privacy</a></nav>
+  </div>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

@@ -36,6 +36,8 @@
 !/tests/builds/callback/
 !/tests/builds/bulwark/
 !/tests/builds/sift/
+!/tests/builds/waypoint-a/
+!/tests/builds/waypoint-b/
 !/tests/builds/halden2/
 !/tests/builds/kestrel2/
 !/tests/builds/onair/

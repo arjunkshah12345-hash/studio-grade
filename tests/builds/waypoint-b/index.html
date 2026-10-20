@@ -1,0 +1,496 @@
+<!--
+DESIGN SPINE · Waypoint (b)
+IDEA        : the site is a printed walking map of your codebase (land = services, rivers = docs, footpaths = a year of merged pull requests, huts = owners, grid reference = file:line) / so the hero is that map printed onto a real folded sheet lying on a slate table, the h1 set in the map's own title block / and the visitor gets to ask the map a question and watch the route draw to the exact line and the owner.  (Surprise 4/5 · Truth 5/5 · Clarity 4/5 · Ownability 4/5)
+PLAY        : "Ask the map": three question chips (radio group). Picking one draws a vermilion route from You-are-here along the worn footpath of the pull request that explains it, to a pin at the exact place; the Slack (or Teams) reply beside it gives the file:line, the PR and the owner. ~1.4s, keyboard (arrow keys), aria-live answer; reduced motion shows the finished route.
+SECOND LOOK : the scales rhyme: the hero map's scale bar is measured in lines of code, and the Free sheet in pricing reads "Scale 1:50 000" because Free covers repos under 50,000 lines. Hover a region on the hero map and its owner's hut label wakes up.
+ENDING      : the trail photo: a worn moorland path to a waymark post whose blank disc carries live type "05", Friday's waypoint. "Next year's new hire walks your path": Waypoint reads the last year of pull requests, so the ones merged now become the next trail.
+BROKEN RULE : no split header and no product window in the first viewport. The hero is one huge object (the printed sheet) with the h1, subline and both CTAs inside the map's title block, because a map whose title sits outside it is a diagram. The product UI appears only when you ask the map.
+
+DIRECTION   : 3 Warm Paper. Engineering managers and staff engineers are anti-hype readers who trust a calm, literate tool page; Cursor's move (precise product windows over a fine physical image) becomes the Slack answer over a printed map.
+REGISTER    : Confident. One bold device: the full-colour map printed on a photographed folded sheet, filling the hero. Everything after is sheets of the same paper on the same table.
+AXES        : ground tinted dark (slate table #222B27, sampled) with paper sheets #E4DCCD · type genre literary humanist superfamily set by cartographic convention (Alegreya 500 statements, Alegreya Sans reading and spaced-caps region names, Alegreya italic for rivers/docs) · image medium generated documentary photo series + a full-colour SVG map printed (multiply) on the photographed paper + Slack/Teams answer UI · composition sheets on a table · motion feel drawn routes (paths ink in along their length; all else still)
+DEFAULT?    : 1/6 matched (dark ink 400-500 on the sheets) → DIFFERENT FROM DEFAULT BY: ground, labels (spaced caps in the text face; mono only for file paths), metadata (map furniture that means something), hero medium (filled colour map on photographed paper), accent (the route ink)
+MOTIF       : the waypoint ring: hero route WP1–5 (18px) · the play pin at the exact line (28px) · the first-week route card stations (48px numerals) · the nav mark and favicon (12px) · "05" on the photographed waymark disc in the finale
+TYPE        : display Alegreya 500 · text Alegreya Sans 400/500 · mono JetBrains Mono 400 (file paths, line numbers, PR numbers only)
+SCALE       : display 72px/1.0/−0.025em (hero h1 inside the title block: 4.2cqw, 55px at 1440) · h2 44px/1.08/−0.018em · lead 21px · body 17px/1.55 · label 12px caps +0.12em · mono 13px
+PALETTE     : table #222B27 · table-2 #2A3430 · paper #E4DCCD · ink #1E2420 · on-table ink #EEE8DA · tiers by opacity · hairline 10–12% · accent vermilion #C63B22 → ONLY routes/waypoints and the primary CTA. Map inks (one meaning each, shown in the legend): moss = has an owner · hatched buff = no owner on record · river blue = docs · contour brown = directory depth · dashed ink = merged pull requests
+GRID        : 12 / 24px · container 1312px · side margin 32px · section rhythm 128px, one 200px void before the finale
+HERO        : one object: the photographed sheet, SVG map printed on it (§81 stage), title block across panels A2–C2: label, h1, subline, Map your repo + See a first week, key strip
+IMAGERY     : generated series (sheet, pockets, trail) + live SVG map + HTML answer UI
+CONVERSION  : "Map your repo" → nav, hero, after the play, Free + Team covers, finale; "Install for GitHub / GitLab" in the setup section; "See a first week" → hero
+MOTION      : ease cubic-bezier(.16,1,.3,1) · UI 180ms · reveal 700ms · path draw (linear, it represents a walk) · no smooth scroll, no pinning
+IMAGES      : bible in images.json · crops: hero desktop full sheet, mobile = map crop A1/B1 under the title block · play = top two-thirds of the same sheet · pricing = three single-cover crops · finale 21:9 / mobile 4:5 on the post
+NAMING      : walking map → Free "Pocket sheet · Scale 1:50 000" · Team "Every engineer" · Enterprise "Your own press" · steps "waypoints" · CTA "Map your repo" · empty "No owner on record" · 404 "Off the map."
+SIGNATURES  : §82 live type on blank photographed surfaces (map, covers, disc) · §64 journey route · §62 pricing as an object
+VOICE       : "A trail map of your codebase." · "Every codebase has paths. A year of pull requests wore them in." · "Next year's new hire walks your path."
+-->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Waypoint · A trail map of your codebase</title>
+<meta name="description" content="Waypoint reads your repo, docs and a year of pull requests, then answers new engineers in Slack or Teams with links to the exact lines. Read-only.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='none' stroke='%23C63B22' stroke-width='4'/%3E%3Ccircle cx='16' cy='16' r='5' fill='%23C63B22'/%3E%3C/svg%3E">
+<script>document.documentElement.classList.add('js')</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;1,400;1,500&family=Alegreya+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="img/sheet-2560.webp" imagesrcset="img/sheet-1280.webp 1280w, img/sheet-2560.webp 2560w" imagesizes="(max-width: 760px) 200vw, 92vw" fetchpriority="high">
+<link rel="modulepreload" href="motion.js">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip btn btn--accent" href="#main">Skip to content</a>
+
+<header class="nav" data-nav>
+  <div class="nav-in">
+    <a class="brand" href="#top" aria-label="Waypoint, home">
+      <svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="12" cy="12" r="3.5" fill="currentColor"/></svg>
+      <span>Waypoint</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#legend">How it reads</a></li>
+        <li><a href="#ask">Ask the map</a></li>
+        <li><a href="#owners">Owners</a></li>
+        <li><a href="#first-week">First week</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn--accent btn--sm" href="#install">Map your repo</a>
+  </div>
+</header>
+
+<main id="main">
+<!-- 1 · HERO: the sheet -->
+<section class="hero" id="top" aria-labelledby="h1">
+  <div class="hero-sheet">
+    <div class="cartouche">
+      <div class="c-top">
+        <p class="lbl">Waypoint · Sheet 1 · Your repository</p>
+        <p class="lbl c-example">Example map of a fictional repo</p>
+      </div>
+      <h1 id="h1" class="c-h1">A trail map of your codebase.</h1>
+      <div class="c-row">
+        <p class="c-sub">Waypoint reads the repo, the docs and a year of pull requests, then answers new engineers in Slack with links to the exact lines.</p>
+        <div class="c-cta">
+          <a class="btn btn--accent" href="#install">Map your repo</a>
+          <a class="btn btn--text" href="#first-week">See a first week <span class="arr" aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <ul class="c-key" aria-label="Map key">
+        <li><svg viewBox="0 0 28 10" aria-hidden="true"><line x1="1" y1="5" x2="27" y2="5" stroke="#1E2420" stroke-width="2.4" stroke-dasharray="6 3"/></svg>Merged pull requests</li>
+        <li><svg viewBox="0 0 28 10" aria-hidden="true"><line x1="1" y1="5" x2="27" y2="5" stroke="#3E7BA3" stroke-width="3"/></svg>Docs</li>
+        <li><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="1" y="1" width="12" height="12" fill="#B9CCA8" stroke="#1E2420" stroke-width="1"/></svg>Has an owner</li>
+        <li><svg viewBox="0 0 14 14" aria-hidden="true"><rect x="1" y="1" width="12" height="12" fill="url(#k-hatch)" stroke="#1E2420" stroke-width="1"/><defs><pattern id="k-hatch" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="4" height="4" fill="#E2D2AE"/><line x1="0" y1="0" x2="0" y2="4" stroke="#A2794E" stroke-width="1.2"/></pattern></defs></svg>No owner on record</li>
+        <li><svg viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="5.5" fill="#C63B22"/></svg>First-week task</li>
+        <li class="c-ro">Read only: never pushes, never merges</li>
+      </ul>
+    </div>
+    <div class="crop crop--hero">
+      <figure class="stage" role="img" aria-label="Example trail map of a fictional repository: services drawn as land with their owners' huts, docs as a river, a year of pull requests as worn footpaths, a You are here pin at the README and a vermilion first-week route through five waypoints." data-hero-map>
+        <picture>
+          <img src="img/sheet-2560.webp" srcset="img/sheet-1280.webp 1280w, img/sheet-2560.webp 2560w" sizes="(max-width: 760px) 200vw, 92vw" width="2560" height="1600" alt="" fetchpriority="high">
+        </picture>
+<svg class="map-svg" viewBox="0 0 2560 1600" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<defs><pattern id="hatch-hero" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#E2D2AE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#A2794E" stroke-width="3" opacity=".55"/></pattern>
+<path id="river-hero" d="M168 560 C195 573 265 617 330 640 C395 663 482 687 560 700 C638 713 722 723 800 720 C878 717 948 678 1030 680 C1112 682 1208 715 1290 730 C1372 745 1442 772 1520 770 C1598 768 1700 715 1760 720 C1820 725 1848 752 1880 800 C1912 848 1923 958 1950 1010 C1977 1062 1966 1087 2040 1110 C2114 1133 2332 1143 2391 1150"/><path id="river2-hero" d="M1760 720 C1783 717 1863 713 1900 700 C1937 687 1955 657 1980 640 C2005 623 2038 607 2050 600"/></defs>
+<rect x="168" y="124" width="2223" height="1340" fill="none" stroke="#1E2420" stroke-width="2.2" opacity=".8"/>
+<rect x="160" y="116" width="2239" height="1356" fill="none" stroke="#1E2420" stroke-width="1" opacity=".5"/>
+<text class="m-grid" x="434" y="108" text-anchor="middle">A</text>
+<text class="m-grid" x="989" y="108" text-anchor="middle">B</text>
+<line x1="701" y1="124" x2="701" y2="140" stroke="#1E2420" stroke-width="2" opacity=".6"/><line x1="701" y1="1448" x2="701" y2="1464" stroke="#1E2420" stroke-width="2" opacity=".6"/>
+<text class="m-grid" x="1566" y="108" text-anchor="middle">C</text>
+<line x1="1277" y1="124" x2="1277" y2="140" stroke="#1E2420" stroke-width="2" opacity=".6"/><line x1="1277" y1="1448" x2="1277" y2="1464" stroke="#1E2420" stroke-width="2" opacity=".6"/>
+<text class="m-grid" x="2123" y="108" text-anchor="middle">D</text>
+<line x1="1855" y1="124" x2="1855" y2="140" stroke="#1E2420" stroke-width="2" opacity=".6"/><line x1="1855" y1="1448" x2="1855" y2="1464" stroke="#1E2420" stroke-width="2" opacity=".6"/>
+<text class="m-grid" x="146" y="469" text-anchor="middle">1</text>
+<text class="m-grid" x="146" y="1139" text-anchor="middle">2</text>
+<line x1="168" y1="798" x2="184" y2="798" stroke="#1E2420" stroke-width="2" opacity=".6"/><line x1="2375" y1="798" x2="2391" y2="798" stroke="#1E2420" stroke-width="2" opacity=".6"/>
+<g class="m-land">
+<g class="m-region" data-region="web"><path d="M654 400 C652 438 661 479 646 510 C631 542 596 565 566 587 C537 608 504 633 468 640 C433 646 386 644 356 627 C326 610 306 568 287 538 C269 509 260 482 245 449 C230 416 191 371 197 339 C203 306 251 278 279 254 C306 230 332 215 364 195 C396 176 437 135 471 137 C506 139 538 184 570 208 C601 232 647 249 661 281 C676 313 657 362 654 400 Z" fill="#8FAE77" fill-opacity=".34" stroke="#1E2420" stroke-opacity=".55" stroke-width="2" stroke-dasharray="14 6 3 6"/></g>
+<g class="m-region" data-region="auth"><path d="M1214 410 C1212 443 1193 473 1179 505 C1165 537 1156 585 1129 602 C1101 620 1052 605 1015 609 C978 612 938 631 906 622 C873 613 840 581 820 554 C801 527 798 491 788 458 C778 425 754 386 761 356 C769 326 811 304 835 279 C860 253 878 214 908 203 C938 192 982 205 1015 212 C1049 219 1079 229 1109 245 C1139 261 1177 280 1194 307 C1211 335 1217 377 1214 410 Z" fill="#8FAE77" fill-opacity=".34" stroke="#1E2420" stroke-opacity=".55" stroke-width="2" stroke-dasharray="14 6 3 6"/></g>
+<g class="m-region" data-region="pay"><path d="M1792 440 C1796 479 1785 525 1771 565 C1757 605 1739 660 1708 682 C1678 705 1627 700 1588 701 C1549 702 1511 702 1476 688 C1442 675 1401 651 1380 620 C1359 588 1359 539 1351 498 C1342 458 1327 416 1331 376 C1336 336 1355 292 1378 258 C1401 224 1436 182 1470 173 C1505 164 1549 195 1585 205 C1621 215 1660 212 1687 233 C1713 254 1728 295 1746 330 C1764 364 1788 401 1792 440 Z" fill="#8FAE77" fill-opacity=".34" stroke="#1E2420" stroke-opacity=".55" stroke-width="2" stroke-dasharray="14 6 3 6"/></g>
+<g class="m-region" data-region="search"><path d="M2347 370 C2349 402 2342 439 2327 469 C2312 498 2285 527 2257 547 C2228 568 2189 588 2154 591 C2118 595 2079 581 2044 569 C2009 556 1963 543 1946 517 C1929 491 1947 444 1942 412 C1937 380 1917 354 1918 323 C1919 291 1924 247 1946 222 C1967 198 2011 188 2046 176 C2080 164 2122 143 2154 151 C2185 158 2208 201 2235 222 C2262 243 2295 253 2314 278 C2333 302 2345 338 2347 370 Z" fill="#8FAE77" fill-opacity=".34" stroke="#1E2420" stroke-opacity=".55" stroke-width="2" stroke-dasharray="14 6 3 6"/></g>
+<g class="m-region" data-region="jobs"><path d="M2333 860 C2330 883 2321 909 2304 927 C2287 946 2257 956 2231 972 C2205 988 2178 1021 2148 1023 C2119 1025 2085 993 2054 982 C2022 972 1986 973 1959 960 C1932 946 1894 922 1890 900 C1885 878 1923 851 1934 828 C1945 805 1939 778 1957 759 C1975 740 2010 721 2041 715 C2072 710 2110 725 2143 729 C2176 733 2209 731 2238 740 C2268 750 2305 767 2320 787 C2336 807 2336 837 2333 860 Z" fill="#8FAE77" fill-opacity=".34" stroke="#1E2420" stroke-opacity=".55" stroke-width="2" stroke-dasharray="14 6 3 6"/></g>
+<g class="m-region m-region--none" data-region="billing"><path d="M2315 1250 C2317 1265 2320 1282 2307 1296 C2294 1309 2265 1322 2237 1331 C2208 1340 2171 1351 2138 1351 C2105 1351 2069 1340 2039 1333 C2009 1326 1978 1320 1958 1310 C1937 1299 1923 1285 1916 1271 C1908 1258 1908 1243 1913 1229 C1917 1214 1920 1194 1942 1184 C1963 1174 2007 1173 2039 1168 C2072 1163 2105 1154 2136 1155 C2167 1157 2199 1168 2225 1176 C2251 1185 2278 1195 2293 1208 C2307 1220 2312 1235 2315 1250 Z" fill="url(#hatch-hero)" stroke="#1E2420" stroke-opacity=".55" stroke-width="2" stroke-dasharray="14 6 3 6"/></g>
+</g>
+<g fill="none" stroke="#A2794E" stroke-width="2.2" opacity=".75">
+<path d="M1808 500 C1811 537 1800 580 1786 618 C1772 655 1751 702 1722 723 C1692 745 1645 745 1608 746 C1570 748 1532 747 1498 734 C1465 721 1426 698 1405 669 C1384 639 1379 594 1371 556 C1363 518 1351 478 1356 440 C1362 402 1380 361 1403 330 C1426 299 1460 262 1494 253 C1527 243 1570 264 1605 272 C1641 280 1679 282 1706 302 C1732 323 1750 360 1767 393 C1784 426 1805 463 1808 500 Z"/>
+<path d="M1748 500 C1751 528 1743 561 1732 589 C1722 618 1707 653 1685 670 C1663 686 1628 686 1600 687 C1573 689 1545 688 1520 678 C1495 668 1466 651 1451 628 C1435 606 1431 572 1425 543 C1419 514 1411 483 1415 454 C1419 426 1433 394 1449 371 C1466 347 1491 319 1516 312 C1541 305 1573 320 1599 327 C1625 333 1653 334 1673 350 C1693 365 1706 394 1718 419 C1731 444 1746 472 1748 500 Z"/>
+<path d="M1694 500 C1695 519 1690 542 1683 561 C1676 580 1666 605 1651 616 C1636 627 1612 627 1594 628 C1575 629 1556 628 1539 622 C1522 615 1503 603 1492 588 C1482 572 1479 549 1475 529 C1471 509 1465 488 1468 469 C1471 449 1480 428 1492 412 C1503 395 1520 376 1537 371 C1554 366 1575 377 1593 381 C1610 386 1629 387 1643 397 C1656 408 1665 427 1673 445 C1682 462 1692 481 1694 500 Z"/>
+<path d="M1641 500 C1642 511 1639 523 1636 534 C1632 545 1626 558 1618 564 C1610 570 1597 570 1587 571 C1577 572 1567 571 1558 567 C1549 564 1539 557 1533 549 C1527 540 1526 527 1524 516 C1521 505 1518 494 1520 483 C1521 472 1526 460 1532 451 C1539 442 1548 432 1557 429 C1566 426 1577 432 1587 434 C1596 437 1607 437 1614 443 C1621 449 1626 460 1630 469 C1635 479 1641 489 1641 500 Z"/>
+<path d="M1124 470 C1123 492 1111 514 1100 535 C1089 556 1080 585 1059 597 C1039 609 1005 604 979 606 C952 609 923 618 899 611 C876 605 851 585 836 567 C821 549 816 525 810 503 C803 481 789 455 795 434 C801 414 827 397 845 380 C862 363 878 339 901 332 C923 324 954 330 979 334 C1003 338 1027 345 1049 357 C1070 368 1096 382 1108 401 C1121 420 1125 448 1124 470 Z"/>
+<path d="M1066 470 C1065 484 1058 498 1051 511 C1044 524 1037 543 1024 551 C1011 558 989 555 972 556 C955 558 936 564 921 559 C905 555 890 543 880 531 C870 520 867 505 863 491 C858 477 849 460 853 447 C857 434 874 424 885 413 C897 402 907 387 922 382 C936 378 956 381 972 384 C988 386 1003 391 1017 398 C1031 405 1048 415 1056 427 C1064 438 1067 456 1066 470 Z"/>
+<path d="M1013 470 C1013 477 1009 484 1005 491 C1002 498 999 507 992 511 C986 515 975 513 966 514 C957 514 948 517 940 515 C933 513 925 507 920 501 C915 495 914 488 911 480 C909 473 905 465 907 458 C908 452 917 447 923 441 C928 436 934 428 941 426 C948 423 958 425 966 426 C974 428 982 430 989 434 C996 437 1004 442 1008 448 C1012 454 1014 463 1013 470 Z"/>
+<path d="M2219 890 C2218 902 2213 916 2204 926 C2194 936 2178 943 2163 951 C2149 959 2132 974 2116 975 C2099 976 2079 963 2062 957 C2044 952 2025 951 2010 943 C1996 935 1977 922 1974 911 C1971 899 1987 885 1993 872 C1999 860 1999 846 2009 836 C2020 827 2039 817 2056 813 C2074 810 2095 816 2113 818 C2131 820 2150 820 2167 826 C2183 831 2202 841 2211 851 C2219 862 2220 878 2219 890 Z"/>
+<path d="M2165 890 C2164 897 2161 904 2156 910 C2151 916 2142 919 2134 924 C2126 928 2118 936 2108 937 C2099 937 2089 930 2079 927 C2070 924 2059 923 2051 919 C2043 915 2033 908 2032 901 C2030 895 2039 887 2042 880 C2045 874 2045 866 2051 861 C2057 855 2067 850 2076 848 C2086 846 2097 849 2107 850 C2117 851 2127 852 2136 855 C2145 858 2155 863 2160 869 C2165 875 2165 883 2165 890 Z"/>
+</g>
+<text class="m-depth" x="1741" y="325">4</text>
+<text class="m-depth" x="1699" y="367">5</text>
+<text class="m-depth" x="1660" y="409">6</text>
+<text class="m-depth" x="1623" y="450">7</text>
+<text class="m-depth" x="1079" y="365">3</text>
+<text class="m-depth" x="1037" y="404">4</text>
+<text class="m-depth" x="998" y="436">5</text>
+<text class="m-depth" x="2184" y="834">3</text>
+<text class="m-depth" x="2146" y="859">4</text>
+<use href="#river-hero" fill="none" stroke="#3E7BA3" stroke-opacity=".28" stroke-width="22" stroke-linecap="round"/>
+<use href="#river-hero" fill="none" stroke="#3E7BA3" stroke-width="6" stroke-linecap="round"/>
+<use href="#river2-hero" fill="none" stroke="#3E7BA3" stroke-opacity=".28" stroke-width="13" stroke-linecap="round"/>
+<use href="#river2-hero" fill="none" stroke="#3E7BA3" stroke-width="3.5" stroke-linecap="round"/>
+<text class="m-water"><textPath href="#river-hero" startOffset="7%">docs/runbooks</textPath></text>
+<text class="m-water"><textPath href="#river-hero" startOffset="80%">docs/onboarding</textPath></text>
+<text class="m-water"><textPath href="#river-hero" startOffset="44%">docs/adr</textPath></text>
+<text class="m-water"><textPath href="#river2-hero" startOffset="12%">docs/api</textPath></text>
+<g fill="none" stroke="#1E2420" stroke-linecap="round">
+<path d="M330 300 C375 305 490 330 600 330 C710 330 857 300 990 300 C1123 300 1282 330 1400 330 C1518 330 1592 305 1700 300 C1808 295 1967 290 2050 300 C2133 310 2175 350 2200 360" stroke-width="7" stroke-dasharray="20 9" opacity=".7"/>
+<path d="M1400 330 C1427 347 1510 368 1560 430 C1610 492 1635 638 1700 700 C1765 762 1878 775 1950 800 C2022 825 2100 842 2130 850" stroke-width="4.5" stroke-dasharray="16 9" opacity=".7"/>
+<path d="M990 300 C982 337 958 450 940 520 C922 590 903 673 880 720 C857 767 813 787 800 800" stroke-width="3" stroke-dasharray="12 9" opacity=".6"/>
+<path d="M1950 1010 C1958 1033 1978 1113 2000 1150 C2022 1187 2067 1217 2080 1230" stroke-width="2" stroke-dasharray="5 10" opacity=".5"/>
+</g>
+<g stroke="#1E2420" stroke-width="3" opacity=".75"><line x1="1676" y1="725" x2="1700" y2="770"/><line x1="1716" y1="712" x2="1740" y2="757"/></g>
+<text class="m-pr" x="760" y="292">#3982</text>
+<text class="m-pr" x="1215" y="300">#4127</text>
+<text class="m-pr" x="1800" y="770">#3790</text>
+<g class="m-week"><path class="route" pathLength="1" d="M330 300 C362 337 430 451 520 520 C610 589 707 706 870 715 C1033 724 1303 543 1500 575 C1697 607 1936 945 2050 905 C2164 865 2162 430 2185 335" fill="none" stroke="#C63B22" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round"/>
+<g class="wp" style="--i:0"><circle cx="520" cy="520" r="23" fill="#C63B22"/><circle cx="520" cy="520" r="31" fill="none" stroke="#C63B22" stroke-width="2.5"/><text x="520" y="528" text-anchor="middle" class="m-wp">1</text></g>
+<g class="wp" style="--i:1"><circle cx="870" cy="715" r="23" fill="#C63B22"/><circle cx="870" cy="715" r="31" fill="none" stroke="#C63B22" stroke-width="2.5"/><text x="870" y="723" text-anchor="middle" class="m-wp">2</text></g>
+<g class="wp" style="--i:2"><circle cx="1500" cy="575" r="23" fill="#C63B22"/><circle cx="1500" cy="575" r="31" fill="none" stroke="#C63B22" stroke-width="2.5"/><text x="1500" y="583" text-anchor="middle" class="m-wp">3</text></g>
+<g class="wp" style="--i:3"><circle cx="2050" cy="905" r="23" fill="#C63B22"/><circle cx="2050" cy="905" r="31" fill="none" stroke="#C63B22" stroke-width="2.5"/><text x="2050" y="913" text-anchor="middle" class="m-wp">4</text></g>
+<g class="wp" style="--i:4"><circle cx="2185" cy="335" r="23" fill="#C63B22"/><circle cx="2185" cy="335" r="31" fill="none" stroke="#C63B22" stroke-width="2.5"/><text x="2185" y="343" text-anchor="middle" class="m-wp">5</text></g>
+</g>
+<text class="m-name" x="440" y="435" text-anchor="middle" data-for="web">WEB-APP</text>
+<text class="m-name" x="990" y="444" text-anchor="middle" data-for="auth">AUTH</text>
+<text class="m-name" x="1560" y="480" text-anchor="middle" data-for="pay">PAYMENTS</text>
+<text class="m-name" x="2010" y="450" text-anchor="middle" data-for="search">SEARCH</text>
+<text class="m-name" x="2215" y="985" text-anchor="middle" data-for="jobs">JOBS</text>
+<text class="m-name" x="2110" y="1240" text-anchor="middle">BILLING-V1</text><text class="m-note" x="2110" y="1276" text-anchor="middle">No owner on record</text>
+<g class="m-hut" data-for="web"><path d="M547 225 v-16 l13 -12 l13 12 v16 z" fill="#1E2420"/><text x="582" y="224">@mei</text></g>
+<g class="m-hut" data-for="auth"><path d="M1097 235 v-16 l13 -12 l13 12 v16 z" fill="#1E2420"/><text x="1132" y="234">@ines</text></g>
+<g class="m-hut" data-for="pay"><path d="M1687 225 v-16 l13 -12 l13 12 v16 z" fill="#1E2420"/><text x="1722" y="224">@dana</text></g>
+<g class="m-hut" data-for="search"><path d="M2237 225 v-16 l13 -12 l13 12 v16 z" fill="#1E2420"/><text x="2272" y="224">@tom</text></g>
+<g class="m-hut" data-for="jobs"><path d="M2277 770 v-16 l13 -12 l13 12 v16 z" fill="#1E2420"/><text x="2312" y="769">@kofi</text></g>
+<g class="m-yah"><circle cx="330" cy="300" r="22" fill="none" stroke="#1E2420" stroke-width="3"/><circle cx="330" cy="300" r="8" fill="#1E2420"/><text x="310" y="234" class="m-yah-t">You are here</text><text x="310" y="264" class="m-pr">README.md</text></g>
+<g class="m-scale" transform="translate(1940 1386)">
+<rect x="0" y="0" width="100" height="12" fill="#1E2420" stroke="#1E2420" stroke-width="2"/>
+<rect x="100" y="0" width="100" height="12" fill="none" stroke="#1E2420" stroke-width="2"/>
+<rect x="200" y="0" width="100" height="12" fill="#1E2420" stroke="#1E2420" stroke-width="2"/>
+<rect x="300" y="0" width="100" height="12" fill="none" stroke="#1E2420" stroke-width="2"/>
+<text x="0" y="44" text-anchor="start" class="m-scale-t">0</text>
+<text x="200" y="44" text-anchor="middle" class="m-scale-t">5,000</text>
+<text x="400" y="44" text-anchor="end" class="m-scale-t">10,000 lines</text>
+<text x="0" y="-16" class="m-note">Scale in lines of code</text></g>
+<rect x="168" y="838" width="1647" height="626" fill="#fff"/><rect x="184" y="854" width="1615" height="594" fill="none" stroke="#1E2420" stroke-width="2" opacity=".8"/><rect x="194" y="864" width="1595" height="574" fill="none" stroke="#1E2420" stroke-width="1" opacity=".45"/>
+</svg>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · LEGEND: what it reads -->
+<section class="section legend" id="legend" aria-labelledby="legend-h">
+  <div class="container grid">
+    <div class="legend-intro">
+      <p class="lbl dim">How it reads</p>
+      <h2 id="legend-h" class="t-h2">Every codebase has paths. <span class="dim">A year of pull requests wore them in.</span></h2>
+      <p class="lead dim">A new engineer doesn’t need a tour of every file. They need to know where people actually walk: which code changes, who changes it, and what the docs say about it. Waypoint reads three things and draws them as one map.</p>
+    </div>
+    <div class="sheet legend-sheet" data-reveal>
+      <p class="lbl sheet-title">Key to the map</p>
+      <dl class="key">
+        <div class="key-row"><dt><svg viewBox="0 0 64 40" aria-hidden="true"><path d="M6 20 C8 6 30 2 44 6 C60 10 60 30 46 35 C30 40 4 36 6 20Z" fill="#B9CCA8" stroke="#1E2420" stroke-width="1.4" stroke-dasharray="6 3 1.5 3"/></svg><span>Land</span></dt><dd><b>The repository.</b> Every service is a piece of ground with a named owner, or a plain “No owner on record” when nobody has claimed it.</dd></div>
+        <div class="key-row"><dt><svg viewBox="0 0 64 40" aria-hidden="true"><path d="M2 26 C16 14 26 32 40 20 S58 12 62 16" fill="none" stroke="#3E7BA3" stroke-opacity=".3" stroke-width="9" stroke-linecap="round"/><path d="M2 26 C16 14 26 32 40 20 S58 12 62 16" fill="none" stroke="#3E7BA3" stroke-width="2.6" stroke-linecap="round"/></svg><span>Rivers</span></dt><dd><b>The docs.</b> Runbooks, decision records and API notes run through the map, and every answer can link straight into them.</dd></div>
+        <div class="key-row"><dt><svg viewBox="0 0 64 40" aria-hidden="true"><path d="M4 30 C20 28 26 12 60 10" fill="none" stroke="#1E2420" stroke-width="3.4" stroke-dasharray="8 4" stroke-linecap="round"/><path d="M4 36 C26 36 40 26 60 24" fill="none" stroke="#1E2420" stroke-width="1.4" stroke-dasharray="3 5" stroke-linecap="round" opacity=".6"/></svg><span>Footpaths</span></dt><dd><b>The last year of pull requests.</b> The more people walked a path, the wider it’s drawn. Faint paths are code nobody has touched in a while.</dd></div>
+        <div class="key-row"><dt><svg viewBox="0 0 64 40" aria-hidden="true"><g fill="none" stroke="#A2794E" stroke-width="1.6"><ellipse cx="32" cy="20" rx="28" ry="16"/><ellipse cx="32" cy="20" rx="18" ry="10"/><ellipse cx="32" cy="20" rx="8" ry="4.5"/></g></svg><span>Contours</span></dt><dd><b>Directory depth.</b> Closely packed rings mark deep folders, which is usually where a new hire gets lost first.</dd></div>
+        <div class="key-row"><dt><svg viewBox="0 0 64 40" aria-hidden="true"><circle cx="32" cy="20" r="11" fill="#C63B22"/><circle cx="32" cy="20" r="15.5" fill="none" stroke="#C63B22" stroke-width="1.4"/></svg><span>Waypoints</span></dt><dd><b>The first week.</b> Small, real tasks on a route, each with the file to open and the person to ask.</dd></div>
+      </dl>
+      <p class="sheet-foot">Waypoint reads all of this. It changes none of it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · PLAY: ask the map -->
+<section class="section ask" id="ask" aria-labelledby="ask-h" data-ask data-q="refunds" data-app="slack">
+  <div class="container">
+    <div class="ask-head">
+      <p class="lbl dim">Ask the map</p>
+      <h2 id="ask-h" class="t-h2">Ask what a new hire asks. <span class="dim">It answers in Slack or Teams, with the exact lines.</span></h2>
+    </div>
+    <fieldset class="ask-qs">
+      <legend class="sr-only">Pick a question to ask the map</legend>
+      <label class="q"><input type="radio" name="q" value="refunds" checked><span>Where do failed refunds get retried?</span></label>
+      <label class="q"><input type="radio" name="q" value="signin"><span>Who owns sign-in?</span></label>
+      <label class="q"><input type="radio" name="q" value="queues"><span>Why are there two job queues?</span></label>
+    </fieldset>
+    <div class="ask-stage">
+      <div class="crop crop--ask">
+        <figure class="stage" role="img" aria-label="The example map, zoomed: a vermilion route runs from You are here along a worn footpath to the place in the code that answers the chosen question.">
+          <img src="img/sheet-2560.webp" srcset="img/sheet-1280.webp 1280w, img/sheet-2560.webp 2560w" sizes="(max-width: 760px) 260vw, 110vw" width="2560" height="1600" alt="" loading="lazy">
+<svg class="map-svg" viewBox="0 0 2560 1600" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+<defs><pattern id="hatch-play" width="16" height="16" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="16" height="16" fill="#E2D2AE"/><line x1="0" y1="0" x2="0" y2="16" stroke="#A2794E" stroke-width="3" opacity=".55"/></pattern>
+<path id="river-play" d="M168 560 C195 573 265 617 330 640 C395 663 482 687 560 700 C638 713 722 723 800 720 C878 717 948 678 1030 680 C1112 682 1208 715 1290 730 C1372 745 1442 772 1520 770 C1598 768 1700 715 1760 720 C1820 725 1848 752 1880 800 C1912 848 1923 958 1950 1010 C1977 1062 1966 1087 2040 1110 C2114 1133 2332 1143 2391 1150"/><path id="river2-play" d="M1760 720 C1783 717 1863 713 1900 700 C1937 687 1955 657 1980 640 C2005 623 2038 607 2050 600"/></defs>
+<rect x="168" y="124" width="2223" height="1340" fill="none" stroke="#1E2420" stroke-width="2.2" opacity=".8"/>
+<rect x="160" y="116" width="2239" height="1356" fill="none" stroke="#1E2420" stroke-width="1" opacity=".5"/>
+<text class="m-grid" x="434" y="108" text-anchor="middle">A</text>
+<text class="m-grid" x="989" y="108" text-anchor="middle">B</text>
+<line x1="701" y1="124" x2="701" y2="140" stroke="#1E2420" stroke-width="2" opacity=".6"/><line x1="701" y1="1448" x2="701" y2="1464" stroke="#1E2420" stroke-width="2" opacity=".6"/>
+<text class="m-grid" x="1566" y="108" text-anchor="middle">C</text>
+<line x1="1277" y1="124" x2="1277" y2="140" stroke="#1E2420" stroke-width="2" opacity=".6"/><line x1="1277" y1="1448" x2="1277" y2="1464" stroke="#1E2420" stroke-width="2" opacity=".6"/>
+<text class="m-grid" x="2123" y="108" text-anchor="middle">D</text>
+<line x1="1855" y1="124" x2="1855" y2="140" stroke="#1E2420" stroke-width="2" opacity=".6"/><line x1="1855" y1="1448" x2="1855" y2="1464" stroke="#1E2420" stroke-width="2" opacity=".6"/>
+<text class="m-grid" x="146" y="469" text-anchor="middle">1</text>
+<text class="m-grid" x="146" y="1139" text-anchor="middle">2</text>
+<line x1="168" y1="798" x2="184" y2="798" stroke="#1E2420" stroke-width="2" opacity=".6"/><line x1="2375" y1="798" x2="2391" y2="798" stroke="#1E2420" stroke-width="2" opacity=".6"/>
+<g class="m-land">
+<g class="m-region" data-region="web"><path d="M654 400 C652 438 661 479 646 510 C631 542 596 565 566 587 C537 608 504 633 468 640 C433 646 386 644 356 627 C326 610 306 568 287 538 C269 509 260 482 245 449 C230 416 191 371 197 339 C203 306 251 278 279 254 C306 230 332 215 364 195 C396 176 437 135 471 137 C506 139 538 184 570 208 C601 232 647 249 661 281 C676 313 657 362 654 400 Z" fill="#8FAE77" fill-opacity=".34" stroke="#1E2420" stroke-opacity=".55" stroke-width="2" stroke-dasharray="14 6 3 6"/></g>
+<g class="m-region" data-region="auth"><path d="M1214 410 C1212 443 1193 473 1179 505 C1165 537 1156 585 1129 602 C1101 620 1052 605 1015 609 C978 612 938 631 906 622 C873 613 840 581 820 554 C801 527 798 491 788 458 C778 425 754 386 761 356 C769 326 811 304 835 279 C860 253 878 214 908 203 C938 192 982 205 1015 212 C1049 219 1079 229 1109 245 C1139 261 1177 280 1194 307 C1211 335 1217 377 1214 410 Z" fill="#8FAE77" fill-opacity=".34" stroke="#1E2420" stroke-opacity=".55" stroke-width="2" stroke-dasharray="14 6 3 6"/></g>
+<g class="m-region" data-region="pay"><path d="M1792 440 C1796 479 1785 525 1771 565 C1757 605 1739 660 1708 682 C1678 705 1627 700 1588 701 C1549 702 1511 702 1476 688 C1442 675 1401 651 1380 620 C1359 588 1359 539 1351 498 C1342 458 1327 416 1331 376 C1336 336 1355 292 1378 258 C1401 224 1436 182 1470 173 C1505 164 1549 195 1585 205 C1621 215 1660 212 1687 233 C1713 254 1728 295 1746 330 C1764 364 1788 401 1792 440 Z" fill="#8FAE77" fill-opacity=".34" stroke="#1E2420" stroke-opacity=".55" stroke-width="2" stroke-dasharray="14 6 3 6"/></g>
+<g class="m-region" data-region="search"><path d="M2347 370 C2349 402 2342 439 2327 469 C2312 498 2285 527 2257 547 C2228 568 2189 588 2154 591 C2118 595 2079 581 2044 569 C2009 556 1963 543 1946 517 C1929 491 1947 444 1942 412 C1937 380 1917 354 1918 323 C1919 291 1924 247 1946 222 C1967 198 2011 188 2046 176 C2080 164 2122 143 2154 151 C2185 158 2208 201 2235 222 C2262 243 2295 253 2314 278 C2333 302 2345 338 2347 370 Z" fill="#8FAE77" fill-opacity=".34" stroke="#1E2420" stroke-opacity=".55" stroke-width="2" stroke-dasharray="14 6 3 6"/></g>
+<g class="m-region" data-region="jobs"><path d="M2333 860 C2330 883 2321 909 2304 927 C2287 946 2257 956 2231 972 C2205 988 2178 1021 2148 1023 C2119 1025 2085 993 2054 982 C2022 972 1986 973 1959 960 C1932 946 1894 922 1890 900 C1885 878 1923 851 1934 828 C1945 805 1939 778 1957 759 C1975 740 2010 721 2041 715 C2072 710 2110 725 2143 729 C2176 733 2209 731 2238 740 C2268 750 2305 767 2320 787 C2336 807 2336 837 2333 860 Z" fill="#8FAE77" fill-opacity=".34" stroke="#1E2420" stroke-opacity=".55" stroke-width="2" stroke-dasharray="14 6 3 6"/></g>
+<g class="m-region m-region--none" data-region="billing"><path d="M2315 1250 C2317 1265 2320 1282 2307 1296 C2294 1309 2265 1322 2237 1331 C2208 1340 2171 1351 2138 1351 C2105 1351 2069 1340 2039 1333 C2009 1326 1978 1320 1958 1310 C1937 1299 1923 1285 1916 1271 C1908 1258 1908 1243 1913 1229 C1917 1214 1920 1194 1942 1184 C1963 1174 2007 1173 2039 1168 C2072 1163 2105 1154 2136 1155 C2167 1157 2199 1168 2225 1176 C2251 1185 2278 1195 2293 1208 C2307 1220 2312 1235 2315 1250 Z" fill="url(#hatch-play)" stroke="#1E2420" stroke-opacity=".55" stroke-width="2" stroke-dasharray="14 6 3 6"/></g>
+</g>
+<g fill="none" stroke="#A2794E" stroke-width="2.2" opacity=".75">
+<path d="M1808 500 C1811 537 1800 580 1786 618 C1772 655 1751 702 1722 723 C1692 745 1645 745 1608 746 C1570 748 1532 747 1498 734 C1465 721 1426 698 1405 669 C1384 639 1379 594 1371 556 C1363 518 1351 478 1356 440 C1362 402 1380 361 1403 330 C1426 299 1460 262 1494 253 C1527 243 1570 264 1605 272 C1641 280 1679 282 1706 302 C1732 323 1750 360 1767 393 C1784 426 1805 463 1808 500 Z"/>
+<path d="M1748 500 C1751 528 1743 561 1732 589 C1722 618 1707 653 1685 670 C1663 686 1628 686 1600 687 C1573 689 1545 688 1520 678 C1495 668 1466 651 1451 628 C1435 606 1431 572 1425 543 C1419 514 1411 483 1415 454 C1419 426 1433 394 1449 371 C1466 347 1491 319 1516 312 C1541 305 1573 320 1599 327 C1625 333 1653 334 1673 350 C1693 365 1706 394 1718 419 C1731 444 1746 472 1748 500 Z"/>
+<path d="M1694 500 C1695 519 1690 542 1683 561 C1676 580 1666 605 1651 616 C1636 627 1612 627 1594 628 C1575 629 1556 628 1539 622 C1522 615 1503 603 1492 588 C1482 572 1479 549 1475 529 C1471 509 1465 488 1468 469 C1471 449 1480 428 1492 412 C1503 395 1520 376 1537 371 C1554 366 1575 377 1593 381 C1610 386 1629 387 1643 397 C1656 408 1665 427 1673 445 C1682 462 1692 481 1694 500 Z"/>
+<path d="M1641 500 C1642 511 1639 523 1636 534 C1632 545 1626 558 1618 564 C1610 570 1597 570 1587 571 C1577 572 1567 571 1558 567 C1549 564 1539 557 1533 549 C1527 540 1526 527 1524 516 C1521 505 1518 494 1520 483 C1521 472 1526 460 1532 451 C1539 442 1548 432 1557 429 C1566 426 1577 432 1587 434 C1596 437 1607 437 1614 443 C1621 449 1626 460 1630 469 C1635 479 1641 489 1641 500 Z"/>
+<path d="M1124 470 C1123 492 1111 514 1100 535 C1089 556 1080 585 1059 597 C1039 609 1005 604 979 606 C952 609 923 618 899 611 C876 605 851 585 836 567 C821 549 816 525 810 503 C803 481 789 455 795 434 C801 414 827 397 845 380 C862 363 878 339 901 332 C923 324 954 330 979 334 C1003 338 1027 345 1049 357 C1070 368 1096 382 1108 401 C1121 420 1125 448 1124 470 Z"/>
+<path d="M1066 470 C1065 484 1058 498 1051 511 C1044 524 1037 543 1024 551 C1011 558 989 555 972 556 C955 558 936 564 921 559 C905 555 890 543 880 531 C870 520 867 505 863 491 C858 477 849 460 853 447 C857 434 874 424 885 413 C897 402 907 387 922 382 C936 378 956 381 972 384 C988 386 1003 391 1017 398 C1031 405 1048 415 1056 427 C1064 438 1067 456 1066 470 Z"/>
+<path d="M1013 470 C1013 477 1009 484 1005 491 C1002 498 999 507 992 511 C986 515 975 513 966 514 C957 514 948 517 940 515 C933 513 925 507 920 501 C915 495 914 488 911 480 C909 473 905 465 907 458 C908 452 917 447 923 441 C928 436 934 428 941 426 C948 423 958 425 966 426 C974 428 982 430 989 434 C996 437 1004 442 1008 448 C1012 454 1014 463 1013 470 Z"/>
+<path d="M2219 890 C2218 902 2213 916 2204 926 C2194 936 2178 943 2163 951 C2149 959 2132 974 2116 975 C2099 976 2079 963 2062 957 C2044 952 2025 951 2010 943 C1996 935 1977 922 1974 911 C1971 899 1987 885 1993 872 C1999 860 1999 846 2009 836 C2020 827 2039 817 2056 813 C2074 810 2095 816 2113 818 C2131 820 2150 820 2167 826 C2183 831 2202 841 2211 851 C2219 862 2220 878 2219 890 Z"/>
+<path d="M2165 890 C2164 897 2161 904 2156 910 C2151 916 2142 919 2134 924 C2126 928 2118 936 2108 937 C2099 937 2089 930 2079 927 C2070 924 2059 923 2051 919 C2043 915 2033 908 2032 901 C2030 895 2039 887 2042 880 C2045 874 2045 866 2051 861 C2057 855 2067 850 2076 848 C2086 846 2097 849 2107 850 C2117 851 2127 852 2136 855 C2145 858 2155 863 2160 869 C2165 875 2165 883 2165 890 Z"/>
+</g>
+<text class="m-depth" x="1741" y="325">4</text>
+<text class="m-depth" x="1699" y="367">5</text>
+<text class="m-depth" x="1660" y="409">6</text>
+<text class="m-depth" x="1623" y="450">7</text>
+<text class="m-depth" x="1079" y="365">3</text>
+<text class="m-depth" x="1037" y="404">4</text>
+<text class="m-depth" x="998" y="436">5</text>
+<text class="m-depth" x="2184" y="834">3</text>
+<text class="m-depth" x="2146" y="859">4</text>
+<use href="#river-play" fill="none" stroke="#3E7BA3" stroke-opacity=".28" stroke-width="22" stroke-linecap="round"/>
+<use href="#river-play" fill="none" stroke="#3E7BA3" stroke-width="6" stroke-linecap="round"/>
+<use href="#river2-play" fill="none" stroke="#3E7BA3" stroke-opacity=".28" stroke-width="13" stroke-linecap="round"/>
+<use href="#river2-play" fill="none" stroke="#3E7BA3" stroke-width="3.5" stroke-linecap="round"/>
+<text class="m-water"><textPath href="#river-play" startOffset="7%">docs/runbooks</textPath></text>
+<text class="m-water"><textPath href="#river-play" startOffset="80%">docs/onboarding</textPath></text>
+<text class="m-water"><textPath href="#river-play" startOffset="44%">docs/adr</textPath></text>
+<text class="m-water"><textPath href="#river2-play" startOffset="12%">docs/api</textPath></text>
+<g fill="none" stroke="#1E2420" stroke-linecap="round">
+<path d="M330 300 C375 305 490 330 600 330 C710 330 857 300 990 300 C1123 300 1282 330 1400 330 C1518 330 1592 305 1700 300 C1808 295 1967 290 2050 300 C2133 310 2175 350 2200 360" stroke-width="7" stroke-dasharray="20 9" opacity=".7"/>
+<path d="M1400 330 C1427 347 1510 368 1560 430 C1610 492 1635 638 1700 700 C1765 762 1878 775 1950 800 C2022 825 2100 842 2130 850" stroke-width="4.5" stroke-dasharray="16 9" opacity=".7"/>
+<path d="M990 300 C982 337 958 450 940 520 C922 590 903 673 880 720 C857 767 813 787 800 800" stroke-width="3" stroke-dasharray="12 9" opacity=".6"/>
+<path d="M1950 1010 C1958 1033 1978 1113 2000 1150 C2022 1187 2067 1217 2080 1230" stroke-width="2" stroke-dasharray="5 10" opacity=".5"/>
+</g>
+<g stroke="#1E2420" stroke-width="3" opacity=".75"><line x1="1676" y1="725" x2="1700" y2="770"/><line x1="1716" y1="712" x2="1740" y2="757"/></g>
+<text class="m-pr" x="760" y="292">#3982</text>
+<text class="m-pr" x="1215" y="300">#4127</text>
+<text class="m-pr" x="1800" y="770">#3790</text>
+<g class="m-ask">
+<g class="ask-route" data-route="refunds"><path class="route" pathLength="1" d="M330 300 C375 305 490 330 600 330 C710 330 857 300 990 300 C1123 300 1312 310 1400 330 C1488 350 1487 391 1520 420 C1553 449 1587 491 1600 505" fill="none" stroke="#C63B22" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><g class="ask-pin"><circle cx="1600" cy="505" r="44" fill="none" stroke="#C63B22" stroke-width="3"/><circle cx="1600" cy="505" r="26" fill="#C63B22"/><text x="1600" y="514" text-anchor="middle" class="m-wp">?</text></g></g>
+<g class="ask-route" data-route="signin"><path class="route" pathLength="1" d="M330 300 C375 305 512 327 600 330 C688 333 795 318 860 318 C925 318 965 313 990 330 C1015 347 1007 405 1010 420" fill="none" stroke="#C63B22" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><g class="ask-pin"><circle cx="1010" cy="420" r="44" fill="none" stroke="#C63B22" stroke-width="3"/><circle cx="1010" cy="420" r="26" fill="#C63B22"/><text x="1010" y="429" text-anchor="middle" class="m-wp">?</text></g></g>
+<g class="ask-route" data-route="queues"><path class="route" pathLength="1" d="M330 300 C375 305 490 330 600 330 C710 330 857 300 990 300 C1123 300 1305 308 1400 330 C1495 352 1510 368 1560 430 C1610 492 1635 638 1700 700 C1765 762 1878 775 1950 800 C2022 825 2100 842 2130 850" fill="none" stroke="#C63B22" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><g class="ask-pin"><circle cx="2130" cy="850" r="44" fill="none" stroke="#C63B22" stroke-width="3"/><circle cx="2130" cy="850" r="26" fill="#C63B22"/><text x="2130" y="859" text-anchor="middle" class="m-wp">?</text></g></g>
+</g>
+<text class="m-name" x="440" y="435" text-anchor="middle" data-for="web">WEB-APP</text>
+<text class="m-name" x="990" y="444" text-anchor="middle" data-for="auth">AUTH</text>
+<text class="m-name" x="1560" y="480" text-anchor="middle" data-for="pay">PAYMENTS</text>
+<text class="m-name" x="2010" y="450" text-anchor="middle" data-for="search">SEARCH</text>
+<text class="m-name" x="2215" y="985" text-anchor="middle" data-for="jobs">JOBS</text>
+<text class="m-name" x="2110" y="1240" text-anchor="middle">BILLING-V1</text><text class="m-note" x="2110" y="1276" text-anchor="middle">No owner on record</text>
+<g class="m-hut" data-for="web"><path d="M547 225 v-16 l13 -12 l13 12 v16 z" fill="#1E2420"/><text x="582" y="224">@mei</text></g>
+<g class="m-hut" data-for="auth"><path d="M1097 235 v-16 l13 -12 l13 12 v16 z" fill="#1E2420"/><text x="1132" y="234">@ines</text></g>
+<g class="m-hut" data-for="pay"><path d="M1687 225 v-16 l13 -12 l13 12 v16 z" fill="#1E2420"/><text x="1722" y="224">@dana</text></g>
+<g class="m-hut" data-for="search"><path d="M2237 225 v-16 l13 -12 l13 12 v16 z" fill="#1E2420"/><text x="2272" y="224">@tom</text></g>
+<g class="m-hut" data-for="jobs"><path d="M2277 770 v-16 l13 -12 l13 12 v16 z" fill="#1E2420"/><text x="2312" y="769">@kofi</text></g>
+<g class="m-yah"><circle cx="330" cy="300" r="22" fill="none" stroke="#1E2420" stroke-width="3"/><circle cx="330" cy="300" r="8" fill="#1E2420"/><text x="310" y="234" class="m-yah-t">You are here</text><text x="310" y="264" class="m-pr">README.md</text></g>
+</svg>
+        </figure>
+      </div>
+      <div class="chat" aria-live="polite" data-chat>
+        <div class="chat-bar">
+          <span class="chat-where" data-where>#onboarding</span>
+          <div class="chat-switch" role="group" aria-label="Show the answer in">
+            <button type="button" aria-pressed="true" data-app-btn="slack">Slack</button>
+            <button type="button" aria-pressed="false" data-app-btn="teams">Microsoft Teams</button>
+          </div>
+        </div>
+        <div class="msg msg--you">
+          <span class="av av--you" aria-hidden="true">N</span>
+          <div><p class="who">New hire <span class="dimmer">· day 2</span></p><p data-ask-q>Where do failed refunds get retried?</p></div>
+        </div>
+        <div class="msg msg--wp">
+          <span class="av av--wp" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="12" cy="12" r="3" fill="currentColor"/></svg></span>
+          <div>
+            <p class="who">Waypoint <span class="app-tag">app</span></p>
+            <p data-ask-a>On the job queue. A failed refund is put back on the queue and retried, and Payments is paged if it keeps failing.</p>
+            <ul class="refs">
+              <li><span class="ref-k">Lines</span><a href="#ask" class="code" data-ask-file>services/<wbr>payments/<wbr>refunds/<wbr>retry.ts:88–104</a></li>
+              <li><span class="ref-k">Why</span><span><span class="code" data-ask-pr>#4127</span> <span data-ask-prt>Move refund retries onto the job queue</span></span></li>
+              <li><span class="ref-k">Ask</span><span data-ask-owner>@dana · Payments</span></li>
+            </ul>
+          </div>
+        </div>
+        <p class="chat-note">Example answer from a fictional repo</p>
+      </div>
+    </div>
+    <p class="ask-cta"><a class="btn btn--accent" href="#install">Map yours</a><span class="dim">Your map is ready in about 20 minutes for a mid-sized repo.</span></p>
+  </div>
+</section>
+
+<!-- 4 · GAZETTEER: owners -->
+<section class="section owners" id="owners" aria-labelledby="owners-h">
+  <div class="container grid">
+    <div class="owners-intro">
+      <p class="lbl dim">Services and owners</p>
+      <h2 id="owners-h" class="t-h2">Who owns what, <span class="dim">kept current.</span></h2>
+      <p class="lead dim">Waypoint keeps a living map of the services and who owns each one, read from the code and the pull requests. The answer to “who do I ask?” is a name, not a guess.</p>
+    </div>
+    <div class="sheet gaz" data-reveal>
+      <div class="gaz-head"><p class="lbl">Gazetteer</p><p class="tag">Example data · fictional repo</p></div>
+      <table>
+        <caption class="sr-only">Example gazetteer: services, grid squares, paths, owners and the doc to read first</caption>
+        <thead><tr><th scope="col">Service</th><th scope="col">Grid</th><th scope="col">Where</th><th scope="col">Owner</th><th scope="col">Read first</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Web app</th><td>A1</td><td class="code">apps/web</td><td>@mei · Web</td><td class="code">apps/web/README.md</td></tr>
+          <tr><th scope="row">Auth</th><td>B1</td><td class="code">services/auth</td><td>@ines · Identity</td><td class="code">docs/adr/0012-sessions.md</td></tr>
+          <tr><th scope="row">Payments</th><td>C1</td><td class="code">services/payments</td><td>@dana · Payments</td><td class="code">docs/runbooks/refunds.md</td></tr>
+          <tr><th scope="row">Search</th><td>D1</td><td class="code">services/search</td><td>@tom · Search</td><td class="code">docs/api/search.md</td></tr>
+          <tr><th scope="row">Jobs</th><td>D2</td><td class="code">services/jobs</td><td>@kofi · Platform</td><td class="code">docs/adr/0031-second-queue.md</td></tr>
+          <tr class="none"><th scope="row">Billing v1</th><td>D2</td><td class="code">legacy/billing-v1</td><td><span class="no-owner">No owner on record</span></td><td class="dimmer">None found</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · ROUTE CARD: a first week -->
+<section class="section week" id="first-week" aria-labelledby="week-h">
+  <div class="container">
+    <div class="week-head">
+      <div>
+        <p class="lbl dim">Route card</p>
+        <h2 id="week-h" class="t-h2">A first week of small, real tasks. <span class="dim">Each waypoint has a file and a person to ask.</span></h2>
+      </div>
+      <p class="dim week-note">Waypoint writes the plan from the repo’s own small jobs. The new engineer does the walking.</p>
+    </div>
+    <div class="sheet journey-sheet" data-journey>
+      <p class="tag journey-tag">Example first week · fictional repo</p>
+      <div class="journey">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true"><path class="route" pathLength="1" d="M0 66 C 60 66 80 40 120 40 C 220 40 260 92 360 92 C 460 92 500 40 600 40 C 700 40 740 92 840 92 C 940 92 980 40 1080 40 C 1130 40 1160 52 1200 52"/></svg>
+        <ol class="stations">
+          <li style="--py:40;--k:0"><span class="wp-n" aria-hidden="true">1</span><span class="st-day">Monday</span><span class="st-t">Run the web app and its tests locally</span><span class="code">apps/web/README.md:1</span><span class="st-ask">Ask @mei</span></li>
+          <li style="--py:92;--k:1"><span class="wp-n" aria-hidden="true">2</span><span class="st-day">Tuesday</span><span class="st-t">Fix a flagged step in the deploy runbook</span><span class="code">docs/runbooks/deploy.md:23</span><span class="st-ask">Ask @ines</span></li>
+          <li style="--py:40;--k:2"><span class="wp-n" aria-hidden="true">3</span><span class="st-day">Wednesday</span><span class="st-t">Add a missing log line to refund retries</span><span class="code">services/<wbr>payments/<wbr>refunds/<wbr>retry.ts:96</span><span class="st-ask">Ask @dana</span></li>
+          <li style="--py:92;--k:3"><span class="wp-n" aria-hidden="true">4</span><span class="st-day">Thursday</span><span class="st-t">Review one pull request with its owner</span><span class="code">services/jobs · #4188</span><span class="st-ask">With @kofi</span></li>
+          <li style="--py:40;--k:4"><span class="wp-n" aria-hidden="true">5</span><span class="st-day">Friday</span><span class="st-t">Ship a small fix: the empty search state</span><span class="code">services/<wbr>search/<wbr>filters/<wbr>empty.ts:14</span><span class="st-ask">Ask @tom</span></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · READ ONLY + SETUP -->
+<section class="section install" id="install" aria-labelledby="install-h">
+  <div class="container grid">
+    <h2 id="install-h" class="install-h">It reads. <span class="dim">It never pushes code or merges anything.</span></h2>
+    <div class="install-body">
+      <p class="lead dim">Waypoint asks for read access to the repositories you pick. That’s the whole footprint: no write scopes, no bots opening pull requests.</p>
+      <div class="install-cta">
+        <a class="btn btn--accent" href="legal.html">Install for GitHub</a>
+        <a class="btn btn--ghost" href="legal.html">Install for GitLab</a>
+      </div>
+    </div>
+    <ol class="getting" aria-label="Getting there">
+      <li><p class="lbl dim">01 · Install</p><p class="g-t">Add the GitHub or GitLab app and pick the repos.</p><p class="g-time">About 5 minutes</p></li>
+      <li><p class="lbl dim">02 · First map</p><p class="g-t">Waypoint reads the code, the docs and a year of pull requests.</p><p class="g-time">About 20 minutes for a mid-sized repo</p></li>
+      <li><p class="lbl dim">03 · Answers</p><p class="g-t">New engineers ask in the chat they already use.</p><p class="g-time">Slack or Microsoft Teams</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 7 · PRICING: three sheets -->
+<section class="section pricing" id="pricing" aria-labelledby="pricing-h">
+  <div class="container">
+    <div class="pricing-head">
+      <p class="lbl dim">Pricing</p>
+      <h2 id="pricing-h" class="t-h2">Three sheets. <span class="dim">Pick the one that fits the repo.</span></h2>
+    </div>
+    <ul class="pockets">
+      <li class="pocket pocket--free" data-reveal style="--i:0">
+        <figure class="pocket-fig">
+          <picture><img src="img/pocket-0-464.webp" width="464" height="730" alt="A folded pocket map with a moss-green cover" loading="lazy"></picture>
+          <div class="cover">
+            <h3 class="cover-name">Free</h3>
+            <p class="cover-sub">Pocket sheet<br>Scale 1:50 000</p>
+          </div>
+          <div class="strip"><p class="strip-price">USD 0</p><p class="strip-note">For repos under 50,000 lines</p></div>
+        </figure>
+        <a class="btn btn--ghost" href="#install">Map your repo</a>
+      </li>
+      <li class="pocket pocket--team" data-reveal style="--i:1">
+        <figure class="pocket-fig">
+          <picture><img src="img/pocket-1-464.webp" width="464" height="730" alt="A folded pocket map with a vermilion cover" loading="lazy"></picture>
+          <div class="cover">
+            <h3 class="cover-name">Team</h3>
+            <p class="cover-sub">Every engineer<br>Every repo you pick</p>
+          </div>
+          <div class="strip"><p class="strip-price">USD 20</p><p class="strip-note">Per engineer per month</p></div>
+        </figure>
+        <a class="btn btn--accent" href="#install">Map your repo</a>
+      </li>
+      <li class="pocket pocket--ent" data-reveal style="--i:2">
+        <figure class="pocket-fig">
+          <picture><img src="img/pocket-2-464.webp" width="464" height="730" alt="A folded pocket map with a river-blue cover" loading="lazy"></picture>
+          <div class="cover">
+            <h3 class="cover-name">Enterprise</h3>
+            <p class="cover-sub">Your own press<br>Self-hosted</p>
+          </div>
+          <div class="strip"><p class="strip-price">By quote</p><p class="strip-note">With self-hosting</p></div>
+        </figure>
+        <a class="btn btn--ghost" href="legal.html">Ask for a quote</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- 8 · FINALE -->
+<section class="finale" aria-labelledby="finale-h">
+  <div class="finale-copy">
+    <h2 id="finale-h" class="finale-h">Next year’s new hire walks your path.</h2>
+    <p class="finale-p">Waypoint reads the last year of pull requests. The ones your team merges now become the trail it shows the next engineer.</p>
+    <a class="btn btn--accent" href="#install">Map your repo</a>
+  </div>
+  <figure class="trail" data-reveal>
+    <picture>
+      <source media="(max-width: 760px)" srcset="img/trail-m-920.webp" width="920" height="1150">
+      <img src="img/trail-2688.webp" srcset="img/trail-1344.webp 1344w, img/trail-2688.webp 2688w" sizes="100vw" width="2688" height="1152" alt="A worn footpath crossing a heather moor towards a low ridge, with a wooden waymark post beside it" loading="lazy">
+    </picture>
+    <span class="disc" aria-hidden="true">05</span>
+  </figure>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="container foot-grid">
+    <div class="foot-brand">
+      <a class="brand" href="#top"><svg class="brand-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.5"/><circle cx="12" cy="12" r="3.5" fill="currentColor"/></svg><span>Waypoint</span></a>
+      <p class="dim">A trail guide for new engineers. Read-only.</p>
+      <p class="dimmer small">© 2026 Waypoint. A fictional product.</p>
+    </div>
+    <nav aria-label="Product"><p class="lbl dim">Product</p><ul><li><a href="#legend">How it reads</a></li><li><a href="#ask">Ask the map</a></li><li><a href="#owners">Owners</a></li><li><a href="#first-week">First week</a></li><li><a href="#pricing">Pricing</a></li></ul></nav>
+    <div><p class="lbl dim">Works with</p><ul><li>GitHub</li><li>GitLab</li><li>Slack</li><li>Microsoft Teams</li></ul></div>
+    <nav aria-label="Company"><p class="lbl dim">Company</p><ul><li><a href="legal.html#terms">Terms</a></li><li><a href="legal.html#privacy">Privacy</a></li><li><a href="legal.html">About this site</a></li></ul></nav>
+    <div class="foot-scale" aria-hidden="true">
+      <svg viewBox="0 0 200 30"><g stroke="currentColor" stroke-width="1.2"><rect x="1" y="2" width="49" height="6" fill="currentColor"/><rect x="50" y="2" width="49" height="6" fill="none"/><rect x="99" y="2" width="49" height="6" fill="currentColor"/><rect x="148" y="2" width="50" height="6" fill="none"/></g></svg>
+      <p class="dimmer small">0 · 5,000 · 10,000 lines</p>
+    </div>
+  </div>
+</footer>
+
+<script type="module" src="main.js"></script>
+</body>
+</html>

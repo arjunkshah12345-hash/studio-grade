@@ -1,8 +1,8 @@
-# Signature techniques: 93 moves with code
+# Signature techniques: 95 moves with code
 
 Choose **2–3 per site**, and make sure they serve the motif. **System rules don't count toward the 2–3:** §63 (naming), §66 (type voices) and §67 ("Read the film") shape the whole build rather than one moment, so they sit alongside your signatures. A page that uses ten of these is a demo reel, not a design. Each entry names its origin so you can match it to a direction.
 
-Index: **A. Structure & framing** 1–11 · **B. Type moves** 12–30 · **C. Product & proof** 31–37 · **D. Interaction & motion** 38–55 · **E. Small-product moves** 56–60 · **F. Studio and personal-site moves** 61–67 (visual signatures: 61, 62, 64, 65; system rules: 63, 66, 67) · **G. Photo-led product moves** 68–70 · **H. Editorial marks** 71 · **I. AI-product and illustration-system moves** 72–77 · **J. Directory and index moves** 78–79 · **K. Moves on a generated photo series** 80–83 · **L. Product-site moves (Ignaru, Bidframe, MenuFit, Bevel, Okara; a hero reel)** 84–93 (§93 is a motion rule, so it doesn't count toward the 2–3)
+Index: **A. Structure & framing** 1–11 · **B. Type moves** 12–30 · **C. Product & proof** 31–37 · **D. Interaction & motion** 38–55 · **E. Small-product moves** 56–60 · **F. Studio and personal-site moves** 61–67 (visual signatures: 61, 62, 64, 65; system rules: 63, 66, 67) · **G. Photo-led product moves** 68–70 · **H. Editorial marks** 71 · **I. AI-product and illustration-system moves** 72–77 · **J. Directory and index moves** 78–79 · **K. Moves on a generated photo series** 80–83 · **L. Product-site moves (Ignaru, Bidframe, MenuFit, Bevel, Okara; a hero reel)** 84–95 (§93 is a motion rule, so it doesn't count toward the 2–3)
 
 ---
 
@@ -603,7 +603,7 @@ Annotation boxes, flight paths and labels drawn *on* a full-bleed `object-fit:co
 .stage img{width:100%;height:100%;display:block}
 .mark{position:absolute;left:41.5%;top:38%;width:6%;aspect-ratio:1;border:1.5px solid var(--accent)}
 ```
-Measure the % boxes from the source file once (open it at 1:1 and read pixel positions, then divide by its size). On mobile use a separate crop with its own stage and `--r`. An inspection or vision product wants sizes in the boxes: show placeholder values as dashed chips ("— mm") and stamp the artifact "Sample layout" (§73). Never invent readings.
+**One stage, many crops:** draw overlays as one SVG in the source image's pixel `viewBox`; for a crop, widen the SVG to `(source ÷ crop) × 100%` and shift it by `−crop.x ÷ crop.w`, so every coordinate is reused (hero, a zoomed play view, mobile). Such SVGs are wider than their stage, so set `max-width:none` on them, because tokens.css caps `svg{max-width:100%}` and the overlay silently vanishes on mobile. Labels printed on a map or photo need a paper halo (`paint-order:stroke;stroke:var(--paper);stroke-width:4px`), and draw them *after* the routes so no line crosses a name. Leave the bottom ~15% of a hero image free if a card will cross its edge. Measure the % boxes from the source file once (open it at 1:1 and read pixel positions, then divide by its size). On mobile use a separate crop with its own stage and `--r`. An inspection or vision product wants sizes in the boxes: show placeholder values as dashed chips ("— mm") and stamp the artifact "Sample layout" (§73). Never invent readings.
 
 ### 82. Fill the blank in the photo with live type (Morrow)
 Have the bible **reserve a flat blank zone on the object** ("a blank cream label, no text"). Then write on it in HTML: the hour, the product name, the visitor's city. Put it on a §81 stage, size it with `cqw`, and give it `mix-blend-mode:multiply` so it takes the paper's grain and light. If the object is tilted, rotate the text to match. Because the type is real, it can change (the time, a selected variant), and it can repeat as the motif in captions, links and the finale. It reads as photographed, not pasted. Find the label's box by sampling its corners: `images.py sample SRC --zone …` confirms the blank's colour, so the ink can be a darker tint of it.
@@ -695,3 +695,19 @@ For studio and portfolio sites: a **bottom dock** nav (5–6 icon+label items an
 
 ### 93. The hero load sequence (Rahul Luthra's reel: Dhuros, ChadwickAI, Improtu, a wallet app)
 The scene is complete on the first frame. Then the h1 resolves **word by word from blur to sharp**, then the lede, then the CTA, then the product rises in from below. Everything is readable by ~1.4s. This is the one sanctioned way to animate a hero headline outside Loud pages: motion.md §5.10 and `heroSequence()` in assets/motion.js. Use it on one hero per site, never on section headings or body copy.
+
+### 94. The page as one journey, with the nav as its route (Jawad Jalal's earlier portfolio)
+For a portfolio, a studio or a product with a clear sequence, the whole page can be **one trip**: each section is a single card on a long track, and the nav is the route map. A metro line whose stops are the sections fills as you travel, there's a progress hairline at the page's bottom edge, and the last stop is the CTA.
+```css
+.route{position:fixed;left:50%;bottom:20px;translate:-50% 0;display:flex;align-items:center;gap:14px;padding:8px 8px 8px 12px;border-radius:999px;background:var(--paper);box-shadow:0 0 0 1px var(--hairline),0 10px 30px -14px rgb(0 0 0 / .3)}
+.route ol{display:flex;gap:28px;position:relative}
+.route ol::before{content:"";position:absolute;left:0;right:0;top:50%;height:1px;background:var(--hairline)}
+.route ol::after{content:"";position:absolute;left:0;top:50%;height:1.5px;width:calc(var(--p,0) * 100%);background:var(--accent)}   /* --p: 0→1 page progress */
+.route li[aria-current]{font-weight:600}
+```
+- **Sideways travel is optional and costly.** If the track runs horizontally (vertical scroll mapped to `translateX` on a sticky stage, as in motion.md §5.8), keep the native vertical scrollbar, support arrow keys and Page Down, and give every card a real heading so the page still reads top to bottom with CSS off. Never take over right-click.
+- **End with the lights going down:** as the last card arrives, the page ground darkens one or two steps (`background-color` on `html`, 600ms) and the CTA card is the only bright thing. It's the closing of a show, and the strongest ending in the user's references.
+- Cards stay one thing each: the work (with honest mono stats), the process as three chips, the person as a profile card with stat bubbles, one testimonial in a handwritten face (only if it's real), prices fanned like playing cards.
+
+### 95. Proof that updates itself (Cosmos)
+If the brand's work lives somewhere with a public number (players online, GitHub stars, downloads, uptime, a public status page), show it **live**, with the source named: "Live from Roblox · 79.4K players now". Cache it server-side, show when it was fetched, and fall back to the last value with its date. For fictional builds, don't fake a live feed: label it "Example" or leave it out.

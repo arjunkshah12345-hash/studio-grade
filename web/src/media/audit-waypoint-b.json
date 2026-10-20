@@ -1,0 +1,726 @@
+{
+ "url": "http://127.0.0.1:4317/tests/builds/waypoint-b/",
+ "outDir": "/tmp/wp-b3",
+ "ms": 43203,
+ "counts": {
+  "PASS": 11,
+  "INFO": 2
+ },
+ "profile": {
+  "families": [
+   "Alegreya Sans×122",
+   "Alegreya×44",
+   "JetBrains Mono×18"
+  ],
+  "display": [
+   "64px/1.02/-0.024em w500 \"It reads. It never pushes co\"",
+   "64px/1.02/-0.024em w500 \"It never pushes code or merg\"",
+   "64px/1/-0.025em w500 \"Next year’s new hire walks y\""
+  ],
+  "bodySize": "21",
+  "weights": [
+   "500×106",
+   "400×74",
+   "700×4"
+  ],
+  "upperShare": 0.2,
+  "paper": "rgb(37,46,42)",
+  "accents": [
+   "rgb(198,59,34) bg a.skip"
+  ],
+  "buttons": [
+   "square 36px \"Map your repo\"",
+   "square 44px \"Map your repo\"",
+   "square 44px \"See a first week\n→\"",
+   "square 44px \"Map yours\"",
+   "square 44px \"Install for GitHub\""
+  ],
+  "eases": [
+   "cubic-bezier(.16,1,.3,1)",
+   "cubic-bezier(.76,0,.24,1)",
+   "cubic-bezier(.4,0,.2,1)",
+   "cubic-bezier(.34,1.56,.64,1)"
+  ],
+  "nav": {
+   "h": 64,
+   "links": 7
+  },
+  "pageVh": 7.8
+ },
+ "findings": [
+  {
+   "level": "PASS",
+   "rule": "type.families",
+   "msg": "3 families: Alegreya Sans, Alegreya, JetBrains Mono"
+  },
+  {
+   "level": "PASS",
+   "rule": "type.display",
+   "msg": "Display type within norms (largest 64px · lh 1.02 · -0.024em · weight 500 · Alegreya)"
+  },
+  {
+   "level": "PASS",
+   "rule": "style.defaultLook",
+   "msg": "Distinct from the default look (2/6 traits: tinyAccent, lightDisplay)"
+  },
+  {
+   "level": "PASS",
+   "rule": "color.accent",
+   "msg": "One accent hue (0° (w9) e.g. rgb(198,59,34) bg a.skip)"
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast",
+   "msg": "All 155 checked text elements on solid grounds meet AA."
+  },
+  {
+   "level": "PASS",
+   "rule": "a11y.contrast.media",
+   "msg": "All 29 text elements over imagery meet AA (sampled from pixels)"
+  },
+  {
+   "level": "PASS",
+   "rule": "shape.buttons",
+   "msg": "Consistent button radius camp: square"
+  },
+  {
+   "level": "PASS",
+   "rule": "hero.ctas",
+   "msg": "2 hero CTA(s) · seen: 1 solid + 1 text button"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.ease",
+   "msg": "Eases in use: cubic-bezier(0.16,1,0.3,1)×48, cubic-bezier(0.4,0,0.2,1)×11, cubic-bezier(0.34,1.56,0.64,1)×5, linear×3"
+  },
+  {
+   "level": "PASS",
+   "rule": "motion.text",
+   "msg": "Body copy mostly present without a reveal (4/24 paragraphs wait for scroll)"
+  },
+  {
+   "level": "PASS",
+   "rule": "mobile.overflow",
+   "msg": "No horizontal overflow at 390px"
+  },
+  {
+   "level": "INFO",
+   "rule": "color.coverage",
+   "msg": "Saturated background coverage ≈ 0.4% of page area"
+  },
+  {
+   "level": "INFO",
+   "rule": "layout.length",
+   "msg": "Page length 7.8 viewports: shorter than the direction's norm (8–14); fine when the brief is short. Judge by content, don't pad."
+  }
+ ],
+ "screenshots": [
+  "/tmp/wp-b3/desktop-hero.png",
+  "/tmp/wp-b3/slice-01.jpg … (one per viewport)",
+  "/tmp/wp-b3/desktop-full.jpg",
+  "/tmp/wp-b3/mobile-hero.png",
+  "/tmp/wp-b3/mobile-full.jpg",
+  "/tmp/wp-b3/reduced-motion-hero.png"
+ ],
+ "raw": {
+  "desktop": {
+   "title": "Waypoint · A trail map of your codebase",
+   "lang": "en",
+   "metaDesc": true,
+   "pageVh": 7.8,
+   "families": [
+    [
+     "Alegreya Sans",
+     122
+    ],
+    [
+     "Alegreya",
+     44
+    ],
+    [
+     "JetBrains Mono",
+     18
+    ]
+   ],
+   "loadedFonts": [
+    "Alegreya",
+    "Alegreya Sans",
+    "JetBrains Mono"
+   ],
+   "largest": [
+    {
+     "tag": "h2",
+     "text": "It reads. It never pushes code or merges anything.",
+     "family": "Alegreya",
+     "size": 64,
+     "weight": 500,
+     "lh": 1.02,
+     "ls": -0.024,
+     "upper": false,
+     "clipText": false,
+     "top": 4435.125,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "It never pushes code or merges anything.",
+     "family": "Alegreya",
+     "size": 64,
+     "weight": 500,
+     "lh": 1.02,
+     "ls": -0.024,
+     "upper": false,
+     "clipText": false,
+     "top": 4424.125,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Next year’s new hire walks your path.",
+     "family": "Alegreya",
+     "size": 64,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 6139.296875,
+     "condensed": true
+    },
+    {
+     "tag": "h1",
+     "text": "A trail map of your codebase.",
+     "family": "Alegreya",
+     "size": 56.1405,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 584.46875,
+     "condensed": true
+    },
+    {
+     "tag": "h2",
+     "text": "Every codebase has paths. A year of pull requests wore them in.",
+     "family": "Alegreya",
+     "size": 44,
+     "weight": 500,
+     "lh": 1.08,
+     "ls": -0.018,
+     "upper": false,
+     "clipText": false,
+     "top": 1142.171875,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "A year of pull requests wore them in.",
+     "family": "Alegreya",
+     "size": 44,
+     "weight": 500,
+     "lh": 1.08,
+     "ls": -0.018,
+     "upper": false,
+     "clipText": false,
+     "top": 1182.6875,
+     "condensed": false
+    }
+   ],
+   "h1": [
+    {
+     "tag": "h1",
+     "text": "A trail map of your codebase.",
+     "family": "Alegreya",
+     "size": 56.1405,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 584.46875,
+     "condensed": true
+    }
+   ],
+   "h1Count": 1,
+   "display": [
+    {
+     "tag": "h1",
+     "text": "A trail map of your codebase.",
+     "family": "Alegreya",
+     "size": 56.1405,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 584.46875,
+     "condensed": true
+    },
+    {
+     "tag": "h2",
+     "text": "Every codebase has paths. A year of pull requests wore them in.",
+     "family": "Alegreya",
+     "size": 44,
+     "weight": 500,
+     "lh": 1.08,
+     "ls": -0.018,
+     "upper": false,
+     "clipText": false,
+     "top": 1142.171875,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "A year of pull requests wore them in.",
+     "family": "Alegreya",
+     "size": 44,
+     "weight": 500,
+     "lh": 1.08,
+     "ls": -0.018,
+     "upper": false,
+     "clipText": false,
+     "top": 1182.6875,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Ask what a new hire asks. It answers in Slack or Teams, with the exact lines.",
+     "family": "Alegreya",
+     "size": 44,
+     "weight": 500,
+     "lh": 1.08,
+     "ls": -0.018,
+     "upper": false,
+     "clipText": false,
+     "top": 2010.765625,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "It answers in Slack or Teams, with the exact lines.",
+     "family": "Alegreya",
+     "size": 44,
+     "weight": 500,
+     "lh": 1.08,
+     "ls": -0.018,
+     "upper": false,
+     "clipText": false,
+     "top": 2003.765625,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Who owns what, kept current.",
+     "family": "Alegreya",
+     "size": 44,
+     "weight": 500,
+     "lh": 1.08,
+     "ls": -0.018,
+     "upper": false,
+     "clipText": false,
+     "top": 3028.421875,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "kept current.",
+     "family": "Alegreya",
+     "size": 44,
+     "weight": 500,
+     "lh": 1.08,
+     "ls": -0.018,
+     "upper": false,
+     "clipText": false,
+     "top": 3068.9375,
+     "condensed": true
+    },
+    {
+     "tag": "h2",
+     "text": "A first week of small, real tasks. Each waypoint has a file and a person to ask.",
+     "family": "Alegreya",
+     "size": 44,
+     "weight": 500,
+     "lh": 1.08,
+     "ls": -0.018,
+     "upper": false,
+     "clipText": false,
+     "top": 3674.296875,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Each waypoint has a file and a person to ask.",
+     "family": "Alegreya",
+     "size": 44,
+     "weight": 500,
+     "lh": 1.08,
+     "ls": -0.018,
+     "upper": false,
+     "clipText": false,
+     "top": 3667.296875,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "It reads. It never pushes code or merges anything.",
+     "family": "Alegreya",
+     "size": 64,
+     "weight": 500,
+     "lh": 1.02,
+     "ls": -0.024,
+     "upper": false,
+     "clipText": false,
+     "top": 4435.125,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "It never pushes code or merges anything.",
+     "family": "Alegreya",
+     "size": 64,
+     "weight": 500,
+     "lh": 1.02,
+     "ls": -0.024,
+     "upper": false,
+     "clipText": false,
+     "top": 4424.125,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Three sheets. Pick the one that fits the repo.",
+     "family": "Alegreya",
+     "size": 44,
+     "weight": 500,
+     "lh": 1.08,
+     "ls": -0.018,
+     "upper": false,
+     "clipText": false,
+     "top": 5046.75,
+     "condensed": false
+    },
+    {
+     "tag": "span",
+     "text": "Pick the one that fits the repo.",
+     "family": "Alegreya",
+     "size": 44,
+     "weight": 500,
+     "lh": 1.08,
+     "ls": -0.018,
+     "upper": false,
+     "clipText": false,
+     "top": 5039.75,
+     "condensed": true
+    },
+    {
+     "tag": "h3",
+     "text": "Free",
+     "family": "Alegreya",
+     "size": 44,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 5183.8125,
+     "condensed": false
+    },
+    {
+     "tag": "h3",
+     "text": "Team",
+     "family": "Alegreya",
+     "size": 44,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 5183.8125,
+     "condensed": false
+    },
+    {
+     "tag": "h3",
+     "text": "Enterprise",
+     "family": "Alegreya",
+     "size": 44,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.02,
+     "upper": false,
+     "clipText": false,
+     "top": 5183.8125,
+     "condensed": false
+    },
+    {
+     "tag": "h2",
+     "text": "Next year’s new hire walks your path.",
+     "family": "Alegreya",
+     "size": 64,
+     "weight": 500,
+     "lh": 1,
+     "ls": -0.025,
+     "upper": false,
+     "clipText": false,
+     "top": 6139.296875,
+     "condensed": true
+    }
+   ],
+   "bodySize": "21",
+   "tinyText": 0,
+   "labelsTight": [],
+   "labelCount": 34,
+   "upperShare": 0.2,
+   "bigCapsSentences": [],
+   "weights": [
+    [
+     "500",
+     106
+    ],
+    [
+     "400",
+     74
+    ],
+    [
+     "700",
+     4
+    ]
+   ],
+   "textShadowBig": 0,
+   "textStroke": 0,
+   "stuckReveal": [],
+   "gradientText": [],
+   "longMeasure": [],
+   "paper": [
+    37,
+    46,
+    42,
+    1
+   ],
+   "pureBW": {
+    "blackOnWhite": 0,
+    "whiteOnBlack": 0
+   },
+   "artHues": [
+    "0°×36",
+    "210°×27"
+   ],
+   "accentHues": [
+    {
+     "hue": 0,
+     "weight": 9,
+     "example": "rgb(198,59,34) bg a.skip"
+    }
+   ],
+   "chromaCoverage": 0.4,
+   "fieldHues": [],
+   "gradients": [],
+   "glows": 0,
+   "buttonCamps": [
+    [
+     "square",
+     9
+    ]
+   ],
+   "buttons": [
+    {
+     "text": "Map your repo",
+     "camp": "square",
+     "h": 36,
+     "top": 6107,
+     "nav": true
+    },
+    {
+     "text": "Map your repo",
+     "camp": "square",
+     "h": 44,
+     "top": 675,
+     "nav": false
+    },
+    {
+     "text": "See a first week\n→",
+     "camp": "square",
+     "h": 44,
+     "top": 675,
+     "nav": false
+    },
+    {
+     "text": "Map yours",
+     "camp": "square",
+     "h": 44,
+     "top": 2692,
+     "nav": false
+    },
+    {
+     "text": "Install for GitHub",
+     "camp": "square",
+     "h": 44,
+     "top": 4522,
+     "nav": false
+    },
+    {
+     "text": "Install for GitLab",
+     "camp": "square",
+     "h": 44,
+     "top": 4522,
+     "nav": false
+    },
+    {
+     "text": "Map your repo",
+     "camp": "square",
+     "h": 44,
+     "top": 5782,
+     "nav": false
+    },
+    {
+     "text": "Map your repo",
+     "camp": "square",
+     "h": 44,
+     "top": 5782,
+     "nav": false
+    },
+    {
+     "text": "Ask for a quote",
+     "camp": "square",
+     "h": 44,
+     "top": 5782,
+     "nav": false
+    },
+    {
+     "text": "Map your repo",
+     "camp": "square",
+     "h": 44,
+     "top": 6300,
+     "nav": false
+    }
+   ],
+   "bigRadiusCards": 0,
+   "dropShadows": 5,
+   "heroCtas": [
+    "Map your repo",
+    "See a first week →"
+   ],
+   "heroMix": "1 solid + 1 text button",
+   "heroTextLinks": [],
+   "h1Words": 6,
+   "h1Lines": 1,
+   "h1Centered": false,
+   "badgeAboveH1": [],
+   "h2Count": 7,
+   "h2CenteredShare": 0,
+   "iconGrids": [],
+   "sectionCV": 0.2,
+   "emoji": [],
+   "exclaim": [],
+   "banned": [],
+   "lorem": false,
+   "dupIds": [],
+   "hiddenShown": [],
+   "motion": {
+    "usedEases": [
+     [
+      "cubic-bezier(0.16,1,0.3,1)",
+      48
+     ],
+     [
+      "cubic-bezier(0.4,0,0.2,1)",
+      11
+     ],
+     [
+      "cubic-bezier(0.34,1.56,0.64,1)",
+      5
+     ],
+     [
+      "linear",
+      3
+     ]
+    ],
+    "transitions": 23,
+    "keyframes": 1,
+    "beziers": [
+     [
+      "cubic-bezier(.16,1,.3,1)",
+      2
+     ],
+     [
+      "cubic-bezier(.76,0,.24,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.4,0,.2,1)",
+      1
+     ],
+     [
+      "cubic-bezier(.34,1.56,.64,1)",
+      1
+     ]
+    ],
+    "reducedMotion": true,
+    "defaultEases": 14,
+    "lenis": false,
+    "revealEls": 6
+   },
+   "autoplayVideos": 0,
+   "pauseControl": false,
+   "imgNoAlt": 0,
+   "unnamedControls": 0,
+   "skipLink": true,
+   "hiddenText": [],
+   "defaultLook": {
+    "sig": {
+     "warmOffWhite": false,
+     "monoUpperLabels": false,
+     "hairlineBands": false,
+     "lineDrawingHero": false,
+     "tinyAccent": true,
+     "lightDisplay": true
+    },
+    "score": 2,
+    "monoUpperShare": 0,
+    "hairlines": 13
+   },
+   "nav": {
+    "h": 64,
+    "links": 7
+   },
+   "copyDupes": [],
+   "titleCase": [],
+   "textOverlap": [],
+   "textMotion": {
+    "paras": 24,
+    "hidden": 4,
+    "seq": null,
+    "h1Split": false
+   },
+   "firstFrame": {
+    "h1Hidden": false,
+    "hidden": []
+   },
+   "contrast": {
+    "checked": 155,
+    "low": 0,
+    "lowBody": 0,
+    "examples": []
+   },
+   "perf": null,
+   "mediaContrast": {
+    "checked": 29,
+    "low": []
+   },
+   "consoleErrors": []
+  },
+  "mobile": {
+   "overflow": 0,
+   "offenders": [],
+   "small": [],
+   "smallCount": 0,
+   "h1Size": 36,
+   "tinyBody": 0,
+   "tinyEx": []
+  },
+  "reducedMotion": {
+   "firstViewport": 13,
+   "hidden": []
+  }
+ }
+}

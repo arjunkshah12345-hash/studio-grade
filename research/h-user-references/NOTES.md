@@ -217,3 +217,27 @@ Supplied as "look at more of his work too". Five of the six projects linked from
 - **Improtu.ai:** dark teal radial glow over a wireframe mesh globe; a two-tone h1 (white, then grey); overlapping UI cards (a 21.5% stat card over a search-snippet card) breaking over the headline's lower edge; a white pill CTA.
 - **The shared choreography (the reason it's useful):** the scene is complete on the first frame; then the h1 resolves **word by word from blur to sharp** (≈60–90ms per word, ~8px blur, a few px of rise), then the lede as one block, then the CTA, then the product object **rises in from below** (≈0.8–1s). Everything is readable by about 1.2–1.6s. It's 19% of measured top sites, so it stays a device: motion.md §5.10, `heroSequence()`.
 - **Leave:** the Improtu card covering the h1's descenders; the whole hero blurring out (that's the video loop, not a page behaviour).
+
+## The rest of jawadjalal.com's list (checked 2026-10-19, second pass)
+
+The "Elsewhere · 9 more" links plus Weld. **Unreachable:** weldroblox.com, acquiblox.com and games.worldent.online don't resolve; vizzbees.com (Vercel security checkpoint) and splittingpoint.com (403) block automated browsers. Measured: the five below.
+
+### jawad-portfolio-kohl.vercel.app: his earlier design portfolio (the creative one)
+Captured by scrolling (`sites/jawad-portfolio-kohl-vercel-app/travel/k-00…14.jpg`); the arrow keys don't fire headless.
+- **The page is a journey of cards on a desk.** A vertical scroll travels *sideways* along one track of floating, softly shadowed cards on a faint grid paper: the hero, "my designs" (a live preview of Weld with "200 signups · $0 paid · built solo" in mono), "design / build / ship" as three tilted chips, "just me" (portrait + three round stat bubbles: based in London · age 15 · builds good stuff), a handwritten testimonial ("great skill / great design / great speed", Joel Jeon, founder, Weld), "3 packages" fanned like playing cards (The Single from $500 · The Edition from $1,200 · The Commission from $3,000), and the finale "Your move." on a near-black card **as the whole room dims to grey**, like house lights going down.
+- **Hero:** a puffy, extruded black wordmark "JAWAD" at full width with his portrait in a white-rimmed circle punched through the W; "hi, i'm" handwritten above; tool icons (Figma, Blender, Framer, ChatGPT) float around the portrait; the wordmark then swaps to "DESIGN" with "i also" above (the name becomes the job).
+- **The nav is the route:** a pill at the bottom with an avatar, a metro line whose stops are the sections (Work · Services · Process · About · Trust · Pricing · Contact), a red progress line along the page's bottom edge, and a black "ORDER →". Instructions are part of the voice: "left click to go backward, right click to go forward / or just scroll, your call▍"; "← → arrow keys to travel".
+- Voice: handwritten (Architects Daughter-style) for the human lines, mono for the facts. Each section says one thing.
+- **Take:** §94 (the page as one journey with the nav as its route), the lights-down finale, the name→job wordmark swap, the stat bubbles, packages fanned as cards. **Leave:** hijacking right-click (it breaks the context menu); sideways travel without a visible scrollbar or keyboard path (give both); a loading-preview hatch that stays empty.
+
+### kleoklaw.com: "Find a job, from your texts." (Apple-plain)
+A centred one-line h1, one blue "Join now", and an iPhone showing the product **in iMessage** ("Nothing sent yet, your Brave application answers, as filled in. Check before we submit…" → "Good for submit") on a blue swirl gradient. Three numbered steps beside a second phone; a 2×2 feature grid; a long FAQ; honest small print ("Kleo acts as your limited agent… does not guarantee interviews…"). **Take:** when the product lives in another app's channel (iMessage, Slack, email), show that channel exactly, with the product's real lines; the small-print honesty. **Leave:** icon-card feature grid.
+
+### cosmosmodels.lovable.app: a 3D artist's commission page (dark)
+A turntable viewer (1 / 21) of game models, a live clock, a music player, and **live proof from a public API**: "Live from Roblox · Games I contributed to · 79.4K+ players now · 11.5B+ total visits", each game card with its current CCU. **Take:** proof that updates itself from a real public source (§95). **Leave:** the purple-glow dark template.
+
+### sof.agency (SOF Asia Pacific)
+One screen: a red dot-matrix globe and "Onto something great." with a dense mono nav. Nothing new beyond restraint.
+
+### basketent.com (Basket Entertainment, a Roblox studio)
+Condensed all-caps display ("BUILT TO BE PLAYED", "PLAYED BY BILLIONS"), rounded black/white slabs alternating, stat cards (200M+ monthly users), logo pills, a game carousel, awards cards. Competent studio template. **Take:** nothing new. **Leave:** all-caps headings at every level.

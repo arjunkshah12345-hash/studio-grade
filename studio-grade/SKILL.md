@@ -53,6 +53,10 @@ How to choose:
 - **Building several sites in one project or session** (variants, a portfolio, a gallery)? No two may share more than 2 of the 5 axis values (range.md §3).
 - For a redesign, run the audit (Step 6) on the existing page first, then keep what is genuinely good.
 
+### Step 1b: Find the idea (the X-factor)
+
+The measurements make a page correct; they don't make it memorable. Before the Spine, follow **`references/xfactor.md`**: write the product's mechanism in one sentence (X1), generate five concepts through five different lenses (X2), score them and keep the boldest one that still passes the five-second test (X3), then commit to it in five places: the hero, one thing to play with, the language, a detail for a second look, and the ending (X4). Break exactly one default on purpose and say which (X5). In an A/B test on the same brief (gallery, Waypoint A vs B), the build that did this step was the one people would remember; the one that didn't was correct and forgettable. Skip it only for a redesign that must stay on-brand, or when the user asks for a plain page.
+
 ### Step 2: Write the Design Spine before any code
 
 Write this block in your reply or in a comment at the top of the main file (a comment above `<!doctype html>` is safe: it doesn't trigger quirks mode, and the audit reads it from there). Each line must be concrete. "Modern and clean" is not a spine.
@@ -75,6 +79,11 @@ IMAGES      : the style bible if you generate images (medium · palette hexes ·
 NAMING      : <the brand metaphor> → tiers · steps · CTA verb · 404 line   (techniques.md §63; omit if the brand has no metaphor)
 SIGNATURES  : 2–3 named moves from references/techniques.md (no more; system rules §63/§66/§67 don't count)
 VOICE       : 3 sample lines (hero, section, CTA) in the brand's voice
+IDEA        : the site is ___ / so the hero is ___ / and the visitor gets to ___  (xfactor.md X3 scores)
+PLAY        : the one interaction that runs the product's mechanism in miniature
+SECOND LOOK : the detail a visitor finds
+ENDING      : how the idea pays off in the finale
+BROKEN RULE : the one default broken on purpose, and why the idea needs it
 ```
 
 ### Step 3: Tokens first
@@ -190,12 +199,13 @@ The full list, with the replacement for each item, is in `references/anti-slop.m
 |---|---|
 | `references/directions.md` | **Always**, for the chosen direction: tokens, fonts, hero, section anatomy, motion, signatures |
 | `references/range.md` | **Always**: register (quiet/confident/loud), the five range axes, the default-look check, loud recipes |
+| `references/xfactor.md` | **Always** (Step 1b): the creative idea: five lenses, scoring, the idea in five places, one broken rule, guardrails |
 | `references/typography.md` | Choosing fonts (with free substitutes for premium faces), tracking tables, pairing rules |
 | `references/color.md` | Building the palette; 20+ measured palettes with hex values; dark mode; accent discipline |
 | `references/layout.md` | Grids, margins, hero archetypes, section-pattern library, page rhythm, mobile, studio and service sites that convert (§9) |
 | `references/motion.md` | Eases, durations, springs, reveal primitives, loaders, smooth-scroll policy, reduced motion |
 | `references/components.md` | Buttons, nav forms, eyebrows, cards, logo walls, testimonials, stats, forms, footers |
-| `references/techniques.md` | 93 signature techniques with copy-paste code (rails, ticker, letter-roll, aperture…) |
+| `references/techniques.md` | 95 signature techniques with copy-paste code (rails, ticker, letter-roll, aperture…) |
 | `references/imagery.md` | Product-UI-as-hero, generative ornament, photo art direction, placeholders |
 | `references/copy.md` | Headline formulas, voice, CTA verbs, banned phrases, microcopy |
 | `references/anti-slop.md` | The full list of AI tells, each with its fix; use it for redesign audits |
